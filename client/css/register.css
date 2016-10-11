@@ -1,0 +1,64 @@
+body{
+	background:url(../images/bg.png) center center no-repeat;
+	background-color: #1a2129;
+	min-height: 100vh;
+}
+.m-register img{
+	width: 18%;
+	display: block;
+	margin:0 auto;
+}
+.m-regbox{
+	width: 480px;
+	padding:43px 0;
+	margin:65px auto 0;
+	border-radius: 20px;
+	text-align: center;
+	background:#3c4856;
+	color:#fff;
+}
+.m-regbox h3{
+	font-size: 24px;
+	margin-bottom: 20px;
+	font-weight: bold;
+}
+.m-regform input,
+.m-regform .u-reg-btn{
+	width: 380px;
+	height: 50px;
+	line-height: 50px;
+	border-radius: 5px;
+	margin:9px 0;
+}
+.m-regform .m-tel{
+	position: relative;
+}
+.m-regform input{
+	border:none;
+	text-indent: 20px;
+	font-size: 16px;
+}
+.m-regform button{
+	position: absolute;
+	width: 120px;
+	text-align: center;
+	top:9px;
+	right: 50px;
+	background: none;
+	border:none;
+	height: 50px;
+	line-height: 50px;
+	font-size: 16px;
+	color:#333;
+}
+.m-regform .agreement{
+	color:#0ff;
+}
+.m-regform .u-reg-btn{
+	display: block;
+	font-size: 18px;
+	font-weight: bold;
+	color:#fff;
+	margin:10px auto;
+	background: #f36;
+}
