@@ -8,6 +8,7 @@ module.exports = {
     entry: {
         layout: ['./client/css/basic.css',hotMiddlewareScript],
         index: ['./client/css/index.css', './client/js/index.js',hotMiddlewareScript],
+        register: ['./client/css/register.css',hotMiddlewareScript],
     },
     output: {
         filename: './[name].js',

@@ -48,4 +48,8 @@ router.get('/login', function(req, res, next) {
     res.render('login', { title: "登录", islogin: false });
 });
 
+router.get('/register', function(req, res, next) {
+    res.render('register', { title: "注册", islogin: false });
+});
+
 module.exports = router;
