@@ -1,0 +1,26 @@
+{% extends 'layout.html' %} 
+
+{% block content %}
+<div class="m-register">
+	<img src="images/logo_center.png" alt="">
+	<div class="m-regbox">
+		<h3>新用户注册</h3>
+		<div class="m-regform">
+			<div class="m-input m-tel">
+				<input type="text" class="u-ipt" placeholder="手机号码">
+				<button>获取验证码</button>
+			</div>
+			<div class="m-input">
+				<input type="text" class="u-ipt" placeholder="验证码">
+			</div>
+			<p style="margin-top: 30px;">注册即视为同意 <a href="" class="agreement">《娱儿tv用户服务协议》</a></p>
+			<a href="" class="u-reg-btn">注册</a>
+		</div>
+	</div>
+</div>
+	
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/dist/register.js"></script>
+{% endblock %}

@@ -1,7 +1,6 @@
-<div class="g-hd">
+<div class="g-hd f-cb">
     <div class="header_left f-fl">
-        <a href="" class="slidein" @click="slidein"></a>
-        <img src="/images/logo.png" alt="">
+        <!-- <img src="/images/logo.png" alt=""> -->
     </div>
     {% if islogin %}
     <div class="header_right f-fr">
@@ -21,7 +20,7 @@
     </div>
     {% else %}
     <div class="header_right visitor f-fr">
-        <a href="/login">登录</a><span>•</span><a>注册新用户</a>
+        <a href="/login" class="u-login-btn">立即登录</a><a>帮助中心</a>
     </div>
     {% endif %}
 </div>
