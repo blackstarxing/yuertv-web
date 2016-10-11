@@ -31,7 +31,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 if (isDev) {
     app.use(webpackDevMiddleware(compiler, {
@@ -42,11 +41,13 @@ if (isDev) {
         }
     }));
     app.use(webpackHotMiddleware(compiler));
+    app.use(express.static(path.join(__dirname, 'public')));
     
     routerConfig(app, {
         dirPath: __dirname + '/server/routes/'
     });
 } else {
+    app.use(express.static(path.join(__dirname, 'public')));
     routerConfig(app, {
         dirPath: __dirname + '/server/routes/'
     });

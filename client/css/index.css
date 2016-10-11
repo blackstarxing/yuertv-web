@@ -86,7 +86,7 @@
     margin:0 2%;
 }
 .match:hover{
-    border-color:green;
+    border-color:yellow;
 }
 .match-name{
     margin:15px 0;
