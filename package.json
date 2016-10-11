@@ -1,0 +1,30 @@
+{
+  "name": "app4",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "dev": "NODE_ENV=development supervisor --debug -w server,app.js app",
+    "build": "NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "express": "~4.13.4",
+    "morgan": "~1.7.0",
+    "nunjucks": "^2.5.2",
+    "request": "^2.75.0",
+    "serve-favicon": "~2.3.0",
+    "thenjs": "^2.0.3"
+  },
+  "devDependencies": {
+    "css-loader": "^0.25.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.2",
+    "webpack-dev-middleware": "^1.8.3",
+    "webpack-dev-server": "^1.16.1",
+    "webpack-hot-middleware": "^2.12.2"
+  }
+}

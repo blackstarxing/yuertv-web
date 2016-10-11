@@ -1,0 +1,78 @@
+{% extends 'layout.html' %} 
+
+{% block content %}
+
+<div class="banner">
+    <ul id="banner">
+        {% for bannerlist in bannerlists %}
+        <li><img style="width:100%;height:460px;" src={{ 'http://img.wangyuhudong.com'+bannerlist.icon}}></li>
+        {% endfor %}
+    </ul>
+    <div class="list" id="list">
+        <a href="javascript:;"></a>
+    </div>
+    <button class="banner_btn banner_prev"></button>
+    <button class="banner_btn banner_next"></button>
+</div>
+<div class="g-w" style="margin-top:20px;">
+    <div class="landing-box" style="margin-bottom:0;">
+        <h3>赛事推荐</h3>
+        <div class="landing-content f-cb">
+            {% for recommendlist in recommendlists %}
+            <div class="match">
+                    <div class="pic">
+                        <img src={{ 'http://img.wangyuhudong.com'+recommendlist.poster}} alt="" width="100%" height="150px;">
+                        <div class="title"><span class="icon-uniE60F"></span><span class="f-col" v-text="match.activityBegin | formatDate"></span></div>
+                    </div>
+                    <div class="match-progress">
+                        <div class="match-name">
+                            {{recommendlist.eventName}}
+                        </div>
+                        <div class="list mid">
+                            <div class="progress">
+                                <span class="orange" id="bar" v-bind:style="'width: '+match.num/match.maxNum*100+'%;'"><span></span></span>
+                            </div>
+                            <div>by {{recommendlist.nickname}}<span class="f-col f-fr"><strong>{{recommendlist.num}}</strong>/{{recommendlist.maxNum}}</span></div>
+                            <span class="get_eventid">{{recommendlist.eventId}}</span><span class="get_roundid">{{recommendlist.id}}</span><span class="get_isPublish">{{recommendlist.isPublish}}</span>
+                        </div>
+                    </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="landing-box">
+        <h3>全部赛事</h3>
+        <div class="landing-content f-cb">
+            <div>
+                {% for matchlist in matchlists %}
+                <div class="flip-container">
+                    <div class="flipper">
+                        <div class="front">
+                            <!-- 前面内容 -->
+                            <img src={{ 'http://img.wangyuhudong.com'+matchlist.poster}} width="100%">
+                            <div class="flip-wrap">
+                                <span>{{matchlist.eventName}}</span>
+                            </div>
+                        </div>
+                        <div class="back" @click="linkDetail">
+                            <!-- 背面内容 -->
+                            <h4>{{matchlist.nickname}}</h4>
+                            <div class="flip-time"><span class="icon-uniE60F"></span><span v-text="match.activityBegin | formatDate"></span></div>
+                            <div class="flip-num"><span class="icon-uniE619"></span><strong>{{matchlist.num}}</strong>/ {{matchlist.maxNum}}人</div>
+                            <a href="" class="flip-btn"><span class="icon-uniE603"></span></a>
+                            <span class="get_eventid">{{matchlist.eventId}}</span><span class="get_roundid">{{matchlist.id}}</span><span class="get_isPublish">{{matchlist.isPublish}}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <a href="" class="u-btn u-landing-btn">查看全部赛事</a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/dist/index.js"></script>
+{% endblock %}

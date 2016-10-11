@@ -1,0 +1,27 @@
+<div class="g-hd">
+    <div class="header_left f-fl">
+        <a href="" class="slidein" @click="slidein"></a>
+        <img src="/images/logo.png" alt="">
+    </div>
+    {% if islogin %}
+    <div class="header_right f-fr">
+        <a href="" class="notify" v-link="{ name: 'myMessage', params: { messageType: 'system'}, query: {pageId: 1}}"><span class="icon-uniE60D"></span></a>
+        <div class="avatar" @mouseover="avatarOver" @mouseleave="mouseLeave">
+            <img v-bind:src="avatar"><span class="icon-uniE60E" style="border-radius:50%;"></span>
+            <div class="nav-list">
+                <ul>
+                    <li><a><span class="icon-uniE618"></span>我的赛事</a></li>
+                    <li><a><span class="icon-uniE619"></span>个人设置</a></li>
+                    <li><a><span class="icon-uniE61A"></span>参赛信息设置</a></li>
+                    <li><a><span class="icon-uniE61D"></span>战队系统</a></li>
+                    <li><a><span class="icon-uniE61B"></span>登出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="header_right visitor f-fr">
+        <a href="/login">登录</a><span>•</span><a>注册新用户</a>
+    </div>
+    {% endif %}
+</div>

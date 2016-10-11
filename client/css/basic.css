@@ -1,0 +1,140 @@
+/* reset */
+@media only screen { html { font-size: 100px; } }
+@media only screen and (max-width: 1024px){ html { font-size: 64px; } }
+@media only screen and (max-width: 768px) { html { font-size: 48px; } }
+@media only screen and (max-width: 414px) { html { font-size: 25px; } }
+@media only screen and (max-width: 320px) { html { font-size: 20px; } }
+
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{text-align:left;font-weight:normal;}
+html,body,fieldset,img,iframe,abbr{border:0;}
+i,cite,em,var,address,dfn{font-style:normal;}
+[hidefocus],summary{outline:0;}
+li{list-style:none;}
+h1,h2,h3,h4,h5,h6,small{font-size:100%;}
+sup,sub{font-size:83%;}
+pre,code,kbd,samp{font-family:inherit;}
+q:before,q:after{content:none;}
+textarea{overflow:auto;resize:none;}
+label,summary{cursor:default;}
+a,button{cursor:pointer;}
+h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}
+del,ins,u,s,a{text-decoration:none;}
+body,textarea,input,button,select,keygen,legend{font:12px/1.14 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;color:#333;outline:0;}
+body{font:14px/1.5 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;background:#1e1f24; /*letter-spacing:1px;*/}
+input{font:14px/1.5 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;/*letter-spacing:1px;*/}
+a/*,a:hover*/{color:#333;}
+input:-webkit-autofill { 
+-webkit-box-shadow: 0 0 0px 1000px #14181d inset;
+color: #fff !important;
+} 
+input:focus,select:focus,textarea:focus{outline: none;border-color: #42ac59;}
+
+.content{
+	display: flex; min-height: 100vh; flex-direction: column;
+}
+.clearfix:before, .clearfix:after { content: " "; display: block; height: 0; overflow: hidden; }  
+.clearfix:after { clear: both; }  
+.clearfix { zoom: 1; }
+
+.f-cb:after,.f-cbli li:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
+.f-cb,.f-cbli li{zoom:1;}
+.f-ib{display:inline-block;*display:inline;*zoom:1;}
+.f-dn{display:none;}
+.f-db{display:block;}
+.f-fl{float:left;}
+.f-fr{float:right;}
+.f-re{position: relative;}
+.f-ab{position: absolute;}
+.f-tr{text-align: right;}
+.f-tc{text-align: center;}
+
+.footer{
+	border-top: 1px solid #616d78;
+	height: 112px;
+	margin-top: 80px;
+	overflow: hidden;
+}
+.foot{
+    width: 1130px;
+    margin: 0 auto;
+    padding-left: 125px;
+}
+.tel{
+    width:124px;
+    height: 15px;
+    top: 27px;
+    left: 209px;
+    position: relative ;
+    border-right:1px solid #4f4f4f;
+    
+}
+.telIcon span{
+    font-size: 9px;
+    color: #6a6a6a;
+    line-height: 15px;
+    text-align: center;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.letter{
+    width:284px;
+    height: 16px;
+    top: 12px;
+    left:371px;
+    position: relative ;
+    border-right:1px solid #4f4f4f;
+}
+.letterIcon span {
+    font-size: 9px;
+    color: #6a6a6a;
+    line-height: 16px;
+    text-align: center;
+    margin-left: 10px;
+}
+.address{
+    width:380px;
+    height: 16px;
+    top: -3px;
+    left:693px;
+    position: relative ;
+}
+.address span {
+    font-size: 9px;
+    color: #6a6a6a;
+    line-height: 16px;
+    text-align: center;
+    margin-left: 10px;
+     cursor: pointer;
+}
+.contactInformation{
+    /*width:450px;*/
+    height: 16px;
+    top: 12px;
+    left:280px;
+    position: relative ;
+}
+.contactInformation span{
+    font-size: 9px;
+    color: #6a6a6a;
+    line-height: 16px;
+    text-align: center;
+    margin-left: -155px;
+}
+
+ .g-w{
+ 	width:1024px;
+ 	margin:140px auto 0;
+ }
+ .g-z{
+ 	width:600px;
+ 	margin:0 auto;
+ }
+
+
+
+
+
+
