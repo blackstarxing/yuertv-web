@@ -48,4 +48,7 @@ router.get('/login', function(req, res, next) {
     res.render('login', { title: "登录", islogin: false });
 });
 
+router.get('/center', function(req, res, next) {
+    res.render('center', { title: "个人中心" });
+});
 module.exports = router;
