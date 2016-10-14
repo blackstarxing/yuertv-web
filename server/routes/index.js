@@ -49,7 +49,7 @@ router.get('/login', function(req, res, next) {
 });
 
 router.get('/register', function(req, res, next) {
-    res.render('register', { title: "注册", islogin: false });
+    res.render('register', { title: "注册", registerPage: true });
 });
 router.get('/center', function(req, res, next) {
     res.render('center', { title: "个人中心" });

@@ -23,7 +23,7 @@ a,button{cursor:pointer;}
 h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}
 del,ins,u,s,a{text-decoration:none;}
 body,textarea,input,button,select,keygen,legend{font:12px/1.14 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;color:#333;outline:0;}
-body{font:14px/1.5 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;background:#1e1f24; /*letter-spacing:1px;*/}
+body{font:14px/1.5 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;background:#1e1f24; /*letter-spacing:1px;*/background: #141a20;}
 input{font:14px/1.5 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;/*letter-spacing:1px;*/}
 a/*,a:hover*/{color:#333;}
 input:-webkit-autofill { 
@@ -48,11 +48,41 @@ color: #fff !important;
 .f-tr{text-align: right;}
 .f-tc{text-align: center;}
 
-
-.g-hd{
+/*公共头部*/
+.comWidth{
     width: 1200px;
-    padding:17px 0;
     margin:0 auto;
+}
+.g-hd{
+    padding:17px 0;   
+    width: 100%;
+    background: #1a2129;
+}
+.common-hd{
+    padding: 0;
+    height: 70px;
+    line-height: 70px;
+    position: fixed;
+}
+.header_left img{
+    margin-top: 5px;
+    margin-right: 45px;
+    vertical-align: middle;
+}
+.m-nav{
+    margin-right: 110px;
+}
+.m-nav li{
+    float: left;
+    width: 110px;
+    text-align: center;
+    font-size: 18px;
+}
+.m-nav li a{
+    color: #feffff;
+}
+.m-nav li.current a{
+    color: #f36;
 }
 .header_right a{
     display: inline-block;
@@ -61,9 +91,49 @@ color: #fff !important;
     text-align: center;
     color:#fff;
 }
+.visitor a{
+    width: 46px;
+    background: #3c4856;
+    margin:0 8px;
+}
+.m-search{
+    position: relative;
+}
+.m-search input{
+    width: 300px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #feffff;
+    text-indent: 20px;
+    color: #feffff;
+    background: #141a20;
+}
+.m-search .u-search-btn{
+    position: absolute;
+    top:23px;
+    right:15px;
+    width: 24px;
+    height: 24px;
+    background: url(../images/search.png) no-repeat;
+}
+.m-search ::-webkit-input-placeholder { /* WebKit browsers */ 
+    color: #96b4d2; 
+} 
+.m-search :-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+    color: #96b4d2; 
+} 
+.m-search ::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+    color: #96b4d2; 
+} 
+.m-search :-ms-input-placeholder { /* Internet Explorer 10+ */ 
+    color: #96b4d2; 
+} 
 .header_right .u-login-btn{
     background: #f53260;
     border-radius: 5px;
+}
+.visitor .u-login-btn{
+    border-radius: 0;
 }
 .footer{
 	border-top: 1px solid #616d78;
@@ -137,15 +207,6 @@ color: #fff !important;
     text-align: center;
     margin-left: -155px;
 }
-
- .g-w{
- 	width:1024px;
- 	margin:140px auto 0;
- }
- .g-z{
- 	width:600px;
- 	margin:0 auto;
- }
 
 
 

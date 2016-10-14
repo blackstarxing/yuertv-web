@@ -1,26 +1,47 @@
+{% if registerPage %}
 <div class="g-hd f-cb">
-    <div class="header_left f-fl">
-        <!-- <img src="/images/logo.png" alt=""> -->
-    </div>
-    {% if islogin %}
-    <div class="header_right f-fr">
-        <a href="" class="notify" v-link="{ name: 'myMessage', params: { messageType: 'system'}, query: {pageId: 1}}"><span class="icon-uniE60D"></span></a>
-        <div class="avatar" @mouseover="avatarOver" @mouseleave="mouseLeave">
-            <img v-bind:src="avatar"><span class="icon-uniE60E" style="border-radius:50%;"></span>
-            <div class="nav-list">
-                <ul>
-                    <li><a><span class="icon-uniE618"></span>我的赛事</a></li>
-                    <li><a><span class="icon-uniE619"></span>个人设置</a></li>
-                    <li><a><span class="icon-uniE61A"></span>参赛信息设置</a></li>
-                    <li><a><span class="icon-uniE61D"></span>战队系统</a></li>
-                    <li><a><span class="icon-uniE61B"></span>登出</a></li>
-                </ul>
+    <div class="comWidth">
+        <div class="header_right f-fr">
+            <a href="/login" class="u-login-btn">立即登录</a><a>帮助中心</a>
+        </div> 
+    </div>    
+</div>
+{% else %}
+<div class="g-hd f-cb common-hd">
+    <div class="comWidth">
+        <div class="header_left f-fl">
+            <img src="/images/logo.png" alt="" class="f-fl">
+            <ul class="m-nav f-fl">
+                <li class="current"><a href="">首页</a></li>
+                <li><a href="">直播</a></li>
+                <li><a href="">游戏</a></li>
+            </ul>
+            <div class="m-search f-fl">
+                <input type="text" placeholder="查找游戏、主播ID、房间号">
+                <a href="" class="u-search-btn"></a>
             </div>
         </div>
+        {% if islogin %}
+        <div class="header_right f-fr">
+            <a href="" class="notify" v-link="{ name: 'myMessage', params: { messageType: 'system'}, query: {pageId: 1}}"><span class="icon-uniE60D"></span></a>
+            <div class="avatar" @mouseover="avatarOver" @mouseleave="mouseLeave">
+                <img v-bind:src="avatar"><span class="icon-uniE60E" style="border-radius:50%;"></span>
+                <div class="nav-list">
+                    <ul>
+                        <li><a><span class="icon-uniE618"></span>我的赛事</a></li>
+                        <li><a><span class="icon-uniE619"></span>个人设置</a></li>
+                        <li><a><span class="icon-uniE61A"></span>参赛信息设置</a></li>
+                        <li><a><span class="icon-uniE61D"></span>战队系统</a></li>
+                        <li><a><span class="icon-uniE61B"></span>登出</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="header_right visitor f-fr">
+            <a href="/login" class="u-login-btn">登录</a><a href="">注册</a>
+        </div>
+        {% endif %}
     </div>
-    {% else %}
-    <div class="header_right visitor f-fr">
-        <a href="/login" class="u-login-btn">立即登录</a><a>帮助中心</a>
-    </div>
-    {% endif %}
 </div>
+{% endif %}
