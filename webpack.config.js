@@ -10,7 +10,6 @@ module.exports = {
         index: ['./client/css/index.css', './client/js/index.js',hotMiddlewareScript],
         register: ['./client/css/register.css',hotMiddlewareScript],
         center: ['./client/css/center.css', './client/js/center.js',hotMiddlewareScript],
-        center: ['./client/css/center.css', './client/js/center.js',hotMiddlewareScript],
         register: ['./client/css/register.css',hotMiddlewareScript],
     },
     output: {
