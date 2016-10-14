@@ -63,6 +63,7 @@ color: #fff !important;
     height: 70px;
     line-height: 70px;
     position: fixed;
+    top:0;
 }
 .header_left img{
     margin-top: 5px;
