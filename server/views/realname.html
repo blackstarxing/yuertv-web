@@ -1,0 +1,50 @@
+{% extends 'layout.html' %} 
+  
+{% block content %}
+	<div class="g-main">
+		<div id="div1" class="g-left">   
+ 			<ul>
+ 				<li class="u-center">个人中心</li>
+ 				<li class="u-start"><img src="images/ico1.png"><a href="" style="color:#f36">我的资料</a></li>
+ 				<li><img src="images/ico2.png"><a href="">我的关注</a></li>
+ 				<li><img src="images/ico3.png"><a href="">我的道具</a></li>
+ 				<li><img src="images/ico4.png"><a href="">我的消息</a></li>
+ 				<li><img src="images/ico5.png"><a href="">我要充值</a></li>
+ 				<li class="u-cbottom"><img src="images/ico6.png"><a href="">我要当主播</a></li>
+ 			</ul>
+	    </div>   
+		<div id="div2" class="g-right">   
+	  		<div class="m-top">
+	  			<div class="m-tleft">
+	  				<img src="images/ico7.png">
+	  			</div>
+	  			<div class="m-tright">
+	  				<p class="u-p1"><span>巧克力～包子</span>&nbsp;<img src="images/ico8.png"><span class="u-p1-s">[点击修改]</span></p>
+		  			<p class="u-p2">粉丝:<span class="u-change">63836</span></p>
+		  			<p class="u-p3">娱币:<span class="u-change1">6524</span><input type="button" name="" value="充值"></p>
+	  			</div>
+	  			
+	  		</div>
+	  		<div class="m-rbottom">
+	  			<span>修改密码</span><input type="button" name="" value="实名认证"><br>
+	  			<label for>姓名</label><input type="text" name=""><br>
+	  			<label for>QQ密码</label><input type="text" name=""><br>
+	  			<div>
+	  				<label for>身份证号</label><input type="text" name=""><br>
+		  			<label for>身份证到期时间</label><input type="Date pickers" name=""><br>
+		  			<label for>身份证扫描件</label>
+		  			<div><img src=""><br><span>身份证正面照</span><br><input type="button" name="" value="上传图片"></div>
+		  			<div><img src=""><br><span>身份证正面照</span><br><input type="button" name="" value="上传图片"></div>
+		  			<div><img src=""><br><span>身份证正面照</span><br><input type="button" name="" value="上传图片"></div>
+	  			</div>
+	  			<span>我已阅读并同意《娱儿tv主播协议》</span><br>
+	  			<input type="button" name="" value="提交">
+	  		</div>
+	  	</div>   
+	</div>
+	
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/dist/realname.js"></script>
+{% endblock %}
