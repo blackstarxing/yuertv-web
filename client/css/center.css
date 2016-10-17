@@ -136,4 +136,27 @@
 	text-align:center;
 	border-radius: 5%;
 }
+a#m-change{
 
+}
+a#m-change{
+	
+}
+.m-switch(2){
+	width:710px;
+	height:610px;
+	margin-top:95px;
+}
+.m-switch(2) label{
+	width:160px;
+	height:430px;
+	text-align:right;
+	font-size:14px;
+	color:#666e72;
+}
+.m-switch(2) input{
+	width:310px;
+	height:40px;
+	color:#cecfd2;
+	font-size:14px;
+}
