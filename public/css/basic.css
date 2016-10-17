@@ -153,7 +153,7 @@ color: #fff !important;
     width: 300px;
     height: 40px;
     border-radius: 20px;
-    border: 1px solid #feffff;
+    border: 1px solid transparent;
     text-indent: 20px;
     color: #feffff;
     background: #141a20;
