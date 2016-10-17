@@ -1,0 +1,139 @@
+*{color:#fff;}
+.g-main{
+	width:1200px;
+	margin:100px auto 0;
+	background:#141a20;
+} 
+.g-left{ 
+	position:absolute;
+	width:260px;
+	background:#1a2129; 
+}   
+.g-left ul li{
+	color:#fff;
+	height:60px;
+	font-size:16px;
+	color:#cecfd2;
+}
+.g-left ul li.u-start{
+	/*padding-left:20px;*/
+	color:#f36;
+}
+.g-left ul li img{
+	padding-left:80px;
+	background:transparent;
+}
+.g-left ul li a{
+	display:inline-block;
+	padding-left:20px;
+	color:#cecfd2;
+}
+
+.g-left ul li.u-center{
+ 	font-size:30px;
+ 	height:100px;
+ 	margin-top:40px;
+ 	width:260px;
+ 	text-align:center;
+
+ } 
+.g-left ul li.u-cbottom{
+	margin-bottom:230px;
+}
+.g-right{ 
+	margin-left:280px; 
+	background:#1a2129; 
+}
+.g-right .m-top{
+	height:160px;
+	padding-top:30px;
+}
+.g-right .m-bottom{
+	height:365px;
+	width:450px;
+	padding-left:30px;
+	margin-top:100px;
+	margin-bottom:100px;
+}
+.g-right  .m-top .m-tleft{
+	position:absolute;
+	padding-left:35px;
+	 width:265px;
+}
+.g-right .m-top .m-tright{
+	margin-left:265px;
+	padding-left:40px;
+}
+.g-right .m-top .m-tright .u-p1{
+	font-size:24px;
+}
+.g-right .m-top .m-tright .u-p1 .u-p1-s{
+	padding-left:15px;
+	color:#cecfd2;
+	font-size:14px;
+}
+.g-right .m-top .m-tright .u-p2{
+	margin-top:40px;
+	color:#cecfd2;
+}
+.g-right .m-top .m-tright .u-p2 .u-change{
+	padding-left:10px;
+}
+.g-right .m-top .m-tright .u-p3{
+	margin-top:15px;
+	color:#cecfd2;
+}
+.g-right .m-top .m-tright .u-p3 .u-change1{
+	color:#ff0;
+	padding-left:10px;
+}
+.g-right .m-top .m-tright .u-p3 input{
+	background:#3ff;
+	margin-left:25px;
+	width:40px;
+	height:20px;
+	padding:auto;
+	border:0px;
+}
+/*右边下侧样式*/
+.g-right .m-bottom .u-i1{
+	width:100px;
+	height:40px;
+	font-size:16px;
+	background:#f36;
+	border:0px;
+}
+.g-right .m-bottom .u-i2{
+	color:#cecfd2;
+	font-size:16px;
+	margin-left:30px;
+	background:transparent;
+}
+.g-right .m-bottom .u-i3,.u-i4,.u-i5{
+	width:300px;
+	height:40px;
+	margin-bottom:10px;
+	background:transparent;
+	margin-left:15px;
+}
+.g-right .m-bottom label{
+	color:#666e72;
+	font-size:14px;
+	width:90px;
+	padding-right: 10px;
+	display: inline-block;
+	text-align:right;
+	margin-right:0px;
+}
+.g-right .m-bottom .u-i6{
+	margin-left:110px;
+	margin-top:20px;
+	width:300px;
+	height:48px;
+	background:#f36;
+	border:0px;
+	font-size:18px;
+	text-align:center;
+	border-radius: 10%;
+}
+
