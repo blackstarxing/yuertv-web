@@ -96,9 +96,9 @@
 	border:0px;
 }
 /*右边下侧样式*/
-.g-right .m-bottom .m-swithc(1){
+/*.g-right .m-bottom .m-swithc(1){
 	display:none;
-}
+}*/
 .g-right .m-bottom .u-i1{
 	width:100px;
 	height:40px;
@@ -137,7 +137,7 @@
 	border:0px;
 	font-size:18px;
 	text-align:center;
-	border-radius: 5%;
+	/*border-radius: 5%;*/
 }
 a#m-change,a#m-realname{
 	display:inline-block;
@@ -250,6 +250,6 @@ a#m-change,a#m-realname{
 	color:#fff;
 	margin-top:20px;
 	margin-bottom:90px;
-	margin-left:150px;
+	margin-left:170px;
 }
 
