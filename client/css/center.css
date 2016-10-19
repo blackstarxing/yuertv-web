@@ -214,8 +214,6 @@ a#m-change,a#m-realname{
 .m-bottom .u-card{
 	float: left;
 	margin-left:15px;
-	/*padding-left:5px;*/
-	/*margin-left:5px;*/
 }
 .m-bottom .u-card span{
 	display:inline-block;
@@ -227,40 +225,44 @@ a#m-change,a#m-realname{
 	margin-top:20px;
 }
 /*上传图片的样式*/
-/*.upload-container{
-	/*background-image:url('./images/ico7.png');*/
-	/*background-repeat:no-repeat;
-	width:180px;
-	height:200px;
+.upload-container{
+	background-color:#f00;
+	width:95px;
+	height:35px;
+	line-height:35px;
 	padding-bottom:10px;
 	display:inline-block;
 	vertical-align: middle;
-}*/
-/*.fileupload{
+}
+.fileupload{
 	opacity:0;
 	filter:alpha(opacity=0);
-	width:200px;
-	height:200px;
-}*/
-.u-dright span,.u-dright button{
+	width:95px;
+	height:35px;
+	line-height:35px;
+}
+.u-dright span,.u-dright .upload-container{
 	display:inline-block;
-	width:110px;
-	height:30px;
+	width:95px;
+	height:35px;
 	text-align:center;
 	border:0px;
 	color:#fff;
 	margin-top:20px;
-
+	vertical-align:middle;
 }
-.u-dright button{
+.u-dright .upload-container{
 	background:#36383f;
-	margin-left:20px;
+	margin-left:35px;
 	color:#cecfd2;
+	width:95px;
+	height:35px;
+	line-height:35px;
 }
 .m-switch2 .u-agree{
 	margin-top:80px;
 	width:230px;
-	margin-left:200px;
+	margin-left:210px;
 	font-size:14px;
 	color:#666e72;
 }
