@@ -211,7 +211,13 @@ a#m-change,a#m-realname{
 	height:80px;
 	outline:1px solid #353d48;
 }
-.m-bottom .u-co span,.m-bottom .u-ct span,.m-bottom .u-cth span{
+.m-bottom .u-card{
+	float: left;
+	margin-left:15px;
+	/*padding-left:5px;*/
+	/*margin-left:5px;*/
+}
+.m-bottom .u-card span{
 	display:inline-block;
 	width:160px;
 	height:25px;
