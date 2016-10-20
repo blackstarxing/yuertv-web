@@ -3,6 +3,7 @@
 	width:1200px;
 	margin:100px auto 0;
 	background:#141a20;
+	position:relative;
 } 
 /*左侧样式	*/
 .g-left{ 
@@ -111,7 +112,7 @@
 	margin-left:30px;
 	background:transparent;
 }
-.g-right .m-bottom .u-i3,.u-i4,.u-i5{
+.g-right .m-bottom .m-switch .u-i3,.u-i4,.u-i5{
 	width:300px;
 	height:40px;
 	margin-bottom:10px;
@@ -156,6 +157,8 @@ a#m-change,a#m-realname{
 	text-align:center;
 	border-radius:5px;
 }
+
+/*实名认证设置*/
 .m-switch2{
 	width:780px;
 	font-size:14px;
@@ -165,7 +168,7 @@ a#m-change,a#m-realname{
 	width:160px;
 	text-align:right;
 }
-.m-switch2 input{
+.userbox{
 	width:300px;
 	height:40px;
 	color:#cecfd2;
@@ -229,10 +232,7 @@ a#m-change,a#m-realname{
 	background-color:#f00;
 	width:95px;
 	height:35px;
-	line-height:35px;
-	padding-bottom:10px;
-	display:inline-block;
-	vertical-align: middle;
+	position:relative;
 }
 .fileupload{
 	opacity:0;
@@ -240,6 +240,8 @@ a#m-change,a#m-realname{
 	width:95px;
 	height:35px;
 	line-height:35px;
+	position:absolute;
+	z-index:200px;
 }
 .u-dright span,.u-dright .upload-container{
 	display:inline-block;
