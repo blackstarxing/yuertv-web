@@ -55,10 +55,4 @@ router.get('/center', function(req, res, next) {
     res.render('center', { title: "个人中心" });
 });
 
-router.get('/center', function(req, res, next) {
-    res.render('center', { title: "个人中心" });
-});
-router.get('/register', function(req, res, next) {
-    res.render('register', { title: "注册", islogin: false });
-});
 module.exports = router;
