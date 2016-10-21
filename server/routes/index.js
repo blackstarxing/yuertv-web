@@ -51,8 +51,8 @@ router.get('/login', function(req, res, next) {
 router.get('/register', function(req, res, next) {
     res.render('register', { title: "注册", registerPage: true });
 });
-router.get('/center', function(req, res, next) {
-    res.render('center', { title: "个人中心" });
+router.get('/center/information', function(req, res, next) {
+    res.render('center/information', { title: "我的资料" });
 });
 
 module.exports = router;

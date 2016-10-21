@@ -23,6 +23,8 @@
 .g-left ul li span{
 	margin-left:80px;
 	background:transparent;
+	font-size:20px;
+	vertical-align:middle;
 }
 .g-left ul li a{
 	display:inline-block;
@@ -144,14 +146,15 @@ a#m-change,a#m-realname{
 	display:inline-block;
 	width:110px;
 	height:45px;
-	margin-left:35px;
+	margin-left:25px;
 	margin-bottom:45px;
 	line-height: 45px;
-
+	text-align: center;
+	color:#fff;
 }
 .switch{
-	width:110px;
-	height:45px;
+	width:100px;
+	height:35px;
 	background:#f36;
 	color:#fff;
 	text-align:center;
@@ -165,10 +168,10 @@ a#m-change,a#m-realname{
 	color:#666e72;
 }
 .m-bottom .m-switch2 label{
-	width:160px;
+	width:135px;
 	text-align:right;
 }
-.userbox{
+.u-userbox{
 	width:300px;
 	height:40px;
 	color:#cecfd2;
@@ -177,10 +180,10 @@ a#m-change,a#m-realname{
 	margin-left:5px;
 	border:1px solid #353d48;
 }
-.m-switch2 div.u-div5 .u-dleft,.m-switch2 div.u-div5 .u-dright{
+.m-switch2 div.u-idcard .u-dleft,.m-switch2 div.u-idcard .u-dright{
 	display:inline-block;
 }
-.m-switch2 div.u-card1,div.u-card2,div.u-card3{
+.m-switch2 div.u-card{
 	width:160px;
 	height:190px;
 	display:inline-block;
@@ -191,14 +194,30 @@ a#m-change,a#m-realname{
 .m-switch2 .u-div{
 	margin-bottom:25px;
 }
+.m-switch2 .u-div select{
+	width:98px;
+	height: 40px;
+	margin-right:10px;
+	color: #cecfd2;
+	text-indent: 12px;
+    background:url("../images/icon-arrow.png") no-repeat transparent;
+    background-position: 80px 18px;
+    border: 1px solid #353d48;
+    border-radius: 0;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
 .m-switch2 .u-div option{
-	width:95px;
-	height:35px;
+	width:98px;
+	height: 40px;
+	margin-right:10px;
 	background:#141a20;
 
 }
-.m-switch2 .u-div5{
+.m-switch2 .u-idcard{
 	margin-bottom:25px;
+	margin-left:-30px;
 }
 .m-switch2 .u-dleft{
 	width:160px;
@@ -235,13 +254,24 @@ a#m-change,a#m-realname{
 	position:relative;
 }
 .fileupload{
-	opacity:0;
-	filter:alpha(opacity=0);
-	width:95px;
-	height:35px;
+	width:105px;
+	height:30px;
 	line-height:35px;
 	position:absolute;
 	z-index:200px;
+	margin-right:35px;
+	top:0;
+	left:0;
+	opacity:0;
+	filter:alpha(opacity=0);
+	/*width:105px;
+	height:35px;
+	position: absolute;
+	left:0;top:0;
+	opacity:0;
+	filter:alpha(opacity=0);*/
+	/*margin-left:19px;*/
+	cursor:pointer;
 }
 .u-dright span,.u-dright .upload-container{
 	display:inline-block;

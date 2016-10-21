@@ -13,7 +13,8 @@
  				<li class="u-cbottom"><span class="icon-recharge"></span><a href="">我要当主播</a></li>
  			</ul>
 	    </div>   
-		<div id="div2" class="g-right">   
+	    {% block right %}{% endblock %}
+		<!-- <div id="div2" class="g-right">   
 	  		<div class="m-top">
 	  			<div class="m-tleft">
 	  				<img src="images/ico7.png">
@@ -35,13 +36,13 @@
 	  			</div>
 	  			<div class="m-switch2 switch-content">
 	  				<div class="u-div">
-	  					<label for="name">姓名</label><input type="text" name="" id="name" class="u-userbox">
+	  					<label for="name">姓名</label><input type="text" class="u-userbox" name="" id="name" >
 	  				</div>
 		  			<div class="u-div">
-		  				<label for="passward">QQ密码</label><input type="text" name="" id="passward" class="u-userbox">
+		  				<label for="passward">QQ密码</label><input type="text" class="u-userbox" name="" id="passward">
 		  			</div>
 	  				<div class="u-div">
-	  					<label for="Idcard">身份证号</label><input type="text" name="" id="Idcard" class="u-userbox">
+	  					<label for="Idcard">身份证号</label><input type="text" class="u-userbox" name="" id="Idcard">
 	  				</div>
 		  			<div class="u-div">
 		  				<label for="time">身份证到期时间</label>
@@ -83,7 +84,7 @@
 			  		</div>
 		  		</div>
 	  		</div>
-	  	</div>   
+	  	</div>    -->
 	</div>
 	
 {% endblock %}
