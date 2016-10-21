@@ -254,24 +254,16 @@ a#m-change,a#m-realname{
 	position:relative;
 }
 .fileupload{
-	width:105px;
-	height:30px;
+	width:95px;
+	height:35px;
 	line-height:35px;
 	position:absolute;
-	z-index:200px;
+	z-index:200;
 	margin-right:35px;
 	top:0;
 	left:0;
 	opacity:0;
 	filter:alpha(opacity=0);
-	/*width:105px;
-	height:35px;
-	position: absolute;
-	left:0;top:0;
-	opacity:0;
-	filter:alpha(opacity=0);*/
-	/*margin-left:19px;*/
-	cursor:pointer;
 }
 .u-dright span,.u-dright .upload-container{
 	display:inline-block;
