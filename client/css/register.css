@@ -4,14 +4,14 @@ body{
 	min-height: 100vh;
 }
 .m-register img{
-	width: 18%;
+	width: 15%;
 	display: block;
 	margin:0 auto;
 }
 .m-regbox{
 	width: 480px;
-	padding:43px 0;
-	margin:45px auto 0;
+	padding:30px 0;
+	margin:26px auto 0;
 	border-radius: 20px;
 	text-align: center;
 	background:#3c4856;
@@ -19,37 +19,44 @@ body{
 }
 .m-regbox h3{
 	font-size: 24px;
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 	font-weight: bold;
 }
 .m-regform input,
 .m-regform .u-reg-btn{
 	width: 380px;
-	height: 50px;
-	line-height: 50px;
+	height: 40px;
+	line-height: 40px;
 	border-radius: 5px;
 	margin:9px 0;
+}
+.m-input{
+	position: relative;
 }
 .m-regform .m-tel{
 	position: relative;
 }
 .m-regform input{
-	border:none;
 	text-indent: 20px;
 	font-size: 16px;
+	border: 1px solid #3c4856;
+}
+.m-regform input:focus{
+	border-color: #f36;
 }
 .m-regform button{
 	position: absolute;
 	width: 120px;
 	text-align: center;
-	top:9px;
+	top:10px;
 	right: 50px;
-	background: none;
+	background: #b6c0cd;
 	border:none;
-	height: 50px;
-	line-height: 50px;
+	height: 40px;
+	line-height: 40px;
 	font-size: 16px;
 	color:#333;
+	border-radius:0 5px 5px 0;
 }
 .m-regform .agreement{
 	color:#0ff;
@@ -61,4 +68,78 @@ body{
 	color:#fff;
 	margin:10px auto;
 	background: #f36;
+}
+.error-tip{
+	display: none;
+	position: absolute;
+	top: 10px;
+	right: 50px;
+	height: 40px;
+	line-height: 40px;
+	padding:0 10px;
+	background: #ff9933;
+	border-radius:0 4px 4px 0;
+}
+/*弹出层*/
+.m-mask{
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.6);
+	display:none;
+	z-index:999999;
+	padding-left: 100px;
+}
+.code-wrap{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin:auto;
+	width: 240px;
+	height: 200px;
+	padding:30px;
+	border-radius: 20px;
+	background: #323a43;
+	color:#fff;
+}
+.code-wrap input{
+	height: 40px;
+	background: none;
+	border:1px solid #999;
+	width: 100%;
+	margin:20px 0;
+	text-indent: 12px;
+	color: #fff;
+}
+.pic-code img{
+	width: 120px;
+	height: 50px;
+	float: left;
+	margin-right: 22px;
+}
+.pic-code .changePic{
+	display: inline-block;
+	float: left;
+	color:#ff3366;
+	text-decoration: underline;
+	line-height: 50px;
+}
+.u-wrap-btn{
+	display: inline-block;
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 15px;
+	background: #575d65;
+	margin-top: 25px;
+	text-align: center;
+	color:#fff;
+}
+.code-wrap .confirm{
+	background: #f36;
+	margin-right: 40px;
 }
