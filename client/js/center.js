@@ -60,21 +60,45 @@ $(function(){
 	})
 	$(".m-mainh a:eq(0)").trigger("click");
 })
+//我要当主播中的下级div的切换
+$(function(){
+	$(".u-certification a").on("click",function(e){
+		e.preventDefault();
+		$(this).addClass("").siblings().removeClass("");
+		$(".switchrepeat").hide().eq($(this).index()).show();
+	})
+	$(".u-certification a:eq(0)").trigger("click");
+})
+//表单验证：
+// $(function(){
+// 			$("#current").on("blur",function(){
+// 				if(.test($(this).val())){
+// 					$(this).next(".form-info").text("验证通过").addClass("success").removeClass("error");
+// 				}else{
+// 					$(this).next(".form-info").text("请输入正确密码").addClass("error").removeClass("success");
+// 				}
+// 			})
+// })
 //修改密码接口设置
 $(function(){  
-	$('#send').click(function(){  
+	$('#current').on("blur",function(){  
   		$.ajax({  
 			type: "GET",  
-			url: " http://172.16.2.62:8777/findPassword",  
-			data: {current:$("#current").val(), new:$("#new").val(), confirm:$("#confirm").val()},  
+			url: "http://172.16.2.62:8777/person-center/is-password-right",  
+			data: {current:$("#current").val()},  
 			dataType: "json",  
 			success: function(data){  
-				// $('#resText').empty();   //清空resText里面的所有内容  
-				var html = '';   
+				 // var html = '';   
 				 // $.each(data, function(commentIndex, comment){  
 				 // html +=  comment['code']+ comment['result'] ;  
 				 // });  
-				// $('#resText').html(html);  
+				 // $('#current').html(html);  
+				 // if(code==){
+
+				 // }else{
+
+				 // }
+				 console.log(data);
 
 			},
             error: function() {
@@ -82,5 +106,4 @@ $(function(){
             } 
 		});  
 	});  
-});  
-//实名认证接口设置：
+}); 
