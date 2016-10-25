@@ -20,11 +20,11 @@
 				<span class="error-tip">验证码不能为空</span>
 			</div>
 			<div class="m-input">
-				<input type="text" class="u-ipt password" placeholder="请输入密码">
+				<input type="password" class="u-ipt password" placeholder="请输入密码">
 				<span class="error-tip">密码不能为空</span>
 			</div>
 			<div class="m-input">
-				<input type="text" class="u-ipt repassword" placeholder="请再次确认密码">
+				<input type="password" class="u-ipt repassword" placeholder="请再次确认密码">
 				<span class="error-tip">密码不能为空</span>
 			</div>
 			<p style="margin-top: 20px;">注册即视为同意 <a href="" class="agreement">《娱儿tv用户服务协议》</a></p>
@@ -36,13 +36,22 @@
 <div class="m-mask">
 	<div class="code-wrap">
 		<p>请输入图中验证码完成本次发送</p>
-		<input type="text">
+		<div class="m-input">
+			<input type="text">
+			<span class="error-tip">验证码错误</span>
+		</div>
+		
 		<div class="pic-code f-cb">
 			<img src="" alt=""><a href="" class="changePic">看不清，换一个</a>
 		</div>
 		<a href="" class="u-wrap-btn confirm">确认</a><a href="" class="u-wrap-btn cancel">取消</a>
 	</div>
+	<div class="reg-success">
+		<p>恭喜你注册成功！成功获得 <span>2个贝壳</span></p>
+		<a href="/" class="u-success-btn jump-index">（3s）回到首页</a><a href="" class="u-success-btn">去充值</a>
+	</div>
 </div>
+
 {% endblock %}
 
 {% block js %}
