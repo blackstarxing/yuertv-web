@@ -54,5 +54,20 @@ router.get('/register', function(req, res, next) {
 router.get('/center/information', function(req, res, next) {
     res.render('center/information', { title: "我的资料" });
 });
+router.get('/center/focus', function(req, res, next) {
+    res.render('center/focus', { title: "我的关注" });
+});
+router.get('/center/props', function(req, res, next) {
+    res.render('center/props', { title: "我的道具" });
+});
+router.get('/center/message', function(req, res, next) {
+    res.render('center/message', { title: "我的消息" });
+});
+router.get('/center/top-up', function(req, res, next) {
+    res.render('center/top-up', { title: "我要充值" });
+});
+router.get('/center/host', function(req, res, next) {
+    res.render('center/host', { title: "我要当主播" });
+});
 
 module.exports = router;

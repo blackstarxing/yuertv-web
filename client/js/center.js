@@ -51,24 +51,35 @@ $(function(){
 				}
 			});
 		})
+//我要当主播的div之间的切换
+$(function(){
+	$(".m-mainh a").on("click",function(e){
+		e.preventDefault();
+		$(this).addClass("").siblings().removeClass("");
+		$(".switchcontent").hide().eq($(this).index()).show();
+	})
+	$(".m-mainh a:eq(0)").trigger("click");
+})
 //修改密码接口设置
 $(function(){  
 	$('#send').click(function(){  
   		$.ajax({  
 			type: "GET",  
-			url: "test.json",  
+			url: " http://172.16.2.62:8777/findPassword",  
 			data: {current:$("#current").val(), new:$("#new").val(), confirm:$("#confirm").val()},  
 			dataType: "json",  
 			success: function(data){  
 				// $('#resText').empty();   //清空resText里面的所有内容  
-				// var html = '';   
-				//  $.each(data, function(commentIndex, comment){  
-				//  html += '<div class="comment"><h6>' + comment['username']  
-				//  + ':</h6><p class="para"' + comment['content']  
-				// + '</p></div>';  
-				//  });  
+				var html = '';   
+				 // $.each(data, function(commentIndex, comment){  
+				 // html +=  comment['code']+ comment['result'] ;  
+				 // });  
 				// $('#resText').html(html);  
-			}  
+
+			},
+            error: function() {
+                alert('通讯服务器错误');
+            } 
 		});  
 	});  
 });  
