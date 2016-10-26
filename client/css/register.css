@@ -74,6 +74,7 @@ body{
 	position: absolute;
 	top: 10px;
 	right: 50px;
+	min-width: 100px;
 	height: 40px;
 	line-height: 40px;
 	padding:0 10px;
@@ -92,19 +93,47 @@ body{
 	z-index:999999;
 	padding-left: 100px;
 }
-.code-wrap{
+.code-wrap,.reg-success{
 	position: absolute;
 	left: 0;
 	right: 0;
 	top: 0;
 	bottom: 0;
 	margin:auto;
-	width: 240px;
-	height: 200px;
-	padding:30px;
 	border-radius: 20px;
 	background: #323a43;
 	color:#fff;
+}
+.code-wrap{
+	width: 240px;
+	height: 200px;
+	padding:30px;
+}
+.reg-success{
+	text-align: center;
+	width: 380px;
+	height: 200px;
+	padding:30px 60px;
+	background: url(../images/banana.png) #323a43 center center no-repeat;
+	display: none;
+}
+.reg-success span{
+	color: #ffff33;
+}
+.reg-success .u-success-btn{
+	width: 150px;
+	height: 30px;
+	line-height: 30px;
+	color: #fff;
+	background: #f36;
+	position: absolute;
+	bottom: 30px;
+	right:60px;
+	border-radius: 15px;
+}
+.reg-success .jump-index{
+	background: #575d65;
+	left: 60px;
 }
 .code-wrap input{
 	height: 40px;
@@ -142,4 +171,11 @@ body{
 .code-wrap .confirm{
 	background: #f36;
 	margin-right: 40px;
+}
+.code-wrap .error-tip{
+	right:-1px;
+	top:21px;
+	min-width: 80px;
+	text-align: center;
+	border-radius: 0;
 }
