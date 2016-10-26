@@ -84,8 +84,31 @@ $(function() {
         var _error = _current.next('.error-tip');
         if($telnumber.val()){
             if(/^1([0-9]){10}$/.test($telnumber.val())){
-                $('.m-mask').show();
-                changeCode();
+                var parm = {};
+                parm.mobile = $telnumber.val();
+                $.ajax({
+                    url: 'http://172.16.2.62:8777/isMobileExist',
+                    data: parm,
+                    type: 'post',
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.object==0) {
+                            $('.code-wrap input').val('');
+                            $('.m-mask').show();
+                            changeCode();
+                        }else{
+                            _error.show();
+                            _error.text('手机号已被注册');
+                            setTimeout(function(){
+                                _error.hide();
+                                _error.text('手机号码不能为空');
+                            },2000);
+                        }
+                    },
+                    error: function() {
+                        alert('通讯服务器错误');
+                    }
+                });
             }else{
                 _error.show();
                 _error.text('请输入正确号码');
@@ -123,14 +146,18 @@ $(function() {
                     $('.m-mask').hide();
                     var second = 59;
                     $('.m-tel .error-tip').text(second+'(s)').show();
-                    if(second>0){
-                        setInterval(function(){
-                            second--;
+                    function settime(val) { 
+                        if (second > 0) { 
                             $('.m-tel .error-tip').text(second+'(s)');
+                            second--;
+                        } else {
+                            $('.m-tel .error-tip').hide().text('手机号码不能为空');                              
+                        } 
+                        setTimeout(function() { 
+                            settime(val) 
                         },1000) 
-                    }else{
-                        $('.m-tel .error-tip').hide().text('验证码不能为空');
-                    }                   
+                    } 
+                    settime(second);                 
                 }else{
                     _error.show();
                     setTimeout(function(){
@@ -166,7 +193,6 @@ $(function() {
                 formComplete = false;
             }
         });
-        console.log(formComplete);
         if(formComplete){
             var parm = {};
             parm.nickname = $('.nickname').val();
@@ -197,7 +223,10 @@ $(function() {
                         } 
                         settime(second);
                     }else{
-                        
+                        $('.code').next('.error-tip').text('验证码错误').show();
+                        setTimeout(function(){
+                            $('.code').next('.error-tip').hide().text('验证码不能为空');
+                        },2000);
                     }
                 },
                 error: function() {
