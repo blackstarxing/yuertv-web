@@ -81,31 +81,20 @@ $(function(){
 // })
 //修改昵称弹出框
 $(function(){
-	$(".lywrap .lybt .lybtns button").on("click",function(){
-		$(this).parent().parent().parent().hide()
-	});
-})
+		$(".m-layer .lywrap .lybt .lybtns button").on("click",function(){$(this).parents(".m-layer").removeClass("z-show");});
 
+		$("input")
+	})
 
 //修改密码页面接口设置－－－－－修改昵称是否正确
 $(function(){  
-	$('#nickname').on("click",function(){  
+	$('#rename').on("blur",function(){  
   		$.ajax({  
 			type: "GET",  
 			url: "h http://172.16.2.62:8777/person-center/update-nickname",  
-			data: {nickname:$("#nickname").val()},  
+			data: {rename:$("#rename").val()},  
 			dataType: "json",  
 			success: function(data){  
-				 // var html = '';   
-				 // $.each(data, function(commentIndex, comment){  
-				 // html +=  comment['code']+ comment['result'] ;  
-				 // });  
-				 // $('#current').html(html);  
-				 // if(code==){
-
-				 // }else{
-
-				 // }
 				 console.log(data);
 
 			},
