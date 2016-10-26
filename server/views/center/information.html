@@ -7,21 +7,24 @@
   				<img src="../images/ico7.png">
   			</div>
   			<div class="m-tright">
-  				<p class="u-p1"><span>巧克力～包子</span>&nbsp;<img src="../images/ico8.png"><span class="u-p1-s">[点击修改]</span></p>
+  				<p class="u-p1"><span>巧克力～包子</span>&nbsp;<img src="../images/ico8.png"><span id="nickname" class="u-p1-s">[点击修改]</span></p>
 	  			<p class="u-p2">粉丝:<span class="u-change">63836</span></p>
 	  			<p class="u-p3">娱币:<span class="u-change1">6524</span><input type="button" name="" value="充值"></p>
   			</div>
   			
   		</div>
   		<div class="m-bottom">
-  			<a href="" id="m-change">修改密码</a><a href="" id="m-realname">实名认证</a>
+  			<a href="" id="m-change">修改密码</a><a href="" id="m-change">手机认证</a><a href="" id="m-realname">实名认证</a>
   			<div class="m-switch switch-content">
   				<label for="u-current">当前密码</label><input type="" name="current" id="current" class="u-i3"><br>
 	  			<label for="u-new">新密码</label><input type="" name="new" id="new" class="u-i4"><br>
 	  			<label for="u-confirm">确认新密码</label><input type="" name="confirm" id="confirm" class="u-i5"><br>
 	  			<input type="button" name="" value="提交" class="u-i6" id="send">
   			</div>
-  			<div class="m-switch2 switch-content">
+  			<div class="m-switcht switch-content">
+  				
+  			</div>
+  			<div class="m-switchi switch-content">
   				<div class="u-div">
   					<label for="name">姓名</label><input type="text" class="u-userbox" name="" id="name" >
   				</div>
@@ -72,5 +75,25 @@
 	  		</div>
   		</div>
   	</div>   
+<div class="m-layer z-show">
+    <div class="lywrap">
+	    <div class="lytt">
+	    	<h2 class="u-tt">修改昵称</h2>
+	    </div>
+	    <div class="lyct">
+	        <input type="text">
+            <span>本次修改免费，再次修改需要通过道具才能修改</span>
+	    </div>
+	    <div class="lybt">
+	        <div class="lybtns">
+	            <button type="button" class="u-btn">确定</button>
+	        </div>
+	    </div>
+    </div>
+    <div class="showtips">
+    	<input type="text" name="">
+    	<input type="" name=""><span>该昵称以存在</span>
+    </div>
+</div>
 	
 {% endblock %}
