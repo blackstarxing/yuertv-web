@@ -6,7 +6,7 @@ var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
 module.exports = {
     entry: {
-        // layout: ['./client/css/basic.css',hotMiddlewareScript],
+        layout: ['./client/js/layout.js',hotMiddlewareScript],
         index: ['./client/css/index.css', './client/js/index.js',hotMiddlewareScript],
         register: ['./client/css/register.css',hotMiddlewareScript],
         center: ['./client/css/center.css', './client/js/center.js',hotMiddlewareScript],
