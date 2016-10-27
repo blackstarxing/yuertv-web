@@ -115,12 +115,13 @@
 	margin-left:30px;
 	background:transparent;
 }
-.g-right .m-bottom .m-switch .u-i3,.u-i4,.u-i5{
+.g-right .m-bottom .m-switch .u-iverify,.u-ifail,.u-iright{
 	width:300px;
 	height:40px;
 	margin-bottom:10px;
 	background:transparent;
 	margin-left:15px;
+	border:1px solid #353d48
 }
 .g-right .m-bottom label{
 	color:#666e72;
@@ -132,16 +133,14 @@
 	margin-right:0px;
 }
 .g-right .m-bottom .u-i6{
-	margin-left:110px;
-	margin-top:20px;
 	width:300px;
 	height:48px;
 	background:#f36;
 	border:0px;
 	font-size:18px;
 	text-align:center;
-	margin-bottom:100px;
 	border-radius:5px;
+	margin:50px 0px 90px 110px;
 }
 a#m-change,a#m-realname{
 	display:inline-block;
@@ -160,6 +159,73 @@ a#m-change,a#m-realname{
 	color:#fff;
 	text-align:center;
 	border-radius:5px;
+
+}
+.m-switch .u-pcurrent,.u-pnew,.u-pcancel{
+	position:relative;
+}
+.u-pcurrent .u-verifypassword{
+	position: absolute;
+	left:303px;
+	top:1px;
+	width:120px;
+	height:40px;
+	line-height: 40px;
+	background:#f93;
+	color:#fff;
+	text-align:center;
+}
+.u-pnew .u-failpassword{
+	position: absolute;
+	left:333px;
+	top:1px;
+	width:90px;
+	height:40px;
+	line-height: 40px;
+	background:#f93;
+	color:#fff;
+	text-align:center;
+}
+.u-pcancel .u-rightpassword{
+	position: absolute;
+	left:333px;
+	top:1px;
+	width:90px;
+	height:40px;
+	line-height: 40px;
+	background:#396;
+	color:#fff;
+	text-align:center;
+}
+
+/*手机认证*/
+.m-switcht .u-div{
+	position:relative;
+	margin-bottom:20px;
+	margin-left:15px;
+}
+.m-switcht .u-number,.u-verify{
+	position:absolute;
+	left:319px;
+	top:1px;
+	width:105px;
+	height:40px;
+	line-height: 40px;
+	text-align:center;
+	background:#f93;
+	color:#fff;
+}
+.m-switcht .u-verify{
+	background:#f36;
+}
+.m-switcht .u-submit{
+	width:305px;
+	height:50px;
+	background:#f36;
+	color:#fff;
+	margin:125px 0px 95px 120px;
+	border-radius:5px;
+	border:0px;
 }
 
 /*实名认证设置*/
@@ -312,8 +378,6 @@ a#m-change,a#m-realname{
 .m-layer{
 	display:none;
 	position:fixed;
-	/*top:320px;
-	left:755px;*/
 	width:360px;
 	height:200px;
 	top:0;
@@ -390,3 +454,47 @@ a#m-change,a#m-realname{
 
 /* 显示 */
 .z-show{display:block;}
+.m-psuccess{
+	position:fixed;
+	width:365px;
+	height:200px;
+	top:0;
+	right:0;
+	bottom: 0;
+	left: 0;
+	margin:auto;
+	background:#323a43;
+	border-radius:5px;
+}
+.m-psuccess .u-success{
+	width:220px;
+	height:45px;
+	margin:50px 75px 35px 70px;
+}
+.m-psuccess img{
+	display:inline-block;
+	width:40px;
+	height:40px;
+	border:0px;
+}
+.m-psuccess span{
+	display:inline-block;
+	color:#fff;
+	font-size:24px;
+	color:#f36;
+	margin-left:25px;
+
+}
+
+.m-psuccess .u-cancel a{
+	display:inline-block;
+	width:100px;
+	height:35px;
+	line-height:35px;
+	text-align: center;
+	border-radius:5px;
+	color:#fff;
+	background:#f36;
+	margin:0px 125px;
+
+}
