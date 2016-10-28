@@ -1,4 +1,4 @@
-*{color:#fff;}
+/**{color:#fff;}*/
 .g-main{
 	width:1200px;
 	margin:100px auto 0;
@@ -69,6 +69,9 @@
 .g-right .m-top .m-tright{
 	margin-left:265px;
 	padding-left:40px;
+}
+.m-tright .u-nicknameonly{
+	color:#fff;
 }
 .g-right .m-top .m-tright .u-p1{
 	font-size:24px;
@@ -206,7 +209,7 @@ a#m-change,a#m-realname{
 }
 .m-switcht .u-number,.u-verify{
 	position:absolute;
-	left:319px;
+	left:320px;
 	top:1px;
 	width:105px;
 	height:40px;
@@ -226,6 +229,68 @@ a#m-change,a#m-realname{
 	margin:125px 0px 95px 120px;
 	border-radius:5px;
 	border:0px;
+}
+.m-mask{
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.6);
+	display:none;
+	z-index:999999;
+	padding-left: 100px;
+}
+.code-wrap,.reg-success{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin:auto;
+	border-radius: 20px;
+	background: #323a43;
+	color:#fff;
+}
+.code-wrap{
+	width: 240px;
+	height: 200px;
+	padding:30px;
+}
+.reg-success{
+	text-align: center;
+	width: 380px;
+	height: 200px;
+	padding:30px 60px;
+	background: url(../images/banana.png) #323a43 center center no-repeat;
+	display: none;
+}
+.reg-success span{
+	color: #ffff33;
+}
+.reg-success .u-success-btn{
+	width: 150px;
+	height: 30px;
+	line-height: 30px;
+	color: #fff;
+	background: #f36;
+	position: absolute;
+	bottom: 30px;
+	right:60px;
+	border-radius: 15px;
+}
+.reg-success .jump-index{
+	background: #575d65;
+	left: 60px;
+}
+.code-wrap input{
+	height: 40px;
+	background: none;
+	border:1px solid #999;
+	width: 100%;
+	margin:20px 0;
+	text-indent: 12px;
+	color: #fff;
 }
 
 /*实名认证设置*/
@@ -261,26 +326,20 @@ a#m-change,a#m-realname{
 .m-switchi .u-div{
 	margin-bottom:25px;
 }
-.m-switchi .u-div select{
-	width:98px;
+.m-switchi .u-div .u-finaltime{
+	width:320px;
 	height: 40px;
 	margin-right:10px;
 	color: #cecfd2;
 	text-indent: 12px;
-    background:url("../images/icon-arrow.png") no-repeat transparent;
+	background:transparent;
+   /* background:url("../images/icon-arrow.png") no-repeat transparent;*/
     background-position: 80px 18px;
     border: 1px solid #353d48;
     border-radius: 0;
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
-}
-.m-switchi .u-div option{
-	width:98px;
-	height: 40px;
-	margin-right:10px;
-	background:#141a20;
-
 }
 .m-switchi .u-idcard{
 	margin-bottom:25px;
@@ -350,8 +409,16 @@ a#m-change,a#m-realname{
 	height:35px;
 	line-height:35px;
 }
+.m-switchi .u-deal{
+	width:525px;
+	height:365px;
+	margin:50px 0px 60px 160px;
+}
+.u-deal p{
+	font-size:14px;
+	color:#f36;
+}
 .m-switchi .u-agree{
-	margin-top:80px;
 	width:230px;
 	margin-left:210px;
 	font-size:14px;
@@ -361,7 +428,6 @@ a#m-change,a#m-realname{
 	color:#0ff;
 }
 .m-switchi .u-submit{
-
 	width:325px;
 	height:40px;
 	background:#f36;
@@ -370,7 +436,7 @@ a#m-change,a#m-realname{
 	text-align:center;
 	color:#fff;
 	margin-top:20px;
-	margin-bottom:90px;
+	margin-bottom:60px;
 	margin-left:170px;
 	border-radius:5px;
 }
@@ -455,6 +521,7 @@ a#m-change,a#m-realname{
 /* 显示 */
 .z-show{display:block;}
 .m-psuccess{
+	display:none;
 	position:fixed;
 	width:365px;
 	height:200px;
@@ -475,7 +542,7 @@ a#m-change,a#m-realname{
 	display:inline-block;
 	width:40px;
 	height:40px;
-	border:0px;
+	border:none;
 }
 .m-psuccess span{
 	display:inline-block;

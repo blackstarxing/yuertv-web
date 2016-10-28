@@ -1,18 +1,6 @@
 {% extends 'center.html' %} 
   
 {% block right %}
-<div id="rightmain" class="g-right">   
-  		<div class="m-top">
-  			<div class="m-tleft">
-  				<img src="../images/ico7.png">
-  			</div>
-  			<div class="m-tright">
-  				<p class="u-p1"><span>巧克力～包子</span>&nbsp;<img src="../images/ico8.png"><span id="nickname" class="u-p1-s">[点击修改]</span></p>
-	  			<p class="u-p2">粉丝:<span class="u-change">63836</span></p>
-	  			<p class="u-p3">娱币:<span class="u-change1">6524</span><input type="button" name="" value="充值"></p>
-  			</div>
-  			
-  		</div>
   		<div class="m-bottom">
   			<a href="" id="m-change">修改密码</a><a href="" id="m-change">手机认证</a><a href="" id="m-realname">实名认证</a>
   			<div class="m-switch switch-content">
@@ -37,13 +25,13 @@
   			<div class="m-switcht switch-content">
   				<div class="u-div">
   					<label for="number">手机号码</label>
-  					<input type="text" class="u-userbox" name="" id="number" >
+  					<input type="text" class="u-userbox telnumber" name="" id="number" >
   					<span class="u-number" id="gainnumber">获取验证码</span>
   				</div>
 	  			<div class="u-div">
 	  				<label for="verify">验证码</label>
 	  				<input type="text" class="u-userbox" name="" id="verify">
-	  				<span class="u-verify">验证码错误</span>
+	  				<span class="u-verify error-tip">验证码错误</span>
 	  			</div>
 	  			<div>
   						<input type="button" class="u-submit" value="提交" id="userbox">
@@ -61,9 +49,7 @@
   				</div>
 	  			<div class="u-div">
 	  				<label for="time">身份证到期时间</label>
-	  				<select><option value="volvo">2016年</option></select>
-	  				<select><option value="volvo">10月</option></select>
-	  				<select><option value="volvo">10日</option></select>
+	  				<input type="text" name="" class="u-finaltime" id="datetimepicker">
 	  			</div>
 	  			<div class="u-idcard">
 	  				<div class="u-dleft" style="color:#666e72;">身份证扫描件</div>
@@ -90,6 +76,23 @@
 							</div>
 		  				</div>
 	  				</div>
+	  				<div class="u-deal">
+	  					<p>身份证及身份照将会进行人工审核，照片务必做到以下几点：</p>
+	  					<br>
+	  					<p>*未满16周岁的用户您需要：</p>
+	  					<p>1、下载未成年家长承诺书 </p>
+	  					<p>2、根据范例打印并填写承诺书相关内容</p>
+	  					<p>3、拍照或者扫描上传填写好的承诺书等待审核</p>
+	  					<br>
+	  					<p>*全面：照片内包含以下内容：</p>
+	  					<p>1、您的面部、身份证正面</p>
+	  					<p>2、身份证正面</p>
+	  					<p>3、身份证反面</p>
+	  					<p>*清晰：身份证照片文字及图片清晰可见</p>
+	  					<p>*真实：身份证照片无PS</p>
+	  					<p>*有效：身份证为二代身份证，在有效期内，正反内容相符</p>
+	  					<p>如果以上信息有所不符，实名认证将驳回</p>
+	  				</div>
 	  				<div class="u-agree">
   						我已阅读并同意 <span class="u-spec">《娱儿tv主播协议》</span>
   					</div>
@@ -98,8 +101,7 @@
   					</div>
 		  		</div>
 	  		</div>
-  		</div>
-  	</div>   
+  		</div> 
 <div class="m-layer">
     <div class="lywrap">
 	    <div class="lytt">
@@ -128,5 +130,18 @@
 		<a href="">确定</a>
 	</div>
 </div>
-	
+<div class="m-mask">
+<div class="code-wrap">
+		<p>请输入图中验证码完成本次发送</p>
+		<div class="m-input">
+			<input type="text">
+			<span class="error-tip">验证码错误</span>
+		</div>
+		
+		<div class="pic-code f-cb">
+			<img src="" alt=""><a href="" class="changePic">看不清，换一个</a>
+		</div>
+		<a href="" class="u-wrap-btn confirm">确认</a><a href="" class="u-wrap-btn cancel">取消</a>
+	</div>
+</div>	
 {% endblock %}
