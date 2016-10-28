@@ -8,7 +8,6 @@ module.exports = {
     entry: {
         layout: ['./client/js/layout.js',hotMiddlewareScript],
         index: ['./client/css/index.css', './client/js/index.js',hotMiddlewareScript],
-        register: ['./client/css/register.css',hotMiddlewareScript],
         center: ['./client/css/center.css', './client/js/center.js',hotMiddlewareScript],
         register: ['./client/css/register.css','./client/js/register.js',hotMiddlewareScript],
     },
