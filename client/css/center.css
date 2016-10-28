@@ -312,10 +312,15 @@ a#m-change,a#m-realname{
 .m-layer{
 	display:none;
 	position:fixed;
-	top:320px;
-	left:755px;
+	/*top:320px;
+	left:755px;*/
 	width:360px;
 	height:200px;
+	top:0;
+	right:0;
+	bottom: 0;
+	left: 0;
+	margin:auto;
 	background:#323a43;
 	border-radius:5px;
 }
@@ -344,7 +349,7 @@ a#m-change,a#m-realname{
 .m-layer .lyct input{
 	width:300px;
 	height:40px;
-	margin:20px 0;
+	margin-top:20px;
 	border:1px solid #5b6169;
 	background:transparent;
 	color:#fff;
@@ -352,16 +357,24 @@ a#m-change,a#m-realname{
 .m-layer .lyct span.tips{
 	display:block;
 	position:absolute;
+	left:173px;
+	top:21px;
 	width:130px;
 	height:40px;
+	line-height: 40px;
 	font-size:14px;
-	color:#f93;
+	color:#fff;
 	margin-bottom:10px;
 	background:#f93;
+	text-align:center;
 }
-.m-layer .u-check{
+.m-layer p.u-check{
+	width:300px;
+	margin-left:0px;
 	text-align:center;
 	color:#f36;
+	margin-top:5px;
+	margin-bottom:20px;
 }
 .m-layer .lybt .u-btn{
 	width:100px;
@@ -372,8 +385,8 @@ a#m-change,a#m-realname{
 	background:#f36;
 	border-radius:20px;
 	text-align:center;
-	vertical-align:middle;
+	margin:0 90px;
 }
 
 /* 显示 */
-.m-layer.z-show{display:block;}
+.z-show{display:block;}
