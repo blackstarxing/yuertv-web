@@ -32,6 +32,14 @@ $(function(){
 			        }
 			     }
 	});
+
+//我的消息中的div之间的切换
+$(".m-mainm a").on("click",function(e){
+		e.preventDefault();
+		$(this).addClass("").siblings().removeClass("");
+		$(".mcurrent").hide().eq($(this).index()).show();
+})
+$(".m-mainm a:eq(0)").trigger("click");
 //我要当主播的div之间的切换
 	$(".m-mainh a").on("click",function(e){
 		e.preventDefault();
@@ -87,47 +95,7 @@ $.ajax({
    }
 })
 })
-//修改密码页面接口设置－－－－－当前密码是否正确
-	$('#current').on("blur",function(){  
-  		$.ajax({  
-			type: "GET",  
-			url: "http://172.16.2.62:8777/person-center/is-password-right",  
-			data: {current:$("#current").val()},  
-			dataType: "json",  
-			success: function(data){  
-				 // var html = '';   
-				 // $.each(data, function(commentIndex, comment){  
-				 // html +=  comment['code']+ comment['result'] ;  
-				 // });  
-				 // $('#current').html(html);  
-				 // if(code==){
 
-				 // }else{
-
-				 // }
-				 console.log(data);
-			},
-            error: function() {
-                alert('通讯服务器错误');
-            } 
-		});  
-	});  
-//修改密码页面接口设置－－－－－修改密码是否正确
-	$('#confirm').on("blur",function(){  
-  		$.ajax({  
-			type: "GET",  
-			url: "http://172.16.2.62:8777/person-center/update-password",  
-			data: {confirm:$("#confirm").val()},  
-			dataType: "json",  
-			success: function(data){  
-				 console.log(data);
-
-			},
-            error: function() {
-                alert('通讯服务器错误');
-            } 
-		});  
-	});  
 //修改成功弹框
 	$("#userbox").on("click",function(){
 		$(".m-psuccess").addClass("z-show");
