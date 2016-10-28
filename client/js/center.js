@@ -79,7 +79,43 @@ $(function(){
 // 				}
 // 			})
 // })
-//修改密码接口设置
+//修改昵称弹出框
+$(function(){
+	$(".lywrap .lybt .lybtns button").on("click",function(){
+		$(this).parent().parent().parent().hide()
+	});
+})
+
+
+//修改密码页面接口设置－－－－－修改昵称是否正确
+$(function(){  
+	$('#nickname').on("click",function(){  
+  		$.ajax({  
+			type: "GET",  
+			url: "h http://172.16.2.62:8777/person-center/update-nickname",  
+			data: {nickname:$("#nickname").val()},  
+			dataType: "json",  
+			success: function(data){  
+				 // var html = '';   
+				 // $.each(data, function(commentIndex, comment){  
+				 // html +=  comment['code']+ comment['result'] ;  
+				 // });  
+				 // $('#current').html(html);  
+				 // if(code==){
+
+				 // }else{
+
+				 // }
+				 console.log(data);
+
+			},
+            error: function() {
+                alert('通讯服务器错误');
+            } 
+		});  
+	});  
+}); 
+//修改密码页面接口设置－－－－－当前密码是否正确
 $(function(){  
 	$('#current').on("blur",function(){  
   		$.ajax({  
@@ -107,3 +143,23 @@ $(function(){
 		});  
 	});  
 }); 
+//修改密码页面接口设置－－－－－修改密码是否正确
+$(function(){  
+	$('#confirm').on("blur",function(){  
+  		$.ajax({  
+			type: "GET",  
+			url: "http://172.16.2.62:8777/person-center/update-password",  
+			data: {confirm:$("#confirm").val()},  
+			dataType: "json",  
+			success: function(data){  
+				 console.log(data);
+
+			},
+            error: function() {
+                alert('通讯服务器错误');
+            } 
+		});  
+	});  
+}); 
+
+
