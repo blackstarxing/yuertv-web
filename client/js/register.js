@@ -188,7 +188,6 @@ $(function() {
         }
         $('.m-regform input').each(function(){
             if(!$(this).val()){
-                console.log(123);
                 $(this).parent().find('.error-tip').show();
                 formComplete = false;
             }
