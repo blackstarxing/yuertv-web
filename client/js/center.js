@@ -23,7 +23,7 @@ $(function(){
 			          contentType: false, //不可缺参数
 			            processData: false, //不可缺参数
 			           success: function(data) {
-			               console.log(data);
+			               _this.parents('.u-card').find('img').attr('src',data.object);
 			            },
 			           error: function() {
 			                 console.log('error');
@@ -79,39 +79,6 @@ $(function(){
 	$(".lybt .u-btn").on("click",function(){
 		$(this).parents(".m-layer").removeClass("z-show");
 	});
-
-//修改密码页面接口设置－－－－－修改昵称是否正确
-// $(function(){  
-// 	$('#checktips').on("blur",function(){  
-//   		$.ajax({  
-// 			type: "GET",  
-// 			url: "http://172.16.2.62:8777/person-center/update-nickname",  
-// 			data: {checktips:$("#checktips").val()},  
-// 			dataType: "json",  
-// 			success: function(data){  
-// 				 console.log(data);
-
-// 			},
-//             error: function() {
-//                 alert('通讯服务器错误');
-//             } 
-// 		});  
-// 	});  
-// $("#checktips").on("blur",function(){
-// 	$.ajax({  
-// 		type: "GET",  
-// 		url: "http://172.16.2.62:8777/person-center/update-nickname",  
-// 		data: {checktips:$("#checktips").val()},  
-// 		dataType: "json",  
-// 		success: function(data){  
-// 			 console.log(data);
-
-// 		},
-//         error: function() {
-//             alert('通讯服务器错误');
-//         } 
-// 	});  
-// });
 $("#checktips").on("blur",function(){
 $.ajax({
     method:"GET",//对于请求类型
@@ -188,22 +155,22 @@ $.ajax({
             } 
 		});  
 	});  
-//手机认证；
-	// $('#').on("blur",function(){  
- //  		$.ajax({  
-	// 		type: "GET",  
-	// 		url: "http://172.16.2.62:8777/person-center/mobile-auth",  
-	// 		data: {:$("#").val()},  
-	// 		dataType: "json",  
-	// 		success: function(data){  
-	// 			 console.log(data);
+//手机认证---获取验证码；
+	$('#gainnumber').on("click",function(){  
+  		$.ajax({  
+			type: "GET",  
+			url: "http://172.16.2.62:8777/sendSMSCode",  
+			data: {gainnumber:$("#gainnumber").val()},  
+			dataType: "json",  
+			success: function(data){  
+				 console.log(data);
 
-	// 		},
- //            error: function() {
- //                alert('通讯服务器错误');
- //            } 
-	// 	});  
-	// });  
+			},
+            error: function() {
+                alert('通讯服务器错误');
+            } 
+		});  
+	});  
 //实名认证；
 	$('#userbox').on("blur",function(){  
   		$.ajax({  
