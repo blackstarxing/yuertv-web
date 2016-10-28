@@ -565,3 +565,117 @@ a#m-change,a#m-realname{
 	margin:0px 125px;
 
 }
+
+
+/*我的关注*/
+.g-focus{
+	width:795px;
+	margin:65px 60px 50px 65px;
+}
+.g-focus .u-top{
+	width:100px;
+	height:45px;
+	line-height:45px;
+	border-radius:5px;
+	background:#f36;
+	color:#fff;
+	text-align:center;
+	margin-bottom:35px;
+}
+.g-focus .u-host{
+	position:relative;
+	width:780px;
+	height:95px;
+	background:#2d3741;
+	margin-bottom:15px;
+}
+.u-hleft{
+	width:590px;
+	height:95px;
+}
+.u-hleft .u-focusimg{
+	float:left;
+	width:125px;
+	height:95px;
+}
+.u-hleft .u-nickhost{
+	float:left;
+	width:470px;
+	height:95px;
+}
+.u-nickhost .u-nicksex{
+	height:40px;
+	margin-bottom:15px;
+}
+.u-nickhost .u-hostfans{
+	height:35px;
+}
+.u-hright{
+	float:left;
+	width:190px;
+	height:95px;
+}
+/*.u-host .u-hleft{
+	width:480px;
+}
+.u-host .u-focusimg{
+	width:90px;
+	height:60px;
+}
+.u-hleft .u-nicksex,.u-hostfans{
+	height:25px;*/
+	/*float:left;*/
+/*	display:inline-block;
+}*/
+/*.u-hleft .u-nicksex{
+	font-size:18px;
+	color:#fff;
+}
+.u-hleft .u-hostfans{
+	font-size:14px;
+}
+.u-hleft .u-hf{
+	color:#353d48;
+}*/
+/*.u-hleft .ts{
+	color:#3ff;
+	/*margin-left:50px;*/
+/*}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
