@@ -9,7 +9,7 @@ $(function(){
 	$('.fileupload').change(function(event) {
 		var _this = $(this);
 			    /* Act on the event */
-			if ($('.fileupload').val().length) {
+		if ($('.fileupload').val().length) {
 			 var fileName = $('.fileupload').val();
 			 var extension = fileName.substring(fileName.lastIndexOf('.'), fileName.length).toLowerCase();
 			  if (extension == ".jpg" || extension == ".png") {
@@ -28,16 +28,14 @@ $(function(){
 			           error: function() {
 			                 console.log('error');
 			           }
-			         });
-			        }
-			     }
-	});
+			    });
+		}
+	 }
+});
 // 我的道具弹出框
-	$(".u-imgmessage .u-props").on("click",function(){
-		$(".u-propsgtips").addClass("z-show");
-	});
-	$(".u-propsgtips a").on("click",function(){
-		$(this).parents(".u-propsgtips").removeClass("z-show");
+	$(".imgprops .u-props").off("click").on("click",function(e){
+		e.preventDefault();
+		$(".u-propsgtips").show();
 	});
 
 //我的消息中的div之间的切换
@@ -47,6 +45,9 @@ $(".m-mainm a").on("click",function(e){
 		$(".mcurrent").hide().eq($(this).index()).show();
 })
 $(".m-mainm a:eq(0)").trigger("click");
+//我的消息－－关注消息的划入事件
+	$(".u-foucscolor").on("mouseenter",function(){$(".u-messnickname").show().css("top",$(this).position().top)})
+	$(".u-foucscolor").on("mouseleave",function(){$(".u-messnickname").hide()})
 //我要当主播的div之间的切换
 	$(".m-mainh a").on("click",function(e){
 		e.preventDefault();
@@ -72,7 +73,7 @@ $(".m-mainm a:eq(0)").trigger("click");
 $("#checktips").on("blur",function(){
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62:8777/person-center/update-nickname",//请求url，这个我抹黑了。直接复制过来就可以了
+    url:"http://172.16.2.62:8777/person-center/update-nickname",
     dataType: 'json',
     data: {
     	nickName:$.trim($("#checktips").val())
@@ -276,6 +277,7 @@ $.ajax({
    }
 })
 //充值
+$("#tuvalue").on("click",function(){
 $.ajax({
     method:"GET",//对于请求类型
     url:" http://172.16.2.62:8777/pay/recharge",
@@ -306,6 +308,7 @@ $.ajax({
 	error:function(a,b,c){
     	console.log("接口出问题啦");
    }
+})
 })
 //我的关注
 $.ajax({
