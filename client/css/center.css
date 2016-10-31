@@ -56,6 +56,16 @@
 	padding-top:40px;
 	padding-left:20px;
 }
+.m-tright .u-tovalue{
+	display:inline-block;
+	width:45px;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	margin-left:25px;
+	background:#3ff;
+	border-radius: 5px;
+}
 /*右侧下面的样式－－－从修改密码起*/
 .g-right .m-bottom{
 	width:450px;
@@ -966,16 +976,110 @@ a.u-topfish{
 	background:#f36;
 	margin:60px 235px 100px 235px;
 }
+/*选中状态*/
+.checktopup{
+	border:2px solid #f36;
+	color:#f36;
+}
+.u-topupwindow{
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	margin:auto;
+	width:1005px;
+	height:520px;
+	background:#323a43;
+	border-radius:15px;
+}
+.u-iconwindow{
+	height:45px;
+}
+.u-iconwindow img{
+	margin-left:970px;
+	margin-top:40px;
+}
+.u-wintop{
+	width:895px;
+	height:160px;
+	border-bottom:1px dashed #1a2129;
+	margin:0 50px;
+}
+.u-wintop .u-ws{
+	text-align:center;
+	font-size:24px;
+	color:#fff;
+}
+.u-ws img{
+	margin-right:20px;
+	width:45px;
+	height:40px;
+	line-height:40px;
+	display: inline-block;
+}
+.u-ws span{
+	width:370px;
+	height:40px;
+	line-height:40px;
+	display: inline-block;
+}
+.u-wintop .u-wm ,.u-wn{
+	text-align: center;
+	font-size:16px;
+	color:#fff;
+}
+.u-wm{
+	width:200px;
+	height:25px;
+	margin:30px 260px 10px 260px;
+}
+.u-wintop .u-wm .u-wmtips{
+	font-size:18px;
+	color:#ff0;
+	margin-right:5px;
+}
+.u-wn{
+	width:300px;
+	height:25px;
+	margin-left:254px;
+}
+.u-wbtop{
+	width:895px;
+	height:170px;
+	margin:40px 30px 0px 40px;
+}
 
+.u-wbtop .payimg{
+	float:left;
+	width:210px;
+	height:105px;
+	margin-left:35px;
+}
+.u-wbtop .paycontent{
+	float:left;
+	width:100px;
+	font-size:24px;
+	color:#fff;
 
-
-
-
-
-
-
-
-
+}
+.u-wbbottom a{
+	display: inline-block;
+	width:300px;
+	height:50px;
+	line-height: 50px;
+	text-align: center;
+	color:#fff;
+	background:#f36;
+	border-radius:5px;
+	margin:0 290px;
+}
+.u-wbbottom p{
+	font-size:14px;
+	color:#7d8ea0;
+	width:300px;
+	height:25px;
+	margin:20px 302px 55px 300px;
+}
 
 
 

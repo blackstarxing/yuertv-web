@@ -48,6 +48,10 @@ $(".m-mainm a:eq(0)").trigger("click");
 //我的消息－－关注消息的划入事件
 	$(".u-foucscolor").on("mouseenter",function(){$(".u-messnickname").show().css("top",$(this).position().top)})
 	$(".u-foucscolor").on("mouseleave",function(){$(".u-messnickname").hide()})
+//我要充值－－选中鱼币的样式
+$(".u-value div").on("click",function(){
+	$(".value div").addClass("checktopup");
+})
 //我要当主播的div之间的切换
 	$(".m-mainh a").on("click",function(e){
 		e.preventDefault();
