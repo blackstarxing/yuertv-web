@@ -4,6 +4,7 @@
 	margin:100px auto 0;
 	background:#141a20;
 	position:relative;
+	z-index: 1000;
 } 
 /*左侧样式	*/
 .g-left{ 
@@ -17,11 +18,10 @@
 	font-size:16px;
 	color:#cecfd2;
 }
-.g-left ul li.u-start{
-	color:#f36;
-}
-.g-left ul li span{
-	margin-left:80px;
+.g-left ul li a span{
+	display:inline-block;
+	margin-left:55px;
+	padding-right:30px;
 	background:transparent;
 	font-size:20px;
 	vertical-align:middle;
@@ -31,7 +31,9 @@
 	padding-left:20px;
 	color:#cecfd2;
 }
-
+.g-left .current{
+	color:#f36;
+}
 .g-left ul li.u-center{
  	font-size:30px;
  	height:100px;
@@ -569,8 +571,10 @@ a#m-change,a#m-realname{
 
 /*我的关注*/
 .g-focus{
+	box-sizing: border-box;
 	width:795px;
-	margin:65px 60px 50px 65px;
+	padding:65px 60px 50px 65px;
+	position:relative;
 }
 .g-focus .u-top{
 	width:100px;
@@ -592,62 +596,284 @@ a#m-change,a#m-realname{
 .u-hleft{
 	width:590px;
 	height:95px;
+	float:left;
 }
 .u-hleft .u-focusimg{
 	float:left;
 	width:125px;
 	height:95px;
 }
+.u-hleft .u-focusimg img{
+	border-radius:50px;
+	padding:20px 25px 20px 30px;
+}
 .u-hleft .u-nickhost{
 	float:left;
-	width:470px;
+	width:300px;
 	height:95px;
+	color:#fff;
+	font-size:18px;
 }
 .u-nickhost .u-nicksex{
-	height:40px;
-	margin-bottom:15px;
+	height:20px;
+	padding-top:20px;
 }
 .u-nickhost .u-hostfans{
 	height:35px;
+	font-size:14px;
+	padding-top:20px;
+}
+.u-hostfans p{
+	float:left; 
+}
+.u-hostfans p.u-hhf{
+	margin-left:10px;
+}
+.u-hleft .u-hf{
+	color:#6c737a;
+}
+.u-hleft .u-num{
+	color:#3ff;
 }
 .u-hright{
 	float:left;
-	width:190px;
+	width:160px;
 	height:95px;
+	line-height: 95px;
+
 }
-/*.u-host .u-hleft{
-	width:480px;
+.u-hright img{
+	display: inline-block;
 }
-.u-host .u-focusimg{
-	width:90px;
-	height:60px;
+.u-hright a{
+	display:inline-block;
+	width:100px;
+	height:30px;
+	line-height: 30px;
+	text-align: center;
+	font-size:16px;
+	color:#fff;
+	background:#f36;
+	border-radius:50px;
+	margin-left:30px;
 }
-.u-hleft .u-nicksex,.u-hostfans{
-	height:25px;*/
-	/*float:left;*/
-/*	display:inline-block;
-}*/
-/*.u-hleft .u-nicksex{
+.u-hright img.u-blur{
+	visibility: hidden;
+
+}
+.stopdark span.dark{
+	position: absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:95px;
+	background: rgba(108,115,122,0.5);
+	color: #fff;
+	text-align: center;
+	line-height: 95px;
+	display:none;
+}
+.u-host:hover span.dark{
+	display:block;
+	text-align: center;
+
+}
+.u-host:hover .stopdark{
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	filter: grayscale(100%);
+	filter: gray;
+}
+
+
+/*我的道具*/
+.g-props{
+	width:800px;
+	height:495px;
+	margin:80px 65px 75px 70px;
+}
+.g-props .u-top h3{
+	width:100px;
+	height:40px;
+	line-height:40px;
+	text-align: center;
+	background:#f36;
+	color:#fff;
+	border-radius:5px;
+	margin-bottom: 30px;
+}
+.u-imgmessage .imgprops{
+	width:800px;
+	height:155px;
+	margin-bottom:25px;
+}
+.imgprops .u-props{
+	width:180px;
+	height:150px;
+	background:#2d3741;
+	float:left;
+	margin-right:20px;
+}
+.u-props span{
+	display:inline-block;
+	font-size:14px;
+	color:#9da4ad;
+}
+.u-props span.u-propscolor{
+	font-size:16px;
+	color:#3ff;
+}
+.u-props img{
+	margin:15px 50px 20px 55px;
+}
+.u-props p{
+	margin:0px 50px 20px 50px;
+}
+.u-bottom{
+	margin-top:40px;
+	margin-bottom: 60px;
+}
+.u-bottom p{
+	height:25px;
+}
+.u-bottom .u-bvalue,.u-bunit{
+	color:#fff;
+}
+.u-bottom .u-bvalue{
+	font-size:14px;
+}
+.u-bottom .u-bmoney{
+	font-size:18px;
+	color:#ff0;
+	margin-left:10px;
+}
+.u-bottom .u-bunit{
+	font-size:18px;
+	margin-left:10px;
+}
+
+ 
+/*我的消息*/
+.m-message{
+	width:800px;
+	height:460px;
+	margin:85px 65px 0px 70px;
+}
+.u-m-top a{
+	display:inline-block;
+	width:100px;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	color:#fff;
+	font-size:16px;
+	margin-right:35px;
+	margin-bottom:40px;
+}
+.message .mcurrent{
+	background:#f36;
+	
+}
+.u-mcurrenth{
+
+}
+.u-systemmessage .u-message{
+	width:780px;
+	height:100px;
+	border-bottom:1px dotted #2d3a46;
+	margin:0px 0px 20px 0px;
+}
+.u-message .u-msystem{
+	float:left;
+	width:75px;
+	height:100px;
+}
+.u-message .u-yuer{
+	float:left;
+	width:700px;
+	height:100px;
+}
+.u-yuer h3{
+	display:inline-block;
+	width:580px;
 	font-size:18px;
 	color:#fff;
 }
-.u-hleft .u-hostfans{
-	font-size:14px;
+.u-yuer p .u-messagetime{
+	display:inline-block;
+	float:left;
+	font-size:12px;
+	color:#626f7e;
 }
-.u-hleft .u-hf{
-	color:#353d48;
-}*/
-/*.u-hleft .ts{
-	color:#3ff;
-	/*margin-left:50px;*/
-/*}*/
+.u-yuer p .u-messagecontent{
+	font-size:14px;
+	color:#626f7e;
+}
+.u-yuer p .u-messtips{
+	font-size:14px;
+	color:#f36;
+}
 
-
-
-
-
-
-
+/*关注消息*/
+.u-focusmessage{
+	position:relative;
+	width:780px;
+	height:400px;
+}
+.u-focusmessage .u-focusmess{
+	width:780px;
+	height:60px;
+	border-bottom:1px dotted #2d3a46;
+}
+.u-focusmess p{
+	display: inline-block;
+	width:650px;
+}
+.u-focusmess .u-foucscolor{
+	font-size:16px;
+	color:#f36;
+}
+.u-focusmess p span.u-focusc{
+	font-size:14px;
+	color:#fff;
+}
+.u-focusmess .u-focustime{
+	font-size:12px;
+	color:#626f7e;
+}
+/*.u-foucscolor:hover */
+.u-messnickname{
+	display:none;
+	position:absolute;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	margin:auto;
+	width:180px;
+	height:215px;
+	text-align:center;
+	background:#333a44;
+	z-index:1000;
+}
+.u-messnickname img{
+	margin:15px 45px 10px 30px;
+	border-radius: 50px;
+}
+.u-messnickname p{
+	text-align:center;
+}
+.u-messnickname .u-mkname{
+	font-size:18px;
+	color:#fff;
+	margin-bottom:5px;
+}
+.u-messnickname span{
+	font-size:14px;
+	color:#cecfd2;
+}
 
 
 

@@ -6,28 +6,27 @@
  			<ul>
  				<li class="u-center">个人中心</li>
  				<li class="u-start">
- 					<span class="icon-data" style="color:#f36"></span>
- 					<a href="/center/information" style="color:#f36">我的资料</a>
+ 					<a href="/center/information"><span class="icon-data"></span>我的资料</a>
  				</li>
  				<li>	
- 					<span class="icon-follow"></span>
- 					<a href="/center/focus">我的关注</a>
+ 					
+ 					<a href="/center/focus"><span class="icon-follow"></span>我的关注</a>
  				</li>
  				<li>
- 					<span class="icon-prop"></span>
- 					<a href="/center/props">我的道具</a>
+ 					
+ 					<a href="/center/props"><span class="icon-prop"></span>我的道具</a>
  				</li>
  				<li>
- 					<span class="icon-messages"></span>
- 					<a href="/center/message">我的消息</a>
+ 					
+ 					<a href="/center/message"><span class="icon-messages"></span>我的消息</a>
  				</li>
  				<li>
- 					<span class="icon-recharge"></span>
- 					<a href="/center/top-up">我要充值</a>
+ 					
+ 					<a href="/center/top-up"><span class="icon-recharge"></span>我要充值</a>
  				</li>
  				<li class="u-cbottom">
- 					<span class="icon-recharge"></span>
- 					<a href="/center/host">我要当主播</a>
+ 					
+ 					<a href="/center/host"><span class="icon-anchor"></span>我要当主播</a>
  				</li>
  			</ul>
 	    </div>   
@@ -52,4 +51,11 @@
 {% block js %}
 <script type="text/javascript" src="/jquery.datetimepicker.full.min.js"></script>
 <script type="text/javascript" src="/dist/center.js"></script>
+<script type="text/javascript">
+	$('.g-left a').each(function(){
+		if($(this).text()=='{{title}}'){
+			$(this).addClass('current');
+		}
+	})
+</script>
 {% endblock %}
