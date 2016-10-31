@@ -691,8 +691,8 @@ a#m-change,a#m-realname{
 /*我的道具*/
 .g-props{
 	width:800px;
-	height:495px;
-	margin:80px 65px 75px 70px;
+	/*height:495px;*/
+	margin:65px 65px 75px 70px;
 }
 .g-props .u-top h3{
 	width:100px;
@@ -733,7 +733,7 @@ a#m-change,a#m-realname{
 }
 .u-bottom{
 	margin-top:40px;
-	margin-bottom: 60px;
+	margin-bottom: 70px;
 }
 .u-bottom p{
 	height:25px;
@@ -753,6 +753,39 @@ a#m-change,a#m-realname{
 	font-size:18px;
 	margin-left:10px;
 }
+/*弹框*/
+.u-propsgtips{
+	width:415px;
+	height:205px;
+	background:#323a43;
+	position: fixed;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	margin:auto;
+	z-index:1000;
+}
+.u-propsgtips p{
+	width:340px;
+	height:25px;
+	font-size:18px;
+	color:#fff;
+}
+.u-propsgtips a{
+	display:inline-block;
+	width:100px;
+	height:40px;
+	background:#f36;
+	font-size:16px;
+	color:#fff;
+	border-radius:50px;
+}
+.z-show{
+	display:block;
+}
+
+
 
  
 /*我的消息*/
@@ -772,13 +805,12 @@ a#m-change,a#m-realname{
 	margin-right:35px;
 	margin-bottom:40px;
 }
-.message .mcurrent{
+ .focuscurrent{
 	background:#f36;
+	border-radius: 5px;
 	
 }
-.u-mcurrenth{
 
-}
 .u-systemmessage .u-message{
 	width:780px;
 	height:100px;
@@ -875,10 +907,67 @@ a#m-change,a#m-realname{
 	color:#cecfd2;
 }
 
-
-
-
-
+/*我要充值*/
+.g-top-up{
+	width:785px;
+	height:455px;
+	margin-left:65px;
+	margin-top:80px;
+}
+a.u-topfish{
+	display:inline-block;
+	width:100px;
+	height:40px;
+	line-height: 40px;
+	text-align:center;
+	color:#fff;
+	border-radius:5px;
+	background:#f36;
+	margin-bottom: 25px;
+}
+.u-value{
+	width:780px;
+	height:180px;
+	margin-left:-15px;
+}
+.u-value div{
+	width:135px;
+	height:75px;
+	border:1px solid #1a2a3e;
+	float:left;
+	margin-left:15px;
+	margin-bottom:15px;
+}
+.u-value span.u-vfish{
+	display:inline-block;
+	width:100px;
+	height:20px;
+	line-height: 20px;
+	text-align:center;
+	font-size:18px;
+	color:#fff;
+	margin:10px 10px 15px 15px;
+}
+.u-value span.u-vmoney{
+	display:inline-block;
+	width:60px;
+	height:20px;
+	line-height: 20px;
+	font-size:14px;
+	color:465667;
+	margin:0px 0px 15px 40px;
+}
+.u-determine a.u-topvalue{
+	display:inline-block;
+	width:300px;
+	height:50px;
+	line-height: 50px;
+	text-align:center;
+	font-size:18px;
+	color:#fff;
+	background:#f36;
+	margin:60px 235px 100px 235px;
+}
 
 
 

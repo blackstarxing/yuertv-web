@@ -32,11 +32,18 @@ $(function(){
 			        }
 			     }
 	});
+// 我的道具弹出框
+	$(".u-imgmessage .u-props").on("click",function(){
+		$(".u-propsgtips").addClass("z-show");
+	});
+	$(".u-propsgtips a").on("click",function(){
+		$(this).parents(".u-propsgtips").removeClass("z-show");
+	});
 
 //我的消息中的div之间的切换
 $(".m-mainm a").on("click",function(e){
 		e.preventDefault();
-		$(this).addClass("").siblings().removeClass("");
+		$(this).addClass("focuscurrent").siblings().removeClass("focuscurrent");
 		$(".mcurrent").hide().eq($(this).index()).show();
 })
 $(".m-mainm a:eq(0)").trigger("click");
