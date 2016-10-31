@@ -691,7 +691,7 @@ a#m-change,a#m-realname{
 /*我的道具*/
 .g-props{
 	width:800px;
-	/*height:495px;*/
+	height:600px;
 	margin:65px 65px 75px 70px;
 }
 .g-props .u-top h3{
@@ -732,7 +732,7 @@ a#m-change,a#m-realname{
 	margin:0px 50px 20px 50px;
 }
 .u-bottom{
-	margin-top:40px;
+	margin-top:70px;
 	margin-bottom: 70px;
 }
 .u-bottom p{
@@ -755,6 +755,7 @@ a#m-change,a#m-realname{
 }
 /*弹框*/
 .u-propsgtips{
+	display:none;
 	width:415px;
 	height:205px;
 	background:#323a43;
@@ -767,22 +768,23 @@ a#m-change,a#m-realname{
 	z-index:1000;
 }
 .u-propsgtips p{
-	width:340px;
+	width:350px;
 	height:25px;
 	font-size:18px;
 	color:#fff;
+	margin:65px 40px 55px 45px;
 }
 .u-propsgtips a{
 	display:inline-block;
 	width:100px;
 	height:40px;
+	line-height: 40px;
 	background:#f36;
+	text-align:center;
 	font-size:16px;
 	color:#fff;
 	border-radius:50px;
-}
-.z-show{
-	display:block;
+	margin:0px 150px 30px 160px;
 }
 
 
@@ -880,10 +882,6 @@ a#m-change,a#m-realname{
 	display:none;
 	position:absolute;
 	left:0;
-	right:0;
-	top:0;
-	bottom:0;
-	margin:auto;
 	width:180px;
 	height:215px;
 	text-align:center;
