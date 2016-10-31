@@ -4,7 +4,7 @@
 	margin:100px auto 0;
 	background:#141a20;
 	position:relative;
-	z-index: 1000;
+	z-index: 99;
 } 
 /*左侧样式	*/
 .g-left{ 
