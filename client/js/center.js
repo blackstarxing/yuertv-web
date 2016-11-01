@@ -52,6 +52,14 @@ $(".m-mainm a:eq(0)").trigger("click");
 $(".u-value div").on("click",function(){
 	$(".value div").addClass("checktopup");
 })
+//我要充值－－－点击充值出现弹框
+	$("#topupvalue").off("click").on("click",function(e){
+		e.preventDefault();
+		$(".u-topupwindow").show();
+	})
+	$("#cancel").off("click").on("click",function(){
+		$(".u-topupwindow").hide();
+	})
 //我要当主播的div之间的切换
 	$(".m-mainh a").on("click",function(e){
 		e.preventDefault();
@@ -83,6 +91,7 @@ $.ajax({
     	nickName:$.trim($("#checktips").val())
     },//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
+    	console.log(data);
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
 	        if(data.object==1){//1为重复
@@ -254,24 +263,12 @@ $.ajax({
     url:"http://172.16.2.62:8777/pay/recharge-list",
     dataType: 'json',
     data: {
-    	nickName:$.trim($("#checktips").val())
+    	// nickName:$.trim($("#checktips").val())
     },//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
+    	console.log(data);
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
-	        if(data.object==1){//1为重复
-	            console.log("这个nickName重复啦");
-	            $("#retips").show();
-	        }else if(data.object==0){
-	            console.log("这个nickName不重复");
-	            $("#retips").hide();
-	        }else{
-	            console.log("未知异常");
-	        }
-	    }else if(data.code == -2){
-	        console.log("你没有权限，通常来讲，你是没有登录");
-	    }else if(data.code == -5){
-	        console.log("参数错误哦。");
 	    }else{
 	        console.log(data.result);
 	    }
@@ -287,7 +284,7 @@ $.ajax({
     url:" http://172.16.2.62:8777/pay/recharge",
     dataType: 'json',
     data: {
-    	nickName:$.trim($("#checktips").val())
+    	// nickName:$.trim($("#checktips").val())
     },//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
@@ -320,7 +317,7 @@ $.ajax({
     url:"http://172.16.2.62:8777/person-center/my-concern",
     dataType: 'json',
     data: {
-    	nickName:$.trim($("#checktips").val())
+    	// nickName:$.trim($("#checktips").val())
     },//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
@@ -352,7 +349,7 @@ $.ajax({
     url:"http://172.16.2.62:8777/person-center/my-msg",
     dataType: 'json',
     data: {
-    	nickName:$.trim($("#checktips").val())
+    	// nickName:$.trim($("#checktips").val())
     },//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
@@ -384,7 +381,7 @@ $.ajax({
     url:" http://172.16.2.62:8777/person-center/my-gifts",
     dataType: 'json',
     data: {
-    	nickName:$.trim($("#checktips").val())
+    	// nickName:$.trim($("#checktips").val())
     },//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
     	console.log(data);
@@ -417,24 +414,12 @@ $.ajax({
     url:"http://172.16.2.62:8777/person-center/user-info",
     dataType: 'json',
     data: {
-    	nickName:$.trim($("#checktips").val())
+    	// nickName:$.trim($("#checktips").val())
     },//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
+    	console.log(data);
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
-	        if(data.object==1){//1为重复
-	            console.log("这个nickName重复啦");
-	            $("#retips").show();
-	        }else if(data.object==0){
-	            console.log("这个nickName不重复");
-	            $("#retips").hide();
-	        }else{
-	            console.log("未知异常");
-	        }
-	    }else if(data.code == -2){
-	        console.log("你没有权限，通常来讲，你是没有登录");
-	    }else if(data.code == -5){
-	        console.log("参数错误哦。");
 	    }else{
 	        console.log(data.result);
 	    }
