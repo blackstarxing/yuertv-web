@@ -52,7 +52,7 @@
 }
 /*右侧上面的样式*/
 .g-right .m-top{
-	height:160px;
+	height:125px;
 	padding-top:40px;
 	padding-left:20px;
 }
@@ -180,7 +180,7 @@ a#m-change,a#m-realname{
 .m-switch .u-pcurrent,.u-pnew,.u-pcancel{
 	position:relative;
 }
-.u-pcurrent .u-verifypassword{
+.u-verifypassword{
 	position: absolute;
 	left:303px;
 	top:1px;
@@ -190,8 +190,9 @@ a#m-change,a#m-realname{
 	background:#f93;
 	color:#fff;
 	text-align:center;
+	display: none;
 }
-.u-pnew .u-failpassword{
+.u-failpassword{
 	position: absolute;
 	left:333px;
 	top:1px;
@@ -201,8 +202,9 @@ a#m-change,a#m-realname{
 	background:#f93;
 	color:#fff;
 	text-align:center;
+	display: none;
 }
-.u-pcancel .u-rightpassword{
+.u-rightpassword{
 	position: absolute;
 	left:333px;
 	top:1px;
@@ -212,8 +214,11 @@ a#m-change,a#m-realname{
 	background:#396;
 	color:#fff;
 	text-align:center;
+	display: none;
 }
-
+.u-passwordshow{
+	display:block;
+}
 /*手机认证*/
 .m-switcht .u-div{
 	position:relative;
