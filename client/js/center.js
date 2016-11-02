@@ -116,8 +116,47 @@ $.ajax({
    }
 })
 })
+//表单验证
+$("#current").on("blur",function(){
+	$("#current").parent().find("span").hide();
+	$("#current").parent().find(".verifypassword").show();
+	$.ajax({
+    method:"GET",//对于请求类型
+    url:"http://172.16.2.62:8777/person-center/is-password-right",
+    dataType: 'json',
+    data: {
+    	password:$.trim($("#current").val())
+    },//这个是一个验证是否重名的接口。参数只有一个 名字
+    success:function(data){
+	    if(data.code == 0){//data.code的值这个是后端人员规定的。
+	        console.log("请求成功");
+	        if(data.object==1){//1为重复
+	            console.log("这个password正确啦");
+	            $("#current").parent().find("span").hide();
+	            $("#current").parent().find(".rightpassword").show();
+	        }else if(data.object==0){
+	            console.log("这个password不正确");
+	            $("#current").parent().find("span").hide();
+	             $("#current").parent().find(".failpassword").show();
+	        }else{
+	            console.log("未知异常");
+	        }
+	    }else{
+	        console.log(data.result);
+	    }
+	},
+	error:function(a,b,c){
+    	console.log("接口出问题啦");
+   }
+})
+})
+$("#new").on("blur",function(){
 
-//修改成功弹框
+})
+$("#confirm").on("blur",function(){
+
+})
+//修改密码成功弹框
 	$("#userbox").on("click",function(){
 		$(".m-psuccess").addClass("z-show");
 	});
@@ -231,7 +270,8 @@ $.ajax({
     url:"http://172.16.2.62:8777/person-center/mobile-auth",
     dataType: 'json',
     data: {
-    	nickName:$.trim($("#checktips").val())
+    	// nickName:$.trim($("#checktips").val())
+
     },//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
@@ -378,7 +418,7 @@ $.ajax({
 //我的道具
 $.ajax({
     method:"GET",//对于请求类型
-    url:" http://172.16.2.62:8777/person-center/my-gifts",
+    url:"http://172.16.2.62:8777/person-center/my-gifts",
     dataType: 'json',
     data: {
     	// nickName:$.trim($("#checktips").val())
