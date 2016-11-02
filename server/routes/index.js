@@ -32,7 +32,7 @@ router.get('/', function(req, res, next) {
         })
     }]).then(function(cont, result) {
         res.render('index', {
-            title: "首页",
+            title: "娱儿直播_一个处女座都喜欢的手游直播平台",
             bannerlists: JSON.parse(result[0]).object.list,
             recommendlists: JSON.parse(result[1]).object.map.eventmsTop.slice(0, 3),
             matchlists: JSON.parse(result[1]).object.map.eventmsBottom.slice(0, 9),
