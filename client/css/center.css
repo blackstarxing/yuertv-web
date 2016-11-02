@@ -56,6 +56,7 @@
 	padding-top:40px;
 	padding-left:20px;
 }
+
 .m-tright .u-tovalue{
 	display:inline-block;
 	width:45px;
@@ -76,10 +77,10 @@
 .g-right  .m-top .m-tleft{
 	position:absolute;
 	padding-left:35px;
-	 width:265px;
+	 width:200px;
 }
 .g-right .m-top .m-tright{
-	margin-left:265px;
+	margin-left:200px;
 	padding-left:40px;
 }
 .m-tright .u-nicknameonly{
@@ -982,6 +983,8 @@ a.u-topfish{
 	color:#f36;
 }
 .u-topupwindow{
+	display:none;
+	position: fixed;
 	left:0;
 	right:0;
 	top:0;
@@ -1005,6 +1008,7 @@ a.u-topfish{
 	border-bottom:1px dashed #1a2129;
 	margin:0 50px;
 }
+
 .u-wintop .u-ws{
 	text-align:center;
 	font-size:24px;
@@ -1051,9 +1055,22 @@ a.u-topfish{
 
 .u-wbtop .payimg{
 	float:left;
-	width:210px;
+	width:220px;
 	height:105px;
 	margin-left:35px;
+	margin-top:0px;
+}
+.payimg .u-wpleft{
+	line-height:105px;
+	text-align:center;
+	vertical-align: middle;
+	margin-right:15px;
+}
+.payshow:hover .gray{
+	display:block;
+}
+.pay:hover .gray{
+	display:block;
 }
 .u-wbtop .paycontent{
 	float:left;
@@ -1062,6 +1079,7 @@ a.u-topfish{
 	color:#fff;
 
 }
+
 .u-wbbottom a{
 	display: inline-block;
 	width:300px;
@@ -1080,9 +1098,30 @@ a.u-topfish{
 	height:25px;
 	margin:20px 302px 55px 300px;
 }
+.u-graywec,.u-graycard{
+	width:210px;
+	height:100px;
 
+}
+.u-graywec p,.u-graycard p{
+	font-size:14px;
+	color:#7d8ea0;
+	text-align:right;
+}
 
-
+.gray img{
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	filter: grayscale(100%);
+	filter: gray;
+}
+.gray p{
+	display:block;
+	color:#7d8ea0;
+	text-align:center;
+}
 
 
 
