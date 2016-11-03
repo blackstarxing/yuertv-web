@@ -116,7 +116,7 @@ $.ajax({
    }
 })
 })
-//表单验证
+//表单验证--当前密码是否正确
 $("#current").on("blur",function(){
 	$("#current").parent().find("span").hide();
 	$("#current").parent().find(".verifypassword").show();
@@ -151,7 +151,7 @@ $("#current").on("blur",function(){
 })
 })
 $("#new").on("blur",function(){
-
+	
 })
 $("#confirm").on("blur",function(){
 
@@ -163,22 +163,28 @@ $("#confirm").on("blur",function(){
 	$(".m-psuccess #userbox").on("click",function(){
 		$(this).parents(".m-psuccess").removeClass("z-show");
 	});
-//手机认证---获取验证码；
-	// $('#gainnumber').on("click",function(){  
- //  		$.ajax({  
-	// 		type: "GET",  
-	// 		url: "http://172.16.2.62:8777/sendSMSCode",  
-	// 		data: {gainnumber:$("#gainnumber").val()},  
-	// 		dataType: "json",  
-	// 		success: function(data){  
-	// 			 console.log(data);
-
-	// 		},
- //            error: function() {
- //                alert('通讯服务器错误');
- //            } 
-	// 	});  
-	// });  
+//修改密码接口
+	$('#send').on("click",function(){  
+  		$.ajax({  
+			type: "GET",  
+			url: "http://172.16.2.62:8777/person-center/update-password",  
+			data: {oldPassword:$("#oldPassword").val(),password:$("password")},  
+			dataType: "json",  
+			success: function(data){  
+				 if(oldPassword==password){
+				 	$(".u-pcancel #new").parent().find("span").hide();
+					$(".u-pcancel #new").parent().find(".rightpassword").show();
+				 }
+				 else{
+				 	$(".u-pcancel #new").parent().find("span").hide();
+					$(".u-pcancel #new").parent().find(".failpassword").show();
+				 }
+			},
+            error: function() {
+                alert('通讯服务器错误');
+            } 
+		});  
+	});  
 // 刷新图形验证码
 	var $telnumber = $('.telnumber');
     function changeCode(){
@@ -237,14 +243,26 @@ $("#confirm").on("blur",function(){
         changeCode();
     })
 //实名认证；
-	$('#userbox').on("blur",function(){  
+	$('#userbox').on("click",function(){  
   		$.ajax({  
 			type: "GET",  
-			url: "http://172.16.2.62:8777/person-center/mobile-auth",  
-			data: {userbox:$("#userbox").val()},  
+			url: "http://172.16.2.62:8777/person-center/realname-auth",  
+			data: {idCard:$("#idCard").val(),
+				   idCardBackScan:$("#idCardBackScan").val(),
+				   idCardDueDate:$("#idCardDueDate").val(),
+				   idCardFrontScan:$("#idCardFrontScan").val(),
+				   idCardHandScan:$("#idCardHandScan").val(),
+				   qq:$("#qq"),
+				   realname:$("#realname")
+			},  
 			dataType: "json",  
 			success: function(data){  
-				 console.log(data);
+				 if(data.code == 0){//data.code的值这个是后端人员规定的。
+		        console.log("请求成功");
+
+			    }else{
+			        console.log(data.result);
+			    }	 
 
 			},
             error: function() {
@@ -269,26 +287,13 @@ $.ajax({
     method:"GET",//对于请求类型
     url:"http://172.16.2.62:8777/person-center/mobile-auth",
     dataType: 'json',
-    data: {
-    	// nickName:$.trim($("#checktips").val())
-
-    },//这个是一个验证是否重名的接口。参数只有一个 名字
+    data: {checkCode:$.trim($("#checkCode").val()),
+           mobile:$.trim($("#mobile").val()),
+	},//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
-	        if(data.object==1){//1为重复
-	            console.log("这个nickName重复啦");
-	            $("#retips").show();
-	        }else if(data.object==0){
-	            console.log("这个nickName不重复");
-	            $("#retips").hide();
-	        }else{
-	            console.log("未知异常");
-	        }
-	    }else if(data.code == -2){
-	        console.log("你没有权限，通常来讲，你是没有登录");
-	    }else if(data.code == -5){
-	        console.log("参数错误哦。");
+	       
 	    }else{
 	        console.log(data.result);
 	    }
@@ -302,13 +307,15 @@ $.ajax({
     method:"GET",//对于请求类型
     url:"http://172.16.2.62:8777/pay/recharge-list",
     dataType: 'json',
-    data: {
-    	// nickName:$.trim($("#checktips").val())
-    },//这个是一个验证是否重名的接口。参数只有一个 名字
+    data: {},//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
     	console.log(data);
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
+	        each(function(id,rmb,yuer_amount){
+
+	        })
+
 	    }else{
 	        console.log(data.result);
 	    }
@@ -323,25 +330,14 @@ $.ajax({
     method:"GET",//对于请求类型
     url:" http://172.16.2.62:8777/pay/recharge",
     dataType: 'json',
-    data: {
-    	// nickName:$.trim($("#checktips").val())
-    },//这个是一个验证是否重名的接口。参数只有一个 名字
+    data: {id:$.trim($("#id").val()) },//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
-	        if(data.object==1){//1为重复
-	            console.log("这个nickName重复啦");
-	            $("#retips").show();
-	        }else if(data.object==0){
-	            console.log("这个nickName不重复");
-	            $("#retips").hide();
-	        }else{
-	            console.log("未知异常");
-	        }
-	    }else if(data.code == -2){
-	        console.log("你没有权限，通常来讲，你是没有登录");
-	    }else if(data.code == -5){
-	        console.log("参数错误哦。");
+	        $("#topupvalue").each(function(){
+
+	        })
+	        
 	    }else{
 	        console.log(data.result);
 	    }
@@ -351,30 +347,38 @@ $.ajax({
    }
 })
 })
+
+//支付宝
+$.ajax({
+    method:"GET",//对于请求类型
+    url:"http://172.16.2.62:8777/pay/alipay",
+    dataType: 'json',
+    data: { id:$.trim($("#id").val()),
+    },//这个是一个验证是否重名的接口。参数只有一个 名字
+    success:function(data){
+	    if(data.code == 0){//data.code的值这个是后端人员规定的。
+	        console.log("请求成功");
+
+	    }else{
+	        console.log(data.result);
+	    }
+	},
+	error:function(a,b,c){
+    	console.log("接口出问题啦");
+   }
+})
 //我的关注
 $.ajax({
     method:"GET",//对于请求类型
     url:"http://172.16.2.62:8777/person-center/my-concern",
     dataType: 'json',
-    data: {
-    	// nickName:$.trim($("#checktips").val())
+    data: { page:$.trim($("#page").val()),
+    		pageSize:$.trim($("#pageSize").val())
     },//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
-	        if(data.object==1){//1为重复
-	            console.log("这个nickName重复啦");
-	            $("#retips").show();
-	        }else if(data.object==0){
-	            console.log("这个nickName不重复");
-	            $("#retips").hide();
-	        }else{
-	            console.log("未知异常");
-	        }
-	    }else if(data.code == -2){
-	        console.log("你没有权限，通常来讲，你是没有登录");
-	    }else if(data.code == -5){
-	        console.log("参数错误哦。");
+
 	    }else{
 	        console.log(data.result);
 	    }
@@ -388,25 +392,13 @@ $.ajax({
     method:"GET",//对于请求类型
     url:"http://172.16.2.62:8777/person-center/my-msg",
     dataType: 'json',
-    data: {
-    	// nickName:$.trim($("#checktips").val())
+    data: {page:$.trim($("#page").val()),
+    	   pageSize:$.trim($("#pageSize").val()),
+    	   type:$.trim($("#type").val()),
     },//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
-	        if(data.object==1){//1为重复
-	            console.log("这个nickName重复啦");
-	            $("#retips").show();
-	        }else if(data.object==0){
-	            console.log("这个nickName不重复");
-	            $("#retips").hide();
-	        }else{
-	            console.log("未知异常");
-	        }
-	    }else if(data.code == -2){
-	        console.log("你没有权限，通常来讲，你是没有登录");
-	    }else if(data.code == -5){
-	        console.log("参数错误哦。");
 	    }else{
 	        console.log(data.result);
 	    }
@@ -420,26 +412,11 @@ $.ajax({
     method:"GET",//对于请求类型
     url:"http://172.16.2.62:8777/person-center/my-gifts",
     dataType: 'json',
-    data: {
-    	// nickName:$.trim($("#checktips").val())
-    },//这个是一个验证是否重名的接口。参数只有一个 名字
+    data: {},//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
     	console.log(data);
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
-	        if(data.object==1){//1为重复
-	            console.log("这个nickName重复啦");
-	            $("#retips").show();
-	        }else if(data.object==0){
-	            console.log("这个nickName不重复");
-	            $("#retips").hide();
-	        }else{
-	            console.log("未知异常");
-	        }
-	    }else if(data.code == -2){
-	        console.log("你没有权限，通常来讲，你是没有登录");
-	    }else if(data.code == -5){
-	        console.log("参数错误哦。");
 	    }else{
 	        console.log(data.result);
 	    }
@@ -453,8 +430,7 @@ $.ajax({
     method:"GET",//对于请求类型
     url:"http://172.16.2.62:8777/person-center/user-info",
     dataType: 'json',
-    data: {
-    	// nickName:$.trim($("#checktips").val())
+    data: {id:$.trim($("#id").val())
     },//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
     	console.log(data);
