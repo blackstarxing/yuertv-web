@@ -26,6 +26,17 @@ $(function() {
                         _error.text('手机号码不能为空');
                     },2000);
                 }
+            }else if($(this).hasClass('password')){
+                if($('.password').val().length>=6){
+                    _error.hide();
+                }else{
+                    _error.show();
+                    _error.text('密码太短');
+                    setTimeout(function(){
+                        _error.hide();
+                        _error.text('密码不能为空');
+                    },2000);
+                }
             }else{
                 _error.hide();
             }
@@ -185,6 +196,9 @@ $(function() {
         }else if(!$('.repassword').val()){
             formComplete = false;
             $('.repassword').next('.error-tip').text('密码不能为空');
+        }else if($('.password').val().length<6){
+            formComplete = false;
+            $('.password').next('.error-tip').text('密码太短');
         }
         $('.m-regform input').each(function(){
             if(!$(this).val()){
