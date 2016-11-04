@@ -1,37 +1,13 @@
 // if(obj=='女'){img.src="nv"}else{img.src="nan"}
 $(function(){
+//我的资料的tab切换；
 	$(".m-bottom a").on("click",function(e){
 		e.preventDefault();
 		$(this).addClass("switch").siblings().removeClass("switch");
 		$(".switch-content").hide().eq($(this).index()).show();
 	})
 	$(".m-bottom a:eq(0)").trigger("click");
-	$('.fileupload').change(function(event) {
-		var _this = $(this);
-			    /* Act on the event */
-		if ($('.fileupload').val().length) {
-			 var fileName = $('.fileupload').val();
-			 var extension = fileName.substring(fileName.lastIndexOf('.'), fileName.length).toLowerCase();
-			  if (extension == ".jpg" || extension == ".png") {
-			    var data = new FormData();
-			    data.append('upload', $('#fileToUpload')[0].files[0]);
-			    $.ajax({
-			         url: 'http://172.16.2.62:8777/common/upload',
-			         type: 'POST',
-			          data: data,
-			          cache: false,
-			          contentType: false, //不可缺参数
-			            processData: false, //不可缺参数
-			           success: function(data) {
-			               _this.parents('.u-card').find('img').attr('src',data.object);
-			            },
-			           error: function() {
-			                 console.log('error');
-			           }
-			    });
-		}
-	 }
-});
+	
 // 我的道具弹出框
 	$(".imgprops .u-props").off("click").on("click",function(e){
 		e.preventDefault();
@@ -151,10 +127,20 @@ $("#current").on("blur",function(){
 })
 })
 $("#new").on("blur",function(){
-	
+	if($("#new").val().length<6){
+		$("#new").parent().find(".u-vpassword").show();
+	}else{
+		 $("#new").parent().find("span").hide();
+	}
 })
 $("#confirm").on("blur",function(){
-
+	if($("#new").val()==$("#confirm").val()){
+		 $("#confirm").parent().find("span").hide();
+	     $("#confirm").parent().find(".rightpassword").show();
+	}else{
+		 $("#confirm").parent().find("span").hide();
+	     $("#confirm").parent().find(".failpassword").show();
+	}
 })
 //修改密码成功弹框
 	$("#userbox").on("click",function(){
@@ -168,21 +154,19 @@ $("#confirm").on("blur",function(){
   		$.ajax({  
 			type: "GET",  
 			url: "http://172.16.2.62:8777/person-center/update-password",  
-			data: {oldPassword:$("#oldPassword").val(),password:$("password")},  
+			data: {oldPassword:$("#current").val(),password:$("#new")},   
 			dataType: "json",  
 			success: function(data){  
-				 if(oldPassword==password){
-				 	$(".u-pcancel #new").parent().find("span").hide();
-					$(".u-pcancel #new").parent().find(".rightpassword").show();
-				 }
-				 else{
-				 	$(".u-pcancel #new").parent().find("span").hide();
-					$(".u-pcancel #new").parent().find(".failpassword").show();
-				 }
+				if(data.code == 0){//data.code的值这个是后端人员规定的。
+		        	console.log("请求成功");
+				}else{
+	       			console.log(data.result);
+	   			}
 			},
+	
             error: function() {
-                alert('通讯服务器错误');
-            } 
+                	alert('通讯服务器错误');
+            }
 		});  
 	});  
 // 刷新图形验证码
@@ -242,54 +226,26 @@ $("#confirm").on("blur",function(){
         e.preventDefault();
         changeCode();
     })
-//实名认证；
-	$('#userbox').on("click",function(){  
-  		$.ajax({  
-			type: "GET",  
-			url: "http://172.16.2.62:8777/person-center/realname-auth",  
-			data: {idCard:$("#idCard").val(),
-				   idCardBackScan:$("#idCardBackScan").val(),
-				   idCardDueDate:$("#idCardDueDate").val(),
-				   idCardFrontScan:$("#idCardFrontScan").val(),
-				   idCardHandScan:$("#idCardHandScan").val(),
-				   qq:$("#qq"),
-				   realname:$("#realname")
-			},  
-			dataType: "json",  
-			success: function(data){  
-				 if(data.code == 0){//data.code的值这个是后端人员规定的。
-		        console.log("请求成功");
 
-			    }else{
-			        console.log(data.result);
-			    }	 
-
-			},
-            error: function() {
-                alert('通讯服务器错误');
-            } 
-		});  
-	}); 
 
 //日期插件
-$('#datetimepicker').datetimepicker({
-      lang:"ch",           //语言选择中文
-      format:"Y-m-d",      //格式化日期
-      timepicker:false,    //关闭时间选项
-      yearStart:2000,     //设置最小年份
-      yearEnd:2050,        //设置最大年份
-      todayButton:false    //关闭选择今天按钮
-});
-$.datetimepicker.setLocale('ch');
-//接口测试
+//$('#datetimepicker').datetimepicker({
+      //lang:"ch",           //语言选择中文
+      //format:"Y-m-d",      //格式化日期
+      //timepicker:false,    //关闭时间选项
+      //yearStart:2000,     //设置最小年份
+     // yearEnd:2050,        //设置最大年份
+      //todayButton:false    //关闭选择今天按钮
+// });
+// $.datetimepicker.setLocale('ch');
 //手机认证
 $.ajax({
     method:"GET",//对于请求类型
     url:"http://172.16.2.62:8777/person-center/mobile-auth",
     dataType: 'json',
-    data: {checkCode:$.trim($("#checkCode").val()),
-           mobile:$.trim($("#mobile").val()),
-	},//这个是一个验证是否重名的接口。参数只有一个 名字
+    data: {checkCode:$.trim($("#verify").val()),
+           mobile:$.trim($("#number").val()),
+	},
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
@@ -312,9 +268,6 @@ $.ajax({
     	console.log(data);
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
-	        each(function(id,rmb,yuer_amount){
-
-	        })
 
 	    }else{
 	        console.log(data.result);
@@ -378,6 +331,44 @@ $.ajax({
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
+	        var str = "";
+	  			for(index in data.object.list){
+	  				str+='<div class="m-main"><div class="u-top"><h3>主播</h3></div>'+
+	  				'<div class="u-host"><div class="u-hleft"><div class="u-focusimg">'+
+	  				'<img src="'+data.object.list[index].icon+'"></div>'+
+	  				'<div class="u-nickhost"><p class="u-nicksex"><span>'+data.object.list[index].nickname+'</span>'+
+	  				'<img src="'+data.object.list[index].sex+'"></p><div class="u-hostfans"><p>'+
+	  				'<span class="u-hf">直播间ID</span>&nbsp;	'+	
+	  				'<span class="u-num">'+data.object.list[index].room_number+'</span></p>'+
+	  				'<p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;'+
+	  				'<span class="u-num">'+data.object.list[index].fans+'</span></p></div>'+
+	  				'</div></div><div class="u-hright"><img src="/images/focusclick.png">'+
+	  				'<a href="'+data.object.list[index].room_number+'">进入房间</a></div></div>'	
+					console.log("性别0男1女是"+data.object.list[index].sex);
+					console.log("关注对象id是"+data.object.list[index].user_id);
+				}
+	      	if(data.object.total==0){
+
+	      	}else if(data.object.total<6){
+	      		for(index in data.object.list){
+					console.log("粉丝数是"+data.object.list[index].fans);
+					console.log("头像是"+data.object.list[index].icon);
+					console.log("昵称是"+data.object.list[index].nickname);
+					console.log("房间号是"+data.object.list[index].room_number);
+					console.log("性别0男1女是"+data.object.list[index].sex);
+					console.log("关注对象id是"+data.object.list[index].user_id);
+				}
+	      	}else{
+	      		for(index in data.object.list){
+					console.log("粉丝数是"+data.object.list[index].fans);
+					console.log("头像是"+data.object.list[index].icon);
+					console.log("昵称是"+data.object.list[index].nickname);
+					console.log("房间号是"+data.object.list[index].room_number);
+					console.log("性别0男1女是"+data.object.list[index].sex);
+					console.log("关注对象id是"+data.object.list[index].user_id);
+				}
+	      	}
+				
 
 	    }else{
 	        console.log(data.result);
@@ -387,6 +378,8 @@ $.ajax({
     	console.log("接口出问题啦");
    }
 })
+
+
 //我的消息
 $.ajax({
     method:"GET",//对于请求类型
@@ -399,6 +392,43 @@ $.ajax({
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
+	        var str="";
+	        for(index in data.object.list){
+	  				str+='<div class="m-mainm">'+
+						'<div class="u-m-top">'+
+						'<a href="">系统消息</a>'+
+						'<a href="">关注消息</a>'+
+						'</div>'+
+						'<div class="u-systemmessage mcurrent">'+
+						'<div class="u-message">'+
+						'<div class="u-msystem">'+
+						'<img src="/images/messagehead.png">'+
+						'</div>'+
+						'<div class="u-yuer">'+
+						'<p>'+
+							'<h3>'+data.object.list[index].title+'</h3>'+
+							'<span class="u-messagetime">'+data.object.list[index].create_date+'</span>'+
+						'<p>'+
+						'<p>'+
+						'<span class="u-messagecontent"></span><span class="u-messtips">'+data.object.list[index].obj_id+'</span>'+
+						'</p>'+
+					'</div>'+
+					'</div>'	
+			}
+						if(data.object.total==0){
+
+				      	}else if(data.object.total<11){
+				      		for(index in data.object.list){
+								console.log("内容是"+data.object.list[index].content);
+								console.log("时间是"+data.object.list[index].create_date);
+								console.log("消息id是"+data.object.list[index].id);
+								console.log("目标id是"+data.object.list[index].obj_id);
+								console.log("标题是"+data.object.list[index].title);
+							}
+				      	}else{
+
+				      	}
+
 	    }else{
 	        console.log(data.result);
 	    }
@@ -412,7 +442,7 @@ $.ajax({
     method:"GET",//对于请求类型
     url:"http://172.16.2.62:8777/person-center/my-gifts",
     dataType: 'json',
-    data: {},//这个是一个验证是否重名的接口。参数只有一个 名字
+    data: {},
     success:function(data){
     	console.log(data);
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
@@ -431,10 +461,10 @@ $.ajax({
     url:"http://172.16.2.62:8777/person-center/user-info",
     dataType: 'json',
     data: {id:$.trim($("#id").val())
-    },//这个是一个验证是否重名的接口。参数只有一个 名字
+    },
     success:function(data){
     	console.log(data);
-	    if(data.code == 0){//data.code的值这个是后端人员规定的。
+	    if(data.code == 0){
 	        console.log("请求成功");
 	    }else{
 	        console.log(data.result);

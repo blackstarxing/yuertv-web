@@ -216,6 +216,18 @@ a#m-change,a#m-realname{
 	text-align:center;
 	display: none;
 }
+.u-vpassword{
+	position: absolute;
+	left:270px;
+	top:1px;
+	width:150px;
+	height:40px;
+	line-height: 40px;
+	background:#f93;
+	color:#fff;
+	text-align:center;
+	display: none;
+}
 .u-passwordshow{
 	display:block;
 }
@@ -238,6 +250,14 @@ a#m-change,a#m-realname{
 }
 .m-switcht .u-verify{
 	background:#f36;
+}
+.m-switcht input{
+	width:300px;
+	height:40px;
+	margin-bottom:10px;
+	background:transparent;
+	margin-left:15px;
+	border:1px solid #353d48
 }
 .m-switcht .u-submit{
 	width:305px;
@@ -317,146 +337,8 @@ a#m-change,a#m-realname{
 	font-size:14px;
 	color:#666e72;
 }
-.m-bottom .m-switchi label{
-	width:135px;
-	text-align:right;
-}
-.u-userbox{
-	width:300px;
-	height:40px;
-	color:#cecfd2;
-	padding-left:15px;
-	background:transparent;
-	margin-left:5px;
-	border:1px solid #353d48;
-}
-.m-switchi div.u-idcard .u-dleft,.m-switchi div.u-idcard .u-dright{
-	display:inline-block;
-}
-.m-switchi div.u-card{
-	width:160px;
-	height:190px;
-	display:inline-block;
-	float:left;
-	margin-left:15px;
-
-}
-.m-switchi .u-div{
-	margin-bottom:25px;
-}
-.m-switchi .u-div .u-finaltime{
-	width:320px;
-	height: 40px;
-	margin-right:10px;
-	color: #cecfd2;
-	text-indent: 12px;
-	background:transparent;
-   /* background:url("../images/icon-arrow.png") no-repeat transparent;*/
-    background-position: 80px 18px;
-    border: 1px solid #353d48;
-    border-radius: 0;
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-}
-.m-switchi .u-idcard{
-	margin-bottom:25px;
-	margin-left:-30px;
-}
-.m-switchi .u-dleft{
-	width:160px;
-	height:80px;
-	color:#cecfd2;
-	font-size:14px;
-	float:left;
-	text-align:right;
-}
-.m-switchi img{
-	display:inline-block;
-	width:160px;
-	height:80px;
-	outline:1px solid #353d48;
-}
-.m-bottom .u-card{
-	float: left;
-	margin-left:15px;
-}
-.m-bottom .u-card span{
-	display:inline-block;
-	width:160px;
-	height:25px;
-	text-align:center;
-	font-size:14px;
-	color:#666e72;
-	margin-top:20px;
-}
-/*上传图片的样式*/
-.upload-container{
-	background-color:#f00;
-	width:95px;
-	height:35px;
-	position:relative;
-}
-.fileupload{
-	width:95px;
-	height:35px;
-	line-height:35px;
-	position:absolute;
-	z-index:200;
-	margin-right:35px;
-	top:0;
-	left:0;
-	opacity:0;
-	filter:alpha(opacity=0);
-}
-.u-dright span,.u-dright .upload-container{
-	display:inline-block;
-	width:95px;
-	height:35px;
-	text-align:center;
-	border:0px;
-	color:#fff;
-	margin-top:20px;
-	vertical-align:middle;
-}
-.u-dright .upload-container{
-	background:#36383f;
-	margin-left:35px;
-	color:#cecfd2;
-	width:95px;
-	height:35px;
-	line-height:35px;
-}
-.m-switchi .u-deal{
-	width:525px;
-	height:365px;
-	margin:50px 0px 60px 160px;
-}
-.u-deal p{
-	font-size:14px;
-	color:#f36;
-}
-.m-switchi .u-agree{
-	width:230px;
-	margin-left:210px;
-	font-size:14px;
-	color:#666e72;
-}
-.m-switchi .u-agree span.u-spec{
-	color:#0ff;
-}
-.m-switchi .u-submit{
-	width:325px;
-	height:40px;
-	background:#f36;
-	border:0px;
-	font-size:18px;
-	text-align:center;
-	color:#fff;
-	margin-top:20px;
-	margin-bottom:60px;
-	margin-left:170px;
-	border-radius:5px;
+.m-switchi .u-msimg{
+	width:100%;
 }
 /* 操作型弹出浮层-默认居中 */
 .m-layer{
