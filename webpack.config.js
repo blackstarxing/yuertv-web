@@ -3,6 +3,7 @@ var path = require('path');
 
 var publicPath = 'http://localhost:3000/dist/';
 var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -18,16 +19,20 @@ module.exports = {
         // publicPath: './'
     },
     module: {
-        loaders: [{
+        loaders: [
+        {
             test: /\.(png|jpg)$/,
-            loader: 'url?limit=20480&context=client&name=[path][name].[ext]'
-        }, {
+            loader: 'url?context=client&name=[path][name].[ext]'
+        }, 
+        {
             test: /\.scss$/,
             loader: 'style!css?sourceMap!resolve-url!sass?sourceMap'
-        }, {
-            test: /\.css$/,
-            loaders: ['style', 'css']
-        }]
+        }, 
+        { 
+            test: /\.css$/, 
+            loader: ExtractTextPlugin.extract("style-loader","css-loader") 
+        },
+        ]
     },
 };
 
@@ -43,6 +48,9 @@ if (process.env.NODE_ENV === 'production') {
                 warnings: false
             }
         }),
+        new ExtractTextPlugin('./[name].css', {
+            allChunks: true
+        }),
         new webpack.optimize.OccurenceOrderPlugin()
     ],
     module.exports.devtool = false
@@ -52,6 +60,9 @@ if (process.env.NODE_ENV === 'production') {
             'process.env': {
                 NODE_ENV: '"development"'
             }
+        }),
+        new ExtractTextPlugin('./[name].css', {
+            allChunks: true
         }),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
