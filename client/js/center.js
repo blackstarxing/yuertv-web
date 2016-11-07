@@ -117,6 +117,10 @@ $("#current").on("blur",function(){
 	        }else{
 	            console.log("未知异常");
 	        }
+	    }else if(data.code == -2){
+        		console.log("你没有权限，通常来讲，你是没有登录");
+    		}else if(data.code == -5){
+        		console.log("参数错误哦。");
 	    }else{
 	        console.log(data.result);
 	    }
@@ -159,9 +163,22 @@ $("#confirm").on("blur",function(){
 			success: function(data){  
 				if(data.code == 0){//data.code的值这个是后端人员规定的。
 		        	console.log("请求成功");
+			        if(data.object==1){//1为重复
+	           			 console.log("这个重复啦");
+	        		}else if(data.object==0){
+	            		console.log("这个不重复");
+	        		}else{
+	           			console.log("未知异常");
+	       			}
+	   	    	}else if(data.code == -2){
+	        		console.log("你没有权限，通常来讲，你是没有登录");
+	    		}else if(data.code == -5){
+	        		console.log("参数错误哦。");	
 				}else{
 	       			console.log(data.result);
 	   			}
+	   			 
+        	
 			},
 	
             error: function() {
@@ -249,7 +266,17 @@ $.ajax({
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
-	       
+	     if(data.object==1){//1为重复
+            console.log("这个重复啦");
+        	}else if(data.object==0){
+            	console.log("这个不重复");
+        	}else{
+           		console.log("未知异常");
+       		}
+   	    }else if(data.code == -2){
+        	console.log("你没有权限，通常来讲，你是没有登录");
+    	}else if(data.code == -5){
+        	console.log("参数错误哦。");  
 	    }else{
 	        console.log(data.result);
 	    }
@@ -268,7 +295,17 @@ $.ajax({
     	console.log(data);
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
-
+	         if(data.object==1){//1为重复
+            console.log("这个重复啦");
+        	}else if(data.object==0){
+            	console.log("这个不重复");
+        	}else{
+           		console.log("未知异常");
+       		}
+   	    }else if(data.code == -2){
+        	console.log("你没有权限，通常来讲，你是没有登录");
+    	}else if(data.code == -5){
+        	console.log("参数错误哦。");
 	    }else{
 	        console.log(data.result);
 	    }
@@ -290,7 +327,17 @@ $.ajax({
 	        $("#topupvalue").each(function(){
 
 	        })
-	        
+	     if(data.object==1){//1为重复
+            console.log("这个重复啦");
+        	}else if(data.object==0){
+            	console.log("这个不重复");
+        	}else{
+           		console.log("未知异常");
+       		}
+   	    }else if(data.code == -2){
+        	console.log("你没有权限，通常来讲，你是没有登录");
+    	}else if(data.code == -5){
+        	console.log("参数错误哦。");   
 	    }else{
 	        console.log(data.result);
 	    }
@@ -311,7 +358,17 @@ $.ajax({
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
-
+	     if(data.object==1){//1为重复
+            console.log("这个重复啦");
+        	}else if(data.object==0){
+            	console.log("这个不重复");
+        	}else{
+           		console.log("未知异常");
+       		}
+   	    }else if(data.code == -2){
+        	console.log("你没有权限，通常来讲，你是没有登录");
+    	}else if(data.code == -5){
+        	console.log("参数错误哦。");
 	    }else{
 	        console.log(data.result);
 	    }
@@ -368,7 +425,17 @@ $.ajax({
 					console.log("关注对象id是"+data.object.list[index].user_id);
 				}
 	      	}
-				
+		 if(data.object==1){//1为重复
+            console.log("这个重复啦");
+        	}else if(data.object==0){
+            	console.log("这个不重复");
+        	}else{
+           		console.log("未知异常");
+       		}
+   	    }else if(data.code == -2){
+        	console.log("你没有权限，通常来讲，你是没有登录");
+    	}else if(data.code == -5){
+        	console.log("参数错误哦。");		
 
 	    }else{
 	        console.log(data.result);
@@ -428,6 +495,17 @@ $.ajax({
 				      	}else{
 
 				      	}
+		 if(data.object==1){//1为重复
+            console.log("这个重复啦");
+        	}else if(data.object==0){
+            	console.log("这个不重复");
+        	}else{
+           		console.log("未知异常");
+       		}
+   	    }else if(data.code == -2){
+        	console.log("你没有权限，通常来讲，你是没有登录");
+    	}else if(data.code == -5){
+        	console.log("参数错误哦。");
 
 	    }else{
 	        console.log(data.result);
@@ -447,6 +525,17 @@ $.ajax({
     	console.log(data);
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
+	         if(data.object==1){//1为重复
+            console.log("这个重复啦");
+        	}else if(data.object==0){
+            	console.log("这个不重复");
+        	}else{
+           		console.log("未知异常");
+       		}
+   	    }else if(data.code == -2){
+        	console.log("你没有权限，通常来讲，你是没有登录");
+    	}else if(data.code == -5){
+        	console.log("参数错误哦。");
 	    }else{
 	        console.log(data.result);
 	    }
@@ -466,6 +555,17 @@ $.ajax({
     	console.log(data);
 	    if(data.code == 0){
 	        console.log("请求成功");
+	        if(data.object==1){//1为重复
+            console.log("这个重复啦");
+        	}else if(data.object==0){
+            	console.log("这个不重复");
+        	}else{
+           		console.log("未知异常");
+       		}
+   	    }else if(data.code == -2){
+        	console.log("你没有权限，通常来讲，你是没有登录");
+    	}else if(data.code == -5){
+        	console.log("参数错误哦。");
 	    }else{
 	        console.log(data.result);
 	    }
