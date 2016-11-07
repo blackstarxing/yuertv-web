@@ -5,7 +5,7 @@ var request = require('request');
 
 router.get('/', function(req, res, next) {
     Thenjs.parallel([function(cont) {
-        request('http://www.kaisaiba.com/api/banner/list', function(error, response, body) {
+        request('http://172.16.2.62:8777/index', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
     }]).then(function(cont, result) {
         res.render('index', {
             title: "娱儿直播_一个处女座都喜欢的手游直播平台",
-            bannerlists: JSON.parse(result[0]).object.list,
+            index: JSON.parse(result[0]).object,
             recommendlists: JSON.parse(result[1]).object.map.eventmsTop.slice(0, 3),
             matchlists: JSON.parse(result[1]).object.map.eventmsBottom.slice(0, 9),
             islogin: JSON.parse(result[2]).object.loginFlag,
