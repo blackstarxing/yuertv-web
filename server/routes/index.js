@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
     }]).then(function(cont, result) {
         res.render('index', {
             title: "娱儿直播_一个处女座都喜欢的手游直播平台",
-            index: JSON.parse(result[0]).object,
+            bannerlists: JSON.parse(result[0]).object.list,
             recommendlists: JSON.parse(result[1]).object.map.eventmsTop.slice(0, 3),
             matchlists: JSON.parse(result[1]).object.map.eventmsBottom.slice(0, 9),
             islogin: JSON.parse(result[2]).object.loginFlag,
@@ -52,7 +52,25 @@ router.get('/register', function(req, res, next) {
     res.render('register', { title: "注册", registerPage: true });
 });
 router.get('/center/information', function(req, res, next) {
-    res.render('center/information', { title: "我的资料" });
+    Thenjs.parallel([function(cont) {
+        request('http://172.16.2.62:8777/person-center/user-info', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        console.log(result);
+        res.render('center/information', {
+            title: "我的资料",
+            info: JSON.parse(result[0]).object,
+            // islogin: JSON.parse(result[2]).object.loginFlag,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
 });
 router.get('/center/focus', function(req, res, next) {
     res.render('center/focus', { title: "我的关注" });
