@@ -17,7 +17,7 @@ $(function(){
                 if (data.code==0) {
                     document.cookie="userId="+data.object.id; 
                     document.cookie="token="+data.object.token; 
-           			// window.sessionStorage.setItem("userInfo", data.object);
+           			window.sessionStorage.setItem("id", data.object.id);
                     window.location="/";
                     $('.l-usrname').val('');
             		$('.l-pwd').val('');
