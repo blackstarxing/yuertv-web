@@ -266,6 +266,11 @@ $.ajax({
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
+	        if (!checkCode.val().match(/^[1][3][0-9]{9}$/)) {
+		$("#verify").html("<font color='red'>手机号码格式不正确！请重新输入</font>");
+		$("#verify").unbind("focus");  // 添加这行，在focus()之前先把绑定的 focus 处理事件去掉
+		$("#verify").focus();	
+	}
 	     if(data.object==1){//1为重复
             console.log("这个重复啦");
         	}else if(data.object==0){
