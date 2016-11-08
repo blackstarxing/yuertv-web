@@ -52,7 +52,32 @@ router.get('/register', function(req, res, next) {
     res.render('register', { title: "注册", registerPage: true });
 });
 router.get('/center/information', function(req, res, next) {
-    res.render('center/information', { title: "我的资料" });
+    console.log(req.headers.cookie);
+    Thenjs.parallel([function(cont) {
+        request({
+            uri: 'http://172.16.2.62:8777/person-center/user-info',
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+              }
+        }, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        console.log(result[0]);
+        res.render('center/information', {
+            title: "我的资料",
+            info: JSON.parse(result[0]).object,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+    // res.render('center/information', { title: "我的资料" });
 });
 router.get('/center/focus', function(req, res, next) {
     res.render('center/focus', { title: "我的关注" });

@@ -596,7 +596,7 @@ $.ajax({
     method:"GET",//对于请求类型
     url:"http://172.16.2.62:8777/person-center/user-info",
     dataType: 'json',
-    data: {id:$.trim($("#id").val())
+    data: {id:window.sessionStorage.getItem("id")
     },
     success:function(data){
     	console.log(data);
