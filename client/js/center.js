@@ -295,8 +295,20 @@ $.ajax({
     	console.log(data);
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
-	         if(data.object==1){//1为重复
-            console.log("这个重复啦");
+	         var str = "";
+	  			for(index in data.object){
+	  				str+='<div class="m-maint">'+
+						 '<div class="u-topup">'+
+						 '<a href="" class="u-topfish">'+data.object[index].id+'</a>'+
+						 '</div>'+
+						 '<div class="u-value">'+
+						 '<div>'+
+						 '<span class="u-vfish">'+data.object[index].rmb+'</span>'+
+						 '<span class="u-vmoney">'+data.object[index].yuer_amount+'</span>'+
+						 '</div>;';
+				}
+	        if(data.object==1){//1为重复
+            	console.log("这个重复啦");
         	}else if(data.object==0){
             	console.log("这个不重复");
         	}else{
@@ -349,6 +361,7 @@ $.ajax({
 })
 
 //支付宝
+$("#tuvalue").on("click",function(){
 $.ajax({
     method:"GET",//对于请求类型
     url:"http://172.16.2.62:8777/pay/alipay",
@@ -376,6 +389,7 @@ $.ajax({
 	error:function(a,b,c){
     	console.log("接口出问题啦");
    }
+})
 })
 //我的关注
 $.ajax({
@@ -525,8 +539,36 @@ $.ajax({
     	console.log(data);
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
-	         if(data.object==1){//1为重复
-            console.log("这个重复啦");
+	        var str="";
+	        var str1="";
+	        for(index in data.object.gifts){
+	  			str+='<div class="m-mainp">'+
+					'<div class="u-top">'+
+					'<h3>道具信息</h3>'+
+					'</div>'+
+					'<div class="u-imgmessage">'+
+					'<div class="imgprops">'+
+					'<div class="u-props">'+
+					'<img src="'+data.object.gifts[index].icon+'">'+
+					'<p>'+
+					'<span>'+data.object.gifts[index].name+'</span>'+
+					'<span class="u-propscolor">'+data.object.gifts[index].num+'</span>'+
+					'<span>个</span>'+
+					'</p>'+
+					'</div>'+
+					'</div>'+
+					'</div>'+
+					'</div>';
+			}
+			str1+='<div class="u-bottom">'+
+					'<p>'+
+					'<span class="u-bvalue">道具价值：</span>'+
+					'<span class="u-bmoney">'+data.object[index].totalValue+'</span>'+
+					'<span class="u-bunit">鱼币</span>'+
+					'</p>'+
+					'</div>';
+	        if(data.object==1){//1为重复
+            	console.log("这个重复啦");
         	}else if(data.object==0){
             	console.log("这个不重复");
         	}else{
