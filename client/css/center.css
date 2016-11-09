@@ -148,6 +148,10 @@
 	margin-left:30px;
 	background:transparent;
 }
+.m-bottom .u-pcurrent{
+	width:700px;
+	height:40px;
+}
 .m-bottom .m-switch input#current,input#new,input#confirm,{
 	width:300px;
 	height:40px;

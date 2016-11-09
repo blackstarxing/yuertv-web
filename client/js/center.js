@@ -76,7 +76,7 @@ $(".u-value div").on("click",function(){
 $("#checktips").on("blur",function(){
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62:8777/person-center/update-nickname",
+    url:"http://172.16.2.62/person-center/update-nickname",
     dataType: 'json',
     data: {
     	nickName:$.trim($("#checktips").val())
@@ -113,7 +113,7 @@ $("#current").on("blur",function(){
 	$("#current").parent().find(".verifypassword").show();
 	$.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62:8777/person-center/is-password-right",
+    url:"http://172.16.2.62/person-center/is-password-right",
     dataType: 'json',
     data: {
     	password:$.trim($("#current").val())
@@ -172,7 +172,7 @@ $("#confirm").on("blur",function(){
 	$('#send').on("click",function(){  
   		$.ajax({  
 			type: "GET",  
-			url: "http://172.16.2.62:8777/person-center/update-password",  
+			url: "http://172.16.2.62/person-center/update-password",  
 			data: {oldPassword:$("#current").val(),password:$("#new")},   
 			dataType: "json",  
 			success: function(data){  
@@ -204,7 +204,7 @@ $("#confirm").on("blur",function(){
 // 刷新图形验证码
 	var $telnumber = $('.telnumber');
     function changeCode(){
-        $picCode.attr('src','http://172.16.2.62:8777/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
+        $picCode.attr('src','http://172.16.2.62/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
     }
 
     $('#gainnumber').click(function(e){
@@ -271,13 +271,14 @@ $("#confirm").on("blur",function(){
 // });
 // $.datetimepicker.setLocale('ch');
 //手机认证
+
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62:8777/person-center/mobile-auth",
+    url:"http://172.16.2.62/person-center/mobile-auth",
     dataType: 'json',
-    data: {checkCode:$.trim($("#verify").val()),
-           mobile:$.trim($("#number").val()),
-	},
+ //    data: {checkCode:$.trim($("#verify").val()),
+ //           mobile:$.trim($("#number").val()),
+	// },
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
@@ -308,7 +309,7 @@ $.ajax({
 //充值列表
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62:8777/pay/recharge-list",
+    url:"http://172.16.2.62/pay/recharge-list",
     dataType: 'json',
     data: {},//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
@@ -350,7 +351,7 @@ $.ajax({
 $("#tuvalue").on("click",function(){
 $.ajax({
     method:"GET",//对于请求类型
-    url:" http://172.16.2.62:8777/pay/recharge",
+    url:" http://172.16.2.62/pay/recharge",
     dataType: 'json',
     data: {id:$.trim($("#id").val()) },//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
@@ -384,7 +385,7 @@ $.ajax({
 $("#tuvalue").on("click",function(){
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62:8777/pay/alipay",
+    url:"http://172.16.2.62/pay/alipay",
     dataType: 'json',
     data: { id:$.trim($("#id").val()),
     },//这个是一个验证是否重名的接口。参数只有一个 名字
@@ -414,7 +415,7 @@ $.ajax({
 //我的关注
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62:8777/person-center/my-concern",
+    url:"http://172.16.2.62/person-center/my-concern",
     dataType: 'json',
     data: { page:$.trim($("#page").val()),
     		pageSize:$.trim($("#pageSize").val())
@@ -484,7 +485,7 @@ $.ajax({
 //我的消息
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62:8777/person-center/my-msg",
+    url:"http://172.16.2.62/person-center/my-msg",
     dataType: 'json',
     data: {page:$.trim($("#page").val()),
     	   pageSize:$.trim($("#pageSize").val()),
@@ -552,7 +553,7 @@ $.ajax({
 //我的道具
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62:8777/person-center/my-gifts",
+    url:"http://172.16.2.62/person-center/my-gifts",
     dataType: 'json',
     data: {},
     success:function(data){
@@ -609,7 +610,7 @@ $.ajax({
 //用户信息
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62:8777/person-center/user-info",
+    url:"http://172.16.2.62/person-center/user-info",
     dataType: 'json',
     data: {id:window.sessionStorage.getItem("id")
     },
