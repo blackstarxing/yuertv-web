@@ -167,7 +167,7 @@
 	</div>
 </div>
 <div class="m-mask">
-<div class="code-wrap">
+	<div class="code-wrap">
 		<p>请输入图中验证码完成本次发送</p>
 		<div class="m-input">
 			<input type="text">
@@ -307,64 +307,28 @@
 			</div>
 			<div class="u-imgmessage">
 				<div class="imgprops">
-					<div class="u-props">
+					{% for myprops in myprops %}
+	                <div class="u-props">
 						<img src="http://img.wangyuhudong.com/{{myprops.gifts.icon}}">
 						<p>
 							<span>{{myprops.gifts.name}}</span>
 							<span class="u-propscolor">{{myprops.gifts.num}}</span>
 							<span>个</span>
 						</p>
-					</div>
-					<div class="u-props">
-						<img src="http://img.wangyuhudong.com/{{myprops.gifts.icon}}">
-						<p>
-							<span>{{myprops.gifts.name}}</span>
-							<span class="u-propscolor">{{myprops.gifts.num}}</span>
-							<span>个</span>
-						</p>
-					</div>
-					<div class="u-props">
-						<img src="http://img.wangyuhudong.com/{{myprops.gifts.icon}}">
-						<p>
-							<span>{{myprops.gifts.name}}</span>
-							<span class="u-propscolor">{{myprops.gifts.num}}</span>
-							<span>个</span>
-						</p>
-					</div>
-					<div class="u-props">
-						<img src="http://img.wangyuhudong.com/{{myprops.gifts.icon}}">
-						<p>
-							<span>{{myprops.gifts.name}}</span>
-							<span class="u-propscolor">{{myprops.gifts.num}}</span>
-							<span>个</span>
-						</p>
-					</div>
+					</div>  
+            		{% endfor %}
 				</div>
 				<div class="imgprops">
-					<div class="u-props">
+					{% for myprops in myprops %}
+	                <div class="u-props">
 						<img src="http://img.wangyuhudong.com/{{myprops.gifts.icon}}">
 						<p>
 							<span>{{myprops.gifts.name}}</span>
 							<span class="u-propscolor">{{myprops.gifts.num}}</span>
 							<span>个</span>
 						</p>
-					</div>
-					<div class="u-props">
-						<img src="http://img.wangyuhudong.com/{{myprops.gifts.icon}}">
-						<p>
-							<span>{{myprops.gifts.name}}</span>
-							<span class="u-propscolor">{{myprops.gifts.num}}</span>
-							<span>个</span>
-						</p>
-					</div>
-					<div class="u-props">
-						<img src="http://img.wangyuhudong.com/{{myprops.gifts.icon}}">
-						<p>
-							<span>{{myprops.gifts.name}}</span>
-							<span class="u-propscolor">{{myprops.gifts.num}}</span>
-							<span>个</span>
-						</p>
-					</div>
+					</div>  
+            		{% endfor %}
 				</div>
 				
 			</div>
@@ -482,43 +446,12 @@
 				<a href="" class="u-topfish">充值鱼币</a>
 			</div>
 			<div class="u-value">
-				<div>
-					<span class="u-vfish">600鱼币</span>
-					<span class="u-vmoney">6元</span>
-				</div>
-				<div>
-					<span class="u-vfish">1200鱼币</span>
-					<span class="u-vmoney">12元</span>
-				</div>
-				<div>
-					<span class="u-vfish">1800鱼币</span>
-					<span class="u-vmoney">18元</span>
-				</div>
-				<div>
-					<span class="u-vfish">2100鱼币</span>
-					<span class="u-vmoney">21元</span>
-				</div>
-				<div>
-					<span class="u-vfish">3000鱼币</span>
-					<span class="u-vmoney">30元</span>
-				</div>
-				<div>
-					<span class="u-vfish">9800鱼币</span>
-					<span class="u-vmoney">98元</span>
-				</div>
-
-				<div>
-					<span class="u-vfish">29800鱼币</span>
-					<span class="u-vmoney">298元</span>
-				</div>
-				<div>
-					<span class="u-vfish">58800鱼币</span>
-					<span class="u-vmoney">588元</span>
-				</div>
-				<div>
-					<span class="u-vfish">159800鱼币</span>
-					<span class="u-vmoney">1598元</span>
-				</div>
+			  {% for valuelist in valuelist%}
+                <div>
+                   <span class="u-vfish">{{valuelist.yuer_amount}}鱼币</span>
+					<span class="u-vmoney">{{valuelist.rmb}}元</span>
+                </div>       
+            	{% endfor %}
 			</div>
 			<div class="u-determine">
 				<a href="" class="u-topvalue" id="topupvalue">充值</a>

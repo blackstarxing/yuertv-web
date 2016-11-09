@@ -85,12 +85,41 @@ router.get('/center', function(req, res, next) {
                 cont(new Error('error!'));
             }
         })
+    },function(cont) {
+        request({
+            uri: 'http://172.16.2.62:8777/person-center/my-gifts',
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+              }
+        }, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    },function(cont) {
+        request({
+            uri: 'http://172.16.2.62:8777/pay/recharge-list',
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+              }
+        }, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
     }]).then(function(cont, result) {
         console.log(result);
         res.render('center', {
             title: "个人中心",
             info: JSON.parse(result[0]).object,
             myprops: JSON.parse(result[1]).object,
+            valuelist: JSON.parse(result[2]).object,
             type:type,
             islogin: islogin,
         });
