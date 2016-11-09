@@ -36,7 +36,7 @@ $(function(){
             parm.nickname = $('.l-usrname').val();
             parm.password = $('.l-pwd').val();
     	$.ajax({
-            url: 'http://172.16.2.62/login',
+            url: 'http://localhost:3000/api/login',
             data: parm,
             type: 'post',
             dataType: 'json',
