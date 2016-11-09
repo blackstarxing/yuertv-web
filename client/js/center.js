@@ -8,7 +8,7 @@ $(function(){
 	// })
 	// $(".g-left a:eq(0)").trigger("click");	
 
-
+	$('.box').pagination();
 	$("#leftmain li").off('click').on('click',function(event){
 		event.preventDefault();
 		console.log($(this).index());
@@ -76,7 +76,7 @@ $(".u-value div").on("click",function(){
 $("#checktips").on("blur",function(){
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62/person-center/update-nickname",
+    url:"http://172.16.2.62/yuer-web/person-center/update-nickname",
     dataType: 'json',
     data: {
     	nickName:$.trim($("#checktips").val())
@@ -113,7 +113,7 @@ $("#current").on("blur",function(){
 	$("#current").parent().find(".verifypassword").show();
 	$.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62/person-center/is-password-right",
+    url:"http://172.16.2.62/yuer-web/person-center/is-password-right",
     dataType: 'json',
     data: {
     	password:$.trim($("#current").val())
@@ -172,12 +172,13 @@ $("#confirm").on("blur",function(){
 	$('#send').on("click",function(){  
   		$.ajax({  
 			type: "GET",  
-			url: "http://172.16.2.62/person-center/update-password",  
-			data: {oldPassword:$("#current").val(),password:$("#new")},   
+			url: "http://172.16.2.62/yuer-web/person-center/update-password",  
+			data: {oldPassword:$("#current").val(),password:$("#new").val()},   
 			dataType: "json",  
 			success: function(data){  
 				if(data.code == 0){//data.code的值这个是后端人员规定的。
 		        	console.log("请求成功");
+
 			        if(data.object==1){//1为重复
 	           			 console.log("这个重复啦");
 	        		}else if(data.object==0){
@@ -204,7 +205,7 @@ $("#confirm").on("blur",function(){
 // 刷新图形验证码
 	var $telnumber = $('.telnumber');
     function changeCode(){
-        $picCode.attr('src','http://172.16.2.62/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
+        $picCode.attr('src','http://172.16.2.62/yuer-web/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
     }
 
     $('#gainnumber').click(function(e){
@@ -216,7 +217,7 @@ $("#confirm").on("blur",function(){
                 parm.mobile = $telnumber.val();
                 console.log(parm);
                 $.ajax({
-                    url: 'http://172.16.2.62:8777/sendSMSCode',
+                    url: 'http://172.16.2.62:8777/yuer-web/sendSMSCode',
                     data: parm,
                     type: 'post',
                     dataType: 'json',
@@ -271,22 +272,22 @@ $("#confirm").on("blur",function(){
 // });
 // $.datetimepicker.setLocale('ch');
 //手机认证
-
+$('#userbox').on("click",function(){  
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62/person-center/mobile-auth",
+    url:"http://172.16.2.62/yuer-web/person-center/mobile-auth",
     dataType: 'json',
- //    data: {checkCode:$.trim($("#verify").val()),
- //           mobile:$.trim($("#number").val()),
-	// },
+    data: {checkCode:$.trim($("#verify").val()),
+           mobile:$.trim($("#number").val()),
+	},
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
 	        if (!checkCode.val().match(/^[1][3][0-9]{9}$/)) {
-		$("#verify").html("<font color='red'>手机号码格式不正确！请重新输入</font>");
-		$("#verify").unbind("focus");  // 添加这行，在focus()之前先把绑定的 focus 处理事件去掉
-		$("#verify").focus();	
-	}
+			$("#verify").html("<font color='red'>手机号码格式不正确！请重新输入</font>");
+			$("#verify").unbind("focus");  // 添加这行，在focus()之前先把绑定的 focus 处理事件去掉
+			$("#verify").focus();	
+		}
 	     if(data.object==1){//1为重复
             console.log("这个重复啦");
         	}else if(data.object==0){
@@ -304,61 +305,63 @@ $.ajax({
 	},
 	error:function(a,b,c){
     	console.log("接口出问题啦");
-   }
+    }
+	})
 })
 //充值列表
-$.ajax({
-    method:"GET",//对于请求类型
-    url:"http://172.16.2.62/pay/recharge-list",
-    dataType: 'json',
-    data: {},//这个是一个验证是否重名的接口。参数只有一个 名字
-    success:function(data){
-    	console.log(data);
-	    if(data.code == 0){//data.code的值这个是后端人员规定的。
-	        console.log("请求成功");
-	         var str = "";
-	  			for(index in data.object){
-	  				str+='<div class="m-maint">'+
-						 '<div class="u-topup">'+
-						 '<a href="" class="u-topfish">'+data.object[index].id+'</a>'+
-						 '</div>'+
-						 '<div class="u-value">'+
-						 '<div>'+
-						 '<span class="u-vfish">'+data.object[index].rmb+'</span>'+
-						 '<span class="u-vmoney">'+data.object[index].yuer_amount+'</span>'+
-						 '</div>;';
-				}
-	        if(data.object==1){//1为重复
-            	console.log("这个重复啦");
-        	}else if(data.object==0){
-            	console.log("这个不重复");
-        	}else{
-           		console.log("未知异常");
-       		}
-   	    }else if(data.code == -2){
-        	console.log("你没有权限，通常来讲，你是没有登录");
-    	}else if(data.code == -5){
-        	console.log("参数错误哦。");
-	    }else{
-	        console.log(data.result);
-	    }
-	},
-	error:function(a,b,c){
-    	console.log("接口出问题啦");
-   }
-})
+
 //充值
-$("#tuvalue").on("click",function(){
+$("#topupvalue").on("click",function(){
 $.ajax({
     method:"GET",//对于请求类型
-    url:" http://172.16.2.62/pay/recharge",
+    url:" http://172.16.2.62/yuer-web/pay/recharge",
     dataType: 'json',
     data: {id:$.trim($("#id").val()) },//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
-	        $("#topupvalue").each(function(){
+	        $("#id").each(function(){
+	        	$.ajax({
+				    method:"GET",//对于请求类型
+				    url:"http://172.16.2.62/pay/recharge-list",
+				    dataType: 'json',
+				    data: {},
+				    success:function(data){
+				    	console.log(data);
+					    if(data.code == 0){//data.code的值这个是后端人员规定的。
+					        console.log("请求成功");
+					         var str = "";
+					  			for(index in data.object){
+					  				str+='<div class="m-maint">'+
+										 '<div class="u-topup">'+
+										 '<a href="" class="u-topfish">'+data.object[index].id+'</a>'+
+										 '</div>'+
+										 '<div class="u-value">'+
+										 '<div>'+
+										 '<span class="u-vfish">'+data.object[index].rmb+'</span>'+
+										 '<span class="u-vmoney">'+data.object[index].yuer_amount+'</span>'+
+										 '</div>;';
+								}
 
+					        if(data.object==1){//1为重复
+				            	console.log("这个重复啦");
+				        	}else if(data.object==0){
+				            	console.log("这个不重复");
+				        	}else{
+				           		console.log("未知异常");
+				       		}
+				   	    }else if(data.code == -2){
+				        	console.log("你没有权限，通常来讲，你是没有登录");
+				    	}else if(data.code == -5){
+				        	console.log("参数错误哦。");
+					    }else{
+					        console.log(data.result);
+					    }
+					},
+					error:function(a,b,c){
+				    	console.log("接口出问题啦");
+				   }
+				})
 	        })
 	     if(data.object==1){//1为重复
             console.log("这个重复啦");
@@ -382,10 +385,10 @@ $.ajax({
 })
 
 //支付宝
-$("#tuvalue").on("click",function(){
+$("#id").on("click",function(){
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62/pay/alipay",
+    url:"http://172.16.2.62/yuer-web/pay/alipay",
     dataType: 'json',
     data: { id:$.trim($("#id").val()),
     },//这个是一个验证是否重名的接口。参数只有一个 名字
@@ -413,17 +416,22 @@ $.ajax({
 })
 })
 //我的关注
+$("#myfocusclick").on("click",function(){
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62/person-center/my-concern",
+    url:"http://172.16.2.62/yuer-web/person-center/my-concern",
     dataType: 'json',
     data: { page:$.trim($("#page").val()),
-    		pageSize:$.trim($("#pageSize").val())
+    		pageSize:5,
     },//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
 	        console.log("请求成功");
-	        var str = "";
+	      
+	      	if(data.object.total==0){
+	      		
+	      	}else if(data.object.total<6){
+	     		var str = "";
 	  			for(index in data.object.list){
 	  				str+='<div class="m-main"><div class="u-top"><h3>主播</h3></div>'+
 	  				'<div class="u-host"><div class="u-hleft"><div class="u-focusimg">'+
@@ -439,26 +447,9 @@ $.ajax({
 					console.log("性别0男1女是"+data.object.list[index].sex);
 					console.log("关注对象id是"+data.object.list[index].user_id);
 				}
-	      	if(data.object.total==0){
-
-	      	}else if(data.object.total<6){
-	      		for(index in data.object.list){
-					console.log("粉丝数是"+data.object.list[index].fans);
-					console.log("头像是"+data.object.list[index].icon);
-					console.log("昵称是"+data.object.list[index].nickname);
-					console.log("房间号是"+data.object.list[index].room_number);
-					console.log("性别0男1女是"+data.object.list[index].sex);
-					console.log("关注对象id是"+data.object.list[index].user_id);
-				}
+				$("div.u-host").html(str);
 	      	}else{
-	      		for(index in data.object.list){
-					console.log("粉丝数是"+data.object.list[index].fans);
-					console.log("头像是"+data.object.list[index].icon);
-					console.log("昵称是"+data.object.list[index].nickname);
-					console.log("房间号是"+data.object.list[index].room_number);
-					console.log("性别0男1女是"+data.object.list[index].sex);
-					console.log("关注对象id是"+data.object.list[index].user_id);
-				}
+	      		
 	      	}
 		 if(data.object==1){//1为重复
             console.log("这个重复啦");
@@ -480,15 +471,16 @@ $.ajax({
     	console.log("接口出问题啦");
    }
 })
+})
 
-
-//我的消息
+// 我的消息
+$("#mymessageclick").on("click",function(){
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62/person-center/my-msg",
+    url:"http://172.16.2.62/yuer-web/person-center/my-msg",
     dataType: 'json',
     data: {page:$.trim($("#page").val()),
-    	   pageSize:$.trim($("#pageSize").val()),
+    	   pageSize:5,
     	   type:$.trim($("#type").val()),
     },//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
@@ -517,6 +509,7 @@ $.ajax({
 					'</div>'+
 					'</div>'	
 			}
+			str.html();
 						if(data.object.total==0){
 
 				      	}else if(data.object.total<11){
@@ -550,93 +543,94 @@ $.ajax({
     	console.log("接口出问题啦");
    }
 })
+})
 //我的道具
-$.ajax({
-    method:"GET",//对于请求类型
-    url:"http://172.16.2.62/person-center/my-gifts",
-    dataType: 'json',
-    data: {},
-    success:function(data){
-    	console.log(data);
-	    if(data.code == 0){//data.code的值这个是后端人员规定的。
-	        console.log("请求成功");
-	        var str="";
-	        var str1="";
-	        for(index in data.object.gifts){
-	  			str+='<div class="m-mainp">'+
-					'<div class="u-top">'+
-					'<h3>道具信息</h3>'+
-					'</div>'+
-					'<div class="u-imgmessage">'+
-					'<div class="imgprops">'+
-					'<div class="u-props">'+
-					'<img src="'+data.object.gifts[index].icon+'">'+
-					'<p>'+
-					'<span>'+data.object.gifts[index].name+'</span>'+
-					'<span class="u-propscolor">'+data.object.gifts[index].num+'</span>'+
-					'<span>个</span>'+
-					'</p>'+
-					'</div>'+
-					'</div>'+
-					'</div>'+
-					'</div>';
-			}
-			str1+='<div class="u-bottom">'+
-					'<p>'+
-					'<span class="u-bvalue">道具价值：</span>'+
-					'<span class="u-bmoney">'+data.object[index].totalValue+'</span>'+
-					'<span class="u-bunit">鱼币</span>'+
-					'</p>'+
-					'</div>';
-	        if(data.object==1){//1为重复
-            	console.log("这个重复啦");
-        	}else if(data.object==0){
-            	console.log("这个不重复");
-        	}else{
-           		console.log("未知异常");
-       		}
-   	    }else if(data.code == -2){
-        	console.log("你没有权限，通常来讲，你是没有登录");
-    	}else if(data.code == -5){
-        	console.log("参数错误哦。");
-	    }else{
-	        console.log(data.result);
-	    }
-	},
-	error:function(a,b,c){
-    	console.log("接口出问题啦");
-   }
-})
+// $.ajax({
+//     method:"GET",//对于请求类型
+//     url:"http://172.16.2.62/person-center/my-gifts",
+//     dataType: 'json',
+//     data: {},
+//     success:function(data){
+//     	console.log(data);
+// 	    if(data.code == 0){//data.code的值这个是后端人员规定的。
+// 	        console.log("请求成功");
+// 	        var str="";
+// 	        var str1="";
+// 	        for(index in data.object.gifts){
+// 	  			str+='<div class="m-mainp">'+
+// 					'<div class="u-top">'+
+// 					'<h3>道具信息</h3>'+
+// 					'</div>'+
+// 					'<div class="u-imgmessage">'+
+// 					'<div class="imgprops">'+
+// 					'<div class="u-props">'+
+// 					'<img src="'+data.object.gifts[index].icon+'">'+
+// 					'<p>'+
+// 					'<span>'+data.object.gifts[index].name+'</span>'+
+// 					'<span class="u-propscolor">'+data.object.gifts[index].num+'</span>'+
+// 					'<span>个</span>'+
+// 					'</p>'+
+// 					'</div>'+
+// 					'</div>'+
+// 					'</div>'+
+// 					'</div>';
+// 			}
+// 			str1+='<div class="u-bottom">'+
+// 					'<p>'+
+// 					'<span class="u-bvalue">道具价值：</span>'+
+// 					'<span class="u-bmoney">'+data.object[index].totalValue+'</span>'+
+// 					'<span class="u-bunit">鱼币</span>'+
+// 					'</p>'+
+// 					'</div>';
+// 	        if(data.object==1){//1为重复
+//             	console.log("这个重复啦");
+//         	}else if(data.object==0){
+//             	console.log("这个不重复");
+//         	}else{
+//            		console.log("未知异常");
+//        		}
+//    	    }else if(data.code == -2){
+//         	console.log("你没有权限，通常来讲，你是没有登录");
+//     	}else if(data.code == -5){
+//         	console.log("参数错误哦。");
+// 	    }else{
+// 	        console.log(data.result);
+// 	    }
+// 	},
+// 	error:function(a,b,c){
+//     	console.log("接口出问题啦");
+//    }
+// })
 //用户信息
-$.ajax({
-    method:"GET",//对于请求类型
-    url:"http://172.16.2.62/person-center/user-info",
-    dataType: 'json',
-    data: {id:window.sessionStorage.getItem("id")
-    },
-    success:function(data){
-    	console.log(data);
-	    if(data.code == 0){
-	        console.log("请求成功");
-	        if(data.object==1){//1为重复
-            console.log("这个重复啦");
-        	}else if(data.object==0){
-            	console.log("这个不重复");
-        	}else{
-           		console.log("未知异常");
-       		}
-   	    }else if(data.code == -2){
-        	console.log("你没有权限，通常来讲，你是没有登录");
-    	}else if(data.code == -5){
-        	console.log("参数错误哦。");
-	    }else{
-	        console.log(data.result);
-	    }
-	},
-	error:function(a,b,c){
-    	console.log("接口出问题啦");
-   }
-})
+// $.ajax({
+//     method:"GET",//对于请求类型
+//     url:"http://172.16.2.62/person-center/user-info",
+//     dataType: 'json',
+//     data: {id:window.sessionStorage.getItem("id")
+//     },
+//     success:function(data){
+//     	console.log(data);
+// 	    if(data.code == 0){
+// 	        console.log("请求成功");
+// 	        if(data.object==1){//1为重复
+//             console.log("这个重复啦");
+//         	}else if(data.object==0){
+//             	console.log("这个不重复");
+//         	}else{
+//            		console.log("未知异常");
+//        		}
+//    	    }else if(data.code == -2){
+//         	console.log("你没有权限，通常来讲，你是没有登录");
+//     	}else if(data.code == -5){
+//         	console.log("参数错误哦。");
+// 	    }else{
+// 	        console.log(data.result);
+// 	    }
+// 	},
+// 	error:function(a,b,c){
+//     	console.log("接口出问题啦");
+//    }
+// })
 
 
 
