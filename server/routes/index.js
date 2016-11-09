@@ -104,7 +104,30 @@ router.get('/register', function(req, res, next) {
 //     res.render('center/top-up', { title: "我要充值" });
 // });
 router.get('/center', function(req, res, next) {
-    res.render('center', { title: "个人中心" });
+    Thenjs.parallel([function(cont) {
+        request({
+            uri: 'http://172.16.2.62:8777/person-center/user-info',
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+              }
+        }, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        console.log(result);
+        res.render('center', {
+            title: "个人中心",
+            info: JSON.parse(result[0]).object,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
 });
 
 module.exports = router;
