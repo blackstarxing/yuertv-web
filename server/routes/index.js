@@ -46,6 +46,7 @@ router.get('/register', function(req, res, next) {
 });
 
 router.get('/center', function(req, res, next) {
+    var type = req.url.split('=')[1];
     Thenjs.parallel([function(cont) {
         request({
             uri: 'http://172.16.2.62/person-center/user-info',
@@ -65,7 +66,7 @@ router.get('/center', function(req, res, next) {
         res.render('center', {
             title: "个人中心",
             info: JSON.parse(result[0]).object,
-            type: 2,
+            type:type,
         });
     }).fail(function(cont, error) { 
         console.log(error);
