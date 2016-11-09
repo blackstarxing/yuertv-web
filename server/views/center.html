@@ -9,27 +9,22 @@
 		<div id="leftmain" class="g-left">   
  			<ul>
  				<li class="u-center">个人中心</li>
- 				<li class="rightswitchcolor">
+ 				<li data-type="0">
  					<a href=""><span class="icon-data"></span>我的资料</a>
  				</li>
- 				<li>	
- 					
+ 				<li data-type="1">	 					
  					<a href=""><span class="icon-follow"></span>我的关注</a>
  				</li>
- 				<li>
- 					
+ 				<li data-type="2">					
  					<a href=""><span class="icon-prop"></span>我的道具</a>
  				</li>
- 				<li>
- 					
+ 				<li data-type="3">					
  					<a href=""><span class="icon-messages"></span>我的消息</a>
  				</li>
- 				<li>
- 					
+ 				<li data-type="4"> 					
  					<a href=""><span class="icon-recharge"></span>我要充值</a>
  				</li>
- 				<li class="u-cbottom">
- 					
+ 				<li class="u-cbottom" data-type="5"> 					
  					<a href=""><span class="icon-anchor"></span>我要当主播</a>
  				</li>
  			</ul>
@@ -645,8 +640,8 @@
 <script type="text/javascript" src="/dist/center.js"></script>
 <script type="text/javascript">
 	$('.g-left a').each(function(){
-		if($(this).text()=='{{title}}'){
-			$(this).addClass('current');
+		if($(this).attr("data-type"=='{{type}}'){
+			$(this).addClass('rightswitchcolor');
 		}
 	})
 </script>
