@@ -147,7 +147,23 @@ color: #fff !important;
     background: #3c4856;
     margin:0 8px;
 }
-
+.avatar{
+    position: relative;
+}
+.avatar img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.avatar .nav-list{
+    position: absolute;
+    display: none;
+    background: #1a2129;
+}
+.avatar .nav-list li{
+    line-height: 1.5;
+}
 /*登录框*/
 .m-login-wrap{
     position:fixed;
@@ -159,6 +175,15 @@ color: #fff !important;
     display:none;
     z-index:999999;
     padding-left: 100px;
+}
+.close{
+    position: absolute;
+    top:15px;
+    right: 15px;
+}
+.close img{
+    width: 20px;
+    height: 20px;
 }
 .login-content{
     position: absolute;
@@ -267,6 +292,7 @@ color: #fff !important;
     width: 24px;
     height: 24px;
     background: url(../images/search.png) no-repeat;
+    background-size: 100%;
 }
 .m-search ::-webkit-input-placeholder { /* WebKit browsers */ 
     color: #96b4d2; 
@@ -286,6 +312,52 @@ color: #fff !important;
 }
 .visitor .u-login-btn{
     border-radius: 0;
+}
+/*窄头部*/
+.mini-hd{
+    padding: 0;
+    height: 40px;
+    line-height: 40px;
+    position: fixed;
+    top: 0;
+    z-index:999;
+    min-width: 1100px;
+}
+.mini-hd .header_left{
+    width: 70%;
+}
+.mini-hd .m-nav{
+    width: 30%;
+    margin-right:8%;
+}
+.mini-hd .m-nav li{
+    font-size: 14px;
+    width: 33.3%;
+}
+.mini-hd .header_left img{
+    width:38px;
+    height: 37px;
+    margin:1px 16px 0;
+    vertical-align: middle;
+}
+.mini-hd .m-search input{
+    height: 30px;
+    border-radius: 15px;
+}
+.mini-hd .m-search .u-search-btn{
+    top:10px;
+    width: 20px;
+    height: 20px;
+}
+.mini-hd .visitor a{
+    height: 26px;
+    line-height: 26px;
+    margin:0 8px;
+}
+.mini-hd .avatar img{
+    width: 25px;
+    height: 25px;
+    margin-right: 15px;
 }
 .footer{
 	border-top: 1px solid #616d78;

@@ -4,6 +4,12 @@ var Thenjs = require('thenjs');
 var request = require('request');
 
 router.get('/', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        islogin = true;
+    }else{
+        islogin = false;
+    };
     Thenjs.parallel([function(cont) {
         request('http://172.16.2.62:8777/index', function(error, response, body) {
             if (!error && response.statusCode == 200) {
@@ -36,7 +42,7 @@ router.get('/', function(req, res, next) {
             index: JSON.parse(result[0]).object,
             recommendlists: JSON.parse(result[1]).object.map.eventmsTop.slice(0, 3),
             matchlists: JSON.parse(result[1]).object.map.eventmsBottom.slice(0, 9),
-            islogin: JSON.parse(result[2]).object.loginFlag,
+            islogin: islogin,
         });
     }).fail(function(cont, error) { 
         console.log(error);
@@ -44,8 +50,14 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.get('/login', function(req, res, next) {
-    res.render('login', { title: "登录", islogin: false });
+router.get('/liveroom', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        islogin = true;
+    }else{
+        islogin = false;
+    };
+    res.render('liveroom', { title: "直播间", islogin: islogin, minihead :true });
 });
 
 router.get('/register', function(req, res, next) {

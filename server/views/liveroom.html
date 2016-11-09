@@ -1,0 +1,36 @@
+{% extends 'layout.html' %} 
+
+{% block css %}
+<link rel="stylesheet" href="/dist/liveroom.css">
+{% endblock %}
+
+{% block content %}
+<div class="g-lb">
+    <div class="m-sidebar">
+        
+    </div>
+    <div class="live-left">
+        <div class="live-info">
+            <img src="/images/head.png" alt="" class="live-avatar">
+            <div class="avatar-info">
+                
+            </div>
+            <div class="follow-avatar">
+                
+            </div>
+        </div>
+        <div class="videoBox">
+            <div id="LiveRoomDiv"></div>
+        </div> 
+    </div>
+    <div class="live-right">
+        
+    </div>
+</div>
+    
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/swfobject.js"></script>
+<script type="text/javascript" src="/dist/liveroom.js"></script>
+{% endblock %}
