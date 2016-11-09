@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
-        request('http://172.16.2.62/index', function(error, response, body) {
+        request('http://172.16.2.62:8777/yuer-web/index', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -47,6 +47,12 @@ router.get('/register', function(req, res, next) {
 
 router.get('/center', function(req, res, next) {
     var type = req.url.split('=')[1];
+    var islogin = false;
+    if(req.headers.cookie){
+        islogin = true;
+    }else{
+        islogin = false;
+    };
     Thenjs.parallel([function(cont) {
         request({
             uri: 'http://172.16.2.62/person-center/user-info',
@@ -67,6 +73,7 @@ router.get('/center', function(req, res, next) {
             title: "个人中心",
             info: JSON.parse(result[0]).object,
             type:type,
+            islogin: islogin,
         });
     }).fail(function(cont, error) { 
         console.log(error);
