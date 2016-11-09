@@ -137,7 +137,8 @@
 	margin-bottom:10px;
 	background:transparent;
 	margin-left:15px;
-	border:1px solid #353d48
+	border:1px solid #353d48;
+	color:#fff;
 }
 .g-right .m-bottom label{
 	color:#666e72;
@@ -257,7 +258,8 @@ a#m-change,a#m-realname{
 	margin-bottom:10px;
 	background:transparent;
 	margin-left:15px;
-	border:1px solid #353d48
+	border:1px solid #353d48;
+	color:#fff;
 }
 .m-switcht .u-submit{
 	width:305px;

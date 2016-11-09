@@ -39,7 +39,7 @@ router.get('/', function(req, res, next) {
     }]).then(function(cont, result) {
         res.render('index', {
             title: "娱儿直播_一个处女座都喜欢的手游直播平台",
-            index: JSON.parse(result[0]).object,
+            bannerlists: JSON.parse(result[0]).object.list,
             recommendlists: JSON.parse(result[1]).object.map.eventmsTop.slice(0, 3),
             matchlists: JSON.parse(result[1]).object.map.eventmsBottom.slice(0, 9),
             islogin: islogin,
@@ -80,7 +80,7 @@ router.get('/center/information', function(req, res, next) {
             }
         })
     }]).then(function(cont, result) {
-        console.log(result[0]);
+        console.log(result);
         res.render('center/information', {
             title: "我的资料",
             info: JSON.parse(result[0]).object,
