@@ -1,6 +1,7 @@
 {% extends 'layout.html' %} 
   
   {% block css %}
+<link rel="stylesheet" href="/dist/pagination.css"> 	
 <link rel="stylesheet" href="/dist/center.css">
 {% endblock %}
 
@@ -12,13 +13,13 @@
  				<li data-type="0">
  					<a href=""><span class="icon-data"></span>我的资料</a>
  				</li>
- 				<li data-type="1">	 					
+ 				<li data-type="1" id="myfocusclick">	 					
  					<a href=""><span class="icon-follow"></span>我的关注</a>
  				</li>
  				<li data-type="2">					
  					<a href=""><span class="icon-prop"></span>我的道具</a>
  				</li>
- 				<li data-type="3">					
+ 				<li data-type="3" id="mymessageclick">					
  					<a href=""><span class="icon-messages"></span>我的消息</a>
  				</li>
  				<li data-type="4"> 					
@@ -32,10 +33,10 @@
 	    <div id="rightmain" class="g-right">
 		    <div class="m-top">
 	  			<div class="m-tleft">
-	  				<img src="../images/ico7.png">
+	  				<img src="http://img.wangyuhudong.com/{{info.icon}}">
 	  			</div>
 	  			<div class="m-tright">
-	  				<p class="u-p1"><span class="u-nicknameonly">{{info.nickname}}</span>&nbsp;<img src="http://img.wangyuhudong.com/{{info.icon}}"><span id="nickname" class="u-p1-s">[点击修改]</span></p>
+	  				<p class="u-p1"><span class="u-nicknameonly">{{info.nickname}}</span>&nbsp;<img src=""><span id="nickname" class="u-p1-s">[点击修改]</span></p>
 		  			<p class="u-p2">粉丝:<span class="u-change">63836</span></p>
 		  			<p class="u-p3">鱼币:<span class="u-change1">{{info.yuerCoin}}</span>
 		  			<a href="/center/top-up" class="u-tovalue">充值</a>
@@ -293,6 +294,7 @@
 					</div>
 					<span class="dark">该主播已离开</span>
 				</div>
+				<div class="box"></div>
 		</div>
 	</div>
 <!-- 我的道具 -->
@@ -304,10 +306,10 @@
 			<div class="u-imgmessage">
 				<div class="imgprops">
 					<div class="u-props">
-						<img src="/images/propsshell.png">
+						<img src="http://img.wangyuhudong.com/{{myprops.gifts.icon}}">
 						<p>
-							<span>贝壳</span>
-							<span class="u-propscolor">10</span>
+							<span>{{myprops.gifts.name}}</span>
+							<span class="u-propscolor">{{myprops.gifts.num}}</span>
 							<span>个</span>
 						</p>
 					</div>
@@ -367,7 +369,7 @@
 			<div class="u-bottom">
 				<p>
 					<span class="u-bvalue">道具价值：</span>
-					<span class="u-bmoney">68969</span>
+					<span class="u-bmoney">{{myprops.totalValue}}</span>
 					<span class="u-bunit">鱼币</span>
 				</p>
 			</div>
@@ -391,11 +393,11 @@
 					</div>
 					<div class="u-yuer">
 						<p>
-							<h3>娱儿官方</h3>
-							<span class="u-messagetime">2016-10-13  18: 00</span>
+							<h3>{{mymessage.title}}</h3>
+							<span class="u-messagetime">{{mymessage.create_date}}0</span>
 						<p>
 						<p>
-						<span class="u-messagecontent">娱儿TV招募主播啦，这里有大神，有逗比，更有精彩的游戏直播。无论是看直播还是发起直播，在这里一键搞定。真正做到简单快捷，主播观众随时变，就看你敢不来。。</span><span class="u-messtips">全文&gt;&gt;</span>
+						<span class="u-messagecontent">{{mymessage.content}}</span><span class="u-messtips">全文&gt;&gt;{{message.obj_id}}</span>
 						</p>
 					</div>
 				</div>
@@ -428,6 +430,7 @@
 						</p>
 					</div>
 				</div>
+				<div class="box"></div>
 			</div>
 			
 			<div class="u-focusmessage mcurrent">
@@ -465,6 +468,7 @@
 					<p class="u-mkname">我从哪里找到你</p>
 					<p><span>ID：</span><span>1987272</span></p>
 				</div>
+				<div class="box"></div>
 			</div>
 			
 		</div>
@@ -636,7 +640,7 @@
 {% endblock %}
 
 {% block js %}
-<script type="text/javascript" src="/jquery.datetimepicker.full.min.js"></script>
+<script type="text/javascript" src="/jquery.pagination.min.js"></script>
 <script type="text/javascript" src="/dist/center.js"></script>
 <script type="text/javascript">
 	$('.g-left li').each(function(){

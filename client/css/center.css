@@ -70,6 +70,11 @@
 	background:#3ff;
 	border-radius: 5px;
 }
+.m-tleft img{
+	display: inline-block;
+	width:120px;
+	height:120px;
+}
 /*右侧下面的样式－－－从修改密码起*/
 .g-right .m-bottom{
 	width:450px;
@@ -152,7 +157,7 @@
 	width:700px;
 	height:40px;
 }
-.m-bottom .m-switch input#u-current,input#u-new,input#u-confirm,{
+.m-bottom .m-switch input#u-current,input#u-new,input#u-confirm{
 	width:300px;
 	height:40px;
 	margin-bottom:10px;

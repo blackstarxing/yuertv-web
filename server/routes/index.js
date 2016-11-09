@@ -73,7 +73,22 @@ router.get('/center', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.2.62/person-center/user-info',
+            uri: 'http://172.16.2.62/yuer-web/person-center/user-info',
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+              }
+        }, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    },
+    function(cont) {
+        request({
+            uri: 'http://172.16.2.62/yuer-web/person-center/my-gifts',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -90,6 +105,7 @@ router.get('/center', function(req, res, next) {
         res.render('center', {
             title: "个人中心",
             info: JSON.parse(result[0]).object,
+            myprops: JSON.parse(result[1]).object,
             type:type,
             islogin: islogin,
         });
