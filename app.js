@@ -13,10 +13,19 @@ var webpack = require('webpack'),
 var compiler = webpack(webpackDevConfig);
 var NODE_ENV = process.env.NODE_ENV || 'production';
 var isDev = NODE_ENV === 'development';
-
 var routes = require('./server/routes/index');
 
+var proxy = require('express-http-proxy');
+
 var app = express();
+
+app.use('/api', proxy('http://172.16.2.62:8777', {
+  forwardPath: function(req, res) {
+    return require('url').parse(req.url).path;
+  }
+}));
+
+
 nunjucks.configure('server/views', {
     autoescape: true,
     express: app
