@@ -73,22 +73,7 @@ router.get('/center', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.2.62:8777/yuer-web/person-center/user-info',
-            headers: {
-                'User-Agent': 'request',
-                'cookie': req.headers.cookie,
-              }
-        }, function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                cont(null, body);
-            } else {
-                cont(new Error('error!'));
-            }
-        })
-    },
-    function(cont) {
-        request({
-            uri: 'http://172.16.2.62:8777/yuer-web/person-center/my-gifts',
+            uri: 'http://172.16.2.62:8777/person-center/user-info',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
