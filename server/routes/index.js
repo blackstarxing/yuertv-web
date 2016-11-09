@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
-        request('http://172.16.2.62/index', function(error, response, body) {
+        request('http://172.16.2.62:8777/yuer-web/index', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -49,7 +49,7 @@ router.get('/center', function(req, res, next) {
     var type = req.url.split('=')[1];
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.2.62/yuer-web/person-center/user-info',
+            uri: 'http://172.16.2.62:8777/yuer-web/person-center/user-info',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -64,7 +64,7 @@ router.get('/center', function(req, res, next) {
     },
     function(cont) {
         request({
-            uri: 'http://172.16.2.62/yuer-web/person-center/my-gifts',
+            uri: 'http://172.16.2.62:8777/yuer-web/person-center/my-gifts',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,

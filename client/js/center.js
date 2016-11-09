@@ -76,7 +76,7 @@ $(".u-value div").on("click",function(){
 $("#checktips").on("blur",function(){
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62/yuer-web/person-center/update-nickname",
+    url:"http://172.16.2.62:8777/yuer-web/person-center/update-nickname",
     dataType: 'json',
     data: {
     	nickName:$.trim($("#checktips").val())
@@ -113,7 +113,7 @@ $("#current").on("blur",function(){
 	$("#current").parent().find(".verifypassword").show();
 	$.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62/yuer-web/person-center/is-password-right",
+    url:"http://172.16.2.62:8777/yuer-web/person-center/is-password-right",
     dataType: 'json',
     data: {
     	password:$.trim($("#current").val())
@@ -172,7 +172,7 @@ $("#confirm").on("blur",function(){
 	$('#send').on("click",function(){  
   		$.ajax({  
 			type: "GET",  
-			url: "http://172.16.2.62/yuer-web/person-center/update-password",  
+			url: "http://172.16.2.62:8777/yuer-web/person-center/update-password",  
 			data: {oldPassword:$("#current").val(),password:$("#new").val()},   
 			dataType: "json",  
 			success: function(data){  
@@ -205,7 +205,7 @@ $("#confirm").on("blur",function(){
 // 刷新图形验证码
 	var $telnumber = $('.telnumber');
     function changeCode(){
-        $picCode.attr('src','http://172.16.2.62/yuer-web/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
+        $picCode.attr('src','http://172.16.2.62:8777/yuer-web/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
     }
 
     $('#gainnumber').click(function(e){
@@ -275,7 +275,7 @@ $("#confirm").on("blur",function(){
 $('#userbox').on("click",function(){  
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62/yuer-web/person-center/mobile-auth",
+    url:"http://172.16.2.62:8777/yuer-web/person-center/mobile-auth",
     dataType: 'json',
     data: {checkCode:$.trim($("#verify").val()),
            mobile:$.trim($("#number").val()),
@@ -314,7 +314,7 @@ $.ajax({
 $("#topupvalue").on("click",function(){
 $.ajax({
     method:"GET",//对于请求类型
-    url:" http://172.16.2.62/yuer-web/pay/recharge",
+    url:" http://172.16.2.62:8777/yuer-web/pay/recharge",
     dataType: 'json',
     data: {id:$.trim($("#id").val()) },//这个是一个验证是否重名的接口。参数只有一个 名字
     success:function(data){
@@ -388,7 +388,7 @@ $.ajax({
 $("#id").on("click",function(){
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62/yuer-web/pay/alipay",
+    url:"http://172.16.2.62:8777/yuer-web/pay/alipay",
     dataType: 'json',
     data: { id:$.trim($("#id").val()),
     },//这个是一个验证是否重名的接口。参数只有一个 名字
@@ -419,7 +419,7 @@ $.ajax({
 $("#myfocusclick").on("click",function(){
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62/yuer-web/person-center/my-concern",
+    url:"http://172.16.2.62:8777/yuer-web/person-center/my-concern",
     dataType: 'json',
     data: { page:$.trim($("#page").val()),
     		pageSize:5,
@@ -477,7 +477,7 @@ $.ajax({
 $("#mymessageclick").on("click",function(){
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62/yuer-web/person-center/my-msg",
+    url:"http://172.16.2.62:8777/yuer-web/person-center/my-msg",
     dataType: 'json',
     data: {page:$.trim($("#page").val()),
     	   pageSize:5,
