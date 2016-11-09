@@ -34,23 +34,41 @@
                 <div><span class="u-label">房间ID：354681</span>在线：3626</div>
             </div>
             <div class="follow-avatar f-fr">
-                
+                <div class="follow f-cb">
+                    <a href="">关注</a>
+                    <div class="follownum">53,123</div>
+                </div>
+                <div class="option">
+                    <a href="">举报</a><a href="">转发</a>
+                </div>
             </div>
         </div>
         <div class="videoBox">
             <div id="LiveRoomDiv"></div>
         </div> 
-        <div class="send-gift">
+        <div class="send-gift f-cb">
             <div class="award">
                 <img src="/images/gift.png" alt="">
-                <span></span>
-                <span></span>
+                <div class="countdown">
+                    19:21后<br>
+                    惊喜降临
+                </div>
             </div>
-            {% for gift in gift %}
-                <div class="gift">
-                   <img src="http://img.wangyuhudong.com/{{gift.icon}}" alt=""> 
-                </div>       
-            {% endfor %}
+            <div class="m-gift">
+                <div class="myCoin">
+                    <p>我有<span>123</span>鱼币</p>
+                    <a href="" class="givemoney">充值</a>
+                </div>
+                {% for gift in gift %}
+                    <div class="gift">
+                       <img src="http://img.wangyuhudong.com/{{gift.icon}}" alt=""> 
+                    </div>       
+                {% endfor %}
+                <div class="myGift">
+                    我的道具
+                </div>
+            </div>
+            
         </div>
     </div>
     <div class="m-live-right">
@@ -67,7 +85,9 @@
                 
             </div>
             <div class="set-block">
-                
+                <div class="set-option">快捷短语</div>
+                <div class="set-option">屏蔽设置</div>
+                <div class="set-option">清屏</div>
             </div>
             <div class="send-block">
                 <input type="text"><button>发送</button>
