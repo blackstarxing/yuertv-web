@@ -1,4 +1,7 @@
 /**{color:#fff;}*/
+input{
+	float: none;
+}
 .g-main{
 	width:1200px;
 	margin:100px auto 0;
