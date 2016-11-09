@@ -273,7 +273,7 @@ $("#confirm").on("blur",function(){
 //手机认证
 $.ajax({
     method:"GET",//对于请求类型
-    url:"http://172.16.2.62:8777/person-center/mobile-auth",
+    url:"http://172.16.2.62/person-center/mobile-auth",
     dataType: 'json',
     data: {checkCode:$.trim($("#verify").val()),
            mobile:$.trim($("#number").val()),
