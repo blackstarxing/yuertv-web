@@ -1,9 +1,12 @@
 $(function(){
     function resize(){
-        var clientWid = document.body.clientWidth;
-        var liveWid = clientWid - 430;
-        $('.live-left').css("width",liveWid+"px");
-        $('.videoBox').css("height",0.56*liveWid+"px");
+        var clientW = document.body.clientWidth;
+        var clientH = document.body.offsetHeight;
+        var liveW = clientW - 440;
+        var chatroomH = clientH - 300;
+        $('.live-left').css("width",liveW+"px");
+        $('.videoBox').css("height",0.56*liveW+"px");
+        $('.room-block').css("height",chatroomH+"px");
     }
     resize();
     $(window).resize(function() {

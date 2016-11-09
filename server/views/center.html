@@ -9,27 +9,22 @@
 		<div id="leftmain" class="g-left">   
  			<ul>
  				<li class="u-center">个人中心</li>
- 				<li class="rightswitchcolor">
+ 				<li data-type="0">
  					<a href=""><span class="icon-data"></span>我的资料</a>
  				</li>
- 				<li>	
- 					
+ 				<li data-type="1">	 					
  					<a href=""><span class="icon-follow"></span>我的关注</a>
  				</li>
- 				<li>
- 					
+ 				<li data-type="2">					
  					<a href=""><span class="icon-prop"></span>我的道具</a>
  				</li>
- 				<li>
- 					
+ 				<li data-type="3">					
  					<a href=""><span class="icon-messages"></span>我的消息</a>
  				</li>
- 				<li>
- 					
+ 				<li data-type="4"> 					
  					<a href=""><span class="icon-recharge"></span>我要充值</a>
  				</li>
- 				<li class="u-cbottom">
- 					
+ 				<li class="u-cbottom" data-type="5"> 					
  					<a href=""><span class="icon-anchor"></span>我要当主播</a>
  				</li>
  			</ul>
@@ -40,9 +35,9 @@
 	  				<img src="../images/ico7.png">
 	  			</div>
 	  			<div class="m-tright">
-	  				<p class="u-p1"><span class="u-nicknameonly">{{info.nickname}}</span>&nbsp;<img src="../images/ico8.png"><span id="nickname" class="u-p1-s">[点击修改]</span></p>
+	  				<p class="u-p1"><span class="u-nicknameonly">{{info.nickname}}</span>&nbsp;<img src="http://img.wangyuhudong.com/{{info.icon}}"><span id="nickname" class="u-p1-s">[点击修改]</span></p>
 		  			<p class="u-p2">粉丝:<span class="u-change">63836</span></p>
-		  			<p class="u-p3">娱币:<span class="u-change1">6524</span>
+		  			<p class="u-p3">鱼币:<span class="u-change1">{{info.yuerCoin}}</span>
 		  			<a href="/center/top-up" class="u-tovalue">充值</a>
 	  			</div>	  			
 	  		</div>
@@ -51,11 +46,11 @@
 <!-- 我的资料 -->
 
 	  		<div class="m-bottom rightswitch rightswitchcolor">
-  			<a href="" id="m-change">修改密码</a><a href="" id="m-change">手机认证</a><a href="" id="m-realname">实名认证</a>
+  			<a href="" id="m-changepass">修改密码</a><a href="" id="m-change">手机认证</a><a href="" id="m-realname">实名认证</a>
   			<div class="m-switch switch-content">
   				<div class="u-pcurrent">
   					<label for="u-current">当前密码</label>
-  					<input type="" name="current" id="current" class="u-iverify">
+  					<input type="" name="current" id="u-current" class="u-verify">
   					<span class="u-verifypassword" >密码验证中</span>
   					<span class="u-failpassword" >密码错误</span>
   					<span class="u-rightpassword" >密码正确</span>
@@ -63,13 +58,13 @@
   				</div>
   				<div class="u-pnew">
   					<label for="u-new">新密码</label>
-	  				<input type="" name="new" id="new" class="u-ifail">
+	  				<input type="" name="new" id="u-new" class="u-ifail">
 	  				<span class="u-vpassword">密码长度必须大于6位！</span>
 	  				<br>
   				</div>
   				<div class="u-pcancel">
   					<label for="u-confirm">确认新密码</label>
-	  				<input type="" name="confirm" id="confirm" class="u-iright">
+	  				<input type="" name="confirm" id="u-confirm" class="u-iright">
 	  				<span class="u-failpassword" >密码错误</span>
 	  				<span class="u-rightpassword" >密码正确</span><br>
   				</div>
@@ -644,10 +639,11 @@
 <script type="text/javascript" src="/jquery.datetimepicker.full.min.js"></script>
 <script type="text/javascript" src="/dist/center.js"></script>
 <script type="text/javascript">
-	$('.g-left a').each(function(){
-		if($(this).text()=='{{title}}'){
-			$(this).addClass('current');
+	$('.g-left li').each(function(){
+		if($(this).attr("data-type")=='{{type}}'){
+			$(this).addClass('rightswitchcolor');
 		}
 	})
+	$('.rightswitch').eq({{type}}).show().siblings().hide();
 </script>
 {% endblock %}
