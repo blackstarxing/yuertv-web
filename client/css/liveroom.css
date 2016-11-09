@@ -30,7 +30,7 @@ html,body{
 	bottom: 0;
 	width: 100%;
 }
-.live-left{
+.m-live-left{
 	margin-left: 70px;
 	padding:20px;
 	min-width: 660px;
@@ -62,7 +62,7 @@ html,body{
 	vertical-align: middle;
 	margin-left: 5px;
 }
-.live-right{
+.m-live-right{
 	float: right;
 	position: absolute;
 	right: 0;
@@ -105,6 +105,9 @@ html,body{
 	border-top: none;
 	border-bottom: none;
 }
+.set-block{
+	height: 30px;
+}
 .send-block{
 	height: 50px;
 	display: table-cell;
@@ -116,9 +119,20 @@ html,body{
 	height: 34px;
 	border:1px solid #ccc;
 	border-radius: 3px;
-	margin:7px 19px;
+	margin:7px 0 7px 19px;
 	background: #f3f3f3; 
 }
 .send-block button{
 	background: none;
+	border:none;
+	font-size: 16px;
+	color:#333;
+	width: 60px;
+	height: 36px;
+	text-align: center;
+	margin:0 4px;
+}
+.send-gift{
+	height: 88px;
+	border:1px solid #ccc;
 }

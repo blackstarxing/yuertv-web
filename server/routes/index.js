@@ -38,7 +38,25 @@ router.get('/liveroom', function(req, res, next) {
     }else{
         islogin = false;
     };
-    res.render('liveroom', { title: "直播间", islogin: islogin, minihead :true });
+    Thenjs.parallel([function(cont) {
+        request('http://172.16.2.62:8777/yuer-web/gift/list', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        res.render('liveroom', {
+            title: "直播间",
+            gift: JSON.parse(result[0]).object,
+            islogin: islogin,
+            minihead :true,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
 });
 
 router.get('/register', function(req, res, next) {

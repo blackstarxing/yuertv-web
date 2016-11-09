@@ -25,7 +25,7 @@
             <li><a href="">做主播</a></li>
         </ul>
     </div>
-    <div class="live-left">
+    <div class="m-live-left">
         <div class="live-info f-cb">
             <img src="/head.png" alt="" class="live-avatar f-fl">
             <div class="avatar-info f-fl">
@@ -40,8 +40,20 @@
         <div class="videoBox">
             <div id="LiveRoomDiv"></div>
         </div> 
+        <div class="send-gift">
+            <div class="award">
+                <img src="/images/gift.png" alt="">
+                <span></span>
+                <span></span>
+            </div>
+            {% for gift in gift %}
+                <div class="gift">
+                   <img src="http://img.wangyuhudong.com/{{gift.icon}}" alt=""> 
+                </div>       
+            {% endfor %}
+        </div>
     </div>
-    <div class="live-right">
+    <div class="m-live-right">
         <div class="live-notice">
             <h3><img src="/images/trumpet.png" alt="">直播公告</h3>
             <p>粉丝群 奔家军 3284637 （已满）2群 4993821 没关注的小伙伴点一波关注</p>
