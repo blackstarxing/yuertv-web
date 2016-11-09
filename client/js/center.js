@@ -1,5 +1,20 @@
 // if(obj=='女'){img.src="nv"}else{img.src="nan"}
 $(function(){
+// 个人中心的tab切换
+	// $(".g-left a").on("click",function(e){
+	// 	e.preventDefault();
+	// 	$(this).addClass("rightswitchcolor").siblings().removeClass("rightswitchcolor");
+	// 	$(".g-right .rightswitch").hide().eq($(this).index()).show();
+	// })
+	// $(".g-left a:eq(0)").trigger("click");	
+
+
+	$("#leftmain li").off('click').on('click',function(event){
+		event.preventDefault();
+		console.log($(this).index());
+		$(this).addClass("rightswitchcolor").siblings().removeClass("rightswitchcolor");
+		$("div.rightswitch").eq($(this).index()-1).show().siblings().hide();
+	});
 //我的资料的tab切换；
 	$(".m-bottom a").on("click",function(e){
 		e.preventDefault();
