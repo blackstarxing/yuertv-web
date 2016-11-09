@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
-        request('http://172.16.2.62:8777/yuer-web/index', function(error, response, body) {
+        request('http://172.16.2.62:8777/index', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -39,7 +39,7 @@ router.get('/liveroom', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
-        request('http://172.16.2.62:8777/yuer-web/gift/list', function(error, response, body) {
+        request('http://172.16.2.62:8777/gift/list', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
