@@ -65,6 +65,7 @@ router.get('/center', function(req, res, next) {
         res.render('center', {
             title: "个人中心",
             info: JSON.parse(result[0]).object,
+            type: 2,
         });
     }).fail(function(cont, error) { 
         console.log(error);

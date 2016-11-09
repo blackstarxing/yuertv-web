@@ -46,11 +46,11 @@
 <!-- 我的资料 -->
 
 	  		<div class="m-bottom rightswitch rightswitchcolor">
-  			<a href="" id="m-change">修改密码</a><a href="" id="m-change">手机认证</a><a href="" id="m-realname">实名认证</a>
+  			<a href="" id="m-changepass">修改密码</a><a href="" id="m-change">手机认证</a><a href="" id="m-realname">实名认证</a>
   			<div class="m-switch switch-content">
   				<div class="u-pcurrent">
   					<label for="u-current">当前密码</label>
-  					<input type="" name="current" id="current" class="u-iverify">
+  					<input type="" name="current" id="u-current" class="u-verify">
   					<span class="u-verifypassword" >密码验证中</span>
   					<span class="u-failpassword" >密码错误</span>
   					<span class="u-rightpassword" >密码正确</span>
@@ -58,13 +58,13 @@
   				</div>
   				<div class="u-pnew">
   					<label for="u-new">新密码</label>
-	  				<input type="" name="new" id="new" class="u-ifail">
+	  				<input type="" name="new" id="u-new" class="u-ifail">
 	  				<span class="u-vpassword">密码长度必须大于6位！</span>
 	  				<br>
   				</div>
   				<div class="u-pcancel">
   					<label for="u-confirm">确认新密码</label>
-	  				<input type="" name="confirm" id="confirm" class="u-iright">
+	  				<input type="" name="confirm" id="u-confirm" class="u-iright">
 	  				<span class="u-failpassword" >密码错误</span>
 	  				<span class="u-rightpassword" >密码正确</span><br>
   				</div>
@@ -639,10 +639,11 @@
 <script type="text/javascript" src="/jquery.datetimepicker.full.min.js"></script>
 <script type="text/javascript" src="/dist/center.js"></script>
 <script type="text/javascript">
-	$('.g-left a').each(function(){
-		if($(this).attr("data-type"=='{{type}}'){
+	$('.g-left li').each(function(){
+		if($(this).attr("data-type")=='{{type}}'){
 			$(this).addClass('rightswitchcolor');
 		}
 	})
+	$('.rightswitch').eq({{type}}).show().siblings().hide();
 </script>
 {% endblock %}
