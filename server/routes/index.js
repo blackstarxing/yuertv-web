@@ -138,6 +138,44 @@ router.get('/center', function(req, res, next) {
         res.render('error', { title: "错误"});
     });
 });
+router.get('/alipay', function(req, res, next) {
+    var id = req.url.split('=')[1];
+    var islogin = false;
+    if(req.headers.cookie){
+        islogin = true;
+    }else{
+        islogin = false;
+    };
+
+    console.log(id);
+    Thenjs.parallel([function(cont) {
+        request({
+            uri: 'http://172.16.2.62:8777/pay/alipay?id='+id,
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+            },
+        }, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        console.log(result);
+        res.render('alipay', {
+            title: "支付宝",
+            myalipay: JSON.parse(result[0]).object,
+            islogin: islogin,
+            minihead :true,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+});
+
 
 router.get('/activity', function(req, res, next) {
     var islogin = false;

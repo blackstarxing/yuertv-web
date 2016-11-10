@@ -1,7 +1,7 @@
 {% extends 'layout.html' %} 
   
-  {% block css %}
-  <link rel="stylesheet" href="/css/pagination.css">
+{% block css %}
+<link rel="stylesheet" href="/css/pagination.css">
 <link rel="stylesheet" href="/dist/center.css">
 
 {% endblock %}
@@ -41,7 +41,7 @@
 	  				<p class="u-p1"><span class="u-nicknameonly">{{info.nickname}}</span>&nbsp;<img src=""><span id="nickname" class="u-p1-s">[点击修改]</span></p>
 		  			<p class="u-p2">粉丝:<span class="u-change">63836</span></p>
 		  			<p class="u-p3">鱼币:<span class="u-change1">{{info.yuerCoin}}</span>
-		  			<a href="/center/top-up" class="u-tovalue">充值</a>
+		  			<a href="/center?type=4" class="u-tovalue">充值</a>
 	  			</div>	  			
 	  		</div>
 	  		<!-- {% block right %}{% endblock %} -->
@@ -330,7 +330,7 @@
 		</div>
 		<div class="u-propsgtips">
 			<p>礼物道具，需要在直播房间中才能使用哦！</p>
-			<a href="http://localhost:3000/center/props">好的</a>
+			<a href="http://localhost:3000/center?type=2">好的</a>
 		</div>
 	</div>
 <!-- 我的消息 -->
@@ -435,7 +435,7 @@
 			</div>
 			<div class="u-value">
 			  {% for valuelist in valuelist%}
-                <div>
+                <div data-id="{{valuelist.id}}">
                    <span class="u-vfish">{{valuelist.yuer_amount}}鱼币</span>
 					<span class="u-vmoney">{{valuelist.rmb}}元</span>
                 </div>       
@@ -455,7 +455,7 @@
 					<span>订单提交成功，请您尽快付款 ！</span>
 				</div>
 				<div class="u-wm">
-					<span>金&nbsp;&nbsp;&nbsp;额：</span><span class="u-wmtips">12</span><span>元</span>
+					<span>金&nbsp;&nbsp;&nbsp;额：</span><span class="u-wmtips"></span><span>元</span>
 				</div>
 				<div class="u-wn">
 					<span>订单号：</span><span>14763398738814</span>
@@ -467,22 +467,25 @@
 						<span>支付方式</span>
 					</div>
 					<div class="payimg">
-						<img src="/images/focusclick.png" class="u-wpleft">
+						<img src="/images/focusclick.png" class="u-wpleft u-checked">
+						<img src="/images/iconclick.png" class="u-wpleft u-dischecked">
 						<img src="/images/iconpay.png">
 					</div>
 					<div class="payimg payshow">
-						<img src="/images/iconclick.png" class="u-wpleft">
+						<img src="/images/focusclick.png" class="u-wpleft u-checked">
+						<img src="/images/iconclick.png" class="u-wpleft u-dischecked">
 						<img src="/images/iconwec.png">
 						<p style="display:none">暂未开放敬请期待</p>
 					</div>
 					<div class="payimg pay">
-						<img src="/images/iconclick.png" class="u-wpleft">
+						<img src="/images/focusclick.png" class="u-wpleft u-checked">
+						<img src="/images/iconclick.png" class="u-wpleft u-dischecked">
 						<img src="/images/iconcard.png">
 						<p style="display:none">暂未开放敬请期待</p>
 					</div>
 				</div>
 				<div class="u-wbbottom">
-					<a href="" id="id">下一步</a>
+					<a href="" id="tovalue">下一步</a>
 					<p>选择支付平台，点击“下一步”完成支付流程</p>
 				</div>
 			</div>

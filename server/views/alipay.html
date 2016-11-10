@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body onload="document.E_FORM.submit()">
+		<form action="{{myalipay.url}}" method="get" name="E_FORM">
+		    <input type=hidden name="_input_charset" value="{{myalipay.input_charset}}">
+			<input type=hidden name="body" value="{{myalipay.body}}">
+			<input type=hidden name="notify_url" value="{{myalipay.notifyUrl}}">
+			<input type=hidden name="out_trade_no" value="{{myalipay.out_trade_no}}">
+		    <input type=hidden name="partner" value="{{myalipay.partner}}">
+		    <input type=hidden name="payment_type" value="{{myalipay.payment_type}}">
+		    <input type=hidden name="paymethod" value="{{myalipay.paymethod}}">
+		    <input type=hidden name="return_url" value="{{myalipay.returnUrl}}">
+		    <input type=hidden name="seller_email" value="{{myalipay.seller_email}}">
+		    <input type=hidden name="service" value="{{myalipay.service}}">
+		    <input type=hidden name="subject" value="{{myalipay.subject}}">
+		    <input type=hidden name="total_fee" value="{{myalipay.total_fee}}">
+		    <input type=hidden name="sign" value="{{myalipay.sign}}">
+		    <input type=hidden name="lt_b_pay" value="{{myalipay.lt_b_pay}}">
+		    <input type=hidden name="credit_card_default_display" value="{{myalipay.credit_card_default_display}}">
+		    <input type=hidden name="credit_card_pay" value="{{myalipay.credit_card_pay}}">
+		    <input type=hidden name="sign_type" value="{{myalipay.sign_type}}">
+		</form>
+</body>
+</html>
