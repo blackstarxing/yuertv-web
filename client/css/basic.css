@@ -208,7 +208,41 @@ color: #fff !important;
     text-align: center;
     margin-left: -155px;
 }
-
+/*全部直播*/
+.alllive{
+    width:1920px;
+    height:1700px;
+    background:#f3f3f3;
+}
+.alllive .g-maincenter{
+    position:relative;
+    margin:0 auto;
+    width:1200px;
+    height:1600px;
+    color:#141a20;
+    margin-top:60px;
+    padding-bottom:205px;
+    text-align:center;
+}
+.g-maincenter .m-livetop{
+    width:1200px;
+    height:65px;
+}
+.m-livetop img{
+    margin-left:15px;
+}
+.m-livetop .u-alllive{
+    margin-left:10px;
+    font-size:24px;
+}
+.m-livetop .u-alllnum{
+    margin-left:25px;
+    font-size:14px;
+    color:#f36;
+}
+.m-livetop .u-alling{
+    font-size:14px;
+}
 
 
 

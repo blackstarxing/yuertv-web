@@ -1,7 +1,7 @@
 {% extends 'layout.html' %} 
 
 {% block css %}
-<link rel="stylesheet" href="/dist/alllive.css">
+<!-- <link rel="stylesheet" href="/css/alllive.css"> -->
 {% endblock %}
 
 {% block content %}
@@ -9,10 +9,9 @@
 <div class="alllive">
     <div class="g-maincenter">
          <div class="m-livetop">
-            <img src="/images/alllive.png
-            ">
+            <img src="/images/alllive.png">
             <span class="u-alllive">全部直播</span>
-            <span class="u-alllnum"></span>
+            <span class="u-alllnum">1564</span>
             <span class="u-alling">名主播正在直播</span>
         </div>
         {% for hotlive in index.live %}
@@ -44,5 +43,5 @@
 {% endblock %}
 
 {% block js %}
-<script type="text/javascript" src="/dist/index.js"></script>
+<!-- <script type="text/javascript" src="/dist/index.js"></script> -->
 {% endblock %}
