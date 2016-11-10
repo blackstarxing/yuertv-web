@@ -1,13 +1,13 @@
 // if(obj=='女'){img.src="nv"}else{img.src="nan"}
 $(function() {
-    // 个人中心的tab切换
+// 个人中心的tab切换
     $("#leftmain li").off('click').on('click', function(event) {
         event.preventDefault();
         console.log($(this).index());
         $(this).addClass("rightswitchcolor").siblings().removeClass("rightswitchcolor");
         $("div.rightswitch").eq($(this).index() - 1).show().siblings().hide();
     });
-    //我的资料的tab切换；
+//我的资料的tab切换；
     $(".m-bottom a").on("click", function(e) {
         e.preventDefault();
         $(this).addClass("switch").siblings().removeClass("switch");
@@ -15,7 +15,7 @@ $(function() {
     })
     $(".m-bottom a:eq(0)").trigger("click");
 
-    // 我的道具弹出框
+// 我的道具弹出框
     $(".imgprops .u-props").off("click").on("click", function(e) {
         e.preventDefault();
         $(".u-propsgtips").show();
@@ -27,39 +27,39 @@ $(function() {
             $(".mcurrent").hide().eq($(this).index()).show();
         })
     $(".m-mainm a:eq(0)").trigger("click");
-    //我的消息－－关注消息的划入事件
+//我的消息－－关注消息的划入事件
     $(".u-foucscolor").on("mouseenter", function() { $(".u-messnickname").show().css("top", $(this).position().top) })
     $(".u-foucscolor").on("mouseleave", function() { $(".u-messnickname").hide() })
        
     $("#cancel").off("click").on("click", function() {
             $(".u-topupwindow").hide();
         })
-        //我要当主播的div之间的切换
+//我要当主播的div之间的切换
     $(".m-mainh a").on("click", function(e) {
         e.preventDefault();
         $(this).addClass("").siblings().removeClass("");
         $(".switchcontent").hide().eq($(this).index()).show();
     })
     $(".m-mainh a:eq(0)").trigger("click");
-    //我要当主播中的下级div的切换
+//我要当主播中的下级div的切换
     $(".u-certification a").on("click", function(e) {
         e.preventDefault();
         $(this).addClass("").siblings().removeClass("");
         $(".switchrepeat").hide().eq($(this).index()).show();
     })
     $(".u-certification a:eq(0)").trigger("click");
-    // 修改昵称弹出框
+// 修改昵称弹出框
     $("#nickname").on("click", function() {
         $(".m-layer").addClass("z-show");
     });
     $(".lybt .u-btn").on("click", function() {
         $(this).parents(".m-layer").removeClass("z-show");
     });
-    //修改昵称
+//修改昵称
     $("#checktips").on("blur", function() {
             $.ajax({
                 method: "GET", //对于请求类型
-                url: "http://172.16.2.62/person-center/update-nickname",
+                url: "http://localhost:3000/api/person-center/update-nickname",
                 dataType: 'json',
                 data: {
                     nickName: $.trim($("#checktips").val())
@@ -90,73 +90,36 @@ $(function() {
                 }
             })
         })
-        //表单验证--当前密码是否正确
-    $("#current").on("blur", function() {
-        $("#current").parent().find("span").hide();
-        $("#current").parent().find(".verifypassword").show();
-        $.ajax({
-            method: "GET", //对于请求类型
-            url: "http://172.16.2.62/person-center/is-password-right",
-            dataType: 'json',
-            data: {
-                password: $.trim($("#current").val())
-            }, //这个是一个验证是否重名的接口。参数只有一个 名字
-            success: function(data) {
-                if (data.code == 0) { //data.code的值这个是后端人员规定的。
-                    console.log("请求成功");
-                    if (data.object == 1) { //1为重复
-                        console.log("这个password正确啦");
-                        $("#current").parent().find("span").hide();
-                        $("#current").parent().find(".rightpassword").show();
-                    } else if (data.object == 0) {
-                        console.log("这个password不正确");
-                        $("#current").parent().find("span").hide();
-                        $("#current").parent().find(".failpassword").show();
-                    } else {
-                        console.log("未知异常");
-                    }
-                } else if (data.code == -2) {
-                    console.log("你没有权限，通常来讲，你是没有登录");
-                } else if (data.code == -5) {
-                    console.log("参数错误哦。");
-                } else {
-                    console.log(data.result);
-                }
-            },
-            error: function(a, b, c) {
-                console.log("接口出问题啦");
-            }
-        })
-    })
-    $("#new").on("blur", function() {
-        if ($("#new").val().length < 6) {
-            $("#new").parent().find(".u-vpassword").show();
+// 判断新密码
+    $("#u-new").on("blur", function() {
+        if ($("#u-new").val().length < 6) {
+            $("#u-new").parent().find(".u-vpassword").show();
         } else {
-            $("#new").parent().find("span").hide();
+            $("#u-new").parent().find("span").hide();
         }
     })
-    $("#confirm").on("blur", function() {
-            if ($("#new").val() == $("#confirm").val()) {
-                $("#confirm").parent().find("span").hide();
-                $("#confirm").parent().find(".rightpassword").show();
+    $("#u-confirm").on("blur", function() {
+            if ($("#u-new").val() == $("#u-confirm").val()) {
+                $("#u-confirm").parent().find("span").hide();
+                $("#u-confirm").parent().find(".rightpassword").show();
             } else {
-                $("#confirm").parent().find("span").hide();
-                $("#confirm").parent().find(".failpassword").show();
+                $("#u-confirm").parent().find("span").hide();
+                $("#u-confirm").parent().find(".failpassword").show();
             }
         })
-        //修改密码成功弹框
-    $("#userbox").on("click", function() {
-        $(".m-psuccess").addClass("z-show");
-    });
-    $(".m-psuccess #userbox").on("click", function() {
-        $(this).parents(".m-psuccess").removeClass("z-show");
-    });
-    //修改密码接口
+//修改密码成功弹框
+    // $("#userbox").on("click", function() {
+    //     $(".m-psuccess").addClass("z-show");
+    // });
+    // $(".m-psuccess #userbox").on("click", function() {
+    //     $(this).parents(".m-psuccess").removeClass("z-show");
+    // });
+//修改密码接口
     $('#send').on("click", function() {
         $.ajax({
             type: "GET",
-            url: "http://172.16.2.62/person-center/update-password",
-            data: { oldPassword: $("#current").val(), password: $("#new") },
+            url: "http://localhost:3000/api/person-center/update-password",
+            data: { oldPassword: $("#u-current").val(), password: $("#u-new") },
             dataType: "json",
             success: function(data) {
                 if (data.code == 0) { //data.code的值这个是后端人员规定的。
@@ -175,21 +138,17 @@ $(function() {
                 } else {
                     console.log(data.result);
                 }
-
-
             },
-
             error: function() {
                 alert('通讯服务器错误');
             }
-
         });
     });
-    // 刷新图形验证码
+// 刷新图形验证码
     var $telnumber = $('.telnumber');
 
     function changeCode() {
-        $picCode.attr('src', 'http://172.16.2.62/checkCode?phone=' + $telnumber.val() + '&rand=' + new Date());
+        $picCode.attr('src', 'http://localhost:3000/api/checkCode?phone=' + $telnumber.val() + '&rand=' + new Date());
 
     }
 
@@ -280,26 +239,30 @@ $("#userbox").on('click',function(){
             }
         })
   })
- //我要充值－－选中鱼币的样式
+
+ //选中支付宝
+   $(".payimg").off("click").on("click",function(){$(".payimg .u-checked").hide();
+   	$(".payimg .u-dischecked").show();$(this).find(".u-checked").show();$(this).find(".u-dischecked").hide();})
+//我要充值－－选中鱼币的样式
     $(".u-value div").on("click", function() {
-            $(".value div").addClass("checktopup");
+    		$(this).addClass("checktopup").siblings().removeClass("checktopup");
+            window.checktopup=this;
         })
-        //我要充值－－－点击充值出现弹框
+//我要充值－－－点击充值出现弹框
     $("#topupvalue").off("click").on("click", function(e) {
-        e.preventDefault();
-        $(".u-topupwindow").show();
-    })
-        //充值
-    $("#tuvalue").on("click", function() {
+        e.preventDefault();  
+        $(".u-wmtips").text($(window.checktopup).find(".u-vmoney").text().substr(0,$(window.checktopup).find(".u-vmoney").text().length-1));
+        $(".u-topupwindow").show(); 
         $.ajax({
             method: "GET", //对于请求类型
-            url: " http://172.16.2.62/pay/recharge",
+            url: "http://localhost:3000/api/pay/recharge",
             dataType: 'json',
-            data: { id: $.trim($("#id").val()) }, //这个是一个验证是否重名的接口。参数只有一个 名字
+            data:{id:$(window.checktopup).attr("data-id")}, //这个是一个验证是否重名的接口。参数只有一个 名字
             success: function(data) {
                 if (data.code == 0) { //data.code的值这个是后端人员规定的。
                     console.log("请求成功");
-
+                    $("#tovalue").attr("href","/alipay?id="+data.object);
+                  $(".u-wn span:eq(1)").text(data.object);
                     if (data.object == 1) { //1为重复
                         console.log("这个重复啦");
                     } else if (data.object == 0) {
@@ -320,39 +283,6 @@ $("#userbox").on('click',function(){
             }
         })
     })
-
-    //支付宝
-    $("#tuvalue").on("click", function() {
-            $.ajax({
-                method: "GET", //对于请求类型
-                url: "http://172.16.2.62/pay/alipay",
-                dataType: 'json',
-                data: {
-                    id: $.trim($("#id").val()),
-                }, //这个是一个验证是否重名的接口。参数只有一个 名字
-                success: function(data) {
-                    if (data.code == 0) { //data.code的值这个是后端人员规定的。
-                        console.log("请求成功");
-                        if (data.object == 1) { //1为重复
-                            console.log("这个重复啦");
-                        } else if (data.object == 0) {
-                            console.log("这个不重复");
-                        } else {
-                            console.log("未知异常");
-                        }
-                    } else if (data.code == -2) {
-                        console.log("你没有权限，通常来讲，你是没有登录");
-                    } else if (data.code == -5) {
-                        console.log("参数错误哦。");
-                    } else {
-                        console.log(data.result);
-                    }
-                },
-                error: function(a, b, c) {
-                    console.log("接口出问题啦");
-                }
-            })
-        })
  // 分页插件
  $('.M-box').pagination();
 //  $('.M-box').pagination({
@@ -366,7 +296,7 @@ $("#userbox").on('click',function(){
 $("#myfocusclick").on('click',function(){
     $.ajax({
         method: "GET", //对于请求类型
-        url: "http://172.16.2.62/person-center/my-concern",
+        url: "http://localhost:3000/api/person-center/my-concern",
         dataType: 'json',
         data: {
             page: $.trim($("#page").val()),
@@ -388,8 +318,6 @@ $("#myfocusclick").on('click',function(){
                         '<span class="u-num">' + data.object.list[index].fans + '</span></p></div>' +
                         '</div></div><div class="u-hright"><img src="/images/focusclick.png">' +
                         '<a href="' + data.object.list[index].room_number + '">进入房间</a></div></div>'
-                    console.log("性别0男1女是" + data.object.list[index].sex);
-                    console.log("关注对象id是" + data.object.list[index].user_id);
                 }
                 if (data.object.total == 0) {
 
@@ -425,7 +353,7 @@ $("#myfocusclick").on('click',function(){
 $("#mymessageclick").on('click',function(){
     $.ajax({
             method: "GET", //对于请求类型
-            url: "http://172.16.2.62/person-center/my-msg",
+            url: "http://localhost:3000/api/person-center/my-msg",
             dataType: 'json',
             data: {
                 page: $.trim($("#page").val()),

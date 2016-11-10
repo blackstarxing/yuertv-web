@@ -87,7 +87,8 @@ input{
 	height:123px;
 	border-radius:50px;
 }
-.m-tleft img.seximg{
+.m-top .m-tleft img.seximg{
+	display:inline-block;
 	width:35px;
 	height:20px;
 	border-radius: 50px;
@@ -304,7 +305,7 @@ a#m-changepass,a#m-change,a#m-realname{
 	border:1px solid #353d48;
 	color:#fff;
 }
-.m-switcht .u-submit{
+.m-switcht input#userbox{
 	width:305px;
 	height:50px;
 	background:#f36;
@@ -312,6 +313,8 @@ a#m-changepass,a#m-change,a#m-realname{
 	margin:125px 0px 95px 120px;
 	border-radius:5px;
 	border:0px;
+	text-align: center;
+	font-size:18px;
 }
 .m-mask{
 	position:fixed;
@@ -669,6 +672,11 @@ a#m-changepass,a#m-change,a#m-realname{
 	color:#3ff;
 }
 .u-props img{
+	display: inline-block;
+	width:83px;
+	height:65px;
+	border:none;
+	border:0px;
 	margin:15px 50px 20px 55px;
 }
 .u-props p{
@@ -913,8 +921,11 @@ a.u-topfish{
 	margin:60px 235px 100px 235px;
 }
 /*选中状态*/
-.checktopup{
+.u-value div.checktopup{
 	border:2px solid #f36;
+	color:#f36;
+}
+.u-value div.checktopup span{
 	color:#f36;
 }
 .u-topupwindow{
@@ -990,22 +1001,29 @@ a.u-topfish{
 
 .u-wbtop .payimg{
 	float:left;
-	width:220px;
+	width:225px;
 	height:105px;
-	margin-left:35px;
+	margin-left:25px;
 	margin-top:0px;
 }
 .payimg .u-wpleft{
-	line-height:105px;
-	text-align:center;
-	vertical-align: middle;
-	margin-right:15px;
+	line-height: 105px;
+    text-align: center;
+    vertical-align: middle;
+    float: left;
+    margin: 20px 10px;
 }
 .payshow:hover .gray{
 	display:block;
 }
 .pay:hover .gray{
 	display:block;
+}
+.payimg .u-checked{
+	display:block;
+}
+.payimg .u-dischecked{
+	display:none;
 }
 .u-wbtop .paycontent{
 	float:left;
@@ -1014,7 +1032,6 @@ a.u-topfish{
 	color:#fff;
 
 }
-
 .u-wbbottom a{
 	display: inline-block;
 	width:300px;
@@ -1058,8 +1075,32 @@ a.u-topfish{
 	text-align:center;
 }
 
-
-
+.pay:hover img{
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	filter: grayscale(100%);
+	filter: gray;
+}
+.payshow:hover img{
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	filter: grayscale(100%);
+	filter: gray;
+}
+.payshow:hover p{
+display:block;
+	color:#7d8ea0;
+	text-align:center;
+}
+.pay:hover p{
+display:block;
+	color:#7d8ea0;
+	text-align:center;
+}
 
 
 
