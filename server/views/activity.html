@@ -1,0 +1,52 @@
+{% extends 'layout.html' %} 
+
+{% block css %}
+<link rel="stylesheet" href="/dist/activity.css">
+{% endblock %}
+
+{% block content %}
+    <div class="m-content">
+        <div class="comWidth f-cb">
+            <h3 class="breadnav">活动<a href="/">首页</a><span>&gt;正文</span></h3>
+            <div class="article f-fl">
+                <h3 class="activity-title">第二届王者校园争霸赛，火力全开！</h3>
+                <p class="activity-author">发布于：2016年11月04日  创建人：小娱儿</p>
+                <div class="main-body">
+                    
+                </div>
+            </div>
+            <div class="recommend-live f-fr">
+                <div class="title"><img src="/images/index_icon3.png" alt="">热门直播</div>
+                {% for recommend in recommend %}
+                    <div class="m-lst">
+                        <a href="" class="live-address">
+                            <img src="{{recommend.icon}}" alt="">
+                            <span><i>·</i>{{recommend.name}}</span>
+                        </a>
+                        <div class="m-info">
+                            <div class="anchor-head">
+                                <img src="http://img.wangyuhudong.com/{{recommend.up_user_icon}}" alt="" class="head-icon">
+                                {% if recommend.sex==0 %}
+                                    <img src="/images/female.png" alt="" class="sex">
+                                {% else %}
+                                    <img src="/images/male.png" alt="" class="sex">
+                                {% endif %}
+                            </div>
+                            <div class="anchor-info">
+                                <div><a href="">{{recommend.nickname}}</a></div>
+                                <div class="anchor-id">ID:123</div>
+                            </div>
+                            <button class="follow">关注</button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+    </div>
+    
+{% endblock %}
+
+{% block js %}
+<!-- <script type="text/javascript" src="/dist/activity.js"></script> -->
+{% endblock %}

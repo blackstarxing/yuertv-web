@@ -31,7 +31,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/liveroom', function(req, res, next) {
-    console.log(req.url);
+    var id = req.url.split('=')[1];
     var islogin = false;
     if(req.headers.cookie){
         islogin = true;
@@ -39,6 +39,14 @@ router.get('/liveroom', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
+        request('http://172.16.2.62:8777/live/detail', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    },function(cont) {
         request('http://172.16.2.62:8777/gift/list', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
@@ -47,9 +55,11 @@ router.get('/liveroom', function(req, res, next) {
             }
         })
     }]).then(function(cont, result) {
+        console.log(result);
         res.render('liveroom', {
             title: "直播间",
-            gift: JSON.parse(result[0]).object,
+            detail: JSON.parse(result[0]).object,
+            gift: JSON.parse(result[1]).object,
             islogin: islogin,
             minihead :true,
         });
@@ -127,6 +137,37 @@ router.get('/center', function(req, res, next) {
         console.log(error);
         res.render('error', { title: "错误"});
     });
+});
+
+router.get('/activity', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        islogin = true;
+    }else{
+        islogin = false;
+    };
+    Thenjs.parallel([function(cont) {
+        request('http://172.16.2.62:8777/index', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        res.render('activity', {
+            title: "活动详情",
+            recommend: JSON.parse(result[0]).object.live.slice(0,6),
+            islogin: islogin,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+});
+
+router.get('/search', function(req, res, next) {
+    res.render('search', { title: "搜索" });
 });
 
 module.exports = router;

@@ -7,7 +7,7 @@ $(function(){
         flash: null,
 
         rtmp: "",
-        anchorid: "",
+        anchorId: "",
         anchorhead: "",
         head_icon: "head.png",
 
@@ -19,7 +19,7 @@ $(function(){
             this.flash.playLive(this.rtmp);
 
             //更新主播信息，参数：主播ID, 主播头像，是否已关注
-            this.flash.updateAnchor("123", this.head_icon, false);
+            this.flash.updateAnchor(this.anchorId, this.head_icon, false);
             // this.flash.updateAnchor("123", "head.png", false);
         },
 
@@ -40,7 +40,8 @@ $(function(){
         //进入直播间，参数：主播ID
         enterRoom: function ( anchorId )
         {
-            alert("进入直播间：" + anchorId);
+            window.location.href = "/liveroom?id="+anchorId;
+            // alert("进入直播间：" + anchorId);
         },
     };
     //视频播放器接口
@@ -79,7 +80,9 @@ $(function(){
 
     att.id = "LiveHome";
     att.data = "YeLiveHome.swf";
-    liveHomeInterf.rtmp = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
+    // liveHomeInterf.rtmp = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
+    liveHomeInterf.rtmp = "rtmp://pili-live-rtmp.wangyuhudong.com/wyds/wyds_dev_3835355";
+    liveHomeInterf.anchorId = "235";
     liveHomeInterf.flash = swfobject.createSWF(att, par, "LiveHomeDiv");
 
     att.id = "VideoPlayer";

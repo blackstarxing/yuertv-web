@@ -1,0 +1,47 @@
+{% extends 'layout.html' %} 
+
+{% block css %}
+<link rel="stylesheet" href="/dist/search.css">
+{% endblock %}
+
+{% block content %}
+    <div class="m-content">
+        <div class="comWidth f-cb">
+            <div class="search">
+                <input type="text" class="search-key"><button class="search-btn">搜索</button>
+            </div>
+            <h3></h3>
+            <div class="search-result">
+                {% for recommend in recommend %}
+                    <div class="m-lst">
+                        <a href="" class="live-address">
+                            <img src="{{recommend.icon}}" alt="">
+                            <span><i>·</i>{{recommend.name}}</span>
+                        </a>
+                        <div class="m-info">
+                            <div class="anchor-head">
+                                <img src="http://img.wangyuhudong.com/{{recommend.up_user_icon}}" alt="" class="head-icon">
+                                {% if recommend.sex==0 %}
+                                    <img src="/images/female.png" alt="" class="sex">
+                                {% else %}
+                                    <img src="/images/male.png" alt="" class="sex">
+                                {% endif %}
+                            </div>
+                            <div class="anchor-info">
+                                <div><a href="">{{recommend.nickname}}</a></div>
+                                <div class="anchor-id">ID:123</div>
+                            </div>
+                            <button class="follow">关注</button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+    </div>
+    
+{% endblock %}
+
+{% block js %}
+<!-- <script type="text/javascript" src="/dist/activity.js"></script> -->
+{% endblock %}

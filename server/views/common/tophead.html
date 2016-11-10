@@ -29,14 +29,14 @@
         {% if islogin %}
         <div class="header_right f-fr">
             <div class="avatar">
-                <img src="" alt="" class="avatar-icon">
+                <a href="/center?type=0"><img src="" alt="" class="avatar-icon"></a>
                 <div class="nav-list">
                     <ul>
-                        <li><a href="">我的信息</a></li>
-                        <li><a href="">我的关注</a></li>
-                        <li><a href="">我的消息</a></li>
-                        <li><a href="">充值</a></li>
-                        <li><a href="" class="logout">登出</a></li>
+                        <li><a href="/center?type=0">我的资料</a></li>
+                        <li><a href="/center?type=1">我的关注</a></li>
+                        <li><a href="/center?type=3">我的消息</a></li>
+                        <li><a href="/center?type=4">我要充值</a></li>
+                        <li><a href="" class="logout">退出登录</a></li>
                     </ul>
                 </div>
             </div>
@@ -55,6 +55,9 @@
         <h3>娱儿TV账号登录</h3>
         <input type="text" placeholder="请输入昵称" class="l-usrname">
         <input type="password" placeholder="请输入密码" class="l-pwd">
+        <div class="login-error">
+            <p class="error-tip"></p>
+        </div>
         <button type="submit" class="u-login">登录</button>
         <div class="m-link f-cb">
             <a href="" class="f-fl">忘记密码？</a>
