@@ -1,15 +1,48 @@
 {% extends 'layout.html' %} 
 
 {% block css %}
-<!-- <link rel="stylesheet" href="/dist/index.css"> -->
+<link rel="stylesheet" href="/dist/alllive.css">
 {% endblock %}
 
 {% block content %}
 
+<div class="alllive">
+    <div class="g-maincenter">
+         <div class="m-livetop">
+            <img src="/images/alllive.png
+            ">
+            <span class="u-alllive">全部直播</span>
+            <span class="u-alllnum"></span>
+            <span class="u-alling">名主播正在直播</span>
+        </div>
+        {% for hotlive in index.live %}
+        <div class="m-lst">
+            <a href="" class="live-address">
+                <img src="{{hotlive.icon}}" alt="">
+                <span><i>·</i>{{hotlive.name}}</span>
+            </a>
+            <div class="m-info">
+                <div class="anchor-head">
+                    <img src="http://img.wangyuhudong.com/{{hotlive.up_user_icon}}" alt="" class="head-icon">
+                    {% if hotlive.sex==0 %}
+                        <img src="/images/female.png" alt="" class="sex">
+                    {% else %}
+                        <img src="/images/male.png" alt="" class="sex">
+                    {% endif %}
+                </div>
+                <div class="anchor-info">
+                    <div><a href="">{{hotlive.nickname}}</a></div>
+                    <div class="anchor-id">ID:123</div>
+                </div>
+                <button class="follow">关注</button>
+            </div>
+        </div>
+     {% endfor %}
+    </div>
+</div>
 
 {% endblock %}
 
 {% block js %}
-<!-- <script type="text/javascript" src="/swfobject.js"></script> -->
-<!-- <script type="text/javascript" src="/dist/index.js"></script> -->
+<script type="text/javascript" src="/dist/index.js"></script>
 {% endblock %}
