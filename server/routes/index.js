@@ -69,10 +69,10 @@ router.get('/liveroom', function(req, res, next) {
     });
 });
 router.get('/alllive', function(req, res, next) {
-    res.render('alllive', { title: "注册", registerPage: true });
+    res.render('alllive', { title: "全部直播", registerPage: true });
 });
 router.get('/register', function(req, res, next) {
-    res.render('register', { title: "全部直播", registerPage: true });
+    res.render('register', { title: "注册", registerPage: true });
 });
 
 router.get('/center', function(req, res, next) {
