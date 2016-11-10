@@ -1,6 +1,11 @@
 /**{color:#fff;}*/
 input{
 	float: none;
+	text-align:left;
+}
+.M-box{
+	margin-top:50px;
+	margin-left:500;
 }
 .g-main{
 	width:1200px;
@@ -511,7 +516,7 @@ a#m-changepass,a#m-change,a#m-realname{
 .g-focus{
 	box-sizing: border-box;
 	width:795px;
-	/*padding:65px 60px 50px 65px;*/
+	padding-bottom:60px;
 	position:relative;
 }
 .g-focus .u-top{
@@ -644,7 +649,7 @@ a#m-changepass,a#m-change,a#m-realname{
 }
 .u-imgmessage .imgprops{
 	width:800px;
-	height:155px;
+	height:350px;
 	margin-bottom:25px;
 }
 .imgprops .u-props{
@@ -731,8 +736,8 @@ a#m-changepass,a#m-change,a#m-realname{
 /*我的消息*/
 .m-message{
 	width:800px;
-	height:460px;
-	margin:85px 65px 0px 70px;
+	margin:85px 65px 60px 70px;
+	padding-bottom:60px;
 }
 .u-m-top a{
 	display:inline-block;
@@ -750,7 +755,10 @@ a#m-changepass,a#m-change,a#m-realname{
 	border-radius: 5px;
 	
 }
-
+.u-systemmessage{
+	width:780px;
+	margin-bottom:60px;
+}
 .u-systemmessage .u-message{
 	width:780px;
 	height:100px;

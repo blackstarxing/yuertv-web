@@ -244,7 +244,7 @@ $(function() {
         e.preventDefault();
         changeCode();
     })
-$("#userbox").on(click,function(){
+$("#userbox").on('click',function(){
     $.ajax({
             method: "GET", //对于请求类型
             url: "http://172.16.2.62/person-center/mobile-auth",
@@ -353,8 +353,17 @@ $("#userbox").on(click,function(){
                 }
             })
         })
+ // 分页插件
+ $('.M-box').pagination();
+//  $('.M-box').pagination({
+//     callback:function(index){
+//         $('.now').text(index);
+//     }
+// },function(api){
+//     $('.now').text(api.getCurrent());
+// });
  //我的关注
-$("#myfocusclick").on(click,function(){
+$("#myfocusclick").on('click',function(){
     $.ajax({
         method: "GET", //对于请求类型
         url: "http://172.16.2.62/person-center/my-concern",
@@ -413,7 +422,7 @@ $("#myfocusclick").on(click,function(){
     })
 })
 //我的消息
-$("#mymessageclick").on(click,function(){
+$("#mymessageclick").on('click',function(){
     $.ajax({
             method: "GET", //对于请求类型
             url: "http://172.16.2.62/person-center/my-msg",

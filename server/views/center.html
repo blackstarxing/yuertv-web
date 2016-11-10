@@ -296,7 +296,7 @@
 					</div>
 					<span class="dark">该主播已离开</span>
 				</div>
-				<div class="box"></div>
+				<div class="M-box"></div>
 		</div>
 	</div>
 <!-- 我的道具 -->
@@ -307,24 +307,12 @@
 			</div>
 			<div class="u-imgmessage">
 				<div class="imgprops">
-					{% for myprops in myprops %}
+					{% for myprops in myprops.gifts %}
 	                <div class="u-props">
 						<img src="http://img.wangyuhudong.com/{{myprops.gifts.icon}}">
 						<p>
-							<span>{{myprops.gifts.name}}</span>
-							<span class="u-propscolor">{{myprops.gifts.num}}</span>
-							<span>个</span>
-						</p>
-					</div>  
-            		{% endfor %}
-				</div>
-				<div class="imgprops">
-					{% for myprops in myprops %}
-	                <div class="u-props">
-						<img src="http://img.wangyuhudong.com/{{myprops.gifts.icon}}">
-						<p>
-							<span>{{myprops.gifts.name}}</span>
-							<span class="u-propscolor">{{myprops.gifts.num}}</span>
+							<span>{{myprops.name}}</span>
+							<span class="u-propscolor">{{myprops.num}}</span>
 							<span>个</span>
 						</p>
 					</div>  
@@ -396,7 +384,7 @@
 						</p>
 					</div>
 				</div>
-				<div class="box"></div>
+				<div class="M-box"></div>
 			</div>
 			
 			<div class="u-focusmessage mcurrent">
@@ -434,7 +422,7 @@
 					<p class="u-mkname">我从哪里找到你</p>
 					<p><span>ID：</span><span>1987272</span></p>
 				</div>
-				<div class="box"></div>
+				<div class="M-box"></div>
 			</div>
 			
 		</div>
