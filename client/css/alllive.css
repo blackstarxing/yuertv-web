@@ -1,0 +1,25 @@
+.alllive{
+	width:1920px;
+	background:#f3f3f3;
+}
+.alllive .g-maincenter{
+	width:1200px;
+	color:#141a20;
+	margin-top:60px;
+	padding-bottom:205px;
+}
+.g-maincenter img{
+	margin-left:15px;
+}
+.g-maincenter .u-alllive{
+	margin-left:10px;
+	font-size:24px;
+}
+.g-maincenter .u-alllnum{
+	margin-left:25px;
+	font-size:14px;
+	color:#f36;
+}
+.g-maincenter .u-alling{
+	font-size:14px;
+}
