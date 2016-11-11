@@ -15,20 +15,22 @@
                 <!-- <div id="LiveRoomDiv"/> -->
             </div>
             <div class="m-play-list f-fr">
+                <div class="u-arrow arrow-up"></div>
+                <div class="u-arrow arrow-down"></div>
                 <ul>
                     {% for recommend in index.recommend %}
                         {% if loop.first %}
-                            <li class="current"><a href="{{recommend.rtmp}}" data-icon="{{recommend.up_user_icon}}"><img src="{{recommend.icon}}" alt=""></a></li>
+                            <li class="current"><a href="{{recommend.rtmp}}" data-icon="{{recommend.up_user_icon}}" data-id="{{recommend.id}}" data-upid="{{recommend.up_user_id}}"><img src="{{recommend.icon}}" alt=""></a></li>
                         {% else %}
-                            <li><a href="{{recommend.rtmp}}" data-icon="http://img.wangyuhudong.com/{{recommend.up_user_icon}}"><img src="{{recommend.icon}}" alt=""></a></li>
+                            <li><a href="{{recommend.rtmp}}" data-icon="{{recommend.up_user_icon}}" data-id="{{recommend.id}}" data-upid="{{recommend.up_user_id}}"><img src="{{recommend.icon}}" alt=""></a></li>
                         {% endif %}
                     {% endfor %}
-                   <!--  <li class="current"><a href=""></a></li>
                     <li><a href=""></a></li>
                     <li><a href=""></a></li>
                     <li><a href=""></a></li>
                     <li><a href=""></a></li>
-                    <li><a href=""></a></li> -->
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
                 </ul>
             </div>
         </div>       
@@ -64,9 +66,10 @@
             <div class="m-content f-cb">
                 {% for hotlive in index.live %}
                     <div class="m-lst">
-                        <a href="" class="live-address">
+                        <a href="/liveroom?id={{hotlive.id}}" class="live-address">
                             <img src="{{hotlive.icon}}" alt="">
                             <span><i>·</i>{{hotlive.name}}</span>
+                            <div class="play-mask"></div>
                         </a>
                         <div class="m-info">
                             <div class="anchor-head">
@@ -78,7 +81,7 @@
                                 {% endif %}
                             </div>
                             <div class="anchor-info">
-                                <div><a href="">{{hotlive.nickname}}</a></div>
+                                <div><a href="javascript:void(0)">{{hotlive.nickname}}</a></div>
                                 <div class="anchor-id">ID:123</div>
                             </div>
                             <button class="follow">关注</button>
@@ -95,6 +98,7 @@
                     <a href="" class="live-address">
                         <img src="{{video.icon}}" alt="">
                         <span><i>·</i>{{video.name}}</span>
+                        <div class="play-mask"></div>
                     </a>
                     <div class="m-info">
                         <div class="anchor-head">
@@ -117,6 +121,7 @@
     </div>
     
 </div>
+{% include 'common/float.html' %}
 
 {% endblock %}
 

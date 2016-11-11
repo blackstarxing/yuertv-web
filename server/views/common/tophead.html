@@ -19,11 +19,18 @@
             <ul class="m-nav f-fl">
                 <li class="current"><a href="/">首页</a></li>
                 <li><a href="">直播</a></li>
-                <li><a href="">游戏</a></li>
+                <!-- <li><a href="">游戏</a></li> -->
             </ul>
             <div class="m-search f-fl">
                 <input type="text" placeholder="查找游戏、主播ID、房间号">
                 <a href="" class="u-search-btn"></a>
+            </div>
+            <div class="sweepme">
+                <img src="/images/mobile.png" alt="">娱儿TV移动版
+                <div class="QRbox">
+                    <img src="/images/qrimage.png" alt="">
+                    扫描二维码下载娱儿TV
+                </div>
             </div>
         </div>
         {% if islogin %}
@@ -43,7 +50,8 @@
         </div>
         {% else %}
         <div class="header_right visitor f-fr">
-            <a href="" class="u-login-btn">登录</a><a href="/register">注册</a>
+            <a href="" class="u-login-btn">登录</a><a href="/register" class="register-hover">注册</a>
+            <div class="reward-tip">注册赠送两个贝壳</div>
         </div>
         {% endif %}
     </div>
