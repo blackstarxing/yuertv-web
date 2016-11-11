@@ -35,7 +35,7 @@
 		    <div class="m-top">
 	  			<div class="m-tleft">
 	  				<img src="http://img.wangyuhudong.com/{{info.icon}}">
-	  				<img src="http://img.wangyuhudong.com/{{info.sex}}" class="seximg">
+	  				<img src="http://img.wangyuhudong.com/{{info.sex}}" class="seximg" id="seximg">
 	  			</div>
 	  			<div class="m-tright">
 	  				<p class="u-p1"><span class="u-nicknameonly">{{info.nickname}}</span>&nbsp;<img src=""><span id="nickname" class="u-p1-s">[点击修改]</span></p>
@@ -44,7 +44,6 @@
 		  			<a href="/center?type=4" class="u-tovalue">充值</a>
 	  			</div>	  			
 	  		</div>
-	  		<!-- {% block right %}{% endblock %} -->
 	  	<div class="m-rightswitch">
 <!-- 我的资料 -->
 
@@ -347,11 +346,11 @@
 					</div>
 					<div class="u-yuer">
 						<p>
-							<h3>{{mymessage.title}}</h3>
-							<span class="u-messagetime">{{mymessage.create_date}}0</span>
+							<h3></h3>
+							<span class="u-messagetime"></span>
 						<p>
 						<p>
-						<span class="u-messagecontent">{{mymessage.content}}</span><span class="u-messtips">全文&gt;&gt;{{message.obj_id}}</span>
+						<span class="u-messagecontent"></span><span class="u-messtips">全文&gt;&gt;</span>
 						</p>
 					</div>
 				</div>
@@ -361,11 +360,11 @@
 					</div>
 					<div class="u-yuer">
 						<p>
-							<h3>娱儿官方</h3>
-							<span class="u-messagetime">2016-10-13  18: 00</span>
+							<h3></h3>
+							<span class="u-messagetime"></span>
 						<p>
 						<p>
-						<span class="u-messagecontent">娱儿TV招募主播啦，这里有大神，有逗比，更有精彩的游戏直播。无论是看直播还是发起直播，在这里一键搞定。真正做到简单快捷，主播观众随时变，就看你敢不来。。</span><span class="u-messtips">全文&gt;&gt;</span>
+						<span class="u-messagecontent"></span><span class="u-messtips">全文&gt;&gt;</span>
 						</p>
 					</div>
 				</div>
@@ -375,12 +374,39 @@
 					</div>
 					<div class="u-yuer">
 						<p>
-							<h3>娱儿官方</h3>
-							<span class="u-messagetime">2016-10-13  18: 00</span>
+							<h3></h3>
+							<span class="u-messagetime"></span>
 						<p>
 						<p>
-						<span class="u-messagecontent">娱儿TV招募主播啦，这里有大神，有逗比，更有精彩的游戏直播。无论是看直播还是发起直播，在这里一键搞定。真正做到简单快捷，主播观众随时变，就看你敢不来。。</span>
-						<span class="u-messtips">全文&gt;&gt;</span>
+						<span class="u-messagecontent"></span><span class="u-messtips">全文&gt;&gt;</span>
+						</p>
+					</div>
+				</div>
+				<div class="u-message">
+					<div class="u-msystem">
+						<img src="/images/messagehead.png">
+					</div>
+					<div class="u-yuer">
+						<p>
+							<h3></h3>
+							<span class="u-messagetime"></span>
+						<p>
+						<p>
+						<span class="u-messagecontent"></span><span class="u-messtips">全文&gt;&gt;</span>
+						</p>
+					</div>
+				</div>
+				<div class="u-message">
+					<div class="u-msystem">
+						<img src="/images/messagehead.png">
+					</div>
+					<div class="u-yuer">
+						<p>
+							<h3></h3>
+							<span class="u-messagetime"></span>
+						<p>
+						<p>
+						<span class="u-messagecontent"></span><span class="u-messtips">全文&gt;&gt;</span>
 						</p>
 					</div>
 				</div>
@@ -475,13 +501,13 @@
 						<img src="/images/focusclick.png" class="u-wpleft u-checked">
 						<img src="/images/iconclick.png" class="u-wpleft u-dischecked">
 						<img src="/images/iconwec.png">
-						<p style="display:none">暂未开放敬请期待</p>
+						<p>暂未开放敬请期待</p>
 					</div>
 					<div class="payimg pay">
 						<img src="/images/focusclick.png" class="u-wpleft u-checked">
 						<img src="/images/iconclick.png" class="u-wpleft u-dischecked">
 						<img src="/images/iconcard.png">
-						<p style="display:none">暂未开放敬请期待</p>
+						<p >暂未开放敬请期待</p>
 					</div>
 				</div>
 				<div class="u-wbbottom">
@@ -490,6 +516,14 @@
 				</div>
 			</div>
 		</div>
+<div class="m-topupsuccess">
+	<div class="u-success">
+		<img src="/images/iconcancel.png"><span>充值成功!</span>
+	</div>
+	<div class="u-cancel">
+		<a href="">确定</a>
+	</div>
+</div>
 	</div>
 <!-- 我要当主播 -->
 			<div class="g-host rightswitch">

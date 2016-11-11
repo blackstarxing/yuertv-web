@@ -148,7 +148,6 @@ router.get('/alipay', function(req, res, next) {
     }else{
         islogin = false;
     };
-
     console.log(id);
     Thenjs.parallel([function(cont) {
         request({
@@ -177,7 +176,9 @@ router.get('/alipay', function(req, res, next) {
         res.render('error', { title: "错误"});
     });
 });
-
+router.get('/valuesuccess', function(req, res, next) {
+    res.render('valuesuccess', { title: "充值成功", registerPage: true });
+});
 
 router.get('/activity', function(req, res, next) {
     var islogin = false;

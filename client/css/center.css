@@ -87,13 +87,13 @@ input{
 	height:123px;
 	border-radius:50px;
 }
-.m-top .m-tleft img.seximg{
+.m-top .m-tleft img#seximg{
 	display:inline-block;
 	width:35px;
 	height:20px;
 	border-radius: 50px;
-	position:absolute;
-	left:110;
+	position:relative;
+	left:-20px;
 	top:110;
 
 }
@@ -283,6 +283,7 @@ a#m-changepass,a#m-change,a#m-realname{
 	margin-left:15px;
 }
 .m-switcht .u-number,.u-verify{
+	display:none;
 	position:absolute;
 	left:320px;
 	top:1px;
@@ -342,6 +343,54 @@ a#m-changepass,a#m-change,a#m-realname{
 	width: 240px;
 	height: 200px;
 	padding:30px;
+	position:relative;
+	left:0;
+	top:0;
+	right:0;
+	bottom:0;
+	margin:auto;
+}
+
+.code-wrap span.error-tip{
+	display:none;
+	width:100px;
+	height:40px;
+	text-align:center;
+	line-height:40px; 
+	position:absolute;
+	left:173px;
+	top:72px;
+	background:#f36;
+
+}
+.pic-code img{
+	width:120px;
+	height:50px;
+}
+.pic-code .changePic{
+	margin-left:15px; 
+	width:110px;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	color:#f36;
+	text-decoration: underline;
+
+}
+.code-wrap a.u-wrap-btn{
+	display:inline-block;
+	width:105px;
+	height:35px;
+	line-height:35px;
+	text-align:center;
+	border-radius:5px;
+}
+.code-wrap a.confirm{
+	background: #f36;
+}
+.code-wrap a.cancel{
+	margin-left:30px;
+	background: #575d65;
 }
 .reg-success{
 	text-align: center;
@@ -435,7 +484,7 @@ a#m-changepass,a#m-change,a#m-realname{
 .m-layer .lyct span.tips{
 	display:block;
 	position:absolute;
-	left:173px;
+	left:177px;
 	top:21px;
 	width:130px;
 	height:40px;

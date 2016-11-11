@@ -55,191 +55,6 @@ $(function() {
     $(".lybt .u-btn").on("click", function() {
         $(this).parents(".m-layer").removeClass("z-show");
     });
-//修改昵称
-    $("#checktips").on("blur", function() {
-            $.ajax({
-                method: "GET", //对于请求类型
-                url: "http://localhost:3000/api/person-center/update-nickname",
-                dataType: 'json',
-                data: {
-                    nickName: $.trim($("#checktips").val())
-                }, //这个是一个验证是否重名的接口。参数只有一个 名字
-                success: function(data) {
-                    console.log(data);
-                    if (data.code == 0) { //data.code的值这个是后端人员规定的。
-                        console.log("请求成功");
-                        if (data.object == 1) { //1为重复
-                            console.log("这个nickName重复啦");
-                            $("#retips").show();
-                        } else if (data.object == 0) {
-                            console.log("这个nickName不重复");
-                            $("#retips").hide();
-                        } else {
-                            console.log("未知异常");
-                        }
-                    } else if (data.code == -2) {
-                        console.log("你没有权限，通常来讲，你是没有登录");
-                    } else if (data.code == -5) {
-                        console.log("参数错误哦。");
-                    } else {
-                        console.log(data.result);
-                    }
-                },
-                error: function(a, b, c) {
-                    console.log("接口出问题啦");
-                }
-            })
-        })
-// 判断新密码
-    $("#u-new").on("blur", function() {
-        if ($("#u-new").val().length < 6) {
-            $("#u-new").parent().find(".u-vpassword").show();
-        } else {
-            $("#u-new").parent().find("span").hide();
-        }
-    })
-    $("#u-confirm").on("blur", function() {
-            if ($("#u-new").val() == $("#u-confirm").val()) {
-                $("#u-confirm").parent().find("span").hide();
-                $("#u-confirm").parent().find(".rightpassword").show();
-            } else {
-                $("#u-confirm").parent().find("span").hide();
-                $("#u-confirm").parent().find(".failpassword").show();
-            }
-        })
-//修改密码成功弹框
-    // $("#userbox").on("click", function() {
-    //     $(".m-psuccess").addClass("z-show");
-    // });
-    // $(".m-psuccess #userbox").on("click", function() {
-    //     $(this).parents(".m-psuccess").removeClass("z-show");
-    // });
-//修改密码接口
-    $('#send').on("click", function() {
-        $.ajax({
-            type: "GET",
-            url: "http://localhost:3000/api/person-center/update-password",
-            data: { oldPassword: $("#u-current").val(), password: $("#u-new") },
-            dataType: "json",
-            success: function(data) {
-                if (data.code == 0) { //data.code的值这个是后端人员规定的。
-                    console.log("请求成功");
-                    if (data.object == 1) { //1为重复
-                        console.log("这个重复啦");
-                    } else if (data.object == 0) {
-                        console.log("这个不重复");
-                    } else {
-                        console.log("未知异常");
-                    }
-                } else if (data.code == -2) {
-                    console.log("你没有权限，通常来讲，你是没有登录");
-                } else if (data.code == -5) {
-                    console.log("参数错误哦。");
-                } else {
-                    console.log(data.result);
-                }
-            },
-            error: function() {
-                alert('通讯服务器错误');
-            }
-        });
-    });
-// 刷新图形验证码
-    var $telnumber = $('.telnumber');
-
-    function changeCode() {
-        $picCode.attr('src', 'http://localhost:3000/api/checkCode?phone=' + $telnumber.val() + '&rand=' + new Date());
-
-    }
-
-    $('#gainnumber').click(function(e) {
-        var _current = $(e.currentTarget);
-        var _error = _current.next('.error-tip');
-        if ($telnumber.val()) {
-            if (/^1([0-9]){10}$/.test($telnumber.val())) {
-                var parm = {};
-                parm.mobile = $telnumber.val();
-                console.log(parm);
-                $.ajax({
-                    url: 'http://172.16.2.62:8777/sendSMSCode',
-                    data: parm,
-                    type: 'post',
-                    dataType: 'json',
-                    success: function(data) {
-                        if (data.object == 0) {
-                            $('.code-wrap input').val('');
-                            $('.m-mask').show();
-                            changeCode();
-                        } else {
-                            _error.show();
-                            _error.text('手机号已被注册');
-                            setTimeout(function() {
-                                _error.hide();
-                                _error.text('手机号码不能为空');
-                            }, 2000);
-                        }
-                    },
-                    error: function() {
-                        alert('通讯服务器错误');
-                    }
-                });
-            } else {
-                _error.show();
-                _error.text('请输入正确号码');
-                setTimeout(function() {
-                    _error.hide();
-                    _error.text('手机号码不能为空');
-                }, 2000);
-            }
-        } else {
-            _error.show();
-            setTimeout(function() {
-                _error.hide();
-            }, 2000);
-        }
-    })
-
-    $('.pic-code a').click(function(e) {
-        e.preventDefault();
-        changeCode();
-    })
-$("#userbox").on('click',function(){
-    $.ajax({
-            method: "GET", //对于请求类型
-            url: "http://172.16.2.62/person-center/mobile-auth",
-            dataType: 'json',
-               data: {checkCode:$.trim($("#verify").val()),
-                      mobile:$.trim($("#number").val()),
-            },
-            success: function(data) {
-                if (data.code == 0) { //data.code的值这个是后端人员规定的。
-                    console.log("请求成功");
-                    if (!checkCode.val().match(/^[1][3][0-9]{9}$/)) {
-                        $("#verify").html("<font color='red'>手机号码格式不正确！请重新输入</font>");
-                        $("#verify").unbind("focus"); // 添加这行，在focus()之前先把绑定的 focus 处理事件去掉
-                        $("#verify").focus();
-                    }
-                    if (data.object == 1) { //1为重复
-                        console.log("这个重复啦");
-                    } else if (data.object == 0) {
-                        console.log("这个不重复");
-                    } else {
-                        console.log("未知异常");
-                    }
-                } else if (data.code == -2) {
-                    console.log("你没有权限，通常来讲，你是没有登录");
-                } else if (data.code == -5) {
-                    console.log("参数错误哦。");
-                } else {
-                    console.log(data.result);
-                }
-            },
-            error: function(a, b, c) {
-                console.log("接口出问题啦");
-            }
-        })
-  })
-
  //选中支付宝
    $(".payimg").off("click").on("click",function(){$(".payimg .u-checked").hide();
    	$(".payimg .u-dischecked").show();$(this).find(".u-checked").show();$(this).find(".u-dischecked").hide();})
@@ -283,143 +98,391 @@ $("#userbox").on('click',function(){
             }
         })
     })
- // 分页插件
- $('.M-box').pagination();
-//  $('.M-box').pagination({
-//     callback:function(index){
-//         $('.now').text(index);
-//     }
-// },function(api){
-//     $('.now').text(api.getCurrent());
-// });
- //我的关注
-$("#myfocusclick").on('click',function(){
-    $.ajax({
-        method: "GET", //对于请求类型
-        url: "http://localhost:3000/api/person-center/my-concern",
-        dataType: 'json',
-        data: {
-            page: $.trim($("#page").val()),
-            pageSize: $.trim($("#pageSize").val())
-        }, //这个是一个验证是否重名的接口。参数只有一个 名字
-        success: function(data) {
-            if (data.code == 0) { //data.code的值这个是后端人员规定的。
-                console.log("请求成功");
-                var str = "";
-                for (index in data.object.list) {
-                    str += '<div class="m-main"><div class="u-top"><h3>主播</h3></div>' +
-                        '<div class="u-host"><div class="u-hleft"><div class="u-focusimg">' +
-                        '<img src="' + data.object.list[index].icon + '"></div>' +
-                        '<div class="u-nickhost"><p class="u-nicksex"><span>' + data.object.list[index].nickname + '</span>' +
-                        '<img src="' + data.object.list[index].sex + '"></p><div class="u-hostfans"><p>' +
-                        '<span class="u-hf">直播间ID</span>&nbsp;  ' +
-                        '<span class="u-num">' + data.object.list[index].room_number + '</span></p>' +
-                        '<p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;' +
-                        '<span class="u-num">' + data.object.list[index].fans + '</span></p></div>' +
-                        '</div></div><div class="u-hright"><img src="/images/focusclick.png">' +
-                        '<a href="' + data.object.list[index].room_number + '">进入房间</a></div></div>'
-                }
-                if (data.object.total == 0) {
+   
+//  // 分页插件
+//  $('.M-box').pagination();
+// //  $('.M-box').pagination({
+// //     callback:function(index){
+// //         $('.now').text(index);
+// //     }
+// // },function(api){
+// //     $('.now').text(api.getCurrent());
+// // });
+//  //我的关注
+// $("#myfocusclick").on('click',function(){
+//     $.ajax({
+//         method: "GET", //对于请求类型
+//         url: "http://localhost:3000/api/person-center/my-concern",
+//         dataType: 'json',
+//         data: {
+//             page: $.trim($("#page").val()),
+//             pageSize: $.trim($("#pageSize").val())
+//         }, //这个是一个验证是否重名的接口。参数只有一个 名字
+//         success: function(data) {
+//             if (data.code == 0) { //data.code的值这个是后端人员规定的。
+//                 console.log("请求成功");
+//                 var str = "";
+//                 for (index in data.object.list) {
+//                     str += '<div class="m-main"><div class="u-top"><h3>主播</h3></div>' +
+//                         '<div class="u-host"><div class="u-hleft"><div class="u-focusimg">' +
+//                         '<img src="' + data.object.list[index].icon + '"></div>' +
+//                         '<div class="u-nickhost"><p class="u-nicksex"><span>' + data.object.list[index].nickname + '</span>' +
+//                         '<img src="' + data.object.list[index].sex + '"></p><div class="u-hostfans"><p>' +
+//                         '<span class="u-hf">直播间ID</span>&nbsp;  ' +
+//                         '<span class="u-num">' + data.object.list[index].room_number + '</span></p>' +
+//                         '<p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;' +
+//                         '<span class="u-num">' + data.object.list[index].fans + '</span></p></div>' +
+//                         '</div></div><div class="u-hright"><img src="/images/focusclick.png">' +
+//                         '<a href="' + data.object.list[index].room_number + '">进入房间</a></div></div>'
+//                 }
+//                 if (data.object.total == 0) {
 
-                } else if (data.object.total < 6) {
-                    for (index in data.object.list) {
+//                 } else if (data.object.total < 6) {
+//                     for (index in data.object.list) {
                        
-                    }
-                } else {
+//                     }
+//                 } else {
                     
-                }
-                if (data.object == 1) { //1为重复
-                    console.log("这个重复啦");
-                } else if (data.object == 0) {
-                    console.log("这个不重复");
-                } else {
-                    console.log("未知异常");
-                }
-            } else if (data.code == -2) {
-                console.log("你没有权限，通常来讲，你是没有登录");
-            } else if (data.code == -5) {
-                console.log("参数错误哦。");
+//                 }
+//                 if (data.object == 1) { //1为重复
+//                     console.log("这个重复啦");
+//                 } else if (data.object == 0) {
+//                     console.log("这个不重复");
+//                 } else {
+//                     console.log("未知异常");
+//                 }
+//             } else if (data.code == -2) {
+//                 console.log("你没有权限，通常来讲，你是没有登录");
+//             } else if (data.code == -5) {
+//                 console.log("参数错误哦。");
 
-            } else {
-                console.log(data.result);
-            }
-        },
-        error: function(a, b, c) {
-            console.log("接口出问题啦");
-        }
-    })
-})
-//我的消息
-$("#mymessageclick").on('click',function(){
-    $.ajax({
-            method: "GET", //对于请求类型
-            url: "http://localhost:3000/api/person-center/my-msg",
-            dataType: 'json',
-            data: {
-                page: $.trim($("#page").val()),
-                pageSize: $.trim($("#pageSize").val()),
-                type: $.trim($("#type").val()),
-            }, //这个是一个验证是否重名的接口。参数只有一个 名字
-            success: function(data) {
-                if (data.code == 0) { //data.code的值这个是后端人员规定的。
-                    console.log("请求成功");
-                    var str = "";
-                    for (index in data.object.list) {
-                        str += '<div class="m-mainm">' +
-                            '<div class="u-m-top">' +
-                            '<a href="">系统消息</a>' +
-                            '<a href="">关注消息</a>' +
-                            '</div>' +
-                            '<div class="u-systemmessage mcurrent">' +
-                            '<div class="u-message">' +
-                            '<div class="u-msystem">' +
-                            '<img src="/images/messagehead.png">' +
-                            '</div>' +
-                            '<div class="u-yuer">' +
-                            '<p>' +
-                            '<h3>' + data.object.list[index].title + '</h3>' +
-                            '<span class="u-messagetime">' + data.object.list[index].create_date + '</span>' +
-                            '<p>' +
-                            '<p>' +
-                            '<span class="u-messagecontent"></span><span class="u-messtips">' + data.object.list[index].obj_id + '</span>' +
-                            '</p>' +
-                            '</div>' +
-                            '</div>'
-                    }
-                    if (data.object.total == 0) {
+//             } else {
+//                 console.log(data.result);
+//             }
+//         },
+//         error: function(a, b, c) {
+//             console.log("接口出问题啦");
+//         }
+//     })
+// })
+// //我的消息
+// $("#mymessageclick").on('click',function(){
+//     $.ajax({
+//             method: "GET", //对于请求类型
+//             url: "http://localhost:3000/api/person-center/my-msg",
+//             dataType: 'json',
+//             data: {
+//                 page: $.trim($("#page").val()),
+//                 pageSize: $.trim($("#pageSize").val()),
+//                 type: $.trim($("#type").val()),
+//             }, //这个是一个验证是否重名的接口。参数只有一个 名字
+//             success: function(data) {
+//                 if (data.code == 0) { //data.code的值这个是后端人员规定的。
+//                     console.log("请求成功");
+//                     var str = "";
+//                     for (index in data.object.list) {
+//                         str += '<div class="m-mainm">' +
+//                             '<div class="u-m-top">' +
+//                             '<a href="">系统消息</a>' +
+//                             '<a href="">关注消息</a>' +
+//                             '</div>' +
+//                             '<div class="u-systemmessage mcurrent">' +
+//                             '<div class="u-message">' +
+//                             '<div class="u-msystem">' +
+//                             '<img src="/images/messagehead.png">' +
+//                             '</div>' +
+//                             '<div class="u-yuer">' +
+//                             '<p>' +
+//                             '<h3>' + data.object.list[index].title + '</h3>' +
+//                             '<span class="u-messagetime">' + data.object.list[index].create_date + '</span>' +
+//                             '<p>' +
+//                             '<p>' +
+//                             '<span class="u-messagecontent"></span><span class="u-messtips">' + data.object.list[index].obj_id + '</span>' +
+//                             '</p>' +
+//                             '</div>' +
+//                             '</div>'
+//                     }
+//                     if (data.object.total == 0) {
 
-                    } else if (data.object.total < 11) {
-                        for (index in data.object.list) {
-                            console.log("内容是" + data.object.list[index].content);
-                            console.log("时间是" + data.object.list[index].create_date);
-                            console.log("消息id是" + data.object.list[index].id);
-                            console.log("目标id是" + data.object.list[index].obj_id);
-                            console.log("标题是" + data.object.list[index].title);
-                        }
-                    } else {
+//                     } else if (data.object.total < 11) {
+//                         for (index in data.object.list) {
+//                             console.log("内容是" + data.object.list[index].content);
+//                             console.log("时间是" + data.object.list[index].create_date);
+//                             console.log("消息id是" + data.object.list[index].id);
+//                             console.log("目标id是" + data.object.list[index].obj_id);
+//                             console.log("标题是" + data.object.list[index].title);
+//                         }
+//                     } else {
 
-                    }
-                    if (data.object == 1) { //1为重复
-                        console.log("这个重复啦");
-                    } else if (data.object == 0) {
-                        console.log("这个不重复");
-                    } else {
-                        console.log("未知异常");
-                    }
-                } else if (data.code == -2) {
-                    console.log("你没有权限，通常来讲，你是没有登录");
-                } else if (data.code == -5) {
-                    console.log("参数错误哦。");
+//                     }
+//                     if (data.object == 1) { //1为重复
+//                         console.log("这个重复啦");
+//                     } else if (data.object == 0) {
+//                         console.log("这个不重复");
+//                     } else {
+//                         console.log("未知异常");
+//                     }
+//                 } else if (data.code == -2) {
+//                     console.log("你没有权限，通常来讲，你是没有登录");
+//                 } else if (data.code == -5) {
+//                     console.log("参数错误哦。");
 
-                } else {
-                    console.log(data.result);
-                }
-            },
-            error: function(a, b, c) {
-                console.log("接口出问题啦");
-            }
-        })
- })
+//                 } else {
+//                     console.log(data.result);
+//                 }
+//             },
+//             error: function(a, b, c) {
+//                 console.log("接口出问题啦");
+//             }
+//     })
+//  })
 
 
 });
+;(function(window,$,undefined){
+    local={
+        updatePasswordTag_current:false,
+        updatePasswordTag_new:false,
+        updatePasswordTag_confirm:false,
+        iphoneAuth:false,
+        init : function(){
+            local.eventBind();
+        },
+        eventBind : function(){            
+            $("#u-current").off().on("blur",function(){
+                local.updatePasswordTag_current=false;
+                $("#u-current").parent().find("span").each(function(){
+                    if($(this).attr("class").indexOf("u-verifypassword") != -1){
+                        $(this).show();
+                    }else{
+                        $(this).hide();
+                    }
+                });
+                $.ajax({
+                    method: "GET",
+                    url: "http://localhost:3000/api/person-center/is-password-right",
+                    dataType: 'json',
+                    data: {
+                        password: $("#u-current").val()
+                    },
+                    success: function(data) {
+                        if (data.code == 0) {
+                            local.updatePasswordTag_current=true;
+                            $("#u-current").parent().find("span").each(function(){
+                                if($(this).attr("class").indexOf("u-rightpassword") != -1){
+                                    $(this).show();
+                                }else{
+                                    $(this).hide();
+                                }
+                            });
+                        }else if(data.code == 2){
+                            $("#u-current").parent().find("span").each(function(){
+                                if($(this).attr("class").indexOf("u-failpassword") != -1){
+                                    $(this).show();
+                                }else{
+                                    $(this).hide();
+                                }
+                            });
+                        }else{
+                            console.log(data.result);
+                        }
+                    },
+                    error: function(a, b, c) {
+                        console.log("接口出问题啦");
+                    }
+                })
+            });
+            $("#u-new").off().on("blur",function(){
+                local.updatePasswordTag_new=false;
+                if(local.updatePasswordTag_confirm==true){
+                    $("#u-confirm").trigger("blur")
+                }
+                if($(this).val()<=6){
+                    $("#u-new").parent().find("span").each(function(){
+                        if($(this).attr("class").indexOf("u-vpassword") != -1){
+                            $(this).show();
+                        }else{
+                            $(this).hide();
+                        }
+                    });
+                }else{
+                    local.updatePasswordTag_new=true;
+                    $("#u-new").parent().find("span").each(function(){
+                            $(this).hide();
+                    });
+                }
+            });
+            $("#u-confirm").off().on("blur",function(){
+               local.updatePasswordTag_confirm=false;
+               if($(this).val() === $("#u-new").val()){
+                    local.updatePasswordTag_confirm=true;
+                    $("#u-confirm").parent().find("span").each(function(){
+                        if($(this).attr("class").indexOf("u-rightpassword") != -1){
+                            $(this).show();
+                        }else{
+                            $(this).hide();
+                        }
+                    });
+                }else{
+                    $("#u-confirm").parent().find("span").each(function(){
+                        if($(this).attr("class").indexOf("u-failpassword") != -1){
+                            $(this).show();
+                        }else{
+                            $(this).hide();
+                        }
+                    });
+                }
+            });
+            $("#send").off().on("click",function(){
+                if(local.updatePasswordTag_current && local.updatePasswordTag_new &&local.updatePasswordTag_confirm){
+                    $.ajax({
+                        method: "GET",
+                        url: "http://localhost:3000/api/person-center/update-password",
+                        dataType: 'json',
+                        data: {
+                            oldPassword:$("#u-current").val(),
+                            password: $("#u-new").val()
+                        },
+                        success: function(data) {
+                            if (data.code == 0) {
+                                $(".m-psuccess").show();
+                            }else if(data.code == 1){
+                                alert("更新失败");//没找到你的弹窗
+                            }else if(data.code == 2){
+                                alert("密码错误");//没找到你的弹窗
+                            }else{
+                                console.log(data.result);
+                            }
+                        },
+                        error: function(a, b, c) {
+                            console.log("接口出问题啦");
+                        }
+                    })
+                }
+            });
+            $(".m-psuccess").off().on("click",function(e){
+                e.preventDefault();
+                $(this).hide();
+                window.location.href = window.location.href;
+            })
+            $("#number").on("focus",function(){
+                $("#gainnumber").show();
+            });
+            $("#gainnumber").off().on("click",function(){
+                if(($("#number").val().length == 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#number").val()))){
+                    // $(this).hide();
+                    $(".m-mask").show().find(".pic-code img").attr("src","http://localhost:3000/api/checkCode?phone="+$("#number").val() + '&phoneCache=' + new Date());
+                } else {
+                     alert("手机号不合法");//没找到你的弹框
+                }
+            });
+            $(".m-mask .changePic").off().on("click",function(){
+                $(".m-mask .pic-code img").attr("src","http://localhost:3000/api/checkCode?phone="+$("#number").val());
+            });
+            $(".m-mask .confirm").off().on("click",function(event){
+                event.preventDefault();
+                $.ajax({
+                    method: "GET",
+                    url: "http://localhost:3000/api/sendSMSCode",
+                    dataType: 'json',
+                    data: {
+                        imgCheckCode:$(".m-mask .m-input input").val(),
+                        mobile:$("#number").val(),
+                    },
+                    success: function(data) {
+                        if(data.code == 0){
+                            $(".m-mask").hide();
+                        }else{
+                            $(".m-mask .changePic").trigger("click");
+                            alert(data.result);//这个先这样用，后台应该是文档写的有问题
+                        }
+                    },
+                    error: function(a, b, c) {
+                        console.log("接口出问题啦");
+                    }
+                });
+            });
+            $(".m-mask .cancel").off().on("click",function(){
+                $(".m-mask").hide();
+            });
+            $("#userbox").off().on("click",function(){
+                if($("#verify").val()!="" && $("#number").val()!=""){
+                    $.ajax({
+                        method: "GET",
+                        url: "http://localhost:3000/api/person-center/mobile-auth",
+                        dataType: 'json',
+                        data: {
+                            checkCode:$("#verify").val(),
+                            mobile:$("#number").val(),
+                        },
+                        success: function(data) {
+                            if (data.code == 0) {
+                                alert("认证成功");//没找到你的弹框
+                                window.location.href=window.location.href;
+                            }else if(data.code == 1){
+                                alert("更新失败");//没找到你的弹窗
+                            }else if(data.code == 2){
+                                alert("手机号已被绑定");//没找到你的弹窗
+                            }else if(data.code == 3){
+                                alert("已绑定手机号");//没找到你的弹窗
+                                window.location.href=window.location.href;
+                            }else if(data.code == 4){
+                                $("#verify").parent().find("span").each(function(){
+                                    if($(this).attr("class").indexOf("error-tip") != -1){
+                                        $(this).show();
+                                    }else{
+                                        $(this).hide();
+                                    }
+                                });
+                            }else{
+                                console.log(data.result);
+                            }
+                        },
+                        error: function(a, b, c) {
+                            console.log("接口出问题啦");
+                        }
+                    })
+                }
+            });
+            $("#verify").off().on("focus",function(){
+                $(this).parent().find("span").each(function(){
+                        $(this).hide();
+                });
+            });
+            $("#checktips").off().on("focus",function(){
+                $(this).parent().find("span").each(function(){
+                        $(this).hide();
+                });
+            });
+            $(".lybt button").off().on("click",function(){
+                $.ajax({
+                        method: "GET",
+                        url: "http://localhost:3000/api/person-center/update-nickname",
+                        dataType: 'json',
+                        data: {
+                            nickname:$("#checktips").val()
+                        },
+                        success: function(data) {
+                            if (data.code == 0) {
+                                alert("认证成功");//没找到你的弹框
+                                // window.location.href=window.location.href;
+                                window.reload(true);
+                            }else if(data.code == 1){
+                                alert("更新失败");//没找到你的弹窗
+                            }else if(data.code == 2){
+                                $("#retips").show();
+                            }else if(data.code == 3){
+                                alert("昵称只能免费修改一次");//没找到你的弹窗
+                            }else{
+                                console.log(data.result);
+                            }
+                        },
+                        error: function(a, b, c) {
+                            console.log("接口出问题啦");
+                        }
+                    })
+            })
+        },
+    };
+    local.init();
+})(window,jQuery);
