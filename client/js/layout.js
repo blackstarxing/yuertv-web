@@ -32,30 +32,42 @@ $(function(){
         document.cookie=$name+"=''; expires="+myDate.toGMTString();                
   	} 
     $('.u-login').click(function(e){
-    	var parm = {};
-            parm.nickname = $('.l-usrname').val();
-            parm.password = $('.l-pwd').val();
-    	$.ajax({
-            url: 'http://localhost:3000/api/login',
-            data: parm,
-            type: 'post',
-            dataType: 'json',
-            success: function(data) {
-                if (data.code==0) {
-                	delCookie('userId');
-                	delCookie('token');
-                    document.cookie="userId="+data.object.id; 
-                    document.cookie="token="+data.object.token; 
-           			window.sessionStorage.setItem("id", data.object.id);
-           			window.sessionStorage.setItem("avatar", data.object.icon);
-                    window.location="/";
-                }else{
-                    
+        var error = $('.login-content .error-tip');
+        if(!$('.l-usrname').val() || !$('.l-pwd').val()){
+            error.text('用户名或密码不能为空！').fadeIn(100);
+            setTimeout(function(){
+                error.fadeOut();
+            },2000);
+        }else{
+            var parm = {};
+                parm.nickname = $('.l-usrname').val();
+                parm.password = $('.l-pwd').val();
+            $.ajax({
+                url: 'http://localhost:3000/api/login',
+                data: parm,
+                type: 'post',
+                dataType: 'json',
+                success: function(data) {
+                    if (data.code==0) {
+                        delCookie('userId');
+                        delCookie('token');
+                        document.cookie="userId="+data.object.id; 
+                        document.cookie="token="+data.object.token; 
+                        window.sessionStorage.setItem("id", data.object.id);
+                        window.sessionStorage.setItem("avatar", data.object.icon);
+                        window.location="/";
+                    }else{
+                        error.text(data.result).fadeIn(100);
+                        setTimeout(function(){
+                            error.fadeOut();
+                        },2000);
+                    }
+                },
+                error: function() {
+                    alert('通讯服务器错误');
                 }
-            },
-            error: function() {
-                alert('通讯服务器错误');
-            }
-        });
+            });
+        }
+    	
     })
 })

@@ -7,33 +7,36 @@
 {% block content %}
 
 <div class="g-wrap">
-    <div class="g-player f-cb">
-        <div class="m-player f-fl">
-            <div id="LiveHomeDiv"></div>
-            <!-- <div id="VideoPlayerDiv"/> -->
-            <!-- <div id="LiveRoomDiv"/> -->
-        </div>
-        <div class="m-play-list f-fr">
-            <ul>
-                {% for recommend in index.recommend %}
-                    {% if loop.first %}
-                        <li class="current"><a href="{{recommend.rtmp}}" data-icon="{{recommend.up_user_icon}}"><img src="{{recommend.icon}}" alt=""></a></li>
-                    {% else %}
-                        <li><a href="{{recommend.rtmp}}" data-icon="http://img.wangyuhudong.com/{{recommend.up_user_icon}}"><img src="{{recommend.icon}}" alt=""></a></li>
-                    {% endif %}
-                {% endfor %}
-               <!--  <li class="current"><a href=""></a></li>
-                <li><a href=""></a></li>
-                <li><a href=""></a></li>
-                <li><a href=""></a></li>
-                <li><a href=""></a></li>
-                <li><a href=""></a></li> -->
-            </ul>
-        </div>
-    </div>       
+    <div class="comWidth">
+        <div class="g-player f-cb">
+            <div class="m-player f-fl">
+                <div id="LiveHomeDiv"></div>
+                <!-- <div id="VideoPlayerDiv"/> -->
+                <!-- <div id="LiveRoomDiv"/> -->
+            </div>
+            <div class="m-play-list f-fr">
+                <ul>
+                    {% for recommend in index.recommend %}
+                        {% if loop.first %}
+                            <li class="current"><a href="{{recommend.rtmp}}" data-icon="{{recommend.up_user_icon}}"><img src="{{recommend.icon}}" alt=""></a></li>
+                        {% else %}
+                            <li><a href="{{recommend.rtmp}}" data-icon="http://img.wangyuhudong.com/{{recommend.up_user_icon}}"><img src="{{recommend.icon}}" alt=""></a></li>
+                        {% endif %}
+                    {% endfor %}
+                   <!--  <li class="current"><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li> -->
+                </ul>
+            </div>
+        </div>       
+    </div>
+    
 </div>
 <div class="g-mb">
-    <div class="g-wrap">
+    <div class="comWidth">
         <div class="m-activity">
             <div class="title"><img src="/images/index_icon1.png" alt="">热门活动</div>
             <div class="m-content f-cb">

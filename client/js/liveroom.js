@@ -7,6 +7,11 @@ $(function(){
         $('.m-live-left').css("width",liveW+"px");
         $('.videoBox').css("height",0.56*liveW+"px");
         $('.room-block').css("height",chatroomH+"px");
+        if(clientW<1340){
+            $('.send-gift').addClass('m-l-gift');
+        }else{
+            $('.send-gift').removeClass('m-l-gift');
+        }
     }
     resize();
     $(window).resize(function() {
@@ -103,5 +108,134 @@ $(function(){
     att.id = "LiveRoom";
     att.data = "YeLiveRoom.swf";
     liveRoomInterf.flash = swfobject.createSWF(att, par, "LiveRoomDiv");
+
+    // 聊天室服务器地址
+    var address=[];
+    // 当前时间
+    var myDate = new Date(),
+        y = myDate.getFullYear(),   //获取完整的年份(4位,1970-????)
+        m = myDate.getMonth()+1,      //获取当前月份(0-11,0代表1月)
+        d = myDate.getDate(),       //获取当前日(1-31)
+        h = myDate.getHours(),      //获取当前小时数(0-23)
+        mi = myDate.getMinutes(),    //获取当前分钟数(0-59)
+        s = myDate.getSeconds();   //获取当前秒数(0-59)
+    var CurTime = Date.UTC(y,m,d,h,mi,s);
+    var roomid = parseInt(4174310);
+    var shaObj = new jsSHA("SHA-1", "TEXT");
+    // AppSecret
+    shaObj.update('1981023862be'+1+CurTime);
+    var hash = shaObj.getHash("HEX");
+
+    // 获取聊天室信息重要参数
+    var appKey = '5585496885932f31d478ed0222072bcf',
+        roomid = '4580501',
+        accid = '3835355';
+
+    $.ajax({
+        url: "https://api.netease.im/nimserver/chatroom/requestAddr.action",
+        contentType:"application/x-www-form-urlencoded;charset=utf-8",
+        type: 'POST',
+        beforeSend: function (req) {
+            req.setRequestHeader('appkey', appKey);
+            req.setRequestHeader('Nonce',1);
+            req.setRequestHeader('CurTime',CurTime);
+            req.setRequestHeader('CheckSum',hash);
+        },
+        data:{roomid:roomid,accid:accid}
+    }).done(function(data) {
+        console.log(data)
+        if(data.code===200){
+           address = data.addr;
+           getChat();
+        }else{
+            alert("获取连接房间地址失败");
+        }   
+    })
+
+    function getChat(){
+        var chatroom = Chatroom.getInstance({
+            appKey: appKey,
+            account: accid,
+            token: accid,
+            chatroomId: roomid,
+            chatroomAddresses: address,
+            onconnect: onChatroomConnect,
+            onerror: onChatroomError,
+            onwillreconnect: onChatroomWillReconnect,
+            ondisconnect: onChatroomDisconnect,
+            // 消息
+            onmsgs: onChatroomMsgs
+        });
+        $('.sendText').click(function(){
+            var msg = chatroom.sendText({
+                text: 'hello',
+                done: sendChatroomMsgDone
+            });
+            console.log('正在发送聊天室text消息, id=' + msg.idClient);
+            function sendChatroomMsgDone(error, msg) {
+                console.log('发送聊天室' + msg.type + '消息' + (!error?'成功':'失败') + ', id=' + msg.idClient, error, msg);
+            }
+        });
+    }
+
+
+    function onChatroomConnect(chatroom) {
+        console.log('进入聊天室', chatroom);
+        $('#chat').append("<div>你已进入聊天室！<div>"); 
+        // var msg = chatroom.sendText({
+        //     text: 'hello',
+        //     done: sendChatroomMsgDone
+        // });
+        // console.log('正在发送聊天室text消息, id=' + msg.idClient);
+        // function sendChatroomMsgDone(error, msg) {
+        //     console.log('发送聊天室' + msg.type + '消息' + (!error?'成功':'失败') + ', id=' + msg.idClient, error, msg);
+        // }
+    }
+    function onChatroomWillReconnect(obj) {
+        // 此时说明 `SDK` 已经断开连接, 请开发者在界面上提示用户连接已断开, 而且正在重新建立连接
+        console.log('即将重连', obj);
+    }
+    function onChatroomDisconnect(error) {
+        // 此时说明 `SDK` 处于断开状态, 开发者此时应该根据错误码提示相应的错误信息, 并且跳转到登录页面
+        console.log('连接断开', error);
+        if (error) {
+            switch (error.code) {
+            // 账号或者密码错误, 请跳转到登录页面并提示错误
+            case 302:
+                break;
+            // 被踢, 请提示错误后跳转到登录页面
+            case 'kicked':
+                break;
+            default:
+                break;
+            }
+        }
+        $('#chat').append("<div>连接断开<div>"); 
+    }
+    function onChatroomError(error, obj) {
+        console.log('发生错误', error, obj);
+    }
+    function onChatroomMsgs(msgs) {
+        console.log('收到聊天室消息', msgs);
+        // $('.chat').html(msgs)
+        for(var i=0;i<msgs.length;i++){
+            if(msgs[i].content){
+                var content=JSON.parse(msgs[i].content);
+                // console.log(content);
+                if(content.data.giftNum>1){
+                    $('#chat').append("<div class='gift'>"+content.data.senderName+":&nbsp;&nbsp;送给主播1个"+content.data.giftName+"<span class='combo'>"+content.data.giftNum+"<i></i></span><div>");
+                }else{
+                    $('#chat').append("<div class='gift'>"+content.data.senderName+":&nbsp;&nbsp;送给主播1个"+content.data.giftName+"<div>");
+                }
+            }else if(msgs[i].text){
+                var host = msgs[i].fromNick=="1" ? '<label for="">主播</label>&nbsp;' : '';
+                $('#chat').append("<div>"+host+"<span class='fromNick'>"+msgs[i].fromNick+":&nbsp;&nbsp;</span>"+msgs[i].text+"<div>");         
+            }else if(msgs[i].flow=="in" && !msgs[i].text && !msgs[i].attach.fromNick && msgs[i].attach.type=="memberEnter"){
+                $('#chat').append("<div>欢迎用户"+msgs[i].attach.fromNick+"进入直播间");
+            }
+            // lct.scrollTop=Math.max(0,lct.scrollHeight-lct.offsetHeight);        
+        }
+
+    }
 
 })

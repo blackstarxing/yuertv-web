@@ -29,6 +29,7 @@
         <div class="live-info f-cb">
             <img src="/head.png" alt="" class="live-avatar f-fl">
             <div class="avatar-info f-fl">
+                <span>{{detail.info.rtmp}}</span>
                 <h3>界黄盖暴力输出，回合内秒全场</h3>
                 <div><span class="u-label">梦妮~依恋*<img src="/images/female.png" alt=""></span>王者荣耀</div>
                 <div><span class="u-label">房间ID：354681</span>在线：3626</div>
@@ -90,7 +91,7 @@
                 <div class="set-option">清屏</div>
             </div>
             <div class="send-block">
-                <input type="text"><button>发送</button>
+                <input type="text"><button class="sendText">发送</button>
             </div>
         </div>
     </div>
@@ -99,6 +100,10 @@
 {% endblock %}
 
 {% block js %}
+<script src="/sha1.js"></script>
+<script src="/Web_SDK_Base_v2.8.0.js"></script>
+<script src="/Web_SDK_NIM_v2.8.0.js"></script>
+<script src="/Web_SDK_Chatroom_v2.8.0.js"></script>
 <script type="text/javascript" src="/swfobject.js"></script>
 <script type="text/javascript" src="/dist/liveroom.js"></script>
 {% endblock %}

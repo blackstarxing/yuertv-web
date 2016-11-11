@@ -12,6 +12,8 @@ module.exports = {
         liveroom: ['./client/css/liveroom.css', './client/js/liveroom.js', hotMiddlewareScript],
         center: ['./client/css/center.css', './client/js/center.js', hotMiddlewareScript],
         register: ['./client/css/register.css', './client/js/register.js', hotMiddlewareScript],
+        activity: ['./client/css/activity.css',  hotMiddlewareScript],
+        search: ['./client/css/search.css',  hotMiddlewareScript],
     },
     output: {
         filename: './[name].js',
