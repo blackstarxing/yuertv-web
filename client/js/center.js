@@ -1,7 +1,7 @@
 // if(obj=='女'){img.src="nv"}else{img.src="nan"}
 $(function() {
 // 个人中心的tab切换
-    $("#leftmain li").off('click').on('click', function(event) {
+    $("#leftmain li").on('click', function(event) {
         event.preventDefault();
         console.log($(this).index());
         $(this).addClass("rightswitchcolor").siblings().removeClass("rightswitchcolor");
@@ -55,9 +55,19 @@ $(function() {
     $(".lybt .u-btn").on("click", function() {
         $(this).parents(".m-layer").removeClass("z-show");
     });
+      var show =  $("#messshow").html();
+                         if(show == "隐藏")
+                         {
+                                 $("#show").html("展开");
+                         }
+                         else
+                         {
+                                 $("#show").html("隐藏");
+                         }
  //选中支付宝
-   $(".payimg").off("click").on("click",function(){$(".payimg .u-checked").hide();
-    $(".payimg .u-dischecked").show();$(this).find(".u-checked").show();$(this).find(".u-dischecked").hide();})
+    // $(".payimg.initShow").off("click").on("click",function(){$(".payimg .u-checked").hide();
+    // $(".initShow").off("click").on("click",function(){$(".payimg .u-checked").hide();
+    // $(".payimg .u-dischecked").show();$(this).find(".u-checked").show();$(this).find(".u-dischecked").hide();})
 //我要充值－－选中鱼币的样式
     $(".u-value div").on("click", function() {
             $(this).addClass("checktopup").siblings().removeClass("checktopup");
@@ -98,149 +108,7 @@ $(function() {
             }
         })
     })
-   
-//  // 分页插件
-//  $('.M-box').pagination();
-// //  $('.M-box').pagination({
-// //     callback:function(index){
-// //         $('.now').text(index);
-// //     }
-// // },function(api){
-// //     $('.now').text(api.getCurrent());
-// // });
-//  //我的关注
-// $("#myfocusclick").on('click',function(){
-//     $.ajax({
-//         method: "GET", //对于请求类型
-//         url: "http://localhost:3000/api/person-center/my-concern",
-//         dataType: 'json',
-//         data: {
-//             page: $.trim($("#page").val()),
-//             pageSize: $.trim($("#pageSize").val())
-//         }, //这个是一个验证是否重名的接口。参数只有一个 名字
-//         success: function(data) {
-//             if (data.code == 0) { //data.code的值这个是后端人员规定的。
-//                 console.log("请求成功");
-//                 var str = "";
-//                 for (index in data.object.list) {
-//                     str += '<div class="m-main"><div class="u-top"><h3>主播</h3></div>' +
-//                         '<div class="u-host"><div class="u-hleft"><div class="u-focusimg">' +
-//                         '<img src="' + data.object.list[index].icon + '"></div>' +
-//                         '<div class="u-nickhost"><p class="u-nicksex"><span>' + data.object.list[index].nickname + '</span>' +
-//                         '<img src="' + data.object.list[index].sex + '"></p><div class="u-hostfans"><p>' +
-//                         '<span class="u-hf">直播间ID</span>&nbsp;  ' +
-//                         '<span class="u-num">' + data.object.list[index].room_number + '</span></p>' +
-//                         '<p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;' +
-//                         '<span class="u-num">' + data.object.list[index].fans + '</span></p></div>' +
-//                         '</div></div><div class="u-hright"><img src="/images/focusclick.png">' +
-//                         '<a href="' + data.object.list[index].room_number + '">进入房间</a></div></div>'
-//                 }
-//                 if (data.object.total == 0) {
-
-//                 } else if (data.object.total < 6) {
-//                     for (index in data.object.list) {
-                       
-//                     }
-//                 } else {
-                    
-//                 }
-//                 if (data.object == 1) { //1为重复
-//                     console.log("这个重复啦");
-//                 } else if (data.object == 0) {
-//                     console.log("这个不重复");
-//                 } else {
-//                     console.log("未知异常");
-//                 }
-//             } else if (data.code == -2) {
-//                 console.log("你没有权限，通常来讲，你是没有登录");
-//             } else if (data.code == -5) {
-//                 console.log("参数错误哦。");
-
-//             } else {
-//                 console.log(data.result);
-//             }
-//         },
-//         error: function(a, b, c) {
-//             console.log("接口出问题啦");
-//         }
-//     })
-// })
-// //我的消息
-// $("#mymessageclick").on('click',function(){
-//     $.ajax({
-//             method: "GET", //对于请求类型
-//             url: "http://localhost:3000/api/person-center/my-msg",
-//             dataType: 'json',
-//             data: {
-//                 page: $.trim($("#page").val()),
-//                 pageSize: $.trim($("#pageSize").val()),
-//                 type: $.trim($("#type").val()),
-//             }, //这个是一个验证是否重名的接口。参数只有一个 名字
-//             success: function(data) {
-//                 if (data.code == 0) { //data.code的值这个是后端人员规定的。
-//                     console.log("请求成功");
-//                     var str = "";
-//                     for (index in data.object.list) {
-//                         str += '<div class="m-mainm">' +
-//                             '<div class="u-m-top">' +
-//                             '<a href="">系统消息</a>' +
-//                             '<a href="">关注消息</a>' +
-//                             '</div>' +
-//                             '<div class="u-systemmessage mcurrent">' +
-//                             '<div class="u-message">' +
-//                             '<div class="u-msystem">' +
-//                             '<img src="/images/messagehead.png">' +
-//                             '</div>' +
-//                             '<div class="u-yuer">' +
-//                             '<p>' +
-//                             '<h3>' + data.object.list[index].title + '</h3>' +
-//                             '<span class="u-messagetime">' + data.object.list[index].create_date + '</span>' +
-//                             '<p>' +
-//                             '<p>' +
-//                             '<span class="u-messagecontent"></span><span class="u-messtips">' + data.object.list[index].obj_id + '</span>' +
-//                             '</p>' +
-//                             '</div>' +
-//                             '</div>'
-//                     }
-//                     if (data.object.total == 0) {
-
-//                     } else if (data.object.total < 11) {
-//                         for (index in data.object.list) {
-//                             console.log("内容是" + data.object.list[index].content);
-//                             console.log("时间是" + data.object.list[index].create_date);
-//                             console.log("消息id是" + data.object.list[index].id);
-//                             console.log("目标id是" + data.object.list[index].obj_id);
-//                             console.log("标题是" + data.object.list[index].title);
-//                         }
-//                     } else {
-
-//                     }
-//                     if (data.object == 1) { //1为重复
-//                         console.log("这个重复啦");
-//                     } else if (data.object == 0) {
-//                         console.log("这个不重复");
-//                     } else {
-//                         console.log("未知异常");
-//                     }
-//                 } else if (data.code == -2) {
-//                     console.log("你没有权限，通常来讲，你是没有登录");
-//                 } else if (data.code == -5) {
-//                     console.log("参数错误哦。");
-
-//                 } else {
-//                     console.log(data.result);
-//                 }
-//             },
-//             error: function(a, b, c) {
-//                 console.log("接口出问题啦");
-//             }
-//     })
-//  })
-
-
-});
-;(function(window,$,undefined){
-    local={
+    var local={
         updatePasswordTag_current:false,
         updatePasswordTag_new:false,
         updatePasswordTag_confirm:false,
@@ -254,7 +122,7 @@ $(function() {
         init : function(){
             local.eventBind();
         },
-        eventBind : function(){            
+        eventBind : function(){    
             $("#u-current").off().on("blur",function(){
                 local.updatePasswordTag_current=false;
                 $("#u-current").parent().find("span").each(function(){
@@ -489,7 +357,8 @@ $(function() {
                     })
             })
 
-            $("#prevBtn").off().on("click",function(event){
+
+             $(".prevBtn").off().on("click",function(event){
                 event.preventDefault();
                 local.cur_page--;
                 if(local.cur_pageCallback == "news"){
@@ -498,7 +367,7 @@ $(function() {
                     local.followList();
                 }
             })
-            $("#nextBtn").off().on("click",function(event){
+            $(".nextBtn").off().on("click",function(event){
                 event.preventDefault();
                 local.cur_page++;
                 if(local.cur_pageCallback == "news"){
@@ -511,35 +380,45 @@ $(function() {
                 local.Pagination(1,0,5,"follow");
                 local.followList();
             })
-            $("#mymessageclick").on("click",function(){
+            $("#mymessageclick").on("click",function(e){
+                e.preventDefault();
                 local.Pagination(1,0,5,"news");
-                local.newsList();                
-            })
-            $(".u-m-top a:eq(0)").on("click",function(){
+                local.newsList(1);
+            });
+            $(".u-m-top a:eq(0)").on("click",function(e){
+                e.preventDefault();
                 local.Pagination(1,0,5,"news");
                 local.newsList(0);
             })
-            $(".u-m-top a:eq(1)").on("click",function(){
+            $(".u-m-top a:eq(1)").on("click",function(e){
+                e.preventDefault();
                 local.Pagination(1,0,5,"news");
                 local.newsList(1);
             })
         },
         Pagination:function(_page,_total,_pageSize,callback){
+            // alert(local.cur_page);
             local.cur_page = _page || 1;
             local.cur_total = _total || 0;
             local.cur_pageSize = _pageSize || 5;
-            local.cur_maxPage = (parseInt(_total / _pageSize)+1) || 1;
+            local.cur_maxPage = (parseInt((local.cur_total+5)/ local.cur_pageSize)) || 1;
             local.cur_pageCallback=callback;
-            $("#prevPage").text(local.cur_page);
-            $("#nextPage").text(local.cur_maxPage);
+            // alert(local.cur_page);
+            var _total = (_total<5) ? 1 : (parseInt(_total/5));
+            $(".prevPage").text(_total);
+            $(".nextPage").text(local.cur_page);
 
-            $("#nextBtn").show();
-            $("#prevBtn").show();
-            if(local.cur_page=1){
-                $("#prevBtn").hide();
+            $(".nextBtn").show();
+            $(".prevBtn").show();
+            if(local.cur_page==1){
+                $(".prevBtn").hide();
             }
             if(local.cur_page==local.cur_maxPage){
-                $("#nextBtn").hide();
+                $(".nextBtn").hide();
+            }
+            if(local.cur_maxPage==1){
+                $(".prevBtn").hide();
+                $(".nextBtn").hide();
             }
         },
         followList:function(){
@@ -548,28 +427,41 @@ $(function() {
                 url: "http://localhost:3000/api/person-center/my-concern",
                 dataType: 'json',
                 data: {
-                    page: local.page,
-                    pageSize: local.pageSize,
+                    page: local.cur_page,
+                    pageSize: local.cur_pageSize,
                 }, 
                 success: function(data) {
                     if (data.code == 0) {
                         var str = "";
                         for (index in data.object.list) {
-                            str += '<div class="m-main"><div class="u-top"><h3>主播</h3></div>' +
-                                '<div class="u-host"><div class="u-hleft"><div class="u-focusimg">' +
-                                '<img src="' + data.object.list[index].icon + '"></div>' +
-                                '<div class="u-nickhost"><p class="u-nicksex"><span>' + data.object.list[index].nickname + '</span>' +
-                                '<img src="' + data.object.list[index].sex + '"></p><div class="u-hostfans"><p>' +
-                                '<span class="u-hf">直播间ID</span>&nbsp;  ' +
-                                '<span class="u-num">' + data.object.list[index].room_number + '</span></p>' +
-                                '<p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;' +
-                                '<span class="u-num">' + data.object.list[index].fans + '</span></p></div>' +
-                                '</div></div><div class="u-hright"><img src="/images/focusclick.png">' +
-                                '<a href="' + data.object.list[index].room_number + '">进入房间</a></div></div>'
+                            if(data.object.list[index].state == 1){
+                                str += '<div class="m-main">' +
+                                    '<div class="u-host"><div class="u-hleft"><div class="u-focusimg">' +
+                                    '<img src="' + data.object.list[index].icon + '"></div>' +
+                                    '<div class="u-nickhost"><p class="u-nicksex"><span>' + data.object.list[index].nickname + '</span>' +
+                                    '<img src="' + data.object.list[index].sex + '"></p><div class="u-hostfans"><p>' +
+                                    '<span class="u-hf">直播间ID</span>&nbsp;  ' +
+                                    '<span class="u-num">' + data.object.list[index].room_number + '</span></p>' +
+                                    '<p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;' +
+                                    '<span class="u-num">' + data.object.list[index].fans + '</span></p></div>' +
+                                    '</div></div><div class="u-hright"><img src="/images/focusclick.png">' +
+                                    '<a href="' + data.object.list[index].room_number + '">进入房间</a></div></div>'
+                            }else{
+                                str += '<div class="m-main">' +
+                                '<div class="u-host stopdark">'+
+                                '<div class="u-hleft"><div class="u-focusimg"><img src="' + data.object.list[index].icon + '"></div>'+
+                                '<div class="u-nickhost"><p class="u-nicksex">'+
+                                '<span>' + data.object.list[index].nickname + '</span><img src="' + data.object.list[index].sex + '"></p>'+
+                                '<div class="u-hostfans"><p>'+
+                                '<span class="u-hf">直播间ID</span>&nbsp;<span class="u-num">' + data.object.list[index].room_number + '</span>'+
+                                '</p><p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;<span class="u-num">' + data.object.list[index].fans + '</span>'+
+                                '</p></div></div></div><div class="u-hright"><img src="/images/focusclick.png" class="u-blur">'+
+                                '<a href="' + data.object.list[index].room_number + '">进入房间</a></div><span class="dark">该主播已离开</span></div>'
+                            }
                         }
                         $(".u-host").remove();
-                        $(".m-main").html($(".m-main").html()+str);
-                        local.Pagination(local.cur_pageSize,data.object.total,local.cur_pageSize,"follow");                   
+                        $(".focushost").html($(".focushost").html()+str);
+                        local.Pagination(local.cur_page,data.object.total,local.cur_pageSize,"follow");                   
                     } else {
                         console.log(data.result);
                     }
@@ -585,31 +477,49 @@ $(function() {
                 url: "http://localhost:3000/api/person-center/my-msg",
                 dataType: 'json',
                 data: {
-                    page: local.page,
-                    pageSize: local.pageSize,
+                    page: local.cur_page,
+                    pageSize: local.cur_pageSize,
                     type:_type
                 }, 
                 success: function(data) {
                     if (data.code == 0) {
-                        var str = "";
-                        for (index in data.object.list) {
-                            str+='<div class="u-message">'+
-                                '<div class="u-msystem">'+
-                                   ' <img src="./images/messagehead.png">'+
-                               ' </div>'+
-                               ' <div class="u-yuer">'+
-                                   ' <p>'+
-                                       ' </p><h3>娱儿官方</h3>'+
-                                       ' <span class="u-messagetime">'+data.object.list[index].create_date+'</span>'+
-                                 '   <p>'+
-                                   ' </p><p>'+
-                                   ' <span class="u-messagecontent">'+data.object.list[index].content+'</span><span class="u-messtips">全文&gt;&gt;</span>'+
-                                 '   </p>'+
-                               ' </div>'+
-                           ' </div>';
+                        if(_type == 0){
+                            var str = "";
+                            for (index in data.object.list) {
+                                str+='<div class="u-message">'+
+                                    '<div class="u-msystem">'+
+                                       ' <img src="./images/messagehead.png">'+
+                                   ' </div>'+
+                                   ' <div class="u-yuer">'+
+                                       ' <p>'+
+                                           ' </p><h3>娱儿官方</h3>'+
+                                           ' <span class="u-messagetime">'+data.object.list[index].create_date+'</span>'+
+                                     '   <p>'+
+                                       ' </p><p>'+
+                                       ' <span class="u-messagecontent">'+data.object.list[index].content+'</span><span class="u-messtips">全文&gt;&gt;</span>'+
+                                     '   </p>'+
+                                   ' </div>'+
+                               ' </div>';
+                            }
+                            $(".messageBox").html(str);
+                        }else{
+                            var str = "";
+                            for (index in data.object.list) {
+                                str+='<div class="u-focusmess">'+
+                                '<p class="u-focusnc">'+
+                                '<span class="u-foucscolor">我在那里找到你</span>'+
+                                '<span class="u-focusc">关注了你</span></p>'+
+                                '<span class="u-focustime">'+data.object.list[index].create_date+'</span>'+
+                                '</div><div class="u-messnickname">'+
+                                '<img src="/images/ico7.png">'+
+                                '<p class="u-mkname">我从哪里找到你</p>'+
+                                '<p><span>ID：</span><span>'+data.object.list[index].obj_id+'</span></p>'+
+                                '</div>';
+                            }
+                            $(".focusmessage").html(str);
                         }
-                        $(".u-systemmessage").html(str);
-                        local.Pagination(local.cur_pageSize,data.object.total,local.cur_pageSize,"follow");                   
+                        
+                        local.Pagination(local.cur_page,100,local.cur_pageSize,"follow");                   
                     } else {
                         console.log(data.result);
                     }
@@ -621,4 +531,8 @@ $(function() {
         }
     };
     local.init();
+
+});
+;(function(window,$,undefined){
+    
 })(window,jQuery);

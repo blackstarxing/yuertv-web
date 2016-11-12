@@ -1,8 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
+{% extends 'layout.html' %} 
+{% block css %}
 	<style type="text/css">
+		body{
+			background: #141a20;
+		}
 		.m-topupsuccess{
 			position:fixed;
 			width:365px;
@@ -24,7 +25,9 @@
 			display:inline-block;
 			width:40px;
 			height:40px;
+			line-height:40px;
 			border:none;
+			vertical-align: middle;
 			}
 			.m-topupsuccess span{
 			display:inline-block;
@@ -49,6 +52,10 @@
 			}
 
 	</style>
+{% endblock %}
+
+{% block content %}
+	
 </head>
 <body>
 	<div class="m-topupsuccess">
@@ -61,3 +68,5 @@
 	</div>
 </body>
 </html>
+{% endblock %}
+

@@ -89,16 +89,16 @@ input{
 .m-tleft img{
 	display: inline-block;
 	width:122px;
-	height:123px;
-	border-radius:50px;
+	height:122px;
+	border-radius:50%;
 }
 .m-top .m-tleft img#seximg{
 	display:inline-block;
-	width:35px;
-	height:20px;
-	border-radius: 50px;
+	width:25px;
+	height:25px;
+	border-radius: 50%;
 	position:relative;
-	left:-20px;
+	left:-35px;
 	top:110;
 
 }
@@ -128,6 +128,11 @@ input{
 	padding-left:15px;
 	color:#cecfd2;
 	font-size:14px;
+	cursor:pointer;
+}
+.u-p1 .icon-vip{
+	color:#f36;
+	margin:0px 10px;
 }
 .g-right .m-top .m-tright .u-p2{
 	margin-top:40px;
@@ -573,6 +578,7 @@ a#m-changepass,a#m-change,a#m-realname{
 .g-focus{
 	box-sizing: border-box;
 	width:795px;
+	height:800px;
 	padding-bottom:60px;
 	position:relative;
 }
@@ -794,20 +800,18 @@ a#m-changepass,a#m-change,a#m-realname{
 
 /*我的关注，我的消息(系统消息和关注消息)*/
 .M-box{
-	width:400px;
-	height:50px;
-	margin:100px 0px 60px 500px;
-	color:#fff;
-}
-.M-box #prevBtn,#prevPage,#nextPage,#nextBtn{
-	width:40px;
+	position: relative;
+	width:200px;
 	height:40px;
-	line-height:50px;
-	text-align:center;
-	background:#f36;
+	line-height:40px;
+	margin:100px 0px 60px 500px;
+	padding:5px;
+	color:#fff;
 	font-size:18px;
+	background:#f36;
+	text-align:center;
 }
-.M-box #prevBtn,#nextBtn{
+.M-box .prevBtn,.nextBtn{
 	width:60px;
 	font-weight:bold;
 	vertical-align:middle;
@@ -1174,7 +1178,11 @@ display:block;
 }
 
 
-
+ /*我要当主播*/
+ .m-mainh{
+ 	width:800px;
+ 	height:800px;
+ }
 
 
 

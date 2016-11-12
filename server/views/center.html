@@ -35,10 +35,14 @@
 		    <div class="m-top">
 	  			<div class="m-tleft">
 	  				<img src="http://img.wangyuhudong.com/{{info.icon}}">
-	  				<img src="http://img.wangyuhudong.com/{{info.sex}}" class="seximg" id="seximg">
+	  				{% if info.sex==0 %}
+	  					<img src="/images/male.png" class="seximg" id="seximg">
+                    {% else %}
+                        <img src="/images/female.png" class="seximg" id="seximg">
+                    {% endif %}
 	  			</div>
 	  			<div class="m-tright">
-	  				<p class="u-p1"><span class="u-nicknameonly">{{info.nickname}}</span>&nbsp;<img src=""><span id="nickname" class="u-p1-s">[点击修改]</span></p>
+	  				<p class="u-p1"><span class="u-nicknameonly">{{info.nickname}}</span>&nbsp;<i class="iconfont icon-vip"></i><span id="nickname" class="u-p1-s">[点击修改]</span></p>
 		  			<p class="u-p2">粉丝:<span class="u-change">63836</span></p>
 		  			<p class="u-p3">鱼币:<span class="u-change1">{{info.yuerCoin}}</span>
 		  			<a href="/center?type=4" class="u-tovalue">充值</a>
@@ -185,120 +189,68 @@
 				<div class="u-top">
 					<h3>主播</h3>
 				</div>
-				<div class="u-host">
-					<div class="u-hleft">
-						<div class="u-focusimg">
-							<img src="/images/focusimg.png">
-						</div>
-						<div class="u-nickhost">
-							<p class="u-nicksex">
-								<span>小飞~超影路</span>
-								<img src="">
-							</p>
-							<div class="u-hostfans">
-								<p>
-									<span class="u-hf">直播间ID</span>&nbsp;
-									<span class="u-num">123456789</span>
+				<div class="focushost">
+					<div class="u-host">
+						<div class="u-hleft">
+							<div class="u-focusimg">
+								<img src="/images/focusimg.png">
+							</div>
+							<div class="u-nickhost">
+								<p class="u-nicksex">
+									<span>小飞~超影路</span>
+									<img src="">
 								</p>
-								<p class="u-hhf">
-									<span class="u-hf">粉丝</span>&nbsp;
-									<span class="u-num">3764</span>
-								</p>
+								<div class="u-hostfans">
+									<p>
+										<span class="u-hf">直播间ID</span>&nbsp;
+										<span class="u-num">123456789</span>
+									</p>
+									<p class="u-hhf">
+										<span class="u-hf">粉丝</span>&nbsp;
+										<span class="u-num">3764</span>
+									</p>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="u-hright">
-						<img src="/images/focusclick.png">
-						<a href="">进入房间</a>
-					</div>
-				</div>
-				<div class="u-host">
-					<div class="u-hleft">
-						<div class="u-focusimg">
-							<img src="/images/focusimg.png">
+						<div class="u-hright">
+							<img src="/images/focusclick.png">
+							<a href="">进入房间</a>
 						</div>
-						<div class="u-nickhost">
-							<p class="u-nicksex">
-								<span>小飞~超影路</span>
-								<img src="">
-							</p>
-							<div class="u-hostfans">
-								<p>
-									<span class="u-hf">直播间ID</span>&nbsp;
-									<span class="u-num">123456789</span>
+					</div>
+					<div class="u-host stopdark">
+						<div class="u-hleft">
+							<div class="u-focusimg">
+								<img src="/images/focusimg.png">
+							</div>
+							<div class="u-nickhost">
+								<p class="u-nicksex">
+									<span>小飞~超影路</span>
+									<img src="">
 								</p>
-								<p class="u-hhf">
-									<span class="u-hf">粉丝</span>&nbsp;
-									<span class="u-num">3764</span>
-								</p>
+								<div class="u-hostfans">
+									<p>
+										<span class="u-hf">直播间ID</span>&nbsp;
+										<span class="u-num">123456789</span>
+									</p>
+									<p class="u-hhf">
+										<span class="u-hf">粉丝</span>&nbsp;
+										<span class="u-num">3764</span>
+									</p>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="u-hright">
-						<img src="/images/focusclick.png">
-						<a href="">进入房间</a>
-					</div>
-				</div>
-				<div class="u-host stopdark">
-					<div class="u-hleft">
-						<div class="u-focusimg">
-							<img src="/images/focusimg.png">
+
+						<div class="u-hright">
+							<img src="/images/focusclick.png" class="u-blur">
+							<a href="">进入房间</a>
 						</div>
-						<div class="u-nickhost">
-							<p class="u-nicksex">
-								<span>小飞~超影路</span>
-								<img src="">
-							</p>
-							<div class="u-hostfans">
-								<p>
-									<span class="u-hf">直播间ID</span>&nbsp;
-									<span class="u-num">123456789</span>
-								</p>
-								<p class="u-hhf">
-									<span class="u-hf">粉丝</span>&nbsp;
-									<span class="u-num">3764</span>
-								</p>
-							</div>
-						</div>
+						<span class="dark">该主播已离开</span>
 					</div>
-					<div class="u-hright">
-						<img src="/images/focusclick.png" class="u-blur">
-						<a href="">进入房间</a>
-					</div>
-					<span class="dark">该主播已离开</span>
-				</div>
-				<div class="u-host stopdark">
-					<div class="u-hleft">
-						<div class="u-focusimg">
-							<img src="/images/focusimg.png">
-						</div>
-						<div class="u-nickhost">
-							<p class="u-nicksex">
-								<span>小飞~超影路</span>
-								<img src="">
-							</p>
-							<div class="u-hostfans">
-								<p>
-									<span class="u-hf">直播间ID</span>&nbsp;
-									<span class="u-num">123456789</span>
-								</p>
-								<p class="u-hhf">
-									<span class="u-hf">粉丝</span>&nbsp;
-									<span class="u-num">3764</span>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="u-hright">
-						<img src="/images/focusclick.png" class="u-blur">
-						<a href="">进入房间</a>
-					</div>
-					<span class="dark">该主播已离开</span>
 				</div>
 				<div class="M-box">
-					<a href="javascript:;" id="prevBtn">上一页</a>
-					<span id="prevPage">1</span>/<span id="nextPage">53</span>
-					<a href="javascript:;" id="nextBtn">下一页</a>
+					<a href="javascript:;" class="prevBtn">上一页</a>
+					<span class="nextPage">1</span>/<span class="prevPage">53</span>
+					<a href="javascript:;" class="nextBtn">下一页</a>
 				</div>
 		</div>
 	</div>
@@ -344,66 +296,53 @@
 				<a href="">关注消息</a>
 			</div>
 			<div class="u-systemmessage mcurrent">
-				<div class="u-message">
-					<div class="u-msystem">
-						<img src="/images/messagehead.png">
-					</div>
-					<div class="u-yuer">
-						<p>
-							<h3></h3>
-							<span class="u-messagetime"></span>
-						<p>
-						<p>
-						<span class="u-messagecontent"></span><span class="u-messtips">全文&gt;&gt;</span>
-						</p>
+				<div class="messageBox">
+					<div class="u-message">
+						<div class="u-msystem">
+							<img src="/images/messagehead.png">
+						</div>
+						<div class="u-yuer">
+							<p>
+								<h3></h3>
+								<span class="u-messagetime"></span>
+							<p>
+							<p>
+							<span class="u-messagecontent"></span><span class="u-messtips" id="messshow">全文&gt;&gt;</span>
+							</p>
+						</div>
 					</div>
 				</div>
+				
 				<div class="M-box">
-					<a href="javascript:;" id="prevBtn">上一页</a>
-					<span id="prevPage">1</span>/<span id="nextPage">53</span>
-					<a href="javascript:;" id="nextBtn">下一页</a>
+					<a href="javascript:;" class="prevBtn">上一页</a>
+					<span class="nextPage">1</span>/<span class="prevPage">53</span>
+					<a href="javascript:;" class="nextBtn">下一页</a>
 				</div>
 			</div>
 			
 			<div class="u-focusmessage mcurrent">
-				<div class="u-focusmess">
-					<p class="u-focusnc">
-						<span class="u-foucscolor">我在那里找到你
-							
+				<div class="focusmessage">
+					<div class="u-focusmess">
+						<p class="u-focusnc">
+							<span class="u-foucscolor">我在那里找到你
+								
+							</span>
+							<span class="u-focusc">关注了你</span>
+						</p>
+						<span class="u-focustime">
+							2016-10-13  18：00
 						</span>
-						<span class="u-focusc">关注了你</span>
-					</p>
-					<span class="u-focustime">
-						2016-10-13  18：00
-					</span>
-				</div>
-				<div class="u-focusmess">
-					<p class="u-focusnc">
-						<span class="u-foucscolor">我在那里找到你</span>
-						<span class="u-focusc">关注了你</span>
-					</p>
-					<span class="u-focustime">
-						2016-10-13  18：00
-					</span>
-				</div>
-				<div class="u-focusmess">
-					<p class="u-focusnc">
-						<span class="u-foucscolor">我在那里找到你</span>
-						<span class="u-focusc">关注了你</span>
-					</p>
-					<span class="u-focustime">
-						2016-10-13  18：00
-					</span>
-				</div>
-				<div class="u-messnickname">
-					<img src="/images/ico7.png">
-					<p class="u-mkname">我从哪里找到你</p>
-					<p><span>ID：</span><span>1987272</span></p>
+					</div>
+					<div class="u-messnickname">
+						<img src="/images/ico7.png">
+						<p class="u-mkname">我从哪里找到你</p>
+						<p><span>ID：</span><span>1987272</span></p>
+					</div>
 				</div>
 				<div class="M-box">
-					<a href="javascript:;" id="prevBtn">上一页</a>
-					<span id="prevPage">1</span>/<span id="nextPage">53</span>
-					<a href="javascript:;" id="nextBtn">下一页</a>
+					<a href="javascript:;" class="prevBtn">上一页</a>
+					<span class="nextPage">1</span>/<span class="prevPage">53</span>
+					<a href="javascript:;" class="nextBtn">下一页</a>
 				</div>
 			</div>
 			
@@ -448,20 +387,17 @@
 					<div class="paycontent">
 						<span>支付方式</span>
 					</div>
-					<div class="payimg">
-						<img src="/images/focusclick.png" class="u-wpleft u-checked">
-						<img src="/images/iconclick.png" class="u-wpleft u-dischecked">
+					<div class="payimg initShow">
+						<img src="/images/focusclick.png" class="u-wpleft">
 						<img src="/images/iconpay.png">
 					</div>
 					<div class="payimg payshow">
-						<img src="/images/focusclick.png" class="u-wpleft u-checked">
-						<img src="/images/iconclick.png" class="u-wpleft u-dischecked">
+						<img src="/images/iconclick.png" class="u-wpleft">
 						<img src="/images/iconwec.png">
 						<p>暂未开放敬请期待</p>
 					</div>
 					<div class="payimg pay">
-						<img src="/images/focusclick.png" class="u-wpleft u-checked">
-						<img src="/images/iconclick.png" class="u-wpleft u-dischecked">
+						<img src="/images/iconclick.png" class="u-wpleft">
 						<img src="/images/iconcard.png">
 						<p >暂未开放敬请期待</p>
 					</div>

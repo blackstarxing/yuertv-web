@@ -175,7 +175,13 @@ router.get('/alipay', function(req, res, next) {
     });
 });
 router.get('/valuesuccess', function(req, res, next) {
-    res.render('valuesuccess', { title: "充值成功", registerPage: true });
+    var islogin = false;
+    if(req.headers.cookie){
+        islogin = true;
+    }else{
+        islogin = false;
+    };
+    res.render('valuesuccess', { title: "充值成功", islogin: islogin });
 });
 
 router.get('/activity', function(req, res, next) {
