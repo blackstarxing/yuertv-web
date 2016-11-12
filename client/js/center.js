@@ -57,10 +57,10 @@ $(function() {
     });
  //选中支付宝
    $(".payimg").off("click").on("click",function(){$(".payimg .u-checked").hide();
-   	$(".payimg .u-dischecked").show();$(this).find(".u-checked").show();$(this).find(".u-dischecked").hide();})
+    $(".payimg .u-dischecked").show();$(this).find(".u-checked").show();$(this).find(".u-dischecked").hide();})
 //我要充值－－选中鱼币的样式
     $(".u-value div").on("click", function() {
-    		$(this).addClass("checktopup").siblings().removeClass("checktopup");
+            $(this).addClass("checktopup").siblings().removeClass("checktopup");
             window.checktopup=this;
         })
 //我要充值－－－点击充值出现弹框
@@ -245,6 +245,12 @@ $(function() {
         updatePasswordTag_new:false,
         updatePasswordTag_confirm:false,
         iphoneAuth:false,
+
+        cur_page:1,
+        cur_pageSize:5,
+        cur_maxPage:1,
+        cur_total:0,
+        cur_pageCallback:null,
         init : function(){
             local.eventBind();
         },
@@ -482,7 +488,137 @@ $(function() {
                         }
                     })
             })
+
+            $("#prevBtn").off().on("click",function(event){
+                event.preventDefault();
+                local.cur_page--;
+                if(local.cur_pageCallback == "news"){
+                    local.newsList();
+                }else{
+                    local.followList();
+                }
+            })
+            $("#nextBtn").off().on("click",function(event){
+                event.preventDefault();
+                local.cur_page++;
+                if(local.cur_pageCallback == "news"){
+                    local.newsList();
+                }else{
+                    local.followList();
+                }
+            })
+            $("#myfocusclick").on("click",function(){
+                local.Pagination(1,0,5,"follow");
+                local.followList();
+            })
+            $("#mymessageclick").on("click",function(){
+                local.Pagination(1,0,5,"news");
+                local.newsList();                
+            })
+            $(".u-m-top a:eq(0)").on("click",function(){
+                local.Pagination(1,0,5,"news");
+                local.newsList(0);
+            })
+            $(".u-m-top a:eq(1)").on("click",function(){
+                local.Pagination(1,0,5,"news");
+                local.newsList(1);
+            })
         },
+        Pagination:function(_page,_total,_pageSize,callback){
+            local.cur_page = _page || 1;
+            local.cur_total = _total || 0;
+            local.cur_pageSize = _pageSize || 5;
+            local.cur_maxPage = (parseInt(_total / _pageSize)+1) || 1;
+            local.cur_pageCallback=callback;
+            $("#prevPage").text(local.cur_page);
+            $("#nextPage").text(local.cur_maxPage);
+
+            $("#nextBtn").show();
+            $("#prevBtn").show();
+            if(local.cur_page=1){
+                $("#prevBtn").hide();
+            }
+            if(local.cur_page==local.cur_maxPage){
+                $("#nextBtn").hide();
+            }
+        },
+        followList:function(){
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:3000/api/person-center/my-concern",
+                dataType: 'json',
+                data: {
+                    page: local.page,
+                    pageSize: local.pageSize,
+                }, 
+                success: function(data) {
+                    if (data.code == 0) {
+                        var str = "";
+                        for (index in data.object.list) {
+                            str += '<div class="m-main"><div class="u-top"><h3>主播</h3></div>' +
+                                '<div class="u-host"><div class="u-hleft"><div class="u-focusimg">' +
+                                '<img src="' + data.object.list[index].icon + '"></div>' +
+                                '<div class="u-nickhost"><p class="u-nicksex"><span>' + data.object.list[index].nickname + '</span>' +
+                                '<img src="' + data.object.list[index].sex + '"></p><div class="u-hostfans"><p>' +
+                                '<span class="u-hf">直播间ID</span>&nbsp;  ' +
+                                '<span class="u-num">' + data.object.list[index].room_number + '</span></p>' +
+                                '<p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;' +
+                                '<span class="u-num">' + data.object.list[index].fans + '</span></p></div>' +
+                                '</div></div><div class="u-hright"><img src="/images/focusclick.png">' +
+                                '<a href="' + data.object.list[index].room_number + '">进入房间</a></div></div>'
+                        }
+                        $(".u-host").remove();
+                        $(".m-main").html($(".m-main").html()+str);
+                        local.Pagination(local.cur_pageSize,data.object.total,local.cur_pageSize,"follow");                   
+                    } else {
+                        console.log(data.result);
+                    }
+                },
+                error: function(a, b, c) {
+                    console.log("接口出问题啦");
+                }
+            })
+        },
+        newsList:function(_type){
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:3000/api/person-center/my-msg",
+                dataType: 'json',
+                data: {
+                    page: local.page,
+                    pageSize: local.pageSize,
+                    type:_type
+                }, 
+                success: function(data) {
+                    if (data.code == 0) {
+                        var str = "";
+                        for (index in data.object.list) {
+                            str+='<div class="u-message">'+
+                                '<div class="u-msystem">'+
+                                   ' <img src="./images/messagehead.png">'+
+                               ' </div>'+
+                               ' <div class="u-yuer">'+
+                                   ' <p>'+
+                                       ' </p><h3>娱儿官方</h3>'+
+                                       ' <span class="u-messagetime">'+data.object.list[index].create_date+'</span>'+
+                                 '   <p>'+
+                                   ' </p><p>'+
+                                   ' <span class="u-messagecontent">'+data.object.list[index].content+'</span><span class="u-messtips">全文&gt;&gt;</span>'+
+                                 '   </p>'+
+                               ' </div>'+
+                           ' </div>';
+                        }
+                        $(".u-systemmessage").html(str);
+                        local.Pagination(local.cur_pageSize,data.object.total,local.cur_pageSize,"follow");                   
+                    } else {
+                        console.log(data.result);
+                    }
+                },
+                error: function(a, b, c) {
+                    console.log("接口出问题啦");
+                }
+            })
+        }
     };
     local.init();
 })(window,jQuery);

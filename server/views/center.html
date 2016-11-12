@@ -1,12 +1,12 @@
 {% extends 'layout.html' %} 
   
 {% block css %}
-<link rel="stylesheet" href="/css/pagination.css">
 <link rel="stylesheet" href="/dist/center.css">
 
 {% endblock %}
 
 {% block content %}
+<div class="g-container">
 	<div class="g-main">
 		<div id="leftmain" class="g-left">   
  			<ul>
@@ -295,7 +295,11 @@
 					</div>
 					<span class="dark">该主播已离开</span>
 				</div>
-				<div class="M-box"></div>
+				<div class="M-box">
+					<a href="javascript:;" id="prevBtn">上一页</a>
+					<span id="prevPage">1</span>/<span id="nextPage">53</span>
+					<a href="javascript:;" id="nextBtn">下一页</a>
+				</div>
 		</div>
 	</div>
 <!-- 我的道具 -->
@@ -354,63 +358,11 @@
 						</p>
 					</div>
 				</div>
-				<div class="u-message">
-					<div class="u-msystem">
-						<img src="/images/messagehead.png">
-					</div>
-					<div class="u-yuer">
-						<p>
-							<h3></h3>
-							<span class="u-messagetime"></span>
-						<p>
-						<p>
-						<span class="u-messagecontent"></span><span class="u-messtips">全文&gt;&gt;</span>
-						</p>
-					</div>
+				<div class="M-box">
+					<a href="javascript:;" id="prevBtn">上一页</a>
+					<span id="prevPage">1</span>/<span id="nextPage">53</span>
+					<a href="javascript:;" id="nextBtn">下一页</a>
 				</div>
-				<div class="u-message">
-					<div class="u-msystem">
-						<img src="/images/messagehead.png">
-					</div>
-					<div class="u-yuer">
-						<p>
-							<h3></h3>
-							<span class="u-messagetime"></span>
-						<p>
-						<p>
-						<span class="u-messagecontent"></span><span class="u-messtips">全文&gt;&gt;</span>
-						</p>
-					</div>
-				</div>
-				<div class="u-message">
-					<div class="u-msystem">
-						<img src="/images/messagehead.png">
-					</div>
-					<div class="u-yuer">
-						<p>
-							<h3></h3>
-							<span class="u-messagetime"></span>
-						<p>
-						<p>
-						<span class="u-messagecontent"></span><span class="u-messtips">全文&gt;&gt;</span>
-						</p>
-					</div>
-				</div>
-				<div class="u-message">
-					<div class="u-msystem">
-						<img src="/images/messagehead.png">
-					</div>
-					<div class="u-yuer">
-						<p>
-							<h3></h3>
-							<span class="u-messagetime"></span>
-						<p>
-						<p>
-						<span class="u-messagecontent"></span><span class="u-messtips">全文&gt;&gt;</span>
-						</p>
-					</div>
-				</div>
-				<div class="M-box"></div>
 			</div>
 			
 			<div class="u-focusmessage mcurrent">
@@ -448,7 +400,11 @@
 					<p class="u-mkname">我从哪里找到你</p>
 					<p><span>ID：</span><span>1987272</span></p>
 				</div>
-				<div class="M-box"></div>
+				<div class="M-box">
+					<a href="javascript:;" id="prevBtn">上一页</a>
+					<span id="prevPage">1</span>/<span id="nextPage">53</span>
+					<a href="javascript:;" id="nextBtn">下一页</a>
+				</div>
 			</div>
 			
 		</div>
@@ -516,14 +472,7 @@
 				</div>
 			</div>
 		</div>
-<div class="m-topupsuccess">
-	<div class="u-success">
-		<img src="/images/iconcancel.png"><span>充值成功!</span>
-	</div>
-	<div class="u-cancel">
-		<a href="">确定</a>
-	</div>
-</div>
+
 	</div>
 <!-- 我要当主播 -->
 			<div class="g-host rightswitch">
@@ -596,7 +545,7 @@
 	    </div><!-- 右侧结尾 -->
 	    
 	</div> <!-- 整个块结尾 -->
-	
+</div>	
 {% endblock %}
 
 {% block js %}
