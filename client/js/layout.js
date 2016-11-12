@@ -14,8 +14,10 @@ $(function(){
     });
     // 显示个人中心
     $('.avatar').hover(function(){
+        $(this).css('background',"#0c1014");
     	$('.nav-list').show();
     },function(){
+        $(this).css('background',"none");
     	$('.nav-list').hide();
     });
     // 登出

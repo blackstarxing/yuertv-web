@@ -18,97 +18,96 @@ $(function(){
         resize();
     });
 
-    //直播间接口
-    liveRoomInterf = {
+    $('.gift').hover(function(){
+        $(this).find('.gift-hover').show();
+    },function(){
+        $(this).find('.gift-hover').hide();
+    });
 
-        //直播间Flash对象
-        flash: null,
+    $('.myGift').hover(function(){
+        $(this).find('.my-prop').show();
+    },function(){
+        $(this).find('.my-prop').hide();
+    })
 
-        //初始化Flash
-        init: function ()
-        {
-            //播放直播视频，参数：视频地址
-            this.flash.playLive("rtmp://live.hkstv.hk.lxdns.com/live/hks");
+    var giftlist = [];
+    var proplist = [];
+    var yuerCoin = null;
 
-            //更新主播信息，参数：主播ID
-            this.flash.updateAnchor("123");
+    function getGift(){
+        $.ajax({
+            method: "GET",
+            url: "http://localhost:3000/api/gift/list",
+            dataType: 'json',
+            success: function(data) {
+                if (data.code == 0) {
+                    for(var i=0;i<data.object.length;i++){
+                        var gift = {
+                            id:data.object[i].id,
+                            name: data.object[i].name,
+                            icon:'http://img.wangyuhudong.com/'+data.object[i].icon,
+                            tips:data.object[i].name+'（<font color=\'#ffff00\'>10</font>鱼币）<br/>点击送给主播',
+                        }
+                        giftlist.push(gift);
+                    }
+                }else{
+                    console.log(data.result);
+                }
+            },
+            error: function(a, b, c) {
+                console.log("接口出问题啦");
+            }
+        });
+    } 
 
-            //更新热词列表，参数：[热词1, 热词2, ...]
-            this.flash.updateHotWords(["666", "因吹思婷", "姑娘你真是条汉子","666", "因吹思婷", "姑娘你真是条汉子","666", "因吹思婷", "姑娘你真是条汉子"]);
+    function getProp(){
+        $.ajax({
+            method: "GET",
+            url: "http://localhost:3000/api/person-center/my-gifts",
+            dataType: 'json',
+            success: function(data) {
+                if (data.code == 0) {
+                    var myprop = "";
+                    for(var i=0;i<data.object.gifts.length;i++){
+                        var prop = {
+                            id:data.object.gifts[i].id,
+                            name: data.object.gifts[i].name,
+                            icon:'http://img.wangyuhudong.com/'+data.object.gifts[i].icon,
+                            count:data.object.gifts[i].num,
+                        }
+                        myprop+='<div class="propBox" data-name="'+data.object.gifts[i].name+'" data-id="'+data.object.gifts[i].id+'"><img src="http://img.wangyuhudong.com/'+data.object.gifts[i].icon+'" alt="">'+data.object.gifts[i].name+'<span>'+data.object.gifts[i].num+'</span></div>';
+                        proplist.push(prop);
+                    }
+                    $('.my-prop').html(myprop);
+                }else{
+                    console.log(data.result);
+                }
+            },
+            error: function(a, b, c) {
+                console.log("接口出问题啦");
+            }
+        });
+        $.ajax({
+            method: "GET",
+            url: "http://localhost:3000/api/person-center/user-info",
+            dataType: 'json',
+            success: function(data) {
+                if (data.code == 0) {
+                    yuerCoin = data.object.yuerCoin;
+                    $('.yuerCoin').html(data.object.yuerCoin);
+                }else{
+                    $('.yuerCoin').html("0");
+                }
+            },
+            error: function(a, b, c) {
+                console.log("接口出问题啦");
+            }
+        });
+    } 
 
-            //更新鱼币数量，参数：鱼币数量
-            this.flash.updateCoins(123);
-
-            //更新道具列表，参数：[道具1, 道具2, ...]
-            //道具格式：{id:道具ID, icon:道具图标, tips:道具提示（HTML格式）}
-            this.flash.updateItems([
-                {id:1, icon:"icon.png", tips:"贝壳（<font color='#ffff00'>10</font>鱼币）<br/>点击送给主播"},
-                {id:2, icon:"icon.png", tips:"海星（<font color='#ffff00'>20</font>鱼币）<br/>点击送给主播"},
-                {id:3, icon:"icon.png", tips:"水母（<font color='#ffff00'>30</font>鱼币）<br/>点击送给主播"},
-                {id:4, icon:"icon.png", tips:"龙虾（<font color='#ffff00'>40</font>鱼币）<br/>点击送给主播"},
-                {id:5, icon:"icon.png", tips:"螃蟹（<font color='#ffff00'>50</font>鱼币）<br/>点击送给主播"},
-                {id:6, icon:"icon.png", tips:"海马（<font color='#ffff00'>60</font>鱼币）<br/>点击送给主播"},
-                {id:7, icon:"icon.png", tips:"海龟（<font color='#ffff00'>70</font>鱼币）<br/>点击送给主播"},
-                {id:8, icon:"icon.png", tips:"鲸鱼（<font color='#ffff00'>80</font>鱼币）<br/>点击送给主播"},
-            ]);
-
-            //更新我的道具列表，参数：[道具1, 道具2, ...]
-            //道具格式：{id:道具ID, icon:道具图标, name:道具名称, count:道具数量}
-            this.flash.updateMyItems([
-                {id:1, icon:"icon.png", name:"贝壳", count:3},
-                {id:2, icon:"icon.png", name:"海星", count:2},
-            ]);
-
-            //显示弹幕，参数：弹幕文字, 颜色值（0xRRGGBB，默认0xffffff）, 滚动速度（像素/秒，默认100）, 延迟时间（秒，默认0，<0表示超前）, 纵坐标百分比（0~100，默认在10~70间随机）
-            this.flash.showDanmaku("我是一条弹幕", 0xffffff, 100);
-            this.flash.showDanmaku("我是延后显示的弹幕", 0xffff00, 150, 5);
-            this.flash.showDanmaku("我是超前显示的弹幕", 0x00ffff, 80, -3);
-
-            //显示固定弹幕，参数：通告文字, 颜色值（0xRRGGBB，默认0xffffff）, 显示时间（秒，默认5）, 纵坐标百分比（0~100，默认10）
-            this.flash.showStaticDanmaku("这是一条通告", 0xff0000, 10);
-        },
-
-        //刷新
-        refresh: function ()
-        {
-            alert("刷新直播页面");
-        },
-
-        //发送弹幕，参数：弹幕文字
-        sendDanmaku: function ( text )
-        {
-            //调用后台，发送成功后请回调 flash.showDanmaku
-            this.flash.showDanmaku(text, 0xffff00, 100);
-        },
-
-        //充值
-        recharge: function ()
-        {
-            alert("打开充值页面");
-        },
-
-        //赠送礼物，参数：道具ID
-        presentGift: function ( itemId )
-        {
-            //调用后台，若赠送的是购买的道具，请回调 flash.updateCoins，若赠送的是我的道具，请回调 flash.updateMyItems
-            alert("赠送礼物：" + itemId);
-        },
-    };
-
-    var att = {};
-    att.width = "100%";
-    att.height = "100%";
-    var par = {};
-    par.quality = "high";
-    par.bgcolor = "#000000";
-    par.allowscriptaccess = "sameDomain";
-    par.allowfullscreen = "true";
-    par.allowFullScreenInteractive = "true";
-
-    att.id = "LiveRoom";
-    att.data = "YeLiveRoom.swf";
-    liveRoomInterf.flash = swfobject.createSWF(att, par, "LiveRoomDiv");
-
+    getGift();
+    getProp();
+    
     // 聊天室服务器地址
     var address=[];
     // 当前时间
@@ -166,16 +165,187 @@ $(function(){
             // 消息
             onmsgs: onChatroomMsgs
         });
-        $('.sendText').click(function(){
+        function sendChatroomMsgDone(error, msg) {
+            console.log('发送聊天室' + msg.type + '消息' + (!error?'成功':'失败') + ', id=' + msg.idClient, error, msg);
+            if(!error){
+                liveRoomInterf.flash.showDanmaku(msg.text, 0xffffff, 100);
+                $('.room-block').append('<div class="text-mes"><span class="membName">blackstar : </span>'+msg.text+'</div>');
+                $('.live-text').val("");
+            }
+        }
+
+        function sendChatroomCustomMsgDone(error, msg) {
+            console.log('发送聊天室' + msg.type + '消息' + (!error?'成功':'失败') + ', id=' + msg.idClient, error, msg);
+            var gift = JSON.parse(msg.content);
+            if(!error){
+                liveRoomInterf.flash.showDanmaku('blackstar送给主播一个'+gift.data.giftName, 0xffffff, 100);
+                $('.room-block').append('<div class="gift-mes"><span class="membName">blackstar : 送给主播1个</span>'+gift.data.giftName+'</div>');
+                // $('.live-text').val("");
+            }
+        }
+        function flashSend(text){
             var msg = chatroom.sendText({
-                text: 'hello',
-                done: sendChatroomMsgDone
+                    text: text,
+                    done: sendChatroomMsgDone
+                });
+                console.log('正在发送聊天室text消息, id=' + msg.idClient);
+        }
+
+        function flashSendCustom(name,id,type){
+            var parm = {};
+            parm.giftId = id;
+            parm.num = 1;
+            parm.upUserId = 1;
+            parm.type = type;
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:3000/api/gift/send",
+                dataType: 'json',
+                data: parm,
+                success: function(data) {
+                    if (data.code == 0) {
+                        if(data.object.state == 1){
+
+                        }else{
+                            getProp();
+                        }
+                    }else{
+                        console.log(data.result);
+                    }
+                },
+                error: function(a, b, c) {
+                    console.log("接口出问题啦");
+                }
             });
-            console.log('正在发送聊天室text消息, id=' + msg.idClient);
-            function sendChatroomMsgDone(error, msg) {
-                console.log('发送聊天室' + msg.type + '消息' + (!error?'成功':'失败') + ', id=' + msg.idClient, error, msg);
+            var content = {
+                type: 1,
+                data: {
+                    giftName:name,
+                    giftNum:1
+                }
+            };
+            var msg = chatroom.sendCustomMsg({
+                content: JSON.stringify(content),
+                done: sendChatroomCustomMsgDone
+            });
+            console.log('正在发送聊天室自定义消息, id=' + msg.idClient);
+        }
+        liveRoomInterf = {
+
+            //直播间Flash对象
+            flash: null,
+            giftlist : [],
+            //初始化Flash
+            init: function ()
+            {
+                //播放直播视频，参数：视频地址
+                this.flash.playLive($('.hide-rtmp').html());
+                // rtmp://pili-live-rtmp.wangyuhudong.com/wyds/wyds_4231257?key=e27f6170-a1c7-4f6f-ae0f-1de109b6b1b7
+
+                //更新主播信息，参数：主播ID
+                this.flash.updateAnchor("123");
+
+                //更新热词列表，参数：[热词1, 热词2, ...]
+                this.flash.updateHotWords(["666", "因吹思婷", "姑娘你真是条汉子","666", "因吹思婷", "姑娘你真是条汉子","666", "因吹思婷", "姑娘你真是条汉子"]);
+
+                //更新鱼币数量，参数：鱼币数量
+                this.flash.updateCoins(yuerCoin);
+
+                //更新道具列表，参数：[道具1, 道具2, ...]
+                //道具格式：{id:道具ID, icon:道具图标, tips:道具提示（HTML格式）}
+                // this.flash.updateItems([
+                //     {id:1, name:"123",icon:"icon.png", tips:"贝壳（<font color='#ffff00'>10</font>鱼币）<br/>点击送给主播"},
+                //     {id:2, icon:"icon.png", tips:"海星（<font color='#ffff00'>20</font>鱼币）<br/>点击送给主播"},
+                //     {id:3, icon:"icon.png", tips:"水母（<font color='#ffff00'>30</font>鱼币）<br/>点击送给主播"},
+                //     {id:4, icon:"icon.png", tips:"龙虾（<font color='#ffff00'>40</font>鱼币）<br/>点击送给主播"},
+                //     {id:5, icon:"icon.png", tips:"螃蟹（<font color='#ffff00'>50</font>鱼币）<br/>点击送给主播"},
+                //     {id:6, icon:"icon.png", tips:"海马（<font color='#ffff00'>60</font>鱼币）<br/>点击送给主播"},
+                //     {id:7, icon:"icon.png", tips:"海龟（<font color='#ffff00'>70</font>鱼币）<br/>点击送给主播"},
+                //     {id:8, icon:"icon.png", tips:"鲸鱼（<font color='#ffff00'>80</font>鱼币）<br/>点击送给主播"},
+                // ]);
+                this.flash.updateItems(giftlist);
+
+                //更新我的道具列表，参数：[道具1, 道具2, ...]
+                //道具格式：{id:道具ID, icon:道具图标, name:道具名称, count:道具数量}
+                // this.flash.updateMyItems([
+                //     {id:1, icon:"icon.png", name:"贝壳", count:3},
+                //     {id:2, icon:"icon.png", name:"海星", count:2},
+                // ]);
+
+                this.flash.updateMyItems(proplist);
+
+                //显示弹幕，参数：弹幕文字, 颜色值（0xRRGGBB，默认0xffffff）, 滚动速度（像素/秒，默认100）, 延迟时间（秒，默认0，<0表示超前）, 纵坐标百分比（0~100，默认在10~70间随机）
+                this.flash.showDanmaku("我是一条弹幕", 0xffffff, 100);
+                this.flash.showDanmaku("我是延后显示的弹幕", 0xffff00, 150, 5);
+                this.flash.showDanmaku("我是超前显示的弹幕", 0x00ffff, 80, -3);
+
+                //显示固定弹幕，参数：通告文字, 颜色值（0xRRGGBB，默认0xffffff）, 显示时间（秒，默认5）, 纵坐标百分比（0~100，默认10）
+                this.flash.showStaticDanmaku("这是一条通告", 0xff0000, 10);
+            },
+
+            //刷新
+            refresh: function ()
+            {
+                alert("刷新直播页面");
+            },
+
+            //发送弹幕，参数：弹幕文字
+            sendDanmaku: function ( text )
+            {
+                //调用后台，发送成功后请回调 flash.showDanmaku
+                // this.flash.showDanmaku(text, 0xffff00, 100);
+                flashSend(text);
+            },
+
+            //充值
+            recharge: function ()
+            {
+                alert("打开充值页面");
+            },
+
+            //赠送礼物，参数：道具ID
+            presentGift: function ( itemId )
+            {
+                //调用后台，若赠送的是购买的道具，请回调 flash.updateCoins，若赠送的是我的道具，请回调 flash.updateMyItems
+                alert("赠送礼物：" + itemId);
+                getGift();
+            },
+        };
+
+        var att = {};
+        att.width = "100%";
+        att.height = "100%";
+        var par = {};
+        par.quality = "high";
+        par.bgcolor = "#000000";
+        par.allowscriptaccess = "sameDomain";
+        par.allowfullscreen = "true";
+        par.allowFullScreenInteractive = "true";
+
+        att.id = "LiveRoom";
+        att.data = "YeLiveRoom.swf";
+        liveRoomInterf.flash = swfobject.createSWF(att, par, "LiveRoomDiv");
+
+        $('.sendText').click(function(){
+            if($('.live-text').val()){
+                // var msg = chatroom.sendText({
+                //     text: $('.live-text').val(),
+                //     done: sendChatroomMsgDone
+                // });
+                // console.log('正在发送聊天室text消息, id=' + msg.idClient);
+                flashSend($('.live-text').val());
             }
         });
+
+        $('.gift').click(function(){
+            flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),1);
+        });
+
+        $('.propBox').click(function(){
+            flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),2);
+        });
+
+
     }
 
 
@@ -237,5 +407,102 @@ $(function(){
         }
 
     }
+
+    //直播间接口
+    // liveRoomInterf = {
+
+    //     //直播间Flash对象
+    //     flash: null,
+    //     giftlist : [],
+    //     //初始化Flash
+    //     init: function ()
+    //     {
+    //         var _this = this;
+    //         //播放直播视频，参数：视频地址
+    //         this.flash.playLive("rtmp://pili-live-rtmp.wangyuhudong.com/wyds/wyds_4231257");
+    //         // rtmp://pili-live-rtmp.wangyuhudong.com/wyds/wyds_4231257?key=e27f6170-a1c7-4f6f-ae0f-1de109b6b1b7
+
+    //         //更新主播信息，参数：主播ID
+    //         this.flash.updateAnchor("123");
+
+    //         //更新热词列表，参数：[热词1, 热词2, ...]
+    //         this.flash.updateHotWords(["666", "因吹思婷", "姑娘你真是条汉子","666", "因吹思婷", "姑娘你真是条汉子","666", "因吹思婷", "姑娘你真是条汉子"]);
+
+    //         //更新鱼币数量，参数：鱼币数量
+    //         this.flash.updateCoins(yuerCoin);
+
+    //         //更新道具列表，参数：[道具1, 道具2, ...]
+    //         //道具格式：{id:道具ID, icon:道具图标, tips:道具提示（HTML格式）}
+    //         // this.flash.updateItems([
+    //         //     {id:1, name:"123",icon:"icon.png", tips:"贝壳（<font color='#ffff00'>10</font>鱼币）<br/>点击送给主播"},
+    //         //     {id:2, icon:"icon.png", tips:"海星（<font color='#ffff00'>20</font>鱼币）<br/>点击送给主播"},
+    //         //     {id:3, icon:"icon.png", tips:"水母（<font color='#ffff00'>30</font>鱼币）<br/>点击送给主播"},
+    //         //     {id:4, icon:"icon.png", tips:"龙虾（<font color='#ffff00'>40</font>鱼币）<br/>点击送给主播"},
+    //         //     {id:5, icon:"icon.png", tips:"螃蟹（<font color='#ffff00'>50</font>鱼币）<br/>点击送给主播"},
+    //         //     {id:6, icon:"icon.png", tips:"海马（<font color='#ffff00'>60</font>鱼币）<br/>点击送给主播"},
+    //         //     {id:7, icon:"icon.png", tips:"海龟（<font color='#ffff00'>70</font>鱼币）<br/>点击送给主播"},
+    //         //     {id:8, icon:"icon.png", tips:"鲸鱼（<font color='#ffff00'>80</font>鱼币）<br/>点击送给主播"},
+    //         // ]);
+    //         this.flash.updateItems(giftlist);
+
+    //         //更新我的道具列表，参数：[道具1, 道具2, ...]
+    //         //道具格式：{id:道具ID, icon:道具图标, name:道具名称, count:道具数量}
+    //         this.flash.updateMyItems([
+    //             {id:1, icon:"icon.png", name:"贝壳", count:3},
+    //             {id:2, icon:"icon.png", name:"海星", count:2},
+    //         ]);
+
+    //         this.flash.updateMyItems(proplist);
+
+    //         //显示弹幕，参数：弹幕文字, 颜色值（0xRRGGBB，默认0xffffff）, 滚动速度（像素/秒，默认100）, 延迟时间（秒，默认0，<0表示超前）, 纵坐标百分比（0~100，默认在10~70间随机）
+    //         this.flash.showDanmaku("我是一条弹幕", 0xffffff, 100);
+    //         this.flash.showDanmaku("我是延后显示的弹幕", 0xffff00, 150, 5);
+    //         this.flash.showDanmaku("我是超前显示的弹幕", 0x00ffff, 80, -3);
+
+    //         //显示固定弹幕，参数：通告文字, 颜色值（0xRRGGBB，默认0xffffff）, 显示时间（秒，默认5）, 纵坐标百分比（0~100，默认10）
+    //         this.flash.showStaticDanmaku("这是一条通告", 0xff0000, 10);
+    //     },
+
+    //     //刷新
+    //     refresh: function ()
+    //     {
+    //         alert("刷新直播页面");
+    //     },
+
+    //     //发送弹幕，参数：弹幕文字
+    //     sendDanmaku: function ( text )
+    //     {
+    //         //调用后台，发送成功后请回调 flash.showDanmaku
+    //         this.flash.showDanmaku(text, 0xffff00, 100);
+    //     },
+
+    //     //充值
+    //     recharge: function ()
+    //     {
+    //         alert("打开充值页面");
+    //     },
+
+    //     //赠送礼物，参数：道具ID
+    //     presentGift: function ( itemId )
+    //     {
+    //         //调用后台，若赠送的是购买的道具，请回调 flash.updateCoins，若赠送的是我的道具，请回调 flash.updateMyItems
+    //         alert("赠送礼物：" + itemId);
+    //         getGift();
+    //     },
+    // };
+
+    // var att = {};
+    // att.width = "100%";
+    // att.height = "100%";
+    // var par = {};
+    // par.quality = "high";
+    // par.bgcolor = "#000000";
+    // par.allowscriptaccess = "sameDomain";
+    // par.allowfullscreen = "true";
+    // par.allowFullScreenInteractive = "true";
+
+    // att.id = "LiveRoom";
+    // att.data = "YeLiveRoom.swf";
+    // liveRoomInterf.flash = swfobject.createSWF(att, par, "LiveRoomDiv");
 
 })

@@ -1,5 +1,4 @@
 {% extends 'layout.html' %} 
-
 {% block css %}
 <link rel="stylesheet" href="/dist/index.css">
 {% endblock %}
@@ -50,7 +49,7 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="m-game">
+        <!-- <div class="m-game">
             <div class="title"><img src="/images/index_icon2.png" alt="">游戏专区<a href="" class="more">更多>></a></div>
             <div class="m-content f-cb">
                 {% for game in index.game %}
@@ -60,9 +59,9 @@
                     </div>
                 {% endfor %}
             </div>
-        </div>
+        </div> -->
         <div class="m-hot">
-            <div class="title"><img src="/images/index_icon3.png" alt="">热门直播<a href="" class="more">更多>></a></div>
+            <div class="title"><img src="/images/index_icon3.png" alt="">热门直播<a href="/alllive" class="more">更多>></a></div>
             <div class="m-content f-cb">
                 {% for hotlive in index.live %}
                     <div class="m-lst">
@@ -91,7 +90,7 @@
             </div>
         </div>
         <div class="m-video">
-            <div class="title"><img src="/images/index_icon4.png" alt="">精彩视频<a href="" class="more">更多>></a></div>
+            <div class="title"><img src="/images/index_icon4.png" alt="">精彩视频<a href="/allvideo" class="more">更多>></a></div>
             <div class="m-content f-cb">
                 {% for video in index.video %}
                     <div class="m-lst">
@@ -126,7 +125,6 @@
         <div id="VideoPlayerDiv"/>
     </div> 
 </div>
-{% include 'common/float.html' %}
 
 {% endblock %}
 

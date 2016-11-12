@@ -29,15 +29,15 @@
         <div class="live-info f-cb">
             <img src="/head.png" alt="" class="live-avatar f-fl">
             <div class="avatar-info f-fl">
-                <span>{{detail.info.rtmp}}</span>
-                <h3>界黄盖暴力输出，回合内秒全场</h3>
-                <div><span class="u-label">梦妮~依恋*<img src="/images/female.png" alt=""></span>王者荣耀</div>
-                <div><span class="u-label">房间ID：354681</span>在线：3626</div>
+                <span class="hide-rtmp">{{detail.info.rtmp}}</span>
+                <h3>{{detail.info.title}}</h3>
+                <div><span class="u-label">{{detail.info.nickname}}<img src="/images/female.png" alt=""></span>{{detail.info.game_name}}</div>
+                <div><span class="u-label">房间ID：{{detail.info.room_number}}</span>在线：{{detail.info.online_num}}</div>
             </div>
             <div class="follow-avatar f-fr">
                 <div class="follow f-cb">
                     <a href="">关注</a>
-                    <div class="follownum">53,123</div>
+                    <div class="follownum">{{detail.info.fans}}</div>
                 </div>
                 <div class="option">
                     <a href="">举报</a><a href="">转发</a>
@@ -57,16 +57,20 @@
             </div>
             <div class="m-gift">
                 <div class="myCoin">
-                    <p>我有<span>123</span>鱼币</p>
-                    <a href="" class="givemoney">充值</a>
+                    <p>我有<span class="yuerCoin">{{info.yuerCoin}}</span>鱼币</p>
+                    <a href="/center?type=4" class="givemoney">充值</a>
                 </div>
                 {% for gift in gift %}
-                    <div class="gift">
+                    <div class="gift" data-name="{{gift.name}}" data-id="{{gift.id}}">
                        <img src="http://img.wangyuhudong.com/{{gift.icon}}" alt=""> 
+                       <div class="gift-hover">
+                           {{gift.name}}(<span>{{gift.price}}</span>鱼币)<br>点击送给主播
+                       </div>
                     </div>       
                 {% endfor %}
                 <div class="myGift">
                     我的道具
+                    <div class="my-prop"></div>
                 </div>
             </div>
             
@@ -75,7 +79,7 @@
     <div class="m-live-right">
         <div class="live-notice">
             <h3><img src="/images/trumpet.png" alt="">直播公告</h3>
-            <p>粉丝群 奔家军 3284637 （已满）2群 4993821 没关注的小伙伴点一波关注</p>
+            <p>{{detail.info.introduce}}</p>
         </div>
         <div class="liveroom">
             <ul class="room-tab f-cb">
@@ -83,7 +87,7 @@
                 <li>贡献榜</li>
             </ul>
             <div class="room-block">
-                
+                <div class="welcome">欢迎来到<span>{{detail.info.nickname}}</span>的直播间，喜欢就点击房间信息关注吧！</div>
             </div>
             <div class="set-block">
                 <div class="set-option">快捷短语</div>
@@ -91,7 +95,7 @@
                 <div class="set-option">清屏</div>
             </div>
             <div class="send-block">
-                <input type="text"><button class="sendText">发送</button>
+                <input type="text" class="live-text"><button class="sendText">发送</button>
             </div>
         </div>
     </div>
@@ -106,4 +110,5 @@
 <script src="/Web_SDK_Chatroom_v2.8.0.js"></script>
 <script type="text/javascript" src="/swfobject.js"></script>
 <script type="text/javascript" src="/dist/liveroom.js"></script>
+
 {% endblock %}

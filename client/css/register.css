@@ -3,6 +3,9 @@ body{
 	background-color: #1a2129;
 	min-height: 100vh;
 }
+.m-float{
+	display: none;
+}
 .m-register img{
 	width: 15%;
 	display: block;

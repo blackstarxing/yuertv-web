@@ -84,7 +84,7 @@ $(function(){
     liveHomeInterf.rtmp = defaultdata.attr('href');
     liveHomeInterf.anchorId = defaultdata.attr('data-id');
     liveHomeInterf.anchorhead = 'http://img.wangyuhudong.com/'+defaultdata.attr('data-icon');
-    liveHomeInterf.rtmp = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
+    // liveHomeInterf.rtmp = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
     // liveHomeInterf.rtmp = "rtmp://pili-live-rtmp.wangyuhudong.com/wyds/wyds_dev_3835355";
     liveHomeInterf.flash = swfobject.createSWF(att, par, "LiveHomeDiv");
 
@@ -118,8 +118,9 @@ $(function(){
     })
     $('.m-video .live-address').click(function(e){
         e.preventDefault();
-        videoPlayerInterf.flash.playVideo($(this).attr('data-rtmp'),$(this).attr('data-title'),$(this).attr('data-name'));
-        videoPlayerInterf.flash.updateAnchor($(this).attr('data-id'), $(this).attr('data-nickname'),$(this).attr('data-icon'), false);
+        // videoPlayerInterf.flash.playVideo("http://pili-media.wangyuhudong.com/7FUkDXBrj3kr1leI8VjVFX6GGD0=/Fk8ffjjNrphUwlioPxjmXIB0R7tl", "界黄盖暴力输出，秒全场", "王者荣耀");
+        // videoPlayerInterf.flash.playVideo($(this).attr('data-rtmp'),$(this).attr('data-title'),$(this).attr('data-name'));
+        // videoPlayerInterf.flash.updateAnchor($(this).attr('data-id'), $(this).attr('data-nickname'),$(this).attr('data-icon'), false);
         $('.m-video-mask').show();
     });
     $('.m-video-mask .close').click(function(e){
