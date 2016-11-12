@@ -402,7 +402,7 @@ a#m-changepass,a#m-change,a#m-realname{
 	width: 380px;
 	height: 200px;
 	padding:30px 60px;
-	background: url(../images/banana.png) #323a43 center center no-repeat;
+	background: url(/images/banana.png) #323a43 center center no-repeat;
 	display: none;
 }
 .reg-success span{
