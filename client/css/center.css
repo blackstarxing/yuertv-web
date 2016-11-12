@@ -3,13 +3,18 @@ input{
 	float: none;
 	text-align:left;
 }
+.g-container{
+	background: #141a20;
+	padding-bottom: 100px;
+}
 .M-box{
 	margin-top:50px;
 	margin-left:500;
 }
 .g-main{
 	width:1200px;
-	margin:100px auto 0;
+	padding-top: 100px;
+	margin:0 auto;
 	background:#141a20;
 	position:relative;
 	z-index: 99;
@@ -787,9 +792,26 @@ a#m-changepass,a#m-change,a#m-realname{
 	margin:0px 150px 30px 160px;
 }
 
-
-
- 
+/*我的关注，我的消息(系统消息和关注消息)*/
+.M-box{
+	width:400px;
+	height:50px;
+	margin:100px 0px 60px 500px;
+	color:#fff;
+}
+.M-box #prevBtn,#prevPage,#nextPage,#nextBtn{
+	width:40px;
+	height:40px;
+	line-height:50px;
+	text-align:center;
+	background:#f36;
+	font-size:18px;
+}
+.M-box #prevBtn,#nextBtn{
+	width:60px;
+	font-weight:bold;
+	vertical-align:middle;
+}
 /*我的消息*/
 .m-message{
 	width:800px;
@@ -834,7 +856,7 @@ a#m-changepass,a#m-change,a#m-realname{
 }
 .u-yuer h3{
 	display:inline-block;
-	width:580px;
+	width:530px;
 	font-size:18px;
 	color:#fff;
 }
