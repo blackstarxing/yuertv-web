@@ -122,24 +122,10 @@
 }
 
 /*视频*/ 
-.m-video .anchor-head{
-    top:-35px;
-}
 .m-video .anchor-head .head-icon{
     border:1px solid #fff;
 }
 .m-video .anchor-info a{
     margin-top: -5px;
     color:#999;
-}
-.video-name{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    line-height: 2.5;
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    text-indent: 15px;
 }

@@ -83,6 +83,7 @@ $(function(){
     	
     })
 
+    $(".m-common .m-lst:nth-child(5n)").css("margin-right","0");
     // 右侧挂件
     $('.u-download').hover(function(){
         $('.showQR').show();

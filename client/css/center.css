@@ -26,7 +26,7 @@ input{
 	font-size:16px;
 	color:#cecfd2;
 }
-.g-left ul li a span{
+.g-left ul li a i{
 	display:inline-block;
 	margin-left:55px;
 	padding-right:30px;

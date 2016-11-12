@@ -95,7 +95,7 @@
             <div class="m-content f-cb">
                 {% for video in index.video %}
                     <div class="m-lst">
-                    <a href="" class="live-address">
+                    <a href="" class="live-address" data-rtmp="{{video.rtmp}}" data-title="{{video.title}}" data-icon="{{video.up_user_icon}}" data-id="{{video.id}}" data-name="{{video.name}}" data-nickname="{{video.nickname}}">
                         <img src="{{video.icon}}" alt="">
                         <span><i>·</i>{{video.name}}</span>
                         <div class="play-mask"></div>
@@ -118,8 +118,13 @@
                 {% endfor %}
             </div>
         </div>
-    </div>
-    
+    </div>   
+</div>
+<div class="m-video-mask">
+    <a href="" class="close"><img src="/images/iconwindow.png" alt=""></a>
+    <div class="m-video-player">
+        <div id="VideoPlayerDiv"/>
+    </div> 
 </div>
 {% include 'common/float.html' %}
 

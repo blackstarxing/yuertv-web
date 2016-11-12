@@ -1,0 +1,50 @@
+{% extends 'layout.html' %} 
+
+{% block css %}
+<!-- <link rel="stylesheet" href="/css/alllive.css"> -->
+{% endblock %}
+
+{% block content %}
+
+<div class="m-common">
+    <div class="comWidth f-cb">
+        <div class="m-livetop">
+            <img src="/images/index_icon4.png">
+            <span class="u-alllive">全部视频</span>
+            <span class="u-alling">当前视频总数</span>
+            <span class="u-alllnum" style="margin-left: 0;">1564</span>
+        </div>
+        <div class="live-container">
+            {% for video in video %}
+                <div class="m-lst m-video">
+                <a href="" class="live-address" data-rtmp="{{video.rtmp}}" data-title="{{video.title}}" data-icon="{{video.up_user_icon}}" data-id="{{video.id}}" data-name="{{video.name}}" data-nickname="{{video.nickname}}">
+                    <img src="{{video.icon}}" alt="">
+                    <span><i>·</i>{{video.name}}</span>
+                    <div class="play-mask"></div>
+                </a>
+                <div class="m-info">
+                    <div class="anchor-head">
+                        <img src="http://img.wangyuhudong.com/{{video.up_user_icon}}" alt="" class="head-icon">
+                        {% if video.sex==1 %}
+                            <img src="/images/female.png" alt="" class="sex">
+                        {% else %}
+                            <img src="/images/male.png" alt="" class="sex">
+                        {% endif %}
+                    </div>
+                    <div class="anchor-info">
+                        <div><a href="">{{video.nickname}}</a></div>
+                    </div>
+                    <div class="video-name"><a href="">{{video.title}}</a></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<!-- <script type="text/javascript" src="/dist/index.js"></script> -->
+{% endblock %}

@@ -68,9 +68,7 @@ router.get('/liveroom', function(req, res, next) {
         res.render('error', { title: "错误"});
     });
 });
-router.get('/alllive', function(req, res, next) {
-    res.render('alllive', { title: "全部直播", registerPage: true });
-});
+
 router.get('/register', function(req, res, next) {
     res.render('register', { title: "注册", registerPage: true });
 });
@@ -208,7 +206,84 @@ router.get('/activity', function(req, res, next) {
 });
 
 router.get('/search', function(req, res, next) {
-    res.render('search', { title: "搜索" });
+    var islogin = false;
+    if(req.headers.cookie){
+        islogin = true;
+    }else{
+        islogin = false;
+    };
+    Thenjs.parallel([function(cont) {
+        request('http://172.16.2.62:8777/index', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        res.render('search', {
+            title: "搜索",
+            recommend: JSON.parse(result[0]).object.live.slice(0,6),
+            islogin: islogin,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+});
+
+router.get('/alllive', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        islogin = true;
+    }else{
+        islogin = false;
+    };
+    Thenjs.parallel([function(cont) {
+        request('http://172.16.2.62:8777/index', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        res.render('alllive', {
+            title: "全部直播",
+            recommend: JSON.parse(result[0]).object.live,
+            islogin: islogin,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+});
+
+router.get('/allvideo', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        islogin = true;
+    }else{
+        islogin = false;
+    };
+    Thenjs.parallel([function(cont) {
+        request('http://172.16.2.62:8777/index', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        res.render('allvideo', {
+            title: "全部视频",
+            video: JSON.parse(result[0]).object.video,
+            islogin: islogin,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
 });
 
 module.exports = router;

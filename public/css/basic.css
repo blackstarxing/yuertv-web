@@ -49,53 +49,38 @@ color: #fff !important;
 .f-tc{text-align: center;}
 
 /*字体图标*/
-@font-face {
-  font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?rd3y8w');
-  src:  url('../fonts/icomoon.eot?rd3y8w#iefix') format('embedded-opentype'),
-    url('../fonts/icomoon.ttf?rd3y8w') format('truetype'),
-    url('../fonts/icomoon.woff?rd3y8w') format('woff'),
-    url('../fonts/icomoon.svg?rd3y8w#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal;
+@font-face {font-family: "iconfont";
+  src: url('/fonts/iconfont.eot?t=1478928019332'); /* IE9*/
+  src: url('/fonts/iconfont.eot?t=1478928019332#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('/fonts/iconfont.woff?t=1478928019332') format('woff'), /* chrome, firefox */
+  url('/fonts/iconfont.ttf?t=1478928019332') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('/fonts/iconfont.svg?t=1478928019332#iconfont') format('svg'); /* iOS 4.1- */
 }
 
-[class^="icon-"], [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  /* Better Font Rendering =========== */
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
   -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-identification:before {
-  content: "\e900";
-}
-.icon-prop:before {
-  content: "\e901";
-}
-.icon-follow:before {
-  content: "\e902";
-}
-.icon-messages:before {
-  content: "\e903";
-}
-.icon-data:before {
-  content: "\e904";
-}
-.icon-recharge:before {
-  content: "\e905";
-}
-.icon-anchor:before {
-  content: "\e906";
-}
+.icon-prop:before { content: "\e655"; }
+
+.icon-vip:before { content: "\e656"; }
+
+.icon-pay:before { content: "\e657"; }
+
+.icon-info:before { content: "\e658"; }
+
+.icon-message:before { content: "\e659"; }
+
+.icon-follow:before { content: "\e65a"; }
+
+.icon-anchor:before { content: "\e65b"; }
+
+.icon-out:before { content: "\e65c"; }
 
 /*公共头部*/
 .comWidth{
@@ -222,7 +207,6 @@ color: #fff !important;
     background:rgba(0,0,0,0.6);
     display:none;
     z-index:999999;
-    padding-left: 100px;
 }
 .close{
     position: absolute;
@@ -384,7 +368,7 @@ color: #fff !important;
     min-width: 1100px;
 }
 .mini-hd .header_left{
-    width: 70%;
+    width: 80%;
 }
 .mini-hd .m-nav{
     width: 30%;
@@ -394,7 +378,7 @@ color: #fff !important;
     font-size: 14px;
     width: 33.3%;
 }
-.mini-hd .header_left img{
+.mini-hd .head_logo{
     width:38px;
     height: 37px;
     margin:1px 16px 0;
@@ -418,6 +402,80 @@ color: #fff !important;
     width: 25px;
     height: 25px;
     margin-right: 15px;
+}
+.mini-hd .sweepme{
+    position: relative;
+    float: right;
+    margin-left: 50px;
+    font-size: 16px;
+    color:#999;
+}
+/*视频弹窗*/
+.m-video-mask{
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    z-index:999999;
+}
+.m-video-mask .close{
+    position: absolute;
+    right: 30px;
+    top: 30px;
+}
+.m-video-mask .close img{
+    width: 20px;
+    height: 20px;
+}
+.m-video-player{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 70%;
+    height: 70%;
+    /*width: 1200px;
+    height: 670px;*/
+    margin:auto;
+}
+/*全部直播*/
+.m-livetop{
+    width:1200px;
+    height:65px;
+}
+.m-livetop img{
+    margin-left:15px;
+}
+.m-livetop .u-alllive{
+    margin-left:10px;
+    font-size:24px;
+}
+.m-livetop .u-alllnum{
+    margin-left:25px;
+    font-size:14px;
+    color:#f36;
+}
+.m-livetop .u-alling{
+    font-size:14px;
+    margin-left:25px;
+}
+.m-video .anchor-head{
+    top:-35px;
+}
+.video-name{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    line-height: 2.5;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    text-indent: 15px;
 }
 .footer{
 	border-top: 1px solid #616d78;

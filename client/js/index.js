@@ -116,5 +116,14 @@ $(function(){
         liveHomeInterf.flash.updateAnchor($(this).attr('data-upid'), 'http://img.wangyuhudong.com/'+$(this).attr('data-icon'), false);
         console.log(liveHomeInterf.rtmp);
     })
-    
+    $('.m-video .live-address').click(function(e){
+        e.preventDefault();
+        videoPlayerInterf.flash.playVideo($(this).attr('data-rtmp'),$(this).attr('data-title'),$(this).attr('data-name'));
+        videoPlayerInterf.flash.updateAnchor($(this).attr('data-id'), $(this).attr('data-nickname'),$(this).attr('data-icon'), false);
+        $('.m-video-mask').show();
+    });
+    $('.m-video-mask .close').click(function(e){
+        e.preventDefault();
+        $('.m-video-mask').hide();
+    })
 })
