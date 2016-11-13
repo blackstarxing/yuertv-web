@@ -214,6 +214,15 @@ html,body{
 	width: 100px;
 	line-height: 2;
 }
+.endingtime{
+	display: inline-block;
+	width: 25px;
+	text-align: center;
+}
+.freegift{
+	line-height: 50px;
+	cursor: pointer;
+}
 .m-gift{
 	float: right;
 }
@@ -346,6 +355,9 @@ html,body{
 }
 .m-l-gift .award img{
 	margin:0 10px;
+}
+.m-l-gift .freegift{
+	line-height: 30px;
 }
 .m-l-gift .myGift{
 	line-height: 30px;

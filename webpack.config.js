@@ -7,19 +7,19 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
-        layout: ['./client/js/layout.js'],
-        index: ['./client/css/index.css', './client/js/index.js'],
-        liveroom: ['./client/css/liveroom.css', './client/js/liveroom.js'],
-        center: ['./client/css/center.css', './client/js/center.js'],
-        register: ['./client/css/register.css', './client/js/register.js'],
-        activity: ['./client/css/activity.css'],
-        search: ['./client/css/search.css'],
+        layout: ['./client/js/layout.js', hotMiddlewareScript],
+        index: ['./client/css/index.css', './client/js/index.js', hotMiddlewareScript],
+        liveroom: ['./client/css/liveroom.css', './client/js/liveroom.js', hotMiddlewareScript],
+        center: ['./client/css/center.css', './client/js/center.js', hotMiddlewareScript],
+        register: ['./client/css/register.css', './client/js/register.js', hotMiddlewareScript],
+        activity: ['./client/css/activity.css',  hotMiddlewareScript],
+        search: ['./client/css/search.css',  hotMiddlewareScript],
     },
     output: {
-        filename: './[name].[hash].js',
+        filename: './[name].js',
         path: path.resolve('./public/dist/'),
-        // publicPath: publicPath
-            publicPath: './'
+        publicPath: publicPath
+            // publicPath: './'
     },
     module: {
         loaders: [{
@@ -47,7 +47,7 @@ if (process.env.NODE_ENV === 'production') {
                     warnings: false
                 }
             }),
-            new ExtractTextPlugin('./[name].[hash].css', {
+            new ExtractTextPlugin('./[name].css', {
                 allChunks: true
             }),
             new webpack.optimize.OccurenceOrderPlugin()

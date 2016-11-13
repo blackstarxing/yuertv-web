@@ -3,6 +3,9 @@ input{
 	float: none;
 	text-align:left;
 }
+.m-float{
+	display: none;
+}
 .g-container{
 	background: #141a20;
 	padding-bottom: 100px;

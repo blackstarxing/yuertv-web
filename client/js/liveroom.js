@@ -18,6 +18,44 @@ $(function(){
         resize();
     });
 
+    var islogin = (document.cookie.indexOf('yuer_userId')>=0) ? 1 : 0;
+    console.log(islogin);
+    
+    var endingtime = 300;
+    function endingTime(val) { 
+        if (endingtime > 0) { 
+            $('.endingtime').text(endingtime);
+            endingtime--;
+            setTimeout(function() { 
+                endingTime(val);
+            },1000);
+        } else {
+            $('.countdown').html('<div class="freegift">点击领取</div>');
+            $('.freegift').click(function(){
+                $.ajax({
+                    method: "GET",
+                    url: "/api/tv/gift/dailyGift",
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.code == 0) {
+                            endingtime = 300;
+                            $('.countdown').html('<span class="endingtime">300</span>秒后<br>惊喜降临');
+                            setTimeout(function() { 
+                                endingTime(endingtime);
+                            },1000);
+                        }else{
+                            console.log(data.result);
+                        }
+                    },
+                    error: function(a, b, c) {
+                        console.log("接口出问题啦");
+                    }
+                });
+            })
+        } 
+    } 
+    endingTime(endingtime);  
+
     $('.gift').hover(function(){
         $(this).find('.gift-hover').show();
     },function(){
@@ -37,7 +75,7 @@ $(function(){
     function getGift(){
         $.ajax({
             method: "GET",
-            url: "http://localhost:30000/api/gift/list",
+            url: "/api/gift/list",
             dataType: 'json',
             success: function(data) {
                 if (data.code == 0) {
@@ -63,7 +101,7 @@ $(function(){
     function getProp(){
         $.ajax({
             method: "GET",
-            url: "http://localhost:30000/api/person-center/my-gifts",
+            url: "/api/person-center/my-gifts",
             dataType: 'json',
             success: function(data) {
                 if (data.code == 0) {
@@ -89,7 +127,7 @@ $(function(){
         });
         $.ajax({
             method: "GET",
-            url: "http://localhost:30000/api/person-center/user-info",
+            url: "/api/person-center/user-info",
             dataType: 'json',
             success: function(data) {
                 if (data.code == 0) {
@@ -199,7 +237,7 @@ $(function(){
             parm.type = type;
             $.ajax({
                 method: "GET",
-                url: "http://localhost:30000/api/gift/send",
+                url: "/api/gift/send",
                 dataType: 'json',
                 data: parm,
                 success: function(data) {
@@ -275,12 +313,12 @@ $(function(){
                 this.flash.updateMyItems(proplist);
 
                 //显示弹幕，参数：弹幕文字, 颜色值（0xRRGGBB，默认0xffffff）, 滚动速度（像素/秒，默认100）, 延迟时间（秒，默认0，<0表示超前）, 纵坐标百分比（0~100，默认在10~70间随机）
-                this.flash.showDanmaku("我是一条弹幕", 0xffffff, 100);
-                this.flash.showDanmaku("我是延后显示的弹幕", 0xffff00, 150, 5);
-                this.flash.showDanmaku("我是超前显示的弹幕", 0x00ffff, 80, -3);
+                // this.flash.showDanmaku("我是一条弹幕", 0xffffff, 100);
+                // this.flash.showDanmaku("我是延后显示的弹幕", 0xffff00, 150, 5);
+                // this.flash.showDanmaku("我是超前显示的弹幕", 0x00ffff, 80, -3);
 
                 //显示固定弹幕，参数：通告文字, 颜色值（0xRRGGBB，默认0xffffff）, 显示时间（秒，默认5）, 纵坐标百分比（0~100，默认10）
-                this.flash.showStaticDanmaku("这是一条通告", 0xff0000, 10);
+                // this.flash.showStaticDanmaku("这是一条通告", 0xff0000, 10);
             },
 
             //刷新

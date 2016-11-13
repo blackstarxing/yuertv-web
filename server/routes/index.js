@@ -6,7 +6,9 @@ var request = require('request');
 router.get('/', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
-        islogin = true;
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
     }else{
         islogin = false;
     };
@@ -34,7 +36,9 @@ router.get('/liveroom', function(req, res, next) {
     var id = req.url.split('=')[1];
     var islogin = false;
     if(req.headers.cookie){
-        islogin = true;
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
     }else{
         islogin = false;
     };
@@ -77,7 +81,9 @@ router.get('/center', function(req, res, next) {
     var type = req.url.split('=')[1];
     var islogin = false;
     if(req.headers.cookie){
-        islogin = true;
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
     }else{
         islogin = false;
     };
@@ -142,7 +148,9 @@ router.get('/alipay', function(req, res, next) {
     var id = req.url.split('=')[1];
     var islogin = false;
     if(req.headers.cookie){
-        islogin = true;
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
     }else{
         islogin = false;
     };
@@ -177,7 +185,9 @@ router.get('/alipay', function(req, res, next) {
 router.get('/valuesuccess', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
-        islogin = true;
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
     }else{
         islogin = false;
     };
@@ -187,7 +197,9 @@ router.get('/valuesuccess', function(req, res, next) {
 router.get('/activity', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
-        islogin = true;
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
     }else{
         islogin = false;
     };
@@ -214,7 +226,9 @@ router.get('/activity', function(req, res, next) {
 router.get('/search', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
-        islogin = true;
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
     }else{
         islogin = false;
     };
@@ -241,7 +255,9 @@ router.get('/search', function(req, res, next) {
 router.get('/alllive', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
-        islogin = true;
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
     }else{
         islogin = false;
     };
@@ -268,7 +284,9 @@ router.get('/alllive', function(req, res, next) {
 router.get('/allvideo', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
-        islogin = true;
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
     }else{
         islogin = false;
     };
