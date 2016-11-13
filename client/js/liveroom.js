@@ -37,7 +37,7 @@ $(function(){
     function getGift(){
         $.ajax({
             method: "GET",
-            url: "http://localhost:3000/api/gift/list",
+            url: "http://localhost:30000/api/gift/list",
             dataType: 'json',
             success: function(data) {
                 if (data.code == 0) {
@@ -63,7 +63,7 @@ $(function(){
     function getProp(){
         $.ajax({
             method: "GET",
-            url: "http://localhost:3000/api/person-center/my-gifts",
+            url: "http://localhost:30000/api/person-center/my-gifts",
             dataType: 'json',
             success: function(data) {
                 if (data.code == 0) {
@@ -89,7 +89,7 @@ $(function(){
         });
         $.ajax({
             method: "GET",
-            url: "http://localhost:3000/api/person-center/user-info",
+            url: "http://localhost:30000/api/person-center/user-info",
             dataType: 'json',
             success: function(data) {
                 if (data.code == 0) {
@@ -199,7 +199,7 @@ $(function(){
             parm.type = type;
             $.ajax({
                 method: "GET",
-                url: "http://localhost:3000/api/gift/send",
+                url: "http://localhost:30000/api/gift/send",
                 dataType: 'json',
                 data: parm,
                 success: function(data) {

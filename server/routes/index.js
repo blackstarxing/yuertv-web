@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
-        request('http://172.16.2.62:8777/index', function(error, response, body) {
+        request('http://wy.yuerwebapi.wangyuhudong.com/index', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -39,7 +39,7 @@ router.get('/liveroom', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
-        request('http://172.16.2.62:8777/live/detail', function(error, response, body) {
+        request('http://wy.yuerwebapi.wangyuhudong.com/live/detail', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -47,7 +47,7 @@ router.get('/liveroom', function(req, res, next) {
             }
         })
     },function(cont) {
-        request('http://172.16.2.62:8777/gift/list', function(error, response, body) {
+        request('http://wy.yuerwebapi.wangyuhudong.com/gift/list', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -83,7 +83,7 @@ router.get('/center', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.2.62:8777/person-center/user-info',
+            uri: 'http://wy.yuerwebapi.wangyuhudong.com/person-center/user-info',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -97,7 +97,7 @@ router.get('/center', function(req, res, next) {
         })
     },function(cont) {
         request({
-            uri: 'http://172.16.2.62:8777/person-center/my-gifts',
+            uri: 'http://wy.yuerwebapi.wangyuhudong.com/person-center/my-gifts',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -111,7 +111,7 @@ router.get('/center', function(req, res, next) {
         })
     },function(cont) {
         request({
-            uri: 'http://172.16.2.62:8777/pay/recharge-list',
+            uri: 'http://wy.yuerwebapi.wangyuhudong.com/pay/recharge-list',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -149,7 +149,7 @@ router.get('/alipay', function(req, res, next) {
     console.log(id);
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.2.62:8777/pay/alipay?id='+id,
+            uri: 'http://wy.yuerwebapi.wangyuhudong.com/pay/alipay?id='+id,
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -192,7 +192,7 @@ router.get('/activity', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
-        request('http://172.16.2.62:8777/index', function(error, response, body) {
+        request('http://wy.yuerwebapi.wangyuhudong.com/index', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -219,7 +219,7 @@ router.get('/search', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
-        request('http://172.16.2.62:8777/index', function(error, response, body) {
+        request('http://wy.yuerwebapi.wangyuhudong.com/index', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -246,7 +246,7 @@ router.get('/alllive', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
-        request('http://172.16.2.62:8777/index', function(error, response, body) {
+        request('http://wy.yuerwebapi.wangyuhudong.com/index', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -273,7 +273,7 @@ router.get('/allvideo', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
-        request('http://172.16.2.62:8777/index', function(error, response, body) {
+        request('http://wy.yuerwebapi.wangyuhudong.com/index', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {

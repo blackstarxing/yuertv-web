@@ -62,7 +62,7 @@ $(function() {
                 var parm = {};
                 parm.nickname = $nickname.val();
                 $.ajax({
-                    url: 'http://localhost:3000/api/isNicknameExist',
+                    url: 'http://localhost:30000/api/isNicknameExist',
                     data: parm,
                     type: 'post',
                     dataType: 'json',
@@ -98,7 +98,7 @@ $(function() {
                 var parm = {};
                 parm.mobile = $telnumber.val();
                 $.ajax({
-                    url: 'http://localhost:3000/api/isMobileExist',
+                    url: 'http://localhost:30000/api/isMobileExist',
                     data: parm,
                     type: 'post',
                     dataType: 'json',
@@ -148,7 +148,7 @@ $(function() {
         parm.mobile = $telnumber.val();
         parm.imgCheckCode = $('.code-wrap input').val();
         $.ajax({
-            url: 'http://localhost:3000/api/sendSMSCode',
+            url: 'http://localhost:30000/api/sendSMSCode',
             data: parm,
             type: 'post',
             dataType: 'json',
@@ -213,7 +213,7 @@ $(function() {
             parm.checkCode = $('.code').val();
             parm.password = $('.password').val();
             $.ajax({
-                url: 'http://localhost:3000/api/register',
+                url: 'http://localhost:30000/api/register',
                 data: parm,
                 type: 'post',
                 dataType: 'json',
