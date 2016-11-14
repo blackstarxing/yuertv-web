@@ -921,6 +921,15 @@ a#m-changepass,a#m-change,a#m-realname{
 	margin:15px 45px 10px 30px;
 	border-radius: 50px;
 }
+.u-messnickname img.messimgsex{
+	display:inline-block;
+	width:25px;
+	height:25px;
+	border-radius: 50%;
+	position:relative;
+	left:50px;
+	top:-50px;
+}
 .u-messnickname p{
 	text-align:center;
 }
