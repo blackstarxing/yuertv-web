@@ -35,25 +35,27 @@ $(function() {
             $(".u-topupwindow").hide();
         })
 //我要当主播的div之间的切换
-    $(".m-mainh a").on("click", function(e) {
+    $(".m-mainh .u-top a").on("click", function(e) {
         e.preventDefault();
-        $(this).addClass("").siblings().removeClass("");
+        $(this).addClass("switchcon").siblings().removeClass("switchcon");
         $(".switchcontent").hide().eq($(this).index()).show();
     })
     $(".m-mainh a:eq(0)").trigger("click");
 //我要当主播中的下级div的切换
-    $(".u-certification a").on("click", function(e) {
-        e.preventDefault();
-        $(this).addClass("").siblings().removeClass("");
-        $(".switchrepeat").hide().eq($(this).index()).show();
-    })
-    $(".u-certification a:eq(0)").trigger("click");
+    // $(".u-certification a").on("click", function(e) {
+    //     e.preventDefault();
+    //     $(this).addClass("switchcontent").siblings().removeClass("switchcontent");
+    //     $(".switchrepeat").hide().eq($(this).index()).show();
+    // })
+    // $(".u-certification a:eq(0)").trigger("click");
 // 修改昵称弹出框
     $("#nickname").on("click", function() {
-        $(".m-layer").addClass("z-show");
+        // $(".m-layer").addClass("z-show");
+         $(".m-layer").show();
     });
     $(".lybt .u-btn").on("click", function() {
-        $(this).parents(".m-layer").removeClass("z-show");
+        // $(this).parents(".m-layer").removeClass("z-show");
+        $(this).parents(".m-layer").hide();
     });
 // 全文显示
     $(".u-messtips").off().on("click",function(){if($(this).html()=="全文"){$(this).html('展开')}else{$(this).html('全文')}})
@@ -232,6 +234,7 @@ $(function() {
                 $(this).hide();
                 window.location.href = window.location.href;
             })
+            // 验证码
             $("#number").on("focus",function(){
                 $("#gainnumber").show();
             });
@@ -272,6 +275,7 @@ $(function() {
             $(".m-mask .cancel").off().on("click",function(){
                 $(".m-mask").hide();
             });
+            // 验证码
             $("#userbox").off().on("click",function(){
                 if($("#verify").val()!="" && $("#number").val()!=""){
                     $.ajax({
@@ -316,6 +320,7 @@ $(function() {
                         $(this).hide();
                 });
             });
+            // 修改昵称
             $("#checktips").off().on("focus",function(){
                 $(this).parent().find("span").each(function(){
                         $(this).hide();
@@ -332,8 +337,6 @@ $(function() {
                         success: function(data) {
                             if (data.code == 0) {
                                 alert("认证成功");//没找到你的弹框
-                                // window.location.href=window.location.href;
-                                window.reload(true);
                             }else if(data.code == 1){
                                 alert("更新失败");//没找到你的弹窗
                             }else if(data.code == 2){
@@ -343,6 +346,7 @@ $(function() {
                             }else{
                                 console.log(data.result);
                             }
+                            window.location.href=window.location.href;
                         },
                         error: function(a, b, c) {
                             console.log("接口出问题啦");
@@ -350,7 +354,7 @@ $(function() {
                     })
             })
 
-
+            // 分页－－我的关注，我的消息
              $(".prevBtn").off().on("click",function(event){
                 event.preventDefault();
                 local.cur_page--;
@@ -390,16 +394,13 @@ $(function() {
             })
         },
         Pagination:function(_page,_total,_pageSize,callback){
-            // alert(local.cur_page);
             local.cur_page = _page || 1;
             local.cur_total = _total || 0;
             local.cur_pageSize = _pageSize || 5;
             local.cur_maxPage = (parseInt((local.cur_total+5)/ local.cur_pageSize)) || 1;
             local.cur_pageCallback=callback;
-            // alert(local.cur_page);
             var _total = (_total<5) ? 1 : (parseInt(_total/5));
-            $(".prevPage").text(_total);
-            $(".nextPage").text(local.cur_page);
+            $(".totalPage").text(local.cur_page+"/"+ local.cur_total);
 
             $(".nextBtn").show();
             $(".prevBtn").show();
