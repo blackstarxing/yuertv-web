@@ -480,7 +480,6 @@ $(function() {
                     type:_type
                 }, 
                 success: function(data) {
-                    console.log(date.object);
                     if (data.code == 0) {
                         if(_type == 0){
                             var str = "";
