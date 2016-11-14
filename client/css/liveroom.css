@@ -42,6 +42,9 @@ html,body{
 .live-info{
 	margin-bottom: 20px;
 }
+.hide-rtmp{
+	display: none;
+}
 .videoBox{
 	min-height: 375px;
 }
@@ -141,6 +144,25 @@ html,body{
 	box-sizing: border-box;
 	border-top: none;
 	border-bottom: none;
+	padding:10px;
+}
+.room-block{
+	color: #333;
+	font-size: 12px;
+	line-height: 30px;
+}
+.room-block .welcome{
+	color:#f36;
+}
+.room-block .welcome span{
+	color:#0cc;
+	margin:0 3px;
+}
+.room-block .text-mes .membName{
+	color:#0cc;
+}
+.room-block .gift-mes{
+	color: #f36;
 }
 .set-block{
 	height: 30px;
@@ -165,6 +187,7 @@ html,body{
 	border-radius: 3px;
 	margin:7px 0 7px 19px;
 	background: #f3f3f3; 
+	text-indent: 12px;
 }
 .send-block button{
 	background: none;
@@ -191,16 +214,54 @@ html,body{
 	width: 100px;
 	line-height: 2;
 }
+.endingtime{
+	display: inline-block;
+	width: 25px;
+	text-align: center;
+}
+.freegift{
+	line-height: 50px;
+	cursor: pointer;
+}
 .m-gift{
 	float: right;
 }
 .m-gift .gift{
+	position: relative;
 	float: left;
 	margin:0 5px;
 }
 .gift img{
 	width: 50px;
 	height: 50px;
+	cursor: pointer;
+}
+.gift .gift-hover{
+	position: absolute;
+	padding: 10px;
+	top:-80px;
+	left: 50%;
+	width: 120px;
+	margin-left: -70px;
+	text-align: center;
+	background: rgba(72,84,114,0.8);
+	border-radius: 3px;
+	display: none;
+	color:#fff;
+}
+.gift .gift-hover span{
+	color:#f36;
+}
+.gift .gift-hover:after{
+	position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border:7px solid transparent;
+    border-top-color: rgba(72,84,114,0.8);
+    bottom:-14px;
+    left: 50%;
+    margin-left: -7px;
 }
 .myCoin{
 	display: inline-block;
@@ -226,6 +287,54 @@ html,body{
 .myGift{
 	line-height: 50px;
 	margin:0 10px;
+	position: relative;
+	cursor: pointer;
+}
+.my-prop{
+	position: absolute;
+	padding: 10px;
+	top:-180px;
+	right: -10px;
+	width: 180px;
+	height: 150px;
+	background: rgba(72,84,114,0.8);
+	border-radius: 3px;
+	display: none;
+}
+.my-prop:after{
+	position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border:7px solid transparent;
+    border-top-color: rgba(72,84,114,0.8);
+    bottom:-14px;
+    right: 30px;
+}
+.my-prop .propBox{
+	position: relative;
+	width: 50px;
+	line-height: 20px;
+	height: 70px;
+	margin:0 5px 10px;
+	color:#fff;
+	float: left;
+	text-align: center;
+}
+.my-prop .propBox img{
+	width: 50px;
+	height: 50px;
+}
+.my-prop .propBox span{
+	position: absolute;
+	top:30px;
+	right: 0;
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: #f36;
+	font-size: 10px;
+	text-align: center;
 }
 .m-l-gift{
 	/*padding:9px 0;*/
@@ -246,6 +355,9 @@ html,body{
 }
 .m-l-gift .award img{
 	margin:0 10px;
+}
+.m-l-gift .freegift{
+	line-height: 30px;
 }
 .m-l-gift .myGift{
 	line-height: 30px;

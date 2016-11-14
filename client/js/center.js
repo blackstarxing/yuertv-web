@@ -73,7 +73,7 @@ $(function() {
         $(".u-topupwindow").show(); 
         $.ajax({
             method: "GET", //对于请求类型
-            url: "http://localhost:3000/api/pay/recharge",
+            url: "/api/pay/recharge",
             dataType: 'json',
             data:{id:$(window.checktopup).attr("data-id")}, //这个是一个验证是否重名的接口。参数只有一个 名字
             success: function(data) {
@@ -127,7 +127,7 @@ $(function() {
                 });
                 $.ajax({
                     method: "GET",
-                    url: "http://localhost:3000/api/person-center/is-password-right",
+                    url: "/api/person-center/is-password-right",
                     dataType: 'json',
                     data: {
                         password: $("#u-current").val()
@@ -204,7 +204,7 @@ $(function() {
                 if(local.updatePasswordTag_current && local.updatePasswordTag_new &&local.updatePasswordTag_confirm){
                     $.ajax({
                         method: "GET",
-                        url: "http://localhost:3000/api/person-center/update-password",
+                        url: "/api/person-center/update-password",
                         dataType: 'json',
                         data: {
                             oldPassword:$("#u-current").val(),
@@ -238,19 +238,19 @@ $(function() {
             $("#gainnumber").off().on("click",function(){
                 if(($("#number").val().length == 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#number").val()))){
                     // $(this).hide();
-                    $(".m-mask").show().find(".pic-code img").attr("src","http://localhost:3000/api/checkCode?phone="+$("#number").val() + '&phoneCache=' + new Date());
+                    $(".m-mask").show().find(".pic-code img").attr("src","/api/checkCode?phone="+$("#number").val() + '&phoneCache=' + new Date());
                 } else {
                      alert("手机号不合法");//没找到你的弹框
                 }
             });
             $(".m-mask .changePic").off().on("click",function(){
-                $(".m-mask .pic-code img").attr("src","http://localhost:3000/api/checkCode?phone="+$("#number").val());
+                $(".m-mask .pic-code img").attr("src","/api/checkCode?phone="+$("#number").val());
             });
             $(".m-mask .confirm").off().on("click",function(event){
                 event.preventDefault();
                 $.ajax({
                     method: "GET",
-                    url: "http://localhost:3000/api/sendSMSCode",
+                    url: "/api/sendSMSCode",
                     dataType: 'json',
                     data: {
                         imgCheckCode:$(".m-mask .m-input input").val(),
@@ -276,7 +276,7 @@ $(function() {
                 if($("#verify").val()!="" && $("#number").val()!=""){
                     $.ajax({
                         method: "GET",
-                        url: "http://localhost:3000/api/person-center/mobile-auth",
+                        url: "/api/person-center/mobile-auth",
                         dataType: 'json',
                         data: {
                             checkCode:$("#verify").val(),
@@ -324,7 +324,7 @@ $(function() {
             $(".lybt button").off().on("click",function(){
                 $.ajax({
                         method: "GET",
-                        url: "http://localhost:3000/api/person-center/update-nickname",
+                        url: "/api/person-center/update-nickname",
                         dataType: 'json',
                         data: {
                             nickname:$("#checktips").val()
@@ -417,7 +417,7 @@ $(function() {
         followList:function(){
             $.ajax({
                 method: "GET",
-                url: "http://localhost:3000/api/person-center/my-concern",
+                url: "/api/person-center/my-concern",
                 dataType: 'json',
                 data: {
                     page: local.cur_page,
@@ -472,7 +472,7 @@ $(function() {
         newsList:function(_type){
             $.ajax({
                 method: "GET",
-                url: "http://localhost:3000/api/person-center/my-msg",
+                url: "/api/person-center/my-msg",
                 dataType: 'json',
                 data: {
                     page: local.cur_page,

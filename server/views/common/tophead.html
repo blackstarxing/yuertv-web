@@ -18,11 +18,11 @@
             <img src="/images/logo.png" alt="" class="head_logo f-fl">
             <ul class="m-nav f-fl">
                 <li class="current"><a href="/">首页</a></li>
-                <li><a href="">直播</a></li>
+                <li><a href="/alllive">直播</a></li>
                 <!-- <li><a href="">游戏</a></li> -->
             </ul>
             <div class="m-search f-fl">
-                <input type="text" placeholder="查找游戏、主播ID、房间号">
+                <input type="text" placeholder="主播昵称、房间号">
                 <a href="" class="u-search-btn"></a>
             </div>
             <div class="sweepme">
@@ -36,14 +36,14 @@
         {% if islogin %}
         <div class="header_right f-fr">
             <div class="avatar">
-                <a href="/center?type=0"><img src="" alt="" class="avatar-icon"></a>
+                <a href="/center?type=0" class="avatar-area"><img src="" alt="" class="avatar-icon"></a>
                 <div class="nav-list">
                     <ul>
-                        <li><a href="/center?type=0">我的资料</a></li>
-                        <li><a href="/center?type=1">我的关注</a></li>
-                        <li><a href="/center?type=3">我的消息</a></li>
-                        <li><a href="/center?type=4">我要充值</a></li>
-                        <li><a href="" class="logout">退出登录</a></li>
+                        <li><a href="/center?type=0"><i class="iconfont icon-info"></i>我的资料</a></li>
+                        <li><a href="/center?type=1"><i class="iconfont icon-follow"></i>我的关注</a></li>
+                        <li><a href="/center?type=3"><i class="iconfont icon-message"></i>我的消息</a></li>
+                        <li><a href="/center?type=4"><i class="iconfont icon-pay"></i>我要充值</a></li>
+                        <li><a href="" class="logout"><i class="iconfont icon-out"></i>退出登录</a></li>
                     </ul>
                 </div>
             </div>

@@ -14,15 +14,17 @@ $(function(){
     });
     // 显示个人中心
     $('.avatar').hover(function(){
+        $(this).css('background',"#0c1014");
     	$('.nav-list').show();
     },function(){
+        $(this).css('background',"none");
     	$('.nav-list').hide();
     });
     // 登出
     $('.logout').click(function(e){
     	e.preventDefault();
-    	delCookie('userId');
-        delCookie('token');
+    	delCookie('yuer_userId');
+        delCookie('yuer_token');
         window.location.href = window.location.href;
     })
     // 登录
@@ -55,16 +57,16 @@ $(function(){
                 parm.nickname = $('.l-usrname').val();
                 parm.password = $('.l-pwd').val();
             $.ajax({
-                url: 'http://localhost:3000/api/login',
+                url: '/api/login',
                 data: parm,
                 type: 'post',
                 dataType: 'json',
                 success: function(data) {
                     if (data.code==0) {
-                        delCookie('userId');
-                        delCookie('token');
-                        document.cookie="userId="+data.object.id; 
-                        document.cookie="token="+data.object.token; 
+                        delCookie('yuer_userId');
+                        delCookie('yuer_token');
+                        document.cookie="yuer_userId="+data.object.id; 
+                        document.cookie="yuer_token="+data.object.token; 
                         window.sessionStorage.setItem("id", data.object.id);
                         window.sessionStorage.setItem("avatar", data.object.icon);
                         window.location="/";
