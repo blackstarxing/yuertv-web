@@ -3,7 +3,7 @@ $(function() {
 // 个人中心的tab切换
     $("#leftmain li").on('click', function(event) {
         event.preventDefault();
-        console.log($(this).index());
+        // console.log($(this).index());
         $(this).addClass("rightswitchcolor").siblings().removeClass("rightswitchcolor");
         $("div.rightswitch").eq($(this).index() - 1).show().siblings().hide();
     });
@@ -28,7 +28,7 @@ $(function() {
         })
     $(".m-mainm a:eq(0)").trigger("click");
 //我的消息－－关注消息的划入事件
-    $(".u-foucscolor").on("mouseenter", function() { $(".u-messnickname").show().css("top", $(this).position().top) })
+    $(".u-foucscolor").on("mouseenter", function() { $(".u-messnickname").show().css("top", $(this).position().top+'2px') })
     $(".u-foucscolor").on("mouseleave", function() { $(".u-messnickname").hide() })
        
     $("#cancel").off("click").on("click", function() {
@@ -55,15 +55,8 @@ $(function() {
     $(".lybt .u-btn").on("click", function() {
         $(this).parents(".m-layer").removeClass("z-show");
     });
-      var show =  $("#messshow").html();
-                         if(show == "隐藏")
-                         {
-                                 $("#show").html("展开");
-                         }
-                         else
-                         {
-                                 $("#show").html("隐藏");
-                         }
+// 全文显示
+    $(".u-messtips").off().on("click",function(){if($(this).html()=="全文"){$(this).html('展开')}else{$(this).html('全文')}})
  //选中支付宝
     // $(".payimg.initShow").off("click").on("click",function(){$(".payimg .u-checked").hide();
     // $(".initShow").off("click").on("click",function(){$(".payimg .u-checked").hide();
@@ -435,28 +428,33 @@ $(function() {
                         var str = "";
                         for (index in data.object.list) {
                             if(data.object.list[index].state == 1){
-                                str += '<div class="m-main">' +
-                                    '<div class="u-host"><div class="u-hleft"><div class="u-focusimg">' +
-                                    '<img src="' + data.object.list[index].icon + '"></div>' +
-                                    '<div class="u-nickhost"><p class="u-nicksex"><span>' + data.object.list[index].nickname + '</span>' +
-                                    '<img src="' + data.object.list[index].sex + '"></p><div class="u-hostfans"><p>' +
-                                    '<span class="u-hf">直播间ID</span>&nbsp;  ' +
-                                    '<span class="u-num">' + data.object.list[index].room_number + '</span></p>' +
-                                    '<p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;' +
-                                    '<span class="u-num">' + data.object.list[index].fans + '</span></p></div>' +
-                                    '</div></div><div class="u-hright"><img src="/images/focusclick.png">' +
-                                    '<a href="' + data.object.list[index].room_number + '">进入房间</a></div></div>'
+                                str +='<div class="u-hleft"><div class="u-focusimg">'+
+                                    '<img src="' + data.object.list[index].icon + '">'+
+                                    '</div><div class="u-nickhost"><p class="u-nicksex">'+
+                                    '<span>' + data.object.list[index].nickname + '</span>'+
+                                    '<img src="' + data.object.list[index].sex + '">'+
+                                    '</p><div class="u-hostfans"><p><span class="u-hf">直播间ID</span>&nbsp;'+
+                                    '<span class="u-num">' + data.object.list[index].room_number + '</span>'+
+                                    '</p><p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;'+
+                                    '<span class="u-num">' + data.object.list[index].fans + '</span>'+
+                                    '</p></div></div></div><div class="u-hright">'+
+                                    '<img src="/images/focusclick.png">'+
+                                    '<a href="/liveroom' + data.object.list[index].room_number+'">进入房间</a>'+
+                                    '</div></div>'
                             }else{
-                                str += '<div class="m-main">' +
-                                '<div class="u-host stopdark">'+
-                                '<div class="u-hleft"><div class="u-focusimg"><img src="' + data.object.list[index].icon + '"></div>'+
-                                '<div class="u-nickhost"><p class="u-nicksex">'+
-                                '<span>' + data.object.list[index].nickname + '</span><img src="' + data.object.list[index].sex + '"></p>'+
-                                '<div class="u-hostfans"><p>'+
-                                '<span class="u-hf">直播间ID</span>&nbsp;<span class="u-num">' + data.object.list[index].room_number + '</span>'+
-                                '</p><p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;<span class="u-num">' + data.object.list[index].fans + '</span>'+
-                                '</p></div></div></div><div class="u-hright"><img src="/images/focusclick.png" class="u-blur">'+
-                                '<a href="' + data.object.list[index].room_number + '">进入房间</a></div><span class="dark">该主播已离开</span></div>'
+                                str += '<div class="u-host stopdark"><div class="u-hleft"><div class="u-focusimg">'+
+                                    '<img src="' + data.object.list[index].icon + '">'+
+                                    '</div><div class="u-nickhost"><p class="u-nicksex">'+
+                                    '<span>' + data.object.list[index].nickname + '</span>'+
+                                    '<img src="' + data.object.list[index].sex + '">'+
+                                    '</p><div class="u-hostfans"><p><span class="u-hf">直播间ID</span>&nbsp;'+
+                                    '<span class="u-num">' + data.object.list[index].room_number + '</span><p class="u-hhf">'+
+                                    '<span class="u-hf">粉丝</span>&nbsp;'+
+                                    '<span class="u-num">' + data.object.list[index].fans + '</span>'+
+                                    '</p></div></div></div><div class="u-hright">'+
+                                    '<img src="/images/focusclick.png" class="u-blur">'+
+                                    '<a href="/liveroom' + data.object.list[index].room_number+'">进入房间</a>'+
+                                    '</div><span class="dark">该主播已离开</span></div>'
                             }
                         }
                         $(".u-host").remove();
@@ -482,39 +480,33 @@ $(function() {
                     type:_type
                 }, 
                 success: function(data) {
+                    console.log(date.object);
                     if (data.code == 0) {
                         if(_type == 0){
                             var str = "";
                             for (index in data.object.list) {
-                                str+='<div class="u-message">'+
-                                    '<div class="u-msystem">'+
-                                       ' <img src="./images/messagehead.png">'+
-                                   ' </div>'+
-                                   ' <div class="u-yuer">'+
-                                       ' <p>'+
-                                           ' </p><h3>娱儿官方</h3>'+
-                                           ' <span class="u-messagetime">'+data.object.list[index].create_date+'</span>'+
-                                     '   <p>'+
-                                       ' </p><p>'+
-                                       ' <span class="u-messagecontent">'+data.object.list[index].content+'</span><span class="u-messtips">全文&gt;&gt;</span>'+
-                                     '   </p>'+
-                                   ' </div>'+
-                               ' </div>';
+                                str+='<div class="u-message"><div class="u-msystem">'+
+                                    '<img src="/images/messagehead.png">'+
+                                    '</div><div class="u-yuer"><p>'+
+                                    '<h3>'+data.object.list[index].title+'</h3>'+
+                                    '<span class="u-messagetime">'+data.object.list[index].create_date+'</span>'+
+                                    '<p><p>'+
+                                    '<span class="u-messagecontent">'+data.object.list[index].content+'</span>'+
+                                    '<span class="u-messtips" id="messshow">全文&gt;&gt;</span>'+
+                                    '</p></div></div>';
                             }
                             $(".messageBox").html(str);
                         }else{
                             var str = "";
                             for (index in data.object.list) {
-                                str+='<div class="u-focusmess">'+
-                                '<p class="u-focusnc">'+
-                                '<span class="u-foucscolor">我在那里找到你</span>'+
-                                '<span class="u-focusc">关注了你</span></p>'+
-                                '<span class="u-focustime">'+data.object.list[index].create_date+'</span>'+
-                                '</div><div class="u-messnickname">'+
-                                '<img src="/images/ico7.png">'+
-                                '<p class="u-mkname">我从哪里找到你</p>'+
-                                '<p><span>ID：</span><span>'+data.object.list[index].obj_id+'</span></p>'+
-                                '</div>';
+                                str+='<div class="u-focusmess"><p class="u-focusnc">'+
+                                    '<span class="u-foucscolor">'+data.object.list[index].nickname+'</span>'+
+                                    '<span class="u-focusc">关注了你</span></p>'+
+                                    '<span class="u-focustime">'+data.object.list[index].create_date+'</span>'+
+                                    '</div><div class="u-messnickname">'+
+                                    '<img src="'+data.object.list[index].icon+'"><img src="'+data.object.list[index].sex+'" class="messimgsex">'+
+                                    '<p class="u-mkname">'+data.object.list[index].nickname+'</p>'+
+                                    '<p><span>ID：</span><span>'+data.object.list[index].user_id+'</span></p></div>';
                             }
                             $(".focusmessage").html(str);
                         }
