@@ -11,28 +11,28 @@
         <div class="m-livetop">
             <img src="/images/alllive.png">
             <span class="u-alllive">全部直播</span>
-            <span class="u-alllnum">1564</span>
+            <span class="u-alllnum">{{live.total}}</span>
             <span class="u-alling" style="margin-left: 0;">名主播正在直播</span>
         </div>
         <div class="live-container">
-            {% for recommend in recommend %}
+            {% for live in live.list %}
                 <div class="m-lst">
-                    <a href="" class="live-address">
-                        <img src="{{recommend.icon}}" alt="">
-                        <span><i>·</i>{{recommend.name}}</span>
+                    <a href="/liveroom?id={{live.id}}" class="live-address">
+                        <img src="{{live.icon}}" alt="">
+                        <span><i>·</i>{{live.name}}</span>
                         <div class="play-mask"></div>
                     </a>
                     <div class="m-info">
                         <div class="anchor-head">
-                            <img src="http://img.wangyuhudong.com/{{recommend.up_user_icon}}" alt="" class="head-icon">
-                            {% if recommend.sex==0 %}
+                            <img src="http://img.wangyuhudong.com/{{live.up_user_icon}}" alt="" class="head-icon">
+                            {% if live.sex==0 %}
                                 <img src="/images/female.png" alt="" class="sex">
                             {% else %}
                                 <img src="/images/male.png" alt="" class="sex">
                             {% endif %}
                         </div>
                         <div class="anchor-info">
-                            <div><a href="">{{recommend.nickname}}</a></div>
+                            <div><a href="">{{live.nickname}}</a></div>
                             <div class="anchor-id">ID:123</div>
                         </div>
                         <button class="follow">关注</button>

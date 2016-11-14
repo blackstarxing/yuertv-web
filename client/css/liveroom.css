@@ -77,10 +77,16 @@ html,body{
 	text-align: center;
 	float: right;
 }
+.follow .is-subscibe{
+	background: #999;
+	cursor: default;
+}
 .follownum{
 	background: #878b90;
 	color: #fff;
 	float: left;
+	min-width: 50px;
+	text-align: center;
 	height: 30px;
 	line-height: 30px;
 	margin-top: 5px;

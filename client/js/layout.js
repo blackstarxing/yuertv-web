@@ -20,6 +20,13 @@ $(function(){
         $(this).css('background',"none");
     	$('.nav-list').hide();
     });
+
+    $('.u-search-btn').click(function(e){
+        e.preventDefault();
+        if($('.m-search input').val()){
+            window.location.href = "/search?content="+$('.m-search input').val();
+        }
+    })
     // 登出
     $('.logout').click(function(e){
     	e.preventDefault();
@@ -69,7 +76,11 @@ $(function(){
                         document.cookie="yuer_token="+data.object.token; 
                         window.sessionStorage.setItem("id", data.object.id);
                         window.sessionStorage.setItem("avatar", data.object.icon);
-                        window.location="/";
+                        if(window.location.pathname != 'register'){
+                            window.location.href = window.location.href;
+                        }else{
+                            window.location="/";
+                        }                       
                     }else{
                         error.text(data.result).fadeIn(100);
                         setTimeout(function(){

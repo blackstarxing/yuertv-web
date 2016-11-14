@@ -10,28 +10,28 @@
             <div class="searchPage">
                 <input type="text" class="search-key"><button class="search-btn">搜索</button>
             </div>
-            <h3 class="search-num">搜索到<span>10</span>个相关结果</h3>
+            <h3 class="search-num">搜索到<span>{{result.total}}</span>个相关结果</h3>
             <div class="search-result">
-                <h3><span>10</span>个直播页面</h3>
+                <h3><span>{{result.total}}</span>个直播页面</h3>
                 <div class="search-container">
-                    {% for recommend in recommend %}
+                    {% for result in result.list %}
                         <div class="m-lst">
                             <a href="" class="live-address">
-                                <img src="{{recommend.icon}}" alt="">
-                                <span><i>·</i>{{recommend.name}}</span>
+                                <img src="{{result.icon}}" alt="">
+                                <span><i>·</i>{{result.name}}</span>
                                 <div class="play-mask"></div>
                             </a>
                             <div class="m-info">
                                 <div class="anchor-head">
-                                    <img src="http://img.wangyuhudong.com/{{recommend.up_user_icon}}" alt="" class="head-icon">
-                                    {% if recommend.sex==0 %}
+                                    <img src="http://img.wangyuhudong.com/{{result.up_user_icon}}" alt="" class="head-icon">
+                                    {% if result.sex==0 %}
                                         <img src="/images/female.png" alt="" class="sex">
                                     {% else %}
                                         <img src="/images/male.png" alt="" class="sex">
                                     {% endif %}
                                 </div>
                                 <div class="anchor-info">
-                                    <div><a href="">{{recommend.nickname}}</a></div>
+                                    <div><a href="">{{result.nickname}}</a></div>
                                     <div class="anchor-id">ID:123</div>
                                 </div>
                                 <button class="follow">关注</button>
@@ -48,5 +48,5 @@
 {% endblock %}
 
 {% block js %}
-<!-- <script type="text/javascript" src="/dist/activity.js"></script> -->
+<script type="text/javascript" src="/dist/search.js"></script>
 {% endblock %}

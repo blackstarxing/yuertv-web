@@ -27,7 +27,7 @@
     </div>
     <div class="m-live-left">
         <div class="live-info f-cb">
-            <img src="/head.png" alt="" class="live-avatar f-fl">
+            <img src="http://img.wangyuhudong.com/{{detail.info.icon}}" alt="" class="live-avatar f-fl">
             <div class="avatar-info f-fl">
                 <span class="hide-rtmp">{{detail.info.rtmp}}</span>
                 <h3>{{detail.info.title}}</h3>
@@ -36,7 +36,11 @@
             </div>
             <div class="follow-avatar f-fr">
                 <div class="follow f-cb">
-                    <a href="">关注</a>
+                    {% if detail.info.is_subscibe==1 %}
+                        <a href="javascript:void(0)" class="is-subscibe">已关注</a>
+                    {% else %}
+                        <a href="" class="followme" data-id="{{detail.info.up_user_id}}">关注</a>
+                    {% endif %}
                     <div class="follownum">{{detail.info.fans}}</div>
                 </div>
                 <div class="option">

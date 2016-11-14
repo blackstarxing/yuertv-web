@@ -4,6 +4,12 @@ $(function() {
     var $picCode = $('.pic-code img');
     var pwlandTip = false;
 
+    function delCookie($name){    
+        var myDate=new Date();    
+        myDate.setTime(-1000);//设置时间    
+        document.cookie=$name+"=''; expires="+myDate.toGMTString();                
+    } 
+
     $('.m-input input').blur(function(e){
         var _current = $(e.currentTarget);
         var _error = _current.parent().find('.error-tip');
@@ -88,6 +94,7 @@ $(function() {
     // 刷新图形验证码
     function changeCode(){
         $picCode.attr('src','http://172.16.2.62:8777/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
+        // $picCode.attr('src','http://wy.yuerwebapi.wangyuhudong.com/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
     }
 
     $('.getCode').click(function(e){
@@ -225,6 +232,12 @@ $(function() {
                         var second = 3;
                         function settime(val) { 
                             if (second < 0) { 
+                                delCookie('yuer_userId');
+                                delCookie('yuer_token');
+                                document.cookie="yuer_userId="+data.object.id; 
+                                document.cookie="yuer_token="+data.object.token; 
+                                window.sessionStorage.setItem("id", data.object.id);
+                                window.sessionStorage.setItem("avatar", data.object.icon);
                                 window.location = '/';
                             } else {
                                 $('.jump-index').text('('+second+'s) 回到首页'); 
