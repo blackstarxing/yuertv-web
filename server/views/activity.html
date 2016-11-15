@@ -9,15 +9,15 @@
         <div class="comWidth f-cb">
             <h3 class="breadnav">活动<a href="/">首页</a><span>&gt;正文</span></h3>
             <div class="article f-fl">
-                <h3 class="activity-title">第二届王者校园争霸赛，火力全开！</h3>
-                <p class="activity-author">发布于：2016年11月04日  创建人：小娱儿</p>
+                <h3 class="activity-title">{{detail.info.title}}</h3>
+                <p class="activity-author">发布于：{{detail.info.create_date}}&nbsp;&nbsp;&nbsp;&nbsp;创建人：{{detail.info.author}}</p>
                 <div class="main-body">
                     
                 </div>
             </div>
             <div class="recommend-live f-fr">
                 <div class="title"><img src="/images/index_icon3.png" alt="">热门直播</div>
-                {% for recommend in recommend %}
+                {% for recommend in detail.live %}
                     <div class="m-lst">
                         <a href="" class="live-address">
                             <img src="{{recommend.icon}}" alt="">
@@ -44,6 +44,10 @@
         </div>
         
     </div>
+    <script>
+        $('.main-body').html("{{detail.info.content}}");
+        // console.log({{detail.info.content}});
+    </script>
     
 {% endblock %}
 

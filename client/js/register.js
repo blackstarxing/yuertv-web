@@ -61,7 +61,7 @@ $(function() {
         var _current = $(e.currentTarget);
         var _error = _current.next('.error-tip');
         if($nickname.val()){
-            if (/^[a-zA-Z0-9_]{2,16}$/.test($nickname.val())) {
+            if (/^[a-zA-Z0-9_]{6,20}$/.test($nickname.val())) {
                 //判断是否有错误提示
                 accoutTip = true;
                 _error.hide();

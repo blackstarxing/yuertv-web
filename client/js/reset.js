@@ -58,8 +58,8 @@ $(function() {
 
     // 刷新图形验证码
     function changeCode(){
-        $picCode.attr('src','http://172.16.2.62:8777/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
-        // $picCode.attr('src','http://wy.yuerwebapi.wangyuhudong.com/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
+        // $picCode.attr('src','http://172.16.2.62:8777/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
+        $picCode.attr('src','http://wy.yuerwebapi.wangyuhudong.com/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
     }
 
     $('.getCode').click(function(e){
@@ -119,39 +119,47 @@ $(function() {
         var parm = {};
         parm.mobile = $telnumber.val();
         parm.imgCheckCode = $('.code-wrap input').val();
-        $.ajax({
-            url: '/api/sendSMSCode',
-            data: parm,
-            type: 'post',
-            dataType: 'json',
-            success: function(data) {
-                if (data.code!=0) {
-                    $('.m-mask').hide();
-                    var second = 59;
-                    $('.m-tel .error-tip').text(second+'(s)').show();
-                    function settime(val) { 
-                        if (second > 0) { 
-                            $('.m-tel .error-tip').text(second+'(s)');
-                            second--;
-                        } else {
-                            $('.m-tel .error-tip').hide().text('手机号码不能为空');                              
+        if(!parm.imgCheckCode){
+            _error.show();
+            setTimeout(function(){
+                _error.hide();
+            },2000);
+        }else{
+            $.ajax({
+                url: '/api/sendSMSCode',
+                data: parm,
+                type: 'post',
+                dataType: 'json',
+                success: function(data) {
+                    if (data.code==0) {
+                        $('.m-mask').hide();
+                        var second = 59;
+                        $('.m-tel .error-tip').text(second+'(s)').show();
+                        function settime(val) { 
+                            if (second > 0) { 
+                                $('.m-tel .error-tip').text(second+'(s)');
+                                second--;
+                            } else {
+                                $('.m-tel .error-tip').hide().text('手机号码不能为空');                              
+                            } 
+                            setTimeout(function() { 
+                                settime(val) 
+                            },1000) 
                         } 
-                        setTimeout(function() { 
-                            settime(val) 
-                        },1000) 
-                    } 
-                    settime(second);                 
-                }else{
-                    _error.show();
-                    setTimeout(function(){
-                        _error.hide();
-                    },2000);
+                        settime(second);                 
+                    }else{
+                        _error.show();
+                        setTimeout(function(){
+                            _error.hide();
+                        },2000);
+                    }
+                },
+                error: function() {
+                    alert('通讯服务器错误');
                 }
-            },
-            error: function() {
-                alert('通讯服务器错误');
-            }
-        });
+            });
+        }
+        
     })
 
     $('.cancel').click(function(e){

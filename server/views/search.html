@@ -8,7 +8,7 @@
     <div class="m-common">
         <div class="comWidth f-cb">
             <div class="searchPage">
-                <input type="text" class="search-key"><button class="search-btn">搜索</button>
+                <input type="text" class="search-key" value="{{content}}"><button class="search-btn">搜索</button>
             </div>
             <h3 class="search-num">搜索到<span>{{result.total}}</span>个相关结果</h3>
             <div class="search-result">
@@ -16,14 +16,18 @@
                 <div class="search-container">
                     {% for result in result.list %}
                         <div class="m-lst">
-                            <a href="" class="live-address">
+                            <a href="/liveroom?id={{result.id}}" class="live-address">
                                 <img src="{{result.icon}}" alt="">
                                 <span><i>·</i>{{result.name}}</span>
-                                <div class="play-mask"></div>
+                                {% if result.state==1 %}
+                                    <div class="play-mask online"></div>
+                                {% else %}
+                                    <div class="play-mask outline">主播已离开</div>
+                                {% endif %}
                             </a>
                             <div class="m-info">
                                 <div class="anchor-head">
-                                    <img src="http://img.wangyuhudong.com/{{result.up_user_icon}}" alt="" class="head-icon">
+                                    <img src="http://img.wangyuhudong.com/{{result.user_icon}}" alt="" class="head-icon">
                                     {% if result.sex==0 %}
                                         <img src="/images/female.png" alt="" class="sex">
                                     {% else %}
@@ -32,7 +36,7 @@
                                 </div>
                                 <div class="anchor-info">
                                     <div><a href="">{{result.nickname}}</a></div>
-                                    <div class="anchor-id">ID:123</div>
+                                    <div class="anchor-id">ID:{{result.room_number}}</div>
                                 </div>
                                 <button class="follow">关注</button>
                             </div>

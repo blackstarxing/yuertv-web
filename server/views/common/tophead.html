@@ -24,6 +24,12 @@
             <div class="m-search f-fl">
                 <input type="text" placeholder="主播昵称、房间号">
                 <a href="" class="u-search-btn"></a>
+                <div class="hot-anchor">
+                    <h3>热门主播</h3>
+                    <ul class="anchor-list f-cb">
+
+                    </ul>
+                </div>
             </div>
             <div class="sweepme">
                 <img src="/images/mobile.png" alt="">娱儿TV移动版
@@ -61,17 +67,17 @@
     <div class="login-content">
         <a href="" class="close"><img src="/images/iconwindow.png" alt=""></a>
         <h3>娱儿TV账号登录</h3>
-        <input type="text" placeholder="请输入昵称" class="l-usrname">
-        <input type="password" placeholder="请输入密码" class="l-pwd">
+        <input type="text" placeholder="请输入昵称" class="l-usrname" maxlength="20">
+        <input type="password" placeholder="请输入密码" class="l-pwd" maxlength="20">
         <div class="login-error">
-            <p class="error-tip"></p>
+            <p class="lg-error"></p>
         </div>
         <button type="submit" class="u-login">登录</button>
         <div class="m-link f-cb">
             <a href="reset" class="f-fl">忘记密码？</a>
             <a href="/register" class="f-fr">我要注册</a>
         </div>
-        <div class="third-logins">
+        <!-- <div class="third-logins">
             <div class="line-through">
                 <div class="line"></div>
                 <span>or</span>
@@ -95,10 +101,33 @@
                     微信登录
                 </a>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 
 <script>
     $('.m-nav li').eq({{nav_index}}).addClass('current');
+    $.ajax({
+        url: '/api/hot/up',
+        type: 'post',
+        dataType: 'json',
+        success: function(data) {
+            if (data.code==0) {
+                var content = "";
+                for(var i=0;i<data.object.length;i++){
+                    var is_concern = '';
+                    if(!data.object.is_concern){
+                        is_concern = '<span class="concern"></span>';
+                    }
+                    content+='<li><a href="/liveroom?id='+data.object[i].id+'"><img src="'+data.object[i].user_icon+'" alt="">'+is_concern+'</a></li><li><a href="/liveroom?id='+data.object[i].id+'"><img src="'+data.object[i].user_icon+'" alt="">'+is_concern+'</a></li><li><a href="/liveroom?id='+data.object[i].id+'"><img src="'+data.object[i].user_icon+'" alt="">'+is_concern+'</a></li><li><a href="/liveroom?id='+data.object[i].id+'"><img src="'+data.object[i].user_icon+'" alt="">'+is_concern+'</a></li><li><a href="/liveroom?id='+data.object[i].id+'"><img src="'+data.object[i].user_icon+'" alt="">'+is_concern+'</a></li><li><a href="/liveroom?id='+data.object[i].id+'"><img src="'+data.object[i].user_icon+'" alt="">'+is_concern+'</a></li>';
+                }
+                $('.anchor-list').html(content);
+            }else{
+                                           
+            }
+        },
+        error: function() {
+            alert('通讯服务器错误');
+        }
+    });
 </script>

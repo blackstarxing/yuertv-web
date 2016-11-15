@@ -21,6 +21,24 @@ $(function(){
     	$('.nav-list').hide();
     });
 
+    $('.m-search input').click(function(e){
+        // $(this).css({'background':'#fff','color':"#333"});
+        e.stopPropagation();
+        $('.hot-anchor').show();
+
+    })
+    // $('.m-search input').blur(function(e){
+    //     if
+    //     // $(this).css({'background':'#141a20','color':"#333"});
+    //     $('.hot-anchor').hide();
+    // })
+    $("body").click(function(e){
+        $('.hot-anchor').hide();
+    });
+
+    $('.hot-anchor').click(function(e){
+        e.stopPropagation();
+    })
     $('.u-search-btn').click(function(e){
         e.preventDefault();
         if($('.m-search input').val()){
@@ -53,7 +71,7 @@ $(function(){
         document.cookie=$name+"=''; expires="+myDate.toGMTString();                
   	} 
     $('.u-login').click(function(e){
-        var error = $('.login-content .error-tip');
+        var error = $('.login-content .lg-error');
         if(!$('.l-usrname').val() || !$('.l-pwd').val()){
             error.text('用户名或密码不能为空！').fadeIn(100);
             setTimeout(function(){
