@@ -79,7 +79,8 @@
   			<div class="m-switcht switch-content">
   				<div class="u-div">
   					<label for="number">手机号码</label>
-  					<input type="text" class="u-userbox telnumber" name="" id="number" >
+  					<input type="number" class="u-userbox telnumber" name="" id="number" maxlength="99999999999" >
+  					<span class="u-numbertel">请输入正确的手机号</span>
   					<span class="u-number" id="gainnumber">获取验证码</span>
   				</div>
 	  			<div class="u-div">
@@ -190,6 +191,7 @@
 					<h3>主播</h3>
 				</div>
 				<div class="focushost">
+				<img src="/images/empty.png" class="empty" alt="你还没有关注任何人哦！" title="你还没有关注任何人哦！">
 					<!-- <div class="u-host">
 						<div class="u-hleft">
 							<div class="u-focusimg">
@@ -262,6 +264,7 @@
 			</div>
 			<div class="u-imgmessage">
 				<div class="imgprops">
+					<img src="/images/empty.png" class="empty" alt="暂无道具" title="暂无道具">
 					{% for myprops in myprops.gifts %}
 	                <div class="u-props">
 						<img src="http://img.wangyuhudong.com/{{myprops.gifts.icon}}">
@@ -297,6 +300,7 @@
 			</div>
 			<div class="u-systemmessage mcurrent">
 				<div class="messageBox">
+					<img src="/images/empty.png" class="empty" alt="暂无任何系统消息" title="暂无任何系统消息">
 					<!-- <div class="u-message">
 						<div class="u-msystem">
 							<img src="/images/messagehead.png">
@@ -322,6 +326,7 @@
 			
 			<div class="u-focusmessage mcurrent">
 				<div class="focusmessage">
+				<img src="/images/empty.png" class="empty" alt="暂无任何关注消息" title="暂无任何关注消息">
 					<!-- <div class="u-focusmess">
 						<p class="u-focusnc">
 							<span class="u-foucscolor">我在那里找到你
@@ -414,7 +419,7 @@
 			<div class="g-host rightswitch">
 				<div class="m-mainh">
 					<div class="u-top">
-						<a href="">主播认证</a><a href="">如何直播</a><a href="">提现说明</a>
+						<a href="">主播认证</a><a href="" id="jump">如何直播</a><a href="">提现说明</a>
 					</div>
 					<div class="u-certification switchcontent">
 						<div class="u-ctop">
@@ -423,7 +428,8 @@
 						<div class="u-ctleft switchrepeat">
 							<div class="u-div">
 			  					<label for="numbers">手机号码</label>
-			  					<input type="text" class="u-userbox telnumber" name="" id="numbers" >
+			  					<input type="number" class="u-userbox telnumber" name="" id="numbers" maxlength="99999999999">
+			  					<span class="u-numbertel">请输入正确的手机号</span>
 			  					<span class="u-number" id="gainnumbers">获取验证码</span>
 			  				</div>
 				  			<div class="u-div">

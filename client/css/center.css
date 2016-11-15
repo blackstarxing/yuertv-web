@@ -306,6 +306,18 @@ a#m-changepass,a#m-change,a#m-realname{
 	background:#f93;
 	color:#fff;
 }
+.u-numbertel{
+	display:none;
+	position:absolute;
+	left:280px;
+	top:1px;
+	width:140px;
+	height:40px;
+	line-height: 40px;
+	text-align:center;
+	background:#f93;
+	color:#fff;
+}
 .m-switcht .u-verify{
 	display:none;
 	background:#f36;
@@ -331,13 +343,16 @@ a#m-changepass,a#m-change,a#m-realname{
 	text-align: center;
 	font-size:18px;
 }
+.change-color{
+	border:1px solid #f36;
+}
 .m-mask{
-	position:fixed;
-	left:0;
-	top:0;
+	position:absolute;
+	left:-100px;
+	top:350px;
+	margin:auto;
 	width:100%;
 	height:100%;
-	background:rgba(0,0,0,0.6);
 	display:none;
 	z-index:999999;
 	padding-left: 100px;
@@ -827,7 +842,16 @@ a#m-changepass,a#m-change,a#m-realname{
 	background:#f36;
 	color:#fff;
 }
+.empty{
+	width:300px;
+	height:300px;
+	margin:50px 0px 0px 160px;
+}
 /*我的消息*/
+.m-mainm{
+	width:800px;
+	height:800px;
+}
 .m-message{
 	width:800px;
 	margin:85px 65px 60px 70px;
@@ -1268,10 +1292,13 @@ display:block;
 }
 .u-ctleft .u-number{
 	background:#f93;
+	cursor:pointer;
+	display:none;
 }
 .u-ctleft .u-verify{
 	border:1px solid #f36;
 	background:#f36;
+	display:none;
 }
 .u-ctleft .u-submit{
 	border:none;
@@ -1283,7 +1310,7 @@ display:block;
 	background:#f36;
 	color:#fff;
 	font-size:18px;
-	border-radius:10%;
+	border-radius:5px;
 }
 .u-ctright div{
 	margin-top:100px;
