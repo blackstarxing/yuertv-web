@@ -307,7 +307,9 @@ a#m-changepass,a#m-change,a#m-realname{
 	color:#fff;
 }
 .m-switcht .u-verify{
+	display:none;
 	background:#f36;
+	border:1px solid #f36;
 }
 .m-switcht input{
 	width:300px;
@@ -1200,6 +1202,7 @@ display:block;
  .m-mainh{
  	width:800px;
  	height:800px;
+ 	color:#fff;
  }
 .u-top a{
 	display:inline-block;
@@ -1217,6 +1220,82 @@ display:block;
 	text-align:center;
 	border-radius:5px;
 }
+/*我要当主播－－主播认证*/
+.u-certification{
+	margin-top:40px;
+}
+
+.u-ctop a{
+	color:#fff;
+	font-size:14px;
+	margin-right:30px;
+}
+.underline{
+	text-decoration:underline;
+	margin-top:5px;
+}
+.u-certification .u-ctleft,.u-ctright{
+	margin-top:40px;
+}
+.u-ctleft .u-div{
+	margin-bottom:20px;
+}
+.u-ctleft label{
+	width:80px;
+	height:40px;
+	line-height:40px;
+	font-size:14px;
+	color:#666e72;
+	display:block;
+}
+.u-ctleft .u-userbox{
+	width:300px;
+	height:40px;
+	line-height:40px;
+	color:#fff;
+	background:transparent;
+	border:1px solid #353d48;
+}
+.u-ctleft .u-number,.u-verify{
+	display:inline-block;
+	width:100px;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	font-size:14px;
+	position:relative;
+	left:-103px;
+}
+.u-ctleft .u-number{
+	background:#f93;
+}
+.u-ctleft .u-verify{
+	border:1px solid #f36;
+	background:#f36;
+}
+.u-ctleft .u-submit{
+	border:none;
+	margin-top:50px;
+	width:150px;
+	height:50px;
+	line-height:50px;
+	text-align:center;
+	background:#f36;
+	color:#fff;
+	font-size:18px;
+	border-radius:10%;
+}
+.u-ctright div{
+	margin-top:100px;
+	font-size:14px;
+	color:#fff;
+}
+
+/*我要当主播－－如何直播*/
+.u-live{
+	margin-top:40px;
+}
+
 /*我要当主播－－提现说明*/
 .u-withdrawal div{
 	margin-top:100px;

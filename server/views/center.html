@@ -414,20 +414,43 @@
 			<div class="g-host rightswitch">
 				<div class="m-mainh">
 					<div class="u-top">
-						<a href="">主播认证</a>
-						<a href="">如何直播</a>
-						<a href="">提现说明</a>
+						<a href="">主播认证</a><a href="">如何直播</a><a href="">提现说明</a>
 					</div>
 					<div class="u-certification switchcontent">
 						<div class="u-ctop">
-							<a href="">手机认证</a>
-							<a href="">实名认证</a>
+							<a href="">手机认证</a><a href="">实名认证</a>
 						</div>
 						<div class="u-ctleft switchrepeat">
-							
+							<div class="u-div">
+			  					<label for="numbers">手机号码</label>
+			  					<input type="text" class="u-userbox telnumber" name="" id="numbers" >
+			  					<span class="u-number" id="gainnumbers">获取验证码</span>
+			  				</div>
+				  			<div class="u-div">
+				  				<label for="verifys">验证码</label>
+				  				<input type="text" class="u-userbox" name="" id="verifys">
+				  				<span class="u-verify error-tip">验证码错误</span>
+				  			</div>
+				  			<div>
+			  						<input type="button" class="u-submit" value="提交" id="userboxs">
+			  				</div>
 						</div>
 						<div class="u-ctright switchrepeat">
-							
+							<div>实名认证功能正在开通中。。。。。。</div>
+						</div>
+						<div class="m-mask">
+							<div class="code-wrap">
+								<p>请输入图中验证码完成本次发送</p>
+								<div class="m-input">
+									<input type="text">
+									<span class="error-tip">验证码错误</span>
+								</div>
+								
+								<div class="pic-code f-cb">
+									<img src="" alt=""><a href="" class="changePic">看不清，换一个</a>
+								</div>
+								<a href="" class="u-wrap-btn confirm">确认</a><a href="" class="u-wrap-btn cancel">取消</a>
+							</div>
 						</div>
 					</div>
 					<div class="u-live switchcontent">
@@ -454,10 +477,7 @@
 								3.开通直播权限后，打开娱儿TV：点击右上角我要直播
 							</p>
 							<p>
-								<span>01</span>
-								<span>02</span>
-								<span>03</span>
-								<span>04</span>
+								<span>01</span><span>02</span><span>03</span><span>04</span>
 							</p>
 							<p>
 								<img src=""><img src=""><img src=""><img src="">
@@ -477,6 +497,8 @@
 					</div>
 				</div>
 			</div>
+
+
 		</div>	<!-- 右侧下侧结尾 -->
 	    </div><!-- 右侧结尾 -->
 	    
@@ -485,7 +507,6 @@
 {% endblock %}
 
 {% block js %}
-<script type="text/javascript" src="/jquery.pagination.min.js"></script>
 <script type="text/javascript" src="/dist/center.js"></script>
 <script type="text/javascript">
 	$('.g-left li').each(function(){

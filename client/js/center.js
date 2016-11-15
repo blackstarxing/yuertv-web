@@ -42,12 +42,12 @@ $(function() {
     })
     $(".m-mainh a:eq(0)").trigger("click");
 //我要当主播中的下级div的切换
-    // $(".u-certification a").on("click", function(e) {
-    //     e.preventDefault();
-    //     $(this).addClass("switchcontent").siblings().removeClass("switchcontent");
-    //     $(".switchrepeat").hide().eq($(this).index()).show();
-    // })
-    // $(".u-certification a:eq(0)").trigger("click");
+    $(".u-certification .u-ctop a").on("click", function(e) {
+        e.preventDefault();
+         $(this).addClass("underline").siblings().removeClass("underline");
+        $(".switchrepeat").hide().eq($(this).index()).show();
+    })
+    $(".u-certification .u-ctop a:eq(0)").trigger("click");
 // 修改昵称弹出框
     $("#nickname").on("click", function() {
         // $(".m-layer").addClass("z-show");
@@ -320,6 +320,99 @@ $(function() {
                         $(this).hide();
                 });
             });
+// 我要当主播的实名认证
+$(".u-cbottom").on("click",function(){
+if(""!=='{{info.mobile}}'){
+    alert("该账号已认证！");
+    // window.location.href==window.location.href;
+}else{
+    $("#numbers").on("focus",function(){
+                $("#gainnumbers").show();
+            });
+            $("#gainnumbers").off().on("click",function(){
+                if(($("#numbers").val().length == 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#numbers").val()))){
+                    // $(this).hide();
+                    $(".m-mask").show().find(".pic-code img").attr("src","/api/checkCode?phone="+$("#numbers").val() + '&phoneCache=' + new Date());
+                } else {
+                     alert("手机号不合法");//没找到你的弹框
+                }
+            });
+            $(".m-mask .changePic").off().on("click",function(){
+                $(".m-mask .pic-code img").attr("src","/api/checkCode?phone="+$("#numbers").val());
+            });
+            $(".m-mask .confirm").off().on("click",function(event){
+                event.preventDefault();
+                $.ajax({
+                    method: "GET",
+                    url: "/api/sendSMSCode",
+                    dataType: 'json',
+                    data: {
+                        imgCheckCode:$(".m-mask .m-input input").val(),
+                        mobile:$("#numbers").val(),
+                    },
+                    success: function(data) {
+                        if(data.code == 0){
+                            $(".m-mask").hide();
+                        }else{
+                            $(".m-mask .changePic").trigger("click");
+                            alert(data.result);//这个先这样用，后台应该是文档写的有问题
+                        }
+                    },
+                    error: function(a, b, c) {
+                        console.log("接口出问题啦");
+                    }
+                });
+            });
+            $(".m-mask .cancel").off().on("click",function(){
+                $(".m-mask").hide();
+            });
+            // 验证码
+            $("#userboxs").off().on("click",function(){
+                if($("#verifys").val()!="" && $("#numbers").val()!=""){
+                    $.ajax({
+                        method: "GET",
+                        url: "/api/person-center/mobile-auth",
+                        dataType: 'json',
+                        data: {
+                            checkCode:$("#verifys").val(),
+                            mobile:$("#numbers").val(),
+                        },
+                        success: function(data) {
+                            if (data.code == 0) {
+                                alert("认证成功");//没找到你的弹框
+                                window.location.href=window.location.href;
+                            }else if(data.code == 1){
+                                alert("更新失败");//没找到你的弹窗
+                            }else if(data.code == 2){
+                                alert("手机号已被绑定");//没找到你的弹窗
+                            }else if(data.code == 3){
+                                alert("已绑定手机号");//没找到你的弹窗
+                                window.location.href=window.location.href;
+                            }else if(data.code == 4){
+                                $("#verifys").parent().find("span").each(function(){
+                                    if($(this).attr("class").indexOf("error-tip") != -1){
+                                        $(this).show();
+                                    }else{
+                                        $(this).hide();
+                                    }
+                                });
+                            }else{
+                                console.log(data.result);
+                            }
+                        },
+                        error: function(a, b, c) {
+                            console.log("接口出问题啦");
+                        }
+                    })
+                }
+            });
+            $("#verifys").off().on("focus",function(){
+                $(this).parent().find("span").each(function(){
+                        $(this).hide();
+                });
+            });
+}
+});
             // 修改昵称
             $("#checktips").off().on("focus",function(){
                 $(this).parent().find("span").each(function(){
