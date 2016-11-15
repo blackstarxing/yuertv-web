@@ -37,8 +37,8 @@
             <div class="m-content f-cb">
                 {% for activity in index.activity %}
                     <div class="m-lst">
-                        <a href="{{activity.url}}"><img src="{{activity.img}}" alt=""></a>
-                        <a href="{{activity.url}}" class="active_name">{{activity.title}}</a>
+                        <a href="/activity?id={{activity.id}}"><img src="http://img.wangyuhudong.com/{{activity.img}}" alt=""></a>
+                        <a href="/activity?id={{activity.id}}" class="active_name">{{activity.title}}</a>
                     </div>
                 {% endfor %}
             </div>
@@ -62,20 +62,20 @@
                         <a href="/liveroom?id={{hotlive.id}}" class="live-address">
                             <img src="{{hotlive.icon}}" alt="">
                             <span><i>·</i>{{hotlive.name}}</span>
-                            <div class="play-mask"></div>
+                            <div class="play-mask online"></div>
                         </a>
                         <div class="m-info">
                             <div class="anchor-head">
-                                <img src="http://img.wangyuhudong.com/{{hotlive.up_user_icon}}" alt="" class="head-icon">
+                                <img src="http://img.wangyuhudong.com/{{hotlive.user_icon}}" alt="" class="head-icon">
                                 {% if hotlive.sex==0 %}
-                                    <img src="/images/female.png" alt="" class="sex">
-                                {% else %}
                                     <img src="/images/male.png" alt="" class="sex">
+                                {% else %}
+                                    <img src="/images/female.png" alt="" class="sex">
                                 {% endif %}
                             </div>
                             <div class="anchor-info">
                                 <div><a href="javascript:void(0)">{{hotlive.nickname}}</a></div>
-                                <div class="anchor-id">ID:123</div>
+                                <div class="anchor-id">ID:{{hotlive.room_number}}</div>
                             </div>
                             <button class="follow">关注</button>
                         </div>

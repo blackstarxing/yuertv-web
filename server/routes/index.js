@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
         })
     }]).then(function(cont, result) {
         res.render('index', {
-            title: "娱儿直播_一个处女座都喜欢的手游直播平台",
+            title: "娱儿TV--领跑移动电竞的直播平台",
             index: JSON.parse(result[0]).object,
             islogin: islogin,
             nav_index : 0,
@@ -200,6 +200,7 @@ router.get('/valuesuccess', function(req, res, next) {
 });
 
 router.get('/activity', function(req, res, next) {
+    var id = req.url.split('=')[1];
     var islogin = false;
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){
@@ -209,7 +210,7 @@ router.get('/activity', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
-        request('http://172.16.2.62:8777/index', function(error, response, body) {
+        request('http://172.16.2.62:8777/activity/detail?id='+id, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -218,8 +219,8 @@ router.get('/activity', function(req, res, next) {
         })
     }]).then(function(cont, result) {
         res.render('activity', {
-            title: "活动详情",
-            recommend: JSON.parse(result[0]).object.live.slice(0,6),
+            title: JSON.parse(result[0]).object.info.title,
+            detail: JSON.parse(result[0]).object,
             islogin: islogin,
         });
     }).fail(function(cont, error) { 
@@ -251,6 +252,7 @@ router.get('/search', function(req, res, next) {
             title: "搜索",
             result: JSON.parse(result[0]).object,
             islogin: islogin,
+            content:content,
         });
     }).fail(function(cont, error) { 
         console.log(error);
