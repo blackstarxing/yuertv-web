@@ -52,7 +52,7 @@
 <!-- 我的资料 -->
 
 	  		<div class="m-bottom rightswitch rightswitchcolor">
-  			<a href="" id="m-changepass">修改密码</a><a href="" id="m-change">手机认证</a><a href="" id="m-realname">实名认证</a>
+  			<a href="" id="m-changepass">修改密码</a><a href="" id="m-change" class="clickJudge">手机认证</a><a href="" id="m-realname">实名认证</a>
   			<div class="m-switch switch-content">
   				<div class="u-pcurrent">
   					<label for="u-current">当前密码</label>
@@ -77,7 +77,7 @@
 	  			<input type="button" name="" value="提交" class="u-i6" id="send">
   			</div>
   			<div class="m-switcht switch-content">
-  				<div class="u-div">
+  				<div class="u-div thePhone">
   					<label for="number">手机号码</label>
   					<input type="text" class="u-userbox telnumber inputTel" name="" id="number" maxlength="11" >
   					<span class="u-numberphone">请输入手机号</span>
@@ -91,6 +91,12 @@
 	  			</div>
 	  			<div>
   						<input type="button" class="u-submit" value="提交" id="userbox">
+  				</div>
+  				<div class="thephoneauth">
+  					<div>
+  						<span>手机号码：</span><span>{{info.mobile}}已认证</span>
+  					</div>
+  					<a href="/center?type=0">修改手机号码</a>
   				</div>
   			</div>
   			<div class="m-switchi switch-content">
@@ -265,17 +271,21 @@
 			</div>
 			<div class="u-imgmessage">
 				<div class="imgprops">
-					<img src="/images/empty.png" class="empty" alt="暂无道具" title="暂无道具">
-					{% for myprops in myprops.gifts %}
-	                <div class="u-props">
-						<img src="http://img.wangyuhudong.com/{{myprops.gifts.icon}}">
-						<p>
-							<span>{{myprops.name}}</span>
-							<span class="u-propscolor">{{myprops.num}}</span>
-							<span>个</span>
-						</p>
-					</div>  
-            		{% endfor %}
+				{% for myprops in myprops.gifts %}
+					{% if loop.length ==0 %}
+	  					<img src="/images/empty.png" class="empty" alt="暂无道具" title="暂无道具">
+                   	{% else %}
+                         <div class="u-props">
+							<img src="http://img.wangyuhudong.com/{{myprops.gifts.icon}}">
+							<p>
+								<span>{{myprops.name}}</span>
+								<span class="u-propscolor">{{myprops.num}}</span>
+								<span>个</span>
+							</p>
+						</div>  
+                    {% endif %}
+	               
+            	{% endfor %}
 				</div>
 				
 			</div>
@@ -382,10 +392,10 @@
 					<span>订单提交成功，请您尽快付款 ！</span>
 				</div>
 				<div class="u-wm">
-					<span>金&nbsp;&nbsp;&nbsp;额：</span><span class="u-wmtips"></span><span>元</span>
+					<span class="u-wntop">金&nbsp;&nbsp;&nbsp;额：</span><span class="u-wmtips"></span><span>元</span>
 				</div>
 				<div class="u-wn">
-					<span>订单号：</span><span>14763398738814</span>
+					<span class="u-wntop">订单号：</span><span>14763398738814</span>
 				</div>
 			</div>
 			<div class="u-winbottom">
