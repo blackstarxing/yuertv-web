@@ -9,20 +9,23 @@
     <div class="m-sidebar">
         <ul>
             <li>
-                <a href="">
+                <a href="/">
+                    <i class="iconfont icon-index"></i>
                     首页
                 </a>
-                <a href="">
+                <a href="/alllive">
+                    <i class="iconfont icon-live"></i>
                     直播
                 </a>
-                <a href="">
+                <!-- <a href="">
+                    <i class="iconfont icon-spec-area"></i>
                     专区
-                </a>
+                </a> -->
             </li>
         </ul>
         <ul class="bottom-nav">
-            <li><a href="">APP下载</a></li>
-            <li><a href="">做主播</a></li>
+            <li><a href="javascript:void(0);"><i class="iconfont icon-download"></i>APP下载</a></li>
+            <li><a href="/center?type=5"><i class="iconfont icon-beanchor"></i>做主播</a></li>
         </ul>
     </div>
     <div class="m-live-left">
@@ -39,7 +42,7 @@
                     {% if detail.info.is_subscibe==1 %}
                         <a href="javascript:void(0)" class="is-subscibe">已关注</a>
                     {% else %}
-                        <a href="" class="followme" data-id="{{detail.info.up_user_id}}">关注</a>
+                        <a href="" class="followme" data-id="{{detail.info.up_user_id}}"><i class="iconfont icon-follow"></i>关注</a>
                     {% endif %}
                     <div class="follownum">{{detail.info.fans}}</div>
                 </div>
@@ -62,7 +65,7 @@
             <div class="m-gift">
                 <div class="myCoin">
                     <p>我有<span class="yuerCoin">{{info.yuerCoin}}</span>鱼币</p>
-                    <a href="/center?type=4" class="givemoney">充值</a>
+                    <a href="" class="givemoney">充值</a>
                 </div>
                 {% for gift in gift %}
                     <div class="gift" data-name="{{gift.name}}" data-id="{{gift.id}}">

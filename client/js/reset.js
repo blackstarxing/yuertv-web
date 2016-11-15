@@ -1,5 +1,4 @@
 $(function() {
-    var $nickname = $('.nickname');
     var $telnumber = $('.telnumber');
     var $picCode = $('.pic-code img');
     var pwlandTip = false;
@@ -56,45 +55,11 @@ $(function() {
         _error.hide();
     })
 
-    // 昵称校验
-    $nickname.blur(function(e) {
-        var _current = $(e.currentTarget);
-        var _error = _current.next('.error-tip');
-        if($nickname.val()){
-            if (/^[a-zA-Z0-9_]{2,16}$/.test($nickname.val())) {
-                //判断是否有错误提示
-                accoutTip = true;
-                _error.hide();
-                var parm = {};
-                parm.nickname = $nickname.val();
-                $.ajax({
-                    url: '/api/isNicknameExist',
-                    data: parm,
-                    type: 'post',
-                    dataType: 'json',
-                    success: function(data) {
-                        if (data.object==0) {
-                            // window.location.href = '/';
-                        }else{
-                            _error.show();
-                            _error.text('昵称已被占用');
-                        }
-                    },
-                    error: function() {
-                        alert('通讯服务器错误');
-                    }
-                });
-            }else{
-                _error.show();
-                _error.text('您的昵称不符合规范');
-            }
-        }     
-    })
 
     // 刷新图形验证码
     function changeCode(){
-        // $picCode.attr('src','http://172.16.2.62:8777/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
-        $picCode.attr('src','http://wy.yuerwebapi.wangyuhudong.com/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
+        $picCode.attr('src','http://172.16.2.62:8777/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
+        // $picCode.attr('src','http://wy.yuerwebapi.wangyuhudong.com/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
     }
 
     $('.getCode').click(function(e){
@@ -111,16 +76,16 @@ $(function() {
                     dataType: 'json',
                     success: function(data) {
                         if (data.object==0) {
-                            $('.code-wrap input').val('');
-                            $('.m-mask').show();
-                            changeCode();
-                        }else{
                             _error.show();
-                            _error.text('手机号已被注册');
+                            _error.text('手机号未被注册');
                             setTimeout(function(){
                                 _error.hide();
                                 _error.text('手机号码不能为空');
                             },2000);
+                        }else{
+                            $('.code-wrap input').val('');
+                            $('.m-mask').show();
+                            changeCode();                            
                         }
                     },
                     error: function() {
@@ -160,7 +125,7 @@ $(function() {
             type: 'post',
             dataType: 'json',
             success: function(data) {
-                if (data.code==0) {
+                if (data.code!=0) {
                     $('.m-mask').hide();
                     var second = 59;
                     $('.m-tel .error-tip').text(second+'(s)').show();
@@ -194,7 +159,7 @@ $(function() {
         $('.m-mask').hide();
     })
     
-    $('.u-reg-btn').click(function(e){
+    $('.u-reset-btn').click(function(e){
         e.preventDefault();
         var formComplete = true;
         if($('.password').val()!=$('.repassword').val() && $('.password').val() && $('.repassword').val()){
@@ -215,39 +180,23 @@ $(function() {
         });
         if(formComplete){
             var parm = {};
-            parm.nickname = $('.nickname').val();
             parm.mobile = $telnumber.val();
             parm.checkCode = $('.code').val();
             parm.password = $('.password').val();
             $.ajax({
-                url: '/api/register',
+                url: '/api/findPassword',
                 data: parm,
                 type: 'post',
                 dataType: 'json',
                 success: function(data) {
                     if (data.code==0) {
-                        $('.m-mask').show();
-                        $('.code-wrap').hide();
-                        $('.reg-success').show();
-                        var second = 3;
-                        function settime(val) { 
-                            if (second < 0) { 
-                                delCookie('yuer_userId');
-                                delCookie('yuer_token');
-                                document.cookie="yuer_userId="+data.object.id; 
-                                document.cookie="yuer_token="+data.object.token; 
-                                window.sessionStorage.setItem("id", data.object.id);
-                                window.sessionStorage.setItem("avatar", data.object.icon);
-                                window.location = '/';
-                            } else {
-                                $('.jump-index').text('('+second+'s) 回到首页'); 
-                                second--;                              
-                            } 
-                            setTimeout(function() { 
-                                settime(val) 
-                            },1000) 
-                        } 
-                        settime(second);
+                        delCookie('yuer_userId');
+                        delCookie('yuer_token');
+                        document.cookie="yuer_userId="+data.object.id; 
+                        document.cookie="yuer_token="+data.object.token; 
+                        window.sessionStorage.setItem("id", data.object.id);
+                        window.sessionStorage.setItem("avatar", data.object.icon);
+                        window.location = '/';
                     }else{
                         $('.code').next('.error-tip').text('验证码错误').show();
                         setTimeout(function(){

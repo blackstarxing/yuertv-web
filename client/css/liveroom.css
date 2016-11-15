@@ -10,6 +10,9 @@ html,body{
 	overflow: hidden;
 	box-sizing: border-box;
 }
+.m-float{
+	display: none;
+}
 .m-sidebar{
 	position: fixed;
 	width: 70px;
@@ -24,6 +27,13 @@ html,body{
 	display: block;
 	margin:30px 0;
 	color:#fff;
+}
+.m-sidebar li .iconfont{
+	display: block;
+	font-size: 28px;
+}
+.m-sidebar li a:hover{
+	color:#f36;
 }
 .bottom-nav{
 	position: absolute;
@@ -76,6 +86,11 @@ html,body{
 	font-size: 18px;
 	text-align: center;
 	float: right;
+}
+.followme .iconfont{
+	margin:0 5px;
+	font-size: 20px;
+	vertical-align: middle;
 }
 .follow .is-subscibe{
 	background: #999;

@@ -46,6 +46,15 @@ $(function(){
         live_token = window.sessionStorage.getItem("id");
         enterLiveroom();
     }
+
+    $('.givemoney').click(function(e){
+        e.preventDefault();
+        if(islogin){
+           window.location.href = '/center?type=4';
+        }else{
+            $('.m-login-wrap').show();
+        }
+    })
     
     var endingtime = 300;
     function endingTime(val) { 
@@ -61,7 +70,7 @@ $(function(){
                 if(islogin){
                    $.ajax({
                         method: "GET",
-                        url: "/api/tv/gift/dailyGift",
+                        url: "/api/dailyGift",
                         dataType: 'json',
                         success: function(data) {
                             if (data.code == 0) {

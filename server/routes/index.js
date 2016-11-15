@@ -25,6 +25,7 @@ router.get('/', function(req, res, next) {
             title: "娱儿直播_一个处女座都喜欢的手游直播平台",
             index: JSON.parse(result[0]).object,
             islogin: islogin,
+            nav_index : 0,
         });
     }).fail(function(cont, error) { 
         console.log(error);
@@ -74,7 +75,11 @@ router.get('/liveroom', function(req, res, next) {
 });
 
 router.get('/register', function(req, res, next) {
-    res.render('register', { title: "注册", registerPage: true });
+    res.render('register', { title: "注册" });
+});
+
+router.get('/reset', function(req, res, next) {
+    res.render('reset', { title: "找回密码" });
 });
 
 router.get('/center', function(req, res, next) {
@@ -275,6 +280,7 @@ router.get('/alllive', function(req, res, next) {
             title: "全部直播",
             live: JSON.parse(result[0]).object,
             islogin: islogin,
+            nav_index : 1,
         });
     }).fail(function(cont, error) { 
         console.log(error);

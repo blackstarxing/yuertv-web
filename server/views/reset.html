@@ -8,12 +8,8 @@
 <div class="m-register">
 	<!-- <img src="images/logo_center.png" alt=""> -->
 	<div class="m-regbox">
-		<h3>注册即可获得两个贝壳，快来注册吧！</h3>
+		<h3>找回密码</h3>
 		<div class="m-regform">
-			<div class="m-input">
-				<input type="text" class="u-ipt nickname" placeholder="请输入昵称">
-				<span class="error-tip">昵称不能为空</span>
-			</div>
 			<div class="m-input m-tel">
 				<input type="text" class="u-ipt telnumber" placeholder="请输入手机号码">
 				<button class="getCode">获取验证码</button>
@@ -24,15 +20,14 @@
 				<span class="error-tip">验证码不能为空</span>
 			</div>
 			<div class="m-input">
-				<input type="password" class="u-ipt password" placeholder="请输入密码">
+				<input type="password" class="u-ipt password" placeholder="新密码">
 				<span class="error-tip">密码不能为空</span>
 			</div>
 			<div class="m-input">
 				<input type="password" class="u-ipt repassword" placeholder="请再次确认密码">
 				<span class="error-tip">密码不能为空</span>
 			</div>
-			<p style="margin-top: 20px;">注册即视为同意 <a href="" class="agreement">《娱儿tv用户服务协议》</a></p>
-			<a href="" class="u-reg-btn">注册</a>
+			<a href="" class="u-reset-btn">确定</a>
 		</div>
 	</div>
 </div>
@@ -50,14 +45,10 @@
 		</div>
 		<a href="" class="u-wrap-btn confirm">确认</a><a href="" class="u-wrap-btn cancel">取消</a>
 	</div>
-	<div class="reg-success">
-		<p>恭喜你注册成功！成功获得 <span>2个贝壳</span></p>
-		<a href="/" class="u-success-btn jump-index">（3s）回到首页</a><a href="" class="u-success-btn">去充值</a>
-	</div>
 </div>
 
 {% endblock %}
 
 {% block js %}
-<script type="text/javascript" src="/dist/register.js"></script>
+<script type="text/javascript" src="/dist/reset.js"></script>
 {% endblock %}
