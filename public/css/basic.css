@@ -117,6 +117,7 @@ color: #fff !important;
     margin-top: 5px;
     margin-right: 45px;
     vertical-align: middle;
+    cursor: pointer;
 }
 .m-nav{
     margin-right: 110px;
@@ -252,7 +253,7 @@ color: #fff !important;
     height: 250px;
     padding:40px 50px;
     border-radius: 20px;
-    background: #3c4855;
+    background:rgba(60,72,86,0.8);
     color:#fff;
 }
 .login-content h3{

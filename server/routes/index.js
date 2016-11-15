@@ -75,11 +75,39 @@ router.get('/liveroom', function(req, res, next) {
 });
 
 router.get('/register', function(req, res, next) {
-    res.render('register', { title: "注册" });
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('register', { title: "注册" ,islogin:islogin});
 });
 
 router.get('/reset', function(req, res, next) {
-    res.render('reset', { title: "找回密码" });
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('reset', { title: "找回密码" ,islogin:islogin});
+});
+
+router.get('/service', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('service', { title: "用户协议" ,islogin:islogin});
 });
 
 router.get('/center', function(req, res, next) {

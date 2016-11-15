@@ -21,7 +21,9 @@ $(function(){
     var islogin = (document.cookie.indexOf('yuer_userId')>=0) ? 1 : 0;
 
     var live_account = "",
-        live_token = "";
+        live_token = "",
+        nickname = "";
+
 
     if(!islogin){
         $.ajax({
@@ -42,8 +44,9 @@ $(function(){
             }
         }); 
     }else{
-        live_account = window.sessionStorage.getItem("id");
-        live_token = window.sessionStorage.getItem("id");
+        live_account = window.localStorage.getItem("id");
+        live_token = window.localStorage.getItem("id");
+        nickname = window.localStorage.getItem("id");
         enterLiveroom();
     }
 
@@ -248,7 +251,7 @@ $(function(){
                 console.log('发送聊天室' + msg.type + '消息' + (!error?'成功':'失败') + ', id=' + msg.idClient, error, msg);
                 if(!error){
                     liveRoomInterf.flash.showDanmaku(msg.text, 0xffffff, 100);
-                    $('.room-block').append('<div class="text-mes"><span class="membName">blackstar : </span>'+msg.text+'</div>');
+                    $('.room-block').append('<div class="text-mes"><span class="membName">'+nickname+' : </span>'+msg.text+'</div>');
                     $('.live-text').val("");
                 }
             }
@@ -257,8 +260,8 @@ $(function(){
                 console.log('发送聊天室' + msg.type + '消息' + (!error?'成功':'失败') + ', id=' + msg.idClient, error, msg);
                 var gift = JSON.parse(msg.content);
                 if(!error){
-                    liveRoomInterf.flash.showDanmaku('blackstar送给主播一个'+gift.data.giftName, 0xffffff, 100);
-                    $('.room-block').append('<div class="gift-mes"><span class="membName">blackstar : 送给主播1个</span>'+gift.data.giftName+'</div>');
+                    liveRoomInterf.flash.showDanmaku(nickname+'送给主播一个'+gift.data.giftName, 0xffffff, 100);
+                    $('.room-block').append('<div class="gift-mes"><span class="membName">'+nickname+' : 送给主播1个</span>'+gift.data.giftName+'</div>');
                     // $('.live-text').val("");
                 }
             }
@@ -389,12 +392,13 @@ $(function(){
                 },
 
                 //赠送礼物，参数：道具ID
-                presentGift: function ( itemId , name)
+                presentGift: function ( itemId , name , type)
                 {
                     //调用后台，若赠送的是购买的道具，请回调 flash.updateCoins，若赠送的是我的道具，请回调 flash.updateMyItems
-                    // alert("赠送礼物：" + itemId + name);
                     if(islogin){
-                       flashSendCustom(name,id,type); 
+                        this.flash.showDanmaku(nickname+"送了一个"+name+"给主播", 0xffff00, 100);
+                       flashSendCustom(name,itemId,type); 
+                       
                     }else{
                         this.flash.exitFullscreen();
                         $('.m-login-wrap').show();
