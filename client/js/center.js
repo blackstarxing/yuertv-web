@@ -1,5 +1,6 @@
 // if(obj=='女'){img.src="nv"}else{img.src="nan"}
 $(function() {
+    var checked = false;
 // 个人中心的tab切换
     $("#leftmain li").on('click', function(event) {
         event.preventDefault();
@@ -65,43 +66,49 @@ $(function() {
     // $(".payimg .u-dischecked").show();$(this).find(".u-checked").show();$(this).find(".u-dischecked").hide();})
 //我要充值－－选中鱼币的样式
     $(".u-value div").on("click", function() {
-            $(this).addClass("checktopup").siblings().removeClass("checktopup");
-            window.checktopup=this;
-        })
+        $(this).addClass("checktopup").siblings().removeClass("checktopup");
+        window.checktopup=this;
+        checked = true
+    })
 //我要充值－－－点击充值出现弹框
     $("#topupvalue").off("click").on("click", function(e) {
         e.preventDefault();  
-        $(".u-wmtips").text($(window.checktopup).find(".u-vmoney").text().substr(0,$(window.checktopup).find(".u-vmoney").text().length-1));
-        $(".u-topupwindow").show(); 
-        $.ajax({
-            method: "GET", //对于请求类型
-            url: "/api/pay/recharge",
-            dataType: 'json',
-            data:{id:$(window.checktopup).attr("data-id")}, //这个是一个验证是否重名的接口。参数只有一个 名字
-            success: function(data) {
-                if (data.code == 0) { //data.code的值这个是后端人员规定的。
-                    console.log("请求成功");
-                    $("#tovalue").attr("href","/alipay?id="+data.object);
-                  $(".u-wn span:eq(1)").text(data.object);
-                    if (data.object == 1) { //1为重复
-                        console.log("这个重复啦");
-                    } else if (data.object == 0) {
-                        console.log("这个不重复");
+        if(checked){
+            $(".u-wmtips").text($(window.checktopup).find(".u-vmoney").text().substr(0,$(window.checktopup).find(".u-vmoney").text().length-1));
+            $(".u-topupwindow").show(); 
+            $.ajax({
+                method: "GET", //对于请求类型
+                url: "/api/pay/recharge",
+                dataType: 'json',
+                data:{id:$(window.checktopup).attr("data-id")}, //这个是一个验证是否重名的接口。参数只有一个 名字
+                success: function(data) {
+                    if (data.code == 0) { //data.code的值这个是后端人员规定的。
+                        console.log("请求成功");
+                        $("#tovalue").attr("href","/alipay?id="+data.object);
+                      $(".u-wn span:eq(1)").text(data.object);
+                        if (data.object == 1) { //1为重复
+                            console.log("这个重复啦");
+                        } else if (data.object == 0) {
+                            console.log("这个不重复");
+                        } else {
+                            console.log("未知异常");
+                        }
+                    } else if (data.code == -2) {
+                        console.log("你没有权限，通常来讲，你是没有登录");
+                    } else if (data.code == -5) {
+                        console.log("参数错误哦。");
                     } else {
-                        console.log("未知异常");
+                        console.log(data.result);
                     }
-                } else if (data.code == -2) {
-                    console.log("你没有权限，通常来讲，你是没有登录");
-                } else if (data.code == -5) {
-                    console.log("参数错误哦。");
-                } else {
-                    console.log(data.result);
+                },
+                error: function(a, b, c) {
+                    console.log("接口出问题啦");
                 }
-            },
-            error: function(a, b, c) {
-                console.log("接口出问题啦");
-            }
-        })
+            })
+        }else{
+            alert('请选择鱼币');
+        }
+        
     })
     var local={
         updatePasswordTag_current:false,
@@ -235,103 +242,113 @@ $(function() {
                 window.location.href = window.location.href;
             })
             // 验证码
-            $(".inputTel").off("keydown").on("keydown",function(e){
-                if((e.keyCode >=48 && e.keyCode <=57)||(e.keyCode >=97 && e.keyCode <=105)||(e.keyCode == 8)){
-                
-                }else{
-                    e.preventDefault();
-                }
-            })
-            $("#number").on("focus",function(){
-                $(".u-numberphone").hide();
-                $("#gainnumber").show();
-                $(".u-numbertel").hide();
-                $("#number").addClass("change-color");
-            });
-            $("#gainnumber").off().on("click",function(){
-                if(($("#number").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#number").val()))){
-                    $("#number").removeClass("change-color");
-                    $(".m-mask").show().find(".pic-code img").attr("src","/api/checkCode?phone="+$("#number").val() + '&phoneCache=' + new Date());
-                } else {
-                     $("#gainnumber").hide();
-                     $(".u-numbertel").show();
-                }
+        // $(".clickJudge").on("click",function(){
+        //     if(""!=='{{info.mobile}}'){
+        //         $(".thePhone").hide();
+        //         $(".thephoneauth").show();
+        //         // window.location.href==window.location.href;
+        //     }else{
 
-            });
-            $(".m-mask .changePic").off().on("click",function(){
-                $(".m-mask .pic-code img").attr("src","/api/checkCode?phone="+$("#number").val());
-            });
-            $(".m-mask .confirm").off().on("click",function(event){
-                event.preventDefault();
-                $.ajax({
-                    method: "GET",
-                    url: "/api/sendSMSCode",
-                    dataType: 'json',
-                    data: {
-                        imgCheckCode:$(".m-mask .m-input input").val(),
-                        mobile:$("#number").val(),
-                    },
-                    success: function(data) {
-                        if(data.code == 0){
-                            $(".m-mask").hide();
-                        }else{
-                            $(".m-mask .changePic").trigger("click");
-                            alert(data.result);//这个先这样用，后台应该是文档写的有问题
-                        }
-                    },
-                    error: function(a, b, c) {
-                        console.log("接口出问题啦");
+                $(".inputTel").off("keydown").on("keydown",function(e){
+                    if((e.keyCode >=48 && e.keyCode <=57)||(e.keyCode >=97 && e.keyCode <=105)||(e.keyCode == 8)){
+                    
+                    }else{
+                        e.preventDefault();
                     }
+                })
+                $("#number").on("focus",function(){
+                    $(".u-numberphone").hide();
+                    $("#gainnumber").show();
+                    $(".u-numbertel").hide();
+                    $("#number").addClass("change-color");
                 });
-            });
-            $(".m-mask .cancel").off().on("click",function(){
-                $(".m-mask").hide();
-            });
-            // 验证码
-            $("#userbox").off().on("click",function(){
-                if($("#verify").val()!="" && $("#number").val()!=""){
+                $("#gainnumber").off().on("click",function(){
+                    if(($("#number").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#number").val()))){
+                        $("#number").removeClass("change-color");
+                        $(".m-mask").show().find(".pic-code img").attr("src","/api/checkCode?phone="+$("#number").val() + '&phoneCache=' + new Date());
+                    } else {
+                         $("#gainnumber").hide();
+                         $(".u-numbertel").show();
+                    }
+
+                });
+                $(".m-mask .changePic").off().on("click",function(e){
+                    e.preventDefault();
+                    $(".m-mask .pic-code img").attr("src","/api/checkCode?phone="+$("#number").val());
+                });
+                $(".m-mask .confirm").off().on("click",function(event){
+                    event.preventDefault();
                     $.ajax({
                         method: "GET",
-                        url: "/api/person-center/mobile-auth",
+                        url: "/api/sendSMSCode",
                         dataType: 'json',
                         data: {
-                            checkCode:$("#verify").val(),
+                            imgCheckCode:$(".m-mask .m-input input").val(),
                             mobile:$("#number").val(),
                         },
                         success: function(data) {
-                            if (data.code == 0) {
-                                alert("认证成功");//没找到你的弹框
-                                window.location.href=window.location.href;
-                            }else if(data.code == 1){
-                                alert("更新失败");//没找到你的弹窗
-                            }else if(data.code == 2){
-                                alert("手机号已被绑定");//没找到你的弹窗
-                            }else if(data.code == 3){
-                                alert("已绑定手机号");//没找到你的弹窗
-                                window.location.href=window.location.href;
-                            }else if(data.code == 4){
-                                $("#verify").parent().find("span").each(function(){
-                                    if($(this).attr("class").indexOf("error-tip") != -1){
-                                        $(this).show();
-                                    }else{
-                                        $(this).hide();
-                                    }
-                                });
+                            if(data.code == 0){
+                                $(".m-mask").hide();
                             }else{
-                                console.log(data.result);
+                                $(".m-mask .changePic").trigger("click");
+                                alert(data.result);//这个先这样用，后台应该是文档写的有问题
                             }
                         },
                         error: function(a, b, c) {
                             console.log("接口出问题啦");
                         }
-                    })
-                }
-            });
-            $("#verify").off().on("focus",function(){
-                $(this).parent().find("span").each(function(){
-                        $(this).hide();
+                    });
                 });
-            });
+                $(".m-mask .cancel").off().on("click",function(){
+                    $(".m-mask").hide();
+                });
+                // 验证码
+                $("#userbox").off().on("click",function(){
+                    if($("#verify").val()!="" && $("#number").val()!=""){
+                        $.ajax({
+                            method: "GET",
+                            url: "/api/person-center/mobile-auth",
+                            dataType: 'json',
+                            data: {
+                                checkCode:$("#verify").val(),
+                                mobile:$("#number").val(),
+                            },
+                            success: function(data) {
+                                if (data.code == 0) {
+                                    alert("认证成功");//没找到你的弹框
+                                    window.location.href=window.location.href;
+                                }else if(data.code == 1){
+                                    alert("更新失败");//没找到你的弹窗
+                                }else if(data.code == 2){
+                                    alert("手机号已被绑定");//没找到你的弹窗
+                                }else if(data.code == 3){
+                                    alert("已绑定手机号");//没找到你的弹窗
+                                    window.location.href=window.location.href;
+                                }else if(data.code == 4){
+                                    $("#verify").parent().find("span").each(function(){
+                                        if($(this).attr("class").indexOf("error-tip") != -1){
+                                            $(this).show();
+                                        }else{
+                                            $(this).hide();
+                                        }
+                                    });
+                                }else{
+                                    console.log(data.result);
+                                }
+                            },
+                            error: function(a, b, c) {
+                                console.log("接口出问题啦");
+                            }
+                        })
+                    }
+                });
+                $("#verify").off().on("focus",function(){
+                    $(this).parent().find("span").each(function(){
+                            $(this).hide();
+                    });
+                });
+        //     }
+        // });
 // 我要当主播的实名认证
 $(".u-cbottom").on("click",function(){
     if(""!=='{{info.mobile}}'){

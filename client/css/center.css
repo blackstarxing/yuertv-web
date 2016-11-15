@@ -297,7 +297,7 @@ a#m-changepass,a#m-change,a#m-realname{
 .m-switcht .u-number,.u-verify{
 	display:none;
 	position:absolute;
-	left:320px;
+	left:316px;
 	top:1px;
 	width:105px;
 	height:40px;
@@ -354,14 +354,35 @@ a#m-changepass,a#m-change,a#m-realname{
 	text-align: center;
 	font-size:18px;
 }
-input::-webkit-inner-spin-button {
--webkit-appearance: none;
-}
-input::-webkit-outer-spin-button {
--webkit-appearance: none;
-}
-.change-color{
+.m-switcht input.change-color{
 	border:1px solid #f36;
+}
+/*<div class="thephoneauth">
+  					<div>
+  						<span>手机号码：</span><span>{{info.mobile}}已认证</span>
+  					</div>
+  					<a href="/center?type=0">修改手机号码</a>*/
+.thephoneauth{
+	display:none;
+	width:500px;
+	height:600px;
+	color:#fff;
+}
+.thephoneauth span{
+	font-size:16px;
+}
+.thephoneauth a{
+	display:inline-block;
+	width:150px;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	border-radius:5px;
+	background:#f36;
+	cursor:pointer;
+	color:#fff;
+	font-size:18px;
+	margin-top:50px;
 }
 .m-mask{
 	position:absolute;
@@ -1114,6 +1135,9 @@ a.u-topfish{
 	font-size:16px;
 	color:#fff;
 }
+.u-wintop span.u-wntop{
+	margin-left:15px;
+}
 .u-wm{
 	width:200px;
 	height:25px;
@@ -1127,7 +1151,10 @@ a.u-topfish{
 .u-wn{
 	width:300px;
 	height:25px;
-	margin-left:254px;
+	margin-left:250px;
+}
+.u-wm,.u-wn span{
+	display:inline-block;
 }
 .u-wbtop{
 	width:895px;
