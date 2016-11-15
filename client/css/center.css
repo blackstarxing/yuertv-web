@@ -318,6 +318,17 @@ a#m-changepass,a#m-change,a#m-realname{
 	background:#f93;
 	color:#fff;
 }
+.u-numberphone{
+	position:absolute;
+	left:305px;
+	top:1px;
+	width:120px;
+	height:40px;
+	line-height: 40px;
+	text-align:center;
+	background:#f93;
+	color:#fff;
+}
 .m-switcht .u-verify{
 	display:none;
 	background:#f36;
@@ -342,6 +353,12 @@ a#m-changepass,a#m-change,a#m-realname{
 	border:0px;
 	text-align: center;
 	font-size:18px;
+}
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+}
+input::-webkit-outer-spin-button {
+-webkit-appearance: none;
 }
 .change-color{
 	border:1px solid #f36;

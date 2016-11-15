@@ -235,19 +235,28 @@ $(function() {
                 window.location.href = window.location.href;
             })
             // 验证码
+            $(".inputTel").off("keydown").on("keydown",function(e){
+                if((e.keyCode >=48 && e.keyCode <=57)||(e.keyCode >=97 && e.keyCode <=105)||(e.keyCode == 8)){
+                
+                }else{
+                    e.preventDefault();
+                }
+            })
             $("#number").on("focus",function(){
+                $(".u-numberphone").hide();
                 $("#gainnumber").show();
                 $(".u-numbertel").hide();
+                $("#number").addClass("change-color");
             });
             $("#gainnumber").off().on("click",function(){
-                if(($("#number").val().length == 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#number").val()))){
-                    // $(this).hide();
+                if(($("#number").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#number").val()))){
+                    $("#number").removeClass("change-color");
                     $(".m-mask").show().find(".pic-code img").attr("src","/api/checkCode?phone="+$("#number").val() + '&phoneCache=' + new Date());
                 } else {
-                     // alert("手机号不合法");//没找到你的弹框
                      $("#gainnumber").hide();
                      $(".u-numbertel").show();
                 }
+
             });
             $(".m-mask .changePic").off().on("click",function(){
                 $(".m-mask .pic-code img").attr("src","/api/checkCode?phone="+$("#number").val());
@@ -330,94 +339,94 @@ $(".u-cbottom").on("click",function(){
         $("#jump").trigger("click");
         // window.location.href==window.location.href;
     }else{
-        $("#numbers").on("focus",function(){
-                    $(this).addClass("change-color");
-                    $("#gainnumbers").show();
-                });
-                $("#gainnumbers").off().on("click",function(){
-                    if(($("#numbers").val().length == 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#numbers").val()))){
-                        // $(this).hide();
-                        $(".m-mask").show().find(".pic-code img").attr("src","/api/checkCode?phone="+$("#numbers").val() + '&phoneCache=' + new Date());
-                    } else {
-                         // alert("手机号不合法");//没找到你的弹框
-                         $(".u-numbertel").show();
+        // $("#numbers").on("focus",function(){
+        //             $(this).addClass("change-color");
+        //             $("#gainnumbers").show();
+        //         });
+        //         $("#gainnumbers").off().on("click",function(){
+        //             if(($("#numbers").val().length == 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#numbers").val()))){
+        //                 // $(this).hide();
+        //                 $(".m-mask").show().find(".pic-code img").attr("src","/api/checkCode?phone="+$("#numbers").val() + '&phoneCache=' + new Date());
+        //             } else {
+        //                  // alert("手机号不合法");//没找到你的弹框
+        //                  $(".u-numbertel").show();
                                 
-                    }
-                });
-                $(".m-mask .changePic").off().on("click",function(){
-                    $(".m-mask .pic-code img").attr("src","/api/checkCode?phone="+$("#numbers").val());
-                });
-                $(".m-mask .confirm").off().on("click",function(event){
-                    event.preventDefault();
-                    $.ajax({
-                        method: "GET",
-                        url: "/api/sendSMSCode",
-                        dataType: 'json',
-                        data: {
-                            imgCheckCode:$(".m-mask .m-input input").val(),
-                            mobile:$("#numbers").val(),
-                        },
-                        success: function(data) {
-                            if(data.code == 0){
-                                $(".m-mask").hide();
-                            }else{
-                                $(".m-mask .changePic").trigger("click");
-                                alert(data.result);//这个先这样用，后台应该是文档写的有问题
-                            }
-                        },
-                        error: function(a, b, c) {
-                            console.log("接口出问题啦");
-                        }
-                    });
-                });
-                $(".m-mask .cancel").off().on("click",function(){
-                    $(".m-mask").hide();
-                });
-                // 验证码
-                $("#userboxs").off().on("click",function(){
-                    if($("#verifys").val()!="" && $("#numbers").val()!=""){
-                        $.ajax({
-                            method: "GET",
-                            url: "/api/person-center/mobile-auth",
-                            dataType: 'json',
-                            data: {
-                                checkCode:$("#verifys").val(),
-                                mobile:$("#numbers").val(),
-                            },
-                            success: function(data) {
-                                if (data.code == 0) {
-                                    alert("认证成功");//没找到你的弹框
-                                    window.location.href=window.location.href;
-                                }else if(data.code == 1){
-                                    alert("更新失败");//没找到你的弹窗
-                                }else if(data.code == 2){
-                                    alert("手机号已被绑定");//没找到你的弹窗
-                                }else if(data.code == 3){
-                                    alert("已绑定手机号");//没找到你的弹窗
-                                    window.location.href=window.location.href;
-                                }else if(data.code == 4){
-                                    $("#verifys").parent().find("span").each(function(){
-                                        if($(this).attr("class").indexOf("error-tip") != -1){
-                                            $(this).show();
-                                        }else{
-                                            $(this).hide();
-                                        }
-                                    });
-                                }else{
-                                    console.log(data.result);
-                                }
-                            },
-                            error: function(a, b, c) {
-                                console.log("接口出问题啦");
-                            }
-                        })
-                    }
-                });
-                $("#verifys").off().on("focus",function(){
-                    $(this).parent().find("span").each(function(){
-                            $(this).hide();
-                    });
-                });
+        //             }
+        //         });
+        //         $(".m-mask .changePic").off().on("click",function(){
+        //             $(".m-mask .pic-code img").attr("src","/api/checkCode?phone="+$("#numbers").val());
+        //         });
+        //         $(".m-mask .confirm").off().on("click",function(event){
+        //             event.preventDefault();
+        //             $.ajax({
+        //                 method: "GET",
+        //                 url: "/api/sendSMSCode",
+        //                 dataType: 'json',
+        //                 data: {
+        //                     imgCheckCode:$(".m-mask .m-input input").val(),
+        //                     mobile:$("#numbers").val(),
+        //                 },
+        //                 success: function(data) {
+        //                     if(data.code == 0){
+        //                         $(".m-mask").hide();
+        //                     }else{
+        //                         $(".m-mask .changePic").trigger("click");
+        //                         alert(data.result);//这个先这样用，后台应该是文档写的有问题
+        //                     }
+        //                 },
+        //                 error: function(a, b, c) {
+        //                     console.log("接口出问题啦");
+        //                 }
+        //             });
+        //         });
+        //         $(".m-mask .cancel").off().on("click",function(){
+        //             $(".m-mask").hide();
+        //         });
+        //         // 验证码
+        //         $("#userboxs").off().on("click",function(){
+        //             if($("#verifys").val()!="" && $("#numbers").val()!=""){
+        //                 $.ajax({
+        //                     method: "GET",
+        //                     url: "/api/person-center/mobile-auth",
+        //                     dataType: 'json',
+        //                     data: {
+        //                         checkCode:$("#verifys").val(),
+        //                         mobile:$("#numbers").val(),
+        //                     },
+        //                     success: function(data) {
+        //                         if (data.code == 0) {
+        //                             alert("认证成功");//没找到你的弹框
+        //                             window.location.href=window.location.href;
+        //                         }else if(data.code == 1){
+        //                             alert("更新失败");//没找到你的弹窗
+        //                         }else if(data.code == 2){
+        //                             alert("手机号已被绑定");//没找到你的弹窗
+        //                         }else if(data.code == 3){
+        //                             alert("已绑定手机号");//没找到你的弹窗
+        //                             window.location.href=window.location.href;
+        //                         }else if(data.code == 4){
+        //                             $("#verifys").parent().find("span").each(function(){
+        //                                 if($(this).attr("class").indexOf("error-tip") != -1){
+        //                                     $(this).show();
+        //                                 }else{
+        //                                     $(this).hide();
+        //                                 }
+        //                             });
+        //                         }else{
+        //                             console.log(data.result);
+        //                         }
+        //                     },
+        //                     error: function(a, b, c) {
+        //                         console.log("接口出问题啦");
+        //                     }
+        //                 })
+        //             }
+        //         });
+        //         $("#verifys").off().on("focus",function(){
+        //             $(this).parent().find("span").each(function(){
+        //                     $(this).hide();
+        //             });
+        //         });
     }
 });
             // 修改昵称
