@@ -237,13 +237,16 @@ $(function() {
             // 验证码
             $("#number").on("focus",function(){
                 $("#gainnumber").show();
+                $(".u-numbertel").hide();
             });
             $("#gainnumber").off().on("click",function(){
                 if(($("#number").val().length == 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#number").val()))){
                     // $(this).hide();
                     $(".m-mask").show().find(".pic-code img").attr("src","/api/checkCode?phone="+$("#number").val() + '&phoneCache=' + new Date());
                 } else {
-                     alert("手机号不合法");//没找到你的弹框
+                     // alert("手机号不合法");//没找到你的弹框
+                     $("#gainnumber").hide();
+                     $(".u-numbertel").show();
                 }
             });
             $(".m-mask .changePic").off().on("click",function(){
@@ -322,96 +325,100 @@ $(function() {
             });
 // 我要当主播的实名认证
 $(".u-cbottom").on("click",function(){
-if(""!=='{{info.mobile}}'){
-    alert("该账号已认证！");
-    // window.location.href==window.location.href;
-}else{
-    $("#numbers").on("focus",function(){
-                $("#gainnumbers").show();
-            });
-            $("#gainnumbers").off().on("click",function(){
-                if(($("#numbers").val().length == 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#numbers").val()))){
-                    // $(this).hide();
-                    $(".m-mask").show().find(".pic-code img").attr("src","/api/checkCode?phone="+$("#numbers").val() + '&phoneCache=' + new Date());
-                } else {
-                     alert("手机号不合法");//没找到你的弹框
-                }
-            });
-            $(".m-mask .changePic").off().on("click",function(){
-                $(".m-mask .pic-code img").attr("src","/api/checkCode?phone="+$("#numbers").val());
-            });
-            $(".m-mask .confirm").off().on("click",function(event){
-                event.preventDefault();
-                $.ajax({
-                    method: "GET",
-                    url: "/api/sendSMSCode",
-                    dataType: 'json',
-                    data: {
-                        imgCheckCode:$(".m-mask .m-input input").val(),
-                        mobile:$("#numbers").val(),
-                    },
-                    success: function(data) {
-                        if(data.code == 0){
-                            $(".m-mask").hide();
-                        }else{
-                            $(".m-mask .changePic").trigger("click");
-                            alert(data.result);//这个先这样用，后台应该是文档写的有问题
-                        }
-                    },
-                    error: function(a, b, c) {
-                        console.log("接口出问题啦");
+    if(""!=='{{info.mobile}}'){
+        alert("该账号已认证！点击确定，跳转到如何直播");
+        $("#jump").trigger("click");
+        // window.location.href==window.location.href;
+    }else{
+        $("#numbers").on("focus",function(){
+                    $(this).addClass("change-color");
+                    $("#gainnumbers").show();
+                });
+                $("#gainnumbers").off().on("click",function(){
+                    if(($("#numbers").val().length == 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#numbers").val()))){
+                        // $(this).hide();
+                        $(".m-mask").show().find(".pic-code img").attr("src","/api/checkCode?phone="+$("#numbers").val() + '&phoneCache=' + new Date());
+                    } else {
+                         // alert("手机号不合法");//没找到你的弹框
+                         $(".u-numbertel").show();
+                                
                     }
                 });
-            });
-            $(".m-mask .cancel").off().on("click",function(){
-                $(".m-mask").hide();
-            });
-            // 验证码
-            $("#userboxs").off().on("click",function(){
-                if($("#verifys").val()!="" && $("#numbers").val()!=""){
+                $(".m-mask .changePic").off().on("click",function(){
+                    $(".m-mask .pic-code img").attr("src","/api/checkCode?phone="+$("#numbers").val());
+                });
+                $(".m-mask .confirm").off().on("click",function(event){
+                    event.preventDefault();
                     $.ajax({
                         method: "GET",
-                        url: "/api/person-center/mobile-auth",
+                        url: "/api/sendSMSCode",
                         dataType: 'json',
                         data: {
-                            checkCode:$("#verifys").val(),
+                            imgCheckCode:$(".m-mask .m-input input").val(),
                             mobile:$("#numbers").val(),
                         },
                         success: function(data) {
-                            if (data.code == 0) {
-                                alert("认证成功");//没找到你的弹框
-                                window.location.href=window.location.href;
-                            }else if(data.code == 1){
-                                alert("更新失败");//没找到你的弹窗
-                            }else if(data.code == 2){
-                                alert("手机号已被绑定");//没找到你的弹窗
-                            }else if(data.code == 3){
-                                alert("已绑定手机号");//没找到你的弹窗
-                                window.location.href=window.location.href;
-                            }else if(data.code == 4){
-                                $("#verifys").parent().find("span").each(function(){
-                                    if($(this).attr("class").indexOf("error-tip") != -1){
-                                        $(this).show();
-                                    }else{
-                                        $(this).hide();
-                                    }
-                                });
+                            if(data.code == 0){
+                                $(".m-mask").hide();
                             }else{
-                                console.log(data.result);
+                                $(".m-mask .changePic").trigger("click");
+                                alert(data.result);//这个先这样用，后台应该是文档写的有问题
                             }
                         },
                         error: function(a, b, c) {
                             console.log("接口出问题啦");
                         }
-                    })
-                }
-            });
-            $("#verifys").off().on("focus",function(){
-                $(this).parent().find("span").each(function(){
-                        $(this).hide();
+                    });
                 });
-            });
-}
+                $(".m-mask .cancel").off().on("click",function(){
+                    $(".m-mask").hide();
+                });
+                // 验证码
+                $("#userboxs").off().on("click",function(){
+                    if($("#verifys").val()!="" && $("#numbers").val()!=""){
+                        $.ajax({
+                            method: "GET",
+                            url: "/api/person-center/mobile-auth",
+                            dataType: 'json',
+                            data: {
+                                checkCode:$("#verifys").val(),
+                                mobile:$("#numbers").val(),
+                            },
+                            success: function(data) {
+                                if (data.code == 0) {
+                                    alert("认证成功");//没找到你的弹框
+                                    window.location.href=window.location.href;
+                                }else if(data.code == 1){
+                                    alert("更新失败");//没找到你的弹窗
+                                }else if(data.code == 2){
+                                    alert("手机号已被绑定");//没找到你的弹窗
+                                }else if(data.code == 3){
+                                    alert("已绑定手机号");//没找到你的弹窗
+                                    window.location.href=window.location.href;
+                                }else if(data.code == 4){
+                                    $("#verifys").parent().find("span").each(function(){
+                                        if($(this).attr("class").indexOf("error-tip") != -1){
+                                            $(this).show();
+                                        }else{
+                                            $(this).hide();
+                                        }
+                                    });
+                                }else{
+                                    console.log(data.result);
+                                }
+                            },
+                            error: function(a, b, c) {
+                                console.log("接口出问题啦");
+                            }
+                        })
+                    }
+                });
+                $("#verifys").off().on("focus",function(){
+                    $(this).parent().find("span").each(function(){
+                            $(this).hide();
+                    });
+                });
+    }
 });
             // 修改昵称
             $("#checktips").off().on("focus",function(){
@@ -493,7 +500,7 @@ if(""!=='{{info.mobile}}'){
             local.cur_maxPage = (parseInt((local.cur_total+5)/ local.cur_pageSize)) || 1;
             local.cur_pageCallback=callback;
             var _total = (_total<5) ? 1 : (parseInt(_total/5));
-            $(".totalPage").text(local.cur_page+"/"+ local.cur_total);
+            $(".totalPage").show().text(local.cur_page+"/"+ local.cur_total);
 
             $(".nextBtn").show();
             $(".prevBtn").show();
@@ -507,7 +514,9 @@ if(""!=='{{info.mobile}}'){
                 $(".prevBtn").hide();
                 $(".nextBtn").hide();
             }
+            if( local.cur_total == 0 ){ $(".totalPage").hide()};
         },
+
         followList:function(){
             $.ajax({
                 method: "GET",
@@ -553,6 +562,7 @@ if(""!=='{{info.mobile}}'){
                         }
                         $(".u-host").remove();
                         $(".focushost").html($(".focushost").html()+str);
+                        // $(".focushost").html(str);
                         local.Pagination(local.cur_page,data.object.total,local.cur_pageSize,"follow");                   
                     } else {
                         console.log(data.result);
