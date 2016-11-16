@@ -1135,6 +1135,12 @@ a.u-topfish{
 	font-size:16px;
 	color:#fff;
 }
+/*<div class="u-wm">
+					<span class="u-wntop">金&nbsp;&nbsp;&nbsp;额：</span><span class="u-wmtips"></span><span>元</span>
+				</div>
+				<div class="u-wn">
+					<span class="u-wntop">订单号：</span><span>14763398738814</span>
+				</div>*/
 .u-wintop span.u-wntop{
 	margin-left:15px;
 }
