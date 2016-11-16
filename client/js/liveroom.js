@@ -24,6 +24,8 @@ $(function(){
         live_token = "",
         nickname = "";
 
+    var hidegiftmes = "";
+
 
     if(!islogin){
         $.ajax({
@@ -50,6 +52,36 @@ $(function(){
         enterLiveroom();
     }
 
+    $('.wantreport').click(function(e){
+        e.preventDefault();
+        if(islogin){
+           $('.m-report-mask').show();
+        }else{
+            $('.m-login-wrap').show();
+        }
+    })
+
+    $('.report-radio label').click(function(){
+        var radioId = $(this).attr('name');
+        $('.report-radio label').removeAttr('class') && $(this).attr('class', 'checked');
+        $('.report-radio input[type="radio"]').removeAttr('checked') && $('#' + radioId).attr('checked', 'checked');
+    });
+
+    $('.u-report-next').click(function(e){
+        e.preventDefault();
+        $('.m-report-mask').hide();
+        $('.m-result-mask').show();
+        setTimeout(function(){
+            $('.m-result-mask').hide();
+        },1500);
+        $('.report').text('已举报').off().click(function(e){e.preventDefault()});
+    });
+
+    $('.u-report-cancel').click(function(e){
+        e.preventDefault();
+        $('.m-report-mask').hide();
+    });
+
     $('.givemoney').click(function(e){
         e.preventDefault();
         if(islogin){
@@ -57,6 +89,33 @@ $(function(){
         }else{
             $('.m-login-wrap').show();
         }
+    });
+
+    // 消息设置
+    $('.set-option').hover(function(){
+        $(this).find('.option-block').show();
+    },function(){
+        $(this).find('.option-block').hide();
+    });
+
+    $('.shield-radio label').click(function(){
+        var radioId = $(this).attr('name');
+        $('.shield-radio label').removeAttr('class') && $(this).attr('class', 'checked');
+        $('.shield-radio input[type="radio"]').removeAttr('checked') && $('#' + radioId).attr('checked', 'checked');
+    });
+
+    $('#shield1').click(function(){
+        hidegiftmes = '';
+        $('.gift-mes').removeClass('hidegiftmes');
+    });
+
+    $('#shield2').click(function(){
+        hidegiftmes = 'hidegiftmes';
+        $('.gift-mes').addClass('hidegiftmes');
+    });
+
+    $('.clearmes').click(function(){
+        $('.mes-block').html('');
     })
     
     var endingtime = 300;
@@ -184,6 +243,7 @@ $(function(){
                 console.log("接口出问题啦");
             }
         });
+
     } 
 
     getGift();
@@ -209,8 +269,8 @@ $(function(){
 
         // 获取聊天室信息重要参数
         var appKey = '5585496885932f31d478ed0222072bcf',
-            roomid = '4580501',
-            accid = '3835355';
+            roomid = $('.hide-rtmp').attr('data-roomid'),
+            accid = $('.hide-rtmp').attr('data-anchorid');
 
         $.ajax({
             url: "https://api.netease.im/nimserver/chatroom/requestAddr.action",
@@ -248,11 +308,14 @@ $(function(){
                 onmsgs: onChatroomMsgs
             });
             function sendChatroomMsgDone(error, msg) {
+                var lct = document.getElementById('chatarea');
                 console.log('发送聊天室' + msg.type + '消息' + (!error?'成功':'失败') + ', id=' + msg.idClient, error, msg);
                 if(!error){
                     liveRoomInterf.flash.showDanmaku(msg.text, 0xffffff, 100);
-                    $('.room-block').append('<div class="text-mes"><span class="membName">'+nickname+' : </span>'+msg.text+'</div>');
+                    $('.mes-block').append('<div class="text-mes"><span class="membName">'+nickname+' : </span>'+msg.text+'</div>');
                     $('.live-text').val("");
+                    console.log(lct.scrollHeight);
+                    lct.scrollTop=Math.max(0,lct.scrollHeight-lct.offsetHeight);  
                 }
             }
 
@@ -261,7 +324,7 @@ $(function(){
                 var gift = JSON.parse(msg.content);
                 if(!error){
                     liveRoomInterf.flash.showDanmaku(nickname+'送给主播一个'+gift.data.giftName, 0xffffff, 100);
-                    $('.room-block').append('<div class="gift-mes"><span class="membName">'+nickname+' : 送给主播1个</span>'+gift.data.giftName+'</div>');
+                    $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+nickname+' : 送给主播1个</span>'+gift.data.giftName+'</div>');
                     // $('.live-text').val("");
                 }
             }
@@ -290,6 +353,7 @@ $(function(){
 
                             }else{
                                 getProp();
+                                // liveRoomInterf.init();
                             }
                         }else{
                             console.log(data.result);
@@ -316,16 +380,16 @@ $(function(){
 
                 //直播间Flash对象
                 flash: null,
-                giftlist : [],
                 //初始化Flash
                 init: function ()
-                {
+                {   
+                    // alert(proplist[0]);
                     //播放直播视频，参数：视频地址
                     this.flash.playLive($('.hide-rtmp').html());
                     // rtmp://pili-live-rtmp.wangyuhudong.com/wyds/wyds_4231257?key=e27f6170-a1c7-4f6f-ae0f-1de109b6b1b7
 
                     //更新主播信息，参数：主播ID
-                    this.flash.updateAnchor("123");
+                    this.flash.updateAnchor($('.hide-rtmp').attr('data-anchorid'));
 
                     //更新热词列表，参数：[热词1, 热词2, ...]
                     this.flash.updateHotWords(["666", "因吹思婷", "姑娘你真是条汉子","666", "因吹思婷", "姑娘你真是条汉子","666", "因吹思婷", "姑娘你真是条汉子"]);
@@ -396,7 +460,12 @@ $(function(){
                 {
                     //调用后台，若赠送的是购买的道具，请回调 flash.updateCoins，若赠送的是我的道具，请回调 flash.updateMyItems
                     if(islogin){
-                        this.flash.showDanmaku(nickname+"送了一个"+name+"给主播", 0xffff00, 100);
+                        if(type){
+                            type=2;
+                        }else{
+                            type=1;
+                        }
+                        // this.flash.showDanmaku(nickname+"送了一个"+name+"给主播", 0xffff00, 100);
                        flashSendCustom(name,itemId,type); 
                        
                     }else{
@@ -432,6 +501,16 @@ $(function(){
                 
             });
 
+            $('.quicktext li').click(function(){
+                if(islogin){
+                    flashSend($(this).text());
+                    $('.quicktext').hide();
+                }else{
+                    $('.m-login-wrap').show();
+                }
+                
+            });
+
             $('.gift').click(function(){
                 if(islogin){
                     flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),1); 
@@ -450,7 +529,7 @@ $(function(){
 
         function onChatroomConnect(chatroom) {
             console.log('进入聊天室', chatroom);
-            $('.room-block').append("<div>你已进入聊天室！<div>"); 
+            $('.mes-block').append("<div>你已进入聊天室！<div>"); 
             // var msg = chatroom.sendText({
             //     text: 'hello',
             //     done: sendChatroomMsgDone
@@ -479,7 +558,7 @@ $(function(){
                     break;
                 }
             }
-            $('.room-block').append("<div>连接断开<div>"); 
+            $('.mes-block').append("<div>连接断开<div>"); 
         }
         function onChatroomError(error, obj) {
             console.log('发生错误', error, obj);
@@ -492,15 +571,15 @@ $(function(){
                     var content=JSON.parse(msgs[i].content);
                     // console.log(content);
                     if(content.data.giftNum>1){
-                        $('.room-block').append("<div class='gift'>"+content.data.senderName+":&nbsp;&nbsp;送给主播1个"+content.data.giftName+"<span class='combo'>"+content.data.giftNum+"<i></i></span><div>");
+                        $('.mes-block').append("<div class='gift'>"+content.data.senderName+":&nbsp;&nbsp;送给主播1个"+content.data.giftName+"<span class='combo'>"+content.data.giftNum+"<i></i></span><div>");
                     }else{
-                        $('.room-block').append("<div class='gift'>"+content.data.senderName+":&nbsp;&nbsp;送给主播1个"+content.data.giftName+"<div>");
+                        $('.mes-block').append("<div class='gift'>"+content.data.senderName+":&nbsp;&nbsp;送给主播1个"+content.data.giftName+"<div>");
                     }
                 }else if(msgs[i].text){
                     var host = msgs[i].fromNick=="1" ? '<label for="">主播</label>&nbsp;' : '';
-                    $('.room-block').append("<div>"+host+"<span class='fromNick'>"+msgs[i].fromNick+":&nbsp;&nbsp;</span>"+msgs[i].text+"<div>");         
+                    $('.mes-block').append("<div>"+host+"<span class='fromNick'>"+msgs[i].fromNick+":&nbsp;&nbsp;</span>"+msgs[i].text+"<div>");         
                 }else if(msgs[i].flow=="in" && !msgs[i].text && !msgs[i].attach.fromNick && msgs[i].attach.type=="memberEnter"){
-                    $('.room-block').append("<div>欢迎用户"+msgs[i].attach.fromNick+"进入直播间");
+                    $('.mes-block').append("<div>欢迎用户"+msgs[i].attach.fromNick+"进入直播间");
                 }
                 // lct.scrollTop=Math.max(0,lct.scrollHeight-lct.offsetHeight);        
             }
@@ -508,11 +587,11 @@ $(function(){
         }
     }
 
-    $('.followme').click(function(e){
+    $('.followme,.is-subscibe').click(function(e){
         e.preventDefault();
         if(islogin){
             var parm = {};
-            parm.userId = window.sessionStorage.getItem("id");
+            parm.userId = window.localStorage.getItem("id");
             parm.upUserId = $(this).attr('data-id');
             $.ajax({
                     method: "GET",

@@ -55,6 +55,12 @@ $(function() {
         _error.hide();
     })
 
+    $("body").keydown(function() {
+        if (event.keyCode == "13") {//keyCode=13是回车键
+            $('.confirm').click();
+            $('.u-reset-btn').click();
+        }
+    }); 
 
     // 刷新图形验证码
     function changeCode(){
@@ -200,11 +206,10 @@ $(function() {
                     if (data.code==0) {
                         delCookie('yuer_userId');
                         delCookie('yuer_token');
-                        document.cookie="yuer_userId="+data.object.id; 
-                        document.cookie="yuer_token="+data.object.token; 
-                        window.sessionStorage.setItem("id", data.object.id);
-                        window.sessionStorage.setItem("avatar", data.object.icon);
-                        window.location = '/';
+                        $('.m-result-mask').show();
+                        setTimeout(function(){
+                            window.location = '/';
+                        },1500);
                     }else{
                         $('.code').next('.error-tip').text('验证码错误').show();
                         setTimeout(function(){

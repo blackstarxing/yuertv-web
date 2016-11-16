@@ -71,6 +71,7 @@ $(function(){
         myDate.setTime(-1000);//设置时间    
         document.cookie=$name+"=''; expires="+myDate.toGMTString();                
   	} 
+     
     $('.u-login').click(function(e){
         var error = $('.login-content .lg-error');
         if(!$('.l-usrname').val() || !$('.l-pwd').val()){
@@ -114,7 +115,14 @@ $(function(){
             });
         }
     	
-    })
+    });
+
+    $("body").keydown(function() {
+        if (event.keyCode == "13") {//keyCode=13是回车键
+            $('.u-login').click();
+            $('.u-search-btn').click();
+        }
+    }); 
 
     $(".m-common .m-lst:nth-child(5n)").css("margin-right","0");
     // 右侧挂件

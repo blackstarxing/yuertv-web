@@ -106,7 +106,7 @@ html,body{
 	line-height: 30px;
 	margin-top: 5px;
 	position: relative;
-	margin-right: 10px;
+	margin-left: 5px;
 	padding:0 10px;
 }
 .follownum:after{
@@ -121,7 +121,88 @@ html,body{
 }
 .option a{
 	display: inline-block;
-	margin:10px 10px 0;
+	margin:10px 0 0 20px;
+	width: 70px;
+	text-indent: 25px;
+}
+.option .report{
+	background: url('/images/report.png') left top no-repeat;
+}
+.option .share{
+	background: url('/images/share.png') left top no-repeat;
+}
+.report-pop{
+	width: 276px;
+	padding:17px;
+	height: 486px;
+	background: rgba(50,58,67,0.8);
+	position: absolute;
+	left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin:auto;
+    color:#fff;
+    border-radius: 20px;
+}
+.report-pop h3{
+	text-align: center;
+	font-size: 24px;
+	line-height: 2;
+	border-bottom: 2px dotted #2e363f;
+	margin-bottom: 15px;
+}
+.report-radio{
+	height: 55px;
+	line-height: 55px;
+	text-indent: 40px;
+}
+.report-pop input[type="radio"] {
+  display: none;
+}
+.report-pop label {
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+  cursor: pointer;
+  background: url('/images/dischecked.png') no-repeat 10px center;
+}
+.report-pop label.checked {
+  background: url('/images/checked.png') no-repeat 10px center;
+}
+.report-pop p{
+	color:#7d8ea0;
+	text-indent: 45px;
+}
+.report-pop a{
+	display: inline-block;
+	width: 70px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: #495665;
+	color: #9faebe;
+	margin:20px 20px 0;
+	margin-left: 42px;
+}
+.report-pop .u-report-next{
+	background: #f36;
+	color:#fff;
+	margin-left: 20px;
+}
+.m-live-recommend{
+	margin-top: 30px;
+}
+.m-livenav li{
+	float: left;
+	font-size: 20px;
+	color: #033;
+	margin-right: 30px;
+	cursor: pointer;
+}
+.m-livenav li.current{
+	color: #f36;
+	border-bottom: 4px solid #f36;
 }
 .m-live-right{
 	float: right;
@@ -157,6 +238,11 @@ html,body{
 	text-align: center;
 	border:1px solid #ccc;
 }
+.room-tab li.current{
+	background: #f36;
+	color:#fff;
+	border-color:#f36;
+}
 .liveroom{
 	height: 100%;
 }
@@ -166,6 +252,7 @@ html,body{
 	border-top: none;
 	border-bottom: none;
 	padding:10px;
+	overflow-y: scroll;
 }
 .room-block{
 	color: #333;
@@ -185,6 +272,9 @@ html,body{
 .room-block .gift-mes{
 	color: #f36;
 }
+.hidegiftmes{
+	display: none;
+}
 .set-block{
 	height: 30px;
 	border-left: 1px solid #ccc;
@@ -193,7 +283,55 @@ html,body{
 .set-block .set-option{
 	float: left;
 	width: 33.3%;
+	line-height: 30px;
 	text-align: center;
+	position: relative;
+	cursor: pointer;
+}
+.set-block .set-option img{
+	vertical-align: middle;
+	margin:0 5px;
+}
+.option-block{
+	display: none;
+}
+.quicktext{
+	position: absolute;
+	width: 160px;
+	height: 220px;
+	top: -220px;
+	text-align: center;
+	background: #fff;
+	line-height: 36px;
+	cursor: pointer;
+	overflow-y: scroll;
+}
+.shield{
+	position: absolute;
+	width: 160px;
+	padding:15px 0;
+	top: -135px;
+	background: #fff;
+	line-height: 36px;
+	text-align: left;
+}
+.shield-radio{
+	height: 35px;
+	line-height: 35px;
+	text-indent: 25px;
+}
+.shield input[type="radio"] {
+  display: none;
+}
+.shield label {
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+  cursor: pointer;
+  background: url('/images/dischecked.png') no-repeat left center;
+}
+.shield label.checked {
+  background: url('/images/checked.png') no-repeat left center;
 }
 .send-block{
 	height: 50px;

@@ -16,7 +16,11 @@
                 <div class="search-container">
                     {% for result in result.list %}
                         <div class="m-lst">
-                            <a href="/liveroom?id={{result.id}}" class="live-address">
+                            {% if result.state==1 %}
+                                <a href="/liveroom?id={{result.id}}" class="live-address">
+                            {% else %}
+                                <a href="javascript:void(0);" class="live-address">
+                            {% endif %}
                                 <img src="{{result.icon}}" alt="">
                                 <span><i>·</i>{{result.name}}</span>
                                 {% if result.state==1 %}
@@ -38,7 +42,7 @@
                                     <div><a href="">{{result.nickname}}</a></div>
                                     <div class="anchor-id">ID:{{result.room_number}}</div>
                                 </div>
-                                <button class="follow">关注</button>
+                                <button class="follow" data-id="{{result.up_user_id}}">关注</button>
                             </div>
                         </div>
                     {% endfor %}
