@@ -54,7 +54,14 @@ $(function() {
         var _current = $(e.currentTarget);
         var _error = _current.parent().find('.error-tip');
         _error.hide();
-    })
+    });
+
+    $("body").keydown(function() {
+        if (event.keyCode == "13") {//keyCode=13是回车键
+            $('.confirm').click();
+            $('.u-reg-btn').click();
+        }
+    }); 
 
     // 昵称校验
     $nickname.blur(function(e) {
@@ -229,15 +236,16 @@ $(function() {
                         $('.m-mask').show();
                         $('.code-wrap').hide();
                         $('.reg-success').show();
+                        delCookie('yuer_userId');
+                        delCookie('yuer_token');
+                        document.cookie="yuer_userId="+data.object.id; 
+                        document.cookie="yuer_token="+data.object.token; 
+                        window.localStorage.setItem("id", data.object.id);
+                        window.localStorage.setItem("avatar", data.object.icon);
+                        window.localStorage.setItem("nickname",data.object.nickname);
                         var second = 3;
                         function settime(val) { 
                             if (second < 0) { 
-                                delCookie('yuer_userId');
-                                delCookie('yuer_token');
-                                document.cookie="yuer_userId="+data.object.id; 
-                                document.cookie="yuer_token="+data.object.token; 
-                                window.sessionStorage.setItem("id", data.object.id);
-                                window.sessionStorage.setItem("avatar", data.object.icon);
                                 window.location = '/';
                             } else {
                                 $('.jump-index').text('('+second+'s) 回到首页'); 

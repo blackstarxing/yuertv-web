@@ -32,7 +32,7 @@
         <div class="live-info f-cb">
             <img src="http://img.wangyuhudong.com/{{detail.info.user_icon}}" alt="" class="live-avatar f-fl">
             <div class="avatar-info f-fl">
-                <span class="hide-rtmp">{{detail.info.rtmp}}</span>
+                <span class="hide-rtmp" data-roomid="{{detail.info.chat_room_id}}" data-anchorid="{{detail.info.up_user_id}}">{{detail.info.rtmp}}</span>
                 <h3>{{detail.info.title}}</h3>
                 <div><span class="u-label">{{detail.info.nickname}}<img src="/images/female.png" alt=""></span>{{detail.info.game_name}}</div>
                 <div><span class="u-label">房间ID：{{detail.info.room_number}}</span>在线：{{detail.info.online_num}}</div>
@@ -40,14 +40,14 @@
             <div class="follow-avatar f-fr">
                 <div class="follow f-cb">
                     {% if detail.info.is_subscibe==1 %}
-                        <a href="javascript:void(0)" class="is-subscibe">已关注</a>
+                        <a href="javascript:void(0)" class="is-subscibe" data-id="{{detail.info.up_user_id}}">已关注</a>
                     {% else %}
                         <a href="" class="followme" data-id="{{detail.info.up_user_id}}"><i class="iconfont icon-follow"></i>关注</a>
                     {% endif %}
                     <div class="follownum">{{detail.info.fans}}</div>
                 </div>
                 <div class="option">
-                    <a href="">举报</a><a href="">转发</a>
+                    <a href="" class="report wantreport">举报</a><a href="" class="share">转发</a>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
             </div>
             <div class="m-gift">
                 <div class="myCoin">
-                    <p>我有<span class="yuerCoin">{{info.yuerCoin}}</span>鱼币</p>
+                    <p>我有<span class="yuerCoin"></span>鱼币</p>
                     <a href="" class="givemoney">充值</a>
                 </div>
                 {% for gift in gift %}
@@ -82,6 +82,65 @@
             </div>
             
         </div>
+        <div class="m-live-recommend">
+            <div class="m-livenav">
+                <ul class="f-cb">
+                    <li class="current">热门直播</li>
+                    <li>主播视频</li>
+                </ul>
+            </div>
+            <div class="recommendBox">
+                {% for live in detail.hotlive %}
+                <div class="m-lst">
+                    <a href="/liveroom?id={{live.id}}" class="live-address">
+                        <img src="{{live.icon}}" alt="">
+                        <span><i>·</i>{{live.name}}</span>
+                        <div class="play-mask"></div>
+                    </a>
+                    <div class="m-info">
+                        <div class="anchor-head">
+                            <img src="http://img.wangyuhudong.com/{{live.user_icon}}" alt="" class="head-icon">
+                            {% if live.sex==0 %}
+                                <img src="/images/female.png" alt="" class="sex">
+                            {% else %}
+                                <img src="/images/male.png" alt="" class="sex">
+                            {% endif %}
+                        </div>
+                        <div class="anchor-info">
+                            <div><a href="">{{live.nickname}}</a></div>
+                            <div class="anchor-id">ID:{{live.room_number}}</div>
+                        </div>
+                        <button class="follow">关注</button>
+                    </div>
+                </div>
+            {% endfor %} 
+            </div>
+            <div class="recommendBox">
+                {% for video in detail.upVideo %}
+                    <div class="m-lst m-video">
+                        <a href="" class="live-address" data-rtmp="{{video.rtmp}}" data-title="{{video.title}}" data-icon="{{video.up_user_icon}}" data-id="{{video.id}}" data-name="{{video.name}}" data-nickname="{{video.nickname}}">
+                            <img src="{{video.icon}}" alt="">
+                            <span><i>·</i>{{video.name}}</span>
+                            <div class="play-mask"></div>
+                        </a>
+                        <div class="m-info">
+                            <div class="anchor-head">
+                                <img src="http://img.wangyuhudong.com/{{video.user_icon}}" alt="" class="head-icon">
+                                {% if video.sex==1 %}
+                                    <img src="/images/female.png" alt="" class="sex">
+                                {% else %}
+                                    <img src="/images/male.png" alt="" class="sex">
+                                {% endif %}
+                            </div>
+                            <div class="anchor-info">
+                                <div><a href="">{{video.nickname}}</a></div>
+                            </div>
+                            <div class="video-name"><a href="">{{video.title}}</a></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
     <div class="m-live-right">
         <div class="live-notice">
@@ -90,21 +149,100 @@
         </div>
         <div class="liveroom">
             <ul class="room-tab f-cb">
-                <li>互动聊天</li>
+                <li class="current">互动聊天</li>
                 <li>贡献榜</li>
             </ul>
-            <div class="room-block">
+            <div class="room-block" id="chatarea">
                 <div class="welcome">欢迎来到<span>{{detail.info.nickname}}</span>的直播间，喜欢就点击房间信息关注吧！</div>
+                <div class="mes-block"></div>
             </div>
             <div class="set-block">
-                <div class="set-option">快捷短语</div>
-                <div class="set-option">屏蔽设置</div>
-                <div class="set-option">清屏</div>
+                <div class="set-option">
+                    快捷短语<img src="/images/quickarrow.png" alt="">
+                    <div class="quicktext option-block">
+                        <ul>
+                            <li>666</li>
+                            <li>aaa</li>
+                            <li>bbb</li>
+                            <li>cccc</li>
+                            <li>ddd</li>
+                            <li>555</li>
+                            <li>bbb</li>
+                            <li>cccc</li>
+                            <li>ddd</li>
+                            <li>555</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="set-option">
+                    <img src="/images/shield.png" alt="">屏蔽设置
+                    <div class="shield option-block">
+                        <div class="shield-radio">
+                            <input type="radio" id="shield1" checked="checked" name="shield" value="1">
+                            <label name="shield1" class="checked" for="shield1">不屏蔽</label>
+                        </div>
+                        <div class="shield-radio">
+                            <input type="radio" id="shield2" name="shield" value="2">
+                            <label name="shield2" for="shield2">屏蔽礼物消息</label>
+                        </div>
+                        <div class="shield-radio">
+                            <input type="radio" id="shield3" name="shield" value="3">
+                            <label name="shield3" for="shield3">屏蔽系统消息</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="set-option clearmes"><img src="/images/clear.png" alt="">清屏</div>
             </div>
             <div class="send-block">
                 <input type="text" class="live-text"><button class="sendText">发送</button>
             </div>
         </div>
+    </div>
+</div>
+<div class="m-video-mask">
+    <a href="" class="close"><img src="/images/iconwindow.png" alt=""></a>
+    <div class="m-video-player">
+        <div id="VideoPlayerDiv"></div>
+    </div> 
+</div>
+
+<div class="m-report-mask">
+    <div class="report-pop">
+        <h3>房间举报</h3>
+        <div>
+            <div class="report-radio">
+                <input type="radio" id="1" checked="checked" name="report" value="1">
+                <label name="1" class="checked" for="1">挂机</label>
+            </div>
+            <div class="report-radio">
+                <input type="radio" id="2" name="report" value="2">
+                <label name="2" for="2">传播色情/暴力/反动</label>
+            </div>
+            <div class="report-radio">
+                <input type="radio" id="3" name="report" value="3">
+                <label name="3" for="3">视频盗播</label>
+            </div>
+            <div class="report-radio">
+                <input type="radio" id="4" name="report" value="4">
+                <label name="4" for="4">垃圾广告</label>
+            </div>
+            <div class="report-radio">
+                <input type="radio" id="5" name="report" value="5">
+                <label name="5" for="5">游戏标签分类错误</label>
+            </div>
+            <div class="report-radio">
+                <input type="radio" id="6" name="report" value="6">
+                <label name="6" for="6">涉嫌使用非法外挂</label>
+            </div>
+            <p>提示：请勿非法恶意举报</p>
+            <a href="" class="u-report-cancel">取消</a><a href="" class="u-report-next">下一步</a>
+        </div>
+    </div>
+</div>
+
+<div class="m-result-mask">
+    <div class="result-pop">
+        您已举报成功
     </div>
 </div>
     

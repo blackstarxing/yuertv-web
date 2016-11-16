@@ -13,7 +13,13 @@ router.get('/', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
-        request('http://172.16.2.62:8777/index', function(error, response, body) {
+        request({
+            uri: 'http://172.16.2.62:8777/index',
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+              }
+        }, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -44,7 +50,13 @@ router.get('/liveroom', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
-        request('http://172.16.2.62:8777/live/detail?id='+id, function(error, response, body) {
+        request({
+            uri: 'http://172.16.2.62:8777/live/detail?id='+id,
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+              }
+        }, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -238,7 +250,13 @@ router.get('/activity', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
-        request('http://172.16.2.62:8777/activity/detail?id='+id, function(error, response, body) {
+        request({
+            uri: 'http://172.16.2.62:8777/activity/detail?id='+id,
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+            },
+        }, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -268,7 +286,13 @@ router.get('/search', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
-        request('http://172.16.2.62:8777/search/live?param='+content+'&page=1&pageSize=30', function(error, response, body) {
+        request({
+            uri: 'http://172.16.2.62:8777/search/live?param='+content+'&page=1&pageSize=30',
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+            },
+        }, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -298,7 +322,13 @@ router.get('/alllive', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
-        request('http://172.16.2.62:8777/live/list?page=1&pageSize=30', function(error, response, body) {
+        request({
+            uri: 'http://172.16.2.62:8777/live/list?page=1&pageSize=30',
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+            },
+        }, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -328,7 +358,13 @@ router.get('/allvideo', function(req, res, next) {
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
-        request('http://172.16.2.62:8777/video/list?page=1&pageSize=30', function(error, response, body) {
+        request({
+            uri: 'http://172.16.2.62:8777/video/list?page=1&pageSize=30',
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+            },
+        }, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {

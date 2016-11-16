@@ -480,8 +480,27 @@ color: #fff !important;
     font-size: 16px;
     color:#999;
 }
+/*交互结果弹窗*/
+.result-pop{
+    width: 520px;
+    height: 100px;
+    line-height: 100px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin:auto;
+    background: url('/images/right.png') 140px center no-repeat rgba(50,58,67,0.8);
+    border-radius: 10px;
+    color:#fff;
+    font-size: 24px;
+    text-indent: 210px;
+}
 /*视频弹窗*/
-.m-video-mask{
+.m-video-mask,
+.m-report-mask,
+.m-result-mask{
     position:fixed;
     left:0;
     top:0;
