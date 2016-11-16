@@ -530,11 +530,11 @@ $(".u-cbottom").on("click",function(){
                     //     $(".error-tip").hide();
                     // });
 
-            var phoneField = $("#phoneField").val();
-            var mphone =phoneField.substr(3,4);
-            var lphone = phoneField.replace(mphone,"****");
-            $("#phoneField").attr("value", lphone); 
-            $("#hfPhone").attr("value", phoneField ); //隐藏域
+            // var phoneField = $("#phoneField").val();
+            // var mphone =phoneField.substr(3,4);
+            // var lphone = phoneField.replace(mphone,"****");
+            // $("#phoneField").attr("value", lphone); 
+            // $("#hfPhone").attr("value", phoneField ); //隐藏域
 
             // 分页－－我的关注，我的消息
              $(".prevBtn").off().on("click",function(event){
@@ -645,12 +645,14 @@ $(".u-cbottom").on("click",function(){
                             }
                             $(".u-host").remove();
                             $(".empty").hide();
+                            $(".emptyText").hide();
                             $(".focushost").html($(".focushost").html()+str);
                             // $(".focushost").html(str);
                             local.Pagination(local.cur_page,data.object.total,local.cur_pageSize,"follow");
                         }else{
                             $(".u-host").remove();
                             $(".empty").show();
+                            $(".emptyText").show();
                         }                  
                     } else {
                         console.log(data.result);
@@ -675,6 +677,8 @@ $(".u-cbottom").on("click",function(){
                     if (data.code == 0) {
                         if(data.object.list.length>0){
                             $(".empty").hide();
+                            $(".emptyText").hide();
+                            $("")
                             if(_type == 0){
                                 var str = "";
                                 for (index in data.object.list) {
@@ -709,6 +713,7 @@ $(".u-cbottom").on("click",function(){
                             $(".messageBox").hide();
                             $(".focusmessage").hide();
                             $(".empty").show();
+                            $(".emptyText").show();
                         }             
                     } else {
                         console.log(data.result);
