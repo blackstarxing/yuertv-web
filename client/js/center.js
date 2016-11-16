@@ -262,6 +262,9 @@ $(function() {
                     $(".u-numbertel").hide();
                     $("#number").addClass("change-color");
                 });
+                $("#number").on("blur",function(){
+                    $("#number").removeClass("change-color");
+                });
                 $("#gainnumber").off().on("click",function(){
                     if(($("#number").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#number").val()))){
                         $("#number").removeClass("change-color");
@@ -299,7 +302,8 @@ $(function() {
                         }
                     });
                 });
-                $(".m-mask .cancel").off().on("click",function(){
+                $(".m-mask .cancel").off().on("click",function(e){
+                    e.preventDefault();
                     $(".m-mask").hide();
                 });
                 // 验证码
@@ -343,10 +347,17 @@ $(function() {
                     }
                 });
                 $("#verify").off().on("focus",function(){
+                    $(".u-verifyInput").hide();
+                    $(".u-verify").show();
+                    $("#verify").addClass("change-color");
                     $(this).parent().find("span").each(function(){
                             $(this).hide();
                     });
                 });
+                $("#verify").on("blur",function(){
+                    $("#verify").removeClass("change-color");
+                });
+
         //     }
         // });
 // 我要当主播的实名认证
@@ -354,108 +365,106 @@ $(".u-cbottom").on("click",function(){
     if(""!=='{{info.mobile}}'){
         alert("该账号已认证！点击确定，跳转到如何直播");
         $("#jump").trigger("click");
-        // window.location.href==window.location.href;
     }else{
-
-                $(".inputTel").off("keydown").on("keydown",function(e){
-                    if((e.keyCode >=48 && e.keyCode <=57)||(e.keyCode >=97 && e.keyCode <=105)||(e.keyCode == 8)){
+                // $(".inputTel").off("keydown").on("keydown",function(e){
+                //     if((e.keyCode >=48 && e.keyCode <=57)||(e.keyCode >=97 && e.keyCode <=105)||(e.keyCode == 8)){
                     
-                    }else{
-                        e.preventDefault();
-                    }
-                })
-                $("#number").on("focus",function(){
-                    $(".u-numberphone").hide();
-                    $("#gainnumber").show();
-                    $(".u-numbertel").hide();
-                    $("#number").addClass("change-color");
-                });
-                $("#gainnumber").off().on("click",function(){
-                    if(($("#number").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#number").val()))){
-                        $("#number").removeClass("change-color");
-                        $(".m-mask").show().find(".pic-code img").attr("src","/api/checkCode?phone="+$("#number").val() + '&phoneCache=' + new Date());
-                    } else {
-                        // 手机号不合法
-                         $("#gainnumber").hide();
-                         $(".u-numbertel").show();
-                    }
+                //     }else{
+                //         e.preventDefault();
+                //     }
+                // })
+                // $("#numbers").on("focus",function(){
+                //     $(".u-numberphone").hide();
+                //     $("#gainnumbers").show();
+                //     $(".u-numbertel").hide();
+                //     $("#numbers").addClass("change-color");
+                // });
+                // $("#gainnumbers").off().on("click",function(){
+                //     if(($("#numbers").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#number").val()))){
+                //         $("#numbers").removeClass("change-color");
+                //         $(".m-mask").show().find(".pic-code img").attr("src","/api/checkCode?phone="+$("#number").val() + '&phoneCache=' + new Date());
+                //     } else {
+                //          $("#gainnumbers").hide();
+                //          $(".u-numbertel").show();
+                //     }
 
-                });
-                $(".m-mask .changePic").off().on("click",function(e){
-                    e.preventDefault();
-                    $(".m-mask .pic-code img").attr("src","/api/checkCode?phone="+$("#numbers").val());
-                });
-                $(".m-mask .confirm").off().on("click",function(event){
-                    event.preventDefault();
-                    $.ajax({
-                        method: "GET",
-                        url: "/api/sendSMSCode",
-                        dataType: 'json',
-                        data: {
-                            imgCheckCode:$(".m-mask .m-input input").val(),
-                            mobile:$("#numbers").val(),
-                        },
-                        success: function(data) {
-                            if(data.code == 0){
-                                $(".m-mask").hide();
-                            }else{
-                                $(".m-mask .changePic").trigger("click");
-                                alert(data.result);//这个先这样用，后台应该是文档写的有问题
-                            }
-                        },
-                        error: function(a, b, c) {
-                            console.log("接口出问题啦");
-                        }
-                    });
-                });
-                $(".m-mask .cancel").off().on("click",function(){
-                    $(".m-mask").hide();
-                });
-                // 验证码
-                $("#userboxs").off().on("click",function(){
-                    if($("#verifys").val()!="" && $("#numbers").val()!=""){
-                        $.ajax({
-                            method: "GET",
-                            url: "/api/person-center/mobile-auth",
-                            dataType: 'json',
-                            data: {
-                                checkCode:$("#verifys").val(),
-                                mobile:$("#numbers").val(),
-                            },
-                            success: function(data) {
-                                if (data.code == 0) {
-                                    alert("认证成功");//没找到你的弹框
-                                    window.location.href=window.location.href;
-                                }else if(data.code == 1){
-                                    alert("更新失败");//没找到你的弹窗
-                                }else if(data.code == 2){
-                                    alert("手机号已被绑定");//没找到你的弹窗
-                                }else if(data.code == 3){
-                                    alert("已绑定手机号");//没找到你的弹窗
-                                    window.location.href=window.location.href;
-                                }else if(data.code == 4){
-                                    $("#verifys").parent().find("span").each(function(){
-                                        if($(this).attr("class").indexOf("error-tip") != -1){
-                                            $(this).show();
-                                        }else{
-                                            $(this).hide();
-                                        }
-                                    });
-                                }else{
-                                    console.log(data.result);
-                                }
-                            },
-                            error: function(a, b, c) {
-                                console.log("接口出问题啦");
-                            }
-                        })
-                    }
-                });
-                $("#verifys").off().on("focus",function(){
-                    $(this).parent().find("span").each(function(){
-                            $(this).hide();
-                    });
-                });
+                // });
+                // $(".m-mask .changePic").off().on("click",function(e){
+                //     e.preventDefault();
+                //     $(".m-mask .pic-code img").attr("src","/api/checkCode?phone="+$("#numbers").val());
+                // });
+                // $(".m-mask .confirm").off().on("click",function(event){
+                //     event.preventDefault();
+                //     $.ajax({
+                //         method: "GET",
+                //         url: "/api/sendSMSCode",
+                //         dataType: 'json',
+                //         data: {
+                //             imgCheckCode:$(".m-mask .m-input input").val(),
+                //             mobile:$("#numbers").val(),
+                //         },
+                //         success: function(data) {
+                //             if(data.code == 0){
+                //                 $(".m-mask").hide();
+                //             }else{
+                //                 $(".m-mask .changePic").trigger("click");
+                //                 alert(data.result);//这个先这样用，后台应该是文档写的有问题
+                //             }
+                //         },
+                //         error: function(a, b, c) {
+                //             console.log("接口出问题啦");
+                //         }
+                //     });
+                // });
+                // $(".m-mask .cancel").on("click",function(e){
+                //     e.preventDefault();
+                //     $(".m-mask").hide();
+                // });
+                // // 验证码
+                // $("#userboxs").off().on("click",function(){
+                //     if($("#verifys").val()!="" && $("#numbers").val()!=""){
+                //         $.ajax({
+                //             method: "GET",
+                //             url: "/api/person-center/mobile-auth",
+                //             dataType: 'json',
+                //             data: {
+                //                 checkCode:$("#verifys").val(),
+                //                 mobile:$("#numbers").val(),
+                //             },
+                //             success: function(data) {
+                //                 if (data.code == 0) {
+                //                     alert("认证成功");//没找到你的弹框
+                //                     window.location.href=window.location.href;
+                //                 }else if(data.code == 1){
+                //                     alert("更新失败");//没找到你的弹窗
+                //                 }else if(data.code == 2){
+                //                     alert("手机号已被绑定");//没找到你的弹窗
+                //                 }else if(data.code == 3){
+                //                     alert("已绑定手机号");//没找到你的弹窗
+                //                     window.location.href=window.location.href;
+                //                 }else if(data.code == 4){
+                //                     $("#verifys").parent().find("span").each(function(){
+                //                         if($(this).attr("class").indexOf("error-tip") != -1){
+                //                             $(this).show();
+                //                         }else{
+                //                             $(this).hide();
+                //                         }
+                //                     });
+                //                 }else{
+                //                     console.log(data.result);
+                //                 }
+                //             },
+                //             error: function(a, b, c) {
+                //                 console.log("接口出问题啦");
+                //             }
+                //         })
+                //     }
+                // });
+                // $("#verifys").off().on("focus",function(){
+                //     $(this).parent().find("span").each(function(){
+                //             $(this).hide();
+                //     });
+                // });
     }
 });
             // 修改昵称
@@ -491,6 +500,41 @@ $(".u-cbottom").on("click",function(){
                         }
                     })
             })
+                    // $("#numbers").on("focus",function(){
+                    //     $(".u-numberphone").hide();
+                    //     $("#gainnumbers").show();
+                    //     $(".u-numbertel").hide();
+                    //     $("#numbers").addClass("change-color");
+                    // });
+                    // $("#gainnumbers").off().on("click",function(){
+                    //     if(($("#numbers").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#number").val()))){
+                    //         $("#numbers").removeClass("change-color");
+                    //         $(".m-mask").show().find(".pic-code img").attr("src","/api/checkCode?phone="+$("#number").val() + '&phoneCache=' + new Date());
+                    //     } else {
+                    //          $("#gainnumbers").hide();
+                    //          $(".u-numbertel").show();
+                    //     }
+
+                    // });
+                    // $("#woyaodangzhuboshoujirenz").on("click",function(){
+                    //     if($(".thephoneauth").text().length==14){//
+                    //         $(".thephoneauth").show();
+                    //         $(".u-ctleft").hide();
+                    //     }else{
+                    //         $(".thephoneauth").hide();
+                    //         $(".u-ctleft").show();
+                    //     }
+                    //     $(".u-numberphone").hide();
+                    //     $(".u-numbertel").hide();
+                    //     $(".u-number").hide();
+                    //     $(".error-tip").hide();
+                    // });
+
+            var phoneField = $("#phoneField").val();
+            var mphone =phoneField.substr(3,4);
+            var lphone = phoneField.replace(mphone,"****");
+            $("#phoneField").attr("value", lphone); 
+            $("#hfPhone").attr("value", phoneField ); //隐藏域
 
             // 分页－－我的关注，我的消息
              $(".prevBtn").off().on("click",function(event){
@@ -565,43 +609,49 @@ $(".u-cbottom").on("click",function(){
                     pageSize: local.cur_pageSize,
                 }, 
                 success: function(data) {
-                    if (data.code == 0) {
-                        var str = "";
-                        for (index in data.object.list) {
-                            if(data.object.list[index].state == 1){
-                                str +='<div class="u-hleft"><div class="u-focusimg">'+
-                                    '<img src="' + data.object.list[index].icon + '">'+
-                                    '</div><div class="u-nickhost"><p class="u-nicksex">'+
-                                    '<span>' + data.object.list[index].nickname + '</span>'+
-                                    '<img src="' + data.object.list[index].sex + '">'+
-                                    '</p><div class="u-hostfans"><p><span class="u-hf">直播间ID</span>&nbsp;'+
-                                    '<span class="u-num">' + data.object.list[index].room_number + '</span>'+
-                                    '</p><p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;'+
-                                    '<span class="u-num">' + data.object.list[index].fans + '</span>'+
-                                    '</p></div></div></div><div class="u-hright">'+
-                                    '<img src="/images/focusclick.png">'+
-                                    '<a href="/liveroom' + data.object.list[index].room_number+'">进入房间</a>'+
-                                    '</div></div>'
-                            }else{
-                                str += '<div class="u-host stopdark"><div class="u-hleft"><div class="u-focusimg">'+
-                                    '<img src="' + data.object.list[index].icon + '">'+
-                                    '</div><div class="u-nickhost"><p class="u-nicksex">'+
-                                    '<span>' + data.object.list[index].nickname + '</span>'+
-                                    '<img src="' + data.object.list[index].sex + '">'+
-                                    '</p><div class="u-hostfans"><p><span class="u-hf">直播间ID</span>&nbsp;'+
-                                    '<span class="u-num">' + data.object.list[index].room_number + '</span><p class="u-hhf">'+
-                                    '<span class="u-hf">粉丝</span>&nbsp;'+
-                                    '<span class="u-num">' + data.object.list[index].fans + '</span>'+
-                                    '</p></div></div></div><div class="u-hright">'+
-                                    '<img src="/images/focusclick.png" class="u-blur">'+
-                                    '<a href="/liveroom' + data.object.list[index].room_number+'">进入房间</a>'+
-                                    '</div><span class="dark">该主播已离开</span></div>'
+                  if (data.code == 0) {
+                        if(data.object.list.length>0){
+                            var str = "";
+                            for (index in data.object.list) {
+                                if(data.object.list[index].state == 1){
+                                    str +='<div class="u-hleft"><div class="u-focusimg">'+
+                                        '<img src="' + data.object.list[index].icon + '">'+
+                                        '</div><div class="u-nickhost"><p class="u-nicksex">'+
+                                        '<span>' + data.object.list[index].nickname + '</span>'+
+                                        '<img src="' + data.object.list[index].sex + '">'+
+                                        '</p><div class="u-hostfans"><p><span class="u-hf">直播间ID</span>&nbsp;'+
+                                        '<span class="u-num">' + data.object.list[index].room_number + '</span>'+
+                                        '</p><p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;'+
+                                        '<span class="u-num">' + data.object.list[index].fans + '</span>'+
+                                        '</p></div></div></div><div class="u-hright">'+
+                                        '<img src="/images/focusclick.png">'+
+                                        '<a href="/liveroom' + data.object.list[index].room_number+'">进入房间</a>'+
+                                        '</div></div>'
+                                }else{
+                                    str += '<div class="u-host stopdark"><div class="u-hleft"><div class="u-focusimg">'+
+                                        '<img src="' + data.object.list[index].icon + '">'+
+                                        '</div><div class="u-nickhost"><p class="u-nicksex">'+
+                                        '<span>' + data.object.list[index].nickname + '</span>'+
+                                        '<img src="' + data.object.list[index].sex + '">'+
+                                        '</p><div class="u-hostfans"><p><span class="u-hf">直播间ID</span>&nbsp;'+
+                                        '<span class="u-num">' + data.object.list[index].room_number + '</span><p class="u-hhf">'+
+                                        '<span class="u-hf">粉丝</span>&nbsp;'+
+                                        '<span class="u-num">' + data.object.list[index].fans + '</span>'+
+                                        '</p></div></div></div><div class="u-hright">'+
+                                        '<img src="/images/focusclick.png" class="u-blur">'+
+                                        '<a href="/liveroom' + data.object.list[index].room_number+'">进入房间</a>'+
+                                        '</div><span class="dark">该主播已离开</span></div>'
+                                }
                             }
-                        }
-                        $(".u-host").remove();
-                        $(".focushost").html($(".focushost").html()+str);
-                        // $(".focushost").html(str);
-                        local.Pagination(local.cur_page,data.object.total,local.cur_pageSize,"follow");                   
+                            $(".u-host").remove();
+                            $(".empty").hide();
+                            $(".focushost").html($(".focushost").html()+str);
+                            // $(".focushost").html(str);
+                            local.Pagination(local.cur_page,data.object.total,local.cur_pageSize,"follow");
+                        }else{
+                            $(".u-host").remove();
+                            $(".empty").show();
+                        }                  
                     } else {
                         console.log(data.result);
                     }
@@ -623,36 +673,43 @@ $(".u-cbottom").on("click",function(){
                 }, 
                 success: function(data) {
                     if (data.code == 0) {
-                        if(_type == 0){
-                            var str = "";
-                            for (index in data.object.list) {
-                                str+='<div class="u-message"><div class="u-msystem">'+
-                                    '<img src="/images/messagehead.png">'+
-                                    '</div><div class="u-yuer"><p>'+
-                                    '<h3>'+data.object.list[index].title+'</h3>'+
-                                    '<span class="u-messagetime">'+data.object.list[index].create_date+'</span>'+
-                                    '<p><p>'+
-                                    '<span class="u-messagecontent">'+data.object.list[index].content+'</span>'+
-                                    '<span class="u-messtips" id="messshow">全文&gt;&gt;</span>'+
-                                    '</p></div></div>';
+                        if(data.object.list.length>0){
+                            $(".empty").hide();
+                            if(_type == 0){
+                                var str = "";
+                                for (index in data.object.list) {
+                                    str+='<div class="u-message"><div class="u-msystem">'+
+                                        '<img src="/images/messagehead.png">'+
+                                        '</div><div class="u-yuer"><p>'+
+                                        '<h3>'+data.object.list[index].title+'</h3>'+
+                                        '<span class="u-messagetime">'+data.object.list[index].create_date+'</span>'+
+                                        '<p><p>'+
+                                        '<span class="u-messagecontent">'+data.object.list[index].content+'</span>'+
+                                        '<span class="u-messtips" id="messshow">全文&gt;&gt;</span>'+
+                                        '</p></div></div>';
+                                }
+                                $(".messageBox").show().html(str);
+                            }else{
+                                var str = "";
+                                for (index in data.object.list) {
+                                    str+='<div class="u-focusmess"><p class="u-focusnc">'+
+                                        '<span class="u-foucscolor">'+data.object.list[index].nickname+'</span>'+
+                                        '<span class="u-focusc">关注了你</span></p>'+
+                                        '<span class="u-focustime">'+data.object.list[index].create_date+'</span>'+
+                                        '</div><div class="u-messnickname">'+
+                                        '<img src="'+data.object.list[index].icon+'"><img src="'+data.object.list[index].sex+'" class="messimgsex">'+
+                                        '<p class="u-mkname">'+data.object.list[index].nickname+'</p>'+
+                                        '<p><span>ID：</span><span>'+data.object.list[index].user_id+'</span></p></div>';
+                                }
+                                $(".focusmessage").show().html(str);
                             }
-                            $(".messageBox").html(str);
+                            
+                            local.Pagination(local.cur_page,100,local.cur_pageSize,"follow");      
                         }else{
-                            var str = "";
-                            for (index in data.object.list) {
-                                str+='<div class="u-focusmess"><p class="u-focusnc">'+
-                                    '<span class="u-foucscolor">'+data.object.list[index].nickname+'</span>'+
-                                    '<span class="u-focusc">关注了你</span></p>'+
-                                    '<span class="u-focustime">'+data.object.list[index].create_date+'</span>'+
-                                    '</div><div class="u-messnickname">'+
-                                    '<img src="'+data.object.list[index].icon+'"><img src="'+data.object.list[index].sex+'" class="messimgsex">'+
-                                    '<p class="u-mkname">'+data.object.list[index].nickname+'</p>'+
-                                    '<p><span>ID：</span><span>'+data.object.list[index].user_id+'</span></p></div>';
-                            }
-                            $(".focusmessage").html(str);
-                        }
-                        
-                        local.Pagination(local.cur_page,100,local.cur_pageSize,"follow");                   
+                            $(".messageBox").hide();
+                            $(".focusmessage").hide();
+                            $(".empty").show();
+                        }             
                     } else {
                         console.log(data.result);
                     }

@@ -77,27 +77,31 @@
 	  			<input type="button" name="" value="提交" class="u-i6" id="send">
   			</div>
   			<div class="m-switcht switch-content">
-  				<div class="u-div thePhone">
+  			{% if info.mobile=="" %}
+	  			<div class="u-div thePhone">
   					<label for="number">手机号码</label>
   					<input type="text" class="u-userbox telnumber inputTel" name="" id="number" maxlength="11" >
-  					<span class="u-numberphone">请输入手机号</span>
+  					<span class="u-numberphone" style="display:inline-block;">请输入手机号</span>
   					<span class="u-numbertel">请输入正确的手机号</span>
-  					<span class="u-number" id="gainnumber">获取验证码</span>
+  					<span class="u-number" id="gainnumber" style="display:none;">获取验证码</span>
   				</div>
 	  			<div class="u-div">
 	  				<label for="verify">验证码</label>
 	  				<input type="text" class="u-userbox" name="" id="verify">
-	  				<span class="u-verify error-tip">验证码错误</span>
+	  				<span class="u-verifyInput">请输入验证码</span>
+	  				<span class="u-verify error-tip" style="display:none;">验证码错误</span>
 	  			</div>
 	  			<div>
   						<input type="button" class="u-submit" value="提交" id="userbox">
   				</div>
-  				<div class="thephoneauth">
+            {% else %}
+                <div class="thephoneauth" id="woyaodangzhuboshoujirenz">
   					<div>
-  						<span>手机号码：</span><span>{{info.mobile}}已认证</span>
+  						<span>手机号码：</span><span id="hiddenField">{{info.mobile}}</span><span>已认证</span>
   					</div>
   					<a href="/center?type=0">修改手机号码</a>
   				</div>
+            {% endif %}
   			</div>
   			<div class="m-switchi switch-content">
   				<div class="u-mscaption"><h3>实名认证通道正在开通中，想要成为主播看下面：</h3></div>
@@ -199,6 +203,7 @@
 				</div>
 				<div class="focushost">
 				<img src="/images/empty.png" class="empty" alt="你还没有关注任何人哦！" title="你还没有关注任何人哦！">
+				<p class="emptyText">当前没有关注任何人哦！</p>
 					<!-- <div class="u-host">
 						<div class="u-hleft">
 							<div class="u-focusimg">
@@ -274,6 +279,7 @@
 				{% for myprops in myprops.gifts %}
 					{% if loop.length ==0 %}
 	  					<img src="/images/empty.png" class="empty" alt="暂无道具" title="暂无道具">
+	  					<p class="emptyText">当前没有关注道具！</p>
                    	{% else %}
                          <div class="u-props">
 							<img src="http://img.wangyuhudong.com/{{myprops.gifts.icon}}">
@@ -312,6 +318,7 @@
 			<div class="u-systemmessage mcurrent">
 				<div class="messageBox">
 					<img src="/images/empty.png" class="empty" alt="暂无任何系统消息" title="暂无任何系统消息">
+					<p class="emptyText">当前没有系统消息哦！</p>
 					<!-- <div class="u-message">
 						<div class="u-msystem">
 							<img src="/images/messagehead.png">
@@ -338,6 +345,7 @@
 			<div class="u-focusmessage mcurrent">
 				<div class="focusmessage">
 				<img src="/images/empty.png" class="empty" alt="暂无任何关注消息" title="暂无任何关注消息">
+				<p class="emptyText">当前没有关注消息哦！</p>
 					<!-- <div class="u-focusmess">
 						<p class="u-focusnc">
 							<span class="u-foucscolor">我在那里找到你
@@ -368,7 +376,7 @@
 	<div class="g-top-up rightswitch">
 		<div class="m-maint">
 			<div class="u-topup">
-				<a href="" class="u-topfish">充值鱼币</a>
+				<h3 href="" class="u-topfish">充值鱼币</h3>
 			</div>
 			<div class="u-value">
 			  {% for valuelist in valuelist%}
@@ -392,7 +400,7 @@
 					<span>订单提交成功，请您尽快付款 ！</span>
 				</div>
 				<div class="u-wm">
-					<span class="u-wntop">金&nbsp;&nbsp;&nbsp;额：</span><span class="u-wmtips"></span><span>元</span>
+					<span class="u-wntop">金&nbsp;&nbsp;&nbsp;&nbsp;额：</span><span class="u-wmtips"></span><span>元</span>
 				</div>
 				<div class="u-wn">
 					<span class="u-wntop">订单号：</span><span class="hiddenOrder">14763398738814</span>
@@ -437,6 +445,7 @@
 							<a href="">手机认证</a><a href="">实名认证</a>
 						</div>
 						<div class="u-ctleft switchrepeat">
+						{% if info.mobile=="" %}
 							<div class="u-div">
 			  					<label for="numbers">手机号码</label>
 			  					<input type="text" class="u-userbox telnumber inputTel" name="" id="numbers" maxlength="11">
@@ -447,11 +456,20 @@
 				  			<div class="u-div">
 				  				<label for="verifys">验证码</label>
 				  				<input type="text" class="u-userbox" name="" id="verifys">
+				  				<span class="u-verifyInput">请输入验证码</span>
 				  				<span class="u-verify error-tip">验证码错误</span>
 				  			</div>
 				  			<div>
 			  						<input type="button" class="u-submit" value="提交" id="userboxs">
 			  				</div>
+			  			{% else %}
+			  				<div class="thephoneauth" id="woyaodangzhuboshoujirenz">
+			  					<div>
+			  						<span>手机号码：</span><span id="hiddenField">{{info.mobile}}</span><span>已认证</span>
+			  					</div>
+			  					<a href="/center?type=0">修改手机号码</a>
+			  				</div>
+			  			{% endif %}
 						</div>
 						<div class="u-ctright switchrepeat">
 							<div>实名认证功能正在开通中。。。。。。</div>

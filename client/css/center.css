@@ -223,9 +223,9 @@ a#m-changepass,a#m-change,a#m-realname{
 	margin-bottom:45px;
 	line-height: 45px;
 	text-align: center;
-	color:#fff;
+	color:#cecfd2;
 }
-.switch{
+.m-bottom a.switch{
 	width:100px;
 	height:35px;
 	background:#f36;
@@ -294,8 +294,8 @@ a#m-changepass,a#m-change,a#m-realname{
 	margin-bottom:20px;
 	margin-left:15px;
 }
-.m-switcht .u-number,.u-verify{
-	display:none;
+.m-switcht .u-number,.u-verify,{
+	display:inline-block;
 	position:absolute;
 	left:316px;
 	top:1px;
@@ -318,7 +318,7 @@ a#m-changepass,a#m-change,a#m-realname{
 	background:#f93;
 	color:#fff;
 }
-.u-numberphone{
+.u-numberphone,.u-verifyInput{
 	position:absolute;
 	left:305px;
 	top:1px;
@@ -329,11 +329,19 @@ a#m-changepass,a#m-change,a#m-realname{
 	background:#f93;
 	color:#fff;
 }
+.m-switcht{
+	width:800px;
+	height:700px;
+}
 .m-switcht .u-verify{
-	display:none;
+	top:-1px;
+	/*left:315px;*/
 	background:#f36;
 	border:1px solid #f36;
 }
+/*.error-tip{
+	display: inline-block;
+}*/
 .m-switcht input{
 	width:300px;
 	height:40px;
@@ -357,13 +365,8 @@ a#m-changepass,a#m-change,a#m-realname{
 .m-switcht input.change-color{
 	border:1px solid #f36;
 }
-/*<div class="thephoneauth">
-  					<div>
-  						<span>手机号码：</span><span>{{info.mobile}}已认证</span>
-  					</div>
-  					<a href="/center?type=0">修改手机号码</a>*/
 .thephoneauth{
-	display:none;
+	margin-left:50px;
 	width:500px;
 	height:600px;
 	color:#fff;
@@ -881,9 +884,16 @@ a#m-changepass,a#m-change,a#m-realname{
 	color:#fff;
 }
 .empty{
-	width:300px;
-	height:300px;
-	margin:50px 0px 0px 160px;
+	display:inline-block;
+	width:150px;
+	height:150px;
+	margin:50px auto auto 280px;
+}
+.emptyText{
+	width:180px;
+	height:150px;
+	margin:10px auto auto 280px;
+	color:#999;
 }
 /*我的消息*/
 .m-mainm{
@@ -1023,7 +1033,7 @@ a#m-changepass,a#m-change,a#m-realname{
 	margin-left:65px;
 	margin-top:80px;
 }
-a.u-topfish{
+h3.u-topfish{
 	display:inline-block;
 	width:100px;
 	height:40px;
@@ -1063,7 +1073,7 @@ a.u-topfish{
 	height:20px;
 	line-height: 20px;
 	font-size:14px;
-	color:465667;
+	color:#465667;
 	margin:0px 0px 15px 40px;
 }
 .u-determine a.u-topvalue{
@@ -1146,7 +1156,7 @@ a.u-topfish{
 .u-wm{
 	width:200px;
 	height:25px;
-	margin:30px 260px 10px 260px;
+	margin:30px 0px 10px 270px;
 }
 .u-wintop .u-wm .u-wmtips{
 	font-size:18px;
@@ -1156,10 +1166,13 @@ a.u-topfish{
 .u-wn{
 	width:300px;
 	height:25px;
-	margin-left:250px;
+	margin-left:240px;
 }
 .u-wm,.u-wn span{
 	display:inline-block;
+}
+.u-wn .u-wntop{
+	padding-left:30px;
 }
 .u-wn .hiddenOrder{
 	display:none;
@@ -1278,7 +1291,7 @@ display:block;
  .m-mainh{
  	width:800px;
  	height:800px;
- 	color:#fff;
+ 	color:#cecfd2;
  }
 .u-top a{
 	display:inline-block;
@@ -1287,6 +1300,7 @@ display:block;
 	line-height:40px;
 	margin-right:30px;
 	font-size:16px;
+	color:#cecfd2;
 }
 .m-mainh .switchcon{
 	width:100px;
@@ -1308,7 +1322,6 @@ display:block;
 }
 .underline{
 	text-decoration:underline;
-	margin-top:5px;
 }
 .u-certification .u-ctleft,.u-ctright{
 	margin-top:40px;
@@ -1373,13 +1386,14 @@ display:block;
 /*我要当主播－－如何直播*/
 .u-live{
 	margin-top:40px;
+	color:#cecfd2;
 }
 
 /*我要当主播－－提现说明*/
 .u-withdrawal div{
 	margin-top:100px;
 	font-size:14px;
-	color:#fff;
+	color:#cecfd2;
 }
 
 
