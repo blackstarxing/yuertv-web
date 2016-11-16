@@ -12,12 +12,12 @@
                 <h3 class="activity-title">{{detail.info.title}}</h3>
                 <p class="activity-author">发布于：{{detail.info.create_date}}&nbsp;&nbsp;&nbsp;&nbsp;创建人：{{detail.info.author}}</p>
                 <div class="main-body">
-                    
+                    <!-- {{detail.info.content}} -->
                 </div>
             </div>
             <div class="recommend-live f-fr">
                 <div class="title"><img src="/images/index_icon3.png" alt="">热门直播</div>
-                {% for recommend in detail.live %}
+                {% for recommend in detail.lives.list %}
                     <div class="m-lst">
                         <a href="" class="live-address">
                             <img src="{{recommend.icon}}" alt="">
@@ -25,7 +25,7 @@
                         </a>
                         <div class="m-info">
                             <div class="anchor-head">
-                                <img src="http://img.wangyuhudong.com/{{recommend.up_user_icon}}" alt="" class="head-icon">
+                                <img src="http://img.wangyuhudong.com/{{recommend.user_icon}}" alt="" class="head-icon">
                                 {% if recommend.sex==0 %}
                                     <img src="/images/female.png" alt="" class="sex">
                                 {% else %}
@@ -34,7 +34,7 @@
                             </div>
                             <div class="anchor-info">
                                 <div><a href="">{{recommend.nickname}}</a></div>
-                                <div class="anchor-id">ID:123</div>
+                                <div class="anchor-id">ID:{{recommend.room_number}}</div>
                             </div>
                             <button class="follow">关注</button>
                         </div>
@@ -45,7 +45,7 @@
         
     </div>
     <script>
-        $('.main-body').html("{{detail.info.content}}");
+        $('.main-body').html("{{detail.info.content | safe }}");
         // console.log({{detail.info.content}});
     </script>
     

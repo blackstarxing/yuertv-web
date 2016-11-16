@@ -1,5 +1,9 @@
 $(function(){
-    $('.avatar-icon').attr('src',"http://img.wangyuhudong.com/"+window.sessionStorage.getItem("avatar")); 
+    $('.avatar-icon').attr('src',"http://img.wangyuhudong.com/"+window.localStorage.getItem("avatar")); 
+
+    $('.head_logo').click(function(){
+        window.location.href = "/";
+    })
     // 下载二维码显示
     $('.sweepme').hover(function(){
         $('.QRbox').show();
@@ -27,11 +31,7 @@ $(function(){
         $('.hot-anchor').show();
 
     })
-    // $('.m-search input').blur(function(e){
-    //     if
-    //     // $(this).css({'background':'#141a20','color':"#333"});
-    //     $('.hot-anchor').hide();
-    // })
+
     $("body").click(function(e){
         $('.hot-anchor').hide();
     });
@@ -50,7 +50,8 @@ $(function(){
     	e.preventDefault();
     	delCookie('yuer_userId');
         delCookie('yuer_token');
-        window.location.href = window.location.href;
+        localStorage.clear();
+        window.location.href = "/";
     })
     // 登录
 	$('.u-login-btn').click(function(e){
@@ -92,8 +93,9 @@ $(function(){
                         delCookie('yuer_token');
                         document.cookie="yuer_userId="+data.object.id; 
                         document.cookie="yuer_token="+data.object.token; 
-                        window.sessionStorage.setItem("id", data.object.id);
-                        window.sessionStorage.setItem("avatar", data.object.icon);
+                        window.localStorage.setItem("id", data.object.id);
+                        window.localStorage.setItem("avatar", data.object.icon);
+                        window.localStorage.setItem("nickname",data.object.nickname);
                         if(window.location.pathname != 'register'){
                             window.location.href = window.location.href;
                         }else{
