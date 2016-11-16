@@ -14,38 +14,49 @@
             <div class="search-result">
                 <h3><span>{{result.total}}</span>个直播页面</h3>
                 <div class="search-container">
-                    {% for result in result.list %}
-                        <div class="m-lst">
-                            {% if result.state==1 %}
-                                <a href="/liveroom?id={{result.id}}" class="live-address">
-                            {% else %}
-                                <a href="javascript:void(0);" class="live-address">
-                            {% endif %}
-                                <img src="{{result.icon}}" alt="">
-                                <span><i>·</i>{{result.name}}</span>
+                    {% if result.list == "" %}
+                        <div class="m-empty">
+                            <img src="/images/empty.png" alt="">
+                            还没有任何内容哦
+                        </div>
+                    {% else %}
+                        {% for result in result.list %}
+                            <div class="m-lst">
                                 {% if result.state==1 %}
-                                    <div class="play-mask online"></div>
+                                    <a href="/liveroom?id={{result.id}}" class="live-address">
                                 {% else %}
-                                    <div class="play-mask outline">主播已离开</div>
+                                    <a href="javascript:void(0);" class="live-address">
                                 {% endif %}
-                            </a>
-                            <div class="m-info">
-                                <div class="anchor-head">
-                                    <img src="http://img.wangyuhudong.com/{{result.user_icon}}" alt="" class="head-icon">
-                                    {% if result.sex==0 %}
-                                        <img src="/images/female.png" alt="" class="sex">
+                                    <img src="{{result.icon}}" alt="">
+                                    <span><i>·</i>{{result.name}}</span>
+                                    {% if result.state==1 %}
+                                        <div class="play-mask online"></div>
                                     {% else %}
-                                        <img src="/images/male.png" alt="" class="sex">
+                                        <div class="play-mask outline">主播已离开</div>
+                                    {% endif %}
+                                </a>
+                                <div class="m-info">
+                                    <div class="anchor-head">
+                                        <img src="http://img.wangyuhudong.com/{{result.user_icon}}" alt="" class="head-icon">
+                                        {% if result.sex==0 %}
+                                            <img src="/images/female.png" alt="" class="sex">
+                                        {% else %}
+                                            <img src="/images/male.png" alt="" class="sex">
+                                        {% endif %}
+                                    </div>
+                                    <div class="anchor-info">
+                                        <div><a href="">{{result.nickname}}</a></div>
+                                        <div class="anchor-id">ID:{{result.room_number}}</div>
+                                    </div>
+                                    {% if result.is_concern==1 %}
+                                        <button class="disfollow" data-id="{{result.up_user_id}}">已关注</button>
+                                    {% else %}
+                                        <button class="follow" data-id="{{result.up_user_id}}">关注</button>
                                     {% endif %}
                                 </div>
-                                <div class="anchor-info">
-                                    <div><a href="">{{result.nickname}}</a></div>
-                                    <div class="anchor-id">ID:{{result.room_number}}</div>
-                                </div>
-                                <button class="follow" data-id="{{result.up_user_id}}">关注</button>
                             </div>
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
                 
             </div>

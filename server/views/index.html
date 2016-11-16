@@ -77,7 +77,11 @@
                                 <div><a href="javascript:void(0)">{{hotlive.nickname}}</a></div>
                                 <div class="anchor-id">ID:{{hotlive.room_number}}</div>
                             </div>
-                            <button class="follow">关注</button>
+                            {% if hotlive.is_concern==1 %}
+                                <button class="disfollow" data-id="{{hotlive.up_user_id}}">已关注</button>
+                            {% else %}
+                                <button class="follow" data-id="{{hotlive.up_user_id}}">关注</button>
+                            {% endif %}
                         </div>
                     </div>
                 {% endfor %}

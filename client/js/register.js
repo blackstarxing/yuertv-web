@@ -10,7 +10,7 @@ $(function() {
         document.cookie=$name+"=''; expires="+myDate.toGMTString();                
     } 
 
-    $('.m-input input').blur(function(e){
+    $('.m-register .m-input input').blur(function(e){
         var _current = $(e.currentTarget);
         var _error = _current.parent().find('.error-tip');
         if(!$(this).val()){
@@ -119,6 +119,7 @@ $(function() {
                     success: function(data) {
                         if (data.object==0) {
                             $('.code-wrap input').val('');
+                            $('.code-wrap .error-tip').hide();
                             $('.m-mask').show();
                             changeCode();
                         }else{
@@ -170,13 +171,13 @@ $(function() {
                 if (data.code==0) {
                     $('.m-mask').hide();
                     var second = 59;
-                    $('.m-tel .error-tip').text(second+'(s)').show();
+                    $('.getCode').attr('disabled',true).text(second+'(s)');
                     function settime(val) { 
                         if (second > 0) { 
-                            $('.m-tel .error-tip').text(second+'(s)');
+                            $('.getCode').text(second+'(s)');
                             second--;
                         } else {
-                            $('.m-tel .error-tip').hide().text('手机号码不能为空');                              
+                            $('.getCode').attr('disabled',false).text('获取验证码');                             
                         } 
                         setTimeout(function() { 
                             settime(val) 
