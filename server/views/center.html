@@ -100,7 +100,7 @@
   					<div>
   						<span>手机号码：</span><span id="hiddenFields">{{info.mobile}}</span><span>已认证</span>
   					</div>
-  					<a href="">修改手机号码</a>
+  					<a href="" id="modifyTel">修改手机号码</a>
   				</div>
   			{% endif %}
 	  			
@@ -442,8 +442,9 @@
 						<a href="">主播认证</a><a href="" id="jump">如何直播</a><a href="">提现说明</a>
 					</div>
 					<div class="u-certification switchcontent">
-						<div class="u-ctop">
+						<div class="u-ctop" id="u-ctop">
 							<a href="">手机认证</a><a href="">实名认证</a>
+							<div id="biubiubiu"></div>
 						</div>
 						<div class="u-ctleft switchrepeat">
 						{% if info.mobile=="" %}
@@ -469,7 +470,7 @@
 			  					<div>
 			  						<span>手机号码：</span><span id="hiddenFields">{{info.mobile}}</span><span>已认证</span>
 			  					</div>
-			  					<a href="">修改手机号码</a>
+			  					<a href="" id="modifyTelVer">修改手机号码</a>
 			  				</div>
 			  			{% endif %}
 							
@@ -532,22 +533,20 @@
 </div>	
 <div class="telValBounced" id="telValBounced">
 	<div class="u-divTelVer thePhone">
-		<label for="numberTelVer">手机号码</label>
+		<label for="numberTelVer" class="numLable">手机号码</label>
 		<input type="text" class="u-userboxTelVer telnumberTelVer inputTelTelVer" name="" id="numberTelVer" maxlength="11" >
-		<span class="u-numberphoneTelVer" style="display:inline-block;">请输入手机号</span>
+		<span class="u-numberphoneTelVer">请输入手机号</span>
 		<span class="u-numbertelTelVer">请输入正确的手机号</span>
 		<span class="u-numberTelVer" id="gainnumberTelVer" >获取验证码</span>
-		<!-- style="display:none;" -->
 		<span class="u-copySecondTelVer" id="copySecondTelVer" >秒后重新获取</span>
 	</div>
 	<div class="u-divTelVer">
-		<label for="verifyTelVer">验证码</label>
-		<input type="text" class="u-userboxTelVer" name="" id="verifyTelVer">
+		<label for="verifyTelVer" class="numLable numVerify">验证码</label>
+		<input type="text" class="u-userboxTelVer " name="" id="verifyTelVer">
 		<span class="u-verifyInputTelVer">请输入验证码</span>
 		<span class="u-verifyTelVer error-tipTelVer" >验证码错误</span>
-		<!-- style="display:none;" -->
 	</div>
-	<div>
+	<div class="u-divButtonVer">
 		<input type="button" class="u-submitTelVer" value="提交" id="userboxTelVer">
 		<input type="button" class="u-submitTelCancel" value="取消" id="userboxTelCancel">
 	</div>
