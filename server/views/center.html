@@ -78,12 +78,13 @@
   			</div>
   			<div class="m-switcht switch-content">
   			{% if info.mobile=="" %}
-	  			<div class="u-div thePhone">
+  				<div class="u-div thePhone">
   					<label for="number">手机号码</label>
   					<input type="text" class="u-userbox telnumber inputTel" name="" id="number" maxlength="11" >
   					<span class="u-numberphone" style="display:inline-block;">请输入手机号</span>
   					<span class="u-numbertel">请输入正确的手机号</span>
   					<span class="u-number" id="gainnumber" style="display:none;">获取验证码</span>
+  					<span class="u-copySecond" id="copySecond" style="display:none;">秒后重新获取</span>
   				</div>
 	  			<div class="u-div">
 	  				<label for="verify">验证码</label>
@@ -94,14 +95,15 @@
 	  			<div>
   						<input type="button" class="u-submit" value="提交" id="userbox">
   				</div>
-            {% else %}
-                <div class="thephoneauth" id="woyaodangzhuboshoujirenz">
+  			{% else %}
+  				<div class="thephoneauth" id="woyaodangzhuboshoujirenz">
   					<div>
-  						<span>手机号码：</span><span id="hiddenField">{{info.mobile}}</span><span>已认证</span>
+  						<span>手机号码：</span><span id="hiddenFields">{{info.mobile}}</span><span>已认证</span>
   					</div>
-  					<a href="/center?type=0">修改手机号码</a>
+  					<a href="">修改手机号码</a>
   				</div>
-            {% endif %}
+  			{% endif %}
+	  			
   			</div>
   			<div class="m-switchi switch-content">
   				<div class="u-mscaption"><h3>实名认证通道正在开通中，想要成为主播看下面：</h3></div>
@@ -276,22 +278,21 @@
 			</div>
 			<div class="u-imgmessage">
 				<div class="imgprops">
-				{% for myprops in myprops.gifts %}
-					{% if loop.length ==0 %}
-	  					<img src="/images/empty.png" class="empty" alt="暂无道具" title="暂无道具">
-	  					<p class="emptyText">当前没有关注道具！</p>
-                   	{% else %}
-                         <div class="u-props">
-							<img src="http://img.wangyuhudong.com/{{myprops.gifts.icon}}">
-							<p>
-								<span>{{myprops.name}}</span>
-								<span class="u-propscolor">{{myprops.num}}</span>
-								<span>个</span>
-							</p>
-						</div>  
-                    {% endif %}
-	               
-            	{% endfor %}
+				{% if myprops.gifts == "" %}
+					<img src="/images/empty.png" class="empty" alt="暂无道具" title="暂无道具">
+	  				<p class="emptyText">当前没有关注道具！</p>
+	  			{% else %}
+					{% for myprops in myprops.gifts %}
+	                         <div class="u-props">
+								<img src="http://img.wangyuhudong.com/{{myprops.gifts.icon}}">
+								<p>
+									<span>{{myprops.name}}</span>
+									<span class="u-propscolor">{{myprops.num}}</span>
+									<span>个</span>
+								</p>
+							</div>  
+	            	{% endfor %}
+	            {% endif %}
 				</div>
 				
 			</div>
@@ -403,7 +404,7 @@
 					<span class="u-wntop">金&nbsp;&nbsp;&nbsp;&nbsp;额：</span><span class="u-wmtips"></span><span>元</span>
 				</div>
 				<div class="u-wn">
-					<span class="u-wntop">订单号：</span><span class="hiddenOrder">14763398738814</span>
+					<span class="u-wntop">订单号：</span><span class="hiddenOrder" id="hiddenOrder">14763398738814</span>
 				</div>
 			</div>
 			<div class="u-winbottom">
@@ -446,47 +447,35 @@
 						</div>
 						<div class="u-ctleft switchrepeat">
 						{% if info.mobile=="" %}
-							<div class="u-div">
+							<div class="u-div thePhones">
 			  					<label for="numbers">手机号码</label>
-			  					<input type="text" class="u-userbox telnumber inputTel" name="" id="numbers" maxlength="11">
-			  					<span class="u-numberphone">请输入手机号</span>
-			  					<span class="u-numbertel">请输入正确的手机号</span>
-			  					<span class="u-number" id="gainnumbers">获取验证码</span>
+			  					<input type="text" class="u-userboxs telnumber inputTel" name="" id="numbers" maxlength="11" >
+			  					<span class="u-numberphones" style="display:inline-block;">请输入手机号</span>
+			  					<span class="u-numbertels">请输入正确的手机号</span>
+			  					<span class="u-numbers" id="gainnumbers" style="display:none;">获取验证码</span>
+			  					<span class="u-copySeconds" id="copySeconds" style="display:none;">秒后重新获取</span>
 			  				</div>
 				  			<div class="u-div">
 				  				<label for="verifys">验证码</label>
-				  				<input type="text" class="u-userbox" name="" id="verifys">
-				  				<span class="u-verifyInput">请输入验证码</span>
-				  				<span class="u-verify error-tip">验证码错误</span>
+				  				<input type="text" class="u-userboxs" name="" id="verifys">
+				  				<span class="u-verifyInputs">请输入验证码</span>
+				  				<span class="u-verifys error-tips" style="display:none;">验证码错误</span>
 				  			</div>
 				  			<div>
-			  						<input type="button" class="u-submit" value="提交" id="userboxs">
+			  						<input type="button" class="u-submits" value="提交" id="userboxs">
 			  				</div>
 			  			{% else %}
 			  				<div class="thephoneauth" id="woyaodangzhuboshoujirenz">
 			  					<div>
-			  						<span>手机号码：</span><span id="hiddenField">{{info.mobile}}</span><span>已认证</span>
+			  						<span>手机号码：</span><span id="hiddenFields">{{info.mobile}}</span><span>已认证</span>
 			  					</div>
-			  					<a href="/center?type=0">修改手机号码</a>
+			  					<a href="">修改手机号码</a>
 			  				</div>
 			  			{% endif %}
+							
 						</div>
 						<div class="u-ctright switchrepeat">
 							<div>实名认证功能正在开通中。。。。。。</div>
-						</div>
-						<div class="m-mask">
-							<div class="code-wrap">
-								<p>请输入图中验证码完成本次发送</p>
-								<div class="m-input">
-									<input type="text">
-									<span class="error-tip">验证码错误</span>
-								</div>
-								
-								<div class="pic-code f-cb">
-									<img src="" alt=""><a href="" class="changePic">看不清，换一个</a>
-								</div>
-								<a href="" class="u-wrap-btn confirm">确认</a><a href="" class="u-wrap-btn cancel">取消</a>
-							</div>
 						</div>
 					</div>
 					<div class="u-live switchcontent">
@@ -539,7 +528,30 @@
 	    </div><!-- 右侧结尾 -->
 	    
 	</div> <!-- 整个块结尾 -->
+
 </div>	
+<div class="telValBounced" id="telValBounced">
+	<div class="u-divTelVer thePhone">
+		<label for="numberTelVer">手机号码</label>
+		<input type="text" class="u-userboxTelVer telnumberTelVer inputTelTelVer" name="" id="numberTelVer" maxlength="11" >
+		<span class="u-numberphoneTelVer" style="display:inline-block;">请输入手机号</span>
+		<span class="u-numbertelTelVer">请输入正确的手机号</span>
+		<span class="u-numberTelVer" id="gainnumberTelVer" >获取验证码</span>
+		<!-- style="display:none;" -->
+		<span class="u-copySecondTelVer" id="copySecondTelVer" >秒后重新获取</span>
+	</div>
+	<div class="u-divTelVer">
+		<label for="verifyTelVer">验证码</label>
+		<input type="text" class="u-userboxTelVer" name="" id="verifyTelVer">
+		<span class="u-verifyInputTelVer">请输入验证码</span>
+		<span class="u-verifyTelVer error-tipTelVer" >验证码错误</span>
+		<!-- style="display:none;" -->
+	</div>
+	<div>
+		<input type="button" class="u-submitTelVer" value="提交" id="userboxTelVer">
+		<input type="button" class="u-submitTelCancel" value="取消" id="userboxTelCancel">
+	</div>
+</div>
 {% endblock %}
 
 {% block js %}
