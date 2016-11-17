@@ -226,7 +226,8 @@ a#m-changepass,a#m-change,a#m-realname{
 	margin-bottom:45px;
 	line-height: 45px;
 	text-align: center;
-	color:#cecfd2;
+	color:#fff;
+	font-size:16px;
 }
 .m-bottom a.switch{
 	width:100px;
@@ -402,6 +403,19 @@ a#m-changepass,a#m-change,a#m-realname{
 	font-size:18px;
 	margin-top:50px;
 }
+.thephoneauth a#modifyTel{
+	display:inline-block;
+	width:150px;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	border-radius:5px;
+	background:#f36;
+	cursor:pointer;
+	color:#fff;
+	font-size:18px;
+	margin-top:50px;
+}
 .m-mask{
 	position:absolute;
 	left:-100px;
@@ -410,7 +424,7 @@ a#m-changepass,a#m-change,a#m-realname{
 	width:100%;
 	height:100%;
 	display:none;
-	z-index:999999;
+	z-index:9999999;
 	padding-left: 100px;
 }
 .code-wrap,.reg-success{
@@ -703,6 +717,9 @@ a#m-changepass,a#m-change,a#m-realname{
 	height:35px;
 	font-size:14px;
 	padding-top:20px;
+}
+.u-host{
+	overflow:hidden;
 }
 .u-hostfans p{
 	float:left; 
@@ -1159,12 +1176,6 @@ h3.u-topfish{
 	font-size:16px;
 	color:#fff;
 }
-/*<div class="u-wm">
-	<span class="u-wntop">金&nbsp;&nbsp;&nbsp;额：</span><span class="u-wmtips"></span><span>元</span>
-</div>
-<div class="u-wn">
-	<span class="u-wntop">订单号：</span><span>14763398738814</span>
-</div>*/
 .u-wintop span.u-wntop{
 	margin-left:15px;
 }
@@ -1337,9 +1348,6 @@ display:block;
 	font-size:14px;
 	margin-right:30px;
 }
-.underline{
-	text-decoration:underline;
-}
 .u-certification{
 	position:relative;
 }
@@ -1494,44 +1502,28 @@ display:block;
 	color:#cecfd2;
 }
 /*修改手机号码弹框*/
-/*<div class="telValBounced" id="telValBounced">
-	<div class="u-divTelVer thePhone">
-		<label for="numberTelVer">手机号码</label>
-		<input type="text" class="u-userboxTelVer telnumberTelVer inputTelTelVer" name="" id="numberTelVer" maxlength="11" >
-		<span class="u-numberphoneTelVer" style="display:inline-block;">请输入手机号</span>
-		<span class="u-numbertelTelVer">请输入正确的手机号</span>
-		<span class="u-numberTelVer" id="gainnumberTelVer" >获取验证码</span>
-		<!-- style="display:none;" -->
-		<span class="u-copySecondTelVer" id="copySecondTelVer" >秒后重新获取</span>
-	</div>
-	<div class="u-divTelVer">
-		<label for="verifyTelVer">验证码</label>
-		<input type="text" class="u-userboxTelVer" name="" id="verifyTelVer">
-		<span class="u-verifyInputTelVer">请输入验证码</span>
-		<span class="u-verifyTelVer error-tipTelVer" >验证码错误</span>
-		<!-- style="display:none;" -->
-	</div>
-	<div>
-		<input type="button" class="u-submitTelVer" value="提交" id="userboxTelVer">
-		<input type="button" class="u-submitTelCancel" value="取消" id="userboxTelCancel">
-	</div>
-</div>*/
 .telValBounced{
 	display:none;
 	position:absolute;
 	width:370px;
 	height:265px;
 	background:#303840;
-	/*left:400px;
+	left:5px;
+	left:400px;
 	top:400px;
-	margin:auto;*/
+	margin:auto;
+	z-index:8888;
 }
 .telValBounced .u-divTelVer{
 	position:relative;
-/*	margin-top:20px;
-	margin-left:15px;*/
+	margin-top:20px;
+	margin-left:15px;
 }
-.u-divTelVer label{
+.telValBounced .thePhone{
+	margin-top:40px;
+}
+.u-divTelVer label.numLable{
+	margin-top:40px;
 	width:55px;
 	height:40px;
 	line-height:40px;
@@ -1539,60 +1531,64 @@ display:block;
 	font-size:14px;
 	color:#d2d2d2;
 }
+.u-divTelVer label.numVerify{
+	padding-right:10px;
+}
 .u-divTelVer input.u-userboxTelVer{
-	width:298px;
+	width:260px;
 	height:40px;
 	margin-bottom:10px;
 	background:transparent;
-	margin-left:15px;
 	color:#fff;
 	border:1px solid #5b6169;
-	margin-left:70px;
+	margin-left:15px;
 }
-/*<span class="u-numberphoneTelVer" style="display:inline-block;">请输入手机号</span>
-		<span class="u-numbertelTelVer">请输入正确的手机号</span>
-		<span class="u-numberTelVer" id="gainnumberTelVer" >获取验证码</span>
-		<!-- style="display:none;" -->
-		<span class="u-copySecondTelVer" id="copySecondTelVer" >秒后重新获取</span>*/
-.telValBounced .u-numberTelVer,.u-verifyTelVer{
+/*请输入手机号,请输入正确的手机号,获取验证码,秒后重新获取*/
+.telValBounced .u-numberphoneTelVer,.u-numbertelTelVer,.u-numberTelVer,.u-copySecondTelVer{
 	display:inline-block;
+	text-align:center;
+	background:#f93;
+	color:#fff;
+}
+.telValBounced .u-numberphoneTelVer{
 	position:absolute;
-	left:280px;
+	left:232px;
 	top:1px;
 	width:105px;
 	height:40px;
 	line-height: 40px;
-	text-align:center;
-	background:#f93;
-	color:#fff;
 }
-.telValBounced .u-copySecondTelVer{
-	display:inline-block;
-	position:absolute;
-	left:290px;
-	top:1px;
-	width:130px;
-	height:40px;
-	line-height: 40px;
-	text-align:center;
-	background:#f93;
-	color:#fff;
-}
-.u-numbertelTelVer{
+.telValBounced .u-numbertelTelVer{
 	display:none;
 	position:absolute;
-	left:280px;
+	left:197px;
 	top:1px;
 	width:140px;
 	height:40px;
 	line-height: 40px;
-	text-align:center;
-	background:#f93;
-	color:#fff;
 }
-.u-numberphoneTelVer,.u-verifyInputTelVer{
+.telValBounced .u-numberTelVer{
+	display:none;
 	position:absolute;
-	left:305px;
+	left:231px;
+	top:1px;
+	width:105px;
+	height:40px;
+	line-height: 40px;
+	cursor:pointer;
+}
+.telValBounced .u-copySecondTelVer{
+	display:none;
+	position:absolute;
+	left:207px;
+	top:1px;
+	width:130px;
+	height:40px;
+	line-height: 40px;
+}
+.u-divTelVer .u-verifyInputTelVer,.u-verifyTelVer{
+	position:absolute;
+	left:213px;
 	top:1px;
 	width:120px;
 	height:40px;
@@ -1601,12 +1597,15 @@ display:block;
 	background:#f93;
 	color:#fff;
 }
-
-.telValBounced .u-verifyTelVer{
-	top:-1px;
-	/*left:315px;*/
+.u-divTelVer .u-verifyTelVer{
+	display:none;
+	top:1px;
 	background:#f36;
-	border:1px solid #f36;
+}
+.telValBounced .u-divButtonVer{
+	width:240px;
+	height:35px;
+	margin:0px 65px;
 }
 .u-submitTelVer,.u-submitTelCancel{
 	width:100px;
@@ -1622,10 +1621,14 @@ display:block;
 }
 .u-submitTelCancel{
 	background:#575d65;
+	margin-left:30px;
 }
 .telValBounced input.change-color{
 	border:1px solid #f36;
 }
-
+h3{
+	font-weight:normal;
+	font-size:16px;
+}
 
 
