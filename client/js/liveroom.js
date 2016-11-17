@@ -48,7 +48,7 @@ $(function(){
     }else{
         live_account = window.localStorage.getItem("id");
         live_token = window.localStorage.getItem("id");
-        nickname = window.localStorage.getItem("id");
+        nickname = window.localStorage.getItem("nickname");
         enterLiveroom();
     }
 
@@ -199,55 +199,10 @@ $(function(){
             }
         });
     } 
-
-    function getProp(){
-        $.ajax({
-            method: "GET",
-            url: "/api/person-center/my-gifts",
-            dataType: 'json',
-            success: function(data) {
-                if (data.code == 0) {
-                    var myprop = "";
-                    for(var i=0;i<data.object.gifts.length;i++){
-                        var prop = {
-                            id:data.object.gifts[i].id,
-                            name: data.object.gifts[i].name,
-                            icon:'http://img.wangyuhudong.com/'+data.object.gifts[i].icon,
-                            count:data.object.gifts[i].num,
-                        }
-                        myprop+='<div class="propBox" data-name="'+data.object.gifts[i].name+'" data-id="'+data.object.gifts[i].id+'"><img src="http://img.wangyuhudong.com/'+data.object.gifts[i].icon+'" alt="">'+data.object.gifts[i].name+'<span>'+data.object.gifts[i].num+'</span></div>';
-                        proplist.push(prop);
-                    }
-                    $('.my-prop').html(myprop);
-                }else{
-                    console.log(data.result);
-                }
-            },
-            error: function(a, b, c) {
-                console.log("接口出问题啦");
-            }
-        });
-        $.ajax({
-            method: "GET",
-            url: "/api/person-center/user-info",
-            dataType: 'json',
-            success: function(data) {
-                if (data.code == 0) {
-                    yuerCoin = data.object.yuerCoin;
-                    $('.yuerCoin').html(data.object.yuerCoin);
-                }else{
-                    $('.yuerCoin').html("0");
-                }
-            },
-            error: function(a, b, c) {
-                console.log("接口出问题啦");
-            }
-        });
-
-    } 
+ 
 
     getGift();
-    getProp();
+    // getProp();
     
     function enterLiveroom(){
         // 聊天室服务器地址
@@ -340,7 +295,7 @@ $(function(){
                 var parm = {};
                 parm.giftId = id;
                 parm.num = 1;
-                parm.upUserId = 1;
+                parm.upUserId = $('.hide-rtmp').attr('data-anchorid');
                 parm.type = type;
                 $.ajax({
                     method: "GET",
@@ -353,7 +308,6 @@ $(function(){
 
                             }else{
                                 getProp();
-                                // liveRoomInterf.init();
                             }
                         }else{
                             console.log(data.result);
@@ -367,7 +321,10 @@ $(function(){
                     type: 1,
                     data: {
                         giftName:name,
-                        giftNum:1
+                        giftNum:1,
+                        senderName:nickname,
+                        giftId:id,
+                        senderId:live_account
                     }
                 };
                 var msg = chatroom.sendCustomMsg({
@@ -376,6 +333,59 @@ $(function(){
                 });
                 console.log('正在发送聊天室自定义消息, id=' + msg.idClient);
             }
+
+            function getProp(){
+                $.ajax({
+                    method: "GET",
+                    url: "/api/person-center/my-gifts",
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.code == 0) {
+                            var myprop = "";
+                            proplist = [];
+                            for(var i=0;i<data.object.gifts.length;i++){
+                                var prop = {
+                                    id:data.object.gifts[i].id,
+                                    name: data.object.gifts[i].name,
+                                    icon:'http://img.wangyuhudong.com/'+data.object.gifts[i].icon,
+                                    count:data.object.gifts[i].num,
+                                }
+                                myprop+='<div class="propBox" data-name="'+data.object.gifts[i].name+'" data-id="'+data.object.gifts[i].id+'"><img src="http://img.wangyuhudong.com/'+data.object.gifts[i].icon+'" alt="">'+data.object.gifts[i].name+'<span>'+data.object.gifts[i].num+'</span></div>';
+                                proplist.push(prop);
+                                liveRoomInterf.flash.updateMyItems(proplist);
+                            }
+                            $('.my-prop').html(myprop);
+                            $('.propBox').click(function(){
+                                flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),2);
+                            });
+                        }else{
+                            console.log(data.result);
+                        }
+                    },
+                    error: function(a, b, c) {
+                        console.log("接口出问题啦");
+                    }
+                });
+                $.ajax({
+                    method: "GET",
+                    url: "/api/person-center/user-info",
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.code == 0) {
+                            yuerCoin = data.object.yuerCoin;
+                            $('.yuerCoin').html(data.object.yuerCoin);
+                            liveRoomInterf.flash.updateCoins(yuerCoin);
+                        }else{
+                            $('.yuerCoin').html("0");
+                        }
+                    },
+                    error: function(a, b, c) {
+                        console.log("接口出问题啦");
+                    }
+                });               
+
+            }
+
             liveRoomInterf = {
 
                 //直播间Flash对象
@@ -395,7 +405,7 @@ $(function(){
                     this.flash.updateHotWords(["666", "因吹思婷", "姑娘你真是条汉子","666", "因吹思婷", "姑娘你真是条汉子","666", "因吹思婷", "姑娘你真是条汉子"]);
 
                     //更新鱼币数量，参数：鱼币数量
-                    this.flash.updateCoins(yuerCoin);
+                    // this.flash.updateCoins(yuerCoin);
 
                     //更新道具列表，参数：[道具1, 道具2, ...]
                     //道具格式：{id:道具ID, icon:道具图标, tips:道具提示（HTML格式）}
@@ -418,7 +428,9 @@ $(function(){
                     //     {id:2, icon:"icon.png", name:"海星", count:2},
                     // ]);
 
-                    this.flash.updateMyItems(proplist);
+                    getProp();
+
+                    // this.flash.updateMyItems(proplist);
 
                     //显示弹幕，参数：弹幕文字, 颜色值（0xRRGGBB，默认0xffffff）, 滚动速度（像素/秒，默认100）, 延迟时间（秒，默认0，<0表示超前）, 纵坐标百分比（0~100，默认在10~70间随机）
                     // this.flash.showDanmaku("我是一条弹幕", 0xffffff, 100);
@@ -452,7 +464,12 @@ $(function(){
                 //充值
                 recharge: function ()
                 {
-                    alert("打开充值页面");
+                    if(islogin){
+                       window.location.href = '/center?type=4';
+                    }else{
+                        this.flash.exitFullscreen();
+                        $('.m-login-wrap').show();
+                    }
                 },
 
                 //赠送礼物，参数：道具ID
@@ -519,9 +536,9 @@ $(function(){
                }           
             });
 
-            $('.propBox').click(function(){
-                flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),2);
-            });
+            // $('.propBox').click(function(){
+            //     flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),2);
+            // });
 
 
         }
@@ -573,11 +590,11 @@ $(function(){
                     if(content.data.giftNum>1){
                         $('.mes-block').append("<div class='gift'>"+content.data.senderName+":&nbsp;&nbsp;送给主播1个"+content.data.giftName+"<span class='combo'>"+content.data.giftNum+"<i></i></span><div>");
                     }else{
-                        $('.mes-block').append("<div class='gift'>"+content.data.senderName+":&nbsp;&nbsp;送给主播1个"+content.data.giftName+"<div>");
+                        $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+content.data.senderName+' : 送给主播1个</span>'+content.data.giftName+'</div>');
                     }
                 }else if(msgs[i].text){
                     var host = msgs[i].fromNick=="1" ? '<label for="">主播</label>&nbsp;' : '';
-                    $('.mes-block').append("<div>"+host+"<span class='fromNick'>"+msgs[i].fromNick+":&nbsp;&nbsp;</span>"+msgs[i].text+"<div>");         
+                    $('.mes-block').append('<div class="text-mes">'+host+'<span class="membName">'+msgs[i].fromNick+' : </span>'+msgs[i].text+'</div>');        
                 }else if(msgs[i].flow=="in" && !msgs[i].text && !msgs[i].attach.fromNick && msgs[i].attach.type=="memberEnter"){
                     $('.mes-block').append("<div>欢迎用户"+msgs[i].attach.fromNick+"进入直播间");
                 }
