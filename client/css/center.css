@@ -718,7 +718,7 @@ a#m-changepass,a#m-change,a#m-realname{
 	font-size:14px;
 	padding-top:20px;
 }
-.u-host{
+.u-hostfans,.u-host,.u-hleft{
 	overflow:hidden;
 }
 .u-hostfans p{
