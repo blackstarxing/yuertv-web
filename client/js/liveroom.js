@@ -6,7 +6,7 @@ $(function(){
         var chatroomH = clientH - 300;
         $('.m-live-left').css("width",liveW+"px");
         $('.videoBox').css("height",0.56*liveW+"px");
-        $('.room-block').css("height",chatroomH+"px");
+        $('.right-block').css("height",chatroomH+"px");
         if(clientW<1340){
             $('.send-gift').addClass('m-l-gift');
         }else{
@@ -25,6 +25,12 @@ $(function(){
         nickname = "";
 
     var hidegiftmes = "";
+
+    var lct = document.getElementById('chatarea');
+
+    var lastTime = "",
+        giftNumber = 1,
+        giftName = "";
 
 
     if(!islogin){
@@ -90,6 +96,52 @@ $(function(){
             $('.m-login-wrap').show();
         }
     });
+
+    $('.room-tab li').each(function(index){
+        $(this).click(function(){
+            $(this).addClass('current').siblings().removeClass('current');
+            $('.right-block').eq(index).show().siblings('.right-block').hide();
+        })
+    })
+
+    $('.m-livenav li').each(function(index){
+        $(this).click(function(){
+            $(this).addClass('current').siblings().removeClass('current');
+            $('.recommendBox').eq(index).show().siblings('.recommendBox').hide();
+        })
+    });
+
+    $('.follow,.disfollow').click(function(e){
+        e.preventDefault();
+        if(islogin){
+            var parm = {};
+            parm.userId = window.localStorage.getItem("id");
+            parm.upUserId = $(this).attr('data-id');
+            $.ajax({
+                method: "GET",
+                url: "/api/concern/up",
+                dataType: 'json',
+                data: parm,
+                success: function(data) {
+                    if (data.code == 0) {
+                        console.log('关注成功！');
+                        if($(e.currentTarget).attr('class')=='follow'){
+                            $(e.currentTarget).attr('class','disfollow').text('已关注');
+                        }else{
+                            $(e.currentTarget).attr('class','follow').text('关注');
+                        }
+                    }else{
+                        console.log(data.result);
+                    }
+                },
+                error: function(a, b, c) {
+                    console.log("接口出问题啦");
+                }
+            });
+        }else{
+            $('.m-login-wrap').show();
+        }
+    })
 
     // 消息设置
     $('.set-option').hover(function(){
@@ -186,7 +238,7 @@ $(function(){
                             id:data.object[i].id,
                             name: data.object[i].name,
                             icon:'http://img.wangyuhudong.com/'+data.object[i].icon,
-                            tips:data.object[i].name+'（<font color=\'#ffff00\'>10</font>鱼币）<br/>点击送给主播',
+                            tips:data.object[i].name+'（<font color=\'#ffff00\'>'+data.object[i].price+'</font>鱼币）<br/>点击送给主播',
                         }
                         giftlist.push(gift);
                     }
@@ -254,6 +306,7 @@ $(function(){
                 account: live_account,
                 token: live_token,
                 chatroomId: roomid,
+                chatroomNick: nickname,
                 chatroomAddresses: address,
                 onconnect: onChatroomConnect,
                 onerror: onChatroomError,
@@ -263,13 +316,11 @@ $(function(){
                 onmsgs: onChatroomMsgs
             });
             function sendChatroomMsgDone(error, msg) {
-                var lct = document.getElementById('chatarea');
                 console.log('发送聊天室' + msg.type + '消息' + (!error?'成功':'失败') + ', id=' + msg.idClient, error, msg);
                 if(!error){
                     liveRoomInterf.flash.showDanmaku(msg.text, 0xffffff, 100);
                     $('.mes-block').append('<div class="text-mes"><span class="membName">'+nickname+' : </span>'+msg.text+'</div>');
                     $('.live-text').val("");
-                    console.log(lct.scrollHeight);
                     lct.scrollTop=Math.max(0,lct.scrollHeight-lct.offsetHeight);  
                 }
             }
@@ -279,9 +330,13 @@ $(function(){
                 var gift = JSON.parse(msg.content);
                 if(!error){
                     liveRoomInterf.flash.showDanmaku(nickname+'送给主播一个'+gift.data.giftName, 0xffffff, 100);
-                    $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+nickname+' : 送给主播1个</span>'+gift.data.giftName+'</div>');
-                    // $('.live-text').val("");
-                }
+                    if(giftNumber>1){
+                        $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+nickname+' : 送给主播1个</span>'+gift.data.giftName+'<span class="combo">'+giftNumber+'<i></i></span></div>');
+                    }else{
+                        $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+nickname+' : 送给主播1个</span>'+gift.data.giftName+'</div>');
+                    }
+                        lct.scrollTop=Math.max(0,lct.scrollHeight-lct.offsetHeight); 
+                    }
             }
             function flashSend(text){
                 var msg = chatroom.sendText({
@@ -291,7 +346,9 @@ $(function(){
                     console.log('正在发送聊天室text消息, id=' + msg.idClient);
             }
 
-            function flashSendCustom(name,id,type){
+            function flashSendCustom(name,id,icon,type){
+                var giftIcon = icon.substr(28);
+                
                 var parm = {};
                 parm.giftId = id;
                 parm.num = 1;
@@ -304,10 +361,35 @@ $(function(){
                     data: parm,
                     success: function(data) {
                         if (data.code == 0) {
-                            if(data.object.state == 1){
-
-                            }else{
+                            if(data.object.state == 0){
+                                var nowTime = new Date().getTime();
+                                console.log(nowTime);
+                                if((nowTime-lastTime)<5000 && name == giftName){
+                                    giftNumber+=1;
+                                }else{
+                                    giftNumber = 1;
+                                }
+                                lastTime = nowTime;
+                                giftName = name;
+                                var content = {
+                                    type: 1,
+                                    data: {
+                                        giftName:name,
+                                        giftNum:giftNumber,
+                                        giftShowImage:giftIcon,
+                                        senderName:nickname,
+                                        giftId:id,
+                                        senderId:live_account
+                                    }
+                                };
+                                var msg = chatroom.sendCustomMsg({
+                                    content: JSON.stringify(content),
+                                    done: sendChatroomCustomMsgDone
+                                });
+                                console.log('正在发送聊天室自定义消息, id=' + msg.idClient);
                                 getProp();
+                            }else{
+                                alert(data.object.str);
                             }
                         }else{
                             console.log(data.result);
@@ -317,21 +399,7 @@ $(function(){
                         console.log("接口出问题啦");
                     }
                 });
-                var content = {
-                    type: 1,
-                    data: {
-                        giftName:name,
-                        giftNum:1,
-                        senderName:nickname,
-                        giftId:id,
-                        senderId:live_account
-                    }
-                };
-                var msg = chatroom.sendCustomMsg({
-                    content: JSON.stringify(content),
-                    done: sendChatroomCustomMsgDone
-                });
-                console.log('正在发送聊天室自定义消息, id=' + msg.idClient);
+                
             }
 
             function getProp(){
@@ -356,7 +424,7 @@ $(function(){
                             }
                             $('.my-prop').html(myprop);
                             $('.propBox').click(function(){
-                                flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),2);
+                                flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),$(this).find('img').attr('src'),1);
                             });
                         }else{
                             console.log(data.result);
@@ -473,23 +541,70 @@ $(function(){
                 },
 
                 //赠送礼物，参数：道具ID
-                presentGift: function ( itemId , name , type)
-                {
+                presentGift: function ( item , isMine)
+                {   
+                    console.log(item.icon)
                     //调用后台，若赠送的是购买的道具，请回调 flash.updateCoins，若赠送的是我的道具，请回调 flash.updateMyItems
                     if(islogin){
-                        if(type){
-                            type=2;
+                        if(isMine){
+                            isMine=1;
                         }else{
-                            type=1;
+                            isMine=0;
                         }
                         // this.flash.showDanmaku(nickname+"送了一个"+name+"给主播", 0xffff00, 100);
-                       flashSendCustom(name,itemId,type); 
+                       flashSendCustom(item.name,item.id,item.icon,isMine); 
                        
                     }else{
                         this.flash.exitFullscreen();
                         $('.m-login-wrap').show();
                     }
                     getGift();
+                },
+            };
+
+            //视频播放器接口
+            videoPlayerInterf = {
+
+                //视频播放器Flash对象
+                flash: null,
+
+                isinit: false,
+
+                callLater: function (callback)
+                {
+                    if (this.isinit)
+                    {
+                        callback();
+                    }
+                    else
+                    {
+                        this.callback = callback;
+                    }
+                },
+                callback: null,
+
+                //初始化Flash
+                init: function ()
+                {   
+                    this.isinit = true;
+                    if (this.callback != null)
+                    {
+                        this.callback();
+                    }
+
+                    //播放视频，参数：视频地址, 视频标题, 游戏名称
+                    //this.flash.playVideo("http://pili-media.wangyuhudong.com/7FUkDXBrj3kr1leI8VjVFX6GGD0=/Fk8ffjjNrphUwlioPxjmXIB0R7tl", "界黄盖暴力输出，秒全场", "王者荣耀");
+                    // this.flash.playVideo();
+
+                    //更新主播信息，参数：主播ID, 主播昵称, 主播头像，是否已关注
+                    //this.flash.updateAnchor("123", "奔波儿灞", "head.png", false);
+                },
+
+                //关注主播，参数：主播ID
+                focusAnchor: function ( anchorId )
+                {
+                    //调用后台，关注成功后请回调 flash.updateAnchor
+                    this.flash.updateAnchor(anchorId, null, null, true);
                 },
             };
 
@@ -502,10 +617,15 @@ $(function(){
             par.allowscriptaccess = "sameDomain";
             par.allowfullscreen = "true";
             par.allowFullScreenInteractive = "true";
+            par.wmode = "transparent";
 
             att.id = "LiveRoom";
             att.data = "YeLiveRoom.swf";
             liveRoomInterf.flash = swfobject.createSWF(att, par, "LiveRoomDiv");
+
+            att.id = "VideoPlayer";
+            att.data = "YeVideoPlayer.swf";
+            videoPlayerInterf.flash = swfobject.createSWF(att, par, "VideoPlayerDiv");
 
             $('.sendText').click(function(){
                 if(islogin){
@@ -530,16 +650,28 @@ $(function(){
 
             $('.gift').click(function(){
                 if(islogin){
-                    flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),1); 
+                    flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),$(this).find('img').attr('src'),0); 
                }else{
                     $('.m-login-wrap').show();
                }           
             });
 
-            // $('.propBox').click(function(){
-            //     flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),2);
-            // });
-
+            $('.m-video .live-address').click(function(e){
+                e.preventDefault();
+                $('.m-video-mask').show();
+                liveRoomInterf.flash.pause();
+                videoPlayerInterf.callLater(function () {
+                    // videoPlayerInterf.flash.playVideo("http://pili-media.wangyuhudong.com/7FUkDXBrj3kr1leI8VjVFX6GGD0=/Fk8ffjjNrphUwlioPxjmXIB0R7tl", "界黄盖暴力输出，秒全场", "王者荣耀");
+                    videoPlayerInterf.flash.playVideo($(this).attr('data-rtmp'),$(this).attr('data-title'),$(this).attr('data-name'));
+                    videoPlayerInterf.flash.updateAnchor($(this).attr('data-id'), $(this).attr('data-nickname'),$(this).attr('data-icon'), false);
+                });
+                
+            });
+            $('.m-video-mask .close').click(function(e){
+                e.preventDefault();
+                $('.m-video-mask').hide();
+                liveRoomInterf.flash.play();
+            })
 
         }
 
@@ -588,17 +720,20 @@ $(function(){
                     var content=JSON.parse(msgs[i].content);
                     // console.log(content);
                     if(content.data.giftNum>1){
-                        $('.mes-block').append("<div class='gift'>"+content.data.senderName+":&nbsp;&nbsp;送给主播1个"+content.data.giftName+"<span class='combo'>"+content.data.giftNum+"<i></i></span><div>");
+                        $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+content.data.senderName+' : 送给主播1个</span>'+content.data.giftName+'<span class="combo">'+content.data.giftNum+'<i></i></span></div>');
                     }else{
                         $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+content.data.senderName+' : 送给主播1个</span>'+content.data.giftName+'</div>');
+                        liveRoomInterf.flash.showDanmaku(content.data.senderName+'送给主播一个'+content.data.giftName, 0xffffff, 100);
                     }
                 }else if(msgs[i].text){
                     var host = msgs[i].fromNick=="1" ? '<label for="">主播</label>&nbsp;' : '';
                     $('.mes-block').append('<div class="text-mes">'+host+'<span class="membName">'+msgs[i].fromNick+' : </span>'+msgs[i].text+'</div>');        
-                }else if(msgs[i].flow=="in" && !msgs[i].text && !msgs[i].attach.fromNick && msgs[i].attach.type=="memberEnter"){
-                    $('.mes-block').append("<div>欢迎用户"+msgs[i].attach.fromNick+"进入直播间");
+                    liveRoomInterf.flash.showDanmaku(msgs[i].text, 0xffffff, 100);
                 }
-                // lct.scrollTop=Math.max(0,lct.scrollHeight-lct.offsetHeight);        
+                // else if(msgs[i].flow=="in" && !msgs[i].text && !msgs[i].attach.fromNick && msgs[i].attach.type=="memberEnter"){
+                //     $('.mes-block').append("<div>欢迎用户"+msgs[i].attach.fromNick+"进入直播间");
+                // }
+                lct.scrollTop=Math.max(0,lct.scrollHeight-lct.offsetHeight);       
             }
 
         }
@@ -606,6 +741,7 @@ $(function(){
 
     $('.followme,.is-subscibe').click(function(e){
         e.preventDefault();
+        var follownum = $('.follownum').text();
         if(islogin){
             var parm = {};
             parm.userId = window.localStorage.getItem("id");
@@ -619,8 +755,10 @@ $(function(){
                         if (data.code == 0) {
                             console.log('关注成功！');
                             if($(e.currentTarget).attr('class')=='followme'){
+                                $('.follownum').text(follownum+1);
                                 $(e.currentTarget).attr('class','is-subscibe').html('已关注');
                             }else{
+                                $('.follownum').text(follownum-1);
                                 $(e.currentTarget).attr('class','followme').html('<i class="iconfont icon-follow"></i>关注');
                             }
                         }else{

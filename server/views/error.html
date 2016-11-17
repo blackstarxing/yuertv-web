@@ -6,14 +6,30 @@
     <link rel="stylesheet" href="/css/basic.css">
 </head>
 <style type="text/css">
-	h2{
-		color:#fff;
-		width:200px;
-		height:200px;
-		margin: 100px auto;
+	html,body{
+		height: 100%;
+		min-width: 1200px;
+	}
+	body{
+		background: url('/images/404.png') left top no-repeat;
+		background-size: cover;
+	}
+	.error-btn{
+		margin-top: 430px;
+		display: inline-block;
+		margin-right: 50px;
+	}
+	.error-btn img{
+		width: 240px;
+		vertical-align: bottom;
 	}
 </style>
 <body>
-	<h2>要么网速问题，要么人品问题,反正没成功，挖哈哈哈哈</h2>
+	<a href="http://yuertv.wangyuhudong.com/" target="_blank" class="error-btn" style="margin-left: 330px;">
+		<img src="/images/404down.png" alt="">
+	</a>
+	<a href="/" class="error-btn">
+		<img src="/images/404back.png" alt="">
+	</a>
 </body>
 </html>

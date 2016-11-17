@@ -566,6 +566,9 @@ color: #fff !important;
     text-overflow:ellipsis;
     text-indent: 15px;
 }
+.video-name a{
+    cursor: default;
+}
 .footer{
 	border-top: 1px solid #616d78;
 	height: 112px;
@@ -765,6 +768,9 @@ color: #fff !important;
 .anchor-info{
     float: left;
     margin-left: 10px;
+}
+.anchor-info a{
+    cursor: default;
 }
 .anchor-id{
     font-size: 12px;

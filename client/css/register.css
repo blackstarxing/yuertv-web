@@ -95,7 +95,6 @@ body{
 	background:rgba(0,0,0,0.6);
 	display:none;
 	z-index:999999;
-	padding-left: 100px;
 }
 .code-wrap,.reg-success{
 	position: absolute;

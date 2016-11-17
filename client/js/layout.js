@@ -97,10 +97,10 @@ $(function(){
                         window.localStorage.setItem("id", data.object.id);
                         window.localStorage.setItem("avatar", data.object.icon);
                         window.localStorage.setItem("nickname",data.object.nickname);
-                        if(window.location.pathname != 'register'){
-                            window.location.href = window.location.href;
-                        }else{
+                        if(window.location.pathname == '/register' || window.location.pathname == '/reset'){                           
                             window.location="/";
+                        }else{
+                            window.location.href = window.location.href;
                         }                       
                     }else{
                         error.text(data.result).fadeIn(100);

@@ -89,39 +89,65 @@
                     <li>主播视频</li>
                 </ul>
             </div>
-            <div class="recommendBox">
-                {% for live in detail.hotlive %}
-                <div class="m-lst">
-                    <a href="/liveroom?id={{live.id}}" class="live-address">
-                        <img src="{{live.icon}}" alt="">
-                        <span><i>·</i>{{live.name}}</span>
-                        <div class="play-mask"></div>
-                    </a>
-                    <div class="m-info">
-                        <div class="anchor-head">
-                            <img src="http://img.wangyuhudong.com/{{live.user_icon}}" alt="" class="head-icon">
-                            {% if live.sex==0 %}
-                                <img src="/images/female.png" alt="" class="sex">
+            <div class="recommendBox f-cb">
+                {% if detail.hotLive == "" %}
+                    <div class="m-empty">
+                        <img src="/images/empty.png" alt="">
+                        还没有任何内容哦
+                    </div>
+                {% else %}
+                {% for live in detail.hotLive %}
+                    <div class="m-lst">
+                        {% if live.state==1 %}
+                            <a href="/liveroom?id={{live.id}}" class="live-address">
+                        {% else %}
+                            <a href="javascript:void(0);" class="live-address">
+                        {% endif %}
+                            <img src="{{live.icon}}" alt="">
+                            <span><i>·</i>{{live.name}}</span>
+                            {% if live.state==1 %}
+                                <div class="play-mask online"></div>
                             {% else %}
-                                <img src="/images/male.png" alt="" class="sex">
+                                <div class="play-mask outline">主播已离开</div>
+                            {% endif %}
+                        </a>
+                        <div class="m-info">
+                            <div class="anchor-head">
+                                <img src="http://img.wangyuhudong.com/{{live.user_icon}}" alt="" class="head-icon">
+                                {% if live.sex==0 %}
+                                    <img src="/images/female.png" alt="" class="sex">
+                                {% else %}
+                                    <img src="/images/male.png" alt="" class="sex">
+                                {% endif %}
+                            </div>
+                            <div class="anchor-info">
+                                <div><a href="">{{live.nickname}}</a></div>
+                                <div class="anchor-id">ID:{{live.room_number}}</div>
+                            </div>
+                            {% if live.is_concern==1 %}
+                                <button class="disfollow" data-id="{{live.up_user_id}}">已关注</button>
+                            {% else %}
+                                <button class="follow" data-id="{{live.up_user_id}}">关注</button>
                             {% endif %}
                         </div>
-                        <div class="anchor-info">
-                            <div><a href="">{{live.nickname}}</a></div>
-                            <div class="anchor-id">ID:{{live.room_number}}</div>
-                        </div>
-                        <button class="follow">关注</button>
                     </div>
-                </div>
-            {% endfor %} 
+                {% endfor %} 
+                <a href="/alllive" class="room-link">更多直播</a>
+                {% endif%}
             </div>
-            <div class="recommendBox">
+            <div class="recommendBox m-video f-cb" style="display: none;">
+                {% if detail.upVideo == "" %}
+                    <div class="m-empty">
+                        <img src="/images/empty.png" alt="">
+                        还没有任何内容哦
+                    </div>
+                {% else %}
                 {% for video in detail.upVideo %}
                     <div class="m-lst m-video">
                         <a href="" class="live-address" data-rtmp="{{video.rtmp}}" data-title="{{video.title}}" data-icon="{{video.up_user_icon}}" data-id="{{video.id}}" data-name="{{video.name}}" data-nickname="{{video.nickname}}">
                             <img src="{{video.icon}}" alt="">
                             <span><i>·</i>{{video.name}}</span>
-                            <div class="play-mask"></div>
+                            <div class="play-mask online"></div>
                         </a>
                         <div class="m-info">
                             <div class="anchor-head">
@@ -139,6 +165,8 @@
                         </div>
                     </div>
                 {% endfor %}
+                <a href="/allvideo" class="room-link">更多视频</a>
+                {% endif%}
             </div>
         </div>
     </div>
@@ -152,9 +180,12 @@
                 <li class="current">互动聊天</li>
                 <li>贡献榜</li>
             </ul>
-            <div class="room-block" id="chatarea">
+            <div class="room-block right-block" id="chatarea">
                 <div class="welcome">欢迎来到<span>{{detail.info.nickname}}</span>的直播间，喜欢就点击房间信息关注吧！</div>
                 <div class="mes-block"></div>
+            </div>
+            <div class="gift-block right-block">
+                
             </div>
             <div class="set-block">
                 <div class="set-option">
@@ -199,12 +230,6 @@
         </div>
     </div>
 </div>
-<div class="m-video-mask">
-    <a href="" class="close"><img src="/images/iconwindow.png" alt=""></a>
-    <div class="m-video-player">
-        <div id="VideoPlayerDiv"></div>
-    </div> 
-</div>
 
 <div class="m-report-mask">
     <div class="report-pop">
@@ -244,6 +269,13 @@
     <div class="result-pop">
         您已举报成功
     </div>
+</div>
+
+<div class="m-video-mask">
+    <a href="" class="close"><img src="/images/iconwindow.png" alt=""></a>
+    <div class="m-video-player">
+        <div id="VideoPlayerDiv"></div>
+    </div> 
 </div>
     
 {% endblock %}
