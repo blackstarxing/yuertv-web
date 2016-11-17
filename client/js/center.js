@@ -789,7 +789,7 @@ function settime(time){
                                         '<img src="http://img.wangyuhudong.com/' + data.object.list[index].icon + '">'+
                                         '</div><div class="u-nickhost"><p class="u-nicksex">'+
                                         '<span>' + data.object.list[index].nickname + '</span>'+
-                                        '<img src="' + data.object.list[index].sex + '">'+
+                                        '<img src="' + (data.object.list[index].sex==0?"/images/male.png":"/images/female.png") + '">'+
                                         '</p><div class="u-hostfans"><p><span class="u-hf">直播间ID</span>&nbsp;'+
                                         '<span class="u-num">' + data.object.list[index].room_number + '</span>'+
                                         '</p><p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;'+
@@ -803,7 +803,7 @@ function settime(time){
                                         '<img src="http://img.wangyuhudong.com/' + data.object.list[index].icon + '">'+
                                         '</div><div class="u-nickhost"><p class="u-nicksex">'+
                                         '<span>' + data.object.list[index].nickname + '</span>'+
-                                        '<img src="' + data.object.list[index].sex + '">'+
+                                        '<img src="' + (data.object.list[index].sex==0?"/images/male.png":"/images/female.png") + ''">'+
                                         '</p><div class="u-hostfans"><p><span class="u-hf">直播间ID</span>&nbsp;'+
                                         '<span class="u-num">' + data.object.list[index].room_number + '</span><p class="u-hhf">'+
                                         '<span class="u-hf">粉丝</span>&nbsp;'+
