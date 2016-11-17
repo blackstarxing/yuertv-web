@@ -779,13 +779,14 @@ function settime(time){
                     pageSize: local.cur_pageSize,
                 }, 
                 success: function(data) {
+                    console.log(data);
                   if (data.code == 0) {
                         if(data.object.list.length>0){
                             var str = "";
                             for (index in data.object.list) {
                                 if(data.object.list[index].state == 1){
                                     str +='<div class="u-hleft"><div class="u-focusimg">'+
-                                        '<img src="' + data.object.list[index].icon + '">'+
+                                        '<img src="http://img.wangyuhudong.com/' + data.object.list[index].icon + '">'+
                                         '</div><div class="u-nickhost"><p class="u-nicksex">'+
                                         '<span>' + data.object.list[index].nickname + '</span>'+
                                         '<img src="' + data.object.list[index].sex + '">'+
@@ -799,7 +800,7 @@ function settime(time){
                                         '</div></div>'
                                 }else{
                                     str += '<div class="u-host stopdark"><div class="u-hleft"><div class="u-focusimg">'+
-                                        '<img src="' + data.object.list[index].icon + '">'+
+                                        '<img src="http://img.wangyuhudong.com/' + data.object.list[index].icon + '">'+
                                         '</div><div class="u-nickhost"><p class="u-nicksex">'+
                                         '<span>' + data.object.list[index].nickname + '</span>'+
                                         '<img src="' + data.object.list[index].sex + '">'+
