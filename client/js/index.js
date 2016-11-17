@@ -11,26 +11,26 @@ $(function(){
             parm.userId = window.localStorage.getItem("id");
             parm.upUserId = $(this).attr('data-id');
             $.ajax({
-                    method: "GET",
-                    url: "/api/concern/up",
-                    dataType: 'json',
-                    data: parm,
-                    success: function(data) {
-                        if (data.code == 0) {
-                            console.log('关注成功！');
-                            if($(e.currentTarget).attr('class')=='follow'){
-                                $(e.currentTarget).attr('class','disfollow').text('已关注');
-                            }else{
-                                $(e.currentTarget).attr('class','follow').text('关注');
-                            }
+                method: "GET",
+                url: "/api/concern/up",
+                dataType: 'json',
+                data: parm,
+                success: function(data) {
+                    if (data.code == 0) {
+                        console.log('关注成功！');
+                        if($(e.currentTarget).attr('class')=='follow'){
+                            $(e.currentTarget).attr('class','disfollow').text('已关注');
                         }else{
-                            console.log(data.result);
+                            $(e.currentTarget).attr('class','follow').text('关注');
                         }
-                    },
-                    error: function(a, b, c) {
-                        console.log("接口出问题啦");
+                    }else{
+                        console.log(data.result);
                     }
-                });
+                },
+                error: function(a, b, c) {
+                    console.log("接口出问题啦");
+                }
+            });
         }else{
             $('.m-login-wrap').show();
         }
@@ -45,13 +45,15 @@ $(function(){
         rtmp: "",
         anchorId: "",
         anchorhead: "",
-        isfollow : false,
+        isfollow : 0,
 
         isinit: false,
 
         //初始化Flash
         init: function ()
         {   
+            this.isfollow = (this.isfollow == 1) ? true : false;
+
             this.isinit = true;
             //播放直播视频，参数：视频地址
 
@@ -66,9 +68,30 @@ $(function(){
         //关注主播，参数：主播ID
         focusAnchor: function ( anchorId )
         {
+            var _this = this;
+            this.isfollow = (this.isfollow == 0) ? false : true;
             //调用后台，关注成功后请回调 flash.updateAnchor
             if(islogin){
-               this.flash.updateAnchor(this.anchorId, null, true);
+                var parm = {};
+                parm.userId = window.localStorage.getItem("id");
+                parm.upUserId = this.anchorId;
+                $.ajax({
+                    method: "GET",
+                    url: "/api/concern/up",
+                    dataType: 'json',
+                    data: parm,
+                    success: function(data) {
+                        if (data.code == 0) {
+                            console.log('关注成功！');
+                            _this.flash.updateAnchor(this.anchorId, null, this.isfollow);
+                        }else{
+                            console.log(data.result);
+                        }
+                    },
+                    error: function(a, b, c) {
+                        console.log("接口出问题啦");
+                    }
+                });
             }else{
                 $('.m-login-wrap').show();
             }
@@ -157,6 +180,7 @@ $(function(){
     liveHomeInterf.roomid = defaultdata.attr('data-id');
     liveHomeInterf.rtmp = defaultdata.attr('href');
     liveHomeInterf.anchorId = defaultdata.attr('data-upid');
+    liveHomeInterf.isfollow = defaultdata.attr('data-concern');
     liveHomeInterf.anchorhead = 'http://img.wangyuhudong.com/'+defaultdata.attr('data-icon');
     // liveHomeInterf.rtmp = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
     // liveHomeInterf.rtmp = "rtmp://pili-live-rtmp.wangyuhudong.com/wyds/wyds_dev_3835355";
