@@ -600,7 +600,12 @@ $(function(){
                     data: parm,
                     success: function(data) {
                         if (data.code == 0) {
-                            console.log('关注成功！')
+                            console.log('关注成功！');
+                            if($(e.currentTarget).attr('class')=='followme'){
+                                $(e.currentTarget).attr('class','is-subscibe').html('已关注');
+                            }else{
+                                $(e.currentTarget).attr('class','followme').html('<i class="iconfont icon-follow"></i>关注');
+                            }
                         }else{
                             console.log(data.result);
                         }

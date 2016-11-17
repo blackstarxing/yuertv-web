@@ -15,6 +15,7 @@ module.exports = {
         reset: ['./client/js/reset.js', hotMiddlewareScript],
         activity: ['./client/css/activity.css', hotMiddlewareScript],
         allvideo: ['./client/js/allvideo.js', hotMiddlewareScript],
+        alllive: ['./client/js/alllive.js', hotMiddlewareScript],
         search: ['./client/css/search.css', './client/js/search.js', hotMiddlewareScript],
     },
     output: {

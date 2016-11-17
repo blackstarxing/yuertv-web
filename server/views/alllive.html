@@ -15,12 +15,26 @@
             <span class="u-alling" style="margin-left: 0;">名主播正在直播</span>
         </div>
         <div class="live-container">
+            {% if live.list == "" %}
+                <div class="m-empty">
+                    <img src="/images/empty.png" alt="">
+                    还没有任何内容哦
+                </div>
+            {% else %}
             {% for live in live.list %}
                 <div class="m-lst">
-                    <a href="/liveroom?id={{live.id}}" class="live-address">
+                    {% if live.state==1 %}
+                        <a href="/liveroom?id={{live.id}}" class="live-address">
+                    {% else %}
+                        <a href="javascript:void(0);" class="live-address">
+                    {% endif %}
                         <img src="{{live.icon}}" alt="">
                         <span><i>·</i>{{live.name}}</span>
-                        <div class="play-mask"></div>
+                        {% if live.state==1 %}
+                            <div class="play-mask online"></div>
+                        {% else %}
+                            <div class="play-mask outline">主播已离开</div>
+                        {% endif %}
                     </a>
                     <div class="m-info">
                         <div class="anchor-head">
@@ -35,10 +49,15 @@
                             <div><a href="">{{live.nickname}}</a></div>
                             <div class="anchor-id">ID:{{live.room_number}}</div>
                         </div>
-                        <button class="follow">关注</button>
+                        {% if live.is_concern==1 %}
+                            <button class="disfollow" data-id="{{live.up_user_id}}">已关注</button>
+                        {% else %}
+                            <button class="follow" data-id="{{live.up_user_id}}">关注</button>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %} 
+            {% endif%}
         </div>
         
     </div>
@@ -47,5 +66,5 @@
 {% endblock %}
 
 {% block js %}
-<!-- <script type="text/javascript" src="/dist/index.js"></script> -->
+<script type="text/javascript" src="/dist/alllive.js"></script>
 {% endblock %}

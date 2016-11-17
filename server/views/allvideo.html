@@ -15,12 +15,18 @@
             <span class="u-alllnum" style="margin-left: 0;">{{video.total}}</span>
         </div>
         <div class="live-container">
+            {% if video.list == "" %}
+                <div class="m-empty">
+                    <img src="/images/empty.png" alt="">
+                    还没有任何内容哦
+                </div>
+            {% else %}
             {% for video in video.list %}
                 <div class="m-lst m-video">
                     <a href="" class="live-address" data-rtmp="{{video.rtmp}}" data-title="{{video.title}}" data-icon="{{video.up_user_icon}}" data-id="{{video.id}}" data-name="{{video.name}}" data-nickname="{{video.nickname}}">
                         <img src="{{video.icon}}" alt="">
                         <span><i>·</i>{{video.name}}</span>
-                        <div class="play-mask"></div>
+                        <div class="play-mask online"></div>
                     </a>
                     <div class="m-info">
                         <div class="anchor-head">
@@ -38,6 +44,7 @@
                     </div>
                 </div>
             {% endfor %}
+            {% endif%}
         </div>
         
     </div>
