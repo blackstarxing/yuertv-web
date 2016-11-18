@@ -188,6 +188,28 @@ html,body{
 	color:#fff;
 	margin-left: 20px;
 }
+.wallet-empty{
+	position: absolute;
+	top: 40%;
+	width: 200px;
+	left: 50%;
+	margin-left: -100px;
+	display: none;
+}
+.wallet-empty .wallet-text{
+	background: #88e0e2;
+	height: 40px;
+	line-height: 40px;
+	color:#efefef;
+	text-indent: 10px;
+	border-radius: 10px;
+}
+.wallet-empty img{
+	position: absolute;
+	right: -15px;
+	bottom: 5px;
+	width: 60px;
+}
 .m-live-recommend{
 	margin-top: 30px;
 }
@@ -292,6 +314,50 @@ html,body{
 }
 .gift-block{
 	display: none;
+}
+.contributionRank{
+	height: 80px;
+	line-height: 80px;
+}
+.bank-left{
+	font-size: 16px;
+	color:#333;
+}
+.rank-index{
+	float: left;
+	display: inline-block;
+	width: 30px;
+	text-align: center;
+	font-size: 14px;
+}
+.bank-head{
+	width: 56px;
+	height: 57px;
+	margin-top: 12px;
+	margin-right: 5px;
+	float: left;
+	background-size: cover;
+}
+.gift-block .contributionRank:first-child .bank-head{
+	background: url('/images/first.png') top left no-repeat;
+}
+.gift-block .contributionRank:nth-child(2) .bank-head{
+	background: url('/images/second.png') top left no-repeat;
+}
+.gift-block .contributionRank:nth-child(3) .bank-head{
+	background: url('/images/third.png') top left no-repeat;
+}
+.bank-head img{
+	margin-top: 9px;
+	margin-left: 8px;
+	width:46px;
+	height: 47px;
+	border-radius: 50%;
+}
+.bank-right span{
+	color:#f36;
+	display: inline-block;
+	margin-right: 10px;
 }
 .room-block{
 	color: #333;

@@ -277,6 +277,7 @@ router.get('/activity', function(req, res, next) {
 
 router.get('/search', function(req, res, next) {
     var content = req.url.split('=')[1];
+    content = decodeURIComponent(content);
     var islogin = false;
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){

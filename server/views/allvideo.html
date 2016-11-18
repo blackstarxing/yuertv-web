@@ -14,7 +14,7 @@
             <span class="u-alling">当前视频总数</span>
             <span class="u-alllnum" style="margin-left: 0;">{{video.total}}</span>
         </div>
-        <div class="live-container">
+        <div class="live-container f-cb">
             {% if video.list == "" %}
                 <div class="m-empty">
                     <img src="/images/empty.png" alt="">
@@ -46,7 +46,7 @@
             {% endfor %}
             {% endif%}
         </div>
-        
+        <p class="list-tip">没有更多视频了</p>
     </div>
 </div>
 
