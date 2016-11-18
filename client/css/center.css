@@ -49,6 +49,7 @@ input{
 	display:inline-block;
 	padding-left:20px;
 	color:#cecfd2;
+	font-size:16px;
 }
 .g-left ul li:second-child a{
 	color:#f36;
@@ -242,6 +243,7 @@ a#m-changepass,a#m-change,a#m-realname{
 	position:relative;
 }
 .u-verifypassword{
+	display:none;
 	position: absolute;
 	left:303px;
 	top:1px;
@@ -549,6 +551,7 @@ a#m-changepass,a#m-change,a#m-realname{
 	margin:auto;
 	background:#323a43;
 	border-radius:5px;
+
 }
 
 .m-layer .lywrap{
@@ -699,7 +702,10 @@ a#m-changepass,a#m-change,a#m-realname{
 	height:95px;
 }
 .u-hleft .u-focusimg img{
-	border-radius:50px;
+	display:inline-block;
+	width:68px;
+	height:60px;
+	border-radius:50%;
 	padding:20px 25px 20px 30px;
 }
 .u-hleft .u-nickhost{
@@ -832,7 +838,8 @@ a#m-changepass,a#m-change,a#m-realname{
 	margin:15px 50px 20px 55px;
 }
 .u-props p{
-	margin:0px 50px 20px 50px;
+	text-align:center;
+	/*margin:0px 50px 20px 50px;*/
 }
 .u-bottom{
 	margin-top:70px;
@@ -1313,8 +1320,15 @@ display:block;
 	color:#7d8ea0;
 	text-align:center;
 }
-
-
+/*遮罩*/
+.asdfasdfa{
+	display:none;
+	position:fixed;
+	top:0;left:0;
+	width:100%;height:100%;
+	background:rgba(0,0,0,0.6);
+	z-index:999999;
+}
  /*我要当主播*/
  .m-mainh{
  	width:800px;
@@ -1503,14 +1517,15 @@ display:block;
 }
 /*修改手机号码弹框*/
 .telValBounced{
-	display:none;
+	/*display:none;*/
 	position:absolute;
 	width:370px;
 	height:265px;
 	background:#303840;
-	left:5px;
-	left:400px;
-	top:400px;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
 	margin:auto;
 	z-index:8888;
 }
@@ -1543,6 +1558,9 @@ display:block;
 	border:1px solid #5b6169;
 	margin-left:15px;
 }
+.u-divTelVer input.u-userboxTelVerS{
+	margin-left:19px;
+}
 /*请输入手机号,请输入正确的手机号,获取验证码,秒后重新获取*/
 .telValBounced .u-numberphoneTelVer,.u-numbertelTelVer,.u-numberTelVer,.u-copySecondTelVer{
 	display:inline-block;
@@ -1552,7 +1570,7 @@ display:block;
 }
 .telValBounced .u-numberphoneTelVer{
 	position:absolute;
-	left:232px;
+	left:231px;
 	top:1px;
 	width:105px;
 	height:40px;
@@ -1588,9 +1606,9 @@ display:block;
 }
 .u-divTelVer .u-verifyInputTelVer,.u-verifyTelVer{
 	position:absolute;
-	left:213px;
+	left:230px;
 	top:1px;
-	width:120px;
+	width:105px;
 	height:40px;
 	line-height: 40px;
 	text-align:center;

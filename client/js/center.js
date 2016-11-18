@@ -50,7 +50,6 @@ $(function() {
     $(".u-certification .u-ctop a:eq(0)").trigger("click");
 // 修改昵称弹出框
     $("#nickname").on("click", function() {
-        // $(".m-layer").addClass("z-show");
          $(".m-layer").show();
     });
     $(".lybt .u-btn").on("click", function() {
@@ -110,7 +109,7 @@ $(function() {
         }else{
             alert('请选择鱼币');
         }
-         window.location.href=window.location.href;
+         // window.location.href=window.location.href;
     })
     var local={
         updatePasswordTag_current:false,
@@ -130,7 +129,8 @@ $(function() {
             $("#u-current").off().on("blur",function(){
                 local.updatePasswordTag_current=false;
                 $("#u-current").parent().find("span").each(function(){
-                    if($(this).attr("class").indexOf("u-verifypassword") != -1){
+                    if($(this).attr("class").indexOf("u-verifypassword") != -1 ){
+                        // $(".u-verifypassword").text("请输入密码");
                         $(this).show();
                     }else{
                         $(this).hide();
@@ -175,7 +175,7 @@ $(function() {
                 if(local.updatePasswordTag_confirm==true){
                     $("#u-confirm").trigger("blur")
                 }
-                if($(this).val()<=6){
+                if($(this).val()<=6 && $(this).val()!==""){
                     $("#u-new").parent().find("span").each(function(){
                         if($(this).attr("class").indexOf("u-vpassword") != -1){
                             $(this).show();
@@ -192,7 +192,7 @@ $(function() {
             });
             $("#u-confirm").off().on("blur",function(){
                local.updatePasswordTag_confirm=false;
-               if($(this).val() === $("#u-new").val()){
+               if($(this).val() === $("#u-new").val() && $(this).val()!=="" && $("#u-new").val()!==""){
                     local.updatePasswordTag_confirm=true;
                     $("#u-confirm").parent().find("span").each(function(){
                         if($(this).attr("class").indexOf("u-rightpassword") != -1){
@@ -370,9 +370,9 @@ $(function() {
 // 我要当主播的实名认证
 $(".u-cbottom").on("click",function(){
     if(""!=='{{info.mobile}}'){
-        alert("该账号已认证！点击确定，跳转到如何直播");
         $("#jump").trigger("click");
     }else{
+        $("#hostTel").trigger("click");
             function settimes(time){
                 var copySeconds=$("#copySeconds");
                 if(time>0){
@@ -514,7 +514,7 @@ $(".u-cbottom").on("click",function(){
                         },
                         success: function(data) {
                             if (data.code == 0) {
-                                alert("认证成功");//没找到你的弹框
+                                alert("昵称修改成功");//没找到你的弹框
                             }else if(data.code == 1){
                                 alert("更新失败");//没找到你的弹窗
                             }else if(data.code == 2){
@@ -531,35 +531,7 @@ $(".u-cbottom").on("click",function(){
                         }
                     })
             })
-                    // $("#numbers").on("focus",function(){
-                    //     $(".u-numberphone").hide();
-                    //     $("#gainnumbers").show();
-                    //     $(".u-numbertel").hide();
-                    //     $("#numbers").addClass("change-color");
-                    // });
-                    // $("#gainnumbers").off().on("click",function(){
-                    //     if(($("#numbers").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#number").val()))){
-                    //         $("#numbers").removeClass("change-color");
-                    //         $(".m-mask").show().find(".pic-code img").attr("src","/api/checkCode?phone="+$("#number").val() + '&phoneCache=' + new Date());
-                    //     } else {
-                    //          $("#gainnumbers").hide();
-                    //          $(".u-numbertel").show();
-                    //     }
 
-                    // });
-                    // $("#woyaodangzhuboshoujirenz").on("click",function(){
-                    //     if($(".thephoneauth").text().length==14){//
-                    //         $(".thephoneauth").show();
-                    //         $(".u-ctleft").hide();
-                    //     }else{
-                    //         $(".thephoneauth").hide();
-                    //         $(".u-ctleft").show();
-                    //     }
-                    //     $(".u-numberphone").hide();
-                    //     $(".u-numbertel").hide();
-                    //     $(".u-number").hide();
-                    //     $(".error-tip").hide();
-                    // });
 
 // 手机号中间隐藏
 $("#hiddenField").text($("#hiddenField").text().substr(0,3)+"****"+$("#hiddenField").text().substr(7,4))   
@@ -579,8 +551,7 @@ $("#modifyTelVer").on("click",function(e){
 $("#userboxTelCancel").on("click",function(){
     $("#telValBounced").hide();
 }); 
-
-function settime(time){
+            function settime(time){
                 var copySecondTelVer=$("#copySecondTelVer");
                 if(time>0){
                     time--;
@@ -604,7 +575,6 @@ function settime(time){
                     $(".u-numberphoneTelVer").hide();
                     $("#gainnumberTelVer").show();
                     $(".u-numbertelTelVer").hide();
-
                     $("#numberTelVer").addClass("change-color");
                 });
                 $("#numberTelVer").on("blur",function(){
@@ -614,6 +584,9 @@ function settime(time){
                     if(($("#numberTelVer").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#numberTelVer").val()))){
                         $("#numberTelVer").removeClass("change-color");
                         $("#telValBounced").hide();
+                        // if({{info.mobile}}==$("#numberTelVer").val()){
+                        //     $(".u-numberphoneTelVer").text("手机号已认证").show();
+                        // }
                         $(".m-mask").show().find(".pic-code img").attr("src","/api/checkCode?phone="+$("#numberTelVer").val() + '&phoneCache=' + new Date());
                     } else {
                          $("#gainnumberTelVer").hide();
@@ -668,8 +641,8 @@ function settime(time){
                             },
                             success: function(data) {
                                 if (data.code == 0) {
-                                    alert("修改成功成功");//没找到你的弹框
-                                    window.location.href=window.location.href;
+                                    alert("修改成功");//没找到你的弹框
+                                    // window.location.href=window.location.href;
                                 }else if(data.code == 1){
                                     alert("更新失败");//没找到你的弹窗
                                 }else if(data.code == 2){
@@ -707,6 +680,9 @@ function settime(time){
                     $("#verifyTelVer").removeClass("change-color");
                 });
             // 分页－－我的关注，我的消息
+            $(".focushost a").on("click",function(e){
+                e.preventDefault();
+            })
              $(".prevBtn").off().on("click",function(event){
                 event.preventDefault();
                 local.cur_page--;
@@ -795,22 +771,22 @@ function settime(time){
                                         '</p><p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;'+
                                         '<span class="u-num">' + data.object.list[index].fans + '</span>'+
                                         '</p></div></div></div><div class="u-hright">'+
-                                        '<img src="">'+
-                                        '<a href="/liveroom' + data.object.list[index].room_number+'">进入房间</a>'+
+                                        '<img src="/images/focusclick.png">'+
+                                        '<a href="/liveroom?live_id=' + data.object.list[index].live_id+'">进入房间</a>'+
                                         '</div></div>'
                                 }else{
                                     str += '<div class="u-host stopdark"><div class="u-hleft"><div class="u-focusimg">'+
                                         '<img src="http://img.wangyuhudong.com/' + data.object.list[index].icon + '">'+
                                         '</div><div class="u-nickhost"><p class="u-nicksex">'+
                                         '<span>' + data.object.list[index].nickname + '</span>'+
-                                        '<img src="' + (data.object.list[index].sex==0?"/images/male.png":"/images/female.png") + ''">'+
+                                        '<img src="' + (data.object.list[index].sex==0?"/images/male.png":"/images/female.png") + '">'+
                                         '</p><div class="u-hostfans"><p><span class="u-hf">直播间ID</span>&nbsp;'+
                                         '<span class="u-num">' + data.object.list[index].room_number + '</span><p class="u-hhf">'+
                                         '<span class="u-hf">粉丝</span>&nbsp;'+
                                         '<span class="u-num">' + data.object.list[index].fans + '</span>'+
                                         '</p></div></div></div><div class="u-hright">'+
                                         '<img src="' + data.object.list[index].icon + '" class="u-blur">'+
-                                        '<a href="/liveroom' + data.object.list[index].room_number+'">进入房间</a>'+
+                                        '<a href="/liveroom?live_id=' + data.object.list[index].live_id+'">进入房间</a>'+
                                         '</div><span class="dark">该主播已离开</span></div>'
                                 }
                             }

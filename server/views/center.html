@@ -56,7 +56,7 @@
   			<div class="m-switch switch-content">
   				<div class="u-pcurrent">
   					<label for="u-current">当前密码</label>
-  					<input type="" name="current" id="u-current">
+  					<input type="" name="current" id="u-current" placeholder="请输入密码">
   					<span class="u-verifypassword" >密码验证中</span>
   					<span class="u-failpassword" >密码错误</span>
   					<span class="u-rightpassword" >密码正确</span>
@@ -64,13 +64,13 @@
   				</div>
   				<div class="u-pnew">
   					<label for="u-new">新密码</label>
-	  				<input type="" name="new" id="u-new" class="u-ifail">
+	  				<input type="" name="new" id="u-new" class="u-ifail" placeholder="密码长度必须大于6位">
 	  				<span class="u-vpassword">密码长度必须大于6位！</span>
 	  				<br>
   				</div>
   				<div class="u-pcancel">
   					<label for="u-confirm">确认新密码</label>
-	  				<input type="" name="confirm" id="u-confirm" class="u-iright">
+	  				<input type="" name="confirm" id="u-confirm" class="u-iright" placeholder="密码与新密码保持一致">
 	  				<span class="u-failpassword" >密码错误</span>
 	  				<span class="u-rightpassword" >密码正确</span><br>
   				</div>
@@ -155,6 +155,7 @@
   				</div>
 	  		</div>
   		</div> 
+<!-- <div class="asdfasdfa"> -->
 <div class="m-layer">
     <div class="lywrap">
 	    <div class="lytt">
@@ -173,8 +174,8 @@
 	        </div>
 	    </div>
     </div>
-
 </div>
+<!-- </div> -->
 <div class="m-psuccess">
 	<div class="u-success">
 		<img src="/images/iconcancel.png"><span>密码修改成功!</span>
@@ -206,7 +207,7 @@
 				<div class="focushost">
 				<img src="/images/empty.png" class="empty" alt="你还没有关注任何人哦！" title="你还没有关注任何人哦！">
 				<p class="emptyText">当前没有关注任何人哦！</p>
-					<!-- <div class="u-host">
+				<!-- <div class="u-host">
 						<div class="u-hleft">
 							<div class="u-focusimg">
 								<img src="/images/focusimg.png">
@@ -282,9 +283,9 @@
 					<img src="/images/empty.png" class="empty" alt="暂无道具" title="暂无道具">
 	  				<p class="emptyText">当前没有关注道具！</p>
 	  			{% else %}
-					{% for myprops in myprops.gifts %}
+	  				{% for myprops in myprops.gifts %}
 	                         <div class="u-props">
-								<img src="http://img.wangyuhudong.com/{{myprops.gifts.icon}}">
+								<img src="http://img.wangyuhudong.com/{{myprops.icon}}">
 								<p>
 									<span>{{myprops.name}}</span>
 									<span class="u-propscolor">{{myprops.num}}</span>
@@ -306,7 +307,7 @@
 		</div>
 		<div class="u-propsgtips">
 			<p>礼物道具，需要在直播房间中才能使用哦！</p>
-			<a href="http://localhost:3000/center?type=2">好的</a>
+			<a href="http://wy.yuerweb.wangyuhudong.com/center?type=2">好的</a>
 		</div>
 	</div>
 <!-- 我的消息 -->
@@ -443,7 +444,7 @@
 					</div>
 					<div class="u-certification switchcontent">
 						<div class="u-ctop" id="u-ctop">
-							<a href="">手机认证</a><a href="">实名认证</a>
+							<a href="" id="hostTel">手机认证</a><a href="">实名认证</a>
 							<div id="biubiubiu"></div>
 						</div>
 						<div class="u-ctleft switchrepeat">
@@ -531,7 +532,8 @@
 	</div> <!-- 整个块结尾 -->
 
 </div>	
-<div class="telValBounced" id="telValBounced">
+<div class="asdfasdfa" id="telValBounced">
+<div class="telValBounced" >
 	<div class="u-divTelVer thePhone">
 		<label for="numberTelVer" class="numLable">手机号码</label>
 		<input type="text" class="u-userboxTelVer telnumberTelVer inputTelTelVer" name="" id="numberTelVer" maxlength="11" >
@@ -542,7 +544,7 @@
 	</div>
 	<div class="u-divTelVer">
 		<label for="verifyTelVer" class="numLable numVerify">验证码</label>
-		<input type="text" class="u-userboxTelVer " name="" id="verifyTelVer">
+		<input type="text" class="u-userboxTelVer u-userboxTelVerS" name="" id="verifyTelVer">
 		<span class="u-verifyInputTelVer">请输入验证码</span>
 		<span class="u-verifyTelVer error-tipTelVer" >验证码错误</span>
 	</div>
@@ -550,6 +552,7 @@
 		<input type="button" class="u-submitTelVer" value="提交" id="userboxTelVer">
 		<input type="button" class="u-submitTelCancel" value="取消" id="userboxTelCancel">
 	</div>
+</div>
 </div>
 {% endblock %}
 
