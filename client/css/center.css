@@ -242,7 +242,7 @@ a#m-changepass,a#m-change,a#m-realname{
 .m-switch .u-pcurrent,.u-pnew,.u-pcancel{
 	position:relative;
 }
-.u-verifypassword{
+.u-verifypassword,.PleaseEnterThePassword{
 	display:none;
 	position: absolute;
 	left:303px;
