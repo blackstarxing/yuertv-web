@@ -64,6 +64,7 @@ $(function() {
 
     // 刷新图形验证码
     function changeCode(){
+        $('.code-wrap input').val('');
         // $picCode.attr('src','http://172.16.2.62:8777/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
         $picCode.attr('src','http://wy.yuerwebapi.wangyuhudong.com/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
     }
@@ -146,12 +147,12 @@ $(function() {
                             if (second > 0) { 
                                 $('.getCode').text(second+'(s)');
                                 second--;
+                                setTimeout(function() { 
+                                    settime(val) 
+                                },1000);
                             } else {
                                 $('.getCode').attr('disabled',false).text('获取验证码');                              
                             } 
-                            setTimeout(function() { 
-                                settime(val) 
-                            },1000) 
                         } 
                         settime(second);                 
                     }else{

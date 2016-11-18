@@ -46,7 +46,6 @@ html,body{
 	min-width: 660px;
 	height: 100%;
 	box-sizing: border-box;
-	padding-bottom: 1000px;
 	overflow: scroll;
 }
 .live-info{
@@ -203,6 +202,44 @@ html,body{
 	color: #f36;
 	border-bottom: 4px solid #f36;
 }
+.recommendBox{
+	padding:30px 10px;
+	width: 1250px;
+	margin:0 auto;
+	position: relative;
+}
+.recommendBox .m-lst{
+	margin:0 10px 28px;
+}
+.room-link{
+	position: absolute;
+	display: block;
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background: #f36;
+	color:#fff;
+	left: 50%;
+	margin-left: -60px;
+	bottom: -40px;
+	border-radius: 3px;
+}
+@media screen and (max-width: 1770px) { /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
+  .recommendBox {
+    width: 1000px;
+  }
+}
+@media screen and (max-width: 1520px) { /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
+  .recommendBox {
+    width: 750px;
+  }
+}
+@media screen and (max-width: 1270px) { /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
+  .recommendBox {
+    width: 500px;
+  }
+}
 .m-live-right{
 	float: right;
 	position: absolute;
@@ -245,13 +282,16 @@ html,body{
 .liveroom{
 	height: 100%;
 }
-.room-block{
+.right-block{
 	border:1px solid #ccc;
 	box-sizing: border-box;
 	border-top: none;
 	border-bottom: none;
 	padding:10px;
 	overflow-y: scroll;
+}
+.gift-block{
+	display: none;
 }
 .room-block{
 	color: #333;
@@ -273,6 +313,22 @@ html,body{
 }
 .hidegiftmes{
 	display: none;
+}
+#chatarea .combo{
+	font-size: 14px;
+	margin-left: 10px;
+	font-style: italic;
+	color:#f60;
+	font-weight: bolder;
+}
+#chatarea .combo i{
+	display: inline-block;
+	background: url('/images/combo.png') center center no-repeat;
+	background-size: 100%;
+	width:42.5px;
+	height: 20px;
+	vertical-align: middle;
+	margin-left: 5px;
 }
 .set-block{
 	height: 30px;
