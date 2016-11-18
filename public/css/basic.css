@@ -802,7 +802,10 @@ color: #fff !important;
     display: block;
     margin:0 auto 50px;
 }
-
+.list-tip{
+    text-align: center;
+    display: none;
+}
 
 
 

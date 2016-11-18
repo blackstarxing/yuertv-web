@@ -76,5 +76,86 @@ $(function(){
     $('.m-video-mask .close').click(function(e){
         e.preventDefault();
         $('.m-video-mask').hide();
-    })
+    });
+
+    var stop=true; 
+    var page = 1;
+    var nomore = false;
+    $(window).scroll(function(){ 
+        totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop()); 
+        if($(document).height() <= totalheight){ 
+            if(stop && !nomore){ 
+                stop=false; 
+                page+=1
+                var parm={};
+                parm.page = page;
+                parm.pageSize = 30;
+                $.ajax({
+                    url: '/api/video/list',
+                    data: parm,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(data) {
+                        var newPage = '';
+                        var list = data.object.list;
+                        if (data.code==0) {
+                            if(list.length != 0){
+                                for(var i = 0; i < list.length; i++){
+                                    var sex = "male";
+                                    if(list[i].sex == 1){
+                                        sex = "female";
+                                    }
+                                    newPage += '<div class="m-lst m-video">'+
+                                                '<a href="" class="live-address" data-rtmp="'+list[i].rtmp+'" data-title="'+list[i].title+'" data-icon="'+list[i].up_user_icon+'" data-id="'+list[i].id+'" data-name="'+list[i].name+'" data-nickname="'+list[i].nickname+'">'+
+                                                    '<img src="'+list[i].icon+'" alt="">'+
+                                                    '<span><i>·</i>'+list[i].name+'</span>'+
+                                                    '<div class="play-mask online"></div>'+
+                                                '</a>'+
+                                                '<div class="m-info">'+
+                                                    '<div class="anchor-head">'+
+                                                        '<img src="http://img.wangyuhudong.com/'+list[i].user_icon+'" alt="" class="head-icon">'+
+                                                            '<img src="/images/'+sex+'.png" alt="" class="sex">'+
+                                                    '</div>'+
+                                                    '<div class="anchor-info">'+
+                                                        '<div><a href="javascript:void(0);">'+list[i].nickname+'</a></div>'+
+                                                    '</div>'+
+                                                    '<div class="video-name"><a href="javascript:void(0);">'+list[i].title+'</a></div>'+
+                                                '</div>'+
+                                            '</div>';
+                                }
+                                $('.live-container').append(newPage);
+                                $(".m-video:nth-child(5n)").css("margin-right","0");
+                                $('.live-address').hover(function(){
+                                    $(this).find('.play-mask').show();
+                                },function(){
+                                    $(this).find('.play-mask').hide();
+                                })
+                                $('.m-video .live-address').click(function(e){
+                                    e.preventDefault();
+                                    $('.m-video-mask').show();
+                                    videoPlayerInterf.callLater(function () {
+                                        // videoPlayerInterf.flash.playVideo("http://pili-media.wangyuhudong.com/7FUkDXBrj3kr1leI8VjVFX6GGD0=/Fk8ffjjNrphUwlioPxjmXIB0R7tl", "界黄盖暴力输出，秒全场", "王者荣耀");
+                                        videoPlayerInterf.flash.playVideo($(this).attr('data-rtmp'),$(this).attr('data-title'),$(this).attr('data-name'));
+                                        videoPlayerInterf.flash.updateAnchor($(this).attr('data-id'), $(this).attr('data-nickname'),$(this).attr('data-icon'), false);
+                                    });
+                                    
+                                });
+                                $('.m-video-mask .close').click(function(e){
+                                    e.preventDefault();
+                                    $('.m-video-mask').hide();
+                                });
+                            }else{
+                                nomore = true;
+                                $('.list-tip').show();
+                            }
+                        }
+                        stop=true;
+                    },
+                    error: function() {
+                        alert('通讯服务器错误');
+                    }
+                }); 
+            } 
+        } 
+    });
 })

@@ -14,7 +14,7 @@
             <span class="u-alllnum">{{live.total}}</span>
             <span class="u-alling" style="margin-left: 0;">名主播正在直播</span>
         </div>
-        <div class="live-container">
+        <div class="live-container f-cb">
             {% if live.list == "" %}
                 <div class="m-empty">
                     <img src="/images/empty.png" alt="">
@@ -22,7 +22,7 @@
                 </div>
             {% else %}
             {% for live in live.list %}
-                <div class="m-lst">
+                <div class="m-lst  m-video">
                     {% if live.state==1 %}
                         <a href="/liveroom?id={{live.id}}" class="live-address">
                     {% else %}
@@ -40,9 +40,9 @@
                         <div class="anchor-head">
                             <img src="http://img.wangyuhudong.com/{{live.user_icon}}" alt="" class="head-icon">
                             {% if live.sex==0 %}
-                                <img src="/images/female.png" alt="" class="sex">
-                            {% else %}
                                 <img src="/images/male.png" alt="" class="sex">
+                            {% else %}
+                                <img src="/images/female.png" alt="" class="sex">
                             {% endif %}
                         </div>
                         <div class="anchor-info">
@@ -59,6 +59,7 @@
             {% endfor %} 
             {% endif%}
         </div>
+        <p class="list-tip">没有更多直播了</p>
         
     </div>
 </div>

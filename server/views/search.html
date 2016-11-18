@@ -7,8 +7,9 @@
 {% block content %}
     <div class="m-common">
         <div class="comWidth f-cb">
+            <div class="search-content" style="display: none;">{{content | safe }}</div>
             <div class="searchPage">
-                <input type="text" class="search-key" value="{{content}}"><button class="search-btn">搜索</button>
+                <input type="text" class="search-key" value="{{content | safe }}"><button class="search-btn">搜索</button>
             </div>
             <h3 class="search-num">搜索到<span>{{result.total}}</span>个相关结果</h3>
             <div class="search-result">
@@ -21,7 +22,7 @@
                         </div>
                     {% else %}
                         {% for result in result.list %}
-                            <div class="m-lst">
+                            <div class="m-lst m-video">
                                 {% if result.state==1 %}
                                     <a href="/liveroom?id={{result.id}}" class="live-address">
                                 {% else %}
@@ -39,9 +40,9 @@
                                     <div class="anchor-head">
                                         <img src="http://img.wangyuhudong.com/{{result.user_icon}}" alt="" class="head-icon">
                                         {% if result.sex==0 %}
-                                            <img src="/images/female.png" alt="" class="sex">
-                                        {% else %}
                                             <img src="/images/male.png" alt="" class="sex">
+                                        {% else %}
+                                            <img src="/images/female.png" alt="" class="sex">
                                         {% endif %}
                                     </div>
                                     <div class="anchor-info">
@@ -58,7 +59,7 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-                
+                <p class="list-tip">没有更多内容了</p>
             </div>
         </div>
         

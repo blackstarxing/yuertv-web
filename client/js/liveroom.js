@@ -58,6 +58,33 @@ $(function(){
         enterLiveroom();
     }
 
+    var giftparm = {};
+    giftparm.type = 2;
+    giftparm.upUserId = $('.hide-rtmp').attr('data-anchorid');
+    $.ajax({
+        method: "GET",
+        url: "/api/contributionRank",
+        dataType: 'json',
+        data: giftparm,
+        success: function(data) {
+            if (data.code == 0) {
+                var contributionRank = '';
+                for(var i=0;i<data.object.length;i++){
+                    contributionRank+='<div class="contributionRank f-cb">'+
+                    '<div class="bank-left f-fl"><span class="rank-index">'+(i+1)+'</span><div class="bank-head"><img src="http://img.wangyuhudong.com/'+data.object[i].icon+'" alt=""></div>'+data.object[i].nickname+'</div>'+
+                    '<div class="bank-right f-fr"><span>'+data.object[i].contribution+'</span>鱼币</div>'+
+                '</div>';
+                }
+                $('.gift-block').html(contributionRank);
+            }else{
+                console.log(data.result);
+            }
+        },
+        error: function(a, b, c) {
+            console.log("接口出问题啦");
+        }
+    });
+
     $('.wantreport').click(function(e){
         e.preventDefault();
         if(islogin){
@@ -170,45 +197,8 @@ $(function(){
         $('.mes-block').html('');
     })
     
-    var endingtime = 300;
-    function endingTime(val) { 
-        if (endingtime > 0) { 
-            $('.endingtime').text(endingtime);
-            endingtime--;
-            setTimeout(function() { 
-                endingTime(val);
-            },1000);
-        } else {
-            $('.countdown').html('<div class="freegift">点击领取</div>');
-            $('.freegift').click(function(){
-                if(islogin){
-                   $.ajax({
-                        method: "GET",
-                        url: "/api/dailyGift",
-                        dataType: 'json',
-                        success: function(data) {
-                            if (data.code == 0) {
-                                endingtime = 300;
-                                $('.countdown').html('<span class="endingtime">300</span>秒后<br>惊喜降临');
-                                setTimeout(function() { 
-                                    endingTime(endingtime);
-                                },1000);
-                            }else{
-                                console.log(data.result);
-                            }
-                        },
-                        error: function(a, b, c) {
-                            console.log("接口出问题啦");
-                        }
-                    }); 
-               }else{
-                    $('.m-login-wrap').show();
-               }
-                
-            })
-        } 
-    } 
-    endingTime(endingtime);  
+    var endingtime = $('.hide-rtmp').attr('data-time')*60;
+     
 
     $('.gift').hover(function(){
         $(this).find('.gift-hover').show();
@@ -389,7 +379,19 @@ $(function(){
                                 console.log('正在发送聊天室自定义消息, id=' + msg.idClient);
                                 getProp();
                             }else{
-                                alert(data.object.str);
+                                if(data.object.str == '娱币不足'){
+                                    $('.wallet-text').text('钱包空啦！赶紧去充值吧');
+                                    $('.wallet-empty').fadeIn();
+                                    setTimeout(function(){
+                                        $('.wallet-empty').fadeOut();
+                                    },2000);
+                                }else{
+                                   $('.wallet-text').text(data.object.str); 
+                                   $('.wallet-empty').fadeIn();
+                                    setTimeout(function(){
+                                        $('.wallet-empty').fadeOut();
+                                    },2000);
+                               }                                
                             }
                         }else{
                             console.log(data.result);
@@ -408,26 +410,43 @@ $(function(){
                     url: "/api/person-center/my-gifts",
                     dataType: 'json',
                     success: function(data) {
+                        var myprop = "";
                         if (data.code == 0) {
-                            var myprop = "";
                             proplist = [];
-                            for(var i=0;i<data.object.gifts.length;i++){
-                                var prop = {
-                                    id:data.object.gifts[i].id,
-                                    name: data.object.gifts[i].name,
-                                    icon:'http://img.wangyuhudong.com/'+data.object.gifts[i].icon,
-                                    count:data.object.gifts[i].num,
+                            if(data.object.gifts.length == 0){
+                                myprop+='<div class="propBox" data-name="鱼饵" data-id="11"><img src="/images/prop.png" alt="">鱼饵<span>0</span></div>';
+                            }else{
+                                for(var i=0;i<data.object.gifts.length;i++){
+                                    var prop = {
+                                        id:data.object.gifts[i].id,
+                                        name: data.object.gifts[i].name,
+                                        icon:'http://img.wangyuhudong.com/'+data.object.gifts[i].icon,
+                                        count:data.object.gifts[i].num,
+                                    }
+                                    myprop+='<div class="propBox" data-name="'+data.object.gifts[i].name+'" data-id="'+data.object.gifts[i].id+'"><img src="http://img.wangyuhudong.com/'+data.object.gifts[i].icon+'" alt="">'+data.object.gifts[i].name+'<span>'+data.object.gifts[i].num+'</span></div>';
+                                    proplist.push(prop);
+                                    liveRoomInterf.flash.updateMyItems(proplist);
                                 }
-                                myprop+='<div class="propBox" data-name="'+data.object.gifts[i].name+'" data-id="'+data.object.gifts[i].id+'"><img src="http://img.wangyuhudong.com/'+data.object.gifts[i].icon+'" alt="">'+data.object.gifts[i].name+'<span>'+data.object.gifts[i].num+'</span></div>';
-                                proplist.push(prop);
-                                liveRoomInterf.flash.updateMyItems(proplist);
-                            }
+                            }                           
                             $('.my-prop').html(myprop);
                             $('.propBox').click(function(){
-                                flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),$(this).find('img').attr('src'),1);
+                                if(islogin){
+                                    flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),$(this).find('img').attr('src'),1);
+                               }else{
+                                    $('.m-login-wrap').show();
+                               } 
                             });
                         }else{
+                            myprop+='<div class="propBox" data-name="鱼饵" data-id="11"><img src="/images/prop.png" alt="">鱼饵<span>0</span></div>';
                             console.log(data.result);
+                            $('.my-prop').html(myprop);
+                            $('.propBox').click(function(){
+                                if(islogin){
+                                    flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),$(this).find('img').attr('src'),1);
+                               }else{
+                                    $('.m-login-wrap').show();
+                               } 
+                            });
                         }
                     },
                     error: function(a, b, c) {
@@ -453,6 +472,51 @@ $(function(){
                 });               
 
             }
+
+            function endingTime(val) { 
+                if (endingtime > 0) { 
+                    $('.endingtime').text(endingtime);
+                    endingtime--;
+                    setTimeout(function() { 
+                        endingTime(val);
+                    },1000);
+                } else if(endingtime = 0){
+                    $('.countdown').html('<div class="freegift">点击领取</div>');
+                    $('.freegift').click(function(){
+                        if(islogin){
+                           $.ajax({
+                                method: "GET",
+                                url: "/api/dailyGift",
+                                dataType: 'json',
+                                success: function(data) {
+                                    if (data.code == 0) {
+                                        if(data.object && data.object.count_down!=25){
+                                            getProp();
+                                            endingtime = data.count_down*60;
+                                            $('.countdown').html('<span class="endingtime">300</span>秒后<br>惊喜降临');
+                                            setTimeout(function() { 
+                                                endingTime(endingtime);
+                                            },1000);
+                                        }else{
+                                            endingtime = -1;
+                                        }                                        
+                                    }else{
+                                        console.log(data.result);
+                                    }
+                                },
+                                error: function(a, b, c) {
+                                    console.log("接口出问题啦");
+                                }
+                            }); 
+                       }else{
+                            $('.m-login-wrap').show();
+                       }
+                        
+                    })
+                } else{
+                    $('.countdown').html('福利已领完<br>明天再来吧');
+                }
+            } 
 
             liveRoomInterf = {
 
@@ -497,6 +561,8 @@ $(function(){
                     // ]);
 
                     getProp();
+
+                    endingTime(endingtime); 
 
                     // this.flash.updateMyItems(proplist);
 
@@ -725,9 +791,12 @@ $(function(){
                         $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+content.data.senderName+' : 送给主播1个</span>'+content.data.giftName+'</div>');
                         liveRoomInterf.flash.showDanmaku(content.data.senderName+'送给主播一个'+content.data.giftName, 0xffffff, 100);
                     }
-                }else if(msgs[i].text){
+                }else if(msgs[i].text && msgs[i].fromNick){
                     var host = msgs[i].fromNick=="1" ? '<label for="">主播</label>&nbsp;' : '';
                     $('.mes-block').append('<div class="text-mes">'+host+'<span class="membName">'+msgs[i].fromNick+' : </span>'+msgs[i].text+'</div>');        
+                    liveRoomInterf.flash.showDanmaku(msgs[i].text, 0xffffff, 100);
+                }else if(msgs[i].text && !msgs[i].fromNick && msgs[i].custom){
+                    $('.mes-block').append('<div class="text-mes"><span class="membName">'+msgs[i].custom.nickname+' : </span>'+msgs[i].text+'</div>');        
                     liveRoomInterf.flash.showDanmaku(msgs[i].text, 0xffffff, 100);
                 }
                 // else if(msgs[i].flow=="in" && !msgs[i].text && !msgs[i].attach.fromNick && msgs[i].attach.type=="memberEnter"){
@@ -755,10 +824,10 @@ $(function(){
                         if (data.code == 0) {
                             console.log('关注成功！');
                             if($(e.currentTarget).attr('class')=='followme'){
-                                $('.follownum').text(follownum+1);
+                                $('.follownum').text(parseInt(follownum)+1);
                                 $(e.currentTarget).attr('class','is-subscibe').html('已关注');
                             }else{
-                                $('.follownum').text(follownum-1);
+                                $('.follownum').text(parseInt(follownum)-1);
                                 $(e.currentTarget).attr('class','followme').html('<i class="iconfont icon-follow"></i>关注');
                             }
                         }else{

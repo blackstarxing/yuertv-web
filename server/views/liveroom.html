@@ -32,7 +32,7 @@
         <div class="live-info f-cb">
             <img src="http://img.wangyuhudong.com/{{detail.info.user_icon}}" alt="" class="live-avatar f-fl">
             <div class="avatar-info f-fl">
-                <span class="hide-rtmp" data-roomid="{{detail.info.chat_room_id}}" data-anchorid="{{detail.info.up_user_id}}">{{detail.info.rtmp}}</span>
+                <span class="hide-rtmp" data-roomid="{{detail.info.chat_room_id}}" data-anchorid="{{detail.info.up_user_id}}" data-time="{{detail.info.count_down}}">{{detail.info.rtmp}}</span>
                 <h3>{{detail.info.title}}</h3>
                 <div><span class="u-label">{{detail.info.nickname}}<img src="/images/female.png" alt=""></span>{{detail.info.game_name}}</div>
                 <div><span class="u-label">房间ID：{{detail.info.room_number}}</span>在线：{{detail.info.online_num}}</div>
@@ -185,7 +185,7 @@
                 <div class="mes-block"></div>
             </div>
             <div class="gift-block right-block">
-                
+
             </div>
             <div class="set-block">
                 <div class="set-option">
@@ -269,6 +269,10 @@
     <div class="result-pop">
         您已举报成功
     </div>
+</div>
+<div class="wallet-empty">
+    <div class="wallet-text">钱包空啦！赶紧去充值吧</div>
+    <img src="/images/wallet.png" alt="">
 </div>
 
 <div class="m-video-mask">
