@@ -126,6 +126,91 @@ $(function() {
             local.eventBind();
         },
         eventBind : function(){    
+            // $("#u-current").off().on("blur",function(){
+            //     local.updatePasswordTag_current=false;
+            //     $("#u-current").parent().find("span").each(function(){
+            //         if($(this).attr("class").indexOf("u-verifypassword") != -1 && $("#u-current")!==""){
+            //             // $(".u-verifypassword").text("请输入密码");
+            //             $(this).show();
+            //         }else{
+            //             $(this).hide();
+            //         }
+            //     });
+            //     $.ajax({
+            //         method: "GET",
+            //         url: "/api/person-center/is-password-right",
+            //         dataType: 'json',
+            //         data: {
+            //             password: $("#u-current").val()
+            //         },
+            //         success: function(data) {
+            //             if (data.code == 0) {
+            //                 local.updatePasswordTag_current=true;
+            //                 $("#u-current").parent().find("span").each(function(){
+            //                     if($(this).attr("class").indexOf("u-rightpassword") != -1){
+            //                         $(this).show();
+            //                     }else{
+            //                         $(this).hide();
+            //                     }
+            //                 });
+            //             }else if(data.code == 2){
+            //                 $("#u-current").parent().find("span").each(function(){
+            //                     if($(this).attr("class").indexOf("u-failpassword") != -1){
+            //                         $(this).show();
+            //                     }else{
+            //                         $(this).hide();
+            //                     }
+            //                 });
+            //             }else{
+            //                 console.log(data.result);
+            //             }
+            //         },
+            //         error: function(a, b, c) {
+            //             console.log("接口出问题啦");
+            //         }
+            //     })
+            // });
+            // $("#u-new").off().on("blur",function(){
+            //     local.updatePasswordTag_new=false;
+            //     if(local.updatePasswordTag_confirm==true){
+            //         $("#u-confirm").trigger("blur")
+            //     }
+            //     if($(this).val()<=6 && $(this).val()!==""){
+            //         $("#u-new").parent().find("span").each(function(){
+            //             if($(this).attr("class").indexOf("u-vpassword") != -1){
+            //                 $(this).show();
+            //             }else{
+            //                 $(this).hide();
+            //             }
+            //         });
+            //     }else{
+            //         local.updatePasswordTag_new=true;
+            //         $("#u-new").parent().find("span").each(function(){
+            //                 $(this).hide();
+            //         });
+            //     }
+            // });
+            // $("#u-confirm").off().on("blur",function(){
+            //    local.updatePasswordTag_confirm=false;
+            //    if($(this).val() === $("#u-new").val() && $(this).val()!=="" && $("#u-new").val()!==""){
+            //         local.updatePasswordTag_confirm=true;
+            //         $("#u-confirm").parent().find("span").each(function(){
+            //             if($(this).attr("class").indexOf("u-rightpassword") != -1){
+            //                 $(this).show();
+            //             }else{
+            //                 $(this).hide();
+            //             }
+            //         });
+            //     }else{
+            //         $("#u-confirm").parent().find("span").each(function(){
+            //             if($(this).attr("class").indexOf("u-failpassword") != -1){
+            //                 $(this).show();
+            //             }else{
+            //                 $(this).hide();
+            //             }
+            //         });
+            //     }
+            // });
             $("#u-current").off().on("blur",function(){
                 local.updatePasswordTag_current=false;
                 $("#u-current").parent().find("span").each(function(){
@@ -170,11 +255,9 @@ $(function() {
                     }
                 })
             });
-            $("#u-new").off().on("blur",function(){
+
+$("#u-new").off().on("blur",function(){
                 local.updatePasswordTag_new=false;
-                if(local.updatePasswordTag_confirm==true){
-                    $("#u-confirm").trigger("blur")
-                }
                 if($(this).val()<=6 && $(this).val()!==""){
                     $("#u-new").parent().find("span").each(function(){
                         if($(this).attr("class").indexOf("u-vpassword") != -1){
@@ -189,10 +272,35 @@ $(function() {
                             $(this).hide();
                     });
                 }
+                if(local.updatePasswordTag_confirm==true){
+                    $("#u-confirm").trigger("blur")
+                }
             });
+
+            
+            // $("#u-new").off().on("blur",function(){
+            //     local.updatePasswordTag_new=false;
+            //     if(local.updatePasswordTag_confirm==true){
+            //         $("#u-confirm").trigger("blur")
+            //     }
+            //     if($(this).val()<=6 && $(this).val()!=""){
+            //         $("#u-new").parent().find("span").each(function(){
+            //             if($(this).attr("class").indexOf("u-vpassword") != -1){
+            //                 $(this).show();
+            //             }else{
+            //                 $(this).hide();
+            //             }
+            //         });
+            //     }else{
+            //         local.updatePasswordTag_new=true;
+            //         $("#u-new").parent().find("span").each(function(){
+            //                 $(this).hide();
+            //         });
+            //     }
+            // });
             $("#u-confirm").off().on("blur",function(){
                local.updatePasswordTag_confirm=false;
-               if($(this).val() === $("#u-new").val() && $(this).val()!=="" && $("#u-new").val()!==""){
+               if($(this).val() === $("#u-new").val() && $(this).val()!=="" && $("#u-new").val()){
                     local.updatePasswordTag_confirm=true;
                     $("#u-confirm").parent().find("span").each(function(){
                         if($(this).attr("class").indexOf("u-rightpassword") != -1){
@@ -584,9 +692,9 @@ $("#userboxTelCancel").on("click",function(){
                     if(($("#numberTelVer").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#numberTelVer").val()))){
                         $("#numberTelVer").removeClass("change-color");
                         $("#telValBounced").hide();
-                        // if({{info.mobile}}==$("#numberTelVer").val()){
-                        //     $(".u-numberphoneTelVer").text("手机号已认证").show();
-                        // }
+                        if('{{info.mobile}}' == $("#numberTelVer").val()){
+                            $(".u-numberphoneTelVer").text("手机号已认证").show();
+                        }
                         $(".m-mask").show().find(".pic-code img").attr("src","/api/checkCode?phone="+$("#numberTelVer").val() + '&phoneCache=' + new Date());
                     } else {
                          $("#gainnumberTelVer").hide();
