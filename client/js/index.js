@@ -53,7 +53,7 @@ $(function(){
         init: function ()
         {   
             this.isfollow = (this.isfollow == 1) ? true : false;
-
+            console.log(this.isfollow)
             this.isinit = true;
             //播放直播视频，参数：视频地址
 
@@ -69,7 +69,7 @@ $(function(){
         focusAnchor: function ( anchorId )
         {
             var _this = this;
-            this.isfollow = (this.isfollow == 0) ? false : true;
+            this.isfollow = (this.isfollow == 0) ? true : false;
             //调用后台，关注成功后请回调 flash.updateAnchor
             if(islogin){
                 var parm = {};
@@ -83,7 +83,7 @@ $(function(){
                     success: function(data) {
                         if (data.code == 0) {
                             console.log('关注成功！');
-                            _this.flash.updateAnchor(this.anchorId, null, this.isfollow);
+                            _this.flash.updateAnchor(_this.anchorId, null, _this.isfollow);
                         }else{
                             console.log(data.result);
                         }
@@ -213,6 +213,7 @@ $(function(){
         liveHomeInterf.roomid = $(this).attr('data-id');
         liveHomeInterf.rtmp = $(this).attr('href');
         liveHomeInterf.anchorId = $(this).attr('data-upid');
+        liveHomeInterf.isfollow = $(this).attr('data-concern');
         liveHomeInterf.anchorhead = 'http://img.wangyuhudong.com/'+$(this).attr('data-icon');
         if (liveHomeInterf.isinit){
             liveHomeInterf.init();

@@ -295,6 +295,7 @@ html,body{
 	line-height: 38px;
 	text-align: center;
 	border:1px solid #ccc;
+	cursor: pointer;
 }
 .room-tab li.current{
 	background: #f36;
@@ -322,6 +323,10 @@ html,body{
 .bank-left{
 	font-size: 16px;
 	color:#333;
+	width: 250px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .rank-index{
 	float: left;
@@ -377,7 +382,7 @@ html,body{
 .room-block .gift-mes{
 	color: #f36;
 }
-.hidegiftmes{
+.hidegiftmes,.hideEnter{
 	display: none;
 }
 #chatarea .combo{
@@ -566,14 +571,15 @@ html,body{
 }
 .myGift{
 	line-height: 50px;
-	margin:0 10px;
+	margin:-20px 10px 0;
+	padding:20px 10px;
 	position: relative;
 	cursor: pointer;
 }
 .my-prop{
 	position: absolute;
 	padding: 10px;
-	top:-180px;
+	top:-160px;
 	right: -10px;
 	width: 180px;
 	height: 150px;
