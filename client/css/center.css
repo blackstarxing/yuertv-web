@@ -13,6 +13,9 @@ input{
 	background: #141a20;
 	padding-bottom: 100px;
 }
+.g-container input{
+	text-indent: 12px;
+}
 .M-box{
 	margin-top:50px;
 	margin-left:500;
@@ -294,6 +297,18 @@ a#m-changepass,a#m-change,a#m-realname{
 .u-passwordshow{
 	display:block;
 }
+input::-webkit-input-placeholder { /* WebKit browsers */ 
+    color: #96b4d2; 
+} 
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+    color: #96b4d2; 
+} 
+input::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+    color: #96b4d2; 
+} 
+input:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+    color: #96b4d2; 
+} 
 /*手机认证*/
 .m-switcht .u-div{
 	position:relative;
@@ -615,6 +630,7 @@ a#m-changepass,a#m-change,a#m-realname{
 	border-radius:20px;
 	text-align:center;
 	margin:0 90px;
+	border:none;
 }
 
 /* 显示 */

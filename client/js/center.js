@@ -20,6 +20,10 @@ $(function() {
         e.preventDefault();
         $(".u-propsgtips").show();
     });
+     $(".u-propsgtips a").off("click").on("click", function(e) {
+        e.preventDefault();
+        $(".u-propsgtips").hide();
+    });
 //我的消息中的div之间的切换
         $(".m-mainm a").on("click", function(e) {
             e.preventDefault();
@@ -175,55 +179,6 @@ $(function() {
                     }
                 })}
             });   
-            // $("#u-current").on("focus",function(){
-            //     if( $("#u-current")==""){
-            //         $(".u-verifypassword").text("请输入密码")
-            //     }
-            // })
-            // $("#u-current").off().on("blur",function(){
-            //     local.updatePasswordTag_current=false;
-            //     $("#u-current").parent().find("span").each(function(){
-            //         if($(this).attr("class").indexOf("u-verifypassword") != -1 ){
-            //             // $(".u-verifypassword").text("请输入密码");
-            //             $(this).show();
-            //         }else{
-            //             $(this).hide();
-            //         }
-            //     });
-            //     $.ajax({
-            //         method: "GET",
-            //         url: "/api/person-center/is-password-right",
-            //         dataType: 'json',
-            //         data: {
-            //             password: $("#u-current").val()
-            //         },
-            //         success: function(data) {
-            //             if (data.code == 0) {
-            //                 local.updatePasswordTag_current=true;
-            //                 $("#u-current").parent().find("span").each(function(){
-            //                     if($(this).attr("class").indexOf("u-rightpassword") != -1){
-            //                         $(this).show();
-            //                     }else{
-            //                         $(this).hide();
-            //                     }
-            //                 });
-            //             }else if(data.code == 2){
-            //                 $("#u-current").parent().find("span").each(function(){
-            //                     if($(this).attr("class").indexOf("u-failpassword") != -1){
-            //                         $(this).show();
-            //                     }else{
-            //                         $(this).hide();
-            //                     }
-            //                 });
-            //             }else{
-            //                 console.log(data.result);
-            //             }
-            //         },
-            //         error: function(a, b, c) {
-            //             console.log("接口出问题啦");
-            //         }
-            //     })
-            // });
             $("#u-new").off().on("blur",function(){
                 if($(this).val().length<=6){
                     $("#u-new").parent().find("span").each(function(){
@@ -849,8 +804,8 @@ $("#userboxTelCancel").on("click",function(){
                             $(".u-host").remove();
                             $(".empty").hide();
                             $(".emptyText").hide();
-                            $(".focushost").html($(".focushost").html()+str);
-                            // $(".focushost").html(str);
+                            // $(".focushost").html($(".focushost").html()+str);
+                            $(".focushost").html(str);
                             local.Pagination(local.cur_page,data.object.total,local.cur_pageSize,"follow");
                         }else{
                             $(".u-host").remove();
