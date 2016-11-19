@@ -24,7 +24,8 @@ $(function(){
         live_token = "",
         nickname = "";
 
-    var hidegiftmes = "";
+    var hidegiftmes = "",
+        hideEnter = "";
 
     var lct = document.getElementById('chatarea');
 
@@ -185,12 +186,23 @@ $(function(){
 
     $('#shield1').click(function(){
         hidegiftmes = '';
+        hideEnter = '';
         $('.gift-mes').removeClass('hidegiftmes');
+        $('.memberEnter').removeClass('hideEnter');
     });
 
     $('#shield2').click(function(){
         hidegiftmes = 'hidegiftmes';
+        hideEnter = '';
         $('.gift-mes').addClass('hidegiftmes');
+        $('.memberEnter').removeClass('hideEnter');
+    });
+
+    $('#shield3').click(function(){
+        hidegiftmes = '';
+        hideEnter = 'hideEnter';
+        $('.gift-mes').removeClass('hidegiftmes');
+        $('.memberEnter').addClass('hideEnter');
     });
 
     $('.clearmes').click(function(){
@@ -513,7 +525,7 @@ $(function(){
                        }
                         
                     })
-                } else{
+                } else if(endingtime = 1500){
                     $('.countdown').html('福利已领完<br>明天再来吧');
                 }
             } 
@@ -704,6 +716,12 @@ $(function(){
                 
             });
 
+            $("body").keydown(function() {
+                if (event.keyCode == "13") {//keyCode=13是回车键
+                    $('.sendText').click();
+                }
+            }); 
+
             $('.quicktext li').click(function(){
                 if(islogin){
                     flashSend($(this).text());
@@ -773,7 +791,7 @@ $(function(){
                     break;
                 }
             }
-            $('.mes-block').append("<div>连接断开<div>"); 
+            $('.mes-block').append("<div>聊天室连接断开，请刷新页面<div>"); 
         }
         function onChatroomError(error, obj) {
             console.log('发生错误', error, obj);
@@ -796,12 +814,14 @@ $(function(){
                     $('.mes-block').append('<div class="text-mes">'+host+'<span class="membName">'+msgs[i].fromNick+' : </span>'+msgs[i].text+'</div>');        
                     liveRoomInterf.flash.showDanmaku(msgs[i].text, 0xffffff, 100);
                 }else if(msgs[i].text && !msgs[i].fromNick && msgs[i].custom){
-                    $('.mes-block').append('<div class="text-mes"><span class="membName">'+msgs[i].custom.nickname+' : </span>'+msgs[i].text+'</div>');        
+                    var custom=JSON.parse(msgs[i].custom);
+                    $('.mes-block').append('<div class="text-mes"><span class="membName">'+custom.nickname+' : </span>'+msgs[i].text+'</div>');        
                     liveRoomInterf.flash.showDanmaku(msgs[i].text, 0xffffff, 100);
+                }else if(msgs[i].flow=="in" && !msgs[i].text && !msgs[i].attach.fromNick && msgs[i].attach.type=="memberEnter"){
+                    $('.mes-block').append('<div class="memberEnter '+hideEnter+'">欢迎用户'+msgs[i].attach.fromNick+'进入直播间</div>');
+                }else if(msgs[i].flow=="in" && msgs[i].text && msgs[i].custom =="" ){
+                    $('.mes-block').append('<div class="memberEnter '+hideEnter+'">'+msgs[i].text+'</div>');
                 }
-                // else if(msgs[i].flow=="in" && !msgs[i].text && !msgs[i].attach.fromNick && msgs[i].attach.type=="memberEnter"){
-                //     $('.mes-block').append("<div>欢迎用户"+msgs[i].attach.fromNick+"进入直播间");
-                // }
                 lct.scrollTop=Math.max(0,lct.scrollHeight-lct.offsetHeight);       
             }
 
