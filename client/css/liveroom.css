@@ -10,7 +10,7 @@ html,body{
 	overflow: hidden;
 	box-sizing: border-box;
 }
-.m-float{
+.m-float,.footer{
 	display: none;
 }
 .m-sidebar{
@@ -342,15 +342,24 @@ html,body{
 }
 .gift-block .contributionRank:first-child .bank-head{
 	background: url('/images/first.png') top left no-repeat;
-	background-size: 100% 100%;
+	background-size: 20px 20px;
 }
 .gift-block .contributionRank:nth-child(2) .bank-head{
 	background: url('/images/second.png') top left no-repeat;
-	background-size: 100% 100%;
+	background-size: 20px 20px;
 }
 .gift-block .contributionRank:nth-child(3) .bank-head{
 	background: url('/images/third.png') top left no-repeat;
-	background-size: 100% 100%;
+	background-size: 20px 20px;
+}
+.gift-block .contributionRank:first-child img{
+	border:1px solid #ffa800;
+}
+.gift-block .contributionRank:nth-child(2) img{
+	border:1px solid #c6e3f0;
+}
+.gift-block .contributionRank:nth-child(3) img{
+	border:1px solid #d2876c;
 }
 .bank-head img{
 	margin-top: 9px;

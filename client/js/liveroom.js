@@ -817,7 +817,7 @@ $(function(){
                     var custom=JSON.parse(msgs[i].custom);
                     $('.mes-block').append('<div class="text-mes"><span class="membName">'+custom.nickname+' : </span>'+msgs[i].text+'</div>');        
                     liveRoomInterf.flash.showDanmaku(msgs[i].text, 0xffffff, 100);
-                }else if(msgs[i].flow=="in" && !msgs[i].text && !msgs[i].attach.fromNick && msgs[i].attach.type=="memberEnter"){
+                }else if(msgs[i].flow=="in" && !msgs[i].text && msgs[i].attach.fromNick && msgs[i].attach.type=="memberEnter"){
                     $('.mes-block').append('<div class="memberEnter '+hideEnter+'">欢迎用户'+msgs[i].attach.fromNick+'进入直播间</div>');
                 }else if(msgs[i].flow=="in" && msgs[i].text && msgs[i].custom =="" ){
                     $('.mes-block').append('<div class="memberEnter '+hideEnter+'">'+msgs[i].text+'</div>');
