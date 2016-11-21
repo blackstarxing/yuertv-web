@@ -1543,6 +1543,9 @@ display:block;
 .u-liveAndroid,.u-liveIphone{
 	margin:20px 0px;
 }
+.u-liveAndroid div,.u-liveIphone div{
+	margin:5px 0px;
+}
 .u-liveAndroid .u-ltop h1,.u-liveIphone .u-ltop h1{
 	font-size:24px;
 	font-weight:bold;
