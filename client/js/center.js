@@ -806,7 +806,7 @@ $("#userboxTelCancel").on("click",function(){
                                         '<span class="u-hf">粉丝</span>&nbsp;'+
                                         '<span class="u-num">' + data.object.list[index].fans + '</span>'+
                                         '</p></div></div></div><div class="u-hright">'+
-                                        '<img src="' + data.object.list[index].icon + '" class="u-blur">'+
+                                        '<img src="" class="u-blur">'+
                                         '<a href="/liveroom?live_id=' + data.object.list[index].live_id+'">进入房间</a>'+
                                         '</div><span class="dark">该主播已离开</span></div>'
                                 }
