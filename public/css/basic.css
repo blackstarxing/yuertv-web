@@ -570,76 +570,40 @@ color: #fff !important;
     cursor: default;
 }
 .footer{
-	border-top: 1px solid #616d78;
-	height: 112px;
+	/*height: 112px;*/
+    padding:45px 0;
 	margin-top: 80px;
 	overflow: hidden;
+    background: #1a2129;
+    color:#898c8f;
 }
-.foot{
-    width: 1130px;
-    margin: 0 auto;
-    padding-left: 125px;
+.footer-left li{
+    float:left;
+    margin:0 30px 50px;
 }
-.tel{
-    width:124px;
-    height: 15px;
-    top: 27px;
-    left: 209px;
-    position: relative ;
-    border-right:1px solid #4f4f4f;
-    
+.footer-left li a{
+    color:#898c8f;
 }
-.telIcon span{
-    font-size: 9px;
-    color: #6a6a6a;
-    line-height: 15px;
-    text-align: center;
-    margin-left: 10px;
-    cursor: pointer;
+.footer-left .company{
+    text-indent: 30px;
 }
-.letter{
-    width:284px;
-    height: 16px;
-    top: 12px;
-    left:371px;
-    position: relative ;
-    border-right:1px solid #4f4f4f;
+.footer-left .company a{
+    color:#898c8f;
+    margin-right: 30px;
 }
-.letterIcon span {
-    font-size: 9px;
-    color: #6a6a6a;
-    line-height: 16px;
+.footer-left .company img{
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.footer-qr{
+    float: left;
+    width: 164px;
     text-align: center;
     margin-left: 10px;
 }
-.address{
-    width:380px;
-    height: 16px;
-    top: -3px;
-    left:693px;
-    position: relative ;
-}
-.address span {
-    font-size: 9px;
-    color: #6a6a6a;
-    line-height: 16px;
-    text-align: center;
-    margin-left: 10px;
-     cursor: pointer;
-}
-.contactInformation{
-    /*width:450px;*/
-    height: 16px;
-    top: 12px;
-    left:280px;
-    position: relative ;
-}
-.contactInformation span{
-    font-size: 9px;
-    color: #6a6a6a;
-    line-height: 16px;
-    text-align: center;
-    margin-left: -155px;
+.footer-qr img{
+    width: 100%;
+    margin-top: 5px;
 }
 .m-lst{
     float: left;
