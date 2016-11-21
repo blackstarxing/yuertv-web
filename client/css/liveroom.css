@@ -317,13 +317,12 @@ html,body{
 	display: none;
 }
 .contributionRank{
-	height: 80px;
-	line-height: 80px;
+	height: 76px;
+	line-height: 76px;
 }
 .bank-left{
-	font-size: 16px;
 	color:#333;
-	width: 250px;
+	width: 200px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -333,30 +332,31 @@ html,body{
 	display: inline-block;
 	width: 30px;
 	text-align: center;
-	font-size: 14px;
 }
 .bank-head{
-	width: 56px;
-	height: 57px;
+	width: 46px;
+	height: 47px;
 	margin-top: 12px;
 	margin-right: 5px;
 	float: left;
-	background-size: cover;
 }
 .gift-block .contributionRank:first-child .bank-head{
 	background: url('/images/first.png') top left no-repeat;
+	background-size: 100% 100%;
 }
 .gift-block .contributionRank:nth-child(2) .bank-head{
 	background: url('/images/second.png') top left no-repeat;
+	background-size: 100% 100%;
 }
 .gift-block .contributionRank:nth-child(3) .bank-head{
 	background: url('/images/third.png') top left no-repeat;
+	background-size: 100% 100%;
 }
 .bank-head img{
 	margin-top: 9px;
 	margin-left: 8px;
-	width:46px;
-	height: 47px;
+	width:36px;
+	height: 36px;
 	border-radius: 50%;
 }
 .bank-right span{
