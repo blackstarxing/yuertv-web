@@ -380,7 +380,7 @@ $(function() {
                 });
 // 我要当主播的实名认证
 $(".u-cbottom").on("click",function(){
-    if(""!=='{{info.mobile}}'){
+    if(""!==$("#hiddenField").html()){
         $("#jump").trigger("click");
     }else{
         $("#hostTel").trigger("click");
