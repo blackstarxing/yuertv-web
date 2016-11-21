@@ -584,6 +584,9 @@ color: #fff !important;
 .footer-left li a{
     color:#898c8f;
 }
+.footer-left li a:hover{
+    color:#f36;
+}
 .footer-left .company{
     text-indent: 30px;
 }

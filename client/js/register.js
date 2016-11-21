@@ -84,7 +84,7 @@ $(function() {
         var _current = $(e.currentTarget);
         var _error = _current.next('.error-tip');
         if($nickname.val()){
-            if (strlen($nickname.val())>=6 && strlen($nickname.val())<=20) {
+            if (strlen($nickname.val())>0 && strlen($nickname.val())<=16) {
                 //判断是否有错误提示
                 accoutTip = true;
                 _error.hide();
