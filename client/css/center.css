@@ -626,6 +626,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	margin-bottom:20px;
 }
 .m-layer .lybt .u-btn{
+	display:inline-block;
 	width:100px;
 	height:30px;
 	line-height:30px;
@@ -634,8 +635,11 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	background:#f36;
 	border-radius:20px;
 	text-align:center;
-	margin:0 90px;
+	margin:0 36px;
 	border:none;
+}
+.m-layer .lybt .u-btnCancel{
+	background:#575d65;
 }
 
 /* 显示 */

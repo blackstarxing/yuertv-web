@@ -58,7 +58,9 @@ $(function() {
         $(this).parents(".m-layer").hide();
     });
 // 全文显示
-    $(".u-messtips").off().on("click",function(){if($(this).html()=="全文"){$(this).html('展开')}else{$(this).html('全文')}})
+    $(".u-messtips").off().on("click",function(){
+        $(".u-messagecontent").show();
+    })
  //选中支付宝
     // $(".payimg.initShow").off("click").on("click",function(){$(".payimg .u-checked").hide();
     // $(".initShow").off("click").on("click",function(){$(".payimg .u-checked").hide();
@@ -510,6 +512,11 @@ $(".u-cbottom").on("click",function(){
                         $(this).hide();
                     });
             });
+            $("#btnCan").off().on("click",function(e){
+                    e.preventDefault();
+                    // $("#u-btnCan").hide();
+                    $(this).parents(".m-layer").hide();
+            });
             // 长度校验
             function strlen(str){
                 var len = 0;
@@ -525,7 +532,7 @@ $(".u-cbottom").on("click",function(){
                 } 
                 return len;
             }
-            $(".lybt button").off().on("click",function(){
+            $(".lybt button.u-confirm").off().on("click",function(){
             if(strlen($("#checktips").val())>=1 && strlen($("#checktips").val())<=16){
                     $.ajax({
                         method: "GET",
