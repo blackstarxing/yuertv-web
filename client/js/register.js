@@ -63,12 +63,28 @@ $(function() {
         }
     }); 
 
+    // 长度校验
+    function strlen(str){
+        var len = 0;
+        for (var i=0; i<str.length; i++) { 
+            var c = str.charCodeAt(i); 
+            //单字节加1 
+            if ((c >= 0x0001 && c <= 0x007e) || (0xff60<=c && c<=0xff9f)) { 
+               len++; 
+            } 
+            else { 
+              len+=2; 
+            } 
+        } 
+        return len;
+    }
+
     // 昵称校验
     $nickname.blur(function(e) {
         var _current = $(e.currentTarget);
         var _error = _current.next('.error-tip');
         if($nickname.val()){
-            if (/^[a-zA-Z0-9_]{6,20}$/.test($nickname.val())) {
+            if (strlen($nickname.val())>=6 && strlen($nickname.val())<=20) {
                 //判断是否有错误提示
                 accoutTip = true;
                 _error.hide();
