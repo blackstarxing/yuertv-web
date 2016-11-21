@@ -557,24 +557,23 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 .m-layer{
 	display:none;
 	position:fixed;
-	width:360px;
-	height:200px;
-	top:0;
-	right:0;
-	bottom: 0;
-	left: 0;
-	margin:auto;
-	background:#323a43;
-	border-radius:5px;
-
+	top:0;left:0;
+	width:100%;height:100%;
+	background:rgba(0,0,0,0.6);
+	z-index:999999;
 }
 
 .m-layer .lywrap{
-	position:relative;
+	position:absolute;
+	background:#323a43;
 	width:360px;
 	height:205px;
 	border-radius:5px;
-	margin-left:30px;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	margin:auto;
 }
 .m-layer .lytt{
 	position:relative;
@@ -586,9 +585,16 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	float:left;
 	font-size:14px;
 	color:#fff;
+	margin-left:20px;
+	margin-top:10px;
+}
+.m-layer .lyct{
+	position:relative;
+	text-align:center;
 }
 .m-layer .lyct p{
 	position:relative;
+	text-align:center;
 }
 .m-layer .lyct input{
 	width:300px;
@@ -614,8 +620,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 .m-layer p.u-check{
 	width:300px;
-	margin-left:0px;
-	text-align:center;
+	margin-left:25px;
 	color:#f36;
 	margin-top:5px;
 	margin-bottom:20px;
@@ -720,7 +725,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 .u-hleft .u-focusimg img{
 	display:inline-block;
 	width:68px;
-	height:60px;
+	height:68px;
 	border-radius:50%;
 	padding:20px 25px 20px 30px;
 }
@@ -829,12 +834,16 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	height:350px;
 	margin-bottom:25px;
 }
+.imgprops {
+	overflow: hidden;
+}
 .imgprops .u-props{
 	width:180px;
 	height:150px;
 	background:#2d3741;
 	float:left;
 	margin-right:20px;
+	border-radius:5%;
 }
 .u-props span{
 	display:inline-block;
@@ -851,7 +860,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	height:65px;
 	border:none;
 	border:0px;
-	margin:15px 50px 20px 55px;
+	margin:15px 50px 20px 50px;
 }
 .u-props p{
 	text-align:center;
@@ -1168,7 +1177,8 @@ h3.u-topfish{
 }
 .u-iconwindow img{
 	margin-left:970px;
-	margin-top:40px;
+	margin-top:25px;
+	cursor:pointer;
 }
 .u-wintop{
 	width:895px;
@@ -1184,8 +1194,8 @@ h3.u-topfish{
 }
 .u-ws img{
 	margin-right:20px;
-	width:45px;
-	height:40px;
+	width:35px;
+	height:35px;
 	line-height:40px;
 	display: inline-block;
 }
@@ -1231,9 +1241,15 @@ h3.u-topfish{
 .u-wbtop{
 	width:895px;
 	height:170px;
-	margin:40px 30px 0px 40px;
+	margin:40px 0px 0px 60px;
 }
+.u-wbtop .paycontent{
+	float:left;
+	width:100px;
+	font-size:24px;
+	color:#fff;
 
+}
 .u-wbtop .payimg{
 	float:left;
 	width:225px;
@@ -1260,13 +1276,7 @@ h3.u-topfish{
 .payimg .u-dischecked{
 	display:none;
 }
-.u-wbtop .paycontent{
-	float:left;
-	width:100px;
-	font-size:24px;
-	color:#fff;
 
-}
 .u-wbbottom a{
 	display: inline-block;
 	width:300px;
@@ -1285,17 +1295,9 @@ h3.u-topfish{
 	height:25px;
 	margin:20px 302px 55px 300px;
 }
-.u-graywec,.u-graycard{
-	width:210px;
-	height:100px;
-
+.pay p, .payshow p{
+	display:none;
 }
-.u-graywec p,.u-graycard p{
-	font-size:14px;
-	color:#7d8ea0;
-	text-align:right;
-}
-
 .gray img{
 	-webkit-filter: grayscale(100%);
 	-moz-filter: grayscale(100%);
@@ -1330,11 +1332,23 @@ h3.u-topfish{
 display:block;
 	color:#7d8ea0;
 	text-align:center;
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	filter: grayscale(100%);
+	filter: gray;
 }
 .pay:hover p{
 display:block;
 	color:#7d8ea0;
 	text-align:center;
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	filter: grayscale(100%);
+	filter: gray;
 }
 /*遮罩*/
 .asdfasdfa{
@@ -1347,8 +1361,8 @@ display:block;
 }
  /*我要当主播*/
  .m-mainh{
- 	width:800px;
- 	height:800px;
+ 	width:850px;
+ 	/*height:800px;*/
  	color:#cecfd2;
  }
 .u-top a{
@@ -1518,16 +1532,47 @@ display:block;
 	font-size:14px;
 	color:#fff;
 }
-
-/*我要当主播－－如何直播
-.u-live{
+.changeRed{
+	color:#972e2e;
+}
+/*我要当主播－－如何直播*/
+/*.u-live{
 	margin-top:40px;
 	color:#cecfd2;
+}*/
+.u-liveAndroid,.u-liveIphone{
+	margin:20px 0px;
 }
-
+.u-liveAndroid .u-ltop h1,.u-liveIphone .u-ltop h1{
+	font-size:24px;
+	font-weight:bold;
+	color:#fff;
+	margin:10px 10px;
+}
+.u-liveAndroid img,.Iphone2{
+	display:inline-block;
+	width:50%;
+}
+.u-liveAndroid .Android3Father{
+	width:200px;
+	height:320px;
+	margin-bottom:40px;
+}
+.Android3Father .Android3{
+	display:inline-block;
+	width:100%;
+}
+.IphoneFather img{
+	display:inline-block;
+	height:360px;
+}
+.chengeMargin{
+	padding-bottom:30px;
+}
 /*我要当主播－－提现说明*/
 .u-withdrawal div{
 	margin-top:100px;
+	height:800px;
 	font-size:14px;
 	color:#cecfd2;
 }

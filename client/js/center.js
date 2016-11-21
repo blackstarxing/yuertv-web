@@ -533,7 +533,7 @@ $(".u-cbottom").on("click",function(){
                             }else if(data.code == 3){
                                 alert("昵称只能免费修改一次");//没找到你的弹窗
                             }else{
-                                console.log(data.result);
+                                console.log(data.result);  
                             }
                             window.location.href=window.location.href;
                         },
