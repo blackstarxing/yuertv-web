@@ -531,7 +531,7 @@ $(".u-cbottom").on("click",function(){
                 return len;
             }
             $(".lybt button").off().on("click",function(){
-            if(strlen($("#checktips").val())>=6 && strlen($("#checktips").val())<=20){
+            if(strlen($("#checktips").val())>=1 && strlen($("#checktips").val())<=16){
                     $.ajax({
                         method: "GET",
                         url: "/api/person-center/update-nickname",
