@@ -73,7 +73,7 @@ $(function(){
                 for(var i=0;i<data.object.length;i++){
                     contributionRank+='<div class="contributionRank f-cb">'+
                     '<div class="bank-left f-fl"><span class="rank-index">'+(i+1)+'</span><div class="bank-head"><img src="http://img.wangyuhudong.com/'+data.object[i].icon+'" alt=""></div>'+data.object[i].nickname+'</div>'+
-                    '<div class="bank-right f-fr"><span>'+data.object[i].contribution+'</span>鱼币</div>'+
+                    '<div class="bank-right f-fr"><span>'+data.object[i].yuer_coin+'</span>鱼币</div>'+
                 '</div>';
                 }
                 $('.gift-block').html(contributionRank);
