@@ -1118,6 +1118,7 @@ h3.u-topfish{
 	width:780px;
 	height:180px;
 	margin-left:-15px;
+	overflow:hidden;
 }
 .u-value div{
 	width:135px;
