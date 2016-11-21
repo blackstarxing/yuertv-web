@@ -298,16 +298,16 @@ a#m-changepass,a#m-change,a#m-realname{
 	display:block;
 }
 input::-webkit-input-placeholder { /* WebKit browsers */ 
-    color: #96b4d2; 
+    color: #b6c0cd; 
 } 
 input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
-    color: #96b4d2; 
+    color: #b6c0cd; 
 } 
 input::-moz-placeholder { /* Mozilla Firefox 19+ */ 
-    color: #96b4d2; 
+    color: #b6c0cd; 
 } 
 input:-ms-input-placeholder { /* Internet Explorer 10+ */ 
-    color: #96b4d2; 
+    color: #b6c0cd; 
 } 
 /*手机认证*/
 .m-switcht .u-div{
