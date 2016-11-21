@@ -772,7 +772,7 @@ $("#userboxTelCancel").on("click",function(){
                             var str = "";
                             for (index in data.object.list) {
                                 if(data.object.list[index].state == 1){
-                                    str +='<div class="u-hleft"><div class="u-focusimg">'+
+                                    str +='<div class="u-host"><div class="u-hleft"><div class="u-focusimg">'+
                                         '<img src="http://img.wangyuhudong.com/' + data.object.list[index].icon + '">'+
                                         '</div><div class="u-nickhost"><p class="u-nicksex">'+
                                         '<span>' + data.object.list[index].nickname + '</span>'+
@@ -804,8 +804,8 @@ $("#userboxTelCancel").on("click",function(){
                             $(".u-host").remove();
                             $(".empty").hide();
                             $(".emptyText").hide();
-                            // $(".focushost").html($(".focushost").html()+str);
-                            $(".focushost").html(str);
+                            $(".focushost").html($(".focushost").html()+str);
+                            // $(".focushost").html(str);
                             local.Pagination(local.cur_page,data.object.total,local.cur_pageSize,"follow");
                         }else{
                             $(".u-host").remove();
