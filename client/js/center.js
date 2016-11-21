@@ -608,9 +608,6 @@ $("#userboxTelCancel").on("click",function(){
                     if(($("#numberTelVer").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#numberTelVer").val()))){
                         $("#numberTelVer").removeClass("change-color");
                         $("#telValBounced").hide();
-                        // if('{{info.mobile}}' == $("#numberTelVer").val()){
-                        //     $(".u-numberphoneTelVer").text("手机号已认证");
-                        // }
                         $(".m-mask").show().find(".pic-code img").attr("src","/api/checkCode?phone="+$("#numberTelVer").val() + '&phoneCache=' + new Date());
                     } else {
                          $("#gainnumberTelVer").hide();
@@ -878,7 +875,7 @@ $("#userboxTelCancel").on("click",function(){
                                 $(".focusmessage").show().html(str);
                             }
                             
-                            local.Pagination(local.cur_page,100,local.cur_pageSize,"follow");      
+                            local.Pagination(local.cur_page,data.object.total,local.cur_pageSize,"follow");      
                         }else{
                             $(".messageBox").hide();
                             $(".focusmessage").hide();
