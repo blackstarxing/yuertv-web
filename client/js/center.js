@@ -515,16 +515,24 @@ $(".u-cbottom").on("click",function(){
                         $(this).hide();
                     });
             });
-            $("#checktips").off().on("blur",function(){
-                if(($("#checktips").val().length <= 20) && (/^[a-zA-Z0-9_]{6,20}$/.test($("#checktips").val()))){
-                        
-                    } else {
-                         alert("请输入6-20位的中英文，数字，下划线");
-                    }
-                
-            });
+            // 长度校验
+            function strlen(str){
+                var len = 0;
+                for (var i=0; i<str.length; i++) { 
+                    var c = str.charCodeAt(i); 
+                    //单字节加1 
+                    if ((c >= 0x0001 && c <= 0x007e) || (0xff60<=c && c<=0xff9f)) { 
+                       len++; 
+                    } 
+                    else { 
+                      len+=2; 
+                    } 
+                } 
+                return len;
+            }
             $(".lybt button").off().on("click",function(){
-                $.ajax({
+            if(strlen($("#checktips").val())>=6 && strlen($("#checktips").val())<=20){
+                    $.ajax({
                         method: "GET",
                         url: "/api/person-center/update-nickname",
                         dataType: 'json',
@@ -548,7 +556,9 @@ $(".u-cbottom").on("click",function(){
                         error: function(a, b, c) {
                             console.log("接口出问题啦");
                         }
-                    })
+                    })} else {
+                         alert("请输入6-20位的中英文，数字，下划线");
+                    }
             })
 
 
