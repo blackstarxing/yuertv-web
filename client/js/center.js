@@ -511,9 +511,17 @@ $(".u-cbottom").on("click",function(){
 });
             // 修改昵称
             $("#checktips").off().on("focus",function(){
-                $(this).parent().find("span").each(function(){
+                    $(this).parent().find("span").each(function(){
                         $(this).hide();
-                });
+                    });
+            });
+            $("#checktips").off().on("blur",function(){
+                if(($("#checktips").val().length <= 20) && (/^[a-zA-Z0-9_]{6,20}$/.test($("#checktips").val()))){
+                        
+                    } else {
+                         alert("请输入6-20位的中英文，数字，下划线");
+                    }
+                
             });
             $(".lybt button").off().on("click",function(){
                 $.ajax({
