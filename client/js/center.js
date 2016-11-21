@@ -1,4 +1,3 @@
-// if(obj=='女'){img.src="nv"}else{img.src="nan"}
 $(function() {
     var checked = false;
 // 个人中心的tab切换
@@ -14,7 +13,6 @@ $(function() {
         $(".switch-content").hide().eq($(this).index()).show();
     })
     $(".m-bottom a:eq(0)").trigger("click");
-
 // 我的道具弹出框
     $(".imgprops .u-props").off("click").on("click", function(e) {
         e.preventDefault();
@@ -37,7 +35,7 @@ $(function() {
        
     $("#cancel").off("click").on("click", function() {
             $(".u-topupwindow").hide();
-        })
+    })
 //我要当主播的div之间的切换
     $(".m-mainh .u-top a").on("click", function(e) {
         e.preventDefault();
@@ -57,7 +55,6 @@ $(function() {
          $(".m-layer").show();
     });
     $(".lybt .u-btn").on("click", function() {
-        // $(this).parents(".m-layer").removeClass("z-show");
         $(this).parents(".m-layer").hide();
     });
 // 全文显示
@@ -87,10 +84,9 @@ $(function() {
                     if (data.code == 0) { //data.code的值这个是后端人员规定的。
                         console.log("请求成功");
                         $("#tovalue").attr("href","/alipay?id="+data.object);
-                      $(".u-wn span:eq(1)").text(data.object);
-                      // 隐藏订单号
+                        $(".u-wn span:eq(1)").text(data.object);
+                        // 隐藏订单号
                         $("#hiddenOrder").text("***********"); 
-                      // window.location.href=window.location.href;
                         if (data.object == 1) { //1为重复
                             console.log("这个重复啦");
                         } else if (data.object == 0) {
@@ -113,7 +109,6 @@ $(function() {
         }else{
             alert('请选择鱼币');
         }
-         // window.location.href=window.location.href;
     })
     var local={
         updatePasswordTag_current:false,
@@ -854,7 +849,6 @@ $("#userboxTelCancel").on("click",function(){
                         if(data.object.list.length>0){
                             $(".empty").hide();
                             $(".emptyText").hide();
-                            $("")
                             if(_type == 0){
                                 var str = "";
                                 for (index in data.object.list) {
