@@ -1529,6 +1529,8 @@ display:block;
 }
 .u-ctright div{
 	margin-top:100px;
+	width:800px;
+	height:600px;
 	font-size:14px;
 	color:#fff;
 }
