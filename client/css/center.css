@@ -769,6 +769,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 .u-hright img{
 	display: inline-block;
+	width:10px;
 }
 .u-hright a{
 	display:inline-block;
