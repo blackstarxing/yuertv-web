@@ -1024,6 +1024,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 .u-yuer p .u-messtips{
 	font-size:14px;
 	color:#f36;
+	cursor:pointer;
 }
 
 /*关注消息*/
