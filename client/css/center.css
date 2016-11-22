@@ -1,6 +1,7 @@
 /**{color:#fff;}*/
 body{
 	font-family:'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;
+	background:#141a20;
 }
 input{
 	float: none;
@@ -1116,11 +1117,12 @@ h3.u-topfish{
 }
 .u-value{
 	width:780px;
-	height:180px;
+	height:190px;
 	margin-left:-15px;
 	overflow:hidden;
 }
 .u-value div{
+	box-sizing: border-box;
 	width:135px;
 	height:75px;
 	border:1px solid #1a2a3e;

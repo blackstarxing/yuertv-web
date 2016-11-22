@@ -125,6 +125,7 @@ $(function() {
         cur_pageCallback:null,
         init : function(){
             local.eventBind();
+            local.newsList(0);
         },
         eventBind : function(){ 
         $("#u-current").off().on("blur",function(){
