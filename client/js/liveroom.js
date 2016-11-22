@@ -590,7 +590,7 @@ $(function(){
                 //刷新
                 refresh: function ()
                 {
-                    alert("刷新直播页面");
+                    this.flash.playLive($('.hide-rtmp').html());
                 },
 
                 //发送弹幕，参数：弹幕文字
