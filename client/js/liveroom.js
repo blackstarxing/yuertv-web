@@ -240,6 +240,7 @@ $(function(){
                             id:data.object[i].id,
                             name: data.object[i].name,
                             icon:'http://img.wangyuhudong.com/'+data.object[i].icon,
+                            noframe:data.object[i].no_frame_icon,
                             tips:data.object[i].name+'（<font color=\'#ffff00\'>'+data.object[i].price+'</font>鱼币）<br/>点击送给主播',
                         }
                         giftlist.push(gift);
@@ -348,9 +349,7 @@ $(function(){
                     console.log('正在发送聊天室text消息, id=' + msg.idClient);
             }
 
-            function flashSendCustom(name,id,icon,type){
-                var giftIcon = icon.substr(28);
-                
+            function flashSendCustom(name,id,icon,type){                
                 var parm = {};
                 parm.giftId = id;
                 parm.num = 1;
@@ -378,10 +377,10 @@ $(function(){
                                     data: {
                                         giftName:name,
                                         giftNum:giftNumber,
-                                        giftShowImage:giftIcon,
+                                        giftShowImage:icon,
                                         senderName:nickname,
-                                        giftId:id,
-                                        senderId:live_account
+                                        giftID:id,
+                                        senderID:live_account
                                     }
                                 };
                                 var msg = chatroom.sendCustomMsg({
@@ -433,9 +432,10 @@ $(function(){
                                         id:data.object.gifts[i].id,
                                         name: data.object.gifts[i].name,
                                         icon:'http://img.wangyuhudong.com/'+data.object.gifts[i].icon,
+                                        noframe:data.object.gifts[i].no_frame_icon,
                                         count:data.object.gifts[i].num,
                                     }
-                                    myprop+='<div class="propBox" data-name="'+data.object.gifts[i].name+'" data-id="'+data.object.gifts[i].id+'"><img src="http://img.wangyuhudong.com/'+data.object.gifts[i].icon+'" alt="">'+data.object.gifts[i].name+'<span>'+data.object.gifts[i].num+'</span></div>';
+                                    myprop+='<div class="propBox" data-frame="'+data.object.gifts[i].no_frame_icon+'"data-name="'+data.object.gifts[i].name+'" data-id="'+data.object.gifts[i].id+'"><img src="http://img.wangyuhudong.com/'+data.object.gifts[i].icon+'" alt="">'+data.object.gifts[i].name+'<span>'+data.object.gifts[i].num+'</span></div>';
                                     proplist.push(prop);
                                     liveRoomInterf.flash.updateMyItems(proplist);
                                 }
@@ -443,7 +443,7 @@ $(function(){
                             $('.my-prop').html(myprop);
                             $('.propBox').click(function(){
                                 if(islogin){
-                                    flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),$(this).find('img').attr('src'),1);
+                                    flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),$(this).attr('data-frame'),1);
                                }else{
                                     $('.m-login-wrap').show();
                                } 
@@ -510,7 +510,7 @@ $(function(){
                                                 endingTime(endingtime);
                                             },1000);
                                         }else{
-                                            endingtime = -1;
+                                            endingtime = 1500;
                                         }                                        
                                     }else{
                                         console.log(data.result);
@@ -621,7 +621,7 @@ $(function(){
                 //赠送礼物，参数：道具ID
                 presentGift: function ( item , isMine)
                 {   
-                    console.log(item.icon)
+                    // console.log(item.noframe)
                     //调用后台，若赠送的是购买的道具，请回调 flash.updateCoins，若赠送的是我的道具，请回调 flash.updateMyItems
                     if(islogin){
                         if(isMine){
@@ -630,7 +630,7 @@ $(function(){
                             isMine=0;
                         }
                         // this.flash.showDanmaku(nickname+"送了一个"+name+"给主播", 0xffff00, 100);
-                       flashSendCustom(item.name,item.id,item.icon,isMine); 
+                       flashSendCustom(item.name,item.id,item.noframe,isMine); 
                        
                     }else{
                         this.flash.exitFullscreen();
@@ -734,7 +734,7 @@ $(function(){
 
             $('.gift').click(function(){
                 if(islogin){
-                    flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),$(this).find('img').attr('src'),0); 
+                    flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),$(this).attr('data-frame'),0); 
                }else{
                     $('.m-login-wrap').show();
                }           

@@ -1,0 +1,377 @@
+html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
+body,ul,li,p,h3,h4,h2,em{margin: 0; padding: 0;}
+body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; font-size:62.5%; font-style:normal; max-width: 800px; margin:0 auto; height:100%; color:#9da4ad; background: #141a20; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
+img{border:0; max-width:100%;}
+li{ list-style:none;}
+a{text-decoration: none; color:#9da4ad;}
+h3{font-size: 1.5rem;line-height: 1.25;}
+
+.l{float:left;}.r{float:right;}
+.clearfix{*zoom:1;}.clearfix:after{display:block; content:"$"; height:0; clear:both; overflow:hidden; visibility:hidden;}
+
+.tab{
+	height: 39px;
+	line-height: 39px;
+	padding-bottom: 3px;
+	background: #1c232d;
+	/*border-bottom: 1px solid #e4e4e4;*/
+}
+.tab ul{
+	width: 80%;
+}
+.tab li{
+	float: left;
+	width: 15%;
+	text-align: center;
+	margin:0 5%;
+}
+.tab li a{
+	display: block;
+	box-sizing: border-box;
+	color: #9da4ad;
+	font-size: 13px;
+}
+.tab li.current a{
+	color: #ff3366;
+	border-bottom: 3px solid #ff3366;
+}
+.follow{
+	display: block;
+	width: 14%;
+	height: 26px;
+	line-height: 26px;
+	margin:8px 3%;
+	background: #f36;
+	text-align: center;
+	color:#fff;
+	font-size: 13px;
+	border-radius: 3px;
+}
+.follow img{
+	width: 14px;
+	vertical-align: middle;
+	margin-right: 3px;
+}
+/*评论区域*/
+.m-comments,.rank{padding:0 0 70px;display: none;}
+.m-comments .comment{padding:12px 12px 0;}
+.showItem,.showRank{display: block;}
+.m-comments .comment .head{width:30px;}
+.m-comments .comment .head img{width: 30px;height:30px;background: #ccc;border-radius: 50%;}
+.m-comments .subscribe .head,.subscribe .head{width:49px;margin-right: 9px;}
+.m-comments .subscribe .head img,.subscribe .head img{width: 49px;height:49px;background: #ccc;border-radius: 50%;}
+.m-comments .comment .words{margin-left:40px;font-size: 0.9375rem;border-bottom: 1px solid #e4e4e4;}
+.m-comments .comment:last-child .words{border-bottom: none;}
+.m-comments .comment .words .name{color:#334f8b;margin-bottom: 15px;}
+.m-comments .comment .words .time{color:#9a9a9a;font-size: 0.75rem;margin:8px 0 12px;}
+.m-comments .comment .words .more{background: #1c232d;padding:10px;border-radius: 5px;border: 1px solid #1c232d;position: relative;}
+.m-comments .comment .words .more:before{position: absolute;top:-10px;content: "";width: 0;height: 0;border-left: 8px solid transparent;border-right: 8px solid transparent;border-bottom: 10px solid #1c232d;}
+.m-comments .comment .words .more:after{position: absolute;top:-8px;content: "";width: 0;height: 0;border-left: 8px solid transparent;border-right: 8px solid transparent;border-bottom: 10px solid #1c232d;}
+.m-comments .comment .words .more span{color:#334f8b;}
+
+.m-comments .anchor,
+.m-comments .overlook{
+	padding:0;
+	margin-top: 12px;
+}
+.m-comments .anchor{
+	background: #141a20;
+	/*border-top:1px solid #e4e4e4;
+	border-bottom:1px solid #e4e4e4;*/
+}
+.subscribe{
+	height: 46px;
+	padding:15px;
+	background: #1c232d;
+	/*border-bottom:1px solid #e4e4e4;*/
+}
+.subscribe .name{
+	font-size: 13px;
+	color: #465667;
+}
+.subscribe .head{
+	position: relative;
+}
+.subscribe .head img.sex{
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	right: 0;
+	bottom: 3px;
+}
+.subscribe .name h4{
+	font-size: 15px;
+	color:#9da4ad;
+	margin-bottom: 15px;
+	width: 170px;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+.subscribe .name span.fans-num{
+	color: #ff3366;
+}
+.subscribe .sub{
+	display: inline-block;
+	font-weight: bold;
+	margin-top: 11px;
+	padding:0 8px;
+	border:1px solid #ff3366;
+	border-radius: 2px;
+	color:#ff3366;
+	line-height: 24px;
+	margin-right: 9px;
+}
+.anchor .intro{
+	padding:12px 15px 15px;
+	font-size: 14px;
+	line-height: 23px;
+	color: #9a9a9a;
+	background: #1c232d;
+	margin-top: 10px;
+}
+.anchor .intro h3{
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+.anchor .intro h3 img{
+	width: 15px;
+	vertical-align: middle;
+	margin-right: 8px;
+}
+/*聊天室*/
+#chat{
+	overflow: auto;
+	padding:10px;
+	box-sizing: border-box;
+	line-height: 20px;
+	font-size: 13px;
+}
+#chat .gift{
+	color:#ffff00;
+}
+#chat .combo{
+	font-size: 14px;
+	margin-left: 10px;
+	font-style: italic;
+	color:#f60;
+	font-weight: bolder;
+}
+#chat .combo i{
+	display: inline-block;
+	background: url(/images/combo.png) center center no-repeat;
+	background-size: 100%;
+	width:42.5px;
+	height: 20px;
+	vertical-align: bottom;
+}
+#chat .fromNick{
+	color:#3ff;
+}
+#chat label{
+	display: inline-block;
+	height: 13px;
+	line-height: 13px;
+	color:#fff;
+	background: #fd3364;
+	padding:1px 3px;
+	border-radius: 3px;
+}
+/*排行榜*/
+.contribute-tab{
+	width: 75%;
+	margin:18px auto;
+}
+.contribute-tab li{
+	float: left;
+	width: 50%;
+	border:1px solid #f36;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	box-sizing: border-box;
+	font-size: 15px;
+	color:#f36;
+}
+.contribute-tab li:first-child{
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px; 
+}
+.contribute-tab li:nth-child(2){
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px; 
+}
+.contribute-tab .current{
+	background: #f36;
+	color:#fff;
+}
+.contributionRank{
+	height: 76px;
+	background: #1a2129;
+	color:#ccc;
+	margin-bottom: 11px;
+	font-size: 15px
+}
+.bank-left{
+	width: 200px;
+	line-height: 76px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.rank-index{
+	float: left;
+	display: inline-block;
+	width: 30px;
+	text-align: center;
+}
+.bank-head{
+	width: 46px;
+	height: 47px;
+	margin-top: 12px;
+	margin-right: 5px;
+	float: left;
+}
+.contributionRank:first-child .bank-head{
+	background: url('/images/first2.png') top left no-repeat;
+	background-size: 20px 20px;
+}
+.contributionRank:first-child img{
+	border:1px solid #ff0;
+}
+.contributionRank:nth-child(2) .bank-head{
+	background: url('/images/second.png') top left no-repeat;
+	background-size: 20px 20px;
+}
+.contributionRank:nth-child(2) img{
+	border:1px solid #c6e3f0;
+}
+.contributionRank:nth-child(3) .bank-head{
+	background: url('/images/third.png') top left no-repeat;
+	background-size: 20px 20px;
+}
+.contributionRank:nth-child(3) img{
+	border:1px solid #d2876c;
+}
+.bank-head img{
+	margin-top: 9px;
+	margin-left: 8px;
+	width:36px;
+	height: 36px;
+	border-radius: 50%;
+}
+.bank-left .rank-sex{
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url(/images/rank_female.png) center center no-repeat;
+	background-size: contain;
+	vertical-align: middle;
+	margin-left: 10px;
+}
+.bank-left .rank-male{
+	background: url(/images/rank_male.png) center center no-repeat;
+	background-size: contain;
+}
+.bank-right{
+	position: relative;
+	height: 100%;
+	width: 30%;
+}
+.bank-right span{
+	color:#f36;
+	/*display: inline-block;*/
+	margin-right: 10px;
+}
+.rank-detail{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: auto;
+    display: table;
+    text-align: center;
+}
+.rank-detail p{
+	margin:10px 0;
+}
+.rank-detail span{
+	color: #f36;
+}
+.rank-detail .yuer-coin{
+	color: #ff0;
+}
+/*播放*/
+.videolist a{
+	display: block;
+	padding:12px;
+	background: #141a20;
+	/*border-bottom: 1px solid #e4e4e4;*/
+}
+.videolist img{
+	width: 140px;
+	height: 78px;
+	border-radius: 4px;
+	margin-right: 12px;
+}
+.videolist h3{
+	font-size: 14px;
+	line-height: 25px;
+	margin-bottom: 35px;
+	color:#9da4ad;
+}
+.videolist label{
+	display: inline-block;
+	color:#9a9a9a;
+	width: 70px;
+}
+.videolist i{
+	display: inline-block;
+	vertical-align: bottom;
+	width: 15px;
+	height: 15px;
+	margin-right: 12px;
+	background: url(/images/video.png) no-repeat;
+	background-size: 100%;
+}
+.videolist i.discuss{
+	background: url(/images/comment.png) no-repeat;
+	background-size: 100%;
+}
+.empty{
+	text-align: center;
+}
+.empty img{
+	width: 50%;
+	margin-top: 25px;
+	margin-bottom: 20px;
+}
+/*下载*/
+.download{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	max-width: 800px;
+	height: 64px;
+	padding:0 10px;
+	background: #1c232d;
+	box-sizing: border-box;
+}
+.download img{
+	height: 100%;
+}
+.download .download-btn{
+	width: 80px;
+	height: 34px;
+	margin:15px 0;
+	text-align: center;
+	line-height: 34px;
+	border-radius: 5px;
+	vertical-align: middle;
+	font-size: 1rem;
+	color:#fff;
+	background: #ff3366;
+	font-family: Arial;
+}

@@ -384,4 +384,32 @@ router.get('/allvideo', function(req, res, next) {
     });
 });
 
+router.get('/liveShare', function(req, res, next) {
+    var id = req.url.split('=')[1];
+    Thenjs.parallel([function(cont) {
+        request({
+            uri: 'http://172.16.2.62:8777/live/detail?id='+id,
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+            },
+        }, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        res.render('liveShare', {
+            title: JSON.parse(result[0]).object.info.title,
+            result: JSON.parse(result[0]).object,
+            id:id
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+});
+
 module.exports = router;

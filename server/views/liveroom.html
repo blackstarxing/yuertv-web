@@ -68,7 +68,7 @@
                     <a href="" class="givemoney">充值</a>
                 </div>
                 {% for gift in gift %}
-                    <div class="gift" data-name="{{gift.name}}" data-id="{{gift.id}}">
+                    <div class="gift" data-name="{{gift.name}}" data-id="{{gift.id}}" data-frame="{{gift.no_frame_icon}}">
                        <img src="http://img.wangyuhudong.com/{{gift.icon}}" alt=""> 
                        <div class="gift-hover">
                            {{gift.name}}(<span>{{gift.price}}</span>鱼币)<br>点击送给主播
@@ -115,9 +115,9 @@
                             <div class="anchor-head">
                                 <img src="http://img.wangyuhudong.com/{{live.user_icon}}" alt="" class="head-icon">
                                 {% if live.sex==0 %}
-                                    <img src="/images/female.png" alt="" class="sex">
-                                {% else %}
                                     <img src="/images/male.png" alt="" class="sex">
+                                {% else %}
+                                    <img src="/images/female.png" alt="" class="sex">
                                 {% endif %}
                             </div>
                             <div class="anchor-info">

@@ -7,7 +7,7 @@
 {% block content %}
     <div class="m-common">
         <div class="comWidth f-cb">
-            <div class="search-content" style="display: none;">{{content | safe }}</div>
+            <div class="search-content" style="display: none;" data-last="{{result.isLast}}">{{content | safe }}</div>
             <div class="searchPage">
                 <input type="text" class="search-key" value="{{content | safe }}"><button class="search-btn">搜索</button>
             </div>
