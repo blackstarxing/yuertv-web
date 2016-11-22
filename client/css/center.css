@@ -221,7 +221,7 @@ input{
 	font-size:18px;
 	text-align:center;
 	border-radius:5px;
-	margin:50px 0px 90px 110px;
+	margin:50px 0px 165px 110px;
 }
 a#m-changepass,a#m-change,a#m-realname{
 	display:inline-block;
@@ -553,6 +553,9 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 .m-switchi .u-msimg{
 	width:100%;
+}
+.m-switchi img{
+	height:230px;
 }
 /* 操作型弹出浮层-默认居中 */
 .m-layer{
@@ -1100,7 +1103,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 /*我要充值*/
 .g-top-up{
 	width:785px;
-	height:455px;
+	height:506px;
 	margin-left:65px;
 	margin-top:80px;
 }

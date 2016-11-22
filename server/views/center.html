@@ -21,7 +21,7 @@
  					<a href=""><i class="iconfont icon-prop"></i>我的道具</a>
  				</li>
  				<li data-type="3" id="mymessageclick">					
- 					<a href=""><i class="iconfont icon-message"></i>我的消息</a>
+ 					<a href="" id="myMessageBox"><i class="iconfont icon-message"></i>我的消息</a>
  				</li>
  				<li data-type="4"> 					
  					<a href=""><i class="iconfont icon-pay"></i>我要充值</a>
@@ -106,7 +106,7 @@
   			{% endif %}
 	  			
   			</div>
-  			<div class="m-switchi switch-content">
+  			<div class="m-switchi switch-content switch-conCard">
   				<div class="u-mscaption"><h3>实名认证通道正在开通中，想要成为主播看下面：</h3></div>
   				<div>
   					<ul>
@@ -316,8 +316,8 @@
 	<div class="m-message rightswitch">
 		<div class="m-mainm">
 			<div class="u-m-top">
-				<a href="">系统消息</a>
-				<a href="">关注消息</a>
+				<a href="" id="initMessage">系统消息</a>
+				<a href="" id="initFocusMessage">关注消息</a>
 			</div>
 			<div class="u-systemmessage mcurrent">
 				<div class="messageBox">
@@ -348,24 +348,24 @@
 			
 			<div class="u-focusmessage mcurrent">
 				<div class="focusmessage">
-				<img src="/images/empty.png" class="empty" alt="暂无任何关注消息" title="暂无任何关注消息">
-				<p class="emptyText">当前没有关注消息哦！</p>
-					<!-- <div class="u-focusmess">
-						<p class="u-focusnc">
-							<span class="u-foucscolor">我在那里找到你
-								
+					<img src="/images/empty.png" class="empty" alt="暂无任何关注消息" title="暂无任何关注消息">
+					<p class="emptyText">当前没有关注消息哦！</p>
+						<!-- <div class="u-focusmess">
+							<p class="u-focusnc">
+								<span class="u-foucscolor">我在那里找到你
+									
+								</span>
+								<span class="u-focusc">关注了你</span>
+							</p>
+							<span class="u-focustime">
+								2016-10-13  18：00
 							</span>
-							<span class="u-focusc">关注了你</span>
-						</p>
-						<span class="u-focustime">
-							2016-10-13  18：00
-						</span>
-					</div>
-					<div class="u-messnickname">
-						<img src="/images/ico7.png"><img src="" class="messimgsex">
-						<p class="u-mkname">我从哪里找到你</p>
-						<p><span>ID：</span><span>1987272</span></p>
-					</div> -->
+						</div>
+						<div class="u-messnickname">
+							<img src="/images/ico7.png"><img src="" class="messimgsex">
+							<p class="u-mkname">我从哪里找到你</p>
+							<p><span>ID：</span><span>1987272</span></p>
+						</div> -->
 				</div>
 				<div class="M-box">
 					<a href="javascript:;" class="prevBtn">上一页</a>
@@ -382,7 +382,7 @@
 			<div class="u-topup">
 				<h3 href="" class="u-topfish">充值鱼币</h3>
 			</div>
-			<div class="u-value">
+			<div class="u-value f-cb">
 			  {% for valuelist in valuelist%}
                 <div data-id="{{valuelist.id}}">
                    <span class="u-vfish">{{valuelist.yuer_amount}}鱼币</span>

@@ -29,6 +29,11 @@ $(function() {
             $(".mcurrent").hide().eq($(this).index()).show();
         })
     $(".m-mainm a:eq(0)").trigger("click");
+// 我的消息页面的初始化
+ $("#myMessageBox").on("click",function(e){
+    e.preventDefault();
+    $("#initMessage").trigger("click");
+});
 //我的消息－－关注消息的划入事件
     $(".u-foucscolor").on("mouseenter", function() { $(".u-messnickname").show().css("top", $(this).position().top+'2px') })
     $(".u-foucscolor").on("mouseleave", function() { $(".u-messnickname").hide() })
@@ -50,6 +55,8 @@ $(function() {
         $(".switchrepeat").hide().eq($(this).index()).show();
     })
     $(".u-certification .u-ctop a:eq(0)").trigger("click");
+
+
 // 修改昵称弹出框
     $("#nickname").on("click", function() {
          $(".m-layer").show();
@@ -123,9 +130,12 @@ $(function() {
         cur_maxPage:1,
         cur_total:0,
         cur_pageCallback:null,
+        cur_type:0,
         init : function(){
             local.eventBind();
-            local.newsList(0);
+            // local.cur_type=0;
+            // local.newsList();
+            // local.newsList(0);
         },
         eventBind : function(){ 
         $("#u-current").off().on("blur",function(){
@@ -708,7 +718,7 @@ $("#userboxTelCancel").on("click",function(){
                 $("#verifyTelVer").on("blur",function(){
                     $("#verifyTelVer").removeClass("change-color");
                 });
-            // 分页－－我的关注，我的消息
+// 分页－－我的关注，我的消息
             $(".focushost a").on("click",function(e){
                 e.preventDefault();
             })
@@ -716,8 +726,10 @@ $("#userboxTelCancel").on("click",function(){
                 event.preventDefault();
                 local.cur_page--;
                 if(local.cur_pageCallback == "news"){
+                    local.cur_type=0;
                     local.newsList();
                 }else{
+                    local.cur_type=0;
                     local.followList();
                 }
             })
@@ -725,8 +737,10 @@ $("#userboxTelCancel").on("click",function(){
                 event.preventDefault();
                 local.cur_page++;
                 if(local.cur_pageCallback == "news"){
+                    local.cur_type=0;
                     local.newsList();
                 }else{
+                    local.cur_type=0;
                     local.followList();
                 }
             })
@@ -737,17 +751,20 @@ $("#userboxTelCancel").on("click",function(){
             $("#mymessageclick").on("click",function(e){
                 e.preventDefault();
                 local.Pagination(1,0,5,"news");
-                local.newsList(1);
+                local.cur_type=0;
+                // local.newsList();
             });
             $(".u-m-top a:eq(0)").on("click",function(e){
                 e.preventDefault();
                 local.Pagination(1,0,5,"news");
-                local.newsList(0);
+                local.cur_type=0;
+                local.newsList();
             })
             $(".u-m-top a:eq(1)").on("click",function(e){
                 e.preventDefault();
                 local.Pagination(1,0,5,"news");
-                local.newsList(1);
+                local.cur_type=1;
+                local.newsList();
             })
         },
         Pagination:function(_page,_total,_pageSize,callback){
@@ -823,7 +840,6 @@ $("#userboxTelCancel").on("click",function(){
                             $(".empty").hide();
                             $(".emptyText").hide();
                             $(".focushost").html($(".focushost").html()+str);
-                            // $(".focushost").html(str);
                             local.Pagination(local.cur_page,data.object.total,local.cur_pageSize,"follow");
                         }else{
                             $(".u-host").remove();
@@ -839,7 +855,7 @@ $("#userboxTelCancel").on("click",function(){
                 }
             })
         },
-        newsList:function(_type){
+        newsList:function(){
             $.ajax({
                 method: "GET",
                 url: "/api/person-center/my-msg",
@@ -847,14 +863,15 @@ $("#userboxTelCancel").on("click",function(){
                 data: {
                     page: local.cur_page,
                     pageSize: local.cur_pageSize,
-                    type:_type
+                    type:local.cur_type,
                 }, 
                 success: function(data) {
                     if (data.code == 0) {
                         if(data.object.list.length>0){
+                            // console.log(data.object.list.length);
                             $(".empty").hide();
                             $(".emptyText").hide();
-                            if(_type == 0){
+                            if(local.cur_type == 0){
                                 var str = "";
                                 for (index in data.object.list) {
                                     str+='<div class="u-message"><div class="u-msystem">'+
@@ -867,7 +884,8 @@ $("#userboxTelCancel").on("click",function(){
                                         '<span class="u-messtips" id="messshow">全文&gt;&gt;</span>'+
                                         '</p></div></div>';
                                 }
-                                $(".messageBox").show().html(str);
+                                $(".u-message").remove();
+                                $(".messageBox").html($(".messageBox").html()+str).show();
                             }else{
                                 var str = "";
                                 for (index in data.object.list) {
@@ -880,13 +898,17 @@ $("#userboxTelCancel").on("click",function(){
                                         '<p class="u-mkname">'+data.object.list[index].nickname+'</p>'+
                                         '<p><span>ID：</span><span>'+data.object.list[index].user_id+'</span></p></div>';
                                 }
-                                $(".focusmessage").show().html(str);
+                                $(".u-focusmess").remove();
+                                $(".focusmessage").show().html($(".focusmessage").html()+str);
                             }
                             
                             local.Pagination(local.cur_page,data.object.total,local.cur_pageSize,"follow");      
                         }else{
+                            console.log(local.cur_type);
+                            // $(".u-message").remove();
+                            // $(".u-focusmess").remove();
                             $(".messageBox").hide();
-                            $(".focusmessage").hide();
+                            // $(".focusmessage").hide();
                             $(".empty").show();
                             $(".emptyText").show();
                         }             
