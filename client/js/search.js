@@ -54,6 +54,9 @@ $(function(){
     var stop=true; 
     var page = 1;
     var nomore = false;
+    if($('.search-content').attr('data-last')==1){
+        nomore = true;
+    }
     $(window).scroll(function(){ 
         totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop()); 
         if($(document).height() <= totalheight){ 
@@ -61,11 +64,11 @@ $(function(){
                 stop=false; 
                 page+=1
                 var parm={};
-                parm.param = $('.param').text();
+                parm.param = $('.search-content').text();
                 parm.page = page;
                 parm.pageSize = 30;
                 $.ajax({
-                    url: '/api/search/livesearch-container',
+                    url: '/api/search/live',
                     data: parm,
                     type: 'get',
                     dataType: 'json',
