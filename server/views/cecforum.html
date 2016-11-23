@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />
+	<title>CEC</title>
+	<script src="/jquery.js"></script>
+	<script src="/activity/build/mediaelement-and-player.min.js"></script>
+	<link rel="stylesheet" href="/activity/build/mediaelementplayer.min.css" />
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		html,body{
+			max-width: 800px;
+			margin:0 auto;
+			width: 100%;
+			overflow: hidden;
+			font-family: '微软雅黑';
+		}
+		.g-bd img{
+			width: 100%;
+			vertical-align: top;
+		}
+		.video{
+			position: relative;
+		}
+		.video .videoWindow{
+			position: absolute;
+			top:0;
+			width: 100%;
+		}
+		.hideright{
+			margin-left: 100%;
+			width: 100%;
+		}
+		.video .videoBox{
+			position: absolute;
+			top: 0;
+			right: 5.47%;
+			width: 70.7%;
+		}
+		.change{
+			position: absolute;
+			right: 0;
+			bottom: -80px;
+		}
+		.change img{
+			width: 64%;
+			float:right;
+		}
+		.change .arrow{
+			width: 4%;
+			position: absolute;
+			right: 54.5%;
+			top:10px;
+			opacity: 1;
+		}
+		.showleft .videoBox{
+			left: 5.47%;
+		}
+		.showleft .change img{
+			width: 64%;
+			float:left;
+		}
+		.showleft .change .arrow{
+			width: 4%;
+			left: 54.5%;
+		}
+		.stepright{
+			display: none;
+		}
+		.videoBox .mask{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,0.8);
+			/*直播开始后去掉注释*/
+			display: none;
+		}
+		.videoBox .mask h3{
+			font-size: 14px;
+			color: #fff;
+			text-align: center;
+			margin-top: 18%;
+		}
+		.btn-group{
+			width: 70%;
+			margin:0 auto;
+		}
+		.btn-group a{
+			text-decoration: none;
+			display: inline-block;
+			width: 45%;
+			height: 30px;
+			line-height: 28px;
+			background: rgba(255,51,102,0.1);
+			border:1px solid #f36;
+			border-radius: 6px;
+			color:#fff;
+			text-align: center;
+			font-size: 12px;
+			box-sizing: border-box;
+			margin-top: 8%;
+		}
+		.btn-group .return{
+			margin-left: 10%;
+		}
+	</style>
+</head>
+<body>
+	<div class="g-bd">
+		<img src="/activity/images/cec_1.jpg" alt="">
+		<img src="/activity/images/cec_2.jpg" alt="">
+		<div class="video">
+			<img src="/activity/images/star.jpg" alt="">
+			<div class="videoWindow showleft">
+				<img src="/activity/images/video_2.png" alt="">
+				<div class="videoBox">
+					<video width="100%" height="100%" id="player1" poster="" controls="" autoplay="" style="margin:0;"><source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_test_7.m3u8" /></video>
+					<div class="mask">
+						<h3>下载娱儿TV观看更多精彩直播</h3>
+						<div class="btn-group">
+							<a href="http://yuerapi.wangyuhudong.com/v4/live/download" class="enter">下载娱儿TV</a><a href="" class="return">继续观看</a>
+						</div>				
+					</div>
+				</div>				
+				<div class="change left">
+					<img src="/activity/images/arrow_2.png" alt="" class="arrow right">
+					<img src="/activity/images/button_2.png" alt="">
+				</div>
+			</div>
+			<div class="videoWindow hideright">
+				<img src="/activity/images/video_1.png" alt="">
+				<div class="videoBox">
+					<video width="100%" height="100%" id="player2" poster="" controls="" autoplay="" style="margin:0;"><source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_test_3845603.m3u8" /></video>
+					<div class="mask">
+						<h3>下载娱儿TV观看更多精彩直播</h3>
+						<div class="btn-group">
+							<a href="http://yuerapi.wangyuhudong.com/v4/live/download" class="enter">下载娱儿TV</a><a href="" class="return">继续观看</a>
+						</div>				
+					</div>
+				</div>				
+				<div class="change right">
+					<img src="/activity/images/arrow_1.png" alt="" class="arrow">
+					<img src="/activity/images/button_1.png" alt="">
+				</div>
+			</div>
+		</div>
+		<div class="step stepleft">
+			<img src="/activity/images/cec_5.jpg" alt="">
+			<img src="/activity/images/cec_6.jpg" alt="">
+			<img src="/activity/images/cec_7.jpg" alt="">
+		</div>
+		<div class="step stepright">
+			<img src="/activity/images/cec_3.jpg" alt="">
+			<img src="/activity/images/cec_4.jpg" alt="">
+		</div>
+	</div>
+	<script>
+		$('audio,video').mediaelementplayer({
+			features: ['playpause','volume','progress','fullscreen'],
+		});
+		var client = $(window).width();
+		var one = document.getElementById("player1"); 
+		var two = document.getElementById("player2"); 
+
+		if((navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i))) {
+			// 判断系统版本号是否大于 4
+			if(navigator.userAgent.match(/OS [5-9]_\d[_\d]* like Mac OS X/i)){
+				$('#player1').attr('webkit-playsinline',true);
+				$('#player2').attr('webkit-playsinline',true);
+			}else{
+				$('#player1').attr('playsinline',true);
+				$('#player2').attr('playsinline',true);
+			}		
+		}else if(navigator.userAgent.match(/android/i)){
+			$('#player1').attr('webkit-playsinline',true);
+			$('#player2').attr('webkit-playsinline',true);
+		}
+
+		if(client>800){
+			client = 800;
+		}
+		$('.videoBox').css({'height':client*0.395+'px','top':client*0.105+'px'});
+
+		var ua = navigator.userAgent.toLowerCase(); 
+		if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+			$('.mask h3').text('进入直播间观看直播');
+			$('.enter').attr('href','yuertvopen://live?objId=21').text('进入直播间');
+		}
+
+		setInterval(function(){
+			$('.arrow').fadeOut(500).delay(200).fadeIn(500);	
+		},1200);
+
+		var second = 0;
+		function showMask(val) { 
+            if (second < 180) { 
+                second++;
+                setTimeout(function() { 
+	                showMask(val);
+	            },1000);
+            } else {
+                $('.mask').show();                   
+            }
+        } 
+        showMask(second); 
+        $('.return').click(function(e){
+        	e.preventDefault();
+        	$('.mask').hide();
+        	second = 0;
+        	showMask(second); 
+        })
+
+		$('.left').click(function(){
+			$('.showleft').animate({left:'-100%'},1000);		
+			$('.hideright').animate({marginLeft:'0'},1000);	
+			$('.stepleft').hide();
+			$('.stepright').show();
+			one.pause();
+			two.play();
+		})
+		$('.right').click(function(){
+			$('.showleft').animate({left:0},1000);		
+			$('.hideright').animate({marginLeft:'100%'},1000);	
+			$('.stepleft').show();
+			$('.stepright').hide();
+			one.play();
+			two.pause();
+		})
+
+	</script>
+</body>
+</html>

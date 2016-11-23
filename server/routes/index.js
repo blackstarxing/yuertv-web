@@ -412,4 +412,16 @@ router.get('/liveShare', function(req, res, next) {
     });
 });
 
+router.get('/cecgame', function(req, res, next) {
+    res.render('cecgame', { title: "CEC" });
+});
+
+router.get('/cecforum', function(req, res, next) {
+    res.render('cecforum', { title: "CEC" });
+});
+
+router.get('/down', function(req, res, next) {
+    res.render('down', { title: "娱儿TV--领跑移动电竞的直播平台" });
+});
+
 module.exports = router;

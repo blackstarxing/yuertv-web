@@ -7,13 +7,13 @@
     <meta content="telephone=no" name="format-detection" />
 	<title>{{title}}</title>
 	<script src="/jquery.js"></script>		
-	<!-- <script src="/images/mediaelement-and-player.min.js"></script>
-	<link rel="stylesheet" href="/images/mediaelementplayer.min.css" /> -->
+	<script src="/activity/build/mediaelement-and-player.min.js"></script>
+	<link rel="stylesheet" href="/activity/build/mediaelementplayer.min.css" />
 	<link rel="stylesheet" href="css/share.css" />
 </head>
 <body>
 	<div class="">
-		<video width="100%" height="203" id="player1" poster="{{result.info.icon}}" controls="controls" autoplay="" playsinline>    
+		<video width="100%" height="203" id="player1" poster="{{result.info.icon}}" controls="controls" autoplay="" webkit-playsinline playsinline>    
 		    <!-- Pseudo HTML5 -->
 		    <source type="application/x-mpegURL" src="{{result.info.rtmp}}" />
 		</video>
@@ -45,7 +45,11 @@
 			</div>
 			<div class="intro">
 				<h3><img src="/images/trumpet.png" alt="">直播公告</h3>
-				{{result.info.introduce}}
+				{% if result.info.introduce %}
+                    {{result.info.introduce}}
+                {% else %}
+                    主播很懒，什么都没留下
+                {% endif %}
 			</div>
 		</div>
 	</div>
@@ -100,9 +104,9 @@
 <script src="/Web_SDK_Base_v2.8.0.js"></script>
 <script src="/Web_SDK_Chatroom_v2.8.0.js"></script>
 <script>
-// $('audio,video').mediaelementplayer({
-// 	features: ['playpause','progress','current','tracks','volume','fullscreen'],
-// });
+$('audio,video').mediaelementplayer({
+	features: ['playpause','progress','current','tracks','volume','fullscreen'],
+});
 //如果方向错误 
 // $('audio,video').mediaelementplayer({
 // 	features: ['playpause','progress','current','tracks','volume'],
@@ -112,7 +116,7 @@
 var hls = $('source').attr('src').replace(/rtmp:/, "http:").replace(/rtmp/, "hls")+'.m3u8';
 $('source').attr('src',hls);
 
-$('.tab').click(function(e){
+$('.tab ul').click(function(e){
 	e.preventDefault();
 	var tabs=$('.tab li');
 	var items=$('.m-comments');
@@ -271,7 +275,7 @@ function enterLiveroom(){
 				$('#chat').append("<div>"+host+"<span class='fromNick'>"+msgs[i].fromNick+":&nbsp;&nbsp;</span>"+msgs[i].text+"<div>");   		
 	    	}else if(msgs[i].text && !msgs[i].fromNick && msgs[i].custom){
 	            var custom=JSON.parse(msgs[i].custom);
-	            $('#chat').append("<div><span class='fromNick'>"+custom.fromNick+":&nbsp;&nbsp;</span>"+msgs[i].text+"</div>");        
+	            $('#chat').append("<div><span class='fromNick'>"+custom.nickname+":&nbsp;&nbsp;</span>"+msgs[i].text+"</div>");        
 	        }else if(msgs[i].flow=="in" && !msgs[i].text && msgs[i].attach.fromNick && msgs[i].attach.type=="memberEnter"){
 	    		$('#chat').append("<div>欢迎用户"+msgs[i].attach.fromNick+"进入直播间");
 	    	}else if(msgs[i].flow=="in" && msgs[i].text && msgs[i].custom =="" ){
