@@ -133,9 +133,8 @@ $(function() {
         cur_type:0,
         init : function(){
             local.eventBind();
-            // local.cur_type=0;
-            // local.newsList();
-            // local.newsList(0);
+            local.cur_type=0;
+            local.newsList();
         },
         eventBind : function(){ 
         $("#u-current").off().on("blur",function(){
@@ -904,7 +903,7 @@ $("#userboxTelCancel").on("click",function(){
                             
                             local.Pagination(local.cur_page,data.object.total,local.cur_pageSize,"follow");      
                         }else{
-                            console.log(local.cur_type);
+                            // console.log(local.cur_type);
                             // $(".u-message").remove();
                             // $(".u-focusmess").remove();
                             $(".messageBox").hide();
