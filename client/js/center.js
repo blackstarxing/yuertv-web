@@ -137,6 +137,21 @@ $(function() {
             local.newsList();
         },
         eventBind : function(){ 
+// cookie
+function delCookie($name){    
+        var myDate=new Date();    
+        myDate.setTime(-1000);//设置时间    
+        document.cookie=$name+"=''; expires="+myDate.toGMTString();                
+} 
+// 登出
+ $('.logout').click(function(e){
+        e.preventDefault();
+        delCookie('yuer_userId');
+        delCookie('yuer_token');
+        localStorage.clear();
+        window.location.href = "/";
+ })
+// 我的资料－修改密码
         $("#u-current").off().on("blur",function(){
                 local.updatePasswordTag_current=false;
                 $("#u-current").parent().find("span").each(function(){
@@ -204,10 +219,6 @@ $(function() {
                     $("#u-confirm").trigger("blur")
                 }
             });
-
-
-
-
             $("#u-confirm").off().on("blur",function(){
                local.updatePasswordTag_confirm=false;
                if($(this).val() === $("#u-new").val() && $(this).val()!=="" && $("#u-new").val()){
@@ -261,7 +272,7 @@ $(function() {
                 $(this).hide();
                 window.location.href = window.location.href;
             });
-// 手机认证
+//我的资料－－－ 手机认证
             function settime(time){
                 var copySecond=$("#copySecond");
                 if(time>0){
@@ -516,7 +527,7 @@ $(".u-cbottom").on("click",function(){
                 });
     }
 });
-            // 修改昵称
+// 修改昵称
             $("#checktips").off().on("focus",function(){
                     $(this).parent().find("span").each(function(){
                         $(this).hide();
