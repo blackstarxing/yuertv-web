@@ -213,11 +213,16 @@ h3{font-size: 1.5rem;line-height: 1.25;}
 	font-size: 15px
 }
 .bank-left{
-	width: 200px;
+	line-height: 76px;
+}
+.rank-name{
+	display: inline-block;
+	width: 100px;
 	line-height: 76px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	float:left;
 }
 .rank-index{
 	float: left;
