@@ -17,10 +17,6 @@ input{
 .g-container input{
 	text-indent: 12px;
 }
-.M-box{
-	margin-top:50px;
-	margin-left:500;
-}
 .g-main{
 	width:1200px;
 	padding-top: 100px;
@@ -934,24 +930,24 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 /*我的关注，我的消息(系统消息和关注消息)*/
 .M-box{
 	position: relative;
-	width:240px;
-	height:35px;
-	line-height:40px;
-	margin:100px 0px 60px 500px;
+	width:160px;
+	height:25px;
+	line-height:25px;
+	margin:100px 0px 60px 560px;
 	padding:5px;
-	font-size:20px;
+	font-size:14px;
 }
 .M-box span.totalPage{
 	margin:0 5px;
 	display:inline-block;
-	width:70px;
+	width:40px;
 	text-align:center;
 	background:#f36;
 	color:#fff;
 }
 .M-box a{
 	display:inline-block;
-	width:70px;
+	width:50px;
 	text-align:center;
 	background:#f36;
 	color:#fff;
