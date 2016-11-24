@@ -137,20 +137,7 @@ $(function() {
             local.newsList();
         },
         eventBind : function(){ 
-// cookie
-function delCookie($name){    
-        var myDate=new Date();    
-        myDate.setTime(-1000);//设置时间    
-        document.cookie=$name+"=''; expires="+myDate.toGMTString();                
-} 
-// 登出
- $('.logout').click(function(e){
-        e.preventDefault();
-        delCookie('yuer_userId');
-        delCookie('yuer_token');
-        localStorage.clear();
-        window.location.href = "/";
- })
+
 // 我的资料－修改密码
         $("#u-current").off().on("blur",function(){
                 local.updatePasswordTag_current=false;
@@ -590,7 +577,9 @@ $("#hiddenField").text($("#hiddenField").text().substr(0,3)+"****"+$("#hiddenFie
 $("#hiddenFields").text($("#hiddenFields").text().substr(0,3)+"****"+$("#hiddenFields").text().substr(7,4)) 
 // 我要当直播的a的滑块
 $("#biubiubiu").css({width:"60px",left:0,position:"absolute",height:"3px",background:"#cecfd2"})
-$("#u-ctop a").on("click",function(e){$("#biubiubiu").animate({left:$(this).position().left},300)})
+$("#u-ctop a").on("click",function(e){
+    $("#biubiubiu").animate({left:$(this).position().left},300)
+})
 // 修改手机号码弹框
 $("#modifyTel").on("click",function(e){
     e.preventDefault();
@@ -933,6 +922,20 @@ $("#userboxTelCancel").on("click",function(){
         }
     };
     local.init();
+    // cookie
+function delCookie($name){    
+        var myDate=new Date();    
+        myDate.setTime(-1000);//设置时间    
+        document.cookie=$name+"=''; expires="+myDate.toGMTString();                
+} 
+// 登出
+ $('.logout').click(function(e){
+        e.preventDefault();
+        delCookie('yuer_userId');
+        delCookie('yuer_token');
+        localStorage.clear();
+        window.location.href = "/";
+ }) 
 });
 ;(function(window,$,undefined){
     
