@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+	<title>{{title}}</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html,body{
+			max-width: 800px;
+			margin:0 auto;
+			height: 100%;
+			overflow: hidden;
+		}
+		body{
+			background: url('/activity/images/bg.png') no-repeat;
+			background-size: 100%;
+			padding-top: 75%;
+			box-sizing: border-box;
+			-webkit-box-sizing:border-box;
+		}
+		a{
+			display: block;
+			width: 40%;
+			margin:0 auto 40px;
+		}
+		a img{
+			width: 100%;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var ua = navigator.userAgent.toLowerCase();	
+			// var isios = document.getElementById('livelink');
+			if (/iphone|ipad|ipod/.test(ua)) {
+				document.getElementById('livelink').href = "http://fir.im/cqqm";
+			}
+		}
+	</script>
+</head>
+<body>
+	<a href="http://fir.im/camt" id="livelink"><img src="/activity/images/live.png" alt=""></a>
+	<a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.miqtech.wymaster.wylive"><img src="/activity/images/look.png" alt=""></a>
+</body>
+</html>

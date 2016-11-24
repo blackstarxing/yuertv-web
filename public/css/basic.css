@@ -738,6 +738,10 @@ color: #fff !important;
 }
 .anchor-info a{
     cursor: default;
+    width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .anchor-id{
     font-size: 12px;
@@ -747,7 +751,7 @@ color: #fff !important;
     position: absolute;
     right: 5px;
     bottom: 7px;
-    width: 40px;
+    width: 42px;
     height: 20px;
     line-height: 20px;
     text-align: center;
