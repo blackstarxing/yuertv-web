@@ -16,11 +16,11 @@ $(function() {
 // 我的道具弹出框
     $(".imgprops .u-props").off("click").on("click", function(e) {
         e.preventDefault();
-        $(".u-propsgtips").show();
+        $(".m-layerMask").show();
     });
      $(".u-propsgtips a").off("click").on("click", function(e) {
         e.preventDefault();
-        $(".u-propsgtips").hide();
+        $(".m-layerMask").hide();
     });
 //我的消息中的div之间的切换
         $(".m-mainm a").on("click", function(e) {
@@ -135,6 +135,7 @@ $(function() {
             local.eventBind();
             local.cur_type=0;
             local.newsList();
+            local.followList();
         },
         eventBind : function(){ 
 
