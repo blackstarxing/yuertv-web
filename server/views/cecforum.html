@@ -133,14 +133,14 @@
 						<div class="mask">
 							<h3>下载娱儿TV观看更多精彩直播</h3>
 							<div class="btn-group">
-								<a href="http://yuerapi.wangyuhudong.com/v4/live/download" class="enter">下载娱儿TV</a><a href="" class="return">继续观看</a>
+								<a href="https://yuertvfile.wangyuhudong.com?type=live&objId=8" class="enter">下载娱儿TV</a><a href="" class="return">继续观看</a>
 							</div>				
 						</div>
                     {% else %}
                         <div class="end-mask">
 							<h3>暂无直播</h3>
 							<div class="btn-group single">
-								<a href="http://yuerapi.wangyuhudong.com/v4/live/download">下载娱儿TV</a>
+								<a href="https://yuertvfile.wangyuhudong.com?type=live&objId=8">下载娱儿TV</a>
 							</div>				
 						</div>
                     {% endif %}					
@@ -158,14 +158,14 @@
 						<div class="mask">
 							<h3>下载娱儿TV观看更多精彩直播</h3>
 							<div class="btn-group">
-								<a href="http://yuerapi.wangyuhudong.com/v4/live/download" class="enter">下载娱儿TV</a><a href="" class="return">继续观看</a>
+								<a href="https://yuertvfile.wangyuhudong.com?type=live&objId=4" class="enter">下载娱儿TV</a><a href="" class="return">继续观看</a>
 							</div>				
 						</div>
                     {% else %}
                         <div class="end-mask">
 							<h3>暂无直播</h3>
 							<div class="btn-group single">
-								<a href="http://yuerapi.wangyuhudong.com/v4/live/download">下载娱儿TV</a>
+								<a href="https://yuertvfile.wangyuhudong.com?type=live&objId=4">下载娱儿TV</a>
 							</div>				
 						</div>
                     {% endif %}					
@@ -217,7 +217,9 @@
 		var ua = navigator.userAgent.toLowerCase(); 
 		if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
 			$('.mask h3').text('进入直播间观看直播');
-			$('.enter').attr('href','yuertvopen://live?objId=21').text('进入直播间');
+			$('.enter').text('进入直播间');
+			$('.showleft .enter').attr('href','yuertvopen://live?objId=8');
+			$('.hideright .enter').attr('href','yuertvopen://live?objId=4');
 		}
 
 		setInterval(function(){
@@ -235,7 +237,7 @@
                 $('.mask').show();                   
             }
         }
-         
+
         if('{{one.state}}'==1){
         	showMask(second); 
         }
