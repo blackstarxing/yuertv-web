@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta content="telephone=no" name="format-detection" />
-	<title>CEC</title>
+	<title>娱儿TV独家 CEC官方直播</title>
 	<script src="/jquery.js"></script>
 	<script src="/activity/build/mediaelement-and-player.min.js"></script>
 	<link rel="stylesheet" href="/activity/build/mediaelementplayer.min.css" />
@@ -42,6 +42,7 @@
 			top: 0;
 			right: 5.47%;
 			width: 70.7%;
+			overflow:hidden;
 		}
 		.change{
 			position: absolute;
@@ -53,10 +54,10 @@
 			float:right;
 		}
 		.change .arrow{
-			width: 4%;
+			width: 25.3%;
 			position: absolute;
 			right: 54.5%;
-			top:10px;
+			top:20px;
 			opacity: 1;
 		}
 		.showleft .videoBox{
@@ -67,23 +68,24 @@
 			float:left;
 		}
 		.showleft .change .arrow{
-			width: 4%;
+			width: 25.3%;
 			left: 54.5%;
 		}
 		.stepright{
 			display: none;
 		}
-		.videoBox .mask{
+		.videoBox .mask,.videoBox .end-mask{
 			position: absolute;
 			top: 0;
 			left: 0;
 			width: 100%;
 			height: 100%;
 			background: rgba(0,0,0,0.8);
-			/*直播开始后去掉注释*/
+		}
+		.videoBox .mask{
 			display: none;
 		}
-		.videoBox .mask h3{
+		.videoBox .mask h3,.videoBox .end-mask h3{
 			font-size: 14px;
 			color: #fff;
 			text-align: center;
@@ -111,6 +113,10 @@
 		.btn-group .return{
 			margin-left: 10%;
 		}
+		.single a{
+			display: block;
+			margin: 8% auto 0;
+		}
 	</style>
 </head>
 <body>
@@ -122,29 +128,47 @@
 			<div class="videoWindow showleft">
 				<img src="/activity/images/video_2.png" alt="">
 				<div class="videoBox">
-					<video width="100%" height="100%" id="player1" poster="" controls="" autoplay="" style="margin:0;"><source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_test_7.m3u8" /></video>
-					<div class="mask">
-						<h3>下载娱儿TV观看更多精彩直播</h3>
-						<div class="btn-group">
-							<a href="http://yuerapi.wangyuhudong.com/v4/live/download" class="enter">下载娱儿TV</a><a href="" class="return">继续观看</a>
-						</div>				
-					</div>
+					{% if one.state==1 %}
+                        <video width="100%" height="100%" id="player1" poster="" controls="" autoplay="" webkit-playsinline playsinline style="margin:0;"><source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_414992.m3u8" /></video>
+						<div class="mask">
+							<h3>下载娱儿TV观看更多精彩直播</h3>
+							<div class="btn-group">
+								<a href="http://yuerapi.wangyuhudong.com/v4/live/download" class="enter">下载娱儿TV</a><a href="" class="return">继续观看</a>
+							</div>				
+						</div>
+                    {% else %}
+                        <div class="end-mask">
+							<h3>暂无直播</h3>
+							<div class="btn-group single">
+								<a href="http://yuerapi.wangyuhudong.com/v4/live/download">下载娱儿TV</a>
+							</div>				
+						</div>
+                    {% endif %}					
 				</div>				
 				<div class="change left">
-					<img src="/activity/images/arrow_2.png" alt="" class="arrow right">
+					<img src="/activity/images/arrow_2.png" alt="" class="arrow">
 					<img src="/activity/images/button_2.png" alt="">
 				</div>
 			</div>
 			<div class="videoWindow hideright">
 				<img src="/activity/images/video_1.png" alt="">
 				<div class="videoBox">
-					<video width="100%" height="100%" id="player2" poster="" controls="" autoplay="" style="margin:0;"><source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_test_3845603.m3u8" /></video>
-					<div class="mask">
-						<h3>下载娱儿TV观看更多精彩直播</h3>
-						<div class="btn-group">
-							<a href="http://yuerapi.wangyuhudong.com/v4/live/download" class="enter">下载娱儿TV</a><a href="" class="return">继续观看</a>
-						</div>				
-					</div>
+					{% if video.sex==1 %}
+                        <video width="100%" height="100%" id="player2" poster="" controls="" webkit-playsinline playsinline style="margin:0;"><source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_4038872.m3u8" /></video>
+						<div class="mask">
+							<h3>下载娱儿TV观看更多精彩直播</h3>
+							<div class="btn-group">
+								<a href="http://yuerapi.wangyuhudong.com/v4/live/download" class="enter">下载娱儿TV</a><a href="" class="return">继续观看</a>
+							</div>				
+						</div>
+                    {% else %}
+                        <div class="end-mask">
+							<h3>暂无直播</h3>
+							<div class="btn-group single">
+								<a href="http://yuerapi.wangyuhudong.com/v4/live/download">下载娱儿TV</a>
+							</div>				
+						</div>
+                    {% endif %}					
 				</div>				
 				<div class="change right">
 					<img src="/activity/images/arrow_1.png" alt="" class="arrow">
@@ -170,19 +194,20 @@
 		var one = document.getElementById("player1"); 
 		var two = document.getElementById("player2"); 
 
-		if((navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i))) {
-			// 判断系统版本号是否大于 4
-			if(navigator.userAgent.match(/OS [5-9]_\d[_\d]* like Mac OS X/i)){
-				$('#player1').attr('webkit-playsinline',true);
-				$('#player2').attr('webkit-playsinline',true);
-			}else{
-				$('#player1').attr('playsinline',true);
-				$('#player2').attr('playsinline',true);
-			}		
-		}else if(navigator.userAgent.match(/android/i)){
-			$('#player1').attr('webkit-playsinline',true);
-			$('#player2').attr('webkit-playsinline',true);
-		}
+		function rotate(){ 
+		  	if(window.orientation==180||window.orientation==0){ 
+		  		var screenw = document.body.clientWidth;
+		    	$('.videoBox').css({'height':screenw*0.395+'px','top':screenw*0.105+'px'});
+		    	$('video').css('height',screenw*0.395+'px');
+		  	} 
+			if(window.orientation==90||window.orientation==-90){ 
+				var screenw = document.body.clientWidth;
+		        $('.videoBox').css({'height':screenw*0.395+'px','top':screenw*0.105+'px'});
+		        $('video').css('height',screenw*0.395+'px');
+		    } 
+		} 
+		rotate();
+		window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", rotate, false); 
 
 		if(client>800){
 			client = 800;
@@ -209,8 +234,12 @@
             } else {
                 $('.mask').show();                   
             }
-        } 
-        showMask(second); 
+        }
+         
+        if('{{one.state}}'==1){
+        	showMask(second); 
+        }
+
         $('.return').click(function(e){
         	e.preventDefault();
         	$('.mask').hide();
@@ -219,16 +248,16 @@
         })
 
 		$('.left').click(function(){
-			$('.showleft').animate({left:'-100%'},1000);		
-			$('.hideright').animate({marginLeft:'0'},1000);	
+			$('.showleft').animate({left:'-100%'},500);		
+			$('.hideright').animate({marginLeft:'0'},500);	
 			$('.stepleft').hide();
 			$('.stepright').show();
 			one.pause();
 			two.play();
 		})
 		$('.right').click(function(){
-			$('.showleft').animate({left:0},1000);		
-			$('.hideright').animate({marginLeft:'100%'},1000);	
+			$('.showleft').animate({left:0},500);		
+			$('.hideright').animate({marginLeft:'100%'},500);	
 			$('.stepleft').show();
 			$('.stepright').hide();
 			one.play();

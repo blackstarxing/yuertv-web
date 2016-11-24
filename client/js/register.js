@@ -118,7 +118,7 @@ $(function() {
     function changeCode(){
         $('.code-wrap input').val('');
         // $picCode.attr('src','http://172.16.2.62:8777/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
-        $picCode.attr('src','http://wy.yuerwebapi.wangyuhudong.com/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
+        $picCode.attr('src','http://yuerwebapi.wangyuhudong.com/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
     }
 
     $('.getCode').click(function(e){

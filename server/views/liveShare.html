@@ -15,7 +15,7 @@
 	<div class="">
 		<video width="100%" height="203" id="player1" poster="{{result.info.icon}}" controls="controls" autoplay="" webkit-playsinline playsinline>    
 		    <!-- Pseudo HTML5 -->
-		    <source type="application/x-mpegURL" src="{{result.info.rtmp}}" />
+		    <source type="application/x-mpegURL" src="{{link}}" />
 		</video>
 	</div>
 	<div class="tab">
@@ -113,8 +113,8 @@ $('audio,video').mediaelementplayer({
 // });
 // $('.mejs-controls').css('transform','rotate(0deg)');
 // $('.mejs-mediaelement').css({'transform':'rotate(-90deg) scale(1.75)'});
-var hls = $('source').attr('src').replace(/rtmp:/, "http:").replace(/rtmp/, "hls")+'.m3u8';
-$('source').attr('src',hls);
+// var hls = $('source').attr('src').replace(/rtmp:/, "http:").replace(/rtmp/, "hls")+'.m3u8';
+// $('source').attr('src',hls);
 
 $('.tab ul').click(function(e){
 	e.preventDefault();
