@@ -31,7 +31,7 @@ router.get('/', function(req, res, next) {
             title: "娱儿TV--领跑移动电竞的直播平台",
             index: JSON.parse(result[0]).object,
             islogin: islogin,
-            nav_index : 0,
+            nav_index: 0,
         });
     }).fail(function(cont, error) { 
         console.log(error);
@@ -410,18 +410,6 @@ router.get('/liveShare', function(req, res, next) {
         console.log(error);
         res.render('error', { title: "错误"});
     });
-});
-
-router.get('/cecgame', function(req, res, next) {
-    res.render('cecgame', { title: "CEC" });
-});
-
-router.get('/cecforum', function(req, res, next) {
-    res.render('cecforum', { title: "CEC" });
-});
-
-router.get('/down', function(req, res, next) {
-    res.render('down', { title: "娱儿TV--领跑移动电竞的直播平台" });
 });
 
 module.exports = router;
