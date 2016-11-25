@@ -404,12 +404,77 @@ router.get('/liveShare', function(req, res, next) {
         res.render('liveShare', {
             title: JSON.parse(result[0]).object.info.title,
             result: JSON.parse(result[0]).object,
-            id:id
+            id:id,
+            link:JSON.parse(result[0]).object.info.rtmp.replace(/rtmp:/, "http:").replace(/rtmp/, "hls")+'.m3u8',
         });
     }).fail(function(cont, error) { 
         console.log(error);
         res.render('error', { title: "错误"});
     });
+});
+
+router.get('/cecgame', function(req, res, next) {
+    Thenjs.parallel([function(cont) {
+        request('http://172.16.2.62:8777/live/detail?id=4', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    },function(cont) {
+        request('http://172.16.2.62:8777/live/detail?id=8', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        console.log(result);
+        res.render('cecgame', {
+            one: JSON.parse(result[0]).object.info,
+            two: JSON.parse(result[1]).object.info,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+    // res.render('cecgame', { title: "CEC" });
+});
+
+router.get('/cecforum', function(req, res, next) {
+    Thenjs.parallel([function(cont) {
+        request('http://172.16.2.62:8777/live/detail?id=8', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    },function(cont) {
+        request('http://172.16.2.62:8777/live/detail?id=4', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        console.log(result);
+        res.render('cecforum', {
+            one: JSON.parse(result[0]).object.info,
+            two: JSON.parse(result[1]).object.info,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+    // res.render('cecforum', { title: "CEC" });
+});
+
+router.get('/down', function(req, res, next) {
+    res.render('down', { title: "娱儿TV--领跑移动电竞的直播平台" });
 });
 
 module.exports = router;
