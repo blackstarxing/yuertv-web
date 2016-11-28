@@ -31,7 +31,7 @@ router.get('/', function(req, res, next) {
             title: "娱儿TV--领跑移动电竞的直播平台",
             index: JSON.parse(result[0]).object,
             islogin: islogin,
-            nav_index : 0,
+            nav_index: 0,
         });
     }).fail(function(cont, error) { 
         console.log(error);
