@@ -34,7 +34,7 @@
             <div class="avatar-info f-fl">
                 <span class="hide-rtmp" data-roomid="{{detail.info.chat_room_id}}" data-anchorid="{{detail.info.up_user_id}}" data-time="{{detail.info.count_down}}">{{detail.info.rtmp}}</span>
                 <h3>{{detail.info.title}}</h3>
-                <div><span class="u-label">{{detail.info.nickname}}<img src="/images/female.png" alt=""></span>{{detail.info.game_name}}</div>
+                <div><span class="u-label">{{detail.info.nickname}}{% if detail.info.sex==0 %}<img src="/images/male.png" alt="" class="sex">{% else %}<img src="/images/female.png" alt="" class="sex">{% endif %}</span>{{detail.info.game_name}}</div>
                 <div><span class="u-label">房间ID：{{detail.info.room_number}}</span>在线：{{detail.info.online_num}}</div>
             </div>
             <div class="follow-avatar f-fr">

@@ -88,7 +88,7 @@ $(function(){
                                         concernclass = (list[i].is_concern == 1) ? 'disfollow' : 'follow',
                                         concerntext = (list[i].is_concern == 1) ? '已关注' : '关注';
                                     newPage += '<div class="m-lst">'+
-                                                        '<a href="'+state+'" class="live-address">'+
+                                                        '<a href="'+link+'" class="live-address">'+
                                                         '<img src="'+list[i].icon+'" alt="">'+
                                                         '<span><i>·</i>'+list[i].name+'</span>'+
                                                             '<div class="play-mask '+online+'"></div>'+
