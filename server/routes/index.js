@@ -384,7 +384,7 @@ router.get('/allvideo', function(req, res, next) {
     });
 });
 
-router.get('/liveShare', function(req, res, next) {
+router.get('/share/liveShare', function(req, res, next) {
     var id = req.url.split('=')[1];
     Thenjs.parallel([function(cont) {
         request({
@@ -401,7 +401,7 @@ router.get('/liveShare', function(req, res, next) {
             }
         })
     }]).then(function(cont, result) {
-        res.render('liveShare', {
+        res.render('share/liveShare', {
             title: JSON.parse(result[0]).object.info.title,
             result: JSON.parse(result[0]).object,
             id:id,
@@ -413,7 +413,7 @@ router.get('/liveShare', function(req, res, next) {
     });
 });
 
-router.get('/cecgame', function(req, res, next) {
+router.get('/activity/cecgame', function(req, res, next) {
     Thenjs.parallel([function(cont) {
         request('http://172.16.2.62:8777/live/detail?id=4', function(error, response, body) {
             if (!error && response.statusCode == 200) {
@@ -432,7 +432,7 @@ router.get('/cecgame', function(req, res, next) {
         })
     }]).then(function(cont, result) {
         console.log(result);
-        res.render('cecgame', {
+        res.render('activity/cecgame', {
             one: JSON.parse(result[0]).object.info,
             two: JSON.parse(result[1]).object.info,
         });
@@ -443,7 +443,7 @@ router.get('/cecgame', function(req, res, next) {
     // res.render('cecgame', { title: "CEC" });
 });
 
-router.get('/cecforum', function(req, res, next) {
+router.get('/activity/cecforum', function(req, res, next) {
     Thenjs.parallel([function(cont) {
         request('http://172.16.2.62:8777/live/detail?id=8', function(error, response, body) {
             if (!error && response.statusCode == 200) {
@@ -462,7 +462,7 @@ router.get('/cecforum', function(req, res, next) {
         })
     }]).then(function(cont, result) {
         console.log(result);
-        res.render('cecforum', {
+        res.render('activity/cecforum', {
             one: JSON.parse(result[0]).object.info,
             two: JSON.parse(result[1]).object.info,
         });
@@ -473,8 +473,12 @@ router.get('/cecforum', function(req, res, next) {
     // res.render('cecforum', { title: "CEC" });
 });
 
-router.get('/down', function(req, res, next) {
-    res.render('down', { title: "娱儿TV--领跑移动电竞的直播平台" });
+router.get('/mobile/down', function(req, res, next) {
+    res.render('mobile/down', { title: "娱儿TV--领跑移动电竞的直播平台" });
+});
+
+router.get('/mobile/author', function(req, res, next) {
+    res.render('mobile/author', { title: "娱儿TV--领跑移动电竞的直播平台" });
 });
 
 module.exports = router;
