@@ -1,10 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>主播认证</title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>移动端图片压缩上传</title>
+    <link rel="stylesheet" href="/css/LUploader.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    h1{
+    background-color: #19b5ee;
+    color: #fff;
+    font-size: 25px;
+    text-align: center;
+    padding: 10px;
+    }
+    li {
+        list-style-type: none;
+    }
+    input {
+        outline: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+   /* div.LUploader{
+    	float:left;
+    }*/
+    </style>
 </head>
 <body>
-	<input type="file">
+	<!-- <input type="file"> -->
+	<div class="IdCard">
+		<h1>LUploader移动端图片压缩上传</h1>
+	    <div class="LUploader" id="demo1">
+	        <div class="LUploader-container">
+	            <input data-LUploader='demo1' data-form-file='basestr' data-upload-type='front' type="file" />
+	            <ul class="LUploader-list"></ul>
+	        </div>
+	        <div>
+	            <div class="icon icon-camera font20"></div>
+	            <p>单击上传</p>
+	        </div>
+	    </div>
+	    <div class="LUploader" id="demo2">
+	        <div class="LUploader-container">
+	            <input data-LUploader='demo2' data-form-file='basestr' data-upload-type='back' type="file" />
+	            <ul class="LUploader-list"></ul>
+	        </div>
+	        <div>
+	            <div class="icon icon-camera font20"></div>
+	            <p>单击上传</p>
+	        </div>
+	    </div>
+	    <div class="LUploader" id="demo3">
+	        <div class="LUploader-container">
+	            <input data-LUploader='demo3' data-form-file='basestr' data-upload-type='salary' type="file" />
+	            <ul class="LUploader-list"></ul>
+	        </div>
+	        <div>
+	            <div class="icon icon-camera font20"></div>
+	            <p>单击上传</p>
+	        </div>
+	    </div>
+	</div>
+	
+
+    <script src="/LUploader.min.js"></script>
+    <script>
+    [].slice.call(document.querySelectorAll('input[data-LUploader]')).forEach(function(el) {
+        new LUploader(el, {
+            url: 'http://172.16.2.62:8777/person-center/realname-auth',//post请求地址
+            multiple: false,//是否一次上传多个文件 默认false
+            maxsize: 102400,//忽略压缩操作的文件体积上限 默认100kb
+            accept: 'image/*',//可上传的图片类型
+            quality: 0.1,//压缩比 默认0.1  范围0.1-1.0 越小压缩率越大
+            showsize:false//是否显示原始文件大小 默认false
+        });
+    });
+    </script>
 </body>
 </html>

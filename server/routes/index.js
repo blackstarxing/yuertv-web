@@ -472,6 +472,9 @@ router.get('/activity/cecforum', function(req, res, next) {
     });
     // res.render('cecforum', { title: "CEC" });
 });
+router.get('/activity/propage', function(req, res, next) {
+    res.render('activity/propage', { title: "百万主播招募活动页" });
+});
 
 router.get('/mobile/down', function(req, res, next) {
     res.render('mobile/down', { title: "娱儿TV--领跑移动电竞的直播平台" });
