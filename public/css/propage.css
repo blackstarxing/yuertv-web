@@ -1,0 +1,154 @@
+*{margin:0;padding:0;}
+body{
+	background:#0f1632;
+}
+.g-container{
+	max-width: 800px;
+	margin:0 auto;
+	width: 100%;
+	overflow: hidden;
+	font-family: '微软雅黑';
+	background: url("/activity/images/propage_bottom.jpg") center bottom no-repeat;
+	background-size: 100%;
+}
+.m-conTop img{
+	width: 100%;
+	vertical-align: top;
+}
+.m-conVedioT,.m-conVedioB,.m-conCenter{
+	position:relative;
+	width:90%;
+	text-align:center;
+	margin:0% 5% 10% 5%;
+	/*margin-bottom:50px;*/
+}
+/*第一个视频*/
+.m-conVedioT .conVTop{
+	height:50px;
+	background:rgba(101,151,193,0.25);
+	margin-bottom:5%;
+}
+.m-conVedioT .conVTop h1{
+	font-size:20px;
+	height:50px;
+	line-height:50px;
+	text-align:center;
+	color:#6597c1;
+}
+.m-conVedioT .conVBottom{
+	height:166px;
+	background:#151a38;
+	margin-bottom:10%;
+}
+/*第二个视频*/
+.m-conVedioB .conVBtop{
+	height:63px;
+	line-height:2;
+	text-align:center;
+	background:rgba(101,151,193,0.25);
+	margin-bottom:5%;
+}
+.conVBtop h2{
+	font-size:16px;
+	color:#6597c1;
+
+}
+.conVBtop p{
+	font-size:6px;
+	color:#fff;
+}
+.m-conVedioB .conVBbottom{
+	height:166px;
+	background:#151a38;
+}
+/*第三个*/
+
+.m-conCenter .conCenTop{
+	height:53px;
+	line-height:53px;
+	text-align:center;
+	background:rgba(101,151,193,0.25);
+	margin-bottom:5%;
+}
+.conCenTop h1{
+	font-size:20px;
+	color:#6597c1;
+}
+.m-conCenter .conCenContent{
+	width:100%;
+	height:305px;
+	/*background:#151a38;*/
+	background:rgba(21,26,56,0.25);
+}
+.conCenContent  #switch a{
+	background:#253656;
+	display:inline-block;
+	width:16.66%;
+	height:35px;
+	line-height:35px;
+	text-align:center;
+	font-size:14px;
+	color:#6597c1;
+	text-decoration:none;
+}
+#switch a.switchColor{
+	background:#142050;
+}
+
+.conCenContent .switchCon{
+	display:none;
+}
+.sumSwitch .rightswitch{
+	margin-top:5%;
+	width:100%;
+	list-style:none;
+	border:1px solid #6293bd;
+}
+.rightswitch li {
+	height:30px;
+	overflow:hidden;
+}
+.rightswitch li span{
+	display:inline-block;
+	width:47%;
+	height:30px;
+	line-height:30px;
+	float:left;
+	font-size:13px;
+	color:#6293bd;
+	border:1px solid #6293bd;
+	text-align:left;
+	padding-left:2.25%;
+}
+/*第四个*/
+
+.m-conBContent{
+	/*position:absolute;*/
+	width:100%;
+	margin:20% 5% 20% 0%;;
+	/*top:0;left:-5%;*/
+}
+.m-cTop{
+	width:90%;
+	height:53px;
+	line-height:53px;
+	background:rgba(101,151,193,0.25);
+	margin-left:5%;
+	text-align:center;
+}
+.m-cTop h1{
+	font-size:20px;
+	color:#6597c1;
+}
+.m-ToObtain a,.m-Download a{
+	display:inline-block;
+	width:60%;
+	height:40px;
+	line-height:40px;
+	margin:5% 15% 5% 20%;
+	text-align:center;
+	background:#16acd1;
+	font-size:16px;
+	color:#fffef0;
+	text-decoration:none;
+}
