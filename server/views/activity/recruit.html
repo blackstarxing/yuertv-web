@@ -6,6 +6,12 @@
 	<link rel="stylesheet" href="/css/basic.css">
 	<link rel="stylesheet" href="/css/recruit.css">
 	<script src="/jquery.js"></script>
+	<script>
+		var ua = navigator.userAgent.toLowerCase(); 
+		if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i) || navigator.userAgent.match(/android/i)) {
+			window.location.href = '/activity/propage';
+        }
+	</script>
 </head>
 <body>
 	<div class="g-bd">

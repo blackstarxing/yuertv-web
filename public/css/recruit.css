@@ -40,6 +40,7 @@ body{
 }
 .video{
 	background: #000;
+	height: 376px;
 }
 .joinus{
 	background: url('/activity/images/box_bg.png');

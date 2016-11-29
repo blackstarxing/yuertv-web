@@ -8,6 +8,12 @@
 	<title>百万主播招募活动页</title>
 	<script src="/jquery.js"></script>
 	<link rel="stylesheet" href="/css/propage.css">
+	<script>
+		var ua = navigator.userAgent.toLowerCase(); 
+		if (!navigator.userAgent.match(/(iPhone|iPod|iPad);?/i) || !navigator.userAgent.match(/android/i)) {
+			window.location.href = '/activity/recruit';
+        }
+	</script>
 </head>
 <body>
 	<div class="g-container">
