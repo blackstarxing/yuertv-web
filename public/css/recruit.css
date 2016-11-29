@@ -1,0 +1,103 @@
+body{
+	/*width: 100%;
+	overflow-x: hidden;*/
+	background: #101734;
+}
+.g-ct{
+	background: url('/activity/images/waves.jpg') center bottom no-repeat;
+	padding-bottom: 80px;
+}
+.recruitbg{
+	margin:0 auto;
+	width: 100%;
+	min-width: 1200px;
+}
+.recruitBox{
+	margin-bottom: 80px;
+}
+.recruit-l{
+	width: 736px;
+}
+.recruit-r{
+	width: 450px;
+	overflow-x: hidden;
+}
+.re-title{
+	height: 112px;
+	line-height: 112px;
+	background: rgba(101,151,193,0.25);
+	color:#69c;
+	font-size: 30px;
+	text-indent: 30px;
+	margin-bottom: 30px;
+}
+.sp-title{
+	line-height: 2;
+}
+.sp-title p{
+	color: #fff;
+	font-size: 22px;
+}
+.video{
+	background: #000;
+	height: 376px;
+}
+.joinus{
+	background: url('/activity/images/box_bg.png');
+	height: 368px;
+	padding:8px 30px 0;
+}
+.joinus .group{
+	width: 174px;
+	float: left;
+	margin-bottom: 17px;
+}
+.joinus .u-toindex{
+	background: url('/activity/images/button_bg.png');
+	display: block;
+	width: 388px;
+	height: 76px;
+	line-height: 76px;
+	color: #fff;
+	font-size: 28px;
+	clear:both;
+	text-align: center;
+}
+.levelBox{
+	position: relative;
+	height: 376px;
+}
+.level-nav{
+	position: relative;
+	background: rgba(101,151,193,0.25); 
+}
+.level-nav li{
+	float: left;
+	width: 75px;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	color:#69c;
+	font-size: 17px;
+	cursor: pointer;
+}
+.level-nav li.current{
+	background: #142050;
+	color:#78c9cc;
+}
+.rules td{
+	width: 50%;
+	border:1px solid #69c;
+	text-indent: 16px;
+	color:#69c;
+	line-height: 35px;
+}
+.rules{
+	position: absolute;
+	top:50px;
+	left: 450px;
+	width: 450px;
+}
+.show{
+	left: 0;
+}

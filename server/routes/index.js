@@ -430,11 +430,20 @@ router.get('/activity/cecgame', function(req, res, next) {
                 cont(new Error('error!'));
             }
         })
+    },function(cont) {
+        request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxf96f728533f32fa8&secret=5007eda46723c5faf79a8b9ca3be131a', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
     }]).then(function(cont, result) {
         console.log(result);
         res.render('activity/cecgame', {
             one: JSON.parse(result[0]).object.info,
             two: JSON.parse(result[1]).object.info,
+            ticket: JSON.parse(result[2]).access_token
         });
     }).fail(function(cont, error) { 
         console.log(error);
@@ -460,11 +469,20 @@ router.get('/activity/cecforum', function(req, res, next) {
                 cont(new Error('error!'));
             }
         })
+    },function(cont) {
+        request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxf96f728533f32fa8&secret=5007eda46723c5faf79a8b9ca3be131a', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
     }]).then(function(cont, result) {
         console.log(result);
         res.render('activity/cecforum', {
             one: JSON.parse(result[0]).object.info,
             two: JSON.parse(result[1]).object.info,
+            ticket: JSON.parse(result[2]).access_token
         });
     }).fail(function(cont, error) { 
         console.log(error);
@@ -481,7 +499,42 @@ router.get('/mobile/down', function(req, res, next) {
 });
 
 router.get('/mobile/author', function(req, res, next) {
-    res.render('mobile/author', { title: "娱儿TV--领跑移动电竞的直播平台" });
+    Thenjs.parallel([function(cont) {
+        request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxf96f728533f32fa8&secret=5007eda46723c5faf79a8b9ca3be131a', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        Thenjs.parallel([function(cont) {
+            console.log(JSON.parse(result[0]).access_token);
+            request('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+JSON.parse(result[0]).access_token+'&type=wx_card', function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    cont(null, body);
+                } else {
+                    cont(new Error('error!'));
+                }
+            })
+        }]).then(function(cont, result) {
+            console.log(JSON.parse(result[0]).ticket);
+            res.render('mobile/author', {
+                ticket: JSON.parse(result[0]).ticket
+            });
+        }).fail(function(cont, error) { 
+            console.log(error);
+            res.render('error', { title: "错误"});
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+    // res.render('mobile/author', { title: "娱儿TV--领跑移动电竞的直播平台" });
+});
+
+router.get('/activity/recruit', function(req, res, next) {
+    res.render('activity/recruit');
 });
 
 module.exports = router;
