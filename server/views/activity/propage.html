@@ -119,35 +119,22 @@
 				<a href="http://qm.qq.com/cgi-bin/qm/qr?k=XV36m7Kd4bLQPhQKKeZVxeAgii754bNH">获取QQ群号</a>
 				</div>
 				<div class="m-Download">
-					<a href="">下载娱儿TV</a>
+					<a href="http://yuerapi.wangyuhudong.com/v4/live/download">下载娱儿TV</a>
 				</div>
 			</div>
 		</div>
-		<!-- <div class="m-conBottom">
-			<img src="/activity/images/propage_bottom.jpg" alt="">
-			<div class="m-conBContent">
-				<div class="m-cTop">
-					<h1>如何成为娱儿TV主播？</h1>
-				</div>
-				<div class="m-ToObtain">
-				<a href="http://qm.qq.com/cgi-bin/qm/qr?k=XV36m7Kd4bLQPhQKKeZVxeAgii754bNH">获取QQ群号</a>
-				</div>
-				<div class="m-Download">
-					<a href="">下载娱儿TV</a>
-				</div>
-			</div>
-			
-		</div> -->
 	</div>
 	<script type="text/javascript">
 		$(function() {
+			var width=$('#switch').width();
+			$('.switchCon').css('left',width+'px');
 			$("#switch a").on('click', function(event) {
 		        event.preventDefault();
 		        $(this).addClass("switchColor").siblings().removeClass("switchColor");
-		        $(".sumSwitch .rightswitch").eq($(this).index() - 1).show().siblings('.rightswitch').hide();
+		       $(".rightswitch").eq($(this).index()-1).animate({left:0},300).siblings('.rightswitch').css('left',width+'px');
 		    });
 		     // $("#switch a:eq(0)").trigger("click");
-			$("#switch #biubiubiu").css({width:"48px",left:0,position:"absolute",height:"3px",background:"#78c9cc"})
+			$("#switch #biubiubiu").css({width:"16.66%",left:0,position:"absolute",height:"3px",background:"#78c9cc"})
 			$("#switch a").on("click",function(e){
 			    $("#switch #biubiubiu").animate({left:$(this).position().left},300)
 			})
