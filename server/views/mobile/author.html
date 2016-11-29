@@ -3,6 +3,20 @@
 <head>
 	<meta charset="UTF-8">
 	<title>主播认证</title>
+	<script src="/jquery.js"></script>
+	<script src="/jquery.sha1.js"></script>
+	<script src="/wxjsapi.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+	alert('{{ticket}}')
+		enableWxShare({
+			appId: 'wxf96f728533f32fa8',
+			ticket: '{{ticket}}',
+			title: '娱儿TV独家 CEC官方直播',			
+			imgUrl: '',
+			desc: '玩手游，做主播，打比赛，拿福利。尽在#娱儿TV#领跑移动电竞的直播平台'
+		})
+	</script>
 </head>
 <body>
 	<input type="file">
