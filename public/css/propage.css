@@ -1,8 +1,9 @@
 *{margin:0;padding:0;}
 body{
-	background: -webkit-linear-gradient(top, #02012d,#0f1c3c);
+	/*background: -webkit-linear-gradient(top, #02012d,#0f1c3c);
 	background: -moz-linear-gradient(top, #02012d,#0f1c3c);
-	background: linear-gradient(top, #02012d,#0f1c3c);
+	background: linear-gradient(top, #02012d,#0f1c3c);*/
+	background:#101734;
 }
 .g-container{
 	max-width: 800px;
@@ -10,62 +11,52 @@ body{
 	width: 100%;
 	overflow: hidden;
 	font-family: '微软雅黑';
-	background: url("/activity/images/propage_bottom.jpg") center bottom no-repeat;
-	background-size: 100%;
-	box-shadow:10px 2px 10px 5px #0f1632;
+/*	background: url("/activity/images/pro_bottom.jpg") center bottom no-repeat;
+	background-size: 100%;*/
 }
-.m-conTop img{
+.m-contop,.m-concenter{
+	position:relative;
+}
+.m-contop .vedioTop{
+	width:74.5%;
+	position:absolute;
+	top:80.5%;
+	left:14.2%;
+}
+.m-concenter .vedio{
+	width:73.5%;
+	position:absolute;
+	top:42.4%;
+	left:12%;
+}
+.m-contop img{
 	width: 100%;
 	vertical-align: top;
 }
-.m-conVedioT,.m-conVedioB,.m-conCenter{
+.m-concenter img{
+	width: 100%;
+	vertical-align: top;
+}
+.m-conbottom{
+
 	position:relative;
-	width:90%;
-	text-align:center;
-	margin:0% 5% 10% 5%;
-	/*margin-bottom:50px;*/
 }
-/*第一个视频*/
-.m-conVedioT .conVTop{
-	height:50px;
-	background:rgba(101,151,193,0.25);
-	margin-bottom:5%;
+.m-conbottom .conCenTop{
+	position:relative;
 }
-.m-conVedioT .conVTop h1{
-	font-size:20px;
-	height:50px;
-	line-height:50px;
-	text-align:center;
-	color:#6597c1;
+.m-conbottom .conCenContent{
+	position:absolute;
+	top:-2.2%;
+	left:0;
 }
-.m-conVedioT .conVBottom{
-	height:166px;
-	background:#151a38;
-	margin-bottom:10%;
+.conTop{
+	margin-top:30%;
 }
-/*第二个视频*/
-.m-conVedioB .conVBtop{
-	height:63px;
-	line-height:2;
-	text-align:center;
-	background:rgba(101,151,193,0.25);
-	margin-bottom:5%;
+.conTop img{
+	width: 100%;
+	height:70%;
+	vertical-align: top;
 }
-.conVBtop h2{
-	font-size:16px;
-	color:#6597c1;
-
-}
-.conVBtop p{
-	font-size:12px;
-	color:#ddd;
-}
-.m-conVedioB .conVBbottom{
-	height:166px;
-	background:#151a38;
-}
-/*第三个*/
-
 .m-conCenter .conCenTop{
 	height:53px;
 	line-height:53px;
@@ -89,8 +80,8 @@ body{
 	background:#253656;
 	display:inline-block;
 	width:16.66%;
-	height:35px;
-	line-height:35px;
+	height:55px;
+	line-height:55px;
 	text-align:center;
 	font-size:14px;
 	color:#6597c1;
@@ -98,67 +89,75 @@ body{
 }
 #switch a.switchColor{
 	background:#142050;
-	color:#78c9cc;
+	color:#eb5e42;
 }
-
-/*.conCenContent .switchCon{
-	display:none;
-	overflow:hidden;
-}*/
 .sumSwitch .rightswitch{
-	margin-top:15px;
 	width:100%;
 	list-style:none;
 	position: absolute;
-	border-top:1px solid #6293bd;
-	border-left:1px solid #6293bd;
 	box-sizing: border-box;
 }
 .rightswitch li {
-	height:30px;
+	height:55px;
 	overflow:hidden;
 }
 .rightswitch li span{
 	display:inline-block;
 	width:50%;
-	height:30px;
-	line-height:30px;
+	height:55px;
+	line-height:55px;
 	float:left;
 	font-size:13px;
 	color:#6293bd;
 	border-bottom:1px solid #6293bd;
-	border-right:1px solid #6293bd;
 	text-align:left;
 	padding-left:2.25%;
 	box-sizing: border-box;
 }
-/*第四个*/
-
+li span.an{
+	display: inline;
+	color:#eb5e42;
+	border:none;
+	float:none;
+}
+li span.ani{
+	color:#eb5e42;
+}
 .m-conBContent{
+	position:relative;
+	top:0%;
+}
+.m-cTop {
+	margin-top:-0.5%;
+	box-shadow:2px 0px 0px 1px #0c385c;
+}
+.m-cTop img{
 	width:100%;
-	margin:20% 5% 20% 0%;;
+	vertical-align: top;
+
 }
-.m-cTop{
-	width:90%;
-	height:53px;
-	line-height:53px;
-	background:rgba(101,151,193,0.25);
-	margin-left:5%;
-	text-align:center;
+.m-ToObtain{
+	margin:20% 0% 10% 6%;
+	position: absolute;
+	left:15%;
+	top:15%;
 }
-.m-cTop h1{
-	font-size:20px;
-	color:#6597c1;
+.m-Download{
+	margin:50% 0% 10% 6%;
+	position: absolute;
+	left:15%;
+	top:15%;
 }
 .m-ToObtain a,.m-Download a{
+	position: absolute;
 	display:inline-block;
-	width:60%;
-	height:40px;
-	line-height:40px;
-	margin:10% 15% 5% 20%;
-	text-align:center;
-	background:#16acd1;
-	font-size:16px;
+	width:200px;
+	height:80px;
+	line-height: 40px;
+	text-align: center;
+	background: url("/activity/images/button.png") no-repeat;
+	background-size: 100%;
+	font-size:18px;
 	color:#fffef0;
 	text-decoration:none;
 }
