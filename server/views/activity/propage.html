@@ -11,37 +11,34 @@
 	<script>
 		var ua = navigator.userAgent.toLowerCase(); 
 		if (!navigator.userAgent.match(/(iPhone|iPod|iPad);?/i) || !navigator.userAgent.match(/android/i)) {
-			window.location.href = '/activity/recruit';
+			// window.location.href = '/activity/recruit';
+        }else{
+        	window.location.href = '/activity/recruit';
         }
 	</script>
 </head>
 <body>
 	<div class="g-container">
-		<div class="m-conTop">
-			<img src="/activity/images/propage_page.jpg" alt="">
-		</div>
-		<div class="m-conVedioT">
-			<div class="conVTop">
-				<h1>你的星梦，这里实现！</h1>
-			</div>
-			<div class="conVBottom">
+		<div class="m-contop">
+			<img src="/activity/images/pro_top.jpg">
+			<div class="vedioTop">
 				<video width="100%" height="100%" id="player1" poster="" controls="" autoplay="" webkit-playsinline playsinline style="margin:0;"><source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_4038872.m3u8" /></video>
 			</div>
 		</div>
-		<div class="m-conVedioB">
-			<div class="conVBtop">
-				<h2>百万主播招募资金，等你来瓜分！</h2>
-				<p>排名靠前的用户将会获得娱儿TV优先签约的机会！</p>
-			</div>
-			<div class="conVBbottom">
+		<div class="m-concenter">
+			<img src="/activity/images/pro_center.jpg">
+			<div class="vedio">
 				<video width="100%" height="100%" id="player1" poster="" controls="" autoplay="" webkit-playsinline playsinline style="margin:0;"><source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_4038872.m3u8" /></video>
 			</div>
 		</div>
-		<div class="m-conCenter">
+		<div class="m-conbottom">
 			<div class="conCenTop">
-				<h1>主播分级细则</h1>
+				<img src="/activity/images/pro_bottom.jpg">
 			</div>
 			<div class="conCenContent">
+				<div class="conTop">
+					<img src="/activity/images/pro_btop.jpg">
+				</div>
 				<div class="sumSwitch">
 					<div id="switch">
 						<div id="biubiubiu"></div>
@@ -51,75 +48,76 @@
 					<ul class="rightswitch ">
 						<li><span>等级</span><span>SS级</span></li>
 						<li><span>称号</span><span>娱之神</span></li>
-						<li><span>日均直播（小时）</span><span>4小时*20天/月</span></li>
-						<li><span>收到付费礼物保底（元）</span><span>3000</span></li>
-						<li><span>月浏览保底（人）</span><span>200000</span></li>
-						<li><span>底薪（元）</span><span>8000</span></li>
-						<li><span>付费礼物分成</span><span>5:5</span></li>
-						<li><span>预期礼物收益（元）</span><span>190，000</span></li>
-						<li><span>最终底薪</span><span>103，000
-</span></li>
+						<li><span>日均直播（小时）</span><span>4小时*<span class="an">20</span>天/月</span></li>
+						<li><span>收到付费礼物保底（元）</span><span class="ani">3000</span></li>
+						<li><span>月浏览保底（人）</span><span class="ani">200000</span></li>
+						<li><span>底薪（元）</span><span class="ani">8000</span></li>
+						<li><span>付费礼物分成</span><span class="ani">5:5</span></li>
+						<li><span>预期礼物收益（元）</span><span class="ani">190000</span></li>
+						<li><span>最终底薪</span><span class="ani">103000</span></li>
 					</ul>
 					<ul class="rightswitch switchCon">
 						<li><span>等级</span><span>S级</span></li>
 						<li><span>称号</span><span>娱之王者</span></li>
-						<li><span>日均直播（小时）</span><span>4小时*20天/月</span></li>
-						<li><span>收到付费礼物保底（元）</span><span>1000</span></li>
-						<li><span>月浏览保底（人）</span><span>100000</span></li>
-						<li><span>底薪（元）</span><span>4000</span></li>
-						<li><span>付费礼物分成</span><span>5：5</span></li>
-						<li><span>预期礼物收益（元）</span><span>38000</span></li>
-						<li><span>最终底薪</span><span>23，000</span></li>
+						<li><span>日均直播（小时）</span><span>4小时*<span class="an">20</span>天/月</span></li>
+						<li><span>收到付费礼物保底（元）</span><span class="ani">1000</span></li>
+						<li><span>月浏览保底（人）</span><span class="ani">100000</span></li>
+						<li><span>底薪（元）</span><span class="ani">4000</span></li>
+						<li><span>付费礼物分成</span><span class="ani">5：5</span></li>
+						<li><span>预期礼物收益（元）</span><span class="ani">38000</span></li>
+						<li><span>最终底薪</span><span class="ani">23000</span></li>
 					</ul>
 					<ul class="rightswitch switchCon">
 						<li><span>等级</span><span>A级</span></li>
 						<li><span>称号</span><span>娱播霸</span></li>
-						<li><span>日均直播（小时）</span><span>4小时*20天/月</span></li>
-						<li><span>收到付费礼物保底（元）</span><span>500</span></li>
-						<li><span>月浏览保底（人）</span><span>20000</span></li>
-						<li><span>底薪（元）</span><span>2000</span></li>
+						<li><span>日均直播（小时）</span><span>4小时*<span class="an">20</span>天/月</span></li>
+						<li><span>收到付费礼物保底（元）</span><span class="ani">500</span></li>
+						<li><span>月浏览保底（人）</span><span class="ani">20000</span></li>
+						<li><span>底薪（元）</span><span class="ani">2000</span></li>
 						<li><span>付费礼物分成</span><span>5：5</span></li>
-						<li><span>预期礼物收益（元）</span><span>19，000</span></li>
-						<li><span>最终底薪</span><span>11，5000</span></li>
+						<li><span>预期礼物收益（元）</span><span class="ani">19000</span></li>
+						<li><span>最终底薪</span><span class="ani">115000</span></li>
 					</ul>
 					<ul class="rightswitch switchCon">
 						<li><span>等级</span><span>B级</span></li>
 						<li><span>称号</span><span>娱主神</span></li>
-						<li><span>日均直播（小时）</span><span>4小时*20天/月</span></li>
-						<li><span>收到付费礼物保底（元）</span><span>100</span></li>
-						<li><span>月浏览保底（人）</span><span>10000</span></li>
-						<li><span>底薪（元）</span><span>1000</span></li>
-						<li><span>付费礼物分成</span><span>5：5</span></li>
-						<li><span>预期礼物收益（元）</span><span>8400</span></li>
-						<li><span>最终底薪</span><span>5200</span></li>
+						<li><span>日均直播（小时）</span><span>4小时*<span class="an">20</span>天/月</span></li>
+						<li><span>收到付费礼物保底（元）</span><span class="ani">100</span></li>
+						<li><span>月浏览保底（人）</span><span class="ani">10000</span></li>
+						<li><span>底薪（元）</span><span class="ani">1000</span></li>
+						<li><span>付费礼物分成</span><span class="ani">5：5</span></li>
+						<li><span>预期礼物收益（元）</span><span class="ani">8400</span></li>
+						<li><span>最终底薪</span><span class="ani">5200</span></li>
 					</ul>
 					<ul class="rightswitch switchCon">
 						<li><span>等级</span><span>C级</span></li>
 						<li><span>称号</span><span>小娱儿</span></li>
-						<li><span>日均直播（小时）</span><span>3小时*20天/月</span></li>
-						<li><span>收到付费礼物保底（元）</span><span>50</span></li>
-						<li><span>月浏览保底（人）</span><span>2000</span></li>
-						<li><span>底薪（元）</span><span>500</span></li>
-						<li><span>付费礼物分成</span><span>5：5</span></li>
-						<li><span>预期礼物收益（元）</span><span>5600</span></li>
-						<li><span>最终底薪</span><span>3300</span></li>
+						<li><span>日均直播（小时）</span><span>3小时*<span class="an">20</span>天/月</span></li>
+						<li><span>收到付费礼物保底（元）</span><span class="ani">50</span></li>
+						<li><span>月浏览保底（人）</span><span class="ani">2000</span></li>
+						<li><span>底薪（元）</span><span class="ani">500</span></li>
+						<li><span>付费礼物分成</span><span class="ani">5：5</span></li>
+						<li><span>预期礼物收益（元）</span><span class="ani">5600</span></li>
+						<li><span>最终底薪</span><span class="ani">3300</span></li>
 					</ul>
 					<ul class="rightswitch switchCon" >
 						<li><span>等级</span><span>D级</span></li>
 						<li><span>称号</span><span>小虾米</span></li>
-						<li><span>日均直播（小时）</span><span>2小时*20天/月</span></li>
-						<li><span>收到付费礼物保底（元）</span><span>—</span></li>
-						<li><span>月浏览保底（人）</span><span>500</span></li>
-						<li><span>底薪（元）</span><span>200</span></li>
-						<li><span>付费礼物分成</span><span>—</span></li>
-						<li><span>预期礼物收益（元）</span><span>—</span></li>
-						<li><span>最终底薪</span><span>200</span></li>
+						<li><span>日均直播（小时）</span><span>2小时*<span class="an">20</span>天/月</span></li>
+						<li><span>收到付费礼物保底（元）</span><span class="ani">—</span></li>
+						<li><span>月浏览保底（人）</span><span class="ani">500</span></li>
+						<li><span>底薪（元）</span><span class="ani">200</span></li>
+						<li><span>付费礼物分成</span><span class="ani">—</span></li>
+						<li><span>预期礼物收益（元）</span><span class="ani">—</span></li>
+						<li><span>最终底薪</span><span class="ani">200</span></li>
 					</ul>
 				</div>
 			</div>
-			<div class="m-conBContent">
+			
+		</div>
+		<div class="m-conBContent">
 				<div class="m-cTop">
-					<h1>如何成为娱儿TV主播？</h1>
+					<img src="/activity/images/pro_bbott.jpg">
 				</div>
 				<div class="m-ToObtain">
 				<a href="http://qm.qq.com/cgi-bin/qm/qr?k=XV36m7Kd4bLQPhQKKeZVxeAgii754bNH">获取QQ群号</a>
@@ -127,17 +125,16 @@
 				<div class="m-Download">
 					<a href="http://yuerapi.wangyuhudong.com/v4/live/download">下载娱儿TV</a>
 				</div>
-			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
 		$(function() {
 			var width=$('#switch').width();
-			$('.switchCon').css('left',width+'px');
+			$('.switchCon').css('marginLeft',width+'px');
 			$("#switch a").on('click', function(event) {
 		        event.preventDefault();
 		        $(this).addClass("switchColor").siblings().removeClass("switchColor");
-		       $(".rightswitch").eq($(this).index()-1).animate({left:0},300).siblings('.rightswitch').css('left',width+'px');
+		       $(".rightswitch").eq($(this).index()-1).animate({marginLeft:0},300).siblings('.rightswitch').css('marginLeft',width+'px');
 		    });
 		     // $("#switch a:eq(0)").trigger("click");
 			$("#switch #biubiubiu").css({width:"16.66%",left:0,position:"absolute",height:"3px",background:"#78c9cc"})
