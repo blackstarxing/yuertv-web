@@ -380,3 +380,20 @@ h3{font-size: 1.5rem;line-height: 1.25;}
 	background: #ff3366;
 	font-family: Arial;
 }
+
+/*活动页*/
+.g-sh{
+	padding:9px 12px;
+}
+.ac-detail{
+	font-size: 0.875rem;
+    color: #9a9a9a;
+    margin: 15px 0;
+}
+.ac-detail .m-time{
+    
+}
+.g-sh h3{
+	word-break: break-all;
+	color:#333;
+}

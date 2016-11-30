@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />
+	<title>{{title}}</title>
+	<script src="/jquery.js"></script>		
+	<script src="/activity/build/mediaelement-and-player.min.js"></script>
+	<script src="/jquery.sha1.js"></script>
+	<script src="/wxjsapi.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<link rel="stylesheet" href="/activity/build/mediaelementplayer.min.css" />
+	<link rel="stylesheet" href="/css/share.css" />
+	<script>
+		enableWxShare({
+			appId: 'wxf96f728533f32fa8',
+			ticket: '{{ticket}}',
+			title: '我已中毒有点方，快来{{result.info.nickname}}的直播间救我，房间名“{{title}}”！来自#娱儿TV#超懂你的手游直播平台！',
+			type:'video',			
+			imgUrl: '',
+			desc: '玩手游，做主播，打比赛，拿福利。尽在#娱儿TV#领跑移动电竞的直播平台'
+		})
+	</script>
+</head>
+<body style="background:#fff;">
+	<div class="g-sh">
+		<h3>{{title}}</h3>
+		<div class="ac-detail"><span class="m-time">{{result.info.create_date}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="m-author">{{result.info.author}}</span></div>
+		<div class="ac-content">
+			
+		</div>
+	</div>
+	<div class="download clearfix">
+		<img src="/images/yuer_logo.png" class="l">
+		<a href="https://yuertvfile.wangyuhudong.com" class="download-btn r">下载 APP</a>
+	</div>	
+	<script>
+        $('.ac-content').html('{{result.info.content | safe }}');
+        var ua = navigator.userAgent.toLowerCase(); 
+		if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+			$('.download').hide();
+		}
+    </script>
+</body>
+</html>

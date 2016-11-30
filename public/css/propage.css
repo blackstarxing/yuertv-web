@@ -1,6 +1,8 @@
 *{margin:0;padding:0;}
 body{
-	background:#0f1632;
+	background: -webkit-linear-gradient(top, #02012d,#0f1c3c);
+	background: -moz-linear-gradient(top, #02012d,#0f1c3c);
+	background: linear-gradient(top, #02012d,#0f1c3c);
 }
 .g-container{
 	max-width: 800px;
@@ -56,7 +58,7 @@ body{
 }
 .conVBtop p{
 	font-size:12px;
-	color:#fff;
+	color:#ddd;
 }
 .m-conVedioB .conVBbottom{
 	height:166px;

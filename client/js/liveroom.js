@@ -651,14 +651,14 @@ $(function(){
 
                 callLater: function (callback)
                 {
-                    if (this.isinit)
-                    {
-                        callback();
-                    }
-                    else
-                    {
+                    // if (this.isinit)
+                    // {
+                    //     callback();
+                    // }
+                    // else
+                    // {
                         this.callback = callback;
-                    }
+                    // }
                 },
                 callback: null,
 
@@ -683,7 +683,32 @@ $(function(){
                 focusAnchor: function ( anchorId )
                 {
                     //调用后台，关注成功后请回调 flash.updateAnchor
-                    this.flash.updateAnchor(anchorId, null, null, true);
+                    var _this = this;
+                    if(islogin){
+                        var parm = {};
+                        parm.userId = window.localStorage.getItem("id");
+                        parm.upUserId = anchorId;
+                        $.ajax({
+                            method: "GET",
+                            url: "/api/concern/up",
+                            dataType: 'json',
+                            data: parm,
+                            success: function(data) {
+                                if (data.code == 0) {
+                                    console.log('关注成功！');
+                                    _this.flash.updateAnchor(anchorId, null, null, true);
+                                    $('.video-open').attr('data-follow',1);
+                                }else{
+                                    console.log(data.result);
+                                }
+                            },
+                            error: function(a, b, c) {
+                                console.log("接口出问题啦");
+                            }
+                        });
+                    }else{
+                        $('.m-login-wrap').show();
+                    }
                 },
             };
 
@@ -743,12 +768,20 @@ $(function(){
 
             $('.m-video .live-address').click(function(e){
                 e.preventDefault();
+                $(this).addClass('video-open').siblings('.live-address').removeClass('video-open');
+                var name = $(this).attr('data-name'),
+                    title = $(this).attr('data-title'),
+                    flv = $(this).attr('data-rtmp'),
+                    id = $(this).attr('data-id'),
+                    nickname = $(this).attr('data-nickname'),
+                    icon = $(this).parent().find('.head-icon').attr('src'),
+                    follow = $(this).attr('data-follow')==1 ? true :false;
                 $('.m-video-mask').show();
                 liveRoomInterf.flash.pause();
                 videoPlayerInterf.callLater(function () {
-                    // videoPlayerInterf.flash.playVideo("http://pili-media.wangyuhudong.com/7FUkDXBrj3kr1leI8VjVFX6GGD0=/Fk8ffjjNrphUwlioPxjmXIB0R7tl", "界黄盖暴力输出，秒全场", "王者荣耀");
-                    videoPlayerInterf.flash.playVideo($(this).attr('data-rtmp'),$(this).attr('data-title'),$(this).attr('data-name'));
-                    videoPlayerInterf.flash.updateAnchor($(this).attr('data-id'), $(this).attr('data-nickname'),$(this).attr('data-icon'), false);
+                    // videoPlayerInterf.flash.playVideo("http://pili-media.wangyuhudong.com/7FUkDXBrj3kr1leI8VjVFX6GGD0=/Fpe0CIJCfu80Ey29nmt4y2wVqhzx", "界黄盖暴力输出，秒全场", "王者荣耀");
+                    videoPlayerInterf.flash.playVideo(flv,title,name);
+                    videoPlayerInterf.flash.updateAnchor(id, nickname,icon, follow);
                 });
                 
             });
