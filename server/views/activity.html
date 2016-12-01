@@ -19,9 +19,10 @@
                 <div class="title"><img src="/images/index_icon3.png" alt="">热门直播</div>
                 {% for recommend in detail.lives.list %}
                     <div class="m-lst">
-                        <a href="" class="live-address">
+                        <a href="/liveroom?id={{recommend.id}}" class="live-address">
                             <img src="{{recommend.icon}}" alt="">
                             <span><i>·</i>{{recommend.name}}</span>
+                            <div class="play-mask online"></div>
                         </a>
                         <div class="m-info">
                             <div class="anchor-head">
