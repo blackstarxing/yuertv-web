@@ -77,7 +77,7 @@ $(function(){
                                         sex = (list[i].sex == 0) ? 'male' : 'female',
                                         concernclass = (list[i].is_concern == 1) ? 'disfollow' : 'follow',
                                         concerntext = (list[i].is_concern == 1) ? '已关注' : '关注';
-                                    newPage += '<div class="m-lst">'+
+                                    newPage += '<div class="m-lst m-video">'+
                                                         '<a href="'+link+'" class="live-address">'+
                                                         '<img src="'+list[i].icon+'" alt="">'+
                                                         '<span><i>·</i>'+list[i].name+'</span>'+

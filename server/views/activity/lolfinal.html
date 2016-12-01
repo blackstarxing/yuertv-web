@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />
+	<title>娱儿TV独家 LOL高校联赛决赛</title>
+	<script src="/jquery.js"></script>		
+	<script src="/activity/build/mediaelement-and-player.min.js"></script>
+	<script src="/jquery.sha1.js"></script>
+	<script src="/wxjsapi.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<link rel="stylesheet" href="/activity/build/mediaelementplayer.min.css" />
+	<link rel="stylesheet" href="/css/share.css" />
+	<style>
+		body{
+			background: #fff;
+		}
+		img{
+			vertical-align: top;
+		}
+		.lol-bt{
+			position: relative;
+			width: 100%;
+		}
+		.videoBox{
+			position: absolute;
+			width: 80%;
+			left: 10%;
+			top: 0;
+		}
+		.videoBox img{
+			position: absolute;
+		}
+		.videoBox .left,.videoBox .right{
+			top:3%;
+			height: 94%;
+		}
+		.videoBox .left{
+			left: 0;
+		}
+		.videoBox .right{
+			right: 0;
+		}
+		.videoBox .top{
+			top: 0;
+		}
+		.videoBox .bottom{
+			bottom: -6%;
+		}
+		.lol-download{
+			width: 65%;
+			display: block;
+			position: absolute;
+			left: 50%;
+		}
+		.lol-download img{
+			width: 100%;
+		}
+	</style>
+	<script>
+		enableWxShare({
+			appId: 'wxf96f728533f32fa8',
+			ticket: '{{ticket}}',
+			title: '娱儿TV独家 LOL高校联赛决赛',
+			type:'video',			
+			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/yuerlogo.png',
+			desc: '娱儿TV携手杭州移动，独家直播英雄联盟高校联赛决赛。移动带你超神，12月3日巅峰对决，争夺10万现金奖励。'
+		})
+	</script>
+</head>
+<body>
+	<div class="lol-bd">
+		<img src="/activity/images/lol_1.jpg" alt="">
+		<div class="lol-bt">
+			<img src="/activity/images/lol_2.jpg" alt="" class="lol-bg">
+			<div class="videoBox">
+				<video width="100%" height="100%" id="player1" poster="/activity/images/poster.jpg" controls="controls" autoplay="" webkit-playsinline playsinline>    
+				    <!-- Pseudo HTML5 -->
+				    <source type="application/x-mpegURL" src="{{link}}" />
+				</video>
+				<img src="/activity/images/lol-left.png" alt="" class="left">
+				<img src="/activity/images/lol-right.png" alt="" class="right">
+				<img src="/activity/images/lol-top.png" alt="" class="top">
+				<img src="/activity/images/lol-bottom.png" alt="" class="bottom">
+				<a href="http://yuerapi.wangyuhudong.com/v4/live/download" class="lol-download"><img src="/activity/images/lol-download.png" alt=""></a>
+			</div>
+		</div>
+		
+	</div>
+	
+	<script>
+		$('video').mediaelementplayer({
+			features: ['playpause','volume','fullscreen'],
+		});
+		var client = $(window).width();
+		var btnWid = $('.lol-download').width();
+		$('.videoBox').css('height',client*0.448+'px');
+		$('.lol-download').css({'top':client*0.52+'px','marginLeft':-btnWid/2+'px'});
+		function rotate(){ 
+		  	if(window.orientation==180||window.orientation==0){ 
+		  		var screenw = document.body.clientWidth;
+		  		var btn = $('.lol-download').width();
+				$('.videoBox').css('height',screenw*0.448+'px');
+				$('video').css('height',screenw*0.448+'px');
+				$('.lol-download').css({'top':screenw*0.52+'px','marginLeft':-btn/2+'px'});
+		  	} 
+			if(window.orientation==90||window.orientation==-90){ 
+				var screenw = document.body.clientWidth;
+				var btn = $('.lol-download').width();
+				$('.videoBox').css('height',screenw*0.448+'px');
+				$('video').css('height',screenw*0.448+'px');
+				$('.lol-download').css({'top':screenw*0.52+'px','marginLeft':-btn/2+'px'});
+		    } 
+		} 
+		rotate();
+		window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", rotate, false); 
+	</script>
+</body>
+</html>
