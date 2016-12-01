@@ -17,17 +17,20 @@ body{
 .m-contop,.m-concenter{
 	position:relative;
 }
-.m-contop .vedioTop{
-	width:74.5%;
+.m-contop .videoBox{
+	width:72.7%;
 	position:absolute;
-	top:80.5%;
-	left:14.2%;
+	top:80.8%;
+	left:15.8%;
+	/*background: #000;*/
+	overflow: hidden;
 }
-.m-concenter .vedio{
-	width:73.5%;
+.m-concenter .videoBottom{
+	width:73%;
 	position:absolute;
-	top:42.4%;
-	left:12%;
+	top:40%;
+	left:12.2%;
+	/*background: #000;*/
 }
 .m-contop img{
 	width: 100%;
@@ -39,18 +42,29 @@ body{
 }
 .m-conbottom{
 
-	position:relative;
+	/*position:relative;*/
 }
 .m-conbottom .conCenTop{
-	position:relative;
+	/*position:relative;*/
 }
 .m-conbottom .conCenContent{
-	position:absolute;
-	top:-2.2%;
+	position:relative;
 	left:0;
 }
+.sumSwitch{
+	position: absolute;
+	top:8%;
+	width: 100%;
+}
+.m-conbottom .pro-bg{
+	width: 100%;
+	margin-top: 65%;
+	vertical-align: bottom;
+	/*position: absolute;*/
+	/*top:50%;*/
+}
 .conTop{
-	margin-top:30%;
+	margin-top:20%;
 }
 .conTop img{
 	width: 100%;
@@ -91,6 +105,9 @@ body{
 	background:#142050;
 	color:#eb5e42;
 }
+.switchCon{
+	margin-left: 100%;
+}
 .sumSwitch .rightswitch{
 	width:100%;
 	list-style:none;
@@ -124,35 +141,15 @@ li span.ani{
 	color:#eb5e42;
 }
 .m-conBContent{
-	position:relative;
-	top:0%;
-}
-.m-cTop {
-	margin-top:-0.5%;
-	box-shadow:2px 0px 0px 1px #0c385c;
-}
-.m-cTop img{
-	width:100%;
-	vertical-align: top;
-
-}
-.m-ToObtain{
-	margin:20% 0% 10% 6%;
-	position: absolute;
-	left:15%;
-	top:15%;
-}
-.m-Download{
-	margin:50% 0% 10% 6%;
-	position: absolute;
-	left:15%;
-	top:15%;
+	position:absolute;
+	bottom:10%;
+	width: 100%;
 }
 .m-ToObtain a,.m-Download a{
-	position: absolute;
-	display:inline-block;
+	/*position: absolute;*/
+	display:block;
 	width:200px;
-	height:80px;
+	height:50px;
 	line-height: 40px;
 	text-align: center;
 	background: url("/activity/images/button.png") no-repeat;
@@ -160,4 +157,5 @@ li span.ani{
 	font-size:18px;
 	color:#fffef0;
 	text-decoration:none;
+	margin:30px auto;
 }
