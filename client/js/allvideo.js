@@ -166,11 +166,19 @@ $(function(){
                                 })
                                 $('.m-video .live-address').click(function(e){
                                     e.preventDefault();
+                                    $(this).addClass('video-open').siblings('.live-address').removeClass('video-open');
+                                    var name = $(this).attr('data-name'),
+                                        title = $(this).attr('data-title'),
+                                        flv = $(this).attr('data-rtmp'),
+                                        id = $(this).attr('data-id'),
+                                        nickname = $(this).attr('data-nickname'),
+                                        icon = $(this).parent().find('.head-icon').attr('src'),
+                                        follow = $(this).attr('data-follow')==1 ? true :false;
                                     $('.m-video-mask').show();
                                     videoPlayerInterf.callLater(function () {
-                                        // videoPlayerInterf.flash.playVideo("http://pili-media.wangyuhudong.com/7FUkDXBrj3kr1leI8VjVFX6GGD0=/Fk8ffjjNrphUwlioPxjmXIB0R7tl", "界黄盖暴力输出，秒全场", "王者荣耀");
-                                        videoPlayerInterf.flash.playVideo($(this).attr('data-rtmp'),$(this).attr('data-title'),$(this).attr('data-name'));
-                                        videoPlayerInterf.flash.updateAnchor($(this).attr('data-id'), $(this).attr('data-nickname'),$(this).attr('data-icon'), false);
+                                        // videoPlayerInterf.flash.playVideo("http://pili-media.wangyuhudong.com/7FUkDXBrj3kr1leI8VjVFX6GGD0=/Fpe0CIJCfu80Ey29nmt4y2wVqhzx", "界黄盖暴力输出，秒全场", "王者荣耀");
+                                        videoPlayerInterf.flash.playVideo(flv,title,name);
+                                        videoPlayerInterf.flash.updateAnchor(id, nickname,icon, follow);
                                     });
                                     
                                 });
