@@ -3,97 +3,152 @@
 <head>
 	<meta charset="UTF-8">
 	<title>主播认证</title>
-	<script src="/jquery.js"></script>
-	<script src="/jquery.sha1.js"></script>
-	<script src="/wxjsapi.js"></script>
-	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-	<script>
-		enableWxShare({
-			appId: 'wxf96f728533f32fa8',
-			ticket: '{{ticket}}',
-			title: '娱儿TV独家 CEC官方直播',			
-			imgUrl: '',
-			desc: '玩手游，做主播，打比赛，拿福利。尽在#娱儿TV#领跑移动电竞的直播平台'
-		})
-	</script>
-	<!-- <meta charset="utf-8" />
+	<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
     <meta content="email=no" name="format-detection">
     <title>移动端图片压缩上传</title>
+    <link rel="stylesheet" href="/css/author.css">
     <link rel="stylesheet" href="/css/LUploader.css">
-    <style>
-    * {
-        margin: 0;
-        padding: 0;
-    }
-    h1{
-    background-color: #19b5ee;
-    color: #fff;
-    font-size: 25px;
-    text-align: center;
-    padding: 10px;
-    }
-    li {
-        list-style-type: none;
-    }
-    input {
-        outline: none;
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    }
-    </style> -->
 </head>
 <body>
-	<input type="file">
-	<!-- <div class="IdCard">
-		<h1>LUploader移动端图片压缩上传</h1>
-	    <div class="LUploader" id="demo1">
-	        <div class="LUploader-container">
-	            <input data-LUploader='demo1' data-form-file='basestr' data-upload-type='front' type="file" />
-	            <ul class="LUploader-list"></ul>
-	        </div>
-	        <div>
-	            <div class="icon icon-camera font20"></div>
-	            <p>单击上传</p>
-	        </div>
-	    </div>
-	    <div class="LUploader" id="demo2">
-	        <div class="LUploader-container">
-	            <input data-LUploader='demo2' data-form-file='basestr' data-upload-type='back' type="file" />
-	            <ul class="LUploader-list"></ul>
-	        </div>
-	        <div>
-	            <div class="icon icon-camera font20"></div>
-	            <p>单击上传</p>
-	        </div>
-	    </div>
-	    <div class="LUploader" id="demo3">
-	        <div class="LUploader-container">
-	            <input data-LUploader='demo3' data-form-file='basestr' data-upload-type='salary' type="file" />
-	            <ul class="LUploader-list"></ul>
-	        </div>
-	        <div>
-	            <div class="icon icon-camera font20"></div>
-	            <p>单击上传</p>
-	        </div>
-	    </div>
+<div class="g-container">
+	<div class="m-public">
+		<div class="Public">
+			<img src="/mobile/images/hostpublic.png">
+		</div>
 	</div>
-	
-
-    <script src="/LUploader.min.js"></script>
-    <script>
-    [].slice.call(document.querySelectorAll('input[data-LUploader]')).forEach(function(el) {
-        new LUploader(el, {
-            url: 'http://172.16.2.62:8777/person-center/realname-auth',//post请求地址
-            multiple: false,//是否一次上传多个文件 默认false
-            maxsize: 102400,//忽略压缩操作的文件体积上限 默认100kb
-            accept: 'image/*',//可上传的图片类型
-            quality: 0.1,//压缩比 默认0.1  范围0.1-1.0 越小压缩率越大
-            showsize:false//是否显示原始文件大小 默认false
-        });
-    });
-    </script> -->
+	<div class="m-switch">
+		<!-- 认证界面 -->
+		<div class="u-Authentication" id="u-Authentication">
+			<div class="Utop">
+				<p>认证主播将拥有提现、直播间管理、排名奖励等多重特权噢~</p>
+			</div>
+			<div class="Ucenter">
+				<input type="text" name="" placeholder="请输入姓名" id="checkName"><br>
+				<input type="text" name="" placeholder="请输入联系QQ号" class="inputCheck" id="checkQQ"><br>
+				<input type="text" name="" placeholder="请输入18位身份证号码" id="checkIdCard"><br>
+				<input type="date" name="" placeholder="请输入身份证到期时间" id="idCardDueDate" class="uDate"><img src="/mobile/images/hostright.png" class="imgSpe"><br>
+				<div class="u-idcard" id="idCard">
+	              <div class="u-dright">
+	                <div class="u-card cardRight">
+	                  <div class="img"><img src="/mobile/images/idcard1.jpg" id="idCardHandScan"></div>
+	                  <span>手持身份证正面照</span><br>
+	                  <div class="upload-container">上传
+	                    <input type="file" name="fileToUpload" id="fileToUpload" class="fileupload" accept="image/*"/>
+	                </div>
+	                </div>
+	                <div class="u-card cardRight">
+	                  <div class="img"><img src="/mobile/images/idcard2.jpg" id="idCardFrontScan"></div>
+	                  <span>身份证正面照</span><br>
+	                  <div class="upload-container">上传
+	                    <input type="file" name="fileToUpload" id="fileToUpload" class="fileupload" accept="image/*" />
+	                </div>
+	                </div>
+	                <div class="u-card">
+	                  <div class="img"><img src="/mobile/images/idcard3.jpg" id="idCardBackScan"></div>
+	                  <span>身份证背面照</span><br>
+	                  <div class="upload-container">上传
+	                    <input type="file" name="fileToUpload" id="fileToUpload" class="fileupload" accept="image/*"/>
+	                </div>
+	                </div>
+	              </div>
+              	</div>
+				<div class="uAgree"><p>我已阅读并同意<span>《娱儿TV主播协议》</span></p></div>
+				<div class="Usubmit" id="Usubmit"><a href="">提交认证</a></div>
+			</div>
+			<div class="Uexplain">
+				<p>身份证及身份证照将会进行人工审核，照片务必做到以下几点：</p>
+				<p>*您需年满16岁</p>
+				<p>*全面：照片内包含以下内容:</p>
+				<p>1、您的面部、身份证</p>
+				<p>2、身份证正面</p>
+				<p>3、身份证反面</p>
+				<p>*清晰：身份证照片文字及图片清晰可见</p>
+				<p>*真实：身份证照片无PS</p>
+				<p>*有效：身份证为二代身份证，在有效期内，正反内容相符</p>
+				<p>如果以上信息有所不符，实名认证将驳回</p>
+			</div>
+		</div>
+		<!-- 审核中 -->
+		<div class="u-InTheReview" id="u-InTheReview">
+			<div class="InModule">
+				<div class="InModuleImg">
+					<div class="IMIng">
+						<img src="/mobile/images/hosting.png">
+					</div>
+					<div class="IMIngs">
+						<img src="/mobile/images/hostings.png">
+					</div>
+				</div>
+				<p>工作人员将于1-3个工作日内完成审核，请耐心等待...</p>
+				<div class="specTips"><a href="">朕知道了</a></div>
+			</div>
+		</div>
+		<!-- 审核通过 -->
+		<div class="u-Approved" id="u-Approved">
+			<div class="ApModule">
+				<div class="InModuleImg">
+					<div class="IMIng">
+						<img src="/mobile/images/hostyes.png">
+					</div>
+					<div class="IMIngs">
+						<img src="/mobile/images/hostyess.png">
+					</div>
+				</div>
+				<p>恭喜！您已经是一名娱儿TV的认证主播啦~</p>
+				<div class="specTips"><a href="">朕知道了</a></div>
+				<div class="specColor"><span id="second">10<span>S</span></span>后页面将自动跳转</div>
+			</div>
+		</div>
+		<!-- 审核未通过 -->
+		<div class="u-AuditDidNotPass" id="u-AuditDidNotPass">
+			<div class="AuModule">
+				<div class="InModuleImg">
+					<div class="IMIng">
+						<img src="/mobile/images/hostno.png">
+					</div>
+					<div class="IMIngs">
+						<img src="/mobile/images/hostnos.png">
+					</div>
+				</div>
+				<p>请上传正确无误的个人身份信息，并重新提交</p>
+				<div class="specTips"><a href="">朕知道了</a></div>
+				<div class="specColor"><span id="seconds">10<span>S</span></span>后页面将自动跳转</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<script src="/jquery.js"></script>
+	<script src="/mobile/js/author.js"></script>
+	<script type="text/javascript">
+		$('.fileupload').change(function(event) {
+		var _this = $(this);
+		if ($('.fileupload').val().length) {
+			 var fileName = $('.fileupload').val();
+			 var extension = fileName.substring(fileName.lastIndexOf('.'), fileName.length).toLowerCase();
+			  if (extension == ".jpg" || extension == ".png") {
+			    var data = new FormData();
+			    data.append('upload', $('#fileToUpload')[0].files[0]);
+			    $.ajax({
+			         url: 'http://172.16.2.62:8099/common/upload',
+			         type: 'post',
+			          data: data,
+			          cache: false,
+			          contentType: false, //不可缺参数
+			            processData: false, //不可缺参数
+			           success: function(data) {
+			               _this.parents('.u-card').find('.img img').attr('src','http://img.wangyuhudong.com'+data.object);
+			            },
+			           error: function() {
+			                 console.log('error');
+			           }
+			    });
+		}
+	 }
+	});
+	</script>
 </body>
 </html>

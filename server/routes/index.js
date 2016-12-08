@@ -122,22 +122,22 @@ router.get('/service', function(req, res, next) {
     res.render('service', { title: "用户协议" ,islogin:islogin});
 });
 router.get('/center/information', function(req, res, next) {
-  res.render('center/information', { title: "我的资料" });
+  res.render('center/information', { title: "我的资料" ,index:0});
 });
 router.get('/center/focus', function(req, res, next) {
-    res.render('center/focus', { title: "我的关注" });
+    res.render('center/focus', { title: "我的关注" ,index:1});
 });
 router.get('/center/props', function(req, res, next) {
-    res.render('center/props', { title: "我的道具" });
+    res.render('center/props', { title: "我的道具" ,index:2});
 });
 router.get('/center/message', function(req, res, next) {
-    res.render('center/message', { title: "我的消息" });
+    res.render('center/message', { title: "我的消息" ,index:3});
 });
 router.get('/center/topup', function(req, res, next) {
-    res.render('center/topup', { title: "我充值" });
+    res.render('center/topup', { title: "我充值" ,index:4});
 });
 router.get('/center/host', function(req, res, next) {
-    res.render('center/host', { title: "我要当主播" });
+    res.render('center/host', { title: "我要当主播" ,index:5});
 });
 
 
@@ -484,7 +484,9 @@ router.get('/mobile/author', function(req, res, next) {
     });
     // res.render('mobile/author', { title: "娱儿TV--领跑移动电竞的直播平台" });
 });
-
+router.get('/mobile/anchor', function(req, res, next) {
+    res.render('mobile/anchor', { title: "娱儿TV--领跑移动电竞的直播平台" });
+});
 router.get('/activity/recruit', function(req, res, next) {
     res.render('activity/recruit');
 });

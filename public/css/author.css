@@ -1,0 +1,293 @@
+*{margin:0;padding:0;}
+body{
+	background:#141a20;
+}
+.g-container{
+	max-width: 800px;
+	margin:0 auto;
+	width: 100%;
+	overflow: hidden;
+	font-family: '微软雅黑';
+}
+.m-public{
+	margin:5% 0% 5%;
+}
+.Public{
+	width:100%;
+	height:65px;
+}
+.Public img{
+	width:100%;
+	vertical-align: top;
+}
+
+/*主播认证*/
+.u-Authentication{
+	margin:0% 0% 10%;
+}
+.Utop{
+	width:100%;
+	height:40px;
+	line-height:40px;
+	margin:5% 0%;
+	background:#1a2129;
+}
+.Utop p{
+	width:100%;
+	color:#98a9bb;
+	font-size:12px;
+	text-align:center;
+}
+.Ucenter{
+	width:90%;
+	height:460px;
+	margin:0% 5% 0%;
+	position: relative;
+}
+/**/
+/*::-webkit-datetime-edit { padding: 1px; background: url(/study/image/selection.gif); }
+::-webkit-datetime-edit-fields-wrapper { background-color: #eee; }
+::-webkit-datetime-edit-text { color: #4D90FE; padding: 0 .3em; }
+::-webkit-datetime-edit-year-field { color: purple; }
+::-webkit-datetime-edit-month-field { color: blue; }
+::-webkit-datetime-edit-day-field { color: green; }
+::-webkit-inner-spin-button { visibility: hidden; }
+::-webkit-calendar-picker-indicator {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-shadow: inset 0 1px #fff, 0 1px #eee;
+    background-color: transparent;
+    background-image: -webkit-linear-gradient(top, #f0f0f0, #e6e6e6);
+    color: #666;
+}*/
+
+.Ucenter input{
+	width:95%;
+	height:35px;
+	line-height:35px;
+	border:1px solid #1a2a3e;
+	margin-bottom:5%;
+	background-color:transparent;
+	padding-left:5%;
+	color:#fff;
+}
+.Ucenter input.uDate{
+	position:relative;
+	background-color:transparent;
+}
+.Ucenter img.imgSpe{
+	display: inline-block;
+	position:absolute;
+	width:10px;
+	height:10px;
+	margin-left:95%;
+	top:37%;
+}
+/*粘贴*/
+.u-idcard{
+	width:100%;
+	height:135px;
+	margin:3% 0% 10%;
+}
+.u-dright{
+	overflow:hidden;
+	width:100%;
+}
+.u-idcard div.u-card{
+	width:30%;
+	display:inline-block;
+	float:left;
+}
+.u-card .img{
+	display:inline-block;
+	width:100%;
+	height:68px;
+	border:1px solid #1a2a3e;
+	box-sizing:border-box;
+}
+.img img{
+  width:100%;
+  height:100%;
+  border:1px solid #353d48;
+}
+.img img[src='']{
+  opacity:0;
+}
+.cardRight{
+	margin-right:5%;
+}
+.u-card span{
+	display:inline-block;
+	width:100%;
+	height:17px;
+	line-height:17px;
+	text-align:center;
+	font-size:12px;
+	color:#465667;
+	margin-bottom:10%;
+}
+/*上传图片的样式*/
+.upload-container{
+	background-color:#6b757f;
+	width:60%;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	position:relative;
+	margin:10% 20%;
+	cursor:pointer;
+	border-radius:5px;
+	font-size:12px;
+	color:#141a20;
+}
+.fileupload{
+	width:60%;
+	height:20px;
+	line-height:20px;
+	position:absolute;
+	z-index:200;
+	margin:10% 20%;
+	top:0;
+	left:0;
+	opacity:0;
+	filter:alpha(opacity=0);
+}
+/*粘贴*/
+input::-webkit-input-placeholder { /* WebKit browsers */ 
+	font-size:13px;
+    color: #465667; 
+} 
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+   	font-size:13px;
+    color: #465667; 
+} 
+input::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+   	font-size:13px;
+    color: #465667; 
+} 
+input:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+    font-size:13px;
+    color: #465667; 
+} 
+.Ucenter .uAgree{
+	width:70%;
+	height:17px;
+	line-height:17px;
+	margin:0 15% 5%;
+}
+.uAgree p{
+	font-size:12px;
+	color:#465667;
+}
+.uAgree span{
+	color:#3ff;
+}
+.Ucenter .Usubmit{
+	width:60%;
+	margin:0% 15% 10%;
+
+} 
+.Ucenter .Usubmit a{
+	display:inline-block;
+	width:100%;
+	height:37px;
+	line-height:37px;
+	text-align:center;
+	color:#fff;
+	font-size:14px;
+	border-radius:37px;
+	text-decoration:none;
+	background:#f36;
+}
+.Uexplain{
+	width:90%;
+	margin:10% 5% 10%;
+}
+.Uexplain p{
+	width:100%;
+	font-size:12px;
+	color:#465667;
+}
+/*审核的三种状态*/
+.u-InTheReview,.u-Approved,.u-AuditDidNotPass{
+	width:80%;
+	margin:0 auto;
+}
+/*审核中*/
+.InModule,.ApModule,.AuModule{
+	width:100%;
+}
+.InModuleImg{
+	background:#323a43;
+	width:100%;
+	height:180px;
+	text-align:center;
+	border-radius:5px;
+}
+.IMIng{
+	width:45px;
+	height:45px;
+	margin:20% auto 10%;
+	padding-top:15%;
+}
+.IMIngs{
+	width:60%;
+	height:50px;
+	margin:0% auto 10%;
+}
+.IMIng img,.IMIngs img{
+	width:100%;
+	vertical-align:top;
+}
+.InModule p{
+	margin:5% auto 60%;
+	color:#98a9bb;
+	font-size:12px;
+
+}
+/*审核通过*/
+.ApModule p{
+	margin:5% auto 20%;
+	color:#98a9bb;
+	font-size:12px;
+	text-align:center;
+}
+.specTips{
+	width:60%;
+	height:35px;
+	line-height:35px;
+	margin:0% auto;
+}
+.specTips a{
+	display:inline-block;
+	width:100%;
+	border-radius:35px;
+	text-decoration:none;
+	background:#f36;
+	color:#fff;
+	font-size:14px;
+	text-align:center;
+}
+.specColor{
+	width:45%;
+	height:35px;
+	line-height:35px;
+	font-size:12px;
+	color:#465667;
+	margin:0% auto 40%;
+}
+.specColor span{
+	font-size:12px;
+	color:#3ff;
+}
+/*审核未通过*/
+.AuModule p{
+	margin:5% auto 20%;
+	color:#98a9bb;
+	font-size:12px;
+	text-align:center;
+}
+
+
+
+

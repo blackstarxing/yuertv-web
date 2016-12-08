@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>主播认证</title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>成为认证主播</title>
+    <style>
+    *{margin:0;padding:0;}
+    body{
+        background:#141a20;
+    }
+    .g-containers{
+        max-width: 800px;
+        margin:0 auto;
+        width: 100%;
+        overflow: hidden;
+        font-family: '微软雅黑';
+    }
+    .m-top{
+        width:100%;
+        height:65px;
+        margin:5% 0% 10%;
+    }
+    .m-top img{
+        width:100%;
+        vertical-align:top;
+    }
+    .m-center{
+        position:relative;
+        width:80%;
+        height:170px;
+        margin:0% 10% 15%;
+    }
+    .BackGround{
+        width:100%;
+        height:150px;
+        line-height:150px;
+        background:#333a44;
+        border-radius:5px;
+        margin-top:30%;
+    }
+    .MCenter{
+        position: absolute;
+        width:66%;
+        height:100px;
+        margin:0% 20% 50%;
+        top:-25%;
+    }
+    .Uicon{
+        width:60%;
+        height:65px;
+        margin:0% 20% 10%;
+    }
+    .Uicon .UIcon{
+        width:100%;
+        vertical-align: top;
+    }
+    .USex{
+        width:12.5%;
+        height:15px;
+        margin:-2% 10% 0% 67.5%;
+    }
+    .USex .Usex{
+        width:100%;
+        vertical-align:top;
+    }
+    .Uname{
+        width:100%;
+        text-align:center;
+        margin-top:20%;
+    }
+    .Uname{
+        height:20px;
+        overflow:hidden;
+    }
+    .UId{
+        width:100%;
+        text-align:center;
+        height:11px;
+    }
+    .Uname p{
+        float:left;
+        display:inline-block;
+        font-size:15px;
+        color:#fff;
+    }
+    .Uname img{
+        display:inline-block;
+        width:11%;
+        height:11px;
+        background: transparent;
+        margin-left:5%;
+    }
+    .UId{
+        font-size:11px;
+        color:#cecfd2;
+        margin-top:5%;
+    }
+    .m-bottom{
+        width:60%;
+        height:65px;
+        margin:0% 20% 35%;
+    }
+    .m-bottom a{
+        display:inline-block;
+        width:100%;
+        height:35px;
+        line-height:35px;
+        text-align:center;
+        font-size:14px;
+        color:#fff;
+        background:#f36;
+        border-radius:35px;
+        text-decoration:none;
+    }
+    .m-bottom p{
+        width:100%;
+        height:15px;
+        margin:5% 0%;
+        font-size:12px;
+        color:#465667;
+        text-align:center;
+    }
+    </style>
+</head>
+<body>
+    <div class="g-containers">
+        <div class="m-top">
+            <img src="/mobile/images/hostsucc.png">
+        </div>
+        <div class="m-center">
+            <div class="BackGround"></div>
+            <div class="MCenter">
+                <div class="Uicon">
+                    <img src="/mobile/images/ico7.png" class="UIcon">
+                </div>
+                <div class="USex">
+                    <img src="/mobile/images/hostfemale.png" class="Usex"> 
+                </div> 
+                <div class="Uname"><p>巧克力~包子<img src="/mobile/images/ico8.png"></p></div>
+                <div class="UId">ID：1987272</div>
+            </div>
+        </div>
+        <div class="m-bottom">
+            <a href="" id="clickObtain">朕知道了</a>
+            <p>点击获取直播工具下载地址</p>
+        </div>
+    </div>
+    <div class="Tips"></div>
+    <script src="/jquery.js"></script>
+    <script type="text/javascript">
+        $(function() { 
+            $('#Usubmit').on("click",function(e){ 
+            e.preventDefault(); 
+                $.ajax({  
+                    type: "GET",  
+                    url: "http://172.16.2.62:8099/h5/sendSMStoDownload",  
+                    data: {
+                           token:$("#token"),
+                           userId:$("#userId")
+                    },  
+                    dataType: "json",  
+                    success: function(data){  
+                        if(data.code == 0){//data.code的值这个是后端人员规定的。
+                          console.log("请求成功");
+                          alert("短信发送成功，请注意查看手机短信噢");
+                        } else if (data.code == 1) {
+                            alert("短信发送失败,请稍后再试");
+                        } else if (data.code == 2) {
+                            alert("获取短信过于频繁,请稍后再试");
+                        } else if (data.code == -2) {
+                            console.log("你没有权限，通常来讲，你是没有登录");
+                        } else if (data.code == -5) {
+                            console.log("参数错误哦。");
+                            
+                        }else{
+                            console.log(data.result);
+                        }    
+                    },
+                    error: function() {
+                        alert('通讯服务器错误');
+                    } 
+                });  
+            }); 
+        });
+    </script>
+</body>
+</html>
