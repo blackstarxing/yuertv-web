@@ -2,153 +2,286 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>主播认证</title>
+	<title>我要当主播</title>
 	<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
     <meta content="email=no" name="format-detection">
-    <title>移动端图片压缩上传</title>
-    <link rel="stylesheet" href="/css/author.css">
     <link rel="stylesheet" href="/css/LUploader.css">
+    <link rel="stylesheet" href="/css/author.css">
 </head>
 <body>
-<div class="g-container">
-	<div class="m-public">
-		<div class="Public">
-			<img src="/mobile/images/hostpublic.png">
+	<div class="g-bd">
+		<div class="step-one">
+			<div class="process">
+				<img src="/mobile/images/processone.png" alt="">
+			</div>
+			<div class="register">
+				<div class="m-register">
+					<h3>注册</h3>
+					<div class="m-regform">
+						<div class="m-input">
+							<input type="tel" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>11)value=value.slice(0,11)" class="u-ipt telnumber" placeholder="请输入手机号码" name="手机号码">					
+						</div>
+						<div class="m-input m-code">
+							<input type="text" class="u-ipt code" placeholder="请输入验证码" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>6)value=value.slice(0,6)" name="验证码">
+							<button class="getCode">获取验证码</button>
+						</div>
+						<div class="m-input">
+							<input type="password" class="u-ipt password" placeholder="请输入6~20位密码" maxlength="20" name="密码">
+						</div>
+						<div class="m-input">
+							<input type="text" class="u-ipt nickname" placeholder="请输入1~16位昵称（中文占两位）" name="昵称">
+						</div>
+						<div class="m-input m-sex f-cb">
+							<div class="f-fl">请选择性别</div>
+							<div class="sex-radio f-fl">
+		                        <input type="radio" id="male" name="sex" value="0">
+		                        <label name="sex" for="male">男</label>
+		                    </div>
+		                    <div class="sex-radio f-fl">
+		                        <input type="radio" id="female" checked="checked" name="sex" value="1">
+		                        <label name="sex" class="checked" for="female">女</label>
+		                    </div>
+						</div>
+						<p class="rule">注册即视为同意 <a href="http://yuerapi.wangyuhudong.com/yuer/agreement" class="agreement">《娱儿tv用户服务协议》</a></p>
+						<button class="u-reg-btn">注册</button>
+						<button class="u-log-btn">登录</button>
+					</div>
+				</div>
+				<div class="reg-success">
+					<div class="success">
+						&nbsp;&nbsp;&nbsp;&nbsp;注册成功！
+					</div>	
+					<p>现在您可以前往直播工具下载页面并查看直播教程</p>
+					<button class="u-steptwo">点击前往</button>
+					<p class="autojump"><span class="time">10S</span>后页面将自动跳转</p>
+				</div>
+			</div>
+			<div class="bindmobile">
+				<div class="m-bindmobile">
+					<h3>绑定手机</h3>
+					<div class="m-bindform">
+						<div class="m-input">
+							<input type="tel" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>11)value=value.slice(0,11)" class="u-ipt telnumber" placeholder="请输入手机号码" name="手机号码">					
+						</div>
+						<div class="m-input m-code">
+							<input type="text" class="u-ipt code" placeholder="请输入验证码" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>6)value=value.slice(0,6)" name="验证码">
+							<button class="getCode">获取验证码</button>
+						</div>
+						<div class="m-input">
+							<input type="password" class="u-ipt password" placeholder="请输入6~20位密码" maxlength="20" name="密码">
+						</div>
+						<p class="rule">注册即视为同意 <a href="http://yuerapi.wangyuhudong.com/yuer/agreement" class="agreement">《娱儿tv用户服务协议》</a></p>
+						<button class="u-bind-btn">绑定手机</button>
+					</div>
+				</div>
+				<div class="reg-success">
+					<div class="success">
+						&nbsp;&nbsp;&nbsp;&nbsp;手机绑定成功！
+					</div>	
+					<p>现在您可以前往直播工具下载页面并查看直播教程</p>
+					<button class="u-steptwo">点击前往</button>
+					<p class="autojump"><span class="time">10S</span>后页面将自动跳转</p>
+				</div>
+			</div>
+		</div>
+		<div class="step-two">
+			<div class="process">
+				<img src="/mobile/images/processtwo.png" alt="">
+			</div>
+			<div class="intro">
+				<img src="/mobile/images/shoubo.png" alt="">
+				<h3>娱儿手播</h3>
+				<p>娱儿手播是娱儿TV对应的一款录屏手游直播工具，录制操作简单，画面清晰，使用手机即可一键开启直播。打造全面好玩的手游视频直播分享社区，带你进入全民带薪直播时代，只要直播就有钱，还在等什么，赶紧加入娱儿TV吧。</p>
+				<button class="u-download-btn">获取下载地址</button>
+			</div>
+			<div class="ios">
+				<h3>第一步    安装娱儿手播，并设置信任</h3>
+				<p>安装娱儿手播后，需要将开播工具添加信任，才可以使用直播功能。设置方法如下：</p>
+				<img src="/mobile/images/ios1.jpg" alt="">
+				<p class="f-tc">进入设置，点击通用</p>
+				<img src="/mobile/images/ios2.jpg" alt="">
+				<p class="f-tc">点击进入设备管理</p>
+				<img src="/mobile/images/ios3.jpg" alt="">
+				<p class="f-tc">找到“Hangzhou iShow..”文件并点击进入</p>
+				<img src="/mobile/images/ios4.jpg" alt="">
+				<p class="f-tc">点击信任“Hangzhou iShow..”</p>
+				<img src="/mobile/images/ios5.jpg" alt="">
+				<p class="f-tc">点击“信任”按钮</p>
+				<h3>第二步    选择游戏，开始直播</h3>
+				<p>点击开始直播后，进入直播设置页面</p>
+				<img src="/mobile/images/ios6.jpg" alt="">
+				<p><span>1、</span>标题：好的标题不仅能吸引别人进入，还可以让更多朋友认识你</p>
+				<p><span>2、</span>游戏：选择正确的游戏名能让志同道合的朋友看到你的直播</p>
+				<p><span>3、</span>横竖屏：你直播的是“王者荣耀”请选择横屏吧~</p>
+				<p><span>4、</span>画质：你的手机、网络够NB请选择超清~</p>
+				<img src="/mobile/images/ios7.png" alt="">
+				<p class="f-tc">出现图示窗口后，你已正式开启直播之旅了</p>
+				<h3>第三步    结束直播，查看收益</h3>
+				<img src="/mobile/images/ios8.png" alt="">
+				<p class="f-tc">点击结束直播，可以查看相关直播情况以及收益</p>
+			</div>
+			<div class="android">
+				<h3>第一步    选择游戏，开始直播</h3>
+				<p>点击开始直播后，进入直播设置页面</p>
+				<img src="/mobile/images/android1.jpg" alt="">
+				<p><span>1、</span>标题：好的标题不仅能吸引别人进入，还可以让更多朋友认识你</p>
+				<p><span>2、</span>游戏：选择正确的游戏名能让志同道合的朋友看到你的直播</p>
+				<p><span>3、</span>横竖屏：你直播的是“王者荣耀”请选择横屏吧~</p>
+				<p><span>4、</span>画质：你的手机、网络够NB请选择超清~</p>
+				<img src="/mobile/images/android2.png" alt="">
+				<p class="f-tc">出现图示窗口后，你已正式开启直播之旅了</p>
+				<h3>第三步    结束直播，查看收益</h3>
+				<img src="/mobile/images/android3.png" alt="">
+				<p class="f-tc">点击结束直播，可以查看相关直播情况以及收益</p>
+				<img src="/mobile/images/android4.png" alt="">
+				<p class="f-tc">聊天室界面：可以查看观众的弹幕，与弹幕互动哦</p>
+				<img src="/mobile/images/android5.png" alt="">
+				<p><span class="pink">1、</span>返回手播主界面</p>
+				<p><span class="pink">2、</span>开启/关闭弹幕提示</p>
+				<p><span class="pink">3、</span>弹幕框可以随意拖动到你想要的位置</p>
+			</div>
+			<div class="g-ft">
+				<div class="u-stepthree">
+					<h3>点击成为认证主播</h3>
+				</div>
+			</div>
+		</div>
+		<div class="step-three">
+			<div class="m-public">
+				<div class="Public">
+					<img src="/mobile/images/hostpublic.png">
+				</div>
+			</div>
+			<div class="m-switch">
+				<!-- 认证界面 -->
+				<div class="u-Authentication" id="u-Authentication">
+					<div class="Utop">
+						<p>认证主播将拥有提现、直播间管理、排名奖励等多重特权噢~</p>
+					</div>
+					<div class="Ucenter">
+						<input type="text" placeholder="请输入姓名" id="checkName" name="姓名不能为空"><br>
+						<input type="text" placeholder="请输入联系QQ号" class="inputCheck" id="checkQQ" name="QQ号不能为空"><br>
+						<input type="text" placeholder="请输入18位身份证号码" id="checkIdCard" name="身份证号不能为空"><br>
+						<input type="date" placeholder="请输入身份证到期时间" id="idCardDueDate" class="uDate" name="到期时间不能为空"><br>
+						<div class="u-idcard" id="idCard">
+			              <div class="u-dright">
+			                <div class="u-card cardRight">
+			                  <div class="img hand"><img src="" id="idCardHandScan"></div>
+			                  <span>手持身份证正面照</span><br>
+			                  <div class="upload-container">上传
+			                    <input type="file" name="证件照未上传" id="fileToUpload1" class="fileupload" accept="image/*" />
+			                </div>
+			                </div>
+			                <div class="u-card cardRight">
+			                  <div class="img front"><img src="" id="idCardFrontScan"></div>
+			                  <span>身份证正面照</span><br>
+			                  <div class="upload-container">上传
+			                    <input type="file" name="证件照未上传" id="fileToUpload2" class="fileupload" accept="image/*" />
+			                </div>
+			                </div>
+			                <div class="u-card">
+			                  <div class="img back"><img src="" id="idCardBackScan"></div>
+			                  <span>身份证背面照</span><br>
+			                  <div class="upload-container">上传
+			                    <input type="file" name="证件照未上传" id="fileToUpload3" class="fileupload" accept="image/*"/>
+			                </div>
+			                </div>
+			              </div>
+		              	</div>
+						<div class="uAgree"><p>我已阅读并同意<span>《娱儿TV主播协议》</span></p></div>
+						<div class="Usubmit" id="Usubmit"><a href="">提交认证</a></div>
+					</div>
+					<div class="Uexplain">
+						<p>身份证及身份证照将会进行人工审核，照片务必做到以下几点：</p>
+						<p>*您需年满16岁</p>
+						<p>*全面：照片内包含以下内容:</p>
+						<p>1、您的面部、身份证</p>
+						<p>2、身份证正面</p>
+						<p>3、身份证反面</p>
+						<p>*清晰：身份证照片文字及图片清晰可见</p>
+						<p>*真实：身份证照片无PS</p>
+						<p>*有效：身份证为二代身份证，在有效期内，正反内容相符</p>
+						<p>如果以上信息有所不符，实名认证将驳回</p>
+					</div>
+				</div>
+				<!-- 审核中 -->
+				<div class="u-InTheReview" id="u-InTheReview">
+					<div class="InModule">
+						<div class="InModuleImg">
+							<div class="IMIng">
+								<img src="/mobile/images/hosting.png">
+							</div>
+							<div class="IMIngs">
+								<img src="/mobile/images/hostings.png">
+							</div>
+						</div>
+						<p>工作人员将于1-3个工作日内完成审核，请耐心等待...</p>
+						<div class="specTips"><a href="">朕知道了</a></div>
+					</div>
+				</div>
+				<!-- 审核通过 -->
+				<div class="u-Approved" id="u-Approved">
+					<div class="ApModule">
+						<div class="InModuleImg">
+							<div class="IMIng">
+								<img src="/mobile/images/hostyes.png">
+							</div>
+							<div class="IMIngs">
+								<img src="/mobile/images/hostyess.png">
+							</div>
+						</div>
+						<p>恭喜！您已经是一名娱儿TV的认证主播啦~</p>
+						<div class="specTips"><a href="">朕知道了</a></div>
+						<div class="specColor"><span id="second">10<span>S</span></span>后页面将自动跳转</div>
+					</div>
+				</div>
+				<!-- 审核未通过 -->
+				<div class="u-AuditDidNotPass" id="u-AuditDidNotPass">
+					<div class="AuModule">
+						<div class="InModuleImg">
+							<div class="IMIng">
+								<img src="/mobile/images/hostno.png">
+							</div>
+							<div class="IMIngs">
+								<img src="/mobile/images/hostnos.png">
+							</div>
+						</div>
+						<p>请上传正确无误的个人身份信息，并重新提交</p>
+						<div class="specTips"><a href="">朕知道了</a></div>
+						<div class="specColor"><span id="seconds">10<span>S</span></span>后页面将自动跳转</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="step-final">
+			<div class="m-top">
+	            <img src="/mobile/images/hostsucc.png">
+	        </div>
+	        <div class="m-center">
+	            <div class="BackGround"></div>
+	            <div class="MCenter">
+	                <div class="Uicon">
+	                    <img src="/mobile/images/ico7.png" class="UIcon">
+	                </div>
+	                <div class="USex">
+	                    <img src="/mobile/images/hostfemale.png" class="Usex"> 
+	                </div> 
+	                <div class="Uname"><span>巧克力~包子</span><img src="/mobile/images/ico8.png"></div>
+	                <div class="UId">房间：1987272</div>
+	            </div>
+	        </div>
+	        <div class="m-bottom">
+	            <a href="" id="clickObtain">朕知道了</a>
+	            <p>点击获取直播工具下载地址</p>
+	        </div>
 		</div>
 	</div>
-	<div class="m-switch">
-		<!-- 认证界面 -->
-		<div class="u-Authentication" id="u-Authentication">
-			<div class="Utop">
-				<p>认证主播将拥有提现、直播间管理、排名奖励等多重特权噢~</p>
-			</div>
-			<div class="Ucenter">
-				<input type="text" name="" placeholder="请输入姓名" id="checkName"><br>
-				<input type="text" name="" placeholder="请输入联系QQ号" class="inputCheck" id="checkQQ"><br>
-				<input type="text" name="" placeholder="请输入18位身份证号码" id="checkIdCard"><br>
-				<input type="date" name="" placeholder="请输入身份证到期时间" id="idCardDueDate" class="uDate"><img src="/mobile/images/hostright.png" class="imgSpe"><br>
-				<div class="u-idcard" id="idCard">
-	              <div class="u-dright">
-	                <div class="u-card cardRight">
-	                  <div class="img"><img src="/mobile/images/idcard1.jpg" id="idCardHandScan"></div>
-	                  <span>手持身份证正面照</span><br>
-	                  <div class="upload-container">上传
-	                    <input type="file" name="fileToUpload" id="fileToUpload" class="fileupload" accept="image/*"/>
-	                </div>
-	                </div>
-	                <div class="u-card cardRight">
-	                  <div class="img"><img src="/mobile/images/idcard2.jpg" id="idCardFrontScan"></div>
-	                  <span>身份证正面照</span><br>
-	                  <div class="upload-container">上传
-	                    <input type="file" name="fileToUpload" id="fileToUpload" class="fileupload" accept="image/*" />
-	                </div>
-	                </div>
-	                <div class="u-card">
-	                  <div class="img"><img src="/mobile/images/idcard3.jpg" id="idCardBackScan"></div>
-	                  <span>身份证背面照</span><br>
-	                  <div class="upload-container">上传
-	                    <input type="file" name="fileToUpload" id="fileToUpload" class="fileupload" accept="image/*"/>
-	                </div>
-	                </div>
-	              </div>
-              	</div>
-				<div class="uAgree"><p>我已阅读并同意<span>《娱儿TV主播协议》</span></p></div>
-				<div class="Usubmit" id="Usubmit"><a href="">提交认证</a></div>
-			</div>
-			<div class="Uexplain">
-				<p>身份证及身份证照将会进行人工审核，照片务必做到以下几点：</p>
-				<p>*您需年满16岁</p>
-				<p>*全面：照片内包含以下内容:</p>
-				<p>1、您的面部、身份证</p>
-				<p>2、身份证正面</p>
-				<p>3、身份证反面</p>
-				<p>*清晰：身份证照片文字及图片清晰可见</p>
-				<p>*真实：身份证照片无PS</p>
-				<p>*有效：身份证为二代身份证，在有效期内，正反内容相符</p>
-				<p>如果以上信息有所不符，实名认证将驳回</p>
-			</div>
-		</div>
-		<!-- 审核中 -->
-		<div class="u-InTheReview" id="u-InTheReview">
-			<div class="InModule">
-				<div class="InModuleImg">
-					<div class="IMIng">
-						<img src="/mobile/images/hosting.png">
-					</div>
-					<div class="IMIngs">
-						<img src="/mobile/images/hostings.png">
-					</div>
-				</div>
-				<p>工作人员将于1-3个工作日内完成审核，请耐心等待...</p>
-				<div class="specTips"><a href="">朕知道了</a></div>
-			</div>
-		</div>
-		<!-- 审核通过 -->
-		<div class="u-Approved" id="u-Approved">
-			<div class="ApModule">
-				<div class="InModuleImg">
-					<div class="IMIng">
-						<img src="/mobile/images/hostyes.png">
-					</div>
-					<div class="IMIngs">
-						<img src="/mobile/images/hostyess.png">
-					</div>
-				</div>
-				<p>恭喜！您已经是一名娱儿TV的认证主播啦~</p>
-				<div class="specTips"><a href="">朕知道了</a></div>
-				<div class="specColor"><span id="second">10<span>S</span></span>后页面将自动跳转</div>
-			</div>
-		</div>
-		<!-- 审核未通过 -->
-		<div class="u-AuditDidNotPass" id="u-AuditDidNotPass">
-			<div class="AuModule">
-				<div class="InModuleImg">
-					<div class="IMIng">
-						<img src="/mobile/images/hostno.png">
-					</div>
-					<div class="IMIngs">
-						<img src="/mobile/images/hostnos.png">
-					</div>
-				</div>
-				<p>请上传正确无误的个人身份信息，并重新提交</p>
-				<div class="specTips"><a href="">朕知道了</a></div>
-				<div class="specColor"><span id="seconds">10<span>S</span></span>后页面将自动跳转</div>
-			</div>
-		</div>
-	</div>
-</div>
+	<div class="tip"></div>
 	<script src="/jquery.js"></script>
 	<script src="/mobile/js/author.js"></script>
-	<script type="text/javascript">
-		$('.fileupload').change(function(event) {
-		var _this = $(this);
-		if ($('.fileupload').val().length) {
-			 var fileName = $('.fileupload').val();
-			 var extension = fileName.substring(fileName.lastIndexOf('.'), fileName.length).toLowerCase();
-			  if (extension == ".jpg" || extension == ".png") {
-			    var data = new FormData();
-			    data.append('upload', $('#fileToUpload')[0].files[0]);
-			    $.ajax({
-			         url: 'http://172.16.2.62:8099/common/upload',
-			         type: 'post',
-			          data: data,
-			          cache: false,
-			          contentType: false, //不可缺参数
-			            processData: false, //不可缺参数
-			           success: function(data) {
-			               _this.parents('.u-card').find('.img img').attr('src','http://img.wangyuhudong.com'+data.object);
-			            },
-			           error: function() {
-			                 console.log('error');
-			           }
-			    });
-		}
-	 }
-	});
-	</script>
 </body>
 </html>
