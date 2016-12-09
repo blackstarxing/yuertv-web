@@ -19,9 +19,7 @@ $(function(){
 	var bindMobile = getQueryString("mobile"),
 		certificate = getQueryString("certificate");
 
-	// if(userId &&)  
-
-	if(userId && bindMobile){
+	if(userId && bindMobile == 1){
 		var icon = "",
 			sex = 1,
 			name = "",
@@ -99,41 +97,39 @@ $(function(){
 		          	// $("u-InTheReview").hide();//审核中
 		          	// $("u-Approved").hide();//审核通过
 		          	// $("u-AuditDidNotPass").hide();//审核不通过
-			        if(object.certificate_state == 1){
+			        if(data.object.certificate_state == 1){
+			        	$('.step-one').hide();
+		          		$('.step-three').show();
+		          		$('.u-Authentication').hide();
 			          	$(".u-InTheReview").show();//审核中
-			        }else if(object.certificate_state == 2){
-			          	$(".u-Approved").show();//审核通过
-			          	if(object.is_first==0){
+			        }else if(data.object.certificate_state == 2){
+			          	if(data.object.is_first==0){
 			          		$('.step-one').hide();
 			          		$('.step-three').show();
 			          		$('.u-Authentication').hide();
 			          		$(".u-Approved").show();//审核通过
 			            	//执行showTime()  
 			          		showTime();
-			          	}else if(object.is_first==1){
+			          	}else if(data.object.is_first==1){
 			          		$('.step-one').hide();
 			          		myInfo(); 
 			          	}
-			        }else if(object.certificate_state == 3){
-						$("u-AuditDidNotPass").show();//审核不通过
-						if(object.is_first==0){
+			        }else if(data.object.certificate_state == 3){
+						if(data.object.is_first==0){
 							$('.step-one').hide();
 			          		$('.step-three').show();
 			          		$('.u-Authentication').hide();
 			            	$(".u-AuditDidNotPass").show();//审核不通过
 			            	//执行showTimes()  
 							showTimes();
-			          	}else if(object.is_first==1){
+			          	}else if(data.object.is_first==1){
 			          		$('.step-one').hide();
 			            	$(".step-three").show();//认证页面
 			          	}
-			        }else {
-			          	if(object.is_first==0){
-			            	$(".u-Authentication").show();//认证页面
-			          	}else if(object.is_first==1){
-			            	$(".u-Authentication").hide();//认证页面
-			          	}
-		         	}  
+			        }else{
+			        	$('.step-one').hide();
+			          	$('.step-two').show();
+			        }
 			   	} else if (data.code == -2) {
 			        console.log("你没有权限，通常来讲，你是没有登录");
 			    } else if (data.code == -5) {
@@ -146,11 +142,13 @@ $(function(){
 		      	showTip('通讯服务器错误');
 		  	} 
 		}); 
-	}else if(userId && !bindMobile){
+	}else if(userId && bindMobile == 0){
 		$('.register').hide();
 		$('.bindmobile').show();
 	}
 
+	// $('.step-one').hide();
+	// $('.step-three').show();
 	// 教程显示
 	if (/(Android)/i.test(navigator.userAgent)) {
 	    $('.ios').hide() && $('.android').show();
@@ -415,6 +413,11 @@ $(function(){
     	$('.step-two').show();
     });
 
+    $('.u-stepthree').click(function(){
+    	$('.step-two').hide();
+    	$('.step-three').show();
+    })
+
     // 发送手播下载地址
     $('.u-download-btn').click(function(){
     	var parm = {};
@@ -521,14 +524,10 @@ $(function(){
 		        success: function(data){  
 		            if(data.code == 0){//data.code的值这个是后端人员规定的。
 		              	// console.log("请求成功");
-		              	showTip("上传成功");
-		            } else if (data.code == -2) {
-		                console.log("你没有权限，通常来讲，你是没有登录");
-		            } else if (data.code == -5) {
-		                console.log("参数错误哦。");
-		                
+		              	$('.u-Authentication').hide();
+			          	$(".u-InTheReview").show();//审核中		              	
 		            }else{
-		                console.log(data.result);
+		                showTip(data.result);
 		            }    
 		        },
 		        error: function() {

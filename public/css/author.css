@@ -329,6 +329,7 @@ input:focus{
 input[type="date"]:before{
     color:#465667;
     content:attr(placeholder);
+    font-size: 13px;
 }
 input[type="date"].full:before {
     color:black;
@@ -392,28 +393,28 @@ input[type="date"].full:before {
 /*上传图片的样式*/
 .upload-container{
 	background-color:#6b757f;
-	width:60%;
-	height:20px;
-	line-height:20px;
+	width:70%;
+	height:25px;
+	line-height:25px;
 	text-align:center;
 	position:relative;
-	margin:10% 20%;
+	margin:5% 20%;
 	cursor:pointer;
 	border-radius:5px;
 	font-size:12px;
 	color:#141a20;
 }
-.fileupload{
-	width:60%;
-	height:20px;
-	line-height:20px;
+.upload-container .fileupload{
+	width:100%;
+	height:25px;
+	line-height:25px;
 	position:absolute;
 	z-index:200;
-	margin:10% 20%;
 	top:0;
 	left:0;
 	opacity:0;
 	filter:alpha(opacity=0);
+	padding: 0;
 }
 /*粘贴*/
 input::-webkit-input-placeholder { /* WebKit browsers */ 
