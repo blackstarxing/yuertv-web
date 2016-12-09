@@ -526,7 +526,7 @@ $(".u-cbottom").on("click",function(){
                                 settimes(60);
                             }else{
                                 $(".m-mask .changePic").trigger("click");
-                                alert(data.result);//这个先这样用，后台应该是文档写的有问题
+                                alert(data.result);//后台应该是文档写的有问题
                             }
                         },
                         error: function(a, b, c) {
@@ -551,14 +551,14 @@ $(".u-cbottom").on("click",function(){
                             },
                             success: function(data) {
                                 if (data.code == 0) {
-                                    alert("认证成功");//没找到你的弹框
+                                    alert("认证成功");//没找到弹框
                                     window.location.href=window.location.href;
                                 }else if(data.code == 1){
-                                    alert("更新失败");//没找到你的弹窗
+                                    alert("更新失败");//没找到弹窗
                                 }else if(data.code == 2){
-                                    alert("手机号已被绑定");//没找到你的弹窗
+                                    alert("手机号已被绑定");//没找到弹窗
                                 }else if(data.code == 3){
-                                    alert("已绑定手机号");//没找到你的弹窗
+                                    alert("已绑定手机号");//没找到弹窗
                                     window.location.href=window.location.href;
                                 }else if(data.code == 4){
                                     $("#verifys").parent().find("span").each(function(){
@@ -628,13 +628,13 @@ $(".u-cbottom").on("click",function(){
                         },
                         success: function(data) {
                             if (data.code == 0) {
-                                alert("昵称修改成功");//没找到你的弹框
+                                alert("昵称修改成功");//没找到弹框
                             }else if(data.code == 1){
-                                alert("更新失败");//没找到你的弹窗
+                                alert("更新失败");//没找到弹窗
                             }else if(data.code == 2){
                                 $("#retips").show();
                             }else if(data.code == 3){
-                                alert("昵称只能免费修改一次");//没找到你的弹窗
+                                alert("昵称只能免费修改一次");//没找到弹窗
                             }else{
                                 console.log(data.result);  
                             }
