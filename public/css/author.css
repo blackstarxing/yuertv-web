@@ -1,0 +1,661 @@
+html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
+body,ul,li,p,h3,h4,h2,em,input,button{margin: 0; padding: 0;}
+body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; font-size:62.5%; font-style:normal; max-width: 800px; margin:0 auto; height:100%; color:#9da4ad; background: #141a20; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
+img{border:0; max-width:100%;}
+li{ list-style:none;}
+a{text-decoration: none; color:#9da4ad;}
+h3{font-size: 1.5rem;line-height: 1.25;}
+
+.f-cb:after,.f-cbli li:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
+.f-cb,.f-cbli li{zoom:1;}
+.f-ib{display:inline-block;*display:inline;*zoom:1;}
+.f-dn{display:none;}
+.f-db{display:block;}
+.f-fl{float:left;}
+.f-fr{float:right;}
+.f-re{position: relative;}
+.f-ab{position: absolute;}
+.f-tr{text-align: right;}
+.f-tc{text-align: center;}
+
+input:focus{
+	outline: none;
+}
+
+.g-bd{
+	padding-top: 10px;
+	background: #141a20;
+}
+.process img{
+	width: 100%;
+}
+.m-register,.m-bindmobile{
+	padding:10px;
+}
+.m-register h3,.m-bindmobile h3{
+	font-size: 15px;
+	color:#fff;
+	line-height: 2;
+}
+.bindmobile{
+	display: none;
+}
+.error-tip{
+	display: none;
+}
+.m-input{
+	margin-bottom: 10px;
+}
+.m-input ::-webkit-input-placeholder { /* WebKit browsers */ 
+    color: #465667; 
+} 
+.m-input :-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+    color: #465667; 
+} 
+.m-input ::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+    color: #465667; 
+} 
+.m-input :-ms-input-placeholder { /* Internet Explorer 10+ */ 
+    color: #465667; 
+} 
+.m-input input,.m-sex{
+	display: block;
+	width: 100%;
+	background: #161d24;
+	border: 1px solid #1a293d;
+	outline: none;
+	box-sizing: content-box;
+	height: 16px;
+	padding:9px 0;
+	line-height: 16px;
+	border-radius: 2px;
+	text-indent: 9px;
+	color:#fff;
+	font-size: 13px;
+}
+.m-code{
+	position: relative;
+}
+.m-code .getCode{
+	display: inline-block;
+	width: 100px;
+	text-align: center;
+	height: 34px;
+	line-height: 34px;
+	position: absolute;
+	top:1px;
+	right: -3px;
+	background: #1c232d;
+	border:none;
+	outline: none;
+	color: #98a8ba;
+	border-left: 1px solid #1a293d;
+}
+.m-sex{
+	color:#98a9bb;
+}
+.sex-radio{
+	margin-left: 10px;
+}
+.sex-radio input[type="radio"] {
+  display: none;
+}
+.sex-radio label {
+  display: inline-block;
+  height: 13px;
+  line-height: 13px;
+  cursor: pointer;
+  background: url('/images/dischecked.png') no-repeat left center;
+  background-size: 13px 13px;
+  text-indent: 30px;
+  color:#fff;
+}
+.sex-radio label.checked {
+  background: url('/images/checked.png') no-repeat left center;
+  background-size: 13px 13px;
+}
+.rule{
+	text-align: center;
+	color:#435362;
+	margin-bottom: 42px;
+}
+.rule .agreement{
+	color:#33f4f5;
+}
+.u-reg-btn,.u-log-btn,.u-bind-btn,.u-steptwo,.u-download-btn{
+	display: block;
+	width: 48%;
+	height: 35px;
+	line-height: 35px;
+	margin:0 auto;
+	border:none;
+	outline: none;
+	color:#fff;
+	background: #f36;
+	margin-bottom: 24px;
+	border-radius: 17.5px;
+	box-shadow: 0 0 10px #f36;
+	font-size: 14px;
+}
+.u-log-btn{
+	background: #1a2129;
+	color: #888993;
+	box-shadow: 0 0 10px #101519;
+}
+.tip{
+	background: rgba(51,58,68,0.8);
+	width: 75%;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	color:#fff;
+	border-radius: 5px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	margin:auto;
+	display: none;
+}
+.reg-success{
+	display: none;
+}
+.success{
+	width: 80%;
+	background: url('/mobile/images/hostyes.png') center 36px no-repeat #323a42;
+	background-size: 45px 45px;
+	padding: 100px 0 40px;
+	margin: 30px auto 0;
+	text-align: center;
+	font-size: 20px;
+	color:#fff;
+	border-radius: 5px;
+}
+.reg-success p{
+	text-align: center;
+	color: #98a9bb;
+	line-height: 30px;
+}
+.reg-success .autojump{
+	/*color: #465667;*/
+}
+.reg-success .time{
+	color:#3ff;
+}
+.u-steptwo{
+	margin-bottom: 0;
+	margin-top: 40px;
+}
+/*第二步*/
+.step-two{
+	display: none;
+}
+.step-three{
+	display: none;
+}
+.step-final{
+	display: none;
+}
+.intro{
+	padding: 0 34px;
+	font-size: 14px;
+	color:#98a9bb;
+	line-height: 1.5;
+}
+.intro img{
+	display: block;
+	width: 22.5%;
+	margin:25px auto 10px;
+}
+.intro h3{
+	font-size: 20px;
+	color:#fff;
+	text-align: center;
+	margin-bottom: 20px;
+}
+.intro .u-download-btn{
+	margin-top: 20px;
+}
+.ios,.android{
+	padding: 0 34px;
+	font-size: 12px;
+	color: #6b757f;
+	line-height: 1.5;
+	padding-bottom: 60px;
+}
+.ios h3,.android h3{
+	font-size: 14px;
+	color:#98a9bb;
+}
+.ios h3,.ios p,.android h3,.android p{
+	margin-bottom: 20px;
+}
+.ios img,.android img{
+	display: block;
+	width: 57%;
+	margin: 0 auto 10px;
+}
+.ios span,.android span{
+	color:#3ff;
+}
+.android .pink{
+	color:#f36;
+}
+.android{
+	display: none;
+}
+.g-ft{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	text-align: center;
+	font-size: 12px;
+	color:#fff;
+	padding:5px;
+	box-sizing: border-box;
+	background: #1c232d;
+}
+.g-ft h3{
+	font-size: 15px;
+	font-weight: normal;
+	line-height: 50px;
+}
+.g-ft .u-stepthree{
+	background: #f36;
+	height: 50px;
+	border-radius: 5px;
+}
+/*认证主播*/
+.m-public{
+	margin-bottom:5%;
+}
+.Public{
+	width:100%;
+	height:65px;
+}
+.Public img{
+	width:100%;
+	vertical-align: top;
+}
+
+/*主播认证*/
+.u-Authentication{
+	margin:0% 0% 10%;
+}
+.Utop{
+	width:100%;
+	height:40px;
+	line-height:40px;
+	margin:5% 0%;
+	background:#1a2129;
+}
+.Utop p{
+	width:100%;
+	color:#98a9bb;
+	font-size:12px;
+	text-align:center;
+}
+.Ucenter{
+	width:90%;
+	height:460px;
+	margin:0% 5% 0%;
+	position: relative;
+}
+
+.Ucenter input{
+	width:95%;
+	height: 16px;
+	padding:9px 0;
+	line-height: 16px;
+	border:1px solid #1a2a3e;
+	margin-bottom:5%;
+	background-color:transparent;
+	padding-left:5%;
+	color:#fff;
+}
+.Ucenter input.uDate{
+	position:relative;
+	background-color:transparent;
+	background: url('/mobile/images/hostright.png') 98% center no-repeat;
+	background-size: 6.5px 10.5px;
+    color:#fff;  
+    FILTER: alpha(opacity=0); /*androd*/  
+    appearance:none;  /*下拉框去掉右侧图标*/  
+    -moz-appearance:none;  
+    -webkit-appearance:none;
+}
+input[type="date"]:before{
+    color:#465667;
+    content:attr(placeholder);
+}
+input[type="date"].full:before {
+    color:black;
+    content:""!important;
+}
+/*粘贴*/
+.u-idcard{
+	width:100%;
+	height:135px;
+	margin:3% 0% 10%;
+}
+.u-dright{
+	overflow:hidden;
+	width:100%;
+}
+.u-idcard div.u-card{
+	width:30%;
+	display:inline-block;
+	float:left;
+}
+.u-card .img{
+	display:inline-block;
+	width:100%;
+	height:68px;
+	border:1px solid #1a2a3e;
+	box-sizing:border-box;
+}
+.u-card .hand{
+	background: url('/mobile/images/idcard1.jpg') no-repeat;
+	background-size: 100% 100%;
+}
+.u-card .front{
+	background: url('/mobile/images/idcard2.jpg') no-repeat;
+	background-size: 100% 100%;
+}
+.u-card .back{
+	background: url('/mobile/images/idcard3.jpg') no-repeat;
+	background-size: 100% 100%;
+}
+.img img{
+  width:100%;
+  height:100%;
+  border:1px solid #353d48;
+}
+.img img[src='']{
+  opacity:0;
+}
+.cardRight{
+	margin-right:5%;
+}
+.u-card span{
+	display:inline-block;
+	width:100%;
+	height:17px;
+	line-height:17px;
+	text-align:center;
+	font-size:12px;
+	color:#465667;
+	margin-bottom:10%;
+}
+/*上传图片的样式*/
+.upload-container{
+	background-color:#6b757f;
+	width:60%;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	position:relative;
+	margin:10% 20%;
+	cursor:pointer;
+	border-radius:5px;
+	font-size:12px;
+	color:#141a20;
+}
+.fileupload{
+	width:60%;
+	height:20px;
+	line-height:20px;
+	position:absolute;
+	z-index:200;
+	margin:10% 20%;
+	top:0;
+	left:0;
+	opacity:0;
+	filter:alpha(opacity=0);
+}
+/*粘贴*/
+input::-webkit-input-placeholder { /* WebKit browsers */ 
+	font-size:13px;
+    color: #465667; 
+} 
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+   	font-size:13px;
+    color: #465667; 
+} 
+input::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+   	font-size:13px;
+    color: #465667; 
+} 
+input:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+    font-size:13px;
+    color: #465667; 
+} 
+.Ucenter .uAgree{
+	width:70%;
+	height:17px;
+	line-height:17px;
+	margin:0 auto 5%;
+	text-align: center;
+}
+.uAgree p{
+	font-size:12px;
+	color:#465667;
+}
+.uAgree span{
+	color:#3ff;
+}
+.Ucenter .Usubmit{
+	width:60%;
+	margin:0% auto 10%;
+
+} 
+.Ucenter .Usubmit a{
+	display:inline-block;
+	width:100%;
+	height:37px;
+	line-height:37px;
+	text-align:center;
+	color:#fff;
+	font-size:14px;
+	border-radius:37px;
+	text-decoration:none;
+	background:#f36;
+}
+.Uexplain{
+	width:90%;
+	margin:10% 5% 10%;
+	line-height: 1.5;
+}
+.Uexplain p{
+	width:100%;
+	font-size:12px;
+	color:#465667;
+}
+/*审核的三种状态*/
+.u-InTheReview,.u-Approved,.u-AuditDidNotPass{
+	width:80%;
+	margin:0 auto;
+	display: none;
+}
+/*审核中*/
+.InModule,.ApModule,.AuModule{
+	width:100%;
+}
+.InModuleImg{
+	background:#323a43;
+	width:100%;
+	height:180px;
+	text-align:center;
+	border-radius:5px;
+}
+.IMIng{
+	width:45px;
+	height:45px;
+	margin:20% auto 10%;
+	padding-top:15%;
+}
+.IMIngs{
+	width:60%;
+	height:50px;
+	margin:0% auto 10%;
+}
+.IMIng img,.IMIngs img{
+	width:100%;
+	vertical-align:top;
+}
+.InModule p{
+	margin:5% auto 60%;
+	color:#98a9bb;
+	font-size:12px;
+
+}
+/*审核通过*/
+.ApModule p{
+	margin:5% auto 20%;
+	color:#98a9bb;
+	font-size:12px;
+	text-align:center;
+}
+.specTips{
+	width:60%;
+	height:35px;
+	line-height:35px;
+	margin:0% auto;
+}
+.specTips a{
+	display:inline-block;
+	width:100%;
+	border-radius:35px;
+	text-decoration:none;
+	background:#f36;
+	color:#fff;
+	font-size:14px;
+	text-align:center;
+}
+.specColor{
+	width:45%;
+	height:35px;
+	line-height:35px;
+	font-size:12px;
+	color:#465667;
+	margin:0% auto 40%;
+}
+.specColor span{
+	font-size:12px;
+	color:#3ff;
+}
+/*审核未通过*/
+.AuModule p{
+	margin:5% auto 20%;
+	color:#98a9bb;
+	font-size:12px;
+	text-align:center;
+}
+/*认证页面*/
+.m-top{
+    width:100%;
+    height:65px;
+    margin-bottom: 10%;
+}
+.m-top img{
+    width:100%;
+    vertical-align:top;
+}
+.m-center{
+    position:relative;
+    width:80%;
+    height:170px;
+    margin:0% 10% 15%;
+}
+.BackGround{
+    width:100%;
+    height:150px;
+    line-height:150px;
+    background:#333a44;
+    border-radius:5px;
+    margin-top:30%;
+}
+.MCenter{
+    position: absolute;
+    width:66%;
+    height:100px;
+    margin-bottom:50%;
+    top:-25%;
+    left: 50%;
+    margin-left: -33%;
+}
+.Uicon{
+    width:60%;
+    height:65px;
+    margin:0 auto 10%;
+}
+.Uicon .UIcon{
+    width:100%;
+    vertical-align: top;
+}
+.USex{
+    width:12.5%;
+    height:15px;
+    margin:-2% 10% 0% 67.5%;
+}
+.USex .Usex{
+    width:100%;
+    vertical-align:top;
+}
+.Uname{
+    width:100%;
+    text-align:center;
+    margin-top:20%;
+}
+.Uname{
+    height:20px;
+    overflow:hidden;
+}
+.UId{
+    width:100%;
+    text-align:center;
+    height:11px;
+}
+.Uname{
+    font-size:15px;
+    color:#fff;
+}
+.Uname img{
+    display:inline-block;
+    width:15px;
+    height:13px;
+    background: transparent;
+    margin-left:5%;
+}
+.UId{
+    font-size:11px;
+    color:#cecfd2;
+    margin-top:5%;
+}
+.m-bottom{
+    width:60%;
+    height:65px;
+    margin:0% 20% 35%;
+}
+.m-bottom a{
+    display:inline-block;
+    width:100%;
+    height:35px;
+    line-height:35px;
+    text-align:center;
+    font-size:14px;
+    color:#fff;
+    background:#f36;
+    border-radius:35px;
+    text-decoration:none;
+}
+.m-bottom p{
+    width:100%;
+    height:15px;
+    margin:5% 0%;
+    font-size:12px;
+    color:#465667;
+    text-align:center;
+}

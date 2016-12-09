@@ -204,7 +204,7 @@ $(function(){
     att.id = "LiveHome";
     att.data = "YeLiveHome.swf";
     liveHomeInterf.roomid = defaultdata.attr('data-id');
-    liveHomeInterf.rtmp = defaultdata.attr('href');
+    liveHomeInterf.rtmp = defaultdata.attr('data-rtmp');
     liveHomeInterf.anchorId = defaultdata.attr('data-upid');
     liveHomeInterf.isfollow = defaultdata.attr('data-concern');
     liveHomeInterf.anchorhead = 'http://img.wangyuhudong.com/'+defaultdata.attr('data-icon');
@@ -237,7 +237,7 @@ $(function(){
         event.preventDefault();
         // liveHomeInterf.rtmp = 'rtmp://live.hkstv.hk.lxdns.com/live/hks';
         liveHomeInterf.roomid = $(this).attr('data-id');
-        liveHomeInterf.rtmp = $(this).attr('href');
+        liveHomeInterf.rtmp = $(this).attr('data-rtmp');
         liveHomeInterf.anchorId = $(this).attr('data-upid');
         liveHomeInterf.isfollow = $(this).attr('data-concern');
         liveHomeInterf.anchorhead = 'http://img.wangyuhudong.com/'+$(this).attr('data-icon');

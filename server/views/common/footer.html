@@ -1,7 +1,7 @@
 <div class="footer">
     <div class="comWidth f-cb">
         <div class="footer-left f-fl">
-            <ul>
+            <ul class="f-cb">
                 <li><a href="">直播教程</a></li>
                 <li><a href="">关于我们</a></li>
                 <li><a href="">联系我们</a></li>
@@ -9,7 +9,13 @@
                 <li><a href="">联系客服</a></li>
                 <li><a href="">著作权声明</a></li>
             </ul>
-            <p class="company"><a href=""><img src="/images/police.png" alt="">浙ICP备16040615号-1 </a>嘉兴娱儿网络科技有限公司2016©版权所有</span></p>
+            <h3>友情链接:</h3>
+            <ul class="f-cb">
+                <li><a href="http://www.wangyuhudong.com" target="_blank">网娱大师</a></li>
+                <li><a href="http://www.kaisaiba.com" target="_blank">开赛吧</a></li>
+                <li><a href="http://www.xiniugame.com" target="_blank">犀牛电竞</a></li>
+            </ul>
+            <p class="company"><a href=""><img src="/images/police.png" alt="">浙ICP备16040615号-1 </a>嘉兴娱儿网络科技有限公司2016©版权所有</p>
         </div>
         <div class="footer-right f-fr">
             <div class="footer-qr">
@@ -23,3 +29,8 @@
         </div>
     </div>
 </div>
+<script>
+    if((window.location.href).indexOf('http://www.yuerlive.cn')>=0){
+        $('.company').html('<a href=""><img src="/images/police.png" alt="">浙ICP备16039258号 </a>杭州业游网络科技有限公司2016©版权所有');
+    }
+</script>

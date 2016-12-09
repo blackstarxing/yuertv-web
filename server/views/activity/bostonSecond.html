@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />
+	<title>娱儿TV独家 DOTA2波士顿特锦赛</title>
+	<script src="/jquery.js"></script>		
+	<script src="/activity/build/mediaelement-and-player.min.js"></script>
+	<script src="/jquery.sha1.js"></script>
+	<script src="/wxjsapi.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<link rel="stylesheet" href="/activity/build/mediaelementplayer.min.css" />
+	<style>
+		html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
+		body,ul,li,p,h3,h4,h2,em{margin: 0; padding: 0;}
+		body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; font-size:62.5%; font-style:normal; max-width: 800px; margin:0 auto; height:100%; color:#9da4ad; background: #141a20; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
+		img{border:0; max-width:100%;}
+		li{ list-style:none;}
+		a{text-decoration: none; color:#9da4ad;}
+		h3{font-size: 1.5rem;line-height: 1.25;}
+
+		.l{float:left;}.r{float:right;}
+		.clearfix{*zoom:1;}.clearfix:after{display:block; content:"$"; height:0; clear:both; overflow:hidden; visibility:hidden;}
+		body{
+			background: #fff;
+		}
+		img{
+			vertical-align: top;
+			width: 100%;
+		}
+		.dota-md,.dota-ft{
+			position: relative;
+		}
+		.dota-ct{
+			width: 100%;
+			position: absolute;
+			top: 0;
+		}
+		.change{
+			width: 30%;
+			margin:0 auto;
+		}
+		.change a{
+			display: inline-block;
+			width: 100%;
+		}
+		.videoBox{
+			width: 92.2%;
+			margin-top: 5%;
+			position: absolute;
+			left: 3.9%;
+			overflow: hidden;
+		}
+		.videoBox img{
+			width: 100%;
+		}
+		.videoBox .video{
+			position: absolute;
+			width: 93.6%;
+			left: 3.2%;
+			top:3.2%;
+		}
+		.dota-ft a{
+			display: block;
+			width: 30%;
+			position: absolute;
+			left: 35%;
+			top:0;
+		}
+		.videoBox .mask{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,0.8);
+			display: none;
+		}
+		.videoBox .mask h3{
+			font-size: 14px;
+			color: #fff;
+			text-align: center;
+			margin-top: 18%;
+		}
+		.btn-group{
+			width: 70%;
+			margin:0 auto;
+		}
+		.btn-group a{
+			text-decoration: none;
+			display: inline-block;
+			width: 45%;
+			height: 30px;
+			line-height: 28px;
+			background: rgba(163,140,87,0.1);
+			border:1px solid #a38c57;
+			border-radius: 6px;
+			color:#fff;
+			text-align: center;
+			font-size: 12px;
+			box-sizing: border-box;
+			margin-top: 8%;
+		}
+		.btn-group .return{
+			margin-left: 10%;
+		}
+	</style>
+	<script>
+		enableWxShare({
+			appId: 'wxf96f728533f32fa8',
+			ticket: '{{ticket}}',
+			title: '娱儿TV独家 DOTA2波士顿特锦赛',
+			type:'video',			
+			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/yuerlogo.png',
+			desc: '娱儿TV邀您观战，为中国队送祝福，全程见证300万美金奖池究竟花落谁家？'
+		})
+	</script>
+</head>
+<body>
+	<div class="dota-bd">
+		<img src="/activity/images/dota_bg1.jpg" alt="">
+		<div class="dota-md">
+			<img src="/activity/images/dota_bg2.jpg" alt="">
+			<div class="dota-ct">
+				<div class="change">
+					<a href="javascript:void(0);"><img src="/activity/images/dotamain_shrink.png" alt=""></a>
+				</div>
+				<div class="videoBox">
+					<img src="/activity/images/dota_video.png" alt="">
+					<div class="video">
+						{% if state==1 %}
+						<video width="100%" height="100%" id="player1" poster="/activity/images/poster.jpg" controls="controls" autoplay="" webkit-playsinline playsinline>    
+						    <source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_4255776.m3u8" />
+						</video>
+						<div class="mask">
+							<h3>下载娱儿TV观看更多精彩直播</h3>
+							<div class="btn-group">
+								<a href="https://yuertvfile.wangyuhudong.com?type=live&objId=3751" class="enter">下载娱儿TV</a><a href="" class="return">继续观看</a>
+							</div>				
+						</div>
+						{% else %}
+						<div class="end-mask">
+							<h3>直播尚未开始</h3>
+							<div class="btn-group single">
+								<a href="https://yuertvfile.wangyuhudong.com?type=live&objId=3751">下载娱儿TV</a>
+							</div>				
+						</div>
+						{% endif %}
+					</div>					
+				</div>
+			</div>
+		</div>
+		<div class="dota-ft">
+			<img src="/activity/images/dota_bg3.jpg" alt="">
+			<a href="http://yuerapi.wangyuhudong.com/v4/live/download"><img src="/activity/images/dota_download.png" alt=""></a>
+		</div>
+	</div>
+	
+	<script>
+		$('video').mediaelementplayer({
+			features: ['playpause','volume','fullscreen'],
+		});
+		var client = $(window).width();
+		$('.video').css('height',client*0.50+'px');
+
+		var ua = navigator.userAgent.toLowerCase(); 
+		if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+			$('.mask h3').text('进入直播间观看直播');
+			$('.enter').text('进入直播间');
+			$('.enter').attr('href','yuertvopen://live?objId=3751');
+		}
+
+		var second = 0;
+		function showMask(val) { 
+            if (second < 300) { 
+                second++;
+                setTimeout(function() { 
+	                showMask(val);
+	            },1000);
+            } else {
+                $('.mask').show();                   
+            }
+        } 
+        
+        if('{{state}}'==1){
+        	showMask(second); 
+        }
+
+        $('.return').click(function(e){
+        	e.preventDefault();
+        	$('.mask').hide();
+        	second = 0;
+        	showMask(second); 
+        })
+	</script>
+</body>
+</html>
