@@ -1,9 +1,5 @@
 $(function() { 
-//提交认证；
-checkName
-checkQQ
-checkIdCard
-
+// 提交认证
 $('#Usubmit').on("click",function(){  
   var UsubmitCheck=true;
   $(".Ucenter input").each(function(){
@@ -14,17 +10,20 @@ $('#Usubmit').on("click",function(){
     }
   })
   if($("#checkName").val() && $("#checkQQ").val() && $("#checkIdCard").val() && ){
-    if($("#checkName").val().length<9){
+    if($("#checkName").val().length>9){
       UsubmitCheck=false;
-    }else if($("#checkQQ").val().length<9){
+      alert("已超过指定位数");
+    }else if($("#checkQQ").val().length<5 && $("#checkQQ").val().length>12){
       UsubmitCheck=false;
-    }else if($("#checkIdCard").val().length<9){
+      alert("请输入");
+    }else if($("#checkIdCard").val().length>19 && (!/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test($("#number").val())) ){
       UsubmitCheck=false;
+      alert("已超过指定位数");
     }
   }
     $.ajax({  
         type: "GET",  
-        url: "http://172.16.2.62:8777/person-center/realname-auth",  
+        url: " http://172.16.2.62:8099/h5/upCertificate",  
         data: {idCard:$("#idCard").val(),
                idCardBackScan:$("#idCardBackScan").val(),
                idCardDueDate:$("#idCardDueDate").val(),
@@ -54,7 +53,7 @@ $('#Usubmit').on("click",function(){
         } 
     });  
 }); 
-// 验证qq号
+// 验证qq号只能输入数字
 $(".inputCheck").off("keydown").on("keydown",function(e){
     if((e.keyCode >=48 && e.keyCode <=57)||(e.keyCode >=97 && e.keyCode <=105)||(e.keyCode == 8)){
     
@@ -62,21 +61,6 @@ $(".inputCheck").off("keydown").on("keydown",function(e){
         e.preventDefault();
     }
 })
-$("#checkQQ").off().on("blur",function(){
-    if((($("#checkQQ").val().length >= 5) && ($("#checkQQ").val().length <= 11)) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#number").val()))){
-        alert("")
-    } else {
-        alert("请输入正确的QQ号");
-    }
-});
-// 验证身份证号
-$("#checkIdCard").off().on("blur",function(){
-    if(($("#checkIdCard").val().length === 18) && (/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test($("#number").val()))){
-        alert("请输入正确的身份证号")
-    }else{
-      alert("请输入正确的身份证号")
-    }
-});
 //设定倒数秒数  
 var t = 10;  
 //显示倒数秒数  

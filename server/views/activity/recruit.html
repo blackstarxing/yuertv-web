@@ -2,326 +2,289 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>主播招募</title>
+	<title>玩着手游，躺着赚钱，把握移动电竞最好的时代！参与娱儿TV百万年薪主播招募令，下一个移动电竞大神就是你！</title>
 	<link rel="stylesheet" href="/css/basic.css">
 	<link rel="stylesheet" href="/css/recruit.css">
 	<script src="/jquery.js"></script>
+	<script src="/activity/build/mediaelement-and-player.min.js"></script>
+	<link rel="stylesheet" href="/activity/build/mediaelementplayer.min.css" />
 	<script>
 		var ua = navigator.userAgent.toLowerCase(); 
 		if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i) || navigator.userAgent.match(/android/i)) {
 			window.location.href = '/activity/propage';
         }
+        if(navigator.userAgent.indexOf("MSIE")>0){   
+		    if(navigator.userAgent.indexOf("MSIE 6.0")>0 || navigator.userAgent.indexOf("MSIE 7.0")>0 || navigator.userAgent.indexOf("MSIE 8.0")>0 || navigator.userAgent.indexOf("MSIE 9.0")>0 || navigator.userAgent.indexOf("MSIE 10.0")>0){  
+		    	alert('请使用ie10以上版本或Chrome浏览器浏览！');
+		    }     
+		} 
 	</script>
 </head>
 <body>
 	<div class="g-bd">
-		<img src="/activity/images/recruit_bg.jpg" alt="" class="recruitbg">
+		<img src="/activity/images/recruit_bg.png" alt="" class="recruitbg">
 		<div class="g-ct">
 			<div class="comWidth">
-				<div class="recruitBox f-cb">
-					<div class="recruit-l f-fl">
-						<div class="re-title">
-							你的星梦，这里实现！
-						</div>
-						<div class="video">
-							<video width="100%" height="376" id="player1" poster="" controls="" webkit-playsinline playsinline style="margin:0;" src="/echo-hereweare.mp4"></video>
-						</div>
+				<a href="/" target="_blank" class="u-toindex">进入娱儿TV官网</a>
+				<div class="videoBox">
+					<img src="/activity/images/recruit_middle.png" alt="" class="video-bg">
+					<div class="videoContainer">
+						<video id="player1" width="100%" height="300" poster="/activity/images/poster.jpg" controls="" autoplay="" preload="auto" loop="loop" webkit-playsinline playsinline style="margin:0;" src="http://img.wangyuhudong.com/uploads/imgs/live/yuer.mp4"></video>
 					</div>
-					<div class="recruit-r f-fr">
-						<div class="re-title">
-							如何成为娱儿TV主播?
-						</div>
-						<div class="joinus f-cb">
-							<div class="group" style="margin-right: 40px;">
-								<img src="/activity/images/flag_1.png" alt="" height="72">
-								<img src="/activity/images/group.png" alt="">
-							</div>
-							<div class="group">
-								<img src="/activity/images/flag_2.png" alt="" height="72">
-								<img src="/activity/images/download.png" alt="">
-							</div>
-							<a href="/" class="u-toindex">进入娱儿TV官网</a>
-						</div>
-					</div>
-				</div>
-				<div class="recruitBox f-cb" style="margin-bottom: 0">
-					<div class="recruit-l f-fl">
-						<div class="re-title sp-title">
-							百万主播招募资金，等你来瓜分！
-							<p>排名靠前的用户将会获得娱儿TV优先签约的机会！</p>
-						</div>
-						<div class="video">
-							<video width="100%" height="376" id="player2" poster="" controls="" webkit-playsinline playsinline style="margin:0;" src="/echo-hereweare.mp4"></video>
-						</div>
-					</div>
-					<div class="recruit-r f-fr">
-						<div class="re-title">
-							主播分级细则?
-						</div>
-						<div class="levelBox">
-							<div class="level-nav">
-								<div class="slide"></div>
-								<ul class="f-cb">
-									<li class="current">SS级</li>
-									<li>S级</li>
-									<li>A级</li>
-									<li>B级</li>
-									<li>C级</li>
-									<li>D级</li>
-								</ul>
-							</div>
-							<div class="rules show">
-								<table width="100%">
-									<tr>
-										<td>等级</td>
-										<td>SS级</td>
-									</tr>
-									<tr>
-										<td>称号</td>
-										<td>娱之神</td>
-									</tr>
-									<tr>
-										<td>日均直播（小时）</td>
-										<td>4小时*20天/月</td>
-									</tr>
-									<tr>
-										<td>收到付费礼物保底（元）</td>
-										<td>3000</td>
-									</tr>
-									<tr>
-										<td>月浏览保底（人）</td>
-										<td>200000</td>
-									</tr>
-									<tr>
-										<td>底薪（元）</td>
-										<td>8000</td>
-									</tr>
-									<tr>
-										<td>付费礼物分成</td>
-										<td>5:5</td>
-									</tr>
-									<tr>
-										<td>预期礼物收益（元）</td>
-										<td>190，000</td>
-									</tr>
-									<tr>
-										<td>最终底薪</td>
-										<td>103，000</td>
-									</tr>
-								</table>
-							</div>
-							<div class="rules">
-								<table width="100%">
-									<tr>
-										<td>等级</td>
-										<td>S级</td>
-									</tr>
-									<tr>
-										<td>称号</td>
-										<td>娱之王者</td>
-									</tr>
-									<tr>
-										<td>日均直播（小时）</td>
-										<td>4小时*20天/月</td>
-									</tr>
-									<tr>
-										<td>收到付费礼物保底（元）</td>
-										<td>1000</td>
-									</tr>
-									<tr>
-										<td>月浏览保底（人）</td>
-										<td>100000</td>
-									</tr>
-									<tr>
-										<td>底薪（元）</td>
-										<td>4000</td>
-									</tr>
-									<tr>
-										<td>付费礼物分成</td>
-										<td>5:5</td>
-									</tr>
-									<tr>
-										<td>预期礼物收益（元）</td>
-										<td>38000</td>
-									</tr>
-									<tr>
-										<td>最终底薪</td>
-										<td>23，000</td>
-									</tr>
-								</table>
-							</div>
-							<div class="rules">
-								<table width="100%">
-									<tr>
-										<td>等级</td>
-										<td>A级</td>
-									</tr>
-									<tr>
-										<td>称号</td>
-										<td>娱播霸</td>
-									</tr>
-									<tr>
-										<td>日均直播（小时）</td>
-										<td>4小时*20天/月</td>
-									</tr>
-									<tr>
-										<td>收到付费礼物保底（元）</td>
-										<td>500</td>
-									</tr>
-									<tr>
-										<td>月浏览保底（人）</td>
-										<td>20000</td>
-									</tr>
-									<tr>
-										<td>底薪（元）</td>
-										<td>2000</td>
-									</tr>
-									<tr>
-										<td>付费礼物分成</td>
-										<td>5:5</td>
-									</tr>
-									<tr>
-										<td>预期礼物收益（元）</td>
-										<td>19，000</td>
-									</tr>
-									<tr>
-										<td>最终底薪</td>
-										<td>11，5000</td>
-									</tr>
-								</table>
-							</div>
-							<div class="rules">
-								<table width="100%">
-									<tr>
-										<td>等级</td>
-										<td>B级</td>
-									</tr>
-									<tr>
-										<td>称号</td>
-										<td>娱主神</td>
-									</tr>
-									<tr>
-										<td>日均直播（小时）</td>
-										<td>4小时*20天/月</td>
-									</tr>
-									<tr>
-										<td>收到付费礼物保底（元）</td>
-										<td>100</td>
-									</tr>
-									<tr>
-										<td>月浏览保底（人）</td>
-										<td>10000</td>
-									</tr>
-									<tr>
-										<td>底薪（元）</td>
-										<td>1000</td>
-									</tr>
-									<tr>
-										<td>付费礼物分成</td>
-										<td>5:5</td>
-									</tr>
-									<tr>
-										<td>预期礼物收益（元）</td>
-										<td>8400</td>
-									</tr>
-									<tr>
-										<td>最终底薪</td>
-										<td>5200</td>
-									</tr>
-								</table>
-							</div>
-							<div class="rules">
-								<table width="100%">
-									<tr>
-										<td>等级</td>
-										<td>C级</td>
-									</tr>
-									<tr>
-										<td>称号</td>
-										<td>小娱儿</td>
-									</tr>
-									<tr>
-										<td>日均直播（小时）</td>
-										<td>3小时*20天/月</td>
-									</tr>
-									<tr>
-										<td>收到付费礼物保底（元）</td>
-										<td>502000</td>
-									</tr>
-									<tr>
-										<td>月浏览保底（人）</td>
-										<td>2000</td>
-									</tr>
-									<tr>
-										<td>底薪（元）</td>
-										<td>500</td>
-									</tr>
-									<tr>
-										<td>付费礼物分成</td>
-										<td>5:5</td>
-									</tr>
-									<tr>
-										<td>预期礼物收益（元）</td>
-										<td>5600</td>
-									</tr>
-									<tr>
-										<td>最终底薪</td>
-										<td>3300</td>
-									</tr>
-								</table>
-							</div>
-							<div class="rules">
-								<table width="100%">
-									<tr>
-										<td>等级</td>
-										<td>D级</td>
-									</tr>
-									<tr>
-										<td>称号</td>
-										<td>小虾米</td>
-									</tr>
-									<tr>
-										<td>日均直播（小时）</td>
-										<td>2小时*20天/月</td>
-									</tr>
-									<tr>
-										<td>收到付费礼物保底（元）</td>
-										<td>-</td>
-									</tr>
-									<tr>
-										<td>月浏览保底（人）</td>
-										<td>500</td>
-									</tr>
-									<tr>
-										<td>底薪（元）</td>
-										<td>200</td>
-									</tr>
-									<tr>
-										<td>付费礼物分成</td>
-										<td>-</td>
-									</tr>
-									<tr>
-										<td>预期礼物收益（元）</td>
-										<td>-</td>
-									</tr>
-									<tr>
-										<td>最终底薪</td>
-										<td>200</td>
-									</tr>
-								</table>
-							</div>
-
-						</div>
+					<div class="videoContainer video-bottom">
+						<video id="player2" width="100%" height="300" poster="/activity/images/poster.jpg" controls="" loop="loop" webkit-playsinline playsinline style="margin:0;" src="http://img.wangyuhudong.com/uploads/imgs/live/yuer2.mp4"></video>
 					</div>
 				</div>
 			</div>
-		</div>		
+			<div class="g-levels">
+				<img src="/activity/images/waves.png" alt="">
+				<div class="levelBox">
+					<div class="level-nav">
+						<div class="slide"></div>
+						<ul class="f-cb">
+							<li class="current">SS级</li>
+							<li>S级</li>
+							<li>A级</li>
+							<li>B级</li>
+							<li>C级</li>
+							<li>D级</li>
+						</ul>
+					</div>
+					<div class="rules show">
+						<table width="100%">
+							<tr>
+								<td>称号</td>
+								<td>娱之神</td>
+							</tr>
+							<tr>
+								<td>日均直播（小时）</td>
+								<td>4小时×<span  class="orange">20</span>天/月</td>
+							</tr>
+							<tr>
+								<td>收到付费礼物保底（元）</td>
+								<td class="orange">3000</td>
+							</tr>
+							<tr>
+								<td>月浏览保底（人）</td>
+								<td class="orange">200000</td>
+							</tr>
+							<tr>
+								<td>底薪（元）</td>
+								<td class="orange">8000</td>
+							</tr>
+							<tr>
+								<td>付费礼物分成</td>
+								<td class="orange">5:5</td>
+							</tr>
+							<tr>
+								<td>预期礼物收益（元）</td>
+								<td class="orange">190000</td>
+							</tr>
+							<tr>
+								<td>最终底薪</td>
+								<td class="orange">103000</td>
+							</tr>
+						</table>
+					</div>
+					<div class="rules">
+						<table width="100%">
+							<tr>
+								<td>称号</td>
+								<td>娱之王者</td>
+							</tr>
+							<tr>
+								<td>日均直播（小时）</td>
+								<td>4小时×<span  class="orange">20</span>天/月</td>
+							</tr>
+							<tr>
+								<td>收到付费礼物保底（元）</td>
+								<td class="orange">1000</td>
+							</tr>
+							<tr>
+								<td>月浏览保底（人）</td>
+								<td class="orange">100000</td>
+							</tr>
+							<tr>
+								<td>底薪（元）</td>
+								<td class="orange">4000</td>
+							</tr>
+							<tr>
+								<td>付费礼物分成</td>
+								<td class="orange">5:5</td>
+							</tr>
+							<tr>
+								<td>预期礼物收益（元）</td>
+								<td class="orange">38000</td>
+							</tr>
+							<tr>
+								<td>最终底薪</td>
+								<td class="orange">23000</td>
+							</tr>
+						</table>
+					</div>
+					<div class="rules">
+						<table width="100%">
+							<tr>
+								<td>称号</td>
+								<td>娱播霸</td>
+							</tr>
+							<tr>
+								<td>日均直播（小时）</td>
+								<td>4小时×<span  class="orange">20</span>天/月</td>
+							</tr>
+							<tr>
+								<td>收到付费礼物保底（元）</td>
+								<td class="orange">500</td>
+							</tr>
+							<tr>
+								<td>月浏览保底（人）</td>
+								<td class="orange">20000</td>
+							</tr>
+							<tr>
+								<td>底薪（元）</td>
+								<td class="orange">2000</td>
+							</tr>
+							<tr>
+								<td>付费礼物分成</td>
+								<td class="orange">5:5</td>
+							</tr>
+							<tr>
+								<td>预期礼物收益（元）</td>
+								<td class="orange">19000</td>
+							</tr>
+							<tr>
+								<td>最终底薪</td>
+								<td class="orange">11500</td>
+							</tr>
+						</table>
+					</div>
+					<div class="rules">
+						<table width="100%">
+							<tr>
+								<td>称号</td>
+								<td>娱主神</td>
+							</tr>
+							<tr>
+								<td>日均直播（小时）</td>
+								<td>4小时×20天/月</td>
+							</tr>
+							<tr>
+								<td>收到付费礼物保底（元）</td>
+								<td>100</td>
+							</tr>
+							<tr>
+								<td>月浏览保底（人）</td>
+								<td>10000</td>
+							</tr>
+							<tr>
+								<td>底薪（元）</td>
+								<td>1000</td>
+							</tr>
+							<tr>
+								<td>付费礼物分成</td>
+								<td>5:5</td>
+							</tr>
+							<tr>
+								<td>预期礼物收益（元）</td>
+								<td>8400</td>
+							</tr>
+							<tr>
+								<td>最终底薪</td>
+								<td>5200</td>
+							</tr>
+						</table>
+					</div>
+					<div class="rules">
+						<table width="100%">
+							<tr>
+								<td>称号</td>
+								<td>小娱儿</td>
+							</tr>
+							<tr>
+								<td>日均直播（小时）</td>
+								<td>3小时×20天/月</td>
+							</tr>
+							<tr>
+								<td>收到付费礼物保底（元）</td>
+								<td>50</td>
+							</tr>
+							<tr>
+								<td>月浏览保底（人）</td>
+								<td>2000</td>
+							</tr>
+							<tr>
+								<td>底薪（元）</td>
+								<td>500</td>
+							</tr>
+							<tr>
+								<td>付费礼物分成</td>
+								<td>5:5</td>
+							</tr>
+							<tr>
+								<td>预期礼物收益（元）</td>
+								<td>5600</td>
+							</tr>
+							<tr>
+								<td>最终底薪</td>
+								<td>3300</td>
+							</tr>
+						</table>
+					</div>
+					<div class="rules">
+						<table width="100%">
+							<tr>
+								<td>称号</td>
+								<td>小虾米</td>
+							</tr>
+							<tr>
+								<td>日均直播（小时）</td>
+								<td>2小时×20天/月</td>
+							</tr>
+							<tr>
+								<td>收到付费礼物保底（元）</td>
+								<td>-</td>
+							</tr>
+							<tr>
+								<td>月浏览保底（人）</td>
+								<td>500</td>
+							</tr>
+							<tr>
+								<td>底薪（元）</td>
+								<td>200</td>
+							</tr>
+							<tr>
+								<td>付费礼物分成</td>
+								<td>-</td>
+							</tr>
+							<tr>
+								<td>预期礼物收益（元）</td>
+								<td>-</td>
+							</tr>
+							<tr>
+								<td>最终底薪</td>
+								<td>200</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>		
+		</div>
+	</div>
+	<div class="side">
+		<img src="/activity/images/how.png" alt="">
+		<img src="/activity/images/flag_1.png" alt="">
+		<img src="/activity/images/group.png" alt="">
+		<img src="/activity/images/flag_2.png" alt="">
+		<img src="/activity/images/download.png" alt="">
 	</div>
 	<script>
-		$(".slide").css({width:"75px",left:0,position:"absolute",height:"3px",background:"#78c9cc"});
+		$('audio,video').mediaelementplayer({
+			features: ['playpause','volume','fullscreen'],
+		});
+		$(".slide").css({width:"131.5px",left:0,position:"absolute",height:"3px",background:"#78c9cc"});
 		$(".level-nav li").on('click', function() {
 	        $(this).addClass("current").siblings().removeClass("current");
-	        $(".rules").eq($(this).index()).animate({left:0},300).siblings('.rules').css('left',450+'px');
+	        $(".rules").eq($(this).index()).animate({left:0},300).siblings('.rules').css('left',790+'px');
 	        $(".slide").animate({left:$(this).position().left},100)
 	    });
 	</script>

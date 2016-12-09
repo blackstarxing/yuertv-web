@@ -1,4 +1,3 @@
-/**{color:#fff;}*/
 body{
 	font-family:'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;
 	background:#141a20;
@@ -52,6 +51,9 @@ input{
 	font-size:16px;
 }
 .g-left ul li:second-child a{
+	color:#f36;
+}
+.g-left ul li:active{
 	color:#f36;
 }
 .g-left .current{
@@ -165,14 +167,12 @@ input{
 }
 /*右边下侧样式*/
 .g-right .rightswitch{
+	padding-top:50px;
 	width:800px;
-	margin:60px 70px 60px 55px;
+	margin:0px 70px 60px 55px;
 }
 .g-left ul li.rightswitchcolor a{
 	color:#f36;
-}
-.g-right .g-focus,.g-props,.m-message,.g-top-up,.g-host{
-	display:none;
 }
 .g-right .m-bottom{
 	width:800px;
@@ -217,26 +217,24 @@ input{
 	font-size:18px;
 	text-align:center;
 	border-radius:5px;
-	margin:50px 0px 165px 110px;
+	margin:50px 0px 175px 110px;
 }
-a#m-changepass,a#m-change,a#m-realname{
+a.m-changepass,a.m-change,a.m-realname,a.m-changeicon,a.m-bindpay{
 	display:inline-block;
-	width:110px;
-	height:45px;
-	margin-left:25px;
+	width:100px;
+	height:40px;
+	margin-right:10px;
 	margin-bottom:45px;
-	line-height: 45px;
+	line-height: 40px;
 	text-align: center;
-	color:#fff;
+	color:#cecfd2;
 	font-size:16px;
+	border-radius:5px;
+	background:#2d3741;
 }
 .m-bottom a.switch{
-	width:100px;
-	height:35px;
 	background:#f36;
 	color:#fff;
-	text-align:center;
-	border-radius:5px;
 
 }
 .m-switch .u-pcurrent,.u-pnew,.u-pcancel{
@@ -361,17 +359,13 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 .m-switcht{
 	width:800px;
-	height:700px;
+	height:430px;
 }
 .m-switcht .u-verify{
 	top:-1px;
-	/*left:315px;*/
 	background:#f36;
 	border:1px solid #f36;
 }
-/*.error-tip{
-	display: inline-block;
-}*/
 .m-switcht input{
 	width:300px;
 	height:40px;
@@ -395,14 +389,17 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 .m-switcht input.change-color{
 	border:1px solid #f36;
 }
-.thephoneauth{
+.thephoneauth,.toCertification{
 	margin-left:50px;
 	width:500px;
-	height:600px;
+	height:40px;
 	color:#fff;
 }
 .thephoneauth span{
-	font-size:16px;
+	font-size:18px;
+}
+.toCertification span{
+	font-size:18px;
 }
 .thephoneauth a{
 	display:inline-block;
@@ -410,10 +407,8 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	height:40px;
 	line-height:40px;
 	text-align:center;
-	border-radius:5px;
-	background:#f36;
 	cursor:pointer;
-	color:#fff;
+	color:#f36;
 	font-size:18px;
 	margin-top:50px;
 }
@@ -423,10 +418,19 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	height:40px;
 	line-height:40px;
 	text-align:center;
-	border-radius:5px;
-	background:#f36;
 	cursor:pointer;
-	color:#fff;
+	color:#f36;
+	font-size:18px;
+	margin-top:50px;
+}
+.toCertification a{
+	display:inline-block;
+	width:235px;
+	height:40px;
+	line-height:40px;
+	text-align:right;
+	cursor:pointer;
+	color:#f36;
 	font-size:18px;
 	margin-top:50px;
 }
@@ -547,11 +551,219 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	font-size:14px;
 	color:#666e72;
 }
-.m-switchi .u-msimg{
-	width:100%;
+.m-bottom .m-switchi label{
+	width:135px;
+	text-align:right;
 }
-.m-switchi img{
-	height:230px;
+.u-userbox{
+	width:300px;
+	height:40px;
+	color:#cecfd2;
+	padding-left:15px;
+	background:transparent;
+	margin-left:5px;
+	border:1px solid #353d48;
+}
+.m-switchi div.u-idcard .u-dleft,.m-switchi div.u-idcard .u-dright{
+	display:inline-block;
+}
+.m-switchi div.u-card{
+	width:160px;
+	height:190px;
+	display:inline-block;
+	float:left;
+	margin-left:15px;
+
+}
+.m-switchi .u-div{
+	margin-bottom:25px;
+}
+.m-switchi .u-div .u-finaltime{
+	width:320px;
+	height: 40px;
+	margin-right:10px;
+	color: #cecfd2;
+	text-indent: 12px;
+	background:transparent;
+   /* background:url("../images/icon-arrow.png") no-repeat transparent;*/
+    background-position: 80px 18px;
+    border: 1px solid #353d48;
+    border-radius: 0;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+.m-switchi .u-idcard{
+	margin-bottom:25px;
+	margin-left:-30px;
+}
+.m-switchi .u-dleft{
+	width:165px;
+	height:80px;
+	color:#cecfd2;
+	font-size:14px;
+	float:left;
+	text-align:right;
+}
+
+.m-switchi .img{
+	display:inline-block;
+	width:160px;
+	height:80px;
+	border:2px solid #353d48;
+	box-sizing: border-box;
+}
+.img img{
+  width:100%;
+  height:100%;
+  border:1px solid #353d48;
+}
+.img img[src='']{
+  opacity:0;
+}
+.m-bottom .u-card{
+	float: left;
+	margin-left:15px;
+}
+.m-bottom .u-card span{
+	display:inline-block;
+	width:160px;
+	height:25px;
+	text-align:center;
+	font-size:14px;
+	color:#666e72;
+	margin-top:20px;
+}
+/*上传图片的样式*/
+.upload-container{
+	background-color:#f00;
+	width:95px;
+	height:35px;
+	position:relative;
+}
+.fileupload{
+	width:95px;
+	height:35px;
+	line-height:35px;
+	position:absolute;
+	z-index:200;
+	margin-right:35px;
+	top:0;
+	left:0;
+	opacity:0;
+	filter:alpha(opacity=0);
+}
+.u-dright span,.u-dright .upload-container{
+	display:inline-block;
+	width:95px;
+	height:35px;
+	text-align:center;
+	border:0px;
+	color:#fff;
+	margin-top:20px;
+	vertical-align:middle;
+}
+.u-dright .upload-container{
+	background:#36383f;
+	margin-left:35px;
+	color:#cecfd2;
+	width:95px;
+	height:35px;
+	line-height:35px;
+}
+.m-switchi .u-deal{
+	width:525px;
+	height:320px;
+	margin:25px 0px 0px 160px;
+}
+.u-deal p{
+	font-size:14px;
+	color:#f36;
+}
+.m-switchi .u-agree{
+	width:230px;
+	margin-left:210px;
+	font-size:14px;
+	color:#666e72;
+	margin-bottom:30px;
+}
+.m-switchi .u-agree span.u-spec{
+	color:#0ff;
+}
+.m-switchi .u-submit{
+	width:325px;
+	height:40px;
+	background:#f36;
+	border:0px;
+	font-size:18px;
+	text-align:center;
+	color:#fff;
+	margin-top:20px;
+	margin-bottom:60px;
+	margin-left:170px;
+	border-radius:5px;
+}
+/*修改头像*/
+.u-addIcon{
+	position:relative;
+	width:122px;
+	height:122px;
+	border-radius: 5px;
+	padding-bottom:310px;
+}
+.u-addIcon img{
+	display:inline-block;
+	width:122px;
+	height:122px;
+	border-radius: 5px;
+	border:none;
+}
+.u-addIcon p{
+	display:none;
+	
+}
+.u-addIcon:hover p{
+	display:block;
+	position:absolute;
+	left:27px;
+	right:0;
+	top:45px;
+	bottom:0;
+	margin-left:auto;
+	font-size:16px;
+	color:#f36;
+	cursor:pointer;
+}
+/*支付宝绑定*/
+.u-paybind{
+	width:800px;
+	height:430px;
+}
+.u-paybind .u-div{
+	height:40px;
+	margin-bottom:20px;
+}
+.u-div input#realName,.u-div input#payaccount{
+	display:inline-block;
+	width:300px;
+	height:40px;
+	background:transparent;
+	
+	border:1px solid #353d48;
+}
+#userboxPay{
+	display:inline-block;
+	width:300px;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	background:#f36;
+	border:none;
+	border-radius:5px;
+	margin-top:50px;
+	margin-left:102px;
+	font-size:18px;
+	color:#333;
 }
 /* 操作型弹出浮层-默认居中 */
 .m-layer{
@@ -708,6 +920,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	color:#fff;
 	text-align:center;
 	margin-bottom:35px;
+
 }
 .g-focus .u-host{
 	position:relative;
@@ -771,10 +984,6 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	line-height: 95px;
 
 }
-.u-hright img{
-	display: inline-block;
-	width:10px;
-}
 .u-hright a{
 	display:inline-block;
 	width:100px;
@@ -787,11 +996,23 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	border-radius:50px;
 	margin-left:30px;
 }
-.u-hright img.u-blur{
+.u-hright #haveBeenOffline{
+	display:inline-block;
+	width:100px;
+	height:30px;
+	line-height: 30px;
+	text-align: center;
+	font-size:16px;
+	color:#fff;
+	background:#5e5f61;
+	border-radius:50px;
+	margin-left:30px;
+}
+/*.u-hright img.u-blur{
 	visibility: hidden;
 
-}
-.stopdark span.dark{
+}*/
+/*.stopdark span.dark{
 	position: absolute;
 	top:0;
 	left:0;
@@ -815,13 +1036,13 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	-o-filter: grayscale(100%);
 	filter: grayscale(100%);
 	filter: gray;
-}
+}*/
 
 
 /*我的道具*/
 .g-props{
 	width:800px;
-	height:600px;
+	height:680px;
 	margin:65px 65px 75px 70px;
 }
 .g-props .u-top h3{
@@ -1106,7 +1327,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 /*我要充值*/
 .g-top-up{
 	width:785px;
-	height:506px;
+	height:680px;
 	margin-left:65px;
 	margin-top:80px;
 }
@@ -1377,7 +1598,6 @@ display:block;
  /*我要当主播*/
  .m-mainh{
  	width:850px;
- 	/*height:800px;*/
  	color:#cecfd2;
  }
 .u-top a{
@@ -1388,30 +1608,22 @@ display:block;
 	margin-right:30px;
 	font-size:16px;
 	color:#cecfd2;
-}
-.m-mainh .switchcon{
-	width:100px;
-	height:35px;
-	background:#f36;
-	color:#fff;
+	background:#2d3741;
 	text-align:center;
 	border-radius:5px;
 }
+.m-mainh .switchcon{
+	background:#f36;
+	color:#fff;
+
+}
 /*我要当主播－－主播认证*/
 .u-certification{
-	margin-top:40px;
-}
-
-.u-ctop a{
-	color:#fff;
-	font-size:14px;
-	margin-right:30px;
+	height:640px;
+	margin-left:-50px;
 }
 .u-certification{
 	position:relative;
-}
-.u-certification .u-ctleft,.u-ctright{
-	margin-top:40px;
 }
 .u-ctleft{
 	position:relative;
@@ -1542,23 +1754,25 @@ display:block;
 	font-size:18px;
 	border-radius:5px;
 }
-.u-ctright div{
-	margin-top:100px;
-	width:800px;
-	height:600px;
-	font-size:14px;
-	color:#fff;
-}
 .changeRed{
 	color:#972e2e;
 }
 /*我要当主播－－如何直播*/
-/*.u-live{
-	margin-top:40px;
+.u-live{
+	padding-bottom:50px;
+}
+.u-liveAI{
+	position:relative;
+	margin-top:30px;
+}
+.u-liveAI a{
+	font-size:18px;
 	color:#cecfd2;
-}*/
+	margin-right:35px;
+}
 .u-liveAndroid,.u-liveIphone{
 	margin:20px 0px;
+	padding-left:40px;
 }
 .u-liveAndroid div,.u-liveIphone div{
 	margin:5px 0px;
@@ -1592,7 +1806,7 @@ display:block;
 /*我要当主播－－提现说明*/
 .u-withdrawal div{
 	margin-top:100px;
-	height:800px;
+	height:540px;
 	font-size:14px;
 	color:#cecfd2;
 }

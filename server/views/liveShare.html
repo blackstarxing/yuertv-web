@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />
+	<title>{{title}}</title>
+	<script src="/jquery.js"></script>		
+	<script src="/activity/build/mediaelement-and-player.min.js"></script>
+	<script src="/jquery.sha1.js"></script>
+	<script src="/wxjsapi.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<link rel="stylesheet" href="/activity/build/mediaelementplayer.min.css" />
+	<link rel="stylesheet" href="css/share.css" />
+	<script>
+		enableWxShare({
+			appId: 'wxf96f728533f32fa8',
+			ticket: '{{ticket}}',
+			title: '我已中毒有点方，快来{{result.info.nickname}}的直播间救我，房间名“{{title}}”！来自#娱儿TV#超懂你的手游直播平台！',
+			type:'video',			
+			imgUrl: 'http://img.wangyuhudong.com/{{result.info.game_icon}}',
+			desc: '我已中毒有点方，快来{{result.info.nickname}}的直播间救我，房间名“{{title}}”！来自#娱儿TV#超懂你的手游直播平台！'
+		})
+	</script>
+</head>
+<body>
+	<div class="">
+		<video width="100%" height="203" id="player1" poster="{{result.info.icon}}" controls="controls" autoplay="" webkit-playsinline playsinline>    
+		    <!-- Pseudo HTML5 -->
+		    <source type="application/x-mpegURL" src="{{link}}" />
+		</video>
+	</div>
+	<div class="tab">
+		<ul class="l">
+			<li><a href="">信息</a></li>
+			<li class="current"><a href="">聊天</a></li>
+			<li><a href="">排行</a></li>
+			<li><a href="">往期</a></li>
+		</ul>
+		<a href="https://yuertvfile.wangyuhudong.com?type=live&objId={{id}}" class="follow l"><img src="/images/heart.png" alt="">关注</a>
+	</div>
+	<div class="m-comments">
+		<div class="comment anchor">
+			<div class="subscribe clearfix">
+				<div class="head l">
+					<img src="http://img.wangyuhudong.com/{{result.info.user_icon}}" alt="">
+					{% if result.info.sex==0 %}
+                        <img src="/images/male.png" alt="" class="sex">
+                    {% else %}
+                        <img src="/images/female.png" alt="" class="sex">
+                    {% endif %}
+				</div>
+				<div class="name l">
+					<h4>{{result.info.nickname}}</h3>
+					<div>房间号&nbsp;&nbsp;&nbsp;<span style="margin-right: 25px;">{{result.info.room_number}}</span>粉丝&nbsp;&nbsp;&nbsp;<span class="fans-num">{{result.info.fans}}</span></div>
+				</div>
+			</div>
+			<div class="intro">
+				<h3><img src="/images/trumpet.png" alt="">直播公告</h3>
+				{% if result.info.introduce %}
+                    {{result.info.introduce}}
+                {% else %}
+                    主播很懒，什么都没留下
+                {% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="m-comments showItem">
+		<div id="chat">
+			
+		</div>
+	</div>
+	<div class="m-comments">
+		<ul class="contribute-tab clearfix">
+			<li class="current">周贡献榜</li>
+			<li>总贡献榜</li>
+		</ul>
+		<div class="rank showRank">
+			
+		</div>
+		<div class="rank">
+			
+		</div>
+	</div>
+	<div class="m-comments">
+		<div class="comment overlook">
+			{% if result.upVideo == "" %}
+                <div class="empty">
+					<img src="/images/empty.png" alt="">
+					<p>这里还没有任何内容哦~</p>
+				</div>
+            {% else %}
+			{% for video in result.upVideo %}
+                <div class="videolist">
+					<a href="https://yuertvfile.wangyuhudong.com?type=live&objId={{id}}" class="clearfix">
+						<img src="{{video.icon}}" alt="" class="l">
+						<div class="title l">
+							<h3>{{video.title}}</h3>
+							<div class="count">
+								<label for=""><i class="play"></i>{{video.play_times}}</label>
+								<label for=""><i class="discuss"></i>{{video.comment_num}}</label>
+							</div>
+						</div>
+					</a>
+				</div>      
+            {% endfor %}
+            {% endif%}
+		</div>
+	</div>
+	<div class="download clearfix">
+		<img src="/images/yuer_logo.png" class="l">
+		<a href="https://yuertvfile.wangyuhudong.com?type=live&objId={{id}}" class="download-btn r">下载 APP</a>
+	</div>
+
+<script src="/sha1.js"></script>
+<script src="/Web_SDK_Base_v2.8.0.js"></script>
+<script src="/Web_SDK_Chatroom_v2.8.0.js"></script>
+<script>
+$('audio,video').mediaelementplayer({
+	features: ['playpause','progress','current','tracks','volume','fullscreen'],
+});
+//如果方向错误 
+// $('audio,video').mediaelementplayer({
+// 	features: ['playpause','progress','current','tracks','volume'],
+// });
+// $('.mejs-controls').css('transform','rotate(0deg)');
+// $('.mejs-mediaelement').css({'transform':'rotate(-90deg) scale(1.75)'});
+// var hls = $('source').attr('src').replace(/rtmp:/, "http:").replace(/rtmp/, "hls")+'.m3u8';
+// $('source').attr('src',hls);
+
+$('.tab ul').click(function(e){
+	e.preventDefault();
+	var tabs=$('.tab li');
+	var items=$('.m-comments');
+	var that=e.target;
+	if(e.target.tagName=="A"){
+		var index=$(that).parent().index();
+		tabs.removeClass('current');
+		items.removeClass('showItem');
+		$(that).parent().addClass('current');
+		items.eq(index).addClass('showItem');
+	}
+})
+
+$('.contribute-tab').click(function(e){
+	e.preventDefault();
+	var tabs=$('.contribute-tab li');
+	var items=$('.rank');
+	var that=e.target;
+	if(e.target.tagName=="LI"){
+		var index=$(that).index();
+		tabs.removeClass('current');
+		items.removeClass('showRank');
+		$(that).addClass('current');
+		items.eq(index).addClass('showRank');
+	}
+})
+
+// 动态设置聊天区域高度
+var height=document.body.clientHeight-310;
+$('#chat').css('height',height+'px');
+
+var lct = document.getElementById('chat');
+
+var live_account = "",
+    live_token = "";
+
+$.ajax({
+    method: "GET",
+    url: "/api/visitor",
+    dataType: 'json',
+    success: function(data) {
+        if (data.code == 0) {
+            live_account = data.object.accid;
+            live_token = data.object.token;
+            enterLiveroom();
+        }else{
+            console.log(data.result);
+        }
+    },
+    error: function(a, b, c) {
+        console.log("接口出问题啦");
+    }
+}); 
+
+function enterLiveroom(){
+	// 聊天室服务器地址
+	var address=[];
+	// 当前时间
+	var myDate = new Date(),
+		y = myDate.getFullYear(),   //获取完整的年份(4位,1970-????)
+		m = myDate.getMonth()+1,      //获取当前月份(0-11,0代表1月)
+		d = myDate.getDate(),       //获取当前日(1-31)
+		h = myDate.getHours(),      //获取当前小时数(0-23)
+		mi = myDate.getMinutes(),    //获取当前分钟数(0-59)
+		s = myDate.getSeconds();   //获取当前秒数(0-59)
+	var CurTime = Date.UTC(y,m,d,h,mi,s);
+	var roomid = parseInt(4174310);
+	var shaObj = new jsSHA("SHA-1", "TEXT");
+	// AppSecret
+	shaObj.update('1981023862be'+1+CurTime);
+	var hash = shaObj.getHash("HEX");
+
+	// 获取聊天室信息重要参数
+	var appKey = '5585496885932f31d478ed0222072bcf',
+		roomid = '{{result.info.chat_room_id}}',
+		accid = '{{result.info.up_user_id}}';
+
+	$.ajax({
+	    url: "https://api.netease.im/nimserver/chatroom/requestAddr.action",
+	    contentType:"application/x-www-form-urlencoded;charset=utf-8",
+	    type: 'POST',
+	    beforeSend: function (req) {
+	        req.setRequestHeader('appkey', appKey);
+	        req.setRequestHeader('Nonce',1);
+	        req.setRequestHeader('CurTime',CurTime);
+	        req.setRequestHeader('CheckSum',hash);
+	    },
+	    data:{roomid:roomid,accid:accid}
+	}).done(function(data) {
+	    if(data.code===200){
+	       address = data.addr;
+	       getChat();
+	    }else{
+	        alert("获取连接房间地址失败");
+	    }   
+	})
+	function getChat(){
+		var chatroom = Chatroom.getInstance({
+		    appKey: appKey,
+		    account: live_account,
+		    token: live_token,
+		    chatroomId: roomid,
+		    chatroomAddresses: address,
+	        onconnect: onChatroomConnect,
+		    onerror: onChatroomError,
+		    onwillreconnect: onChatroomWillReconnect,
+		    ondisconnect: onChatroomDisconnect,
+		    // 消息
+		    onmsgs: onChatroomMsgs
+		});
+	}
+
+
+	function onChatroomConnect(chatroom) {
+	    console.log('进入聊天室', chatroom);
+	    $('#chat').append("<div>你已进入聊天室！<div>"); 
+	}
+	function onChatroomWillReconnect(obj) {
+	    // 此时说明 `SDK` 已经断开连接, 请开发者在界面上提示用户连接已断开, 而且正在重新建立连接
+	    console.log('即将重连', obj);
+	}
+	function onChatroomDisconnect(error) {
+	    // 此时说明 `SDK` 处于断开状态, 开发者此时应该根据错误码提示相应的错误信息, 并且跳转到登录页面
+	    console.log('连接断开', error);
+	    if (error) {
+	        switch (error.code) {
+	        // 账号或者密码错误, 请跳转到登录页面并提示错误
+	        case 302:
+	            break;
+	        // 被踢, 请提示错误后跳转到登录页面
+	        case 'kicked':
+	            break;
+	        default:
+	            break;
+	        }
+	    }
+	    $('#chat').append("<div>连接断开<div>"); 
+	}
+	function onChatroomError(error, obj) {
+	    console.log('发生错误', error, obj);
+	}
+	function onChatroomMsgs(msgs) {
+	    console.log('收到聊天室消息', msgs);
+	    // $('.chat').html(msgs)
+	    for(var i=0;i<msgs.length;i++){
+	    	if(msgs[i].content){
+	    		var content=JSON.parse(msgs[i].content);
+	    		// console.log(content);
+	    		if(content.data.giftNum>1){
+	    			$('#chat').append("<div class='gift'>"+content.data.senderName+":&nbsp;&nbsp;送给主播1个"+content.data.giftName+"<span class='combo'>"+content.data.giftNum+"<i></i></span><div>");
+	    		}else{
+	    			$('#chat').append("<div class='gift'>"+content.data.senderName+":&nbsp;&nbsp;送给主播1个"+content.data.giftName+"<div>");
+	    		}
+	    	}else if(msgs[i].text && msgs[i].fromNick){
+	    		var host = msgs[i].fromNick=="1" ? '<label for="">主播</label>&nbsp;' : '';
+				$('#chat').append("<div>"+host+"<span class='fromNick'>"+msgs[i].fromNick+":&nbsp;&nbsp;</span>"+msgs[i].text+"<div>");   		
+	    	}else if(msgs[i].text && !msgs[i].fromNick && msgs[i].custom){
+	            var custom=JSON.parse(msgs[i].custom);
+	            $('#chat').append("<div><span class='fromNick'>"+custom.nickname+":&nbsp;&nbsp;</span>"+msgs[i].text+"</div>");        
+	        }else if(msgs[i].flow=="in" && !msgs[i].text && msgs[i].attach.fromNick && msgs[i].attach.type=="memberEnter"){
+	    		$('#chat').append("<div>欢迎用户"+msgs[i].attach.fromNick+"进入直播间");
+	    	}else if(msgs[i].flow=="in" && msgs[i].text && msgs[i].custom =="" ){
+	            $('#chat').append('<div>'+msgs[i].text+'</div>');
+	        }
+	    	lct.scrollTop=Math.max(0,lct.scrollHeight-lct.offsetHeight);    	
+	    }
+	}
+}
+var parmweek = {},
+	week = '';
+parmweek.type = 1;
+parmweek.upUserId = '{{result.info.up_user_id}}';
+
+var parmall = {},
+	all = '';
+parmall.type = 2;
+parmall.upUserId = '{{result.info.up_user_id}}';
+
+$.ajax({
+    method: "GET",
+    url: "/api/contributionRank",
+    dataType: 'json',
+    data:parmweek,
+    success: function(data) {
+        if (data.code == 0) {
+            for(var i=0;i<data.object.length;i++){
+            	var coin = data.object[i].yuer_coin ? '<p><span class="yuer-coin">'+data.object[i].yuer_coin+'</span>鱼币</p>' : '';
+            	var bait = data.object[i].bait ? '<p><span>'+data.object[i].bait+'</span>鱼饵</p>' : '';
+            	var index = i+1;
+            	var sex = data.object[i].sex ? '' : 'rank-male' ;
+            	week+='<div class="contributionRank clearfix"><div class="bank-left l"><span class="rank-index">'+index+'</span><div class="bank-head"><img src="http://img.wangyuhudong.com/'+data.object[i].icon+'" alt=""></div><span class="rank-name">'+data.object[i].nickname+'</span> <i class="rank-sex '+sex+'"></i></div><div class="bank-right r"><div class="rank-detail">'+coin+bait+'</div></div></div>';
+            }
+            $('.rank').eq(0).html(week);
+        }else{
+            console.log(data.result);
+        }
+    },
+    error: function(a, b, c) {
+        console.log("接口出问题啦");
+    }
+});
+$.ajax({
+    method: "GET",
+    url: "/api/contributionRank",
+    dataType: 'json',
+    data:parmall,
+    success: function(data) {
+        if (data.code == 0) {
+            for(var i=0;i<data.object.length;i++){
+            	var bait = data.object[i].bait ? '<p><span>'+data.object[i].bait+'</span>鱼饵</p>' : '';
+            	var coin = data.object[i].yuer_coin ? '<p><span class="yuer-coin">'+data.object[i].yuer_coin+'</span>鱼币</p>' : '';
+            	var index = i+1;
+            	var sex = data.object[i].sex ? '' : 'rank-male' ;
+            	all+='<div class="contributionRank clearfix"><div class="bank-left l"><span class="rank-index">'+index+'</span><div class="bank-head"><img src="http://img.wangyuhudong.com/'+data.object[i].icon+'" alt=""></div><span class="rank-name">'+data.object[i].nickname+'</span> <i class="rank-sex '+sex+'"></i></div><div class="bank-right r"><div class="rank-detail">'+coin+bait+'</div></div></div>';
+            }
+            $('.rank').eq(1).html(all);
+        }else{
+            console.log(data.result);
+        }
+    },
+    error: function(a, b, c) {
+        console.log("接口出问题啦");
+    }
+});
+</script>
+	
+</body>
+</html>

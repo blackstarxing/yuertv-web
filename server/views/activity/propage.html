@@ -5,40 +5,61 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta content="telephone=no" name="format-detection" />
-	<title>百万主播招募活动页</title>
-	<script src="/jquery.js"></script>
+    <meta name="x5-orientation" content="portrait">
+    <meta name="screen-orientation" content="portrait">
+	<title>手游主播月入百万的真相在这里！</title>
+	<link rel="stylesheet" href="/css/basic.css">
 	<link rel="stylesheet" href="/css/propage.css">
+	<script src="/jquery.js"></script>
+	<script src="/activity/build/mediaelement-and-player.min.js"></script>
+	<script src="/jquery.sha1.js"></script>
+	<script src="/wxjsapi.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<link rel="stylesheet" href="/activity/build/mediaelementplayer.min.css" />
 	<script>
 		var ua = navigator.userAgent.toLowerCase(); 
-		if (!navigator.userAgent.match(/(iPhone|iPod|iPad);?/i) || !navigator.userAgent.match(/android/i)) {
+		if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i) || navigator.userAgent.match(/android/i)) {
 			// window.location.href = '/activity/recruit';
         }else{
         	window.location.href = '/activity/recruit';
         }
+		enableWxShare({
+			appId: 'wxf96f728533f32fa8',
+			ticket: '{{ticket}}',
+			title: '手游主播月入百万的真相在这里！',			
+			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/yuerlogo.png',
+			desc: '玩着手游，躺着赚钱，把握移动电竞最好的时代！参与娱儿TV百万年薪主播招募令，下一个移动电竞大神就是你！'
+		})
 	</script>
 </head>
 <body>
 	<div class="g-container">
 		<div class="m-contop">
-			<img src="/activity/images/pro_top.jpg">
-			<div class="vedioTop">
-				<video width="100%" height="100%" id="player1" poster="" controls="" autoplay="" webkit-playsinline playsinline style="margin:0;"><source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_4038872.m3u8" /></video>
+			<img src="/activity/images/pro_1.jpg">
+			<img src="/activity/images/pro_2.jpg">
+			<div class="videoBox">
+				<video id="player1" width="100%" height="100%" poster="/activity/images/poster.jpg" autoplay="" controls="" loop="loop" webkit-playsinline playsinline>
+			    	<source type="video/mp4" src="http://img.wangyuhudong.com/uploads/imgs/live/yuer.mp4" />
+			    </video>
 			</div>
 		</div>
 		<div class="m-concenter">
 			<img src="/activity/images/pro_center.jpg">
-			<div class="vedio">
-				<video width="100%" height="100%" id="player1" poster="" controls="" autoplay="" webkit-playsinline playsinline style="margin:0;"><source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_4038872.m3u8" /></video>
+			<div class="videoBox videoBottom">
+				<video id="player2" width="100%" height="100%" poster="/activity/images/poster.jpg" controls="" loop="loop" webkit-playsinline playsinline>
+			    	<source type="video/mp4" src="http://img.wangyuhudong.com/uploads/imgs/live/yuer2.mp4" />
+			    </video>
 			</div>
 		</div>
 		<div class="m-conbottom">
-			<div class="conCenTop">
+			<!-- <div class="conCenTop">
 				<img src="/activity/images/pro_bottom.jpg">
-			</div>
+			</div> -->
 			<div class="conCenContent">
 				<div class="conTop">
 					<img src="/activity/images/pro_btop.jpg">
 				</div>
+				<img src="/activity/images/pro_bottom.jpg" alt="" class="pro-bg">
 				<div class="sumSwitch">
 					<div id="switch">
 						<div id="biubiubiu"></div>
@@ -46,7 +67,6 @@
 
 					</div>
 					<ul class="rightswitch ">
-						<li><span>等级</span><span>SS级</span></li>
 						<li><span>称号</span><span>娱之神</span></li>
 						<li><span>日均直播（小时）</span><span>4小时*<span class="an">20</span>天/月</span></li>
 						<li><span>收到付费礼物保底（元）</span><span class="ani">3000</span></li>
@@ -57,7 +77,6 @@
 						<li><span>最终底薪</span><span class="ani">103000</span></li>
 					</ul>
 					<ul class="rightswitch switchCon">
-						<li><span>等级</span><span>S级</span></li>
 						<li><span>称号</span><span>娱之王者</span></li>
 						<li><span>日均直播（小时）</span><span>4小时*<span class="an">20</span>天/月</span></li>
 						<li><span>收到付费礼物保底（元）</span><span class="ani">1000</span></li>
@@ -68,7 +87,6 @@
 						<li><span>最终底薪</span><span class="ani">23000</span></li>
 					</ul>
 					<ul class="rightswitch switchCon">
-						<li><span>等级</span><span>A级</span></li>
 						<li><span>称号</span><span>娱播霸</span></li>
 						<li><span>日均直播（小时）</span><span>4小时*<span class="an">20</span>天/月</span></li>
 						<li><span>收到付费礼物保底（元）</span><span class="ani">500</span></li>
@@ -76,10 +94,9 @@
 						<li><span>底薪（元）</span><span class="ani">2000</span></li>
 						<li><span>付费礼物分成</span><span>5：5</span></li>
 						<li><span>预期礼物收益（元）</span><span class="ani">19000</span></li>
-						<li><span>最终底薪</span><span class="ani">115000</span></li>
+						<li><span>最终底薪</span><span class="ani">11500</span></li>
 					</ul>
 					<ul class="rightswitch switchCon">
-						<li><span>等级</span><span>B级</span></li>
 						<li><span>称号</span><span>娱主神</span></li>
 						<li><span>日均直播（小时）</span><span>4小时*<span class="an">20</span>天/月</span></li>
 						<li><span>收到付费礼物保底（元）</span><span class="ani">100</span></li>
@@ -90,7 +107,6 @@
 						<li><span>最终底薪</span><span class="ani">5200</span></li>
 					</ul>
 					<ul class="rightswitch switchCon">
-						<li><span>等级</span><span>C级</span></li>
 						<li><span>称号</span><span>小娱儿</span></li>
 						<li><span>日均直播（小时）</span><span>3小时*<span class="an">20</span>天/月</span></li>
 						<li><span>收到付费礼物保底（元）</span><span class="ani">50</span></li>
@@ -101,7 +117,6 @@
 						<li><span>最终底薪</span><span class="ani">3300</span></li>
 					</ul>
 					<ul class="rightswitch switchCon" >
-						<li><span>等级</span><span>D级</span></li>
 						<li><span>称号</span><span>小虾米</span></li>
 						<li><span>日均直播（小时）</span><span>2小时*<span class="an">20</span>天/月</span></li>
 						<li><span>收到付费礼物保底（元）</span><span class="ani">—</span></li>
@@ -112,36 +127,51 @@
 						<li><span>最终底薪</span><span class="ani">200</span></li>
 					</ul>
 				</div>
-			</div>
-			
-		</div>
-		<div class="m-conBContent">
-				<div class="m-cTop">
-					<img src="/activity/images/pro_bbott.jpg">
+				<div class="m-conBContent">
+					<div class="m-ToObtain">
+					<a href="http://qm.qq.com/cgi-bin/qm/qr?k=XV36m7Kd4bLQPhQKKeZVxeAgii754bNH">加入主播QQ群</a>
+					</div>
+					<div class="m-Download">
+						<a href="http://yuerapi.wangyuhudong.com/v4/live/download">下载娱儿TV</a>
+					</div>
 				</div>
-				<div class="m-ToObtain">
-				<a href="http://qm.qq.com/cgi-bin/qm/qr?k=XV36m7Kd4bLQPhQKKeZVxeAgii754bNH">获取QQ群号</a>
-				</div>
-				<div class="m-Download">
-					<a href="http://yuerapi.wangyuhudong.com/v4/live/download">下载娱儿TV</a>
-				</div>
+			</div>			
 		</div>
 	</div>
 	<script type="text/javascript">
-		$(function() {
+		// $(function() {
+			$('video').mediaelementplayer({
+				features: ['playpause','volume','fullscreen'],
+			});
 			var width=$('#switch').width();
-			$('.switchCon').css('marginLeft',width+'px');
+			var client = $(window).width();
+			function rotate(){ 
+			  	if(window.orientation==180||window.orientation==0){ 
+			  		var screenw = document.body.clientWidth;
+					$('.videoBox').css('height',screenw*0.41+'px');
+					$('video').css('height',screenw*0.41+'px');
+			  	} 
+				if(window.orientation==90||window.orientation==-90){ 
+					var screenw = document.body.clientWidth;
+					$('.videoBox').css('height',screenw*0.41+'px');
+					$('video').css('height',screenw*0.41+'px');
+			    } 
+			} 
+			rotate();
+			window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", rotate, false); 			
 			$("#switch a").on('click', function(event) {
 		        event.preventDefault();
 		        $(this).addClass("switchColor").siblings().removeClass("switchColor");
-		       $(".rightswitch").eq($(this).index()-1).animate({marginLeft:0},300).siblings('.rightswitch').css('marginLeft',width+'px');
+		        $(".rightswitch").stop(true);
+		       	$(".rightswitch").eq($(this).index()-1).animate({marginLeft:0},300).siblings('.rightswitch').css('marginLeft','100%');
 		    });
 		     // $("#switch a:eq(0)").trigger("click");
 			$("#switch #biubiubiu").css({width:"16.66%",left:0,position:"absolute",height:"3px",background:"#78c9cc"})
 			$("#switch a").on("click",function(e){
+				$("#switch #biubiubiu").stop(true);
 			    $("#switch #biubiubiu").animate({left:$(this).position().left},300)
 			})
-		});
+		// });
 	</script>
 </body>
 </html>

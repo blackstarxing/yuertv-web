@@ -1,0 +1,105 @@
+{% extends 'layout.html' %} 
+
+{% block css %}
+<link rel="stylesheet" href="/dist/center.css">
+
+{% endblock %}
+
+{% block content %}
+ <div class="g-container f-cb">
+	<div class="g-main"> 
+		 {% include 'common/cenleft.html' %}  
+	    <div id="rightmain" class="g-right">
+		   
+	  	<!-- <div class="m-rightswitch"> -->
+<!-- 我的关注 -->
+			<div class="g-focus rightswitch">
+				<div class="m-main f-cb">
+					<div class="focushost f-cb">
+						<img src="/images/empty.png" class="empty" alt="你还没有关注任何人哦！" title="你还没有关注任何人哦！">
+						<p class="emptyText">当前没有关注任何人哦！</p>
+						<!-- <div class="u-host">
+								<div class="u-hleft">
+									<div class="u-focusimg">
+										<img src="/images/focusimg.png">
+									</div>
+									<div class="u-nickhost">
+										<p class="u-nicksex">
+											<span>小飞~超影路</span>
+											<img src="">
+										</p>
+										<div class="u-hostfans">
+											<p>
+												<span class="u-hf">直播间ID</span>&nbsp;
+												<span class="u-num">123456789</span>
+											</p>
+											<p class="u-hhf">
+												<span class="u-hf">粉丝</span>&nbsp;
+												<span class="u-num">3764</span>
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="u-hright">
+									<img src="/images/focusclick.png">
+									<a href="">进入房间</a>
+								</div>
+							</div>
+							<div class="u-host stopdark">
+								<div class="u-hleft">
+									<div class="u-focusimg">
+										<img src="/images/focusimg.png">
+									</div>
+									<div class="u-nickhost">
+										<p class="u-nicksex">
+											<span>小飞~超影路</span>
+											<img src="">
+										</p>
+										<div class="u-hostfans">
+											<p>
+												<span class="u-hf">直播间ID</span>&nbsp;
+												<span class="u-num">123456789</span>
+											</p>
+											<p class="u-hhf">
+												<span class="u-hf">粉丝</span>&nbsp;
+												<span class="u-num">3764</span>
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="u-hright">
+									<img src="/images/focusclick.png" class="u-blur">
+									<a href="">进入房间</a>
+								</div>
+								<span class="dark">该主播已离开</span>
+							</div> -->
+						</div>
+						<div class="M-box">
+							<a href="javascript:;" class="prevBtn">上一页</a>
+							<span class="totalPage"></span>
+							<a href="javascript:;" class="nextBtn">下一页</a>
+						</div>
+				</div>
+			</div>
+			<!-- </div>	右侧下侧结尾 -->
+	    </div><!-- 右侧结尾 -->
+	    
+	</div> <!-- 整个块结尾 -->
+
+</div>	
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/dist/center.js"></script>
+<script type="text/javascript">
+	$('.g-left li').eq('{{index+1}}').addClass('rightswitchcolor');
+	// $('.g-left li').each(function(){
+	// 	if($(this).attr("data-type")=='{{type}}'){
+	// 		$(this).addClass('rightswitchcolor');
+	// 	}
+	// })
+	// $('.rightswitch').eq({{type}}).show().siblings().hide();
+</script>
+{% endblock %}

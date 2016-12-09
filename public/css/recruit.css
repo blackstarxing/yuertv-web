@@ -1,71 +1,72 @@
 body{
-	/*width: 100%;
-	overflow-x: hidden;*/
-	background: #101734;
+	width: 100%;
+	overflow-x: hidden;
+	background: #121936;
 }
 .g-ct{
-	background: url('/activity/images/waves.jpg') center bottom no-repeat;
-	padding-bottom: 80px;
+	position: relative;
+    margin-top: -180px;
+}
+.g-ct .video-bg{
+	width: 100%;
+	vertical-align: bottom;
+}
+.videoBox{
+	position: relative;
+}
+.videoBox .videoContainer{
+	position: absolute;
+	top: 153px;
+	left: 320px;
+	width: 590px;
+	height: 300px;
+	background: #000;
+}
+.videoBox .video-bottom{
+	top:625px;
+	left: 316px;
 }
 .recruitbg{
 	margin:0 auto;
 	width: 100%;
 	min-width: 1200px;
 }
-.recruitBox{
-	margin-bottom: 80px;
+.g-levels{
+	position: relative;
+	margin-top: 50px;
 }
-.recruit-l{
-	width: 736px;
+.g-levels img{
+	position: relative;
+	left: 50%;
+	margin-left: -960px;
 }
-.recruit-r{
-	width: 450px;
-	overflow-x: hidden;
+.comWidth{
+	position: relative;
 }
-.re-title{
-	height: 112px;
-	line-height: 112px;
-	background: rgba(101,151,193,0.25);
-	color:#69c;
-	font-size: 30px;
-	text-indent: 30px;
-	margin-bottom: 30px;
-}
-.sp-title{
-	line-height: 2;
-}
-.sp-title p{
-	color: #fff;
-	font-size: 22px;
-}
-.video{
-	background: #000;
-	height: 376px;
-}
-.joinus{
-	background: url('/activity/images/box_bg.png');
-	height: 368px;
-	padding:8px 30px 0;
-}
-.joinus .group{
-	width: 174px;
-	float: left;
-	margin-bottom: 17px;
-}
-.joinus .u-toindex{
-	background: url('/activity/images/button_bg.png');
+.u-toindex{
+	position: absolute;
+	top: 30px;
+	right: 200px;
+	background: url('/activity/images/button_net.png');
+	background-size: 100%;
 	display: block;
-	width: 388px;
-	height: 76px;
-	line-height: 76px;
+	width: 365px;
+	height: 85px;
+	line-height: 70px;
 	color: #fff;
 	font-size: 28px;
-	clear:both;
-	text-align: center;
+	text-indent: 60px;
+	cursor: pointer;
+	z-index: 1;
 }
 .levelBox{
-	position: relative;
-	height: 376px;
+	position: absolute;
+	top: 222px;
+	width: 790px;
+	left: 50%;
+	margin-left: -391px;
+	height: 600px;
+	overflow-x: hidden;
 }
 .level-nav{
 	position: relative;
@@ -73,7 +74,7 @@ body{
 }
 .level-nav li{
 	float: left;
-	width: 75px;
+	width: 131.6px;
 	text-align: center;
 	height: 50px;
 	line-height: 50px;
@@ -85,19 +86,38 @@ body{
 	background: #142050;
 	color:#78c9cc;
 }
+.rules table{
+	margin-left: 50px;
+}
 .rules td{
 	width: 50%;
-	border:1px solid #69c;
+	border-bottom:1px solid #15233e;
 	text-indent: 16px;
 	color:#69c;
-	line-height: 35px;
+	line-height: 60px;
+	font-size: 16px;
+}
+.rules .orange{
+	font-size: 20px;
+	color: #f63;
+	vertical-align: bottom;
 }
 .rules{
 	position: absolute;
 	top:50px;
-	left: 450px;
-	width: 450px;
+	left: 790px;
+	width: 500px;
 }
 .show{
 	left: 0;
+}
+.side{
+	position: fixed;
+	right: 30px;
+	top:10%;
+	width: 160px;
+}
+.side img{
+	width: 100%;
+	margin-top: 5px;
 }
