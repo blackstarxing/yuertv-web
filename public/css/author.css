@@ -85,11 +85,20 @@ input:focus{
 	position: absolute;
 	top:1px;
 	right: -3px;
-	background: #1c232d;
+	background: #f36;
 	border:none;
 	outline: none;
-	color: #98a8ba;
+	color: #fff;
 	border-left: 1px solid #1a293d;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+.m-code .cant,.intro .cant{
+	background: #1c232d;
+	color: #98a8ba;
+}
+.intro .cant{
+	box-shadow: 0 0 10px #101519;
 }
 .m-sex{
 	color:#98a9bb;
@@ -468,6 +477,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	width:90%;
 	margin:10% 5% 10%;
 	line-height: 1.5;
+	padding-bottom: 30px;
 }
 .Uexplain p{
 	width:100%;

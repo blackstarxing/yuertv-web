@@ -77,7 +77,7 @@ $(function(){
 	                }
 	            },
 	            error: function() {
-	                showTip('通讯服务器错误');
+	                showTip('连接失败，请检查您的网络设置后重试');
 	            }
 	        });
         }
@@ -139,7 +139,7 @@ $(function(){
 			    }    
 			},
 		  	error: function() {
-		      	showTip('通讯服务器错误');
+		      	showTip('连接失败，请检查您的网络设置后重试');
 		  	} 
 		}); 
 	}else if(userId && bindMobile == 0){
@@ -188,13 +188,13 @@ $(function(){
 		                    $('.m-register .getCode').attr('disabled',true).text(second+'(s)');
 		                    function settime(val) { 
 		                        if (second > 0) { 
-		                            $('.m-register .getCode').text(second+'(s)');
+		                            $('.m-register .getCode').addClass('cant').text(second+'(s)');
 		                            second--;
 		                            setTimeout(function() { 
 		                                settime(val) 
 		                            },1000);
 		                        } else {
-		                            $('.m-register .getCode').attr('disabled',false).text('获取验证码');                             
+		                            $('.m-register .getCode').attr('disabled',false).removeClass('cant').text('获取验证码');                             
 		                        } 
 		                    } 
 		                    settime(second);                 
@@ -203,11 +203,11 @@ $(function(){
 		                }
 		            },
 		            error: function() {
-		                showTip('通讯服务器错误');
+		                showTip('连接失败，请检查您的网络设置后重试');
 		            }
 		        });
             }else{
-            	showTip('请输入正确的手机号！');
+            	showTip('请输入正确的手机号码！');
             }
         }else{
         	showTip('手机号码不能为空！');
@@ -292,7 +292,7 @@ $(function(){
                     }
                 },
                 error: function() {
-                    showTip('通讯服务器错误');
+                    showTip('连接失败，请检查您的网络设置后重试');
                 }
             });
     	}
@@ -321,13 +321,13 @@ $(function(){
 		                    $('.m-bindmobile .getCode').attr('disabled',true).text(second+'(s)');
 		                    function settime(val) { 
 		                        if (second > 0) { 
-		                            $('.m-bindmobile .getCode').text(second+'(s)');
+		                            $('.m-bindmobile .getCode').addClass('cant').text(second+'(s)');
 		                            second--;
 		                            setTimeout(function() { 
 		                                settime(val) 
 		                            },1000);
 		                        } else {
-		                            $('.m-bindmobile .getCode').attr('disabled',false).text('获取验证码');                             
+		                            $('.m-bindmobile .getCode').attr('disabled',false).removeClass('cant').text('获取验证码');                             
 		                        } 
 		                    } 
 		                    settime(second);                 
@@ -336,11 +336,11 @@ $(function(){
 		                }
 		            },
 		            error: function() {
-		                showTip('通讯服务器错误');
+		                showTip('连接失败，请检查您的网络设置后重试');
 		            }
 		        });
             }else{
-            	showTip('请输入正确的手机号！');
+            	showTip('请输入正确的手机号码！');
             }
         }else{
         	showTip('手机号码不能为空！');
@@ -402,7 +402,7 @@ $(function(){
                     }
                 },
                 error: function() {
-                    showTip('通讯服务器错误');
+                    showTip('连接失败，请检查您的网络设置后重试');
                 }
             });
     	}
@@ -429,14 +429,29 @@ $(function(){
             type: 'get',
             dataType: 'json',
             success: function(data) {
-                if (data.code==0) {
-                    showTip('短信发送成功,请注意查看噢');
-                }else{
-                	showTip(data.result);
+                if(data.code == 0){//data.code的值这个是后端人员规定的。
+                  	showTip("短信发送成功，请注意查看手机短信噢");
+                  	var second = 59;
+	                $('.u-download-btn').attr('disabled',true).addClass('cant');
+	                function settime(val) { 
+	                    if (second > 0) { 
+	                        second--;
+	                        setTimeout(function() { 
+	                            settime(val) 
+	                        },1000);
+	                    } else {
+	                        $('.u-download-btn').attr('disabled',false).removeClass('cant');                             
+	                    } 
+	                } 
+	                settime(second); 
+                } else if (data.code == 1) {
+                    showTip("短信发送失败,请稍后再试");
+                } else if (data.code == 2) {
+                    showTip("获取短信过于频繁,请稍后再试");
                 }
             },
             error: function() {
-                showTip('通讯服务器错误');
+                showTip('连接失败，请检查您的网络设置后重试');
             }
         });
     })
@@ -531,7 +546,7 @@ $(function(){
 		            }    
 		        },
 		        error: function() {
-		            showTip('通讯服务器错误');
+		            showTip('连接失败，请检查您的网络设置后重试');
 		        } 
 		    });
 	  	}      
@@ -573,7 +588,7 @@ $(function(){
                 }    
             },
             error: function() {
-                showTip('通讯服务器错误');
+                showTip('连接失败，请检查您的网络设置后重试');
             } 
         });  
     }); 
