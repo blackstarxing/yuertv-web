@@ -4,6 +4,7 @@ var Thenjs = require('thenjs');
 var request = require('request');
 
 router.get('/', function(req, res, next) {
+    var from = req.query.from;
     var islogin = false;
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){
@@ -14,7 +15,7 @@ router.get('/', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.2.62:8777/index',
+            uri: 'http://172.16.2.62:8777/index?from='+from,
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,

@@ -22,7 +22,7 @@ $(function(){
 	function myInfo(){
     	$('.step-final').show();
     	$.ajax({
-            url: 'http://wy.yuerapi.wangyuhudong.com/tv/my/my',
+            url: 'http://yuerapi.wangyuhudong.com/tv/my/my',
             data: {
             	toUserId:userId,
             	token:token,
@@ -87,7 +87,7 @@ $(function(){
 	if(userId){
 		var mobile = "";
 		$.ajax({
-            url: 'http://wy.yuerapi.wangyuhudong.com/tv/my/my',
+            url: 'http://yuerapi.wangyuhudong.com/tv/my/my',
             data: {
             	toUserId:userId,
             	token:token,
@@ -117,7 +117,7 @@ $(function(){
 	        // 审核状态 
 			$.ajax({  
 			  	type: "GET",  
-			  	url: "http://wy.yuerapi.wangyuhudong.com/h5/certificateState",  
+			  	url: "http://yuerapi.wangyuhudong.com/h5/certificateState",  
 			  	data: {token:token,
 			        userId:userId,
 			  	},  
@@ -213,7 +213,7 @@ $(function(){
                 parm.mobile = $regnumber.val();
                 parm.type = 6;
                 $.ajax({
-		            url: 'http://wy.yuerapi.wangyuhudong.com/sendSMSCode',
+		            url: 'http://yuerapi.wangyuhudong.com/sendSMSCode',
 		            data: parm,
 		            type: 'get',
 		            dataType: 'json',
@@ -298,7 +298,7 @@ $(function(){
             parm.password = $('.m-register .password').val();
             parm.sex = $("input[name='sex']:checked").val();
             $.ajax({
-                url: 'http://wy.yuerapi.wangyuhudong.com/h5/register',
+                url: 'http://yuerapi.wangyuhudong.com/h5/register',
                 data: parm,
                 type: 'get',
                 dataType: 'json',
@@ -346,7 +346,7 @@ $(function(){
                 parm.mobile = $bindnumber.val();
                 parm.type = 5;
                 $.ajax({
-		            url: 'http://wy.yuerapi.wangyuhudong.com/sendSMSCode',
+		            url: 'http://yuerapi.wangyuhudong.com/sendSMSCode',
 		            data: parm,
 		            type: 'get',
 		            dataType: 'json',
@@ -411,7 +411,7 @@ $(function(){
             parm.token = token;
             parm.userId = userId;
             $.ajax({
-                url: 'http://wy.yuerapi.wangyuhudong.com/bindMobile',
+                url: 'http://yuerapi.wangyuhudong.com/bindMobile',
                 data: parm,
                 type: 'get',
                 dataType: 'json',
@@ -461,7 +461,7 @@ $(function(){
         parm.token = token;
         parm.userId = userId;
     	$.ajax({
-            url: 'http://wy.yuerapi.wangyuhudong.com/h5/sendSMStoDownload',
+            url: 'http://yuerapi.wangyuhudong.com/h5/sendSMStoDownload',
             data: parm,
             type: 'get',
             dataType: 'json',
@@ -505,7 +505,7 @@ $(function(){
 			//     var data = new FormData();
 			//     data.append('upload', $(this)[0].files[0]);
 			//     $.ajax({
-			//         url: 'http://wy.yuerapi.wangyuhudong.com/common/upload',
+			//         url: 'http://yuerapi.wangyuhudong.com/common/upload',
 			//         type: 'post',
 			//         data: data,
 			//         cache: false,
@@ -535,7 +535,7 @@ $(function(){
 			    var data = new FormData();
 			    data.append('upload', dataURLtoBlob(rst.base64));
 			    $.ajax({
-			        url: 'http://wy.yuerapi.wangyuhudong.com/common/upload',
+			        url: 'http://yuerapi.wangyuhudong.com/common/upload',
 			        type: 'post',
 			        data: data,
 			        cache: false,
@@ -591,7 +591,7 @@ $(function(){
 	  	if(UsubmitCheck){
 	  		$.ajax({  
 		        type: "GET",  
-		        url: "http://wy.yuerapi.wangyuhudong.com/h5/upCertificate",  
+		        url: "http://yuerapi.wangyuhudong.com/h5/upCertificate",  
 		        data: {idCard:$("#checkIdCard").val(),
 		               idCardBackScan:$("#idCardBackScan").attr('src'),
 		               idCardDueDate:$("#idCardDueDate").val(),
@@ -645,7 +645,7 @@ $(function(){
         e.preventDefault(); 
         $.ajax({  
             type: "GET",  
-            url: "http://wy.yuerapi.wangyuhudong.com/h5/sendSMStoDownload",  
+            url: "http://yuerapi.wangyuhudong.com/h5/sendSMStoDownload",  
             data: {
                    token:token,
                    userId:userId
