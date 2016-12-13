@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://wy.yuerwebapi.wangyuhudong.com/index',
+            uri: 'http://172.16.2.62:8777/index',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -51,7 +51,7 @@ router.get('/liveroom', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://wy.yuerwebapi.wangyuhudong.com/live/detail?id='+id,
+            uri: 'http://172.16.2.62:8777/live/detail?id='+id,
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -64,7 +64,7 @@ router.get('/liveroom', function(req, res, next) {
             }
         })
     },function(cont) {
-        request('http://wy.yuerwebapi.wangyuhudong.com/gift/list', function(error, response, body) {
+        request('http://172.16.2.62:8777/gift/list', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -134,7 +134,7 @@ router.get('/center', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://wy.yuerwebapi.wangyuhudong.com/person-center/user-info',
+            uri: 'http://172.16.2.62:8777/person-center/user-info',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -148,7 +148,7 @@ router.get('/center', function(req, res, next) {
         })
     },function(cont) {
         request({
-            uri: 'http://wy.yuerwebapi.wangyuhudong.com/person-center/my-gifts',
+            uri: 'http://172.16.2.62:8777/person-center/my-gifts',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -162,7 +162,7 @@ router.get('/center', function(req, res, next) {
         })
     },function(cont) {
         request({
-            uri: 'http://wy.yuerwebapi.wangyuhudong.com/pay/recharge-list',
+            uri: 'http://172.16.2.62:8777/pay/recharge-list',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -204,7 +204,7 @@ router.get('/alipay', function(req, res, next) {
     console.log(id);
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://wy.yuerwebapi.wangyuhudong.com/pay/alipay?id='+id,
+            uri: 'http://172.16.2.62:8777/pay/alipay?id='+id,
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -253,7 +253,7 @@ router.get('/activity', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://wy.yuerwebapi.wangyuhudong.com/activity/detail?id='+id,
+            uri: 'http://172.16.2.62:8777/activity/detail?id='+id,
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -290,7 +290,7 @@ router.get('/search', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://wy.yuerwebapi.wangyuhudong.com/search/live?param='+content+'&page=1&pageSize=30',
+            uri: 'http://172.16.2.62:8777/search/live?param='+content+'&page=1&pageSize=30',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -326,7 +326,7 @@ router.get('/alllive', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://wy.yuerwebapi.wangyuhudong.com/live/list?page=1&pageSize=30',
+            uri: 'http://172.16.2.62:8777/live/list?page=1&pageSize=30',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -362,7 +362,7 @@ router.get('/allvideo', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://wy.yuerwebapi.wangyuhudong.com/video/list?page=1&pageSize=30',
+            uri: 'http://172.16.2.62:8777/video/list?page=1&pageSize=30',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -410,7 +410,7 @@ router.get('/liveShare', function(req, res, next) {
             ticket = JSON.parse(result[0]).ticket;
             Thenjs.parallel([function(cont) {
                 request({
-                    uri: 'http://wy.yuerwebapi.wangyuhudong.com/live/detail?id='+id,
+                    uri: 'http://172.16.2.62:8777/live/detail?id='+id,
                     headers: {
                         'User-Agent': 'request',
                         'cookie': req.headers.cookie,
@@ -446,7 +446,7 @@ router.get('/liveShare', function(req, res, next) {
 
 router.get('/activity/cecgame', function(req, res, next) {
     Thenjs.parallel([function(cont) {
-        request('http://wy.yuerwebapi.wangyuhudong.com/live/detail?id=4', function(error, response, body) {
+        request('http://172.16.2.62:8777/live/detail?id=4', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -454,7 +454,7 @@ router.get('/activity/cecgame', function(req, res, next) {
             }
         })
     },function(cont) {
-        request('http://wy.yuerwebapi.wangyuhudong.com/live/detail?id=8', function(error, response, body) {
+        request('http://172.16.2.62:8777/live/detail?id=8', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -476,7 +476,7 @@ router.get('/activity/cecgame', function(req, res, next) {
 
 router.get('/activity/cecforum', function(req, res, next) {
     Thenjs.parallel([function(cont) {
-        request('http://wy.yuerwebapi.wangyuhudong.com/live/detail?id=8', function(error, response, body) {
+        request('http://172.16.2.62:8777/live/detail?id=8', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -484,7 +484,7 @@ router.get('/activity/cecforum', function(req, res, next) {
             }
         })
     },function(cont) {
-        request('http://wy.yuerwebapi.wangyuhudong.com/live/detail?id=4', function(error, response, body) {
+        request('http://172.16.2.62:8777/live/detail?id=4', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -605,7 +605,7 @@ router.get('/mobile/activityShare', function(req, res, next) {
             ticket = JSON.parse(result[0]).ticket;
             Thenjs.parallel([function(cont) {
                 request({
-                    uri: 'http://wy.yuerwebapi.wangyuhudong.com/activity/detail?id='+id,
+                    uri: 'http://172.16.2.62:8777/activity/detail?id='+id,
                     headers: {
                         'User-Agent': 'request',
                         'cookie': req.headers.cookie,
@@ -694,7 +694,7 @@ router.get('/activity/bostonMain', function(req, res, next) {
             ticket = JSON.parse(result[0]).ticket;
             Thenjs.parallel([function(cont) {
                 request({
-                    uri: 'http://wy.yuerwebapi.wangyuhudong.com/live/detail?id=3751',
+                    uri: 'http://172.16.2.62:8777/live/detail?id=3751',
                     headers: {
                         'User-Agent': 'request',
                         'cookie': req.headers.cookie,
@@ -748,7 +748,7 @@ router.get('/activity/bostonSecond', function(req, res, next) {
             ticket = JSON.parse(result[0]).ticket;
             Thenjs.parallel([function(cont) {
                 request({
-                    uri: 'http://wy.yuerwebapi.wangyuhudong.com/live/detail?id=3751',
+                    uri: 'http://172.16.2.62:8777/live/detail?id=3751',
                     headers: {
                         'User-Agent': 'request',
                         'cookie': req.headers.cookie,
