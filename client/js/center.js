@@ -1,5 +1,6 @@
 $(function() {
     var checked = false;
+    var UsubmitCheck=false;
 // 个人中心的tab切换
     $("#leftmain li").on('click', function() {
         // event.preventDefault();
@@ -14,6 +15,15 @@ $(function() {
         $(".switch-content").hide().eq($(this).index()).show();
     })
     $(".m-bottom a:eq(0)").trigger("click");
+//我的资料对应的手机认证
+    if(window.location.hash=="#m-change"){
+        $("#m-change").trigger("click");
+    }
+//我的资料对应的实名认证
+    if(window.location.hash=="#m-realname"){
+        $("#m-realname").trigger("click");
+    }
+    window.location.hash = "";
 // 我的道具弹出框
     $(".imgprops .u-props").off("click").on("click", function(e) {
         e.preventDefault();
@@ -63,6 +73,18 @@ $(function() {
         $(".switchAI").hide().eq($(this).index()).show();
     })
     $(".u-live #u-liveAI a:eq(0)").trigger("click");
+// 我要当主播的手机认证
+    // $("#totelphone a").on("click",function(){
+    //     window.location.href = "information#m-change";
+       
+    // });
+    // $("#m-change").trigger("click");
+// 我要当主播的实名认证
+    // $("#toCertification a").on("click",function(){
+    //     window.location.href = "information#m-realname";
+        
+    // });
+    // $("#m-realname").trigger("click");
 // 修改昵称弹出框
     $("#nickname").on("click", function() {
          $(".m-layer").show();
@@ -128,13 +150,13 @@ $(function() {
 // 实名认证
     $('.fileupload').change(function(event) {
         var _this = $(this);
-                /* Act on the event */
+        var fileName = $(this).val();
         if ($('.fileupload').val().length) {
-             var fileName = $('.fileupload').val();
-             var extension = fileName.substring(fileName.lastIndexOf('.'), fileName.length).toLowerCase();
-              if (extension == ".jpg" || extension == ".png") {
+            var fileName = $('.fileupload').val();
+            var extension = fileName.substring(fileName.lastIndexOf('.'), fileName.length).toLowerCase();
+            if (extension == ".jpg" || extension == ".png") {
                 var data = new FormData();
-                data.append('upload', $('#fileToUpload')[0].files[0]);
+                data.append('upload', $(this)[0].files[0]);
                 $.ajax({
                      url: 'http://172.16.2.62:8777/common/upload',
                      type: 'POST',
@@ -143,16 +165,25 @@ $(function() {
                       contentType: false, //不可缺参数
                         processData: false, //不可缺参数
                        success: function(data) {
-                           _this.parents('.u-card').find('img').attr('src',data.object);
+                            _this.parents('.u-card').find('.img').css('background','none');
+                            _this.parents('.u-card').find('.img img').attr('src',data.object);
                         },
                        error: function() {
                              console.log('error');
                        }
                 });
+            }
         }
-     }
     });
 
+    $(".u-div").on("input",function(){
+        if($(this).val().length>0){
+           $(this).addClass("full");
+        }
+        else{
+          $(this).removeClass("full");
+        }
+    });
     //实名认证；
     $('#userbox').on("click",function(){  
         $.ajax({  
@@ -168,9 +199,9 @@ $(function() {
             },  
             dataType: "json",  
             success: function(data){  
-                 if(data.code == 0){//data.code的值这个是后端人员规定的。
-                console.log("请求成功");
-
+                if(data.code == 0){//data.code的值这个是后端人员规定的。
+                    console.log("请求成功");
+                    $("#userbox").attr('disabled',true);
                 }else{
                     console.log(data.result);
                 }    
@@ -180,10 +211,7 @@ $(function() {
                 alert('通讯服务器错误');
             } 
         });  
-    }); 
-
-
-    
+    });  
 
 // 日期插件
 $('#datetimepicker').datetimepicker({
@@ -195,6 +223,8 @@ $('#datetimepicker').datetimepicker({
       todayButton:false    //关闭选择今天按钮
 });
 $.datetimepicker.setLocale('ch');
+
+// 初始函数
     var local={
         updatePasswordTag_current:false,
         updatePasswordTag_new:false,
@@ -214,7 +244,6 @@ $.datetimepicker.setLocale('ch');
             local.followList();
         },
         eventBind : function(){ 
-
 // 我的资料－修改密码
         $("#u-current").off().on("blur",function(){
                 local.updatePasswordTag_current=false;
@@ -852,24 +881,31 @@ $("#userboxTelCancel").on("click",function(){
             local.cur_page = _page || 1;
             local.cur_total = _total || 0;
             local.cur_pageSize = _pageSize || 5;
-            local.cur_maxPage = (parseInt((local.cur_total+5)/ local.cur_pageSize)) || 1;
+            local.cur_maxPage = Math.ceil(local.cur_total / local.cur_pageSize)
             local.cur_pageCallback=callback;
-            var _total = (_total<5) ? 1 : (parseInt(_total/5));
-            $(".totalPage").show().text(local.cur_page+"/"+ local.cur_total);
 
-            $(".nextBtn").show();
-            $(".prevBtn").show();
-            if(local.cur_page==1){
+
+            $(".totalPage").show().text(local.cur_page + "/"+ local.cur_maxPage);
+
+            
+            if(local.cur_page == 1){
                 $(".prevBtn").hide();
+            }else{
+                $(".prevBtn").show();
             }
-            if(local.cur_page==local.cur_maxPage){
+            if(local.cur_page == local.cur_maxPage){
+                $(".nextBtn").hide();
+            }else{
+                $(".nextBtn").show();
+            }
+
+            if(local.cur_maxPage <= 1){
+                $(".prevBtn").hide();
                 $(".nextBtn").hide();
             }
-            if(local.cur_maxPage==1){
-                $(".prevBtn").hide();
-                $(".nextBtn").hide();
-            }
-            if( local.cur_total == 0 ){ $(".totalPage").hide()};
+            if(local.cur_total == 0 ){
+                $(".totalPage").hide()
+            };
         },
 
         followList:function(){
