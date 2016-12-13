@@ -19,10 +19,75 @@ $(function(){
 	var bindMobile = getQueryString("mobile"),
 		certificate = getQueryString("certificate");
 
+	function myInfo(){
+    	$('.step-final').show();
+    	$.ajax({
+            url: 'http://wy.yuerapi.wangyuhudong.com/tv/my/my',
+            data: {
+            	toUserId:userId,
+            	token:token,
+		        userId:userId,
+		  	},  
+            type: 'get',
+            dataType: 'json',
+            success: function(data) {
+                if (data.code==0) {
+                	icon = 'http://img.wangyuhudong.com/'+data.object.icon;
+                	sex = data.object.sex;
+                	name = data.object.nickname;
+                	id = data.object.room_id;
+                	$('.Uicon img').attr('src',icon);
+                	if(sex == 0){
+                		$('.USex img').attr('src','/mobile/images/hostmale.png')
+                	}
+                	$('.Uname span').text(name);
+                	$('.UId').text('房间:'+id);
+                }else{
+                    showTip(data.result);
+                }
+            },
+            error: function() {
+                showTip('连接失败，请检查您的网络设置后重试');
+            }
+        });
+    }
+
+    //设定倒数秒数  
+	var t = 10;  
+	//显示倒数秒数  
+	function showTime(val){  
+	    $("#second").html(t);
+	    if(t>0){  
+	    	t -= 1;  
+	    	//每秒执行一次,showTime()  
+		    setTimeout(function(){
+		    	showTime(val);
+		    },1000);  
+	    }else if(t == 0){
+	    	$('.step-three').hide();
+	        myInfo();
+	    }			     
+	}  
+	var s = 10;  
+	//显示倒数秒数  
+	function showTimes(val){  
+		$("#seconds").html(s);
+	    if(s>0){  
+	    	s -= 1;  
+	    	//每秒执行一次,showTime()  
+		    setTimeout(function(){
+		    	showTimes(val);
+		    },1000);  
+	    }else if(s == 0){
+	    	$('.u-Authentication').show();
+	        $(".u-AuditDidNotPass").hide();
+	    }		 
+	}
+
 	if(userId){
 		var mobile = "";
 		$.ajax({
-            url: 'http://yuerapi.wangyuhudong.com/tv/my/my',
+            url: 'http://wy.yuerapi.wangyuhudong.com/tv/my/my',
             data: {
             	toUserId:userId,
             	token:token,
@@ -49,69 +114,10 @@ $(function(){
 				name = "",
 				id = "";
 
-			//设定倒数秒数  
-			var t = 10;  
-			//显示倒数秒数  
-			function showTime(){  
-			    t -= 1;  
-			    t = $("#second").html();
-			    if(t==0){  
-			        $('.step-three').hide();
-			        myInfo(); 
-			    }  
-			    //每秒执行一次,showTime()  
-			    setTimeout("showTime()",1000);  
-			}  
-			var s = 10;  
-			//显示倒数秒数  
-			function showTimes(){  
-			    s -= 1;  
-			    s = $("#seconds").html();
-			    if(s==0){  
-			        $('.u-Authentication').show();
-			        $(".u-AuditDidNotPass").hide();
-			    }  
-			    //每秒执行一次,showTime()  
-			    setTimeout("showTime()",1000);  
-			}
-
-	        function myInfo(){
-	        	$('.step-final').show();
-	        	$.ajax({
-		            url: 'http://yuerapi.wangyuhudong.com/tv/my/my',
-		            data: {
-		            	toUserId:userId,
-		            	token:token,
-				        userId:userId,
-				  	},  
-		            type: 'get',
-		            dataType: 'json',
-		            success: function(data) {
-		                if (data.code==0) {
-		                	icon = 'http://img/wangyuhudong.com'+data.object.icon;
-		                	sex = data.object.sex;
-		                	name = data.object.nickname;
-		                	id = data.object.room_id;
-		                	$('.Uicon img').attr('src',icon);
-		                	if(sex == 0){
-		                		$('.USex img').attr('src','/mobile/images/hostmale.png')
-		                	}
-		                	$('.Uname span').text(name);
-		                	$('.UId').text('房间:'+id);
-		                }else{
-		                    showTip(data.result);
-		                }
-		            },
-		            error: function() {
-		                showTip('连接失败，请检查您的网络设置后重试');
-		            }
-		        });
-	        }
-
 	        // 审核状态 
 			$.ajax({  
 			  	type: "GET",  
-			  	url: "http://yuerapi.wangyuhudong.com/h5/certificateState",  
+			  	url: "http://wy.yuerapi.wangyuhudong.com/h5/certificateState",  
 			  	data: {token:token,
 			        userId:userId,
 			  	},  
@@ -124,36 +130,36 @@ $(function(){
 			          	// $("u-Approved").hide();//审核通过
 			          	// $("u-AuditDidNotPass").hide();//审核不通过
 				        if(data.object.certificate_state == 1){
-				        	$('.step-one').hide();
+				        	// $('.step-one').hide();
 			          		$('.step-three').show();
 			          		$('.u-Authentication').hide();
 				          	$(".u-InTheReview").show();//审核中
 				        }else if(data.object.certificate_state == 2){
 				          	if(data.object.is_first==0){
-				          		$('.step-one').hide();
+				          		// $('.step-one').hide();
 				          		$('.step-three').show();
 				          		$('.u-Authentication').hide();
 				          		$(".u-Approved").show();//审核通过
-				            	//执行showTime()  
-				          		showTime();
+				            	// 执行showTime()  
+				          		showTime(t);
 				          	}else if(data.object.is_first==1){
-				          		$('.step-one').hide();
+				          		// $('.step-one').hide();
 				          		myInfo(); 
 				          	}
 				        }else if(data.object.certificate_state == 3){
 							if(data.object.is_first==0){
-								$('.step-one').hide();
+								// $('.step-one').hide();
 				          		$('.step-three').show();
 				          		$('.u-Authentication').hide();
 				            	$(".u-AuditDidNotPass").show();//审核不通过
 				            	//执行showTimes()  
-								showTimes();
+								showTimes(s);
 				          	}else if(data.object.is_first==1){
-				          		$('.step-one').hide();
+				          		// $('.step-one').hide();
 				            	$(".step-three").show();//认证页面
 				          	}
 				        }else{
-				        	$('.step-one').hide();
+				        	// $('.step-one').hide();
 				          	$('.step-two').show();
 				        }
 				   	} else if (data.code == -2) {
@@ -161,7 +167,7 @@ $(function(){
 				    } else if (data.code == -5) {
 				        console.log("参数错误哦。");     
 				    }else{
-				        console.log(data.result);
+				        showTip(data.result); 
 				    }    
 				},
 			  	error: function() {
@@ -172,6 +178,8 @@ $(function(){
         	$('.register').hide();
 			$('.bindmobile').show();
         }		
+	}else{
+		$('.step-one').show();
 	}
 
 	// $('.step-one').hide();
@@ -205,7 +213,7 @@ $(function(){
                 parm.mobile = $regnumber.val();
                 parm.type = 6;
                 $.ajax({
-		            url: 'http://yuerapi.wangyuhudong.com/sendSMSCode',
+		            url: 'http://wy.yuerapi.wangyuhudong.com/sendSMSCode',
 		            data: parm,
 		            type: 'get',
 		            dataType: 'json',
@@ -290,7 +298,7 @@ $(function(){
             parm.password = $('.m-register .password').val();
             parm.sex = $("input[name='sex']:checked").val();
             $.ajax({
-                url: 'http://yuerapi.wangyuhudong.com/h5/register',
+                url: 'http://wy.yuerapi.wangyuhudong.com/h5/register',
                 data: parm,
                 type: 'get',
                 dataType: 'json',
@@ -308,7 +316,7 @@ $(function(){
 	                            setTimeout(function() { 
 	                                jump(val) 
 	                            },1000);
-	                        } else {
+	                        } else if(jumpsecond == 0){
 	                            $('.step-one').hide();
 	                            $('.step-two').show();                    
 	                        } 
@@ -338,7 +346,7 @@ $(function(){
                 parm.mobile = $bindnumber.val();
                 parm.type = 5;
                 $.ajax({
-		            url: 'http://yuerapi.wangyuhudong.com/sendSMSCode',
+		            url: 'http://wy.yuerapi.wangyuhudong.com/sendSMSCode',
 		            data: parm,
 		            type: 'get',
 		            dataType: 'json',
@@ -403,7 +411,7 @@ $(function(){
             parm.token = token;
             parm.userId = userId;
             $.ajax({
-                url: 'http://yuerapi.wangyuhudong.com/bindMobile',
+                url: 'http://wy.yuerapi.wangyuhudong.com/bindMobile',
                 data: parm,
                 type: 'get',
                 dataType: 'json',
@@ -418,7 +426,7 @@ $(function(){
 	                            setTimeout(function() { 
 	                                jump(val) 
 	                            },1000);
-	                        } else {
+	                        } else if(jumpsecond == 0){
 	                            $('.step-one').hide();
 	                            $('.step-two').show();                    
 	                        } 
@@ -436,11 +444,13 @@ $(function(){
     })
 
     $('.u-steptwo').click(function(){
+    	jumpsecond = -1;
     	$('.step-one').hide();
     	$('.step-two').show();
     });
 
     $('.u-stepthree').click(function(){
+    	jumpsecond = -1;
     	$('.step-two').hide();
     	$('.step-three').show();
     })
@@ -451,7 +461,7 @@ $(function(){
         parm.token = token;
         parm.userId = userId;
     	$.ajax({
-            url: 'http://yuerapi.wangyuhudong.com/h5/sendSMStoDownload',
+            url: 'http://wy.yuerapi.wangyuhudong.com/h5/sendSMStoDownload',
             data: parm,
             type: 'get',
             dataType: 'json',
@@ -495,7 +505,7 @@ $(function(){
 			//     var data = new FormData();
 			//     data.append('upload', $(this)[0].files[0]);
 			//     $.ajax({
-			//         url: 'http://yuerapi.wangyuhudong.com/common/upload',
+			//         url: 'http://wy.yuerapi.wangyuhudong.com/common/upload',
 			//         type: 'post',
 			//         data: data,
 			//         cache: false,
@@ -525,7 +535,7 @@ $(function(){
 			    var data = new FormData();
 			    data.append('upload', dataURLtoBlob(rst.base64));
 			    $.ajax({
-			        url: 'http://yuerapi.wangyuhudong.com/common/upload',
+			        url: 'http://wy.yuerapi.wangyuhudong.com/common/upload',
 			        type: 'post',
 			        data: data,
 			        cache: false,
@@ -581,7 +591,7 @@ $(function(){
 	  	if(UsubmitCheck){
 	  		$.ajax({  
 		        type: "GET",  
-		        url: "http://yuerapi.wangyuhudong.com/h5/upCertificate",  
+		        url: "http://wy.yuerapi.wangyuhudong.com/h5/upCertificate",  
 		        data: {idCard:$("#checkIdCard").val(),
 		               idCardBackScan:$("#idCardBackScan").attr('src'),
 		               idCardDueDate:$("#idCardDueDate").val(),
@@ -617,11 +627,25 @@ $(function(){
 	    }
 	})
 
+	$('.u-Approved .specTips a').click(function(e){
+		e.preventDefault();
+		t = -1;
+		$('.step-three').hide();
+		myInfo();
+	})
+
+	$('.u-AuditDidNotPass .specTips a').click(function(e){
+		e.preventDefault();
+		s = -1;
+		$('.u-Authentication').show();
+		$(".u-AuditDidNotPass").hide();
+	})
+
 	$('#clickObtain').on("click",function(e){ 
         e.preventDefault(); 
         $.ajax({  
             type: "GET",  
-            url: "http://yuerapi.wangyuhudong.com/h5/sendSMStoDownload",  
+            url: "http://wy.yuerapi.wangyuhudong.com/h5/sendSMStoDownload",  
             data: {
                    token:token,
                    userId:userId
@@ -629,8 +653,21 @@ $(function(){
             dataType: "json",  
             success: function(data){  
                 if(data.code == 0){//data.code的值这个是后端人员规定的。
-                  console.log("请求成功");
-                  showTip("短信发送成功，请注意查看手机短信噢");
+                  	console.log("请求成功");
+                  	showTip("短信发送成功，请注意查看手机短信噢");
+                  	var second = 59;
+	                $('#clickObtain').attr('disabled',true).addClass('cant');
+	                function settime(val) { 
+	                    if (second > 0) { 
+	                        second--;
+	                        setTimeout(function() { 
+	                            settime(val) 
+	                        },1000);
+	                    } else {
+	                        $('#clickObtain').attr('disabled',false).removeClass('cant');                             
+	                    } 
+	                } 
+	                settime(second);
                 } else if (data.code == 1) {
                     showTip("短信发送失败,请稍后再试");
                 } else if (data.code == 2) {
