@@ -123,8 +123,7 @@ router.get('/service', function(req, res, next) {
     res.render('service', { title: "用户协议" ,islogin:islogin});
 });
 
-router.get('/center', function(req, res, next) {
-    var type = req.url.split('=')[1];
+router.get('/center/information', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){
@@ -147,7 +146,32 @@ router.get('/center', function(req, res, next) {
                 cont(new Error('error!'));
             }
         })
-    },function(cont) {
+    }]).then(function(cont, result) {
+        console.log(result);
+        res.render('center/information', {
+            title: "我的资料",
+            index:0,
+            info: JSON.parse(result[0]).object,
+            islogin: islogin,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+});
+router.get('/center/focus', function(req, res, next) {
+    res.render('center/focus', { title: "我的关注" ,index:1});
+});
+router.get('/center/props', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    Thenjs.parallel([function(cont) {
         request({
             uri: 'http://172.16.2.62:8777/person-center/my-gifts',
             headers: {
@@ -161,7 +185,32 @@ router.get('/center', function(req, res, next) {
                 cont(new Error('error!'));
             }
         })
-    },function(cont) {
+    }]).then(function(cont, result) {
+        console.log(result);
+        res.render('center/props', {
+            title: "我的道具",
+            index:2,
+            myprops: JSON.parse(result[0]).object,
+            islogin: islogin,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+});
+router.get('/center/message', function(req, res, next) {
+    res.render('center/message', { title: "我的消息" ,index:3});
+});
+router.get('/center/topup', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    Thenjs.parallel([function(cont) {
         request({
             uri: 'http://172.16.2.62:8777/pay/recharge-list',
             headers: {
@@ -177,12 +226,10 @@ router.get('/center', function(req, res, next) {
         })
     }]).then(function(cont, result) {
         console.log(result);
-        res.render('center', {
-            title: "个人中心",
-            info: JSON.parse(result[0]).object,
-            myprops: JSON.parse(result[1]).object,
-            valuelist: JSON.parse(result[2]).object,
-            type:type,
+        res.render('center/topup', {
+            title: "我要充值",
+            index:4,
+            valuelist: JSON.parse(result[0]).object,
             islogin: islogin,
         });
     }).fail(function(cont, error) { 
@@ -190,6 +237,10 @@ router.get('/center', function(req, res, next) {
         res.render('error', { title: "错误"});
     });
 });
+router.get('/center/host', function(req, res, next) {
+    res.render('center/host', { title: "我要当主播" ,index:5});
+});
+
 
 
 router.get('/alipay', function(req, res, next) {
@@ -387,11 +438,16 @@ router.get('/allvideo', function(req, res, next) {
     });
 });
 
-router.get('/liveShare', function(req, res, next) {
+router.get('/share/liveShare', function(req, res, next) {
     var id = req.url.split('=')[1];
-    var ticket = '';
     Thenjs.parallel([function(cont) {
-        request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxf96f728533f32fa8&secret=5007eda46723c5faf79a8b9ca3be131a', function(error, response, body) {
+        request({
+            uri: 'http://172.16.2.62:8777/live/detail?id='+id,
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+            },
+        }, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -399,45 +455,11 @@ router.get('/liveShare', function(req, res, next) {
             }
         })
     }]).then(function(cont, result) {
-        Thenjs.parallel([function(cont) {
-            request('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+JSON.parse(result[0]).access_token+'&type=jsapi', function(error, response, body) {
-                if (!error && response.statusCode == 200) {
-                    cont(null, body);
-                } else {
-                    cont(new Error('error!'));
-                }
-            })
-        }]).then(function(cont, result) {
-            ticket = JSON.parse(result[0]).ticket;
-            Thenjs.parallel([function(cont) {
-                request({
-                    uri: 'http://172.16.2.62:8777/live/detail?id='+id,
-                    headers: {
-                        'User-Agent': 'request',
-                        'cookie': req.headers.cookie,
-                    },
-                }, function(error, response, body) {
-                    if (!error && response.statusCode == 200) {
-                        cont(null, body);
-                    } else {
-                        cont(new Error('error!'));
-                    }
-                })
-            }]).then(function(cont, result) {
-                res.render('liveShare', {
-                    title: JSON.parse(result[0]).object.info.title,
-                    result: JSON.parse(result[0]).object,
-                    id:id,
-                    link:JSON.parse(result[0]).object.info.rtmp.replace(/rtmp:/, "http:").replace(/rtmp/, "hls")+'.m3u8',
-                    ticket:ticket,
-                });
-            }).fail(function(cont, error) { 
-                console.log(error);
-                res.render('error', { title: "错误"});
-            });
-        }).fail(function(cont, error) { 
-            console.log(error);
-            res.render('error', { title: "错误"});
+        res.render('share/liveShare', {
+            title: JSON.parse(result[0]).object.info.title,
+            result: JSON.parse(result[0]).object,
+            id:id,
+            link:JSON.parse(result[0]).object.info.rtmp.replace(/rtmp:/, "http:").replace(/rtmp/, "hls")+'.m3u8',
         });
     }).fail(function(cont, error) { 
         console.log(error);
@@ -462,11 +484,20 @@ router.get('/activity/cecgame', function(req, res, next) {
                 cont(new Error('error!'));
             }
         })
+    },function(cont) {
+        request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxf96f728533f32fa8&secret=5007eda46723c5faf79a8b9ca3be131a', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
     }]).then(function(cont, result) {
         console.log(result);
         res.render('activity/cecgame', {
             one: JSON.parse(result[0]).object.info,
             two: JSON.parse(result[1]).object.info,
+            ticket: JSON.parse(result[2]).access_token
         });
     }).fail(function(cont, error) { 
         console.log(error);
@@ -492,20 +523,7 @@ router.get('/activity/cecforum', function(req, res, next) {
                 cont(new Error('error!'));
             }
         })
-    }]).then(function(cont, result) {
-        console.log(result);
-        res.render('activity/cecforum', {
-            one: JSON.parse(result[0]).object.info,
-            two: JSON.parse(result[1]).object.info,
-        });
-    }).fail(function(cont, error) { 
-        console.log(error);
-        res.render('error', { title: "错误"});
-    });
-    // res.render('cecforum', { title: "CEC" });
-});
-router.get('/activity/propage', function(req, res, next) {
-    Thenjs.parallel([function(cont) {
+    },function(cont) {
         request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxf96f728533f32fa8&secret=5007eda46723c5faf79a8b9ca3be131a', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
@@ -514,29 +532,20 @@ router.get('/activity/propage', function(req, res, next) {
             }
         })
     }]).then(function(cont, result) {
-        Thenjs.parallel([function(cont) {
-            console.log(JSON.parse(result[0]).access_token);
-            request('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+JSON.parse(result[0]).access_token+'&type=jsapi', function(error, response, body) {
-                if (!error && response.statusCode == 200) {
-                    cont(null, body);
-                } else {
-                    cont(new Error('error!'));
-                }
-            })
-        }]).then(function(cont, result) {
-            console.log(JSON.parse(result[0]).ticket);
-            res.render('activity/propage', {
-                ticket: JSON.parse(result[0]).ticket,
-            });
-        }).fail(function(cont, error) { 
-            console.log(error);
-            res.render('error', { title: "错误"});
+        console.log(result);
+        res.render('activity/cecforum', {
+            one: JSON.parse(result[0]).object.info,
+            two: JSON.parse(result[1]).object.info,
+            ticket: JSON.parse(result[2]).access_token
         });
     }).fail(function(cont, error) { 
         console.log(error);
         res.render('error', { title: "错误"});
     });
-    // res.render('activity/propage', { title: "百万主播招募活动页" });
+    // res.render('cecforum', { title: "CEC" });
+});
+router.get('/activity/propage', function(req, res, next) {
+    res.render('activity/propage', { title: "百万主播招募活动页" });
 });
 
 router.get('/mobile/down', function(req, res, next) {
@@ -555,7 +564,7 @@ router.get('/mobile/author', function(req, res, next) {
     }]).then(function(cont, result) {
         Thenjs.parallel([function(cont) {
             console.log(JSON.parse(result[0]).access_token);
-            request('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+JSON.parse(result[0]).access_token+'&type=jsapi', function(error, response, body) {
+            request('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+JSON.parse(result[0]).access_token+'&type=wx_card', function(error, response, body) {
                 if (!error && response.statusCode == 200) {
                     cont(null, body);
                 } else {

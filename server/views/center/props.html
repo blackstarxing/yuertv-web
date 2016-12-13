@@ -1,0 +1,71 @@
+{% extends 'layout.html' %} 
+
+{% block css %}
+<link rel="stylesheet" href="/dist/center.css">
+
+{% endblock %}
+
+{% block content %}
+ <div class="g-container f-cb">
+	<div class="g-main"> 
+		 {% include 'common/cenleft.html' %}  
+	    <div id="rightmain" class="g-right">
+<!-- 我的道具 -->
+	<div class="g-props rightswitch">
+		<div class="m-mainp">
+			<div class="u-imgmessage">
+				<div class="imgprops">
+				{% if myprops.gifts == "" %}
+					<img src="/images/empty.png" class="empty" alt="暂无道具" title="暂无道具">
+	  				<p class="emptyText">当前没有关注道具！</p>
+	  			{% else %}
+	  				{% for myprops in myprops.gifts %}
+	                         <div class="u-props">
+								<img src="http://img.wangyuhudong.com/{{myprops.icon}}">
+								<p>
+									<span>{{myprops.name}}</span>
+									<span class="u-propscolor">{{myprops.num}}</span>
+									<span>个</span>
+								</p>
+							</div>  
+	            	{% endfor %}
+	            {% endif %}
+				</div>
+				
+			</div>
+			<div class="u-bottom">
+				<p>
+					<span class="u-bvalue">道具价值：</span>
+					<span class="u-bmoney">{{myprops.totalValue}}</span>
+					<span class="u-bunit">鱼币</span>
+				</p>
+			</div>
+		</div>
+		<div class="m-layerMask">
+			<div class="u-propsgtips">
+			<p>礼物道具，需要在直播房间中才能使用哦！</p>
+			<a href="">好的</a>
+		</div>
+		</div>
+
+	</div>
+ </div><!-- 右侧结尾 -->
+	    
+	</div> <!-- 整个块结尾 -->
+
+</div>	
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/dist/center.js"></script>
+<script type="text/javascript">
+	$('.g-left li').eq('{{index+1}}').addClass('rightswitchcolor');
+	// $('.g-left li').each(function(){
+	// 	if($(this).attr("data-type")=='{{type}}'){
+	// 		$(this).addClass('rightswitchcolor');
+	// 	}
+	// })
+	// $('.rightswitch').eq({{type}}).show().siblings().hide();
+</script>
+{% endblock %}

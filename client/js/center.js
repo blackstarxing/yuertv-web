@@ -1,10 +1,11 @@
 $(function() {
     var checked = false;
 // 个人中心的tab切换
-    $("#leftmain li").on('click', function(event) {
-        event.preventDefault();
-        $(this).addClass("rightswitchcolor").siblings().removeClass("rightswitchcolor");
-        $("div.rightswitch").eq($(this).index() - 1).show().siblings().hide();
+    $("#leftmain li").on('click', function() {
+        // event.preventDefault();
+        // $(this).addClass("rightswitchcolor");
+        // .siblings().removeClass("rightswitchcolor")
+        // $("div.rightswitch").eq($(this).index()).show().siblings().hide();
     });
 //我的资料的tab切换；
     $(".m-bottom a").on("click", function(e) {
@@ -30,10 +31,10 @@ $(function() {
         })
     $(".m-mainm a:eq(0)").trigger("click");
 // 我的消息页面的初始化
- $("#myMessageBox").on("click",function(e){
-    e.preventDefault();
-    $("#initMessage").trigger("click");
-});
+//  $("#myMessageBox").on("click",function(){
+//     // e.preventDefault();
+//     // $("#initMessage").trigger("click");
+// });
 //我的消息－－关注消息的划入事件
     $(".u-foucscolor").on("mouseenter", function() { $(".u-messnickname").show().css("top", $(this).position().top+'2px') })
     $(".u-foucscolor").on("mouseleave", function() { $(".u-messnickname").hide() })
@@ -55,8 +56,13 @@ $(function() {
         $(".switchrepeat").hide().eq($(this).index()).show();
     })
     $(".u-certification .u-ctop a:eq(0)").trigger("click");
-
-
+// 我要当主播的如何直播下面的切换
+        $(".u-live #u-liveAI a").on("click", function(e) {
+        e.preventDefault();
+         $(this).addClass("underline").siblings().removeClass("underline");
+        $(".switchAI").hide().eq($(this).index()).show();
+    })
+    $(".u-live #u-liveAI a:eq(0)").trigger("click");
 // 修改昵称弹出框
     $("#nickname").on("click", function() {
          $(".m-layer").show();
@@ -119,6 +125,76 @@ $(function() {
             alert('请选择鱼币');
         }
     })
+// 实名认证
+    $('.fileupload').change(function(event) {
+        var _this = $(this);
+                /* Act on the event */
+        if ($('.fileupload').val().length) {
+             var fileName = $('.fileupload').val();
+             var extension = fileName.substring(fileName.lastIndexOf('.'), fileName.length).toLowerCase();
+              if (extension == ".jpg" || extension == ".png") {
+                var data = new FormData();
+                data.append('upload', $('#fileToUpload')[0].files[0]);
+                $.ajax({
+                     url: 'http://172.16.2.62:8777/common/upload',
+                     type: 'POST',
+                      data: data,
+                      cache: false,
+                      contentType: false, //不可缺参数
+                        processData: false, //不可缺参数
+                       success: function(data) {
+                           _this.parents('.u-card').find('img').attr('src',data.object);
+                        },
+                       error: function() {
+                             console.log('error');
+                       }
+                });
+        }
+     }
+    });
+
+    //实名认证；
+    $('#userbox').on("click",function(){  
+        $.ajax({  
+            type: "GET",  
+            url: "http://172.16.2.62:8777/person-center/realname-auth",  
+            data: {idCard:$("#idCard").val(),
+                   idCardBackScan:$("#idCardBackScan").val(),
+                   idCardDueDate:$("#idCardDueDate").val(),
+                   idCardFrontScan:$("#idCardFrontScan").val(),
+                   idCardHandScan:$("#idCardHandScan").val(),
+                   qq:$("#qq"),
+                   realname:$("#realname")
+            },  
+            dataType: "json",  
+            success: function(data){  
+                 if(data.code == 0){//data.code的值这个是后端人员规定的。
+                console.log("请求成功");
+
+                }else{
+                    console.log(data.result);
+                }    
+
+            },
+            error: function() {
+                alert('通讯服务器错误');
+            } 
+        });  
+    }); 
+
+
+    
+
+// 日期插件
+$('#datetimepicker').datetimepicker({
+      lang:"ch",           //语言选择中文
+      format:"Y-m-d",      //格式化日期
+      timepicker:false,    //关闭时间选项
+      yearStart:2000,     //设置最小年份
+     yearEnd:2050,        //设置最大年份
+      todayButton:false    //关闭选择今天按钮
+});
+$.datetimepicker.setLocale('ch');
     var local={
         updatePasswordTag_current:false,
         updatePasswordTag_new:false,
@@ -581,6 +657,11 @@ $("#biubiubiu").css({width:"60px",left:0,position:"absolute",height:"3px",backgr
 $("#u-ctop a").on("click",function(e){
     $("#biubiubiu").animate({left:$(this).position().left},300)
 })
+
+$("#biulive").css({width:"220px",left:0,position:"absolute",height:"3px",background:"#cecfd2"})
+$("#u-liveAI a").on("click",function(e){
+    $("#biulive").animate({left:$(this).position().left},300)
+})
 // 修改手机号码弹框
 $("#modifyTel").on("click",function(e){
     e.preventDefault();
@@ -748,8 +829,8 @@ $("#userboxTelCancel").on("click",function(){
                 local.Pagination(1,0,5,"follow");
                 local.followList();
             })
-            $("#mymessageclick").on("click",function(e){
-                e.preventDefault();
+            $("#mymessageclick").on("click",function(){
+                // e.preventDefault();
                 local.Pagination(1,0,5,"news");
                 local.cur_type=0;
                 // local.newsList();
@@ -817,23 +898,21 @@ $("#userboxTelCancel").on("click",function(){
                                         '</p><p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;'+
                                         '<span class="u-num">' + data.object.list[index].fans + '</span>'+
                                         '</p></div></div></div><div class="u-hright">'+
-                                        '<img src="/images/focusclick.png">'+
                                         '<a href="/liveroom?live_id=' + data.object.list[index].live_id+'">进入房间</a>'+
                                         '</div></div>'
                                 }else{
-                                    str += '<div class="u-host stopdark"><div class="u-hleft"><div class="u-focusimg">'+
+                                     str +='<div class="u-host"><div class="u-hleft"><div class="u-focusimg">'+
                                         '<img src="http://img.wangyuhudong.com/' + data.object.list[index].icon + '">'+
                                         '</div><div class="u-nickhost"><p class="u-nicksex">'+
                                         '<span>' + data.object.list[index].nickname + '</span>'+
                                         '<img src="' + (data.object.list[index].sex==0?"/images/male.png":"/images/female.png") + '">'+
                                         '</p><div class="u-hostfans"><p><span class="u-hf">直播间ID</span>&nbsp;'+
-                                        '<span class="u-num">' + data.object.list[index].room_number + '</span><p class="u-hhf">'+
-                                        '<span class="u-hf">粉丝</span>&nbsp;'+
+                                        '<span class="u-num">' + data.object.list[index].room_number + '</span>'+
+                                        '</p><p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;'+
                                         '<span class="u-num">' + data.object.list[index].fans + '</span>'+
                                         '</p></div></div></div><div class="u-hright">'+
-                                        '<img src="" class="u-blur">'+
-                                        '<a href="/liveroom?live_id=' + data.object.list[index].live_id+'">进入房间</a>'+
-                                        '</div><span class="dark">该主播已离开</span></div>'
+                                        '<a href="" id="haveBeenOffline">已经离线</a>'+
+                                        '</div></div>'
                                 }
                             }
                             $(".u-host").remove();
