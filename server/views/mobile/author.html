@@ -26,14 +26,14 @@
 							<input type="tel" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>11)value=value.slice(0,11)" class="u-ipt telnumber" placeholder="请输入手机号码" name="手机号码">					
 						</div>
 						<div class="m-input m-code">
-							<input type="text" class="u-ipt code" placeholder="请输入验证码" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>6)value=value.slice(0,6)" name="验证码">
+							<input type="tel" class="u-ipt code" placeholder="请输入验证码" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>6)value=value.slice(0,6)" name="验证码">
 							<button class="getCode">获取验证码</button>
 						</div>
 						<div class="m-input">
-							<input type="password" class="u-ipt password" placeholder="请输入6~20位密码" maxlength="20" name="密码">
+							<input type="password" class="u-ipt password" placeholder="请输入密码" maxlength="15" name="密码">
 						</div>
 						<div class="m-input">
-							<input type="text" class="u-ipt nickname" placeholder="请输入1~16位昵称（中文占两位）" name="昵称">
+							<input type="text" class="u-ipt nickname" placeholder="请输入昵称" name="昵称">
 						</div>
 						<div class="m-input m-sex f-cb">
 							<div class="f-fl">请选择性别</div>
@@ -68,11 +68,11 @@
 							<input type="tel" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>11)value=value.slice(0,11)" class="u-ipt telnumber" placeholder="请输入手机号码" name="手机号码">					
 						</div>
 						<div class="m-input m-code">
-							<input type="text" class="u-ipt code" placeholder="请输入验证码" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>6)value=value.slice(0,6)" name="验证码">
+							<input type="tel" class="u-ipt code" placeholder="请输入验证码" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>6)value=value.slice(0,6)" name="验证码">
 							<button class="getCode">获取验证码</button>
 						</div>
 						<div class="m-input">
-							<input type="password" class="u-ipt password" placeholder="请输入6~20位密码" maxlength="20" name="密码">
+							<input type="password" class="u-ipt password" placeholder="请输入密码" maxlength="15" name="密码">
 						</div>
 						<p class="rule">注册即视为同意 <a href="http://yuerapi.wangyuhudong.com/yuer/agreement" class="agreement">《娱儿tv用户服务协议》</a></p>
 						<button class="u-bind-btn">绑定手机</button>
@@ -220,7 +220,7 @@
 							</div>
 						</div>
 						<p>工作人员将于1-3个工作日内完成审核，请耐心等待...</p>
-						<div class="specTips"><a href="">朕知道了</a></div>
+						<div class="specTips"><a href="yuertvopen://close">朕知道了</a></div>
 					</div>
 				</div>
 				<!-- 审核通过 -->
@@ -236,7 +236,7 @@
 						</div>
 						<p>恭喜！您已经是一名娱儿TV的认证主播啦~</p>
 						<div class="specTips"><a href="">朕知道了</a></div>
-						<div class="specColor"><span id="second">10<span>S</span></span>后页面将自动跳转</div>
+						<div class="specColor"><span id="second">10</span>S后页面将自动跳转</div>
 					</div>
 				</div>
 				<!-- 审核未通过 -->
@@ -252,7 +252,7 @@
 						</div>
 						<p>请上传正确无误的个人身份信息，并重新提交</p>
 						<div class="specTips"><a href="">朕知道了</a></div>
-						<div class="specColor"><span id="seconds">10<span>S</span></span>后页面将自动跳转</div>
+						<div class="specColor"><span id="seconds">10</span>S后页面将自动跳转</div>
 					</div>
 				</div>
 			</div>
@@ -275,13 +275,14 @@
 	            </div>
 	        </div>
 	        <div class="m-bottom">
-	            <a href="" id="clickObtain">朕知道了</a>
+	            <button id="clickObtain">朕知道了</button>
 	            <p>点击获取直播工具下载地址</p>
 	        </div>
 		</div>
 	</div>
 	<div class="tip"></div>
 	<script src="/jquery.js"></script>
+	<script src="/mobile/dist/lrz.bundle.js"></script>
 	<script src="/mobile/js/author.js"></script>
 </body>
 </html>

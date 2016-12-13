@@ -85,11 +85,20 @@ input:focus{
 	position: absolute;
 	top:1px;
 	right: -3px;
-	background: #1c232d;
+	background: #f36;
 	border:none;
 	outline: none;
-	color: #98a8ba;
+	color: #fff;
 	border-left: 1px solid #1a293d;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+.m-code .cant,.intro .cant,.m-bottom .cant{
+	background: #1c232d;
+	color: #98a8ba;
+}
+.intro .cant,.m-bottom .cant{
+	box-shadow: 0 0 10px #101519;
 }
 .m-sex{
 	color:#98a9bb;
@@ -143,7 +152,7 @@ input:focus{
 	box-shadow: 0 0 10px #101519;
 }
 .tip{
-	background: rgba(51,58,68,0.8);
+	background: rgba(69,83,101,0.8);
 	width: 75%;
 	height: 35px;
 	line-height: 35px;
@@ -157,6 +166,7 @@ input:focus{
 	top: 0;
 	margin:auto;
 	display: none;
+	z-index: 999;
 }
 .reg-success{
 	display: none;
@@ -188,6 +198,9 @@ input:focus{
 	margin-top: 40px;
 }
 /*第二步*/
+.step-one{
+	display: none;
+}
 .step-two{
 	display: none;
 }
@@ -329,6 +342,7 @@ input:focus{
 input[type="date"]:before{
     color:#465667;
     content:attr(placeholder);
+    font-size: 13px;
 }
 input[type="date"].full:before {
     color:black;
@@ -392,28 +406,28 @@ input[type="date"].full:before {
 /*上传图片的样式*/
 .upload-container{
 	background-color:#6b757f;
-	width:60%;
-	height:20px;
-	line-height:20px;
+	width:70%;
+	height:25px;
+	line-height:25px;
 	text-align:center;
 	position:relative;
-	margin:10% 20%;
+	margin:5% 20%;
 	cursor:pointer;
 	border-radius:5px;
 	font-size:12px;
 	color:#141a20;
 }
-.fileupload{
-	width:60%;
-	height:20px;
-	line-height:20px;
+.upload-container .fileupload{
+	width:100%;
+	height:25px;
+	line-height:25px;
 	position:absolute;
 	z-index:200;
-	margin:10% 20%;
 	top:0;
 	left:0;
 	opacity:0;
 	filter:alpha(opacity=0);
+	padding: 0;
 }
 /*粘贴*/
 input::-webkit-input-placeholder { /* WebKit browsers */ 
@@ -467,6 +481,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	width:90%;
 	margin:10% 5% 10%;
 	line-height: 1.5;
+	padding-bottom: 30px;
 }
 .Uexplain p{
 	width:100%;
@@ -506,7 +521,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	vertical-align:top;
 }
 .InModule p{
-	margin:5% auto 60%;
+	margin:5% auto 50%;
 	color:#98a9bb;
 	font-size:12px;
 
@@ -541,10 +556,12 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	font-size:12px;
 	color:#465667;
 	margin:0% auto 40%;
+	text-align: center;
 }
 .specColor span{
 	font-size:12px;
 	color:#3ff;
+	margin:0 3px;
 }
 /*审核未通过*/
 .AuModule p{
@@ -594,6 +611,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 .Uicon .UIcon{
     width:100%;
     vertical-align: top;
+    border-radius:50% 50%;
 }
 .USex{
     width:12.5%;
@@ -639,7 +657,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     height:65px;
     margin:0% 20% 35%;
 }
-.m-bottom a{
+.m-bottom button{
     display:inline-block;
     width:100%;
     height:35px;
@@ -650,6 +668,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     background:#f36;
     border-radius:35px;
     text-decoration:none;
+    border:none;
 }
 .m-bottom p{
     width:100%;
