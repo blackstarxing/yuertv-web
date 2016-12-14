@@ -241,8 +241,6 @@ router.get('/center/host', function(req, res, next) {
     res.render('center/host', { title: "我要当主播" ,index:5});
 });
 
-
-
 router.get('/alipay', function(req, res, next) {
     var id = req.url.split('=')[1];
     var islogin = false;
