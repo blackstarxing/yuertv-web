@@ -2,7 +2,7 @@
 
 {% block css %}
 <link rel="stylesheet" href="/dist/center.css">
-<link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="/css/jquery.datetimepicker.css">
 {% endblock %}
 
 {% block content %}
@@ -30,7 +30,11 @@
 <!-- 我的资料 -->
 
 	  		<div class="m-bottom rightswitch rightswitchcolor">
-  			<a href="" id="m-changepass" class="m-changepass">修改密码</a><a href="" id="m-change" class="clickJudge m-change">手机认证</a><a href="" id="m-realname" class="m-realname">实名认证</a><a href="" id="m-changeicon" class="m-changeicon">修改头像</a><a href="" id="m-bindpay" class="m-bindpay">支付宝绑定</a>
+  			<a href="" id="m-changepass" class="m-changepass">修改密码</a>
+        <a href="" id="m-change" class="clickJudge m-change">手机认证</a>
+        <a href="" id="m-realname" class="m-realname">实名认证</a>
+        <a href="" id="m-changeicon" class="m-changeicon">修改头像</a>
+        <a href="" id="m-bindpay" class="m-bindpay">支付宝绑定</a>
   			<div class="m-switch switch-content">
   				<div class="u-pcurrent">
   					<label for="u-current">当前密码</label>
@@ -53,11 +57,11 @@
 	  				<span class="u-failpassword" >密码错误</span>
 	  				<span class="u-rightpassword" >密码正确</span><br>
   				</div>
-	  			<input type="button" name="" value="提交" class="u-i6" id="send">
+          <button class="u-i6" id="send">提交</button>
   			</div>
   			<div class="m-switcht switch-content">
   			{% if info.mobile=="" %}
-  				<div class="u-div thePhone">
+  				<div class="u-div thePhone" style="display:none;">
   					<label for="number">手机号码</label>
   					<input type="text" class="u-userbox telnumber inputTel" name="" id="number" maxlength="11" >
   					<span class="u-numberphone" style="display:inline-block;">请输入手机号</span>
@@ -75,7 +79,7 @@
   						<input type="button" class="u-submit" value="提交" id="userbox">
   				</div>
   			{% else %}
-  				<div class="thephoneauth" id="woyaodangzhuboshoujirenz">
+  				<div class="thephoneauth thePhones" id="woyaodangzhuboshoujirenz" >
   					<div>
   						<span>手机号码：</span><span id="hiddenField">{{info.mobile}}</span><span>已认证</span>
   					</div>
@@ -85,13 +89,13 @@
 	  			
   			</div>
 <!-- 实名认证 -->
-  			<div class="m-switchi switch-content switch-conCard">
+  			<div class="m-switchi switch-content switch-conCard" style="display:none;">
             <div>
               <div class="u-div">
               <label for="name">姓名</label><input type="text" class="u-userbox" name="" id="name" >
             </div>
             <div class="u-div">
-              <label for="passward">QQ密码</label><input type="text" class="u-userbox" name="" id="passward">
+              <label for="Qqnumber">QQ号码</label><input type="text" class="u-userbox" name="" id="Qqnumber">
             </div>
             <div class="u-div">
               <label for="Idcard">身份证号</label><input type="text" class="u-userbox" name="" id="Idcard">
@@ -103,27 +107,28 @@
             <div class="u-idcard">
               <div class="u-dleft" style="color:#666e72;">身份证扫描件</div>
               <div class="u-dright">
-                <div class="u-card">
-                  <div class="img"><img src=""></div>
-                  <span>身份证正面照</span><br>
-                  <div class="upload-container">上传图片
-                    <input type="file" name="fileToUpload" id="fileToUpload" class="fileupload"/>
-                </div>
-                </div>
-                <div class="u-card">
-                  <div class="img"><img src=""></div>
-                  <span>身份证反面照</span><br>
-                  <div class="upload-container">上传图片
-                    <input type="file" name="fileToUpload" id="fileToUpload" class="fileupload" />
-                </div>
-                </div>
-                <div class="u-card">
-                  <div class="img"><img src=""></div>
+                <div class="u-card cardRight">
+                  <div class="img hand"><img src="" id="idCardHandScan"></div>
                   <span>手持身份证正面照</span><br>
-                  <div class="upload-container">上传图片
-                    <input type="file" name="fileToUpload" id="fileToUpload" class="fileupload" />
+                  <div class="upload-container">上传
+                    <input type="file" name="证件照未上传" id="fileToUpload1" class="fileupload" accept="image/*" />
+                  </div>
                 </div>
+                <div class="u-card cardRight">
+                  <div class="img front"><img src="" id="idCardFrontScan"></div>
+                  <span>身份证正面照</span><br>
+                  <div class="upload-container">上传
+                    <input type="file" name="证件照未上传" id="fileToUpload2" class="fileupload" accept="image/*" />
+                  </div>
                 </div>
+                <div class="u-card">
+                  <div class="img back"><img src="" id="idCardBackScan"></div>
+                  <span>身份证背面照</span><br>
+                  <div class="upload-container">上传
+                    <input type="file" name="证件照未上传" id="fileToUpload3" class="fileupload" accept="image/*"/>
+                  </div>
+                </div>
+
               </div>
               <div class="u-deal">
                 <p>身份证及身份照将会进行人工审核，照片务必做到以下几点：</p>
@@ -151,13 +156,13 @@
             </div>
           </div>
 	  		</div>
-	  		<div class="m-switch switch-content">
+	  		<div class="m-switch switch-content iconModify" style="display:none;">
   				<div class="u-addIcon">
   					<img src="http://img.wangyuhudong.com/{{info.icon}}">
   					<p>修改头像</p>
   				</div>
   			</div>
-  			<div class="m-switch switch-content">
+  			<div class="m-switch switch-content payAdd" style="display:none;">
   				<div class="u-paybind">
   					<div class="u-div ">
   					<label for="realName">真实姓名</label>
@@ -256,8 +261,8 @@
 {% endblock %}
 
 {% block js %}
+<script type="text/javascript" src="/jquery.datetimepicker.full.min.js"></script>
 <script type="text/javascript" src="/dist/center.js"></script>
-<script type="text/javascript" src="/jquery.datetimepicker.min.js"></script>
 <script type="text/javascript">
 	$('.g-left li').eq('{{index+1}}').addClass('rightswitchcolor');
 </script>

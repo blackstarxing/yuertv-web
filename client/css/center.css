@@ -304,6 +304,9 @@ input::-moz-placeholder { /* Mozilla Firefox 19+ */
 input:-ms-input-placeholder { /* Internet Explorer 10+ */ 
     color: #b6c0cd; 
 } 
+.thePhone,.thePhones,.switch-conCard,.iconModify,.payAdd{
+	display:none;
+}
 /*手机认证*/
 .m-switcht .u-div{
 	position:relative;
@@ -388,6 +391,9 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 .m-switcht input.change-color{
 	border:1px solid #f36;
+}
+.thephoneauth{
+	display:block;
 }
 .thephoneauth,.toCertification{
 	margin-left:50px;
@@ -555,6 +561,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	width:135px;
 	text-align:right;
 }
+
 .u-userbox{
 	width:300px;
 	height:40px;
@@ -563,6 +570,9 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	background:transparent;
 	margin-left:5px;
 	border:1px solid #353d48;
+}
+input.full{
+	border:1px solid #f36;
 }
 .m-switchi div.u-idcard .u-dleft,.m-switchi div.u-idcard .u-dright{
 	display:inline-block;
@@ -583,10 +593,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	height: 40px;
 	margin-right:10px;
 	color: #cecfd2;
-	text-indent: 12px;
-	background:transparent;
-   /* background:url("../images/icon-arrow.png") no-repeat transparent;*/
-    background-position: 80px 18px;
+	text-indent: 28px;
     border: 1px solid #353d48;
     border-radius: 0;
     appearance: none;
@@ -596,6 +603,17 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 .m-switchi .u-idcard{
 	margin-bottom:25px;
 	margin-left:-30px;
+}
+.u-div input.u-finaltime{
+	position:relative;
+	background-color:transparent;
+	background: url('/images/dateright.png') 98% center no-repeat;
+	background-size: 25px 25px;
+    color:#fff;  
+    FILTER: alpha(opacity=0); /*androd*/  
+    appearance:none;  /*下拉框去掉右侧图标*/  
+    -moz-appearance:none;  
+    -webkit-appearance:none;
 }
 .m-switchi .u-dleft{
 	width:165px;
@@ -612,6 +630,18 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	height:80px;
 	border:2px solid #353d48;
 	box-sizing: border-box;
+}
+.u-card .hand{
+	background: url('/images/idcard1.jpg') no-repeat;
+	background-size: 100% 100%;
+}
+.u-card .front{
+	background: url('/images/idcard2.jpg') no-repeat;
+	background-size: 100% 100%;
+}
+.u-card .back{
+	background: url('/images/idcard3.jpg') no-repeat;
+	background-size: 100% 100%;
 }
 .img img{
   width:100%;
@@ -1045,7 +1075,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	height:680px;
 	margin:65px 65px 75px 70px;
 }
-.g-props .u-top h3{
+/*.g-props .u-top h3{
 	width:100px;
 	height:40px;
 	line-height:40px;
@@ -1054,7 +1084,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	color:#fff;
 	border-radius:5px;
 	margin-bottom: 30px;
-}
+}*/
 .u-imgmessage .imgprops{
 	width:800px;
 	height:350px;
@@ -1331,16 +1361,15 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	margin-left:65px;
 	margin-top:80px;
 }
-h3.u-topfish{
-	display:inline-block;
-	width:100px;
-	height:40px;
-	line-height: 40px;
-	text-align:center;
+.u-balance{
+	margin-bottom:20px;
+}
+.u-balance p{
+	font-size:16px;
 	color:#fff;
-	border-radius:5px;
-	background:#f36;
-	margin-bottom: 25px;
+}
+.u-balance span{
+	color:#f36;
 }
 .u-value{
 	width:780px;

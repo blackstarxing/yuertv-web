@@ -20,6 +20,11 @@
 						<div class="u-ctleft switchrepeat">
 						{% if info.mobile=="" %}
 							<!-- 如何直播页面 -->
+							<div class="totelphone" id="totelphone">
+			  					<div>
+			  						<span>手机认证：</span><a href="information#m-change">去认证</a>
+			  					</div>
+			  				</div>
 			  			{% else %}
 			  				<div class="thephoneauth" id="woyaodangzhuboshoujirenz">
 			  					<div>
@@ -28,7 +33,8 @@
 			  				</div>
 			  				<div class="toCertification" id="toCertification">
 			  					<div>
-			  						<span>实名认证：</span><a href="information">去认证</a>
+			  						<span>实名认证：</span><a href="information#m-realname">去认证</a>
+
 			  					</div>
 			  				</div>
 			  			{% endif %}
