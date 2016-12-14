@@ -308,6 +308,9 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	display:none;
 }
 /*手机认证*/
+.m-switshowhide{
+	display:none;
+}
 .m-switcht .u-div{
 	position:relative;
 	margin-bottom:20px;
@@ -418,7 +421,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	font-size:18px;
 	margin-top:50px;
 }
-.thephoneauth a#modifyTel{
+.thephoneauth #modifyTel{
 	display:inline-block;
 	width:150px;
 	height:40px;
@@ -428,6 +431,8 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	color:#f36;
 	font-size:18px;
 	margin-top:50px;
+	background:transparent;
+	border:none;
 }
 .toCertification a{
 	display:inline-block;
@@ -604,6 +609,9 @@ input.full{
 	margin-bottom:25px;
 	margin-left:-30px;
 }
+.u-div input{
+	outline:0px;
+}
 .u-div input.u-finaltime{
 	position:relative;
 	background-color:transparent;
@@ -732,6 +740,9 @@ input.full{
 	margin-bottom:60px;
 	margin-left:170px;
 	border-radius:5px;
+}
+.m-switchi input.infogrey{
+	background:#ccc;
 }
 /*修改头像*/
 .u-addIcon{
@@ -1647,6 +1658,9 @@ display:block;
 
 }
 /*我要当主播－－主播认证*/
+.u-live,.u-withdrawal{
+	display:none;
+}
 .u-certification{
 	height:640px;
 	margin-left:-50px;
@@ -1783,12 +1797,26 @@ display:block;
 	font-size:18px;
 	border-radius:5px;
 }
+.modifyphone{
+	margin-top:50px;
+}
+.modifyshiming{
+	margin-top:-40px;
+}
+#modifyTelVer{
+	border:none;
+	background:transparent;
+	margin-left:30px;
+	font-size:18px;
+	color:#f36;
+}
 .changeRed{
 	color:#972e2e;
 }
 /*我要当主播－－如何直播*/
 .u-live{
 	padding-bottom:50px;
+	height:1100px;
 }
 .u-liveAI{
 	position:relative;
@@ -1965,6 +1993,13 @@ display:block;
 	background:#575d65;
 	margin-left:30px;
 }
+.u-div input:focus{
+	outline:1px solid #f36;
+}
+/*.u-div input.change-color{
+	border:1px solid #f36;
+}*/
+
 .telValBounced input.change-color{
 	border:1px solid #f36;
 }
