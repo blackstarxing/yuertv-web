@@ -74,7 +74,7 @@ html,body{
 	vertical-align: middle;
 	margin-left: 5px;
 }
-.follow a{
+.follow button{
 	display: inline-block;
 	background: #f36;
 	color:#fff;
@@ -117,11 +117,13 @@ html,body{
 	border:5px solid transparent;
 	border-left-color: #878b90;
 }
-.option a{
+.option button{
 	display: inline-block;
 	margin:10px 0 0 20px;
 	width: 70px;
 	text-indent: 25px;
+	height: 21px;
+	font-size: 14px;
 }
 .option .report{
 	background: url('/images/report.png') left top no-repeat;
@@ -172,7 +174,7 @@ html,body{
 	color:#7d8ea0;
 	text-indent: 45px;
 }
-.report-pop a{
+.report-pop button{
 	display: inline-block;
 	width: 70px;
 	height: 30px;

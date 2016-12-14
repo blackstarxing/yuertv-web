@@ -119,7 +119,7 @@ $(function(){
     $('.givemoney').click(function(e){
         e.preventDefault();
         if(islogin){
-           window.location.href = '/center?type=4';
+           window.location.href = '/center/topup';
         }else{
             $('.m-login-wrap').show();
         }

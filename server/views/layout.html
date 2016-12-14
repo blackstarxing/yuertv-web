@@ -10,7 +10,15 @@
     <link rel="stylesheet" href="/css/jquery.datetimepicker.css">
     {% block css %}{% endblock %}
     <script type="text/javascript" src="/jquery.js"></script>
-   
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?5f199d5d81411ab659081729f1f34008";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </head>
 <body>
 	{% include 'common/tophead.html' %}
