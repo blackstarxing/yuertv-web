@@ -28,7 +28,6 @@
 	  		</div>
 	  	<div class="m-rightswitch">
 <!-- 我的资料 -->
-
 	  		<div class="m-bottom rightswitch rightswitchcolor">
   			<a href="" id="m-changepass" class="m-changepass">修改密码</a>
         <a href="" id="m-change" class="clickJudge m-change">手机认证</a>
@@ -59,7 +58,7 @@
   				</div>
           <button class="u-i6" id="send">提交</button>
   			</div>
-  			<div class="m-switcht switch-content">
+  			<div class="m-switcht switch-content m-switshowhide">
   			{% if info.mobile=="" %}
   				<div class="u-div thePhone" style="display:none;">
   					<label for="number">手机号码</label>
@@ -83,7 +82,7 @@
   					<div>
   						<span>手机号码：</span><span id="hiddenField">{{info.mobile}}</span><span>已认证</span>
   					</div>
-  					<a href="" id="modifyTel">修改手机号码</a>
+  					<button href="" id="modifyTel">修改手机号码</button>
   				</div>
   			{% endif %}
 	  			
