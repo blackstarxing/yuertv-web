@@ -19,9 +19,9 @@
                 <ul>
                     {% for recommend in index.recommend %}
                         {% if loop.first %}
-                            <li class="current"><a href="{{recommend.rtmp}}" data-icon="{{recommend.up_user_icon}}" data-id="{{recommend.id}}" data-upid="{{recommend.up_user_id}}" data-concern="{{recommend.is_concern}}"><img src="{{recommend.icon}}" alt=""></a></li>
+                            <li class="current"><a data-rtmp="{{recommend.rtmp}}" data-icon="{{recommend.up_user_icon}}" data-id="{{recommend.id}}" data-upid="{{recommend.up_user_id}}" data-concern="{{recommend.is_concern}}"><img src="{{recommend.icon}}" alt=""></a></li>
                         {% else %}
-                            <li><a href="{{recommend.rtmp}}" data-icon="{{recommend.up_user_icon}}" data-id="{{recommend.id}}" data-upid="{{recommend.up_user_id}}" data-concern="{{recommend.is_concern}}"><img src="{{recommend.icon}}" alt=""></a></li>
+                            <li><a data-rtmp="{{recommend.rtmp}}" data-icon="{{recommend.up_user_icon}}" data-id="{{recommend.id}}" data-upid="{{recommend.up_user_id}}" data-concern="{{recommend.is_concern}}"><img src="{{recommend.icon}}" alt=""></a></li>
                         {% endif %}
                     {% endfor %}
                 </ul>
