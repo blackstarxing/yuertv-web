@@ -780,4 +780,58 @@ router.get('/activity/bostonSecond', function(req, res, next) {
     });
 });
 
+router.get('/activity/chinatop', function(req, res, next) {
+    Thenjs.parallel([function(cont) {
+        request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxf96f728533f32fa8&secret=5007eda46723c5faf79a8b9ca3be131a', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        Thenjs.parallel([function(cont) {
+            console.log(JSON.parse(result[0]).access_token);
+            request('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+JSON.parse(result[0]).access_token+'&type=jsapi', function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    cont(null, body);
+                } else {
+                    cont(new Error('error!'));
+                }
+            })
+        }]).then(function(cont, result) {
+            ticket = JSON.parse(result[0]).ticket;
+            Thenjs.parallel([function(cont) {
+                request({
+                    uri: 'http://172.16.2.62:8777/live/detail?id=3751',
+                    headers: {
+                        'User-Agent': 'request',
+                        'cookie': req.headers.cookie,
+                    },
+                }, function(error, response, body) {
+                    if (!error && response.statusCode == 200) {
+                        cont(null, body);
+                    } else {
+                        cont(new Error('error!'));
+                    }
+                })
+            }]).then(function(cont, result) {
+                res.render('activity/chinatop', {
+                    ticket: ticket,
+                    state: JSON.parse(result[0]).object.info.state,
+                });
+            }).fail(function(cont, error) { 
+                console.log(error);
+                res.render('error', { title: "错误"});
+            });
+        }).fail(function(cont, error) { 
+            console.log(error);
+            res.render('error', { title: "错误"});
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+});
+
 module.exports = router;

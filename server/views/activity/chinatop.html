@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />
+	<title>娱儿TV—CHINA TOP 独家直播</title>
+	<script src="/jquery.js"></script>
+	<script src="/activity/build/mediaelement-and-player.min.js"></script>
+	<script src="/jquery.sha1.js"></script>
+	<script src="/wxjsapi.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<link rel="stylesheet" href="/activity/build/mediaelementplayer.min.css" />
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		html,body{
+			max-width: 800px;
+			margin:0 auto;
+			width: 100%;
+			overflow: hidden;
+			font-family: '微软雅黑';
+		}
+		.g-bd img{
+			width: 100%;
+			vertical-align: top;
+		}
+		.video{
+			position: relative;
+		}
+		.video .videoWindow{
+			position: absolute;
+			top:0;
+			width: 100%;
+		}
+		.hideright{
+			margin-left: 100%;
+			width: 100%;
+		}
+		.video .videoBox{
+			position: absolute;
+			top: 0;
+			right: 5.47%;
+			width: 70.7%;
+			overflow:hidden;
+		}
+		.change{
+			position: absolute;
+			right: 0;
+			bottom: -80px;
+		}
+		.change img{
+			width: 64%;
+			float:right;
+		}
+		.change .arrow{
+			width:25.3%;
+			position: absolute;
+			right: 54.5%;
+			top:20px;
+			opacity: 1;
+		}
+		.hideright .videoBox{
+			left: 5.47%;
+		}
+		.hideright .change img{
+			width: 64%;
+			float:left;
+		}
+		.hideright .change .arrow{
+			width: 25.3%;
+			left: 54.5%;
+		}
+		.stepright{
+			display: none;
+		}
+		.videoBox .mask,.videoBox .end-mask{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,0.8);
+		}
+		.videoBox .mask{
+			display: none;
+		}
+		.videoBox .mask h3,.videoBox .end-mask h3{
+			font-size: 14px;
+			color: #fff;
+			text-align: center;
+			margin-top: 18%;
+		}
+		.btn-group{
+			width: 70%;
+			margin:0 auto;
+		}
+		.btn-group a{
+			text-decoration: none;
+			display: inline-block;
+			width: 45%;
+			height: 30px;
+			line-height: 28px;
+			background: rgba(255,51,102,0.1);
+			border:1px solid #f36;
+			border-radius: 6px;
+			color:#fff;
+			text-align: center;
+			font-size: 12px;
+			box-sizing: border-box;
+			margin-top: 8%;
+		}
+		.btn-group .return{
+			margin-left: 10%;
+		}
+		.single a{
+			display: block;
+			margin: 8% auto 0;
+		}
+	</style>
+	<script>
+		enableWxShare({
+			appId: 'wxf96f728533f32fa8',
+			ticket: '{{ticket}}',
+			title: '娱儿TV—CHINA TOP 独家直播',
+			type:'video',			
+			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/yuerlogo.png',
+			desc: '玩手游，做直播，就来娱儿TV，百万现金等你抢。'
+		})
+	</script>
+</head>
+<body>
+	<div class="g-bd">
+		<img src="/activity/images/chinatop_1.jpg" alt="">
+		<img src="/activity/images/chinatop_2.jpg" alt="">
+		<div class="video">
+			<img src="/activity/images/chinatop_star.jpg" alt="">
+			<div class="videoWindow showleft">
+				<img src="/activity/images/chinatop_video.png" alt="">
+				<div class="videoBox">
+					{% if state==1 %}
+                        <video width="100%" height="100%" id="player1" poster="" controls="" autoplay="" webkit-playsinline playsinline style="margin:0;"><source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_4255776.m3u8" /></video>
+						<div class="mask">
+							<h3>下载娱儿TV观看更多精彩直播</h3>
+							<div class="btn-group">
+								<a href="https://yuertvfile.wangyuhudong.com?type=live&objId=3751" class="enter">下载娱儿TV</a><a href="" class="return">继续观看</a>
+							</div>				
+						</div>
+                    {% else %}
+                        <div class="end-mask">
+							<h3>直播尚未开始</h3>
+							<div class="btn-group single">
+								<a href="https://yuertvfile.wangyuhudong.com?type=live&objId=4">下载娱儿TV</a>
+							</div>				
+						</div>
+                    {% endif %}					
+				</div>				
+			</div>
+		</div>
+		<div class="step stepleft">
+			<img src="/activity/images/chinatop_3.jpg" alt="">
+			<img src="/activity/images/chinatop_4.jpg" alt="">
+			<img src="/activity/images/chinatop_5.jpg" alt="">
+		</div>
+	</div>
+	<script>
+		$('audio,video').mediaelementplayer({
+			features: ['playpause','volume','progress','fullscreen'],
+		});
+		var client = $(window).width();
+		var one = document.getElementById("player1"); 
+		var ua = navigator.userAgent.toLowerCase(); 
+
+		function rotate(){ 
+		  	if(window.orientation==180||window.orientation==0){ 
+		  		var screenw = (ua.match(/QQ/i)=="qq" && ua.match(/android/i)) ? screen.width :document.body.clientWidth;
+		  		console.log(screenw);
+		    	$('.videoBox').css({'height':screenw*0.395+'px','top':screenw*0.105+'px'});
+		    	$('video').css('height',screenw*0.395+'px');
+		  	} 
+			if(window.orientation==90||window.orientation==-90){ 
+				var screenw = (ua.match(/QQ/i)=="qq" && ua.match(/android/i)) ? screen.width :document.body.clientWidth;
+		        $('.videoBox').css({'height':screenw*0.395+'px','top':screenw*0.105+'px'});
+		        $('video').css('height',screenw*0.395+'px');
+		    } 
+		} 
+		rotate();
+		window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", rotate, false); 
+
+		if(client>800){
+			client = 800;
+		}
+		$('.videoBox').css({'height':client*0.395+'px','top':client*0.105+'px'});
+
+		if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+			$('.mask h3').text('进入直播间观看直播');
+			$('.enter').text('进入直播间');
+			$('.showleft .enter').attr('href','yuertvopen://live?objId=3751');
+		}
+
+		setInterval(function(){
+			$('.arrow').fadeOut(500).delay(200).fadeIn(500);	
+		},1200);
+
+		var second = 0;
+		function showMask(val) { 
+            if (second < 180) { 
+                second++;
+                setTimeout(function() { 
+	                showMask(val);
+	            },1000);
+            } else {
+                $('.mask').show();                   
+            }
+        } 
+
+        if('{{state}}'==1){
+        	showMask(second); 
+        }
+
+        $('.return').click(function(e){
+        	e.preventDefault();
+        	$('.mask').hide();
+        	second = 0;
+        	showMask(second); 
+        })
+
+	</script>
+</body>
+</html>
