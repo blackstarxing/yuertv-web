@@ -834,4 +834,52 @@ router.get('/activity/chinatop', function(req, res, next) {
     });
 });
 
+router.get('/about', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('about', { title: "关于我们" ,islogin:islogin});
+});
+
+router.get('/connect', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('connect', { title: "联系我们" ,islogin:islogin});
+});
+
+router.get('/rules', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('rules', { title: "主播管理条例" ,islogin:islogin});
+});
+
+router.get('/copyright', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('copyright', { title: "著作权声明" ,islogin:islogin});
+});
+
 module.exports = router;
