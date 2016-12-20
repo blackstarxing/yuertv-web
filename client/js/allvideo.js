@@ -131,6 +131,7 @@ $(function(){
                     dataType: 'json',
                     success: function(data) {
                         var newPage = '';
+                        var icon = '';
                         var list = data.object.list;
                         if (data.code==0) {
                             if(list.length != 0){
@@ -138,6 +139,11 @@ $(function(){
                                     var sex = "male";
                                     if(list[i].sex == 1){
                                         sex = "female";
+                                    }
+                                    if(list[i].user_icon){
+                                        icon = (list[i].user_icon.indexOf('http')>-1) ?  list[i].user_icon : 'http://img.wangyuhudong.com/'+list[i].user_icon;
+                                    }else{
+                                        icon = '/images/default_avatar.png';
                                     }
                                     newPage += '<div class="m-lst m-video">'+
                                                 '<a href="" class="live-address" data-rtmp="'+list[i].rtmp+'" data-title="'+list[i].title+'" data-icon="'+list[i].up_user_icon+'" data-id="'+list[i].id+'" data-name="'+list[i].name+'" data-nickname="'+list[i].nickname+'">'+
@@ -147,7 +153,7 @@ $(function(){
                                                 '</a>'+
                                                 '<div class="m-info">'+
                                                     '<div class="anchor-head">'+
-                                                        '<img src="http://img.wangyuhudong.com/'+list[i].user_icon+'" alt="" class="head-icon">'+
+                                                        '<img src="'+icon+'" alt="" class="head-icon">'+
                                                             '<img src="/images/'+sex+'.png" alt="" class="sex">'+
                                                     '</div>'+
                                                     '<div class="anchor-info">'+

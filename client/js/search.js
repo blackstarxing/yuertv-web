@@ -79,8 +79,14 @@ $(function(){
                             if(list.length != 0){
                                 for(var i = 0; i < list.length; i++){
                                     var sex = "male";
+                                    var icon = '';
                                     if(list[i].sex == 1){
                                         sex = "female";
+                                    }
+                                    if(list[i].user_icon){
+                                        icon = (list[i].user_icon.indexOf('http')>-1) ?  list[i].user_icon : 'http://img.wangyuhudong.com/'+list[i].user_icon;
+                                    }else{
+                                        icon = '/images/default_avatar.png';
                                     }
                                     var link = (list[i].state == 1) ? '/liveroom?id='+list[i].id : 'javascript:void(0);',
                                         online = (list[i].state == 1) ? 'online' : 'outline',
@@ -95,7 +101,7 @@ $(function(){
                                                     '</a>'+
                                                     '<div class="m-info">'+
                                                         '<div class="anchor-head">'+
-                                                            '<img src="http://img.wangyuhudong.com/'+list[i].user_icon+'" alt="" class="head-icon">'+
+                                                            '<img src="'+icon+'" alt="" class="head-icon">'+
                                                                 '<img src="/images/'+sex+'.png" alt="" class="sex">'+
                                                         '</div>'+
                                                         '<div class="anchor-info">'+

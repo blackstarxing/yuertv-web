@@ -175,6 +175,7 @@ $(function(){
 			  	} 
 			}); 
         }else{
+        	$('.step-one').show();
         	$('.register').hide();
 			$('.bindmobile').show();
         }		

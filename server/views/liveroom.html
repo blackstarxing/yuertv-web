@@ -30,7 +30,11 @@
     </div>
     <div class="m-live-left">
         <div class="live-info f-cb">
+            {% if detail.info.user_icon.indexOf('http')>-1 %}
+            <img src="{{detail.info.user_icon}}" alt="" class="live-avatar f-fl">
+            {% else %}
             <img src="http://img.wangyuhudong.com/{{detail.info.user_icon}}" alt="" class="live-avatar f-fl">
+            {% endif %}
             <div class="avatar-info f-fl">
                 <span class="hide-rtmp" data-roomid="{{detail.info.chat_room_id}}" data-anchorid="{{detail.info.up_user_id}}" data-time="{{detail.info.count_down}}">{{detail.info.rtmp}}</span>
                 <h3>{{detail.info.title}}</h3>
@@ -113,7 +117,11 @@
                         </a>
                         <div class="m-info">
                             <div class="anchor-head">
+                                {% if live.user_icon.indexOf('http')>-1 %}
+                                <img src="{{live.user_icon}}" alt="" class="head-icon">
+                                {% else %}
                                 <img src="http://img.wangyuhudong.com/{{live.user_icon}}" alt="" class="head-icon">
+                                {% endif %}
                                 {% if live.sex==0 %}
                                     <img src="/images/male.png" alt="" class="sex">
                                 {% else %}
@@ -151,7 +159,15 @@
                         </a>
                         <div class="m-info">
                             <div class="anchor-head">
+                                {% if video.user_icon %}
+                                {% if video.user_icon.indexOf('http')>-1 %}
+                                <img src="{{video.user_icon}}" alt="" class="head-icon">
+                                {% else %}
                                 <img src="http://img.wangyuhudong.com/{{video.user_icon}}" alt="" class="head-icon">
+                                {% endif %}
+                                {% else %}
+                                <img src="/images/default_avatar.png" alt="" class="head-icon">
+                                {% endif %}
                                 {% if video.sex==1 %}
                                     <img src="/images/female.png" alt="" class="sex">
                                 {% else %}

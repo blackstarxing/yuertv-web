@@ -38,7 +38,11 @@
                                 </a>
                                 <div class="m-info">
                                     <div class="anchor-head">
+                                        {% if result.user_icon.indexOf('http')>-1 %}
+                                        <img src="{{result.user_icon}}" alt="" class="head-icon">
+                                        {% else %}
                                         <img src="http://img.wangyuhudong.com/{{result.user_icon}}" alt="" class="head-icon">
+                                        {% endif %}
                                         {% if result.sex==0 %}
                                             <img src="/images/male.png" alt="" class="sex">
                                         {% else %}

@@ -316,11 +316,17 @@ $.ajax({
     success: function(data) {
         if (data.code == 0) {
             for(var i=0;i<data.object.length;i++){
+            	var icon = '';
             	var coin = data.object[i].yuer_coin ? '<p><span class="yuer-coin">'+data.object[i].yuer_coin+'</span>鱼币</p>' : '';
             	var bait = data.object[i].bait ? '<p><span>'+data.object[i].bait+'</span>鱼饵</p>' : '';
             	var index = i+1;
             	var sex = data.object[i].sex ? '' : 'rank-male' ;
-            	week+='<div class="contributionRank clearfix"><div class="bank-left l"><span class="rank-index">'+index+'</span><div class="bank-head"><img src="http://img.wangyuhudong.com/'+data.object[i].icon+'" alt=""></div><span class="rank-name">'+data.object[i].nickname+'</span> <i class="rank-sex '+sex+'"></i></div><div class="bank-right r"><div class="rank-detail">'+coin+bait+'</div></div></div>';
+            	if(data.object[i].icon){
+                    icon = (data.object[i].icon.indexOf('http')>-1) ?  data.object[i].icon : 'http://img.wangyuhudong.com/'+data.object[i].icon;
+                }else{
+                    icon = '/images/default_avatar.png';
+                }
+            	week+='<div class="contributionRank clearfix"><div class="bank-left l"><span class="rank-index">'+index+'</span><div class="bank-head"><img src="'+icon+'" alt=""></div><span class="rank-name">'+data.object[i].nickname+'</span> <i class="rank-sex '+sex+'"></i></div><div class="bank-right r"><div class="rank-detail">'+coin+bait+'</div></div></div>';
             }
             $('.rank').eq(0).html(week);
         }else{
@@ -339,11 +345,17 @@ $.ajax({
     success: function(data) {
         if (data.code == 0) {
             for(var i=0;i<data.object.length;i++){
+            	var icon = '';
             	var bait = data.object[i].bait ? '<p><span>'+data.object[i].bait+'</span>鱼饵</p>' : '';
             	var coin = data.object[i].yuer_coin ? '<p><span class="yuer-coin">'+data.object[i].yuer_coin+'</span>鱼币</p>' : '';
             	var index = i+1;
             	var sex = data.object[i].sex ? '' : 'rank-male' ;
-            	all+='<div class="contributionRank clearfix"><div class="bank-left l"><span class="rank-index">'+index+'</span><div class="bank-head"><img src="http://img.wangyuhudong.com/'+data.object[i].icon+'" alt=""></div><span class="rank-name">'+data.object[i].nickname+'</span> <i class="rank-sex '+sex+'"></i></div><div class="bank-right r"><div class="rank-detail">'+coin+bait+'</div></div></div>';
+            	if(data.object[i].icon){
+                    icon = (data.object[i].icon.indexOf('http')>-1) ?  data.object[i].icon : 'http://img.wangyuhudong.com/'+data.object[i].icon;
+                }else{
+                    icon = '/images/default_avatar.png';
+                }
+            	all+='<div class="contributionRank clearfix"><div class="bank-left l"><span class="rank-index">'+index+'</span><div class="bank-head"><img src="'+icon+'" alt=""></div><span class="rank-name">'+data.object[i].nickname+'</span> <i class="rank-sex '+sex+'"></i></div><div class="bank-right r"><div class="rank-detail">'+coin+bait+'</div></div></div>';
             }
             $('.rank').eq(1).html(all);
         }else{
