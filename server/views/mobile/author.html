@@ -163,8 +163,8 @@
 						<p>认证主播将拥有提现、直播间管理、排名奖励等多重特权噢~</p>
 					</div>
 					<div class="Ucenter">
-						<input type="text" placeholder="请输入姓名" id="checkName" name="姓名不能为空"><br>
-						<input type="text" placeholder="请输入联系QQ号" class="inputCheck" id="checkQQ" name="QQ号不能为空"><br>
+						<input type="text" placeholder="请输入姓名" id="checkName" name="姓名不能为空" onkeyup="this.value=this.value.replace(/(^\s*)|(\s*$)/g,'')"><br>
+						<input type="text" placeholder="请输入联系QQ号" class="inputCheck" id="checkQQ" name="QQ号不能为空" onkeyup="this.value=this.value.replace(/(^\s*)|(\s*$)/g,'')"><br>
 						<input type="text" placeholder="请输入18位身份证号码" id="checkIdCard" name="身份证号不能为空" maxlength="18" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"><br>
 						<input type="date" placeholder="请输入身份证到期时间" id="idCardDueDate" class="uDate" name="到期时间不能为空"><br>
 						<div class="u-idcard" id="idCard">

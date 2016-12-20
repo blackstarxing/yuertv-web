@@ -839,6 +839,7 @@ $(function(){
                     // console.log(content);
                     if(content.data.giftNum>1){
                         $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+content.data.senderName+' : 送给主播1个</span>'+content.data.giftName+'<span class="combo">'+content.data.giftNum+'<i></i></span></div>');
+                        liveRoomInterf.flash.showDanmaku(content.data.senderName+'送给主播一个'+content.data.giftName, 0xffffff, 100);
                     }else{
                         $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+content.data.senderName+' : 送给主播1个</span>'+content.data.giftName+'</div>');
                         liveRoomInterf.flash.showDanmaku(content.data.senderName+'送给主播一个'+content.data.giftName, 0xffffff, 100);
