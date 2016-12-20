@@ -1,0 +1,158 @@
+{% extends 'layout.html' %} 
+{% block css %}
+<style type="text/css">
+	*{padding:0;margin:0;}
+	body{
+	font-family:'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;
+	background:#f3f3f3;
+	}
+	.g-container{
+		width:1200px;
+		margin:95px auto 110px;
+		position:relative;
+		height:490px;
+	}
+	.m-top{
+		margin-left:150px;
+		height:30px;
+		width:900px;
+	}
+	.m-top button{
+		margin-right:60px;
+		background:#f3f3f3;
+		border:none;
+		width:150px;
+		height:30px;
+		line-height:30px;
+		text-align:left
+		font-size:18px;
+		color:#777;
+	}
+	button img{
+		display:inline-block;
+		width:30px;
+		height:30px;
+		float:left;
+		margin-right:10px;
+	}
+	.htutorial,.hproblems,.hquestions{
+		display:none;
+	}
+	.hostSwitch{
+		position:relative;
+		margin-top:35px;
+	}
+	.biubiubiu{
+		margin-top:5px;
+	}
+	button.switchColor{
+		font-size:18px;
+		color:#1a2129;
+		text-align:left;
+	}
+
+	/*主播教程，主播常见问题，用户常见问题左侧*/
+	.htleft,.hpleft,.hqleft{
+		position: absolute;
+		width:190px;
+	}
+	.htlefthost{
+		background:#f3f3f3;
+		border:none;
+		text-align:left;
+		height:30px;
+		line-height:30px;
+		font-size:14px;
+		color:#777;
+	}
+	.htlefthost img{
+		display:inline-block;
+		width:30px;
+		height:30px;
+		float:left;
+		margin-right:10px;
+	}
+	/*主播教程，主播常见问题，用户常见问题右侧*/
+	.htright,.hpright,.hqright{
+		margin-left:190px;
+		width:900px;
+	}
+	.htright p,.hpright p,.hqright p{
+		text-indent:2em;
+	}
+</style>
+
+{% endblock %}
+
+{% block content %}
+<div class="g-container">
+	<div class="m-top">
+		<button class="host"><img src="/images/host.png">主播教程</button><button class="hproblem"><img src="/images/problem.png">主播常见问题</button><button class="uquestion"><img src="/images/question.png">用户常见问题</button>
+		<div class="biubiubiu"></div>
+	</div>
+	<div class="htutorial hostSwitch">
+		<div class="htleft">
+			<button class="htlefthost"><img src="/images/host.png">主播教程</button>
+			<ul>
+				<li><a href=""></a></li>
+				<li><a href=""></a></li>
+				<li><a href=""></a></li>
+				<li><a href=""></a></li>
+			</ul>
+		</div>
+		<div class="htright">
+			<p>
+				题第二届王者校园争霸赛比赛时间比赛地点杭州师范学院下沙校区室内篮球馆比赛须知参赛选手须人组队且人均必须是本省同所高校学生玩家可以招齐成员在赛事当天来到比赛现场报名赛事详细规则请关注官方网站与赛事中心标题第二届王者校园争霸赛比赛时间比赛地点杭州师范学院下沙校区室内篮球馆比赛须知参赛选手须5人组队且5人均必须是本省同所高校学生玩家可以招齐成员在赛事当天来到比赛现场报名赛事详细规则请关注官方网站与赛事中心。
+
+			</p>
+		</div>
+	</div>
+	<div class="hproblems hostSwitch">
+		<div class="hpleft">
+			<button class="htlefthost"><img src="/images/host.png">主播常见问题</button>
+			<ul>
+				<li><a href=""></a></li>
+				<li><a href=""></a></li>
+				<li><a href=""></a></li>
+				<li><a href=""></a></li>
+			</ul>
+		</div>
+		<div class="hpright">
+			<p>
+				题第二届王者校园争霸赛比赛时间比赛地点杭州师范学院下沙校区室内篮球馆比赛须知参赛选手须人组队且人均必须是本省同所高校学生玩家可以招齐成员在赛事当天来到比赛现场报名赛事详细规则请关注官方网站与赛事中心标题第二届王者校园争霸赛比赛时间比赛地点杭州师范学院下沙校区室内篮球馆比赛须知参赛选手须5人组队且5人均必须是本省同所高校学生玩家可以招齐成员在赛事当天来到比赛现场报名赛事详细规则请关注官方网站与赛事中心。
+
+			</p>
+		</div>
+	</div>
+	<div class="hquestions hostSwitch">
+		<div class="hqleft">
+			<button class="htlefthost"><img src="/images/host.png">用户常见问题</button>
+			<ul>
+				<li><a href=""></a></li>
+				<li><a href=""></a></li>
+				<li><a href=""></a></li>
+				<li><a href=""></a></li>
+			</ul>
+		</div>
+		<div class="hqright">
+			<p>
+				题第二届王者校园争霸赛比赛时间比赛地点杭州师范学院下沙校区室内篮球馆比赛须知参赛选手须人组队且人均必须是本省同所高校学生玩家可以招齐成员在赛事当天来到比赛现场报名赛事详细规则请关注官方网站与赛事中心标题第二届王者校园争霸赛比赛时间比赛地点杭州师范学院下沙校区室内篮球馆比赛须知参赛选手须5人组队且5人均必须是本省同所高校学生玩家可以招齐成员在赛事当天来到比赛现场报名赛事详细规则请关注官方网站与赛事中心。
+
+			</p>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+	$(".m-top button").on("click", function() {
+        $(this).addClass("switchColor").siblings().removeClass("switchColor");
+        $(".hostSwitch").hide().eq($(this).index()).show();
+    })
+    $(".m-top button:eq(0)").trigger("click");
+    $(".biubiubiu").css({width:"150px",left:150,position:"absolute",height:"2px",background:"#f36"})
+    $(".m-top button").on("click",function(){
+    $(".biubiubiu").animate({left:$(this).position().left},300)
+	})
+</script>
+{% endblock %}

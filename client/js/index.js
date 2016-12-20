@@ -200,7 +200,7 @@ $(function(){
     par.allowFullScreenInteractive = "true";
     par.wmode = "transparent";
 
-    var defaultdata = $('.m-play-list li').eq(0).find('a');
+    var defaultdata = $('.m-play-list li').eq(0).find('div');
     att.id = "LiveHome";
     att.data = "YeLiveHome.swf";
     liveHomeInterf.roomid = defaultdata.attr('data-id');
@@ -232,7 +232,7 @@ $(function(){
             $('.m-play-list ul').animate({marginTop:listpos},300);
         }        
     })
-    $('.m-play-list a').click(function(event){
+    $('.m-play-list .indexLive').click(function(event){
         $(this).parent().addClass('current').siblings().removeClass('current');
         event.preventDefault();
         // liveHomeInterf.rtmp = 'rtmp://live.hkstv.hk.lxdns.com/live/hks';

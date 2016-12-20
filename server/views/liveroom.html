@@ -44,14 +44,14 @@
             <div class="follow-avatar f-fr">
                 <div class="follow f-cb">
                     {% if detail.info.is_subscibe==1 %}
-                        <a href="" class="is-subscibe" data-id="{{detail.info.up_user_id}}">已关注</a>
+                        <button class="is-subscibe" data-id="{{detail.info.up_user_id}}">已关注</button>
                     {% else %}
-                        <a href="" class="followme" data-id="{{detail.info.up_user_id}}"><i class="iconfont icon-follow"></i>关注</a>
+                        <button class="followme" data-id="{{detail.info.up_user_id}}"><i class="iconfont icon-follow"></i>关注</button>
                     {% endif %}
                     <div class="follownum">{{detail.info.fans}}</div>
                 </div>
                 <div class="option">
-                    <a href="" class="report wantreport">举报</a><a href="" class="share">转发</a>
+                    <button class="report wantreport">举报</button><button class="share">转发</button>
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
             <div class="m-gift">
                 <div class="myCoin">
                     <p>我有<span class="yuerCoin"></span>鱼币</p>
-                    <a href="" class="givemoney">充值</a>
+                    <button class="givemoney">充值</button>
                 </div>
                 {% for gift in gift %}
                     <div class="gift" data-name="{{gift.name}}" data-id="{{gift.id}}" data-frame="{{gift.no_frame_icon}}">
@@ -152,11 +152,11 @@
                 {% else %}
                 {% for video in detail.upVideo %}
                     <div class="m-lst m-video">
-                        <a href="" class="live-address" data-rtmp="{{video.flv}}" data-title="{{video.title}}" data-icon="{{video.up_user_icon}}" data-id="{{video.id}}" data-name="{{video.name}}" data-nickname="{{video.nickname}}" data-follow="{{video.is_concern}}">
+                        <div class="live-address" data-rtmp="{{video.flv}}" data-title="{{video.title}}" data-icon="{{video.up_user_icon}}" data-id="{{video.id}}" data-name="{{video.name}}" data-nickname="{{video.nickname}}" data-follow="{{video.is_concern}}">
                             <img src="{{video.icon}}" alt="">
                             <span><i>·</i>{{video.name}}</span>
                             <div class="play-mask online"></div>
-                        </a>
+                        </div>
                         <div class="m-info">
                             <div class="anchor-head">
                                 {% if video.user_icon %}
@@ -175,9 +175,9 @@
                                 {% endif %}
                             </div>
                             <div class="anchor-info">
-                                <div><a href="">{{video.nickname}}</a></div>
+                                <div><a href="javascript:void(0);">{{video.nickname}}</a></div>
                             </div>
-                            <div class="video-name"><a href="">{{video.title}}</a></div>
+                            <div class="video-name"><a href="javascript:void(0);">{{video.title}}</a></div>
                         </div>
                     </div>
                 {% endfor %}
@@ -279,7 +279,7 @@
                 <label name="6" for="6">涉嫌使用非法外挂</label>
             </div>
             <p>提示：请勿非法恶意举报</p>
-            <a href="" class="u-report-cancel">取消</a><a href="" class="u-report-next">下一步</a>
+            <button class="u-report-cancel">取消</button><button class="u-report-next">下一步</button>
         </div>
     </div>
 </div>
@@ -295,7 +295,7 @@
 </div>
 
 <div class="m-video-mask">
-    <a href="" class="close"><img src="/images/iconwindow.png" alt=""></a>
+    <a class="close"><img src="/images/iconwindow.png" alt=""></a>
     <div class="m-video-player">
         <div id="VideoPlayerDiv"></div>
     </div> 

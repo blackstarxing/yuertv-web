@@ -1,0 +1,96 @@
+{% extends 'layout.html' %} 
+
+{% block css %}
+<link rel="stylesheet" href="/dist/center.css">
+
+{% endblock %}
+
+{% block content %}
+ <div class="g-container f-cb">
+	<div class="g-main"> 
+		 {% include 'common/cenleft.html' %}  
+	    <div id="rightmain" class="g-right">
+<!-- 我的消息 -->
+	<div class="m-message rightswitch">
+		<div class="m-mainm">
+			<div class="u-m-top">
+				<a href="" id="initMessage">系统消息</a>
+				<a href="" id="initFocusMessage">关注消息</a>
+			</div>
+			<div class="u-systemmessage mcurrent">
+				<div class="messageBox">
+					<img src="/images/empty.png" class="empty" alt="暂无任何系统消息" title="暂无任何系统消息">
+					<p class="emptyText">当前没有系统消息哦！</p>
+					<!-- <div class="u-message">
+						<div class="u-msystem">
+							<img src="/images/messagehead.png">
+						</div>
+						<div class="u-yuer">
+							<p>
+								<h3></h3>
+								<span class="u-messagetime"></span>
+							<p>
+							<p>
+							<span class="u-messagecontent"></span><span class="u-messtips" id="messshow">全文&gt;&gt;</span>
+							</p>
+						</div>
+					</div> -->
+				</div>
+				
+				<div class="M-box">
+					<a href="javascript:;" class="prevBtn">上一页</a>
+					<span class="totalPage"></span>
+					<a href="javascript:;" class="nextBtn">下一页</a>
+				</div>
+			</div>
+			
+			<div class="u-focusmessage mcurrent">
+				<div class="focusmessage">
+					<img src="/images/empty.png" class="empty" alt="暂无任何关注消息" title="暂无任何关注消息">
+					<p class="emptyText">当前没有关注消息哦！</p>
+						<!-- <div class="u-focusmess">
+							<p class="u-focusnc">
+								<span class="u-foucscolor">我在那里找到你
+									
+								</span>
+								<span class="u-focusc">关注了你</span>
+							</p>
+							<span class="u-focustime">
+								2016-10-13  18：00
+							</span>
+						</div>
+						<div class="u-messnickname">
+							<img src="/images/ico7.png"><img src="" class="messimgsex">
+							<p class="u-mkname">我从哪里找到你</p>
+							<p><span>ID：</span><span>1987272</span></p>
+						</div> -->
+				</div>
+				<div class="M-box">
+					<a href="javascript:;" class="prevBtn">上一页</a>
+					<span class="totalPage"></span>
+					<a href="javascript:;" class="nextBtn">下一页</a>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div><!-- 右侧结尾 -->
+	    
+	</div> <!-- 整个块结尾 -->
+
+</div>	
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/dist/center.js"></script>
+<script type="text/javascript">
+	$('.g-left li').eq('{{index+1}}').addClass('rightswitchcolor');
+	// $('.g-left li').each(function(){
+	// 	if($(this).attr("data-type")=='{{type}}'){
+	// 		$(this).addClass('rightswitchcolor');
+	// 	}
+	// })
+	// $('.rightswitch').eq({{type}}).show().siblings().hide();
+</script>
+{% endblock %}
