@@ -34,7 +34,7 @@
         <a href="" id="m-realname" class="m-realname">实名认证</a>
         <a href="" id="m-changeicon" class="m-changeicon">修改头像</a>
         <a href="" id="m-bindpay" class="m-bindpay">支付宝绑定</a>
-  			<div class="m-switch switch-content">
+  			<div class="m-switch switch-content switch">
   				<div class="u-pcurrent">
   					<label for="u-current">当前密码</label>
   					<input type="" name="current" id="u-current" placeholder="请输入密码">
@@ -60,7 +60,7 @@
   			</div>
   			<div class="m-switcht switch-content m-switshowhide">
   			{% if info.mobile=="" %}
-  				<div class="u-div thePhone" style="display:none;">
+  				<div class="u-div thePhone" >
   					<label for="number">手机号码</label>
   					<input type="text" class="u-userbox telnumber inputTel" name="" id="number" maxlength="11" >
   					<span class="u-numberphone" style="display:inline-block;">请输入手机号</span>
@@ -88,7 +88,7 @@
 	  			
   			</div>
 <!-- 实名认证 -->
-  			<div class="m-switchi switch-content switch-conCard" style="display:none;">
+  			<div class="m-switchi switch-content switch-conCard" >
             <div>
               <div class="u-div">
               <label for="name">姓名</label><input type="text" class="u-userbox" name="" id="name" >
@@ -101,7 +101,7 @@
             </div>
             <div class="u-div">
               <label for="time">身份证到期时间</label>
-              <input type="text" name="" class="u-finaltime" id="datetimepicker">
+              <input type="text" name="" class="u-finaltime" id="datetimepicker" date-date="" date-date-format="yyyy-mm-dd">
             </div>
             <div class="u-idcard">
               <div class="u-dleft" style="color:#666e72;">身份证扫描件</div>
@@ -155,13 +155,17 @@
             </div>
           </div>
 	  		</div>
-	  		<div class="m-switch switch-content iconModify" style="display:none;">
+	  		<div class="m-switch switch-content iconModify" >
   				<div class="u-addIcon">
   					<img src="http://img.wangyuhudong.com/{{info.icon}}">
-  					<p>修改头像</p>
+  					
+              <span id="modPic">修改头像</span>
+              <input type="file" id="modifyPic" value="修改头像" name="修改头像" accept="image/*" style="cursor:pointer;"/>
+              
+
   				</div>
   			</div>
-  			<div class="m-switch switch-content payAdd" style="display:none;">
+  			<div class="m-switch switch-content payAdd" >
   				<div class="u-paybind">
   					<div class="u-div ">
   					<label for="realName">真实姓名</label>
@@ -257,6 +261,7 @@
 	</div>
 </div>
 </div>
+<div class="tip"></div>
 {% endblock %}
 
 {% block js %}

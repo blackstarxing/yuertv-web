@@ -160,7 +160,15 @@ router.get('/center/information', function(req, res, next) {
     });
 });
 router.get('/center/focus', function(req, res, next) {
-    res.render('center/focus', { title: "我的关注" ,index:1});
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('center/focus', { title: "我的关注" ,index:1,islogin:islogin});
 });
 router.get('/center/props', function(req, res, next) {
     var islogin = false;
@@ -199,7 +207,15 @@ router.get('/center/props', function(req, res, next) {
     });
 });
 router.get('/center/message', function(req, res, next) {
-    res.render('center/message', { title: "我的消息" ,index:3});
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('center/message', { title: "我的消息" ,index:3,islogin:islogin});
 });
 router.get('/center/topup', function(req, res, next) {
     var islogin = false;
@@ -238,7 +254,15 @@ router.get('/center/topup', function(req, res, next) {
     });
 });
 router.get('/center/host', function(req, res, next) {
-    res.render('center/host', { title: "我要当主播" ,index:5});
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('center/host', { title: "我要当主播" ,index:5,islogin:islogin});
 });
 
 router.get('/helpcenter', function(req, res, next) {
