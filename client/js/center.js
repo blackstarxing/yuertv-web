@@ -676,14 +676,13 @@ var local={
         // if($("#u-finaltime").val()>currentTime){
         //     alert("请输入当前日期之后的有效日期");
         // }
-        // $("#u-finaltime").on("input",function(){
-        //     if($(this).val().length>0){
-        //        $(this).addClass("full");
-        //     }
-        //     else{
-        //       $(this).removeClass("full");
-        //     }
-        // });
+        // 实名认证的错误提示
+        function showTip(text){
+        $('.tip').text(text).fadeIn();
+        setTimeout(function(){
+            $('.tip').fadeOut();
+        },1500);
+        }
         // 按从上往下的顺序去提示错误信息
         $('#u-submit').on("click",function(e){  
             e.preventDefault();
@@ -694,7 +693,8 @@ var local={
                 if(!$(this).val()){
                     showTip($(this).attr("name"));
                     UsubmitCheck=false;
-                    return false;
+                    // return false;
+                     $(this).focus();
                 }
             });
             // 姓名，QQ，身份证号的验证    
@@ -750,87 +750,189 @@ var local={
               todayButton:false    //关闭选择今天按钮
         });
         $.datetimepicker.setLocale('ch');
-         $('#datetimepicker').datetimepicker('setStartDAte',new Date().toLocaleDateString().replace(/\//g,"-"));
-        // 分页－－我的关注，我的消息
-        $(".focushost a").on("click",function(e){
-            e.preventDefault();
-        })
-        $(".prevBtn").off().on("click",function(event){
-            event.preventDefault();
-            local.cur_page--;
-            if(local.cur_pageCallback == "news"){
-                local.cur_type=0;
-                local.newsList();
-            }else{
-                local.cur_type=0;
-                local.followList();
+        // 设置等到当前日期之后的时间
+        $('#datetimepicker').datetimepicker('setStartDAte',new Date().toLocaleDateString().replace(/\//g,"-"));
+        // 修改头像的实现
+        $('#modifyPic').change(function(event) {
+            var _this = $(this);
+            var fileNames = $(this).val();
+            if ($('#modifyPic').val().length) {
+                var fileNames = $('#modifyPic').val();
+                var extension = fileNames.substring(fileNames.lastIndexOf('.'), fileNames.length).toLowerCase();
+                if (extension == ".jpg" || extension == ".png") {
+                    var data = new FormData();
+                    data.append('upload', $(this)[0].files[0]);
+                    $.ajax({
+                         url: 'http://172.16.2.62:8777/common/upload',
+                         type: 'POST',
+                          data: data,
+                          cache: false,
+                          contentType: false, //不可缺参数
+                            processData: false, //不可缺参数
+                           success: function(data) {
+                                // _this.parents('.u-addIcon').find('.img').css('background','none');
+                                _this.parents('.u-addIcon').find('img').attr('src',data.object);
+                            },
+                           error: function() {
+                                 console.log('error');
+                           }
+                    });
+                }
             }
-        })
-        $(".nextBtn").off().on("click",function(event){
-            event.preventDefault();
-            local.cur_page++;
-            if(local.cur_pageCallback == "news"){
-                local.cur_type=0;
-                local.newsList();
-            }else{
-                local.cur_type=0;
-                local.followList();
-            }
-        })
-        $("#myfocusclick").on("click",function(){
-            local.Pagination(1,0,5,"follow");
-            local.followList();
-        })
-        $("#mymessageclick").on("click",function(){
-            // e.preventDefault();
-            local.Pagination(1,0,5,"news");
-            local.cur_type=0;
-            // local.newsList();
         });
-        $(".u-m-top a:eq(0)").on("click",function(e){
-            e.preventDefault();
-            local.Pagination(1,0,5,"news");
-            local.cur_type=0;
-            local.newsList();
-        })
-        $(".u-m-top a:eq(1)").on("click",function(e){
-            e.preventDefault();
-            local.Pagination(1,0,5,"news");
-            local.cur_type=1;
-            local.newsList();
-        })
-    },
-        // 分页插件
+        // 分页－－我的关注，我的消息
+         $(".focushost a").on("click",function(e){
+                e.preventDefault();
+            })
+             $(".prevBtn").off().on("click",function(event){
+                event.preventDefault();
+                local.cur_page--;
+                if(local.cur_pageCallback == "news"){
+                    local.cur_type=0;
+                    local.newsList();
+                }else{
+                    local.cur_type=0;
+                    local.followList();
+                }
+            })
+            $(".nextBtn").off().on("click",function(event){
+                event.preventDefault();
+                local.cur_page++;
+                if(local.cur_pageCallback == "news"){
+                    local.cur_type=0;
+                    local.newsList();
+                }else{
+                    local.cur_type=0;
+                    local.followList();
+                }
+            })
+            $("#myfocusclick").on("click",function(){
+                local.Pagination(1,0,5,"follow");
+                local.followList();
+            })
+            $("#mymessageclick").on("click",function(e){
+                e.preventDefault();
+                local.Pagination(1,0,5,"news");
+                local.cur_type=0;
+                // local.newsList();
+            });
+            $(".u-m-top a:eq(0)").on("click",function(e){
+                e.preventDefault();
+                local.Pagination(1,0,5,"news");
+                local.cur_type=0;
+                local.newsList();
+            })
+            $(".u-m-top a:eq(1)").on("click",function(e){
+                e.preventDefault();
+                local.Pagination(1,0,5,"news");
+                local.cur_type=1;
+                local.newsList();
+            })
+        },
         Pagination:function(_page,_total,_pageSize,callback){
             local.cur_page = _page || 1;
             local.cur_total = _total || 0;
             local.cur_pageSize = _pageSize || 5;
-            local.cur_maxPage = Math.ceil(local.cur_total / local.cur_pageSize)
+            local.cur_maxPage = (parseInt((local.cur_total+5)/ local.cur_pageSize)) || 1;
             local.cur_pageCallback=callback;
+            var _total = (_total<5) ? 1 : (parseInt(_total/5));
+            $(".totalPage").show().text(local.cur_page+"/"+ local.cur_total);
+
+            $(".nextBtn").show();
+            $(".prevBtn").show();
+            if(local.cur_page==1){
+                $(".prevBtn").hide();
+            }
+            if(local.cur_page==local.cur_maxPage){
+                $(".nextBtn").hide();
+            }
+            if(local.cur_maxPage==1){
+                $(".prevBtn").hide();
+                $(".nextBtn").hide();
+            }
+            if( local.cur_total == 0 ){ $(".totalPage").hide()};
+        },
+        
+        
+    //     $(".focushost a").on("click",function(e){
+    //         e.preventDefault();
+    //     })
+    //     $(".prevBtn").off().on("click",function(event){
+    //         event.preventDefault();
+    //         local.cur_page--;
+    //         if(local.cur_pageCallback == "news"){
+    //             local.cur_type=0;
+    //             local.newsList();
+    //         }else{
+    //             local.cur_type=0;
+    //             local.followList();
+    //         }
+    //     })
+    //     $(".nextBtn").off().on("click",function(event){
+    //         event.preventDefault();
+    //         local.cur_page++;
+    //         if(local.cur_pageCallback == "news"){
+    //             local.cur_type=0;
+    //             local.newsList();
+    //         }else{
+    //             local.cur_type=0;
+    //             local.followList();
+    //         }
+    //     })
+    //     $("#myfocusclick").on("click",function(){
+    //         local.Pagination(1,0,5,"follow");
+    //         local.followList();
+    //     })
+    //     $("#mymessageclick").on("click",function(){
+    //         // e.preventDefault();
+    //         local.Pagination(1,0,5,"news");
+    //         local.cur_type=0;
+    //         // local.newsList();
+    //     });
+    //     $(".u-m-top a:eq(0)").on("click",function(e){
+    //         e.preventDefault();
+    //         local.Pagination(1,0,5,"news");
+    //         local.cur_type=0;
+    //         local.newsList();
+    //     })
+    //     $(".u-m-top a:eq(1)").on("click",function(e){
+    //         e.preventDefault();
+    //         local.Pagination(1,0,5,"news");
+    //         local.cur_type=1;
+    //         local.newsList();
+    //     })
+    // },
+        // 分页插件
+        // Pagination:function(_page,_total,_pageSize,callback){
+        //     local.cur_page = _page || 1;
+        //     local.cur_total = _total || 0;
+        //     local.cur_pageSize = _pageSize || 5;
+        //     local.cur_maxPage = Math.ceil(local.cur_total / local.cur_pageSize)
+        //     local.cur_pageCallback=callback;
 
 
-            $(".totalPage").show().text(local.cur_page + "/"+ local.cur_maxPage);
+        //     $(".totalPage").show().text(local.cur_page + "/"+ local.cur_maxPage);
 
             
-            if(local.cur_page == 1){
-                $(".prevBtn").hide();
-            }else{
-                $(".prevBtn").show();
-            }
-            if(local.cur_page == local.cur_maxPage){
-                $(".nextBtn").hide();
-            }else{
-                $(".nextBtn").show();
-            }
+        //     if(local.cur_page == 1){
+        //         $(".prevBtn").hide();
+        //     }else{
+        //         $(".prevBtn").show();
+        //     }
+        //     if(local.cur_page == local.cur_maxPage){
+        //         $(".nextBtn").hide();
+        //     }else{
+        //         $(".nextBtn").show();
+        //     }
 
-            if(local.cur_maxPage <= 1){
-                $(".prevBtn").hide();
-                $(".nextBtn").hide();
-            }
-            if(local.cur_total == 0 ){
-                $(".totalPage").hide()
-            };
-        },
+        //     if(local.cur_maxPage <= 1){
+        //         $(".prevBtn").hide();
+        //         $(".nextBtn").hide();
+        //     }
+        //     if(local.cur_total == 0 ){
+        //         $(".totalPage").hide()
+        //     };
+        // },
         // 我的关注页面的事件处理
         followList:function(){
             $.ajax({
