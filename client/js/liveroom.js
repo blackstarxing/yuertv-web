@@ -492,13 +492,13 @@ $(function(){
             }
 
             function endingTime(val) { 
-                if (endingtime > 0) { 
+                if (endingtime > 0 && endingtime <1500) { 
                     $('.endingtime').text(endingtime);
                     endingtime--;
                     setTimeout(function() { 
                         endingTime(val);
                     },1000);
-                } else if(endingtime = 0){
+                } else if(endingtime == 0){
                     $('.countdown').html('<div class="freegift">点击领取</div>');
                     $('.freegift').click(function(){
                         if(islogin){
@@ -508,15 +508,17 @@ $(function(){
                                 dataType: 'json',
                                 success: function(data) {
                                     if (data.code == 0) {
-                                        if(data.object && data.object.count_down!=25){
+                                        if(data.object && data.object.count_down<=25){
                                             getProp();
-                                            endingtime = data.count_down*60;
-                                            $('.countdown').html('<span class="endingtime">300</span>秒后<br>惊喜降临');
+                                            endingtime = parseInt(data.object.count_down)*60;
+                                            $('.countdown').html('<span class="endingtime">'+endingtime+'</span>秒后<br>惊喜降临');
+                                            endingtime--;
                                             setTimeout(function() { 
                                                 endingTime(endingtime);
                                             },1000);
                                         }else{
                                             endingtime = 1500;
+                                            endingTime(endingtime);
                                         }                                        
                                     }else{
                                         console.log(data.result);
@@ -531,7 +533,7 @@ $(function(){
                        }
                         
                     })
-                } else if(endingtime = 1500){
+                } else if(endingtime == 1500){
                     $('.countdown').html('福利已领完<br>明天再来吧');
                 }
             } 
