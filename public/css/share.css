@@ -384,9 +384,14 @@ h3{font-size: 1.5rem;line-height: 1.25;}
 /*活动页*/
 .g-sh{
 	padding:9px 12px;
+	font-size: 17px;
+	color:#3e3e3e;
+}
+.g-sh img{
+	height: auto!important;
 }
 .ac-detail{
-	font-size: 0.875rem;
+	font-size: 1.0625rem;
     color: #9a9a9a;
     margin: 15px 0;
 }
@@ -394,6 +399,8 @@ h3{font-size: 1.5rem;line-height: 1.25;}
     
 }
 .g-sh h3{
+	font-weight: normal;
 	word-break: break-all;
 	color:#333;
+	padding-top: 5px;
 }
