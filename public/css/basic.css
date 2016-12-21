@@ -26,6 +26,7 @@ body,textarea,input,button,select,keygen,legend{font:12px/1.14 'Microsoft YaHei'
 body{font:14px/1.5 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;background: #f3f3f3;}
 input{font:14px/1.5 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;/*letter-spacing:1px;*/}
 a/*,a:hover*/{color:#333;}
+button{border:none;font-size: 14px;}
 input:-webkit-autofill { 
 -webkit-box-shadow: 0 0 0px 1000px #14181d inset;
 color: #fff !important;
@@ -514,6 +515,7 @@ color: #fff !important;
     position: absolute;
     right: 30px;
     top: 30px;
+    cursor: pointer;
 }
 .m-video-mask .close img{
     width: 20px;
@@ -673,6 +675,7 @@ color: #fff !important;
     width: 230px;
     height: 130px;
     position: relative;
+    cursor: pointer;
 }
 .play-mask{
     position: absolute;
