@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{title}}</title>
+	<link rel="stylesheet" href="/css/basic.css">
+	<script src="/jquery.js"></script>
+	<style>
+		.g-sp{
+			width: 725px;
+			height: 410px;
+		}
+	</style>
+</head>
+<body>
+	<div class="g-sp">
+		<div id="LiveHomeDiv"></div>
+	</div>
+	<script type="text/javascript" src="/swfobject.js"></script>
+	<script>
+		liveHomeInterf = {
+
+	        //首页直播Flash对象
+	        flash: null,
+	        rtmp: "{{index.rtmp}}",
+	        anchorId: "{{index.up_user_icon}}",
+	        anchorhead: "http://img.wangyuhudong.com/{{index.up_user_icon}}",
+	        isfollow : 0,
+
+	        isinit: false,
+
+	        //初始化Flash
+	        init: function ()
+	        {   
+	            this.isfollow = (this.isfollow == 1) ? true : false;
+
+	            this.isinit = true;
+	            //播放直播视频，参数：视频地址
+
+	            this.flash.playLive(this.rtmp);
+	            // this.flash.playLive();
+
+	            //更新主播信息，参数：主播ID, 主播头像，是否已关注
+	            this.flash.updateAnchor(this.anchorId, this.anchorhead, this.isfollow);
+	            // this.flash.updateAnchor("123", "head.png", false);
+	        },
+
+	        //关注主播，参数：主播ID
+	        focusAnchor: function ( anchorId )
+	        {
+	            
+	        },
+
+	        //刷新
+	        refresh: function ()
+	        {
+	            // alert("刷新直播页面");
+	            this.flash.playLive(this.rtmp);
+	        },
+
+	        //进入直播间，参数：主播ID
+	        enterRoom: function ( anchorId )
+	        {
+	            window.location.href = 'http://www.yuerlive.cn';
+	            // alert("进入直播间：" + anchorId);
+	        },
+
+	        //直播结束
+	        liveEnd: function ()
+	        {
+	            // alert("直播已结束");
+	        },
+	    };
+
+	    var att = {};
+	    att.width = "100%";
+	    att.height = "100%";
+	    var par = {};
+	    par.quality = "high";
+	    par.bgcolor = "#000000";
+	    par.allowscriptaccess = "sameDomain";
+	    par.allowfullscreen = "true";
+	    par.allowFullScreenInteractive = "true";
+	    par.wmode = "transparent";
+
+	    att.id = "LiveHome";
+	    att.data = "/YeLiveHome.swf";
+	    // liveHomeInterf.roomid = defaultdata.attr('data-id');
+	    // liveHomeInterf.rtmp = defaultdata.attr('data-rtmp');
+	    // liveHomeInterf.anchorId = defaultdata.attr('data-upid');
+	    // liveHomeInterf.anchorhead = 'http://img.wangyuhudong.com/'+defaultdata.attr('data-icon');
+	    // liveHomeInterf.rtmp = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
+	    // liveHomeInterf.rtmp = "rtmp://pili-live-rtmp.wangyuhudong.com/wyds/wyds_dev_3835355";
+	    liveHomeInterf.flash = swfobject.createSWF(att, par, "LiveHomeDiv");
+
+	    var second = 0;
+
+	    function getSource(){
+	    	$.ajax({
+	            url: '/api/index',
+	            type: 'post',
+	            dataType: 'json',
+	            success: function(data) {
+	            	var source = data.object.recommend[0];
+			        liveHomeInterf.rtmp = source.rtmp;
+			        liveHomeInterf.anchorId = source.up_user_icon;
+			        liveHomeInterf.anchorhead = 'http://img.wangyuhudong.com/'+source.up_user_icon;
+			        if (liveHomeInterf.isinit){
+			            liveHomeInterf.init();
+			        }
+	            },
+	            error: function() {
+	                alert('通讯服务器错误');
+	            }
+	        });
+	    }
+
+	    function changeSource(val) { 
+            if (second <= 10) { 
+                second++;
+                setTimeout(function() { 
+                    changeSource(val) 
+                },1000);
+            }else{
+            	second = 0;
+            	getSource();
+            	setTimeout(function() { 
+                    changeSource(val) 
+                },1000);
+            }
+        } 
+        changeSource(second);
+	</script>
+</body>
+</html>
