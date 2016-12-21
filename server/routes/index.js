@@ -937,7 +937,7 @@ router.get('/activity/ucg', function(req, res, next) {
     });
 });
 
-outer.get('/spread/tashan', function(req, res, next) {
+router.get('/spread/tashan', function(req, res, next) {
     var from = req.query.from;
     var islogin = false;
     if(req.headers.cookie){
