@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />
+	<title>娱儿TV独家 DOTA2波士顿特锦赛</title>
+	<script src="/jquery.js"></script>		
+	<script src="/activity/build/mediaelement-and-player.min.js"></script>
+	<script src="/jquery.sha1.js"></script>
+	<script src="/wxjsapi.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<link rel="stylesheet" href="/activity/build/mediaelementplayer.min.css" />
+	<style>
+		html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
+		*{margin: 0; padding: 0;}
+		body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; 
+			font-size:62.5%; 
+			font-style:normal; 
+			max-width: 800px; 
+			margin:0 auto; 
+			height:100%; 
+			color:#9da4ad;
+			background: #141a20; 
+			overflow-x:hidden; 
+			-webkit-overflow-scrolling:touch;
+		}
+		img{border:0; max-width:100%;}
+		body{
+			background: #fff;
+		}
+		img{
+			vertical-align: top;
+			width: 100%;
+		}
+		.g-convedio,.g-bottom, .g-botve, .g-botvt,.g-botvth{
+			position:relative;
+			width:100%;
+		}
+		.g-convedio .videoBox{
+			position:absolute;
+			top:22.5%;
+			left:6.5%;
+			width:87%; 
+			z-index:888;
+		}
+		.g-convedioImgF{
+			position:absolute;
+			top:78%;
+			left:30%;
+			width:40%;
+			background:transparent;
+		}
+		.videocase{
+			box-sizing:border-box;
+			outline:1px solid #6cdaff;
+			position:absolute;
+			left:6%;
+			width:88%; 
+			z-index:888;
+		}
+		.casev1{
+			top:2.3%;
+		}
+		.casev2{
+			top:39%;
+		}
+		.casev3{
+			top:27%;
+		}
+		.g-bofingers{
+			left:6%;
+			top:35%;
+			z-index:888;
+			overflow:hidden;
+		}
+		.g-fingers{
+			position: absolute;
+			width:25%;
+			left:3%;
+			float:left;
+			top:37%;
+			z-index:9999;
+		}
+		.g-buttons{
+			position: absolute;
+			width:75%;
+			left:18%;
+			top:22%;
+			z-index:999;
+			background:transparent;
+		}
+		.videoBox .mask,.videoBox .end-mask{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,0.8);
+		}
+		.videoBox .mask{
+			display: none;
+		}
+		.videoBox .mask h3,.videoBox .end-mask h3{
+			font-size: 14px;
+			color: #fff;
+			text-align: center;
+			margin-top: 18%;
+		}
+		.btn-group{
+			width: 70%;
+			margin:0 auto;
+		}
+		.btn-group a{
+			text-decoration: none;
+			display: inline-block;
+			width: 45%;
+			height: 30px;
+			line-height: 28px;
+			background: rgba(255,51,102,0.1);
+			border:1px solid #f36;
+			border-radius: 6px;
+			color:#fff;
+			text-align: center;
+			font-size: 12px;
+			box-sizing: border-box;
+			margin-top: 8%;
+		}
+		.btn-group .return{
+			margin-left: 10%;
+		}
+		.single a{
+			display: block;
+			margin: 8% auto 0;
+		}
+	</style>
+	<script>
+		enableWxShare({
+			appId: 'wxf96f728533f32fa8',
+			ticket: '{{ticket}}',
+			title: '娱儿TV—UCG中国大学生电子竞技联赛独家直播',
+			type:'video',			
+			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/yuerlogo.png',
+			desc: '看手游赛事就来娱儿TV，百万现金任你抢！'
+		})
+	</script>
+</head>
+<body>
+	<div class="g-container">
+		<div class="g-contop">
+			<img src="/activity/images/ugc1.jpg">
+		</div>
+		<div class="g-convedio">
+			<img src="/activity/images/ugc2.jpg" class="g-convedioImg">
+			<div class="videoBox">
+					{% if one.state==1 %}
+                        <video width="100%" height="100%" id="player1" poster="" controls="" autoplay="" webkit-playsinline playsinline style="margin:0;"><source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_4255779.m3u8" /></video>
+						<div class="mask">
+							<h3>下载娱儿TV观看更多精彩直播</h3>
+							<div class="btn-group">
+								<a href="https://yuertvfile.wangyuhudong.com?type=live&objId=3754" class="enter">下载娱儿TV</a><a href="" class="return">继续观看</a>
+							</div>				
+						</div>
+                    {% else %}
+                        <div class="end-mask">
+							<h3>直播尚未开始</h3>
+							<div class="btn-group single">
+								<a href="https://yuertvfile.wangyuhudong.com?type=live&objId=3754">下载娱儿TV</a>
+							</div>				
+						</div>
+                    {% endif %}					
+				</div>
+			<img src="/activity/images/ugc201.png" class="g-convedioImgF" id="download">
+		</div>
+		<div class="g-conimgs">
+			<img src="/activity/images/ugc3.jpg">
+			<img src="/activity/images/ugc4.jpg">
+			<img src="/activity/images/ugc5.jpg">
+			<img src="/activity/images/ugc6.jpg">
+		</div>
+		<div class="g-bottom">
+			<img src="/activity/images/ugc7.jpg">
+			<div class="videocase casev1">
+				<video width="100%" height="100%" id="player1" poster="" controls="" autoplay="" webkit-playsinline playsinline style="margin:0;"><source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_414992.m3u8" /></video>
+			</div>
+		</div>
+		<div class="g-botve">
+			<img src="/activity/images/ugc8.jpg">
+			<div class="videocase casev2">
+				<video width="100%" height="100%" id="player1" poster="" controls="" autoplay="" webkit-playsinline playsinline style="margin:0;"><source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_414992.m3u8" /></video>
+			</div>
+		</div>
+		<div class="g-botvt">
+			<img src="/activity/images/ugc9.jpg">
+			<div class="videocase casev3">
+				<video width="100%" height="100%" id="player1" poster="" controls="" autoplay="" webkit-playsinline playsinline style="margin:0;"><source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_414992.m3u8" /></video>
+			</div>
+		</div>
+		<div class="g-botvth">
+			<img src="/activity/images/ugc10.jpg">
+			<div class="g-bofingers">
+				<img src="/activity/images/ugc101.png" class="g-fingers">
+				<img src="/activity/images/ugc102.png" class="g-buttons" id="recruit">
+			</div>
+		</div>
+	</div>
+	<script>
+		$('video').mediaelementplayer({
+			features: ['playpause','volume','fullscreen'],
+		});
+		var client = $(window).width();
+		$('.videocase').css('height',client*0.47+'px');
+
+		$("#download").on("click",function(){
+			window.location.href="https://yuertvfile.wangyuhudong.com?type=live&objId=3754";
+		})
+		$("#recruit").on("click",function(){
+			window.location.href="http://www.yuerlive.cn/activity/propage";
+		})
+
+		setInterval(function(){
+			$('.g-fingers').fadeOut(500).delay(200).fadeIn(500);	
+		},1200);
+		var ua = navigator.userAgent.toLowerCase(); 
+		if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+			$('.mask h3').text('进入直播间观看直播');
+			$('.enter').text('进入直播间');
+			$('.enter').attr('href','yuertvopen://live?objId=3754');
+		}
+		function rotate(){ 
+		  	if(window.orientation==180||window.orientation==0){ 
+		  		var screenw = (ua.match(/QQ/i)=="qq" && ua.match(/android/i)) ? screen.width :document.body.clientWidth;
+
+		  		$('.videocase').css('height',screenw*0.47+'px');
+		    	$('.videoBox').css({'height':screenw*0.395+'px','top':screenw*0.225+'px'});
+		    	$('video').css('height',screenw*0.395+'px');
+		  	} 
+			if(window.orientation==90||window.orientation==-90){ 
+				var screenw = (ua.match(/QQ/i)=="qq" && ua.match(/android/i)) ? screen.width :document.body.clientWidth;
+				$('.videocase').css('height',screenw*0.47+'px');
+		        $('.videoBox').css({'height':screenw*0.395+'px','top':screenw*0.225+'px'});
+		        $('video').css('height',screenw*0.395+'px');
+		    } 
+		} 
+		rotate();
+		window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", rotate, false); 
+		var second = 0;
+		function showMask(val) { 
+            if (second < 180) { 
+                second++;
+                setTimeout(function() { 
+	                showMask(val);
+	            },1000);
+            } else {
+                $('.mask').show();                   
+            }
+        }
+		if('{{one.state}}'==1){
+        	showMask(second); 
+        }
+        $('.return').click(function(e){
+        	e.preventDefault();
+        	$('.mask').hide();
+        	second = 0;
+        	showMask(second); 
+        })
+	</script>
+</body>
+</html>
