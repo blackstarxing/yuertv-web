@@ -23,17 +23,21 @@
             {% else %}
             {% for video in video.list %}
                 <div class="m-lst m-video">
-                    <a href="" class="live-address" data-rtmp="{{video.flv}}" data-title="{{video.title}}" data-icon="{{video.up_user_icon}}" data-id="{{video.id}}" data-name="{{video.name}}" data-nickname="{{video.nickname}}" data-follow="{{video.is_concern}}">
+                    <div class="live-address" data-rtmp="{{video.flv}}" data-title="{{video.title}}" data-icon="{{video.up_user_icon}}" data-id="{{video.id}}" data-name="{{video.name}}" data-nickname="{{video.nickname}}" data-follow="{{video.is_concern}}">
                         <img src="{{video.icon}}" alt="">
                         <span><i>·</i>{{video.name}}</span>
                         <div class="play-mask online"></div>
-                    </a>
+                    </div>
                     <div class="m-info">
                         <div class="anchor-head">
+                            {% if video.user_icon %}
                             {% if video.user_icon.indexOf('http')>-1 %}
                             <img src="{{video.user_icon}}" alt="" class="head-icon">
                             {% else %}
                             <img src="http://img.wangyuhudong.com/{{video.user_icon}}" alt="" class="head-icon">
+                            {% endif %}
+                            {% else %}
+                            <img src="/images/default_avatar.png" alt="" class="head-icon">
                             {% endif %}
                             {% if video.sex==1 %}
                                 <img src="/images/female.png" alt="" class="sex">
@@ -55,7 +59,7 @@
 </div>
 
 <div class="m-video-mask">
-    <a href="" class="close"><img src="/images/iconwindow.png" alt=""></a>
+    <div class="close"><img src="/images/iconwindow.png" alt=""></div>
     <div class="m-video-player">
         <div id="VideoPlayerDiv"></div>
     </div> 

@@ -583,7 +583,8 @@ router.get('/activity/recruit', function(req, res, next) {
 });
 
 router.get('/mobile/activityShare', function(req, res, next) {
-    var id = req.url.split('=')[1];
+    var id = req.query.id;
+    // var id = req.url.split('=')[1];
     var ticket = '';
     Thenjs.parallel([function(cont) {
         request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxf96f728533f32fa8&secret=5007eda46723c5faf79a8b9ca3be131a', function(error, response, body) {
