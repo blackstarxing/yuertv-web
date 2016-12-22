@@ -230,6 +230,19 @@ router.get('/alipay', function(req, res, next) {
         res.render('error', { title: "错误"});
     });
 });
+
+router.get('/helpcenter', function(req, res, next) {
+     var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('helpcenter', { title: "帮助中心" ,islogin: islogin,});
+});
+
 router.get('/valuesuccess', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
