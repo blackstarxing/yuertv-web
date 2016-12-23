@@ -25,6 +25,7 @@
 	        rtmp: "{{index.rtmp}}",
 	        anchorId: "{{index.up_user_icon}}",
 	        anchorhead: "http://img.wangyuhudong.com/{{index.up_user_icon}}",
+	        id:"{{index.id}}",
 	        isfollow : 0,
 
 	        isinit: false,
@@ -48,7 +49,7 @@
 	        //关注主播，参数：主播ID
 	        focusAnchor: function ( anchorId )
 	        {
-	            
+	            window.location.href = 'http://www.yuerlive.cn/liveroom?id='+this.id;
 	        },
 
 	        //刷新
@@ -61,7 +62,7 @@
 	        //进入直播间，参数：主播ID
 	        enterRoom: function ( anchorId )
 	        {
-	            window.location.href = 'http://www.yuerlive.cn';
+	            window.location.href = 'http://www.yuerlive.cn/liveroom?id='+this.id;
 	            // alert("进入直播间：" + anchorId);
 	        },
 
@@ -71,6 +72,18 @@
 	            // alert("直播已结束");
 	        },
 	    };
+
+	    function getQueryString(name) {
+		    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+		    var r = window.location.search.substr(1).match(reg);
+		    if (r != null) {
+		        return unescape(r[2]);
+		    }
+		    return null;
+		}
+
+		var type = getQueryString("type");
+		var index = getQueryString("index");
 
 	    var att = {};
 	    att.width = "100%";
@@ -97,11 +110,12 @@
 
 	    function getSource(){
 	    	$.ajax({
-	            url: '/api/index',
+	            url: '/api/taShanLive?type='+type,
 	            type: 'post',
 	            dataType: 'json',
 	            success: function(data) {
-	            	var source = data.object.recommend[0];
+	            	var source = data.object[index];
+	            	liveHomeInterf.id = source.id;
 			        liveHomeInterf.rtmp = source.rtmp;
 			        liveHomeInterf.anchorId = source.up_user_icon;
 			        liveHomeInterf.anchorhead = 'http://img.wangyuhudong.com/'+source.up_user_icon;
@@ -116,7 +130,7 @@
 	    }
 
 	    function changeSource(val) { 
-            if (second <= 10) { 
+            if (second <= 120) { 
                 second++;
                 setTimeout(function() { 
                     changeSource(val) 
