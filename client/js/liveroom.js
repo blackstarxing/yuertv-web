@@ -109,12 +109,38 @@ $(function(){
 
     $('.u-report-next').click(function(e){
         e.preventDefault();
-        $('.m-report-mask').hide();
-        $('.m-result-mask').show();
-        setTimeout(function(){
-            $('.m-result-mask').hide();
-        },1500);
-        $('.report').text('已举报').off().click(function(e){e.preventDefault()});
+        var parm = {};
+        parm.liveUpId = $('.hide-rtmp').attr('data-anchorid');
+        parm.roomNumber = $('.room-number').text();
+        parm.type = $('.report-radio input[type="radio"][checked]').val();
+        parm.userId = window.localStorage.getItem("id");
+        $.ajax({
+            method: "GET",
+            url: "/api/live/inform",
+            dataType: 'json',
+            data: parm,
+            success: function(data) {
+                if (data.code == 0) {
+                    $('.m-report-mask').hide();
+                    $('.m-result-mask').show();
+                    setTimeout(function(){
+                        $('.m-result-mask').hide();
+                    },1500);
+                    $('.report').text('已举报').off().click(function(e){e.preventDefault()});
+                }else{
+                    $('.m-report-mask').hide();
+                    $('.result-pop').css('backgroundImage','url(/images/wrong.png)').text(data.result);
+                    $('.m-result-mask').show();
+                    setTimeout(function(){
+                        $('.m-result-mask').hide();
+                    },1500);
+                }
+            },
+            error: function(a, b, c) {
+                console.log("接口出问题啦");
+            }
+        });
+        
     });
 
     $('.u-report-cancel').click(function(e){

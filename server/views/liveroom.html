@@ -39,7 +39,7 @@
                 <span class="hide-rtmp" data-roomid="{{detail.info.chat_room_id}}" data-anchorid="{{detail.info.up_user_id}}" data-time="{{detail.info.count_down}}">{{detail.info.rtmp}}</span>
                 <h3>{{detail.info.title}}</h3>
                 <div><span class="u-label">{{detail.info.nickname}}{% if detail.info.sex==0 %}<img src="/images/male.png" alt="" class="sex">{% else %}<img src="/images/female.png" alt="" class="sex">{% endif %}</span>{{detail.info.game_name}}</div>
-                <div><span class="u-label">房间ID：{{detail.info.room_number}}</span>在线：{{detail.info.online_num}}</div>
+                <div><span class="u-label">房间ID：<span class="room-number">{{detail.info.room_number}}</span></span>在线：{{detail.info.online_num}}</div>
             </div>
             <div class="follow-avatar f-fr">
                 <div class="follow f-cb">
@@ -255,27 +255,27 @@
         <h3>房间举报</h3>
         <div>
             <div class="report-radio">
-                <input type="radio" id="1" checked="checked" name="report" value="1">
+                <input type="radio" id="1" checked="checked" name="report" value="0">
                 <label name="1" class="checked" for="1">挂机</label>
             </div>
             <div class="report-radio">
-                <input type="radio" id="2" name="report" value="2">
+                <input type="radio" id="2" name="report" value="1">
                 <label name="2" for="2">传播色情/暴力/反动</label>
             </div>
             <div class="report-radio">
-                <input type="radio" id="3" name="report" value="3">
+                <input type="radio" id="3" name="report" value="2">
                 <label name="3" for="3">视频盗播</label>
             </div>
             <div class="report-radio">
-                <input type="radio" id="4" name="report" value="4">
+                <input type="radio" id="4" name="report" value="3">
                 <label name="4" for="4">垃圾广告</label>
             </div>
             <div class="report-radio">
-                <input type="radio" id="5" name="report" value="5">
+                <input type="radio" id="5" name="report" value="4">
                 <label name="5" for="5">游戏标签分类错误</label>
             </div>
             <div class="report-radio">
-                <input type="radio" id="6" name="report" value="6">
+                <input type="radio" id="6" name="report" value="5">
                 <label name="6" for="6">涉嫌使用非法外挂</label>
             </div>
             <p>提示：请勿非法恶意举报</p>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />
+	<title>这个圣诞节，主播的鱼塘都被我承包了！</title>
+	<script src="/jquery.sha1.js"></script>
+	<script src="/wxjsapi.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<style>
+		html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
+		body,ul,li,p,h3,h4,h2,em{margin: 0; padding: 0;}
+		body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; font-size:62.5%; font-style:normal; max-width: 800px; margin:0 auto; height:100%; color:#9da4ad; background: #141a20; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
+		img{border:0; max-width:100%;}
+		li{ list-style:none;}
+		a{text-decoration: none; color:#9da4ad;}
+		h3{font-size: 1.5rem;line-height: 1.25;}
+
+		.l{float:left;}.r{float:right;}
+		.clearfix{*zoom:1;}.clearfix:after{display:block; content:"$"; height:0; clear:both; overflow:hidden; visibility:hidden;}
+		.christmas{
+			background: #fff;
+			position: relative;
+		}
+		.snow-canvas {
+			display: block;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			position: fixed;
+			pointer-events: none;
+		}
+
+		.music_disc { 
+			position: fixed; 
+			top: 10%; 
+			right: 5%; 
+			width: 35px;
+		}
+		.music_play {
+		    -webkit-animation: music_disc 4s linear infinite;
+		     -o-animation: music_disc 4s linear infinite;
+		        animation: music_disc 4s linear infinite;
+		}
+		@-webkit-keyframes music_disc {
+		    0% {
+		        -webkit-transform: rotate(0deg);
+		            -ms-transform: rotate(0deg);
+		             -o-transform: rotate(0deg);
+		                transform: rotate(0deg);
+		    }
+		    100% {
+		        -webkit-transform: rotate(360deg);
+		            -ms-transform: rotate(360deg);
+		             -o-transform: rotate(360deg);
+		                transform: rotate(360deg);
+		    }
+		}
+		@keyframes music_disc {
+		    0% {
+		        -webkit-transform: rotate(0deg);
+		            -ms-transform: rotate(0deg);
+		             -o-transform: rotate(0deg);
+		                transform: rotate(0deg);
+		    }
+		    100% {
+		        -webkit-transform: rotate(360deg);
+		            -ms-transform: rotate(360deg);
+		             -o-transform: rotate(360deg);
+		                transform: rotate(360deg);
+		    }
+		}
+		.button{
+			position: absolute;
+			width: 32%;
+			left: 34%;
+			bottom: 30px;
+		}
+		.button img{
+			width: 100%;
+		}
+	</style>
+	<script>
+		enableWxShare({
+			appId: 'wxf96f728533f32fa8',
+			ticket: '{{ticket}}',
+			title: '这个圣诞节，主播的鱼塘都被我承包了！',		
+			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/yuerlogo.png',
+			desc: '【娱儿TV】圣诞活动暖心来袭，充值折扣低至八折！错过等一年！'
+		})
+	</script>
+</head>
+<body>
+	<div class="christmas">
+		<canvas class="snow-canvas" speed="100" interaction="false" size="2" count="40" opacity="0.00001" start-color="rgba(253,252,251,1)" end-color="rgba(251,252,253,0.3)" wind-power="0" image="false" width="375" height="667"></canvas>
+	    <canvas class="snow-canvas" speed="150" interaction="true" size="6" count="20" start-color="rgba(253,252,251,1)" end-color="rgba(251,252,253,0.3)" opacity="0.00001" wind-power="2" image="false" width="375" height="667"></canvas>
+	   	<!--  <canvas class="snow-canvas" speed="15" interaction="true" size="12" count="10" wind-power="-5" image="/activity/images/snow.png" width="375" height="667"></canvas> -->
+	   	<img src="/activity/images/christmas.jpg" alt="">
+	   	<img src="/activity/images/christmas_music.png" alt="" class="music_disc music_play" id="music">
+	   	<audio autoplay="true" loop="loop" id="Jaudio">
+			<source src="/activity/images/christmas.mp3" type="audio/mpeg">
+		</audio>
+		<a href="https://yuertvfile.wangyuhudong.com/" class="button"><img src="/activity/images/christmas_download.png" alt=""></a>
+	</div>
+	<script src="/jquery.js"></script>
+	<script src="/activity/js/snow-plugin.js"></script>
+	<script>
+		$(function(){
+			$(".snow-canvas").snow();
+
+			var ua = navigator.userAgent.toLowerCase(); 
+			if(ua.match(/YuertvBrowser/i)!="yuertvbrowser"){
+				$('.button').attr('href','yuertvopen://recharge').html('<img src="/activity/images/christmas_recharge.png" alt="">');
+			}
+
+			var music = document.getElementById("music");
+		    var audio = document.getElementsByTagName("audio")[0];
+
+		    audio.addEventListener('ended', function () {  
+		        music.setAttribute("class","music_disc");
+		    }, false);
+
+			function audioAutoPlay(id){
+			    var audio = document.getElementById(id);
+			    audio.play();
+			    document.addEventListener("WeixinJSBridgeReady", function () {
+			        audio.play();
+			    }, false);
+			}
+			audioAutoPlay('Jaudio'); 
+
+		    music.addEventListener("touchstart", function() {
+		        if (audio.paused) {
+		            audio.play();
+		            this.setAttribute("class","music_disc music_play");
+		        } else {
+		            audio.pause();
+		            this.setAttribute("class","music_disc");
+		        };
+		    }, false);
+		});
+	</script>
+</body>
+</html>
