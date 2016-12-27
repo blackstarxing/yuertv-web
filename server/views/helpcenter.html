@@ -18,15 +18,16 @@
 		width:900px;
 	}
 	.m-top button{
-		margin-right:60px;
+		margin-right:50px;
 		background:#f3f3f3;
 		border:none;
-		width:150px;
+		width:160px;
 		height:30px;
 		line-height:30px;
 		text-align:left
 		font-size:18px;
 		color:#777;
+
 	}
 	button img{
 		display:inline-block;
@@ -35,8 +36,18 @@
 		float:left;
 		margin-right:10px;
 	}
-	.htutorial,.hproblems,.hquestions{
-		display:none;
+	.hosts{
+		margin-right:50px;
+		background:#f3f3f3;
+		border:none;
+		width:160px;
+		height:30px;
+		line-height:30px;
+		text-align:left;
+		font-size:14px;
+		color:#777;
+		margin-bottom:30px;
+		vertical-align:middle;
 	}
 	.hostSwitch{
 		position:relative;
@@ -52,7 +63,7 @@
 	}
 
 	/*主播教程，主播常见问题，用户常见问题左侧*/
-	.htleft,.hpleft,.hqleft{
+	.htleft{
 		position: absolute;
 		width:190px;
 	}
@@ -64,6 +75,7 @@
 		line-height:30px;
 		font-size:14px;
 		color:#777;
+		margin-bottom:30px;
 	}
 	.htlefthost img{
 		display:inline-block;
@@ -72,129 +84,114 @@
 		float:left;
 		margin-right:10px;
 	}
-	#moduleIds{
-		display:none;
-	}
 	#moduleIds li{
 		font-size:14px;
 		color:#b5b5b5;
+		height:20px;
+		line-height:20px;
+		margin-bottom:20px;
 	}
-	.rightswitchcolor{
+	#moduleIds li.rightswitchcolor{
+		height:20px;
+		line-height:20px;
 		font-size:14px;
 		color:#1a2129;
+		margin-bottom:20px;
 	}
 	/*主播教程，主播常见问题，用户常见问题右侧*/
-	.htright,.hpright,.hqright{
+	.htright{
 		margin-left:190px;
 		width:900px;
+		font-size:14px;
+		color:#333;
 	}
-	.htright p,.hpright p,.hqright p{
+	.hqright p{
+		color:#333;
+		font-size:14px;
+		/*text-align:left;*/
 		text-indent:2em;
+
 	}
 </style>
-
 {% endblock %}
 
 {% block content %}
 <div class="g-container">
 	<div class="m-top">
-		{% for navigation in navigation.modules %}
-			<button class="host" id="moduleId" >
+		{% for modules in navigation.modules %}
+			<button class="host" data-id="{{modules.id}}">
 				<img src="http://img.wangyuhudong.com/{{modules.thumbnails}}">
 				{{modules.module}}
 			</button>
 		{% endfor %}
+		<div class="biubiubiu"></div>
 	</div>
 	<div class="htutorial hostSwitch">
 		<div class="htleft">
-			<button class="htlefthost"><img src="/images/host.png">主播教程</button>
-			<ul>
-				<li><a href=""></a></li>
-				<li><a href=""></a></li>
-				<li><a href=""></a></li>
-				<li><a href=""></a></li>
-			</ul>
+			<button class="hosts" data-id="{{navigation.modules.id}}"></button>
+			<div class="leftmodule">
+				<ul id="moduleIds">
+				{% for subsets in navigation.subsets %}
+					{% if loop.first == true %}
+					<li data-id="{{subsets.id}}" class="rightswitchcolor" >{{subsets.title}}</li>
+					{% else %}
+					<li data-id="{{subsets.id}}">{{subsets.title}}</li>
+					{% endif %}
+				{% endfor %}
+				</ul>
+			</div>
 		</div>
 		<div class="htright" date-id="{{subset.id}}">
-			<p>
-				{{subset.content}}
-			</p>
-		</div>
-	</div>
-	<div class="hproblems hostSwitch">
-		<div class="hpleft">
-			<button class="htlefthost"><img src="/images/problem.png">主播常见问题</button>
-			{% for navigation in navigation.subsets %}
-			<ul date-module="{{subsets.module}}">
-				<li date-id="{{subsets.id}}"><a href="">{{subsets.title}}</a></li>
-			</ul>
-			{% endfor %}
-		</div>
-		<div class="hpright">
-			<p>
-				题第二届王者校园争霸赛比赛时间比赛地点杭州师范学院下沙校区室内篮球馆比赛须知参赛选手须人组队且人均必须是本省同所高校学生玩家可以招齐成员在赛事当天来到比赛现场报名赛事详细规则请关注官方网站与赛事中心标题第二届王者校园争霸赛比赛时间比赛地点杭州师范学院下沙校区室内篮球馆比赛须知参赛选手须5人组队且5人均必须是本省同所高校学生玩家可以招齐成员在赛事当天来到比赛现场报名赛事详细规则请关注官方网站与赛事中心。
-
-			</p>
-		</div>
-	</div>
-	<div class="hquestions hostSwitch">
-		<div class="hqleft">
-			<button class="htlefthost"><img src="/images/question.png">用户常见问题</button>
-			<ul id="moduleIds">
-				<li><a href=""></a></li>
-				<li><a href=""></a></li>
-				<li><a href=""></a></li>
-				<li><a href=""></a></li>
-			</ul>
-		</div>
-		<div class="hqright">
-			<p>
-				题第二届王者校园争霸赛比赛时间比赛地点杭州师范学院下沙校区室内篮球馆比赛须知参赛选手须人组队且人均必须是本省同所高校学生玩家可以招齐成员在赛事当天来到比赛现场报名赛事详细规则请关注官方网站与赛事中心标题第二届王者校园争霸赛比赛时间比赛地点杭州师范学院下沙校区室内篮球馆比赛须知参赛选手须5人组队且5人均必须是本省同所高校学生玩家可以招齐成员在赛事当天来到比赛现场报名赛事详细规则请关注官方网站与赛事中心。
-
-			</p>
 		</div>
 	</div>
 </div>
 {% endblock %}
 {% block js %}
 <script type="text/javascript">
-	$(".m-top button").on("click", function() {
-        $(this).addClass("switchColor").siblings().removeClass("switchColor");
-        $(".hostSwitch").hide().eq($(this).index()).show();
+	$(".htright").html('{{navigation.firstSubset.content | safe }}');
+	function getQueryString(name) {
+	    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+	    var r = window.location.search.substr(1).match(reg);
+	    if (r != null) {
+	        return unescape(r[2]);
+	    }
+	    return null;
+	}
+	var index = getQueryString("moduleId");
+	var copy=$('.host').eq(index-1).html();
+	$('.hosts').html(copy);
+	$(".m-top button").eq(index-1).addClass("switchColor");
+	$(".m-top button").click(function(e) {
+		var moduleid=$(this).attr("data-id");
+		var leftid=$("leftmodule li").attr("data-id");
+        window.location.href="/helpcenter?moduleId="+moduleid;
     })
-    $(".m-top button:eq(0)").trigger("click");
-    $(".biubiubiu").css({width:"150px",left:150,position:"absolute",height:"2px",background:"#f36"})
+    $(".biubiubiu").css({width:"160px",left:150+210*(index-1),position:"absolute",height:"2px",background:"#f36"})
     $(".m-top button").on("click",function(){
     	$(".biubiubiu").animate({left:$(this).position().left},300)
     })
     // 点击左侧对应显示右边内容
     $(".htleft li").on('click', function(event) {
         event.preventDefault();
+        var leftid=$(this).attr("data-id");
+        var subsetid=$(".m-top button").attr("data-id");
         $(this).addClass("rightswitchcolor").siblings().removeClass("rightswitchcolor");
         $(".hqright").eq($(this).index() - 1).show().siblings().hide();
-    });
-    // 帮助中心列表
-    function newsList(){
         $.ajax({
             method: "GET",
-            url: "http://172.16.2.62:8777/helpCenter/list",
+            url: "http://172.16.2.62:8777/helpCenter/subset",
             dataType: 'json',
             data: {
-                moduleId: 1
+                subsetId: leftid
             }, 
             success: function(data) {
                 if (data.code == 0) {
                     if(data.object){
-                        var str="";
-                        for (index in data.object.subsets) {
-                            str+='<ul>'
-									'<li><a href="">'+data.object.subsets[index].title+'</a></li>'+
-									'<li><a href="">'+data.object.subsets[index].title+'</a></li>'+
-									'<li><a href="">'+data.object.subsets[index].title+'</a></li>'+
-									'<li><a href="">'+data.object.subsets[index].title+'</a></li>'+
-								'</ul>';
-                        } 
-                        $(".hqleft").html(str).show();  
+                    	var str="";
+                    	for(index in data.object){
+                    		str+=data.object.content;
+                    	}
+                    	$(".htright").show().html(str); 
 
                     }           
                 } else {
@@ -205,8 +202,7 @@
                 console.log("接口出问题啦");
             }
         })
-    }
-    newsList();
+    });
     
 </script>
 {% endblock %}
