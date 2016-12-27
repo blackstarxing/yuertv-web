@@ -27,7 +27,6 @@
 		text-align:left
 		font-size:18px;
 		color:#777;
-
 	}
 	button img{
 		display:inline-block;
@@ -61,7 +60,6 @@
 		color:#1a2129;
 		text-align:left;
 	}
-
 	/*主播教程，主播常见问题，用户常见问题左侧*/
 	.htleft{
 		position: absolute;
@@ -109,13 +107,10 @@
 	.hqright p{
 		color:#333;
 		font-size:14px;
-		/*text-align:left;*/
 		text-indent:2em;
-
 	}
 </style>
 {% endblock %}
-
 {% block content %}
 <div class="g-container">
 	<div class="m-top">
@@ -189,9 +184,8 @@
                 if (data.code == 0) {
                     if(data.object){
                     	var str="";
-                    	str+=data.object.content;
+						str+=data.object.content;
                     	$(".htright").show().html(str); 
-
                     }           
                 } else {
                     console.log(data.result);
@@ -201,7 +195,6 @@
                 console.log("接口出问题啦");
             }
         })
-    });
-    
+    });    
 </script>
 {% endblock %}
