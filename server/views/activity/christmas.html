@@ -6,6 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta content="telephone=no" name="format-detection" />
 	<title>这个圣诞节，主播的鱼塘都被我承包了！</title>
+	<script src="/jquery.js"></script>
 	<script src="/jquery.sha1.js"></script>
 	<script src="/wxjsapi.js"></script>
 	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -73,6 +74,11 @@
 		                transform: rotate(360deg);
 		    }
 		}
+		.bottom{
+			position: fixed;
+			bottom: 0;
+			line-height: 0;
+		}
 		.button{
 			position: absolute;
 			width: 32%;
@@ -103,16 +109,18 @@
 	   	<audio autoplay="true" loop="loop" id="Jaudio">
 			<source src="/activity/images/christmas.mp3" type="audio/mpeg">
 		</audio>
-		<a href="https://yuertvfile.wangyuhudong.com/" class="button"><img src="/activity/images/christmas_download.png" alt=""></a>
+		<div class="bottom">
+			<img src="/activity/images/christmas_bottom.png" alt="">
+			<a href="https://yuertvfile.wangyuhudong.com/" class="button"><img src="/activity/images/christmas_download.png" alt=""></a>
+		</div>		
 	</div>
-	<script src="/jquery.js"></script>
 	<script src="/activity/js/snow-plugin.js"></script>
 	<script>
 		$(function(){
 			$(".snow-canvas").snow();
 
 			var ua = navigator.userAgent.toLowerCase(); 
-			if(ua.match(/YuertvBrowser/i)!="yuertvbrowser"){
+			if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
 				$('.button').attr('href','yuertvopen://recharge').html('<img src="/activity/images/christmas_recharge.png" alt="">');
 			}
 

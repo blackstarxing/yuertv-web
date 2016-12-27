@@ -947,7 +947,7 @@ router.get('/activity/ucg', function(req, res, next) {
             ticket = JSON.parse(result[0]).ticket;
             Thenjs.parallel([function(cont) {
                 request({
-                    uri: 'http://172.16.2.62:8777/live/detail?id=21',
+                    uri: 'http://172.16.2.62:8777/live/detail?id=3754',
                     headers: {
                         'User-Agent': 'request',
                         'cookie': req.headers.cookie,

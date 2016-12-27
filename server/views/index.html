@@ -103,10 +103,14 @@
                         </div>
                         <div class="m-info">
                             <div class="anchor-head">
+                                {% if video.user_icon %}
                                 {% if video.user_icon.indexOf('http')>-1 %}
                                 <img src="{{video.user_icon}}" alt="" class="head-icon">
                                 {% else %}
                                 <img src="http://img.wangyuhudong.com/{{video.user_icon}}" alt="" class="head-icon">
+                                {% endif %}
+                                {% else %}
+                                <img src="/images/default_avatar.png" alt="" class="head-icon">
                                 {% endif %}
                                 {% if video.sex==1 %}
                                     <img src="/images/female.png" alt="" class="sex">
