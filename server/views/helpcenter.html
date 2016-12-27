@@ -35,13 +35,19 @@
 		float:left;
 		margin-right:10px;
 	}
+	.hosts img{
+		display:inline-block;
+		width:22px;
+		height:22px;
+		float:left;
+	}
 	.hosts{
 		margin-right:50px;
 		background:#f3f3f3;
 		border:none;
-		width:160px;
-		height:30px;
-		line-height:30px;
+		width:150px;
+		height:22px;
+		line-height:22px;
 		text-align:left;
 		font-size:14px;
 		color:#777;
@@ -63,24 +69,7 @@
 	/*主播教程，主播常见问题，用户常见问题左侧*/
 	.htleft{
 		position: absolute;
-		width:190px;
-	}
-	.htlefthost{
-		background:#f3f3f3;
-		border:none;
-		text-align:left;
-		height:30px;
-		line-height:30px;
-		font-size:14px;
-		color:#777;
-		margin-bottom:30px;
-	}
-	.htlefthost img{
-		display:inline-block;
-		width:30px;
-		height:30px;
-		float:left;
-		margin-right:10px;
+		width:149px;
 	}
 	#moduleIds li{
 		font-size:14px;
@@ -98,8 +87,12 @@
 		margin-bottom:20px;
 	}
 	/*主播教程，主播常见问题，用户常见问题右侧*/
+	.leftborder{
+		margin-left:150px;
+		border-left:2px solid #b5b5b5;
+	}
 	.htright{
-		margin-left:190px;
+		margin-left:40px;
 		width:900px;
 		font-size:14px;
 		color:#333;
@@ -137,8 +130,11 @@
 				</ul>
 			</div>
 		</div>
-		<div class="htright" date-id="{{subset.id}}">
+		<div class="leftborder">
+			<div class="htright" date-id="{{subset.id}}">
+			</div>
 		</div>
+		
 	</div>
 </div>
 {% endblock %}
