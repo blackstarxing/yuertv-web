@@ -10,6 +10,7 @@
 		width:1200px;
 		margin:95px auto 110px;
 		position:relative;
+		min-height:490px;
 	}
 	.m-top{
 		margin-left:150px;
@@ -87,6 +88,7 @@
 		height:20px;
 		line-height:20px;
 		margin-bottom:20px;
+		cursor: pointer;
 	}
 	#moduleIds li.rightswitchcolor{
 		height:20px;
@@ -173,7 +175,7 @@
         $(".hqright").eq($(this).index() - 1).show().siblings().hide();
         $.ajax({
             method: "GET",
-            url: "http://172.16.2.62:8777/helpCenter/subset",
+            url: "/api/helpCenter/subset",
             dataType: 'json',
             data: {
                 subsetId: leftid
