@@ -90,7 +90,7 @@
 	/*主播教程，主播常见问题，用户常见问题右侧*/
 	.leftborder{
 		margin-left:150px;
-		border-left:2px solid #b5b5b5;
+		border-left:1px solid #b5b5b5;
 	}
 	.htright{
 		margin-left:40px;
@@ -159,10 +159,10 @@
 		var leftid=$("leftmodule li").attr("data-id");
         window.location.href="/helpcenter?moduleId="+moduleid;
     })
-    $(".biubiubiu").css({width:"160px",left:150+210*(index-1),position:"absolute",height:"2px",background:"#f36"})
-    $(".m-top button").on("click",function(){
-    	$(".biubiubiu").animate({left:$(this).position().left},300)
-    })
+    $(".biubiubiu").css({width:"160px",left:150+215*(index-1),position:"absolute",height:"2px",background:"#f36"})
+    // $(".m-top button").on("click",function(){
+    // 	$(".biubiubiu").animate({left:$(this).position().left},300)
+    // })
     // 点击左侧对应显示右边内容
     $(".htleft li").on('click', function(event) {
         event.preventDefault();
