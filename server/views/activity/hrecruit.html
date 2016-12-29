@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>主播招募</title>
+	<title></title>
+</head>
+<style type="text/css">
+	*{margin: 0; padding: 0;}
+	body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; }
+	.g-container{
+		position:absolute;
+		left:50%;
+		margin-left:-960px;
+	}
+	img{
+		border:0;
+		vertical-align:top; 
+	}
+	#switch{
+		position:relative;
+		top:535px;
+		left:50%;
+		margin-left:-180px;
+		background:transparent;
+	}
+</style>
+<body>
+	<div class="g-container">
+		<div class="g-imgs">
+			<img src="/activity/images/re1.jpg">
+			<img src="/activity/images/re2.jpg">
+		</div>
+	</div>
+	<img src="/activity/images/re5.png" id="switch">
+	<script src="/jquery.js"></script>
+	<script type="text/javascript">
+		$("#switch").on("click",function(){
+			window.open("http://yuertv.wangyuhudong.com/");
+		})
+	</script>
+</body>
+</html>
