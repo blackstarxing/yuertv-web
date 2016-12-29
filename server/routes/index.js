@@ -1051,4 +1051,38 @@ router.get('/activity/christmas', function(req, res, next) {
     });
 });
 
+router.get('/activity/anchorRecruit', function(req, res, next) {
+    Thenjs.parallel([function(cont) {
+        request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxf96f728533f32fa8&secret=5007eda46723c5faf79a8b9ca3be131a', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        Thenjs.parallel([function(cont) {
+            console.log(JSON.parse(result[0]).access_token);
+            request('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+JSON.parse(result[0]).access_token+'&type=jsapi', function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    cont(null, body);
+                } else {
+                    cont(new Error('error!'));
+                }
+            })
+        }]).then(function(cont, result) {
+            ticket = JSON.parse(result[0]).ticket;
+            res.render('activity/anchorRecruit', {
+                ticket: ticket
+            });
+        }).fail(function(cont, error) { 
+            console.log(error);
+            res.render('error', { title: "错误"});
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+});
+
 module.exports = router;
