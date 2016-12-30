@@ -12,7 +12,7 @@
 	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<style>
 		html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
-		body,ul,li,p,h3,h4,h2,em{margin: 0; padding: 0;}
+		body,ul,li,p,h3,h4,h2,em,button,input{margin: 0; padding: 0;}
 		body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; font-size:62.5%; font-style:normal; max-width: 800px; margin:0 auto; height:100%; color:#9da4ad; background: #141a20; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
 		img{border:0; max-width:100%;}
 		li{ list-style:none;}
@@ -48,7 +48,7 @@
 			background: url('/activity/images/mrecruit_btn2.png') left top no-repeat;
 			background-size: 100% 100%;
 		}
-		.mask{
+		.mask,.form-mask{
 			position:fixed;
 		    left:0;
 		    top:0;
@@ -69,10 +69,12 @@
 		.tip button{
 			background: none;
 			border:none;
-			width: 25%;
+		}
+		.tip .close{
+			width: 20%;
 			position: absolute;
-			right: -10%;
-			top:-10%;
+			right: -8%;
+			top:-8%;
 		}
 		.tip p{
 			position: absolute;
@@ -82,6 +84,55 @@
 			font-size: 20px;
 			font-weight: bold;
 			padding:0 15px;
+			width: 100%;
+			box-sizing: border-box;
+		}
+		.telnumber{
+			position: absolute;
+			bottom:70px;
+			width: 60%;
+			padding:5px 0;
+			font-size: 14px;
+			line-height: 14px;
+			border:1px solid #fff;
+			box-sizing: border-box;
+			border-radius: 3px;
+			left: 50%;
+			margin-left: -30%;
+			background: #08b4dc;
+			color:#fff;
+			outline: none;
+			text-indent: 10px;
+		}
+		.tip ::-webkit-input-placeholder { /* WebKit browsers */ 
+		    color: #fff; 
+		} 
+		.tip :-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+		    color: #fff; 
+		} 
+		.tip ::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+		    color: #fff; 
+		} 
+		.tip :-ms-input-placeholder { /* Internet Explorer 10+ */ 
+		    color: #fff; 
+		} 
+		.submit{
+			position: absolute;
+			bottom:10px;
+			width: 80%;
+			left: 50%;
+			margin-left: -40%;
+		}
+		.error{
+			position: absolute;
+			bottom:50px;
+			width: 60%;
+			height: 15px;
+			line-height: 15px;
+			left: 50%;
+			margin-left: -30%;
+			color:#f15a5a;
+			display: none;
 		}
 	</style>
 	<script>
@@ -93,10 +144,9 @@
 		enableWxShare({
 			appId: 'wxf96f728533f32fa8',
 			ticket: '{{ticket}}',
-			title: '娱儿TV独家 LOL高校联赛决赛',
-			type:'video',			
+			title: '娱儿直播百万薪金招募令！',		
 			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/yuerlogo.png',
-			desc: '娱儿TV携手杭州移动，独家直播英雄联盟高校联赛决赛。移动带你超神，12月3日巅峰对决，争夺10万现金奖励。'
+			desc: '新年谁还抢红包？娱儿主播招募百万薪金等你瓜分！'
 		})
 	</script>
 </head>
@@ -112,20 +162,31 @@
 	</div>
 	<div class="mask">
 		<div class="tip">
-			<button><img src="/activity/images/mrecruit_close.png" alt=""></button>
+			<button class="close"><img src="/activity/images/mrecruit_close.png" alt=""></button>
 			<img src="/activity/images/mrecruit_pop.png" alt="" class="bg">
 			<p></p>
 		</div>
 	</div>	
+	<div class="form-mask">
+		<div class="tip">
+			<button class="close"><img src="/activity/images/mrecruit_close.png" alt=""></button>
+			<img src="/activity/images/mrecruit_form.png" alt="" class="bg">
+			<input type="tel" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>11)value=value.slice(0,11)" class="telnumber" placeholder="请输入手机号码" name="手机号码">
+			<div class="error"></div>
+			<button class="submit"><img src="/activity/images/mrecruit_submit.png" alt=""></button>
+		</div>
+	</div>
 	<script>
 
-		$('.mask').bind("touchmove",function(e){
+		$('.mask,.form-mask').bind("touchmove",function(e){
 			e.stopPropagation();
 		    e.preventDefault();
 		});
 
-		$('.tip button').click(function(){
+		$('.close').click(function(){
 			$('.mask').hide();
+			$('.form-mask').hide();
+			$('input').val('');
 		})
 		// 获取参数
 		function getQueryString(name) {
@@ -139,7 +200,14 @@
 
 		function showTip(text){
 			$('.mask').show();
-			$('.tip p').text(text);
+			$('.mask p').text(text);
+		}
+
+		function showError(text){
+			$('.error').text(text).fadeIn();
+	        setTimeout(function(){
+	            $('.error').fadeOut();
+	        },1500);
 		}
 
 		var userId = getQueryString("userId"),
@@ -157,7 +225,7 @@
 			}
 			$.ajax({
 			    method: "GET",
-			    url: "http://172.16.2.62:8099/activity/register",
+			    url: "http://wy.yuerapi.wangyuhudong.com/activity/register",
 			    dataType: 'json',
 			    data:parm,
 			    success: function(data) {
@@ -178,19 +246,75 @@
 			}); 
 		}
 		// 页面初始状态
-		engaged(0);
+		if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+			engaged(0);
+		}
+		
 
 		// 报名
-		if($('.join').html()=='我要报名' && ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
-			$('.join').click(function(e){
-				e.preventDefault();
-				if(userId && token){
-					engaged(1);
-				}else{
-					window.location.href = "yuertvopen://login";
-				}
-			})
+		// $('.join').click(function(e){
+		// 	if($('.join').html()=='我要报名' && ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+		// 		e.preventDefault();
+		// 		if(userId && token){
+		// 			engaged(1);
+		// 		}else{
+		// 			window.location.href = "yuertvopen://login";
+		// 		}
+		// 	}
+		// })
+
+		if(window.localStorage.getItem("yuer_signed")){
+			$('.join').attr('href','javascript:void(0);').html('已报名').addClass('hasjoin');
 		}
+
+		
+		$('.join').click(function(e){
+			if($('.join').html()=='我要报名' && ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+				e.preventDefault();
+				if(ua.match(/android/i)){
+					if(userId && token){
+						engaged(1);
+					}else{
+						window.location.href = "yuertvopen://login";
+					}
+				}else{
+					$('.form-mask').show();
+				}
+			}				
+		})
+
+		$('.submit').click(function(e){
+			e.preventDefault();
+			if($('.telnumber').val()){
+	            if(/^1[34578]\d{9}$/.test($('.telnumber').val())){
+	                var parm = {};
+	                parm.mobile = $('.telnumber').val();
+	                parm.type = 1;
+	                $.ajax({
+			            url: 'http://wy.yuerapi.wangyuhudong.com/activity/iosRegister',
+			            data: parm,
+			            type: 'get',
+			            dataType: 'json',
+			            success: function(data) {
+			                if (data.code==0) {
+			                    $('.form-mask').hide();
+			                    $('.join').attr('href','javascript:void(0);').html('已报名').addClass('hasjoin');
+			                    window.localStorage.setItem("yuer_signed", '1');              
+			                }else{
+			                    showError(data.result);  
+			                }
+			            },
+			            error: function() {
+			                showError('连接失败，请检查您的网络设置后重试');
+			            }
+			        });
+	            }else{
+	            	showError('请输入正确的手机号码！');
+	            }
+	        }else{
+	        	showError('手机号码不能为空！');
+	        }
+		})
 		
 	</script>
 </body>
