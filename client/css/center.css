@@ -57,12 +57,14 @@ input{
 .g-left .current{
 	color:#f36;
 }
-.g-left ul li.u-center{
+.g-left h1.u-center{
  	font-size:30px;
+ 	color:#cecfd2;
  	height:100px;
  	margin-top:40px;
  	width:260px;
  	text-align:center;
+ 	font-weight:normal;
 
  } 
 .g-left ul li.u-cbottom{
@@ -1120,6 +1122,17 @@ h3.u-topfish{
 	border-radius:5px;
 	background:#f36;
 	margin-bottom: 25px;
+}
+.app p{
+	font-size:14px;
+	color:#fff;
+	margin:10px 0px;
+}
+.app img{
+	display:inline-block;
+	width:220px;
+	height:220px;
+	margin-left:30px;
 }
 .u-value{
 	width:780px;
