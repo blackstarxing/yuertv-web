@@ -923,9 +923,11 @@ router.get('/copyright', function(req, res, next) {
     };
     res.render('copyright', { title: "著作权声明" ,islogin:islogin});
 });
+
 router.get('/activity/hrecruit', function(req, res, next) {
     res.render('activity/hrecruit', { title: "主播招募" });
 });
+
 router.get('/activity/ucg', function(req, res, next) {
     Thenjs.parallel([function(cont) {
         request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxf96f728533f32fa8&secret=5007eda46723c5faf79a8b9ca3be131a', function(error, response, body) {

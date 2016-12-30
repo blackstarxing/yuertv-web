@@ -155,7 +155,7 @@
 	<div class="m-recruit">
 		<div class="top">
 			<img src="/activity/images/mrecruit1.jpg" alt="">
-			<a href="https://yuertvfile.wangyuhudong.com" class="join">我要报名</a>
+			<a href="https://yuertvfile.wangyuhudong.com?type=live" class="join">我要报名</a>
 		</div>
 		<img src="/activity/images/mrecruit2.jpg" alt="">
 		<img src="/activity/images/mrecruit3.jpg" alt="">
@@ -205,9 +205,9 @@
 		}
 
 		function showError(text){
-			$('.error').text(text).fadeIn();
+			$('.error').text(text).show();
 	        setTimeout(function(){
-	            $('.error').fadeOut();
+	            $('.error').hide();
 	        },2500);
 		}
 
@@ -231,14 +231,22 @@
 			    data:parm,
 			    success: function(data) {
 			    	if(data.code==-2){
-			    		$('.join').attr('href','javascript:void(0);').html('已报名').addClass('hasjoin');
+			    		if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+							$('.join').attr('href','javascript:void(0);').html('已报名').addClass('hasjoin');
+						}
 			    	}else if(data.code==-5){
 			    		$('.join').attr('href','javascript:void(0);').html('报名已结束').addClass('hasjoin');
 			    	}else if(data.code==0){
 			    		showTip('报名成功')
 			    		$('.join').attr('href','javascript:void(0);').html('已报名').addClass('hasjoin');
+			    	}else if(data.code==-6){
+			    		$('.join').attr('href','javascript:void(0);').html('活动已结束').addClass('hasjoin');
+			    	}else if(data.code==-7){
+			    		$('.join').attr('href','javascript:void(0);').html('活动未开始').addClass('hasjoin');
 			    	}else if(data.code!=1){
-			    		showTip(data.result);
+			    		if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+							showTip(data.result);
+						}			    		
 			    	}
 			    },
 			    error: function(a, b, c) {
@@ -247,9 +255,7 @@
 			}); 
 		}
 		// 页面初始状态
-		if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
-			engaged(0);
-		}
+		engaged(0);
 		
 
 		// 报名
