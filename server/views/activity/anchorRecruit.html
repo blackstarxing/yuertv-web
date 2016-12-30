@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />
+	<title>娱儿TV百万薪金主播招募令</title>
+	<script src="/jquery.js"></script>
+	<script src="/jquery.sha1.js"></script>
+	<script src="/wxjsapi.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<style>
+		html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
+		body,ul,li,p,h3,h4,h2,em{margin: 0; padding: 0;}
+		body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; font-size:62.5%; font-style:normal; max-width: 800px; margin:0 auto; height:100%; color:#9da4ad; background: #141a20; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
+		img{border:0; max-width:100%;}
+		li{ list-style:none;}
+		a{text-decoration: none; color:#9da4ad;}
+		h3{font-size: 1.5rem;line-height: 1.25;}
+
+		.l{float:left;}.r{float:right;}
+		.clearfix{*zoom:1;}.clearfix:after{display:block; content:"$"; height:0; clear:both; overflow:hidden; visibility:hidden;}
+
+		img{
+			vertical-align: top;
+			line-height: 0;
+		}
+		.top{
+			position: relative;
+		}
+		.join{
+			position: absolute;
+			bottom: 0;
+			background: url('/activity/images/mrecruit_btn1.png') left top no-repeat;
+			width: 46%;
+			height: 50px;
+			line-height: 50px;
+			color:#3c75a8;
+			text-align: center;
+			background-size: 100% 100%;
+			left: 50%;
+			margin-left: -23%;
+			font-size: 16px;
+		}
+		.hasjoin{
+			color:#996637;
+			background: url('/activity/images/mrecruit_btn2.png') left top no-repeat;
+			background-size: 100% 100%;
+		}
+		.mask{
+			position:fixed;
+		    left:0;
+		    top:0;
+		    width:100%;
+		    height:100%;
+		    background:rgba(0,0,0,0.6);
+		    display:none;
+		    z-index:999999;
+		}
+		.tip{
+			width:70%;
+			margin:30% auto 0;
+			position: relative;
+		}
+		.tip .bg{
+			width: 100%;
+		}
+		.tip button{
+			background: none;
+			border:none;
+			width: 25%;
+			position: absolute;
+			right: -10%;
+			top:-10%;
+		}
+		.tip p{
+			position: absolute;
+			bottom: 25px;
+			text-align: center;
+			color:#fff;
+			font-size: 20px;
+			font-weight: bold;
+			padding:0 15px;
+		}
+	</style>
+	<script>
+		if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i) || navigator.userAgent.match(/android/i)) {
+			// window.location.href = '/activity/recruit';
+        }else{
+        	window.location.href = '/activity/hrecruit';
+        }
+		enableWxShare({
+			appId: 'wxf96f728533f32fa8',
+			ticket: '{{ticket}}',
+			title: '娱儿TV独家 LOL高校联赛决赛',
+			type:'video',			
+			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/yuerlogo.png',
+			desc: '娱儿TV携手杭州移动，独家直播英雄联盟高校联赛决赛。移动带你超神，12月3日巅峰对决，争夺10万现金奖励。'
+		})
+	</script>
+</head>
+<body>
+	<div class="m-recruit">
+		<div class="top">
+			<img src="/activity/images/mrecruit1.jpg" alt="">
+			<a href="https://yuertvfile.wangyuhudong.com" class="join">我要报名</a>
+		</div>
+		<img src="/activity/images/mrecruit2.jpg" alt="">
+		<img src="/activity/images/mrecruit3.jpg" alt="">
+		<img src="/activity/images/mrecruit4.jpg" alt="">
+	</div>
+	<div class="mask">
+		<div class="tip">
+			<button><img src="/activity/images/mrecruit_close.png" alt=""></button>
+			<img src="/activity/images/mrecruit_pop.png" alt="" class="bg">
+			<p></p>
+		</div>
+	</div>	
+	<script>
+
+		$('.mask').bind("touchmove",function(e){
+			e.stopPropagation();
+		    e.preventDefault();
+		});
+
+		$('.tip button').click(function(){
+			$('.mask').hide();
+		})
+		// 获取参数
+		function getQueryString(name) {
+		    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+		    var r = window.location.search.substr(1).match(reg);
+		    if (r != null) {
+		        return unescape(r[2]);
+		    }
+		    return null;
+		}
+
+		function showTip(text){
+			$('.mask').show();
+			$('.tip p').text(text);
+		}
+
+		var userId = getQueryString("userId"),
+			token = getQueryString("token");
+
+		// userAgent
+		var ua = navigator.userAgent.toLowerCase(); 
+
+		// 查询用户状态或报名
+		function engaged(type){
+			var parm={
+				userId:userId,
+				token:token,
+				type:type
+			}
+			$.ajax({
+			    method: "GET",
+			    url: "http://172.16.2.62:8099/activity/register",
+			    dataType: 'json',
+			    data:parm,
+			    success: function(data) {
+			    	if(data.code==-2){
+			    		$('.join').attr('href','javascript:void(0);').html('已报名').addClass('hasjoin');
+			    	}else if(data.code==-5){
+			    		$('.join').attr('href','javascript:void(0);').html('报名已结束').addClass('hasjoin');
+			    	}else if(data.code==0){
+			    		showTip('报名成功')
+			    		$('.join').attr('href','javascript:void(0);').html('已报名').addClass('hasjoin');
+			    	}else if(data.code!=1){
+			    		showTip(data.result);
+			    	}
+			    },
+			    error: function(a, b, c) {
+			        console.log("接口出问题啦");
+			    }
+			}); 
+		}
+		// 页面初始状态
+		engaged(0);
+
+		// 报名
+		if($('.join').html()=='我要报名' && ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+			$('.join').click(function(e){
+				e.preventDefault();
+				if(userId && token){
+					engaged(1);
+				}else{
+					window.location.href = "yuertvopen://login";
+				}
+			})
+		}
+		
+	</script>
+</body>
+</html>
