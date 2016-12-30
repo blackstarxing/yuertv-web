@@ -229,7 +229,12 @@ $(function() {
                 }
             });
             $("#send").off().on("click",function(){
-                if(local.updatePasswordTag_current && local.updatePasswordTag_new &&local.updatePasswordTag_confirm){
+                console.log(132);
+                console.log(local.updatePasswordTag_current);
+                console.log(local.updatePasswordTag_new);
+                console.log(local.updatePasswordTag_confirm);
+                if(local.updatePasswordTag_current &&local.updatePasswordTag_confirm){
+                    console.log(111);
                     $.ajax({
                         method: "GET",
                         url: "/api/person-center/update-password",
@@ -240,6 +245,7 @@ $(function() {
                         },
                         success: function(data) {
                             if (data.code == 0) {
+                                console.log(123);
                                 $(".m-psuccess").show();
                             }else if(data.code == 1){
                                 alert("更新失败");//没找到你的弹窗
