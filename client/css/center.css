@@ -220,6 +220,7 @@ input{
 	text-align:center;
 	border-radius:5px;
 	margin:50px 0px 165px 110px;
+	cursor:pointer;
 }
 a#m-changepass,a#m-change,a#m-realname{
 	display:inline-block;
