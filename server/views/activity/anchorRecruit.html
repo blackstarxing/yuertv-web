@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta content="telephone=no" name="format-detection" />
-	<title>娱儿TV百万薪金主播招募令</title>
+	<title>娱儿直播百万薪金招募令</title>
 	<script src="/jquery.js"></script>
 	<script src="/jquery.sha1.js"></script>
 	<script src="/wxjsapi.js"></script>
@@ -226,7 +226,7 @@
 			}
 			$.ajax({
 			    method: "GET",
-			    url: "http://wy.yuerapi.wangyuhudong.com/activity/register",
+			    url: "http://yuerapi.wangyuhudong.com/activity/register",
 			    dataType: 'json',
 			    data:parm,
 			    success: function(data) {
@@ -294,7 +294,7 @@
 	                parm.mobile = $('.telnumber').val();
 	                parm.type = 1;
 	                $.ajax({
-			            url: 'http://wy.yuerapi.wangyuhudong.com/activity/iosRegister',
+			            url: 'http://yuerapi.wangyuhudong.com/activity/iosRegister',
 			            data: parm,
 			            type: 'get',
 			            dataType: 'json',
