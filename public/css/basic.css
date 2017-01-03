@@ -120,6 +120,10 @@ color: #fff !important;
     vertical-align: middle;
     cursor: pointer;
 }
+.header_left .head_logo{
+    height: 70px;
+    margin-top: 0;
+}
 .m-nav{
     margin-right: 110px;
 }
