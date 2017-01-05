@@ -1121,4 +1121,12 @@ router.get('/activity/conduct', function(req, res, next) {
     });
 });
 
+router.get('/mobile/agreement', function(req, res, next) {
+    res.render('mobile/agreement', { title: "最终用户使用许可协议" });
+});
+
+router.get('/mobile/liveagreement', function(req, res, next) {
+    res.render('mobile/liveagreement', { title: "最终用户使用许可协议" });
+});
+
 module.exports = router;
