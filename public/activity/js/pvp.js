@@ -22,10 +22,57 @@ $(function(){
 	    e.preventDefault();
 	});
 
+    // 横屏信息提示
+	function rotate(){ 
+	  	if(window.orientation==180||window.orientation==0){ 
+	  		$('.wrong').hide();
+	  	} 
+		if(window.orientation==90||window.orientation==-90){ 
+			$('.wrong').show();
+	    } 
+	} 
+	rotate();
+	window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", rotate, false); 
+
+	var music = document.getElementById("music");
+    var audio = document.getElementsByTagName("audio")[0];
+
+    audio.addEventListener('ended', function () {  
+        music.setAttribute("class","music_disc");
+    }, false);
+
+	function audioAutoPlay(id){
+	    var audio = document.getElementById(id);
+	    audio.play();
+	    document.addEventListener("WeixinJSBridgeReady", function () {
+	        audio.play();
+	    }, false);
+	}
+	audioAutoPlay('Jaudio'); 
+
+	var stop = false;
+    music.addEventListener("touchstart", function() {
+        if (audio.paused) {
+            audio.play();
+            this.setAttribute("class","music_disc music_play");
+        } else {
+            audio.pause();
+            stop = true;
+            this.setAttribute("class","music_disc");
+        };
+    }, false);
+
+   	$('body').bind('touchstart',function(){
+   		if(!stop){
+
+   			audio.play();
+   		}
+   	})
+
     // 报名信息滚动
     $.ajax({
 	    method: "GET",
-	    url: "http://172.16.2.62:8099/activity/applyList",
+	    url: "http://wy.yuerapi.wangyuhudong.com/activity/applyList",
 	    dataType: 'json',
 	    data:parm,
 	    success: function(data) {
@@ -81,7 +128,7 @@ $(function(){
 	}
 	$.ajax({
 	    method: "GET",
-	    url: "http://172.16.2.62:8099/activity/state",
+	    url: "http://wy.yuerapi.wangyuhudong.com/activity/state",
 	    dataType: 'json',
 	    data:parm,
 	    async:false,
@@ -92,7 +139,7 @@ $(function(){
 	    	}else if(state.activity_state==2){
 	    		if(inyuer && userId){
 	    			mobile = state.mobile;
-	    			qq = state.mobile;
+	    			qq = state.qq;
 	    			if(state.user_state==10){
 	    				$('.pvp-btn').html('审核中').addClass('gray');
 	    			}else if(state.user_state==11){
@@ -144,7 +191,7 @@ $(function(){
                 parm.mobile = $('.tel').val();
                 parm.type = 7;
                 $.ajax({
-		            url: 'http://172.16.2.62:8099/sendSMSCode',
+		            url: 'http://wy.yuerapi.wangyuhudong.com/sendSMSCode',
 		            data: parm,
 		            type: 'get',
 		            dataType: 'json',
@@ -225,6 +272,18 @@ $(function(){
 		    });
 		});
     });
+
+    // 截图放大
+    $('.pic').click(function(){
+    	if(scanisUpload){
+    		$('.img-mask').show();
+    		$('.imgScan').find('img').attr('src',$(this).find('img').attr('src'));
+    	}
+    })
+    $('.imgScan').click(function(){
+    	$('.img-mask').hide();
+    })
+
     // 报名
     // 错误弹出提示
 	function showTip(text,id){
@@ -280,7 +339,7 @@ $(function(){
 
 	  		$.ajax({  
 		        type: "GET",  
-		        url: "http://172.16.2.62:8099/activity/kingGloryApply",  
+		        url: "http://wy.yuerapi.wangyuhudong.com/activity/kingGloryApply",  
 		        data: {mobile:$(".tel").val(),
 		               checkCode:$(".code").val(),
 		               qq:$(".qq").val(),
@@ -292,7 +351,7 @@ $(function(){
 		            if(data.code == 0){
 		            	var s = 5;
 
-		            	$('.joinin').show();
+		            	$('.joinin').css('display','block');
 		            	if(!inyuer){
 		            		$('.form-result p').show();
 							$('.download').attr('href','https://yuertvfile.wangyuhudong.com').text('下载娱儿直播');
@@ -363,9 +422,9 @@ $(function(){
 			if(userId && token){
 				$.ajax({  
 			        type: "GET",  
-			        url: "http://172.16.2.62:8099/activity/kingGloryResultSubmit",  
+			        url: "http://wy.yuerapi.wangyuhudong.com/activity/kingGloryResultSubmit",  
 			        data: {
-			               rank:$(".rank").val(),
+			               rank:$(".endrank").val(),
 			               img:$(".pic img").attr('src'),
 			               userId:userId,
 			               token:token
@@ -376,7 +435,10 @@ $(function(){
 			            	$('.pvp-intro').show() && $('.pvp-form').hide();
 		                    $('.pvp-btn').html('已提交').addClass('gray'); 
 			            }else{
-			               
+			               	$('.mask').show();
+					        setTimeout(function(){
+					            $('.mask').hide();
+					        },1500);
 			            }    
 			        },
 			        error: function() {

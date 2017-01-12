@@ -23,7 +23,7 @@
 	  		var s = document.getElementsByTagName("script")[0]; 
 	  		s.parentNode.insertBefore(hm, s);
 		})();
-		
+
 		enableWxShare({
 			appId: 'wxf96f728533f32fa8',
 			ticket: '{{ticket}}',
@@ -34,6 +34,11 @@
 	</script>
 </head>
 <body>
+	<img src="/activity/images/pvp_wrong.jpg" alt="" class="wrong">
+	<img src="/activity/images/christmas_music.png" alt="" class="music_disc music_play" id="music">
+   	<audio autoplay="true" loop="loop" id="Jaudio">
+		<source src="/activity/images/pvp.mp3" type="audio/mpeg">
+	</audio>
 	<div class="pvp-intro">
 		<div class="swiper-container">
 		    <div class="swiper-wrapper">
@@ -107,7 +112,7 @@
 					<img src="/activity/images/pvp_default.jpg" alt="">
 				</div>
 				<div class="pic-btn f-fr">
-					<span></span>
+					<span>请上传资料截图</span>
 					<div class="upload-container">上传
 	                    <input type="file" name="资料截图未上传" id="fileToUpload1" class="fileupload" accept="image/*" />
 	                </div>
@@ -117,10 +122,15 @@
 			<div class="pvp-submit">
 				<button>提交</button>
 			</div>
+			<div class="img-mask">
+				<div class="imgScan">
+					<img src="" alt="">
+				</div>
+			</div>
 		</div>
 		<div class="form-ending">
 			<div class="m-input">
-				<select name="段位未选择" id="rank" class="rank u-ipt">
+				<select name="段位未选择" id="endrank" class="endrank u-ipt">
 					<option value="" disabled selected>成就段位</option>
 					<option value="倔强青铜Ⅲ">倔强青铜Ⅲ</option>
 					<option value="倔强青铜Ⅱ">倔强青铜Ⅱ</option>
@@ -152,7 +162,7 @@
 					<img src="/activity/images/pvp_default.jpg" alt="">
 				</div>
 				<div class="pic-btn f-fr">
-					<span></span>
+					<span>请上传资料截图</span>
 					<div class="upload-container">上传
 	                    <input type="file" name="资料截图未上传" id="fileToUpload1" class="fileupload" accept="image/*" />
 	                </div>
@@ -161,6 +171,11 @@
 			</div>
 			<div class="pvp-end-submit">
 				<button>提交</button>
+			</div>
+			<div class="img-mask">
+				<div class="imgScan">
+					<img src="" alt="">
+				</div>
 			</div>
 			<div class="mask">
 				<div class="pop">
