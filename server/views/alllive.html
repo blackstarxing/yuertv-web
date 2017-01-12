@@ -38,10 +38,14 @@
                     </a>
                     <div class="m-info">
                         <div class="anchor-head">
+                            {% if live.user_icon %}
                             {% if live.user_icon.indexOf('http')>-1 %}
                             <img src="{{live.user_icon}}" alt="" class="head-icon">
                             {% else %}
                             <img src="http://img.wangyuhudong.com/{{live.user_icon}}" alt="" class="head-icon">
+                            {% endif %}
+                            {% else %}
+                            <img src="/images/default_avatar.png" alt="" class="head-icon">
                             {% endif %}
                             {% if live.sex==0 %}
                                 <img src="/images/male.png" alt="" class="sex">

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>娱儿直播王者荣耀S6冲锋赛印记开启！</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <link rel="stylesheet" href="/activity/css/swiper.min.css">
+    <link rel="stylesheet" href="/activity/css/pvp.css">
+    <link rel="stylesheet" href="/activity/css/animate.min.css">
+    <script src="/jquery.js"></script>
+    <script src="/jquery.sha1.js"></script>
+	<script src="/wxjsapi.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+	  		var hm = document.createElement("script");
+	  		hm.src = "https://hm.baidu.com/hm.js?1869b3a9db6347d35265d4d340edfd0a";
+	  		var s = document.getElementsByTagName("script")[0]; 
+	  		s.parentNode.insertBefore(hm, s);
+		})();
+		
+		enableWxShare({
+			appId: 'wxf96f728533f32fa8',
+			ticket: '{{ticket}}',
+			title: '娱儿直播王者荣耀S6冲锋赛印记开启！',		
+			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/2017/yuerlogo.png',
+			desc: 'S6赛季来和娱儿直播决战王者峡谷，千元大奖等你领！'
+		})
+	</script>
+</head>
+<body>
+	<div class="pvp-intro">
+		<div class="swiper-container">
+		    <div class="swiper-wrapper">
+		        <div class="swiper-slide"><img src="/activity/images/pvp_1.png" alt=""></div>
+		        <div class="swiper-slide timedelay">
+		        	<img src="/activity/images/pvp_2_1.png" alt="" class="ani ani1" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.6s">
+		        	<img src="/activity/images/pvp_2_2.png" alt="" class="ani ani2" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="1s">
+		        	<img src="/activity/images/pvp_2_3.png" alt="" class="ani ani3" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.1s">
+		        </div>
+		        <div class="swiper-slide"><img src="/activity/images/pvp_3.png" alt=""></div>
+		        <div class="swiper-slide"><img src="/activity/images/pvp_4.png" alt=""></div>
+		    </div>
+		</div>
+		<div class="pvp-container">
+			<button class="pvp-btn">立即报名</button>
+			<div class="pvp-list">
+				<ul id='list1'></ul>
+				<ul id="list2"></ul>
+			</div>
+			<div class="pvp-arrow">
+				<img src="/activity/images/pvp_arrow.png" alt="">
+			</div>
+		</div>
+	</div>
+	<div class="pvp-form">
+		<img src="/activity/images/pvp_form.jpg" alt="">
+		<div class="form">
+			<p>用户须填写注册时手机号码，未注册用户报名后须使用手机号码进行验证登录</p>
+			<div class="m-input">
+				<input type="tel" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>11)value=value.slice(0,11)" placeholder="手机号" class="tel" name="手机号">
+				<button class="getCode">获取验证码</button>
+			</div>
+			<div class="m-input">
+				<input type="text" placeholder="验证码" id="code" class="code u-ipt" name="验证码为空" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>6)value=value.slice(0,6)">
+				<span class="error-tip"></span>
+			</div>
+			<div class="m-input">
+				<input type="text" placeholder="QQ" id="qq" class="qq u-ipt"  name="QQ为空">
+				<span class="error-tip"></span>
+			</div>
+			<div class="m-input">
+				<select name="段位未选择" id="rank" class="rank u-ipt">
+					<option value="" disabled selected>初始段位</option>
+					<option value="倔强青铜Ⅲ">倔强青铜Ⅲ</option>
+					<option value="倔强青铜Ⅱ">倔强青铜Ⅱ</option>
+					<option value="倔强青铜Ⅰ">倔强青铜Ⅰ</option>
+					<option value="秩序白银Ⅲ">秩序白银Ⅲ</option>
+					<option value="秩序白银Ⅱ">秩序白银Ⅱ</option>
+					<option value="秩序白银Ⅰ">秩序白银Ⅰ</option>
+					<option value="荣耀黄金Ⅳ">荣耀黄金Ⅳ</option>
+					<option value="荣耀黄金Ⅲ">荣耀黄金Ⅲ</option>
+					<option value="荣耀黄金Ⅱ">荣耀黄金Ⅱ</option>
+					<option value="荣耀黄金Ⅰ">荣耀黄金Ⅰ</option>
+					<option value="尊贵铂金Ⅴ">尊贵铂金Ⅴ</option>
+					<option value="尊贵铂金Ⅳ">尊贵铂金Ⅳ</option>
+					<option value="尊贵铂金Ⅲ">尊贵铂金Ⅲ</option>
+					<option value="尊贵铂金Ⅱ">尊贵铂金Ⅱ</option>
+					<option value="尊贵铂金Ⅰ">尊贵铂金Ⅰ</option>
+					<option value="永恒钻石Ⅴ">永恒钻石Ⅴ</option>
+					<option value="永恒钻石Ⅳ">永恒钻石Ⅳ</option>
+					<option value="永恒钻石Ⅲ">永恒钻石Ⅲ</option>
+					<option value="永恒钻石Ⅱ">永恒钻石Ⅱ</option>
+					<option value="永恒钻石Ⅰ">永恒钻石Ⅰ</option>
+					<option value="最强王者">最强王者</option>
+					<option value="荣耀王者">荣耀王者</option>
+				</select>
+				<span class="error-tip"></span>
+			</div>
+			<div class="pvp-pic f-cb">
+				<div class="pic f-fl">
+					<img src="/activity/images/pvp_default.jpg" alt="">
+				</div>
+				<div class="pic-btn f-fr">
+					<span></span>
+					<div class="upload-container">上传
+	                    <input type="file" name="资料截图未上传" id="fileToUpload1" class="fileupload" accept="image/*" />
+	                </div>
+				</div>
+				
+			</div>
+			<div class="pvp-submit">
+				<button>提交</button>
+			</div>
+		</div>
+		<div class="form-ending">
+			<div class="m-input">
+				<select name="段位未选择" id="rank" class="rank u-ipt">
+					<option value="" disabled selected>成就段位</option>
+					<option value="倔强青铜Ⅲ">倔强青铜Ⅲ</option>
+					<option value="倔强青铜Ⅱ">倔强青铜Ⅱ</option>
+					<option value="倔强青铜Ⅰ">倔强青铜Ⅰ</option>
+					<option value="秩序白银Ⅲ">秩序白银Ⅲ</option>
+					<option value="秩序白银Ⅱ">秩序白银Ⅱ</option>
+					<option value="秩序白银Ⅰ">秩序白银Ⅰ</option>
+					<option value="荣耀黄金Ⅳ">荣耀黄金Ⅳ</option>
+					<option value="荣耀黄金Ⅲ">荣耀黄金Ⅲ</option>
+					<option value="荣耀黄金Ⅱ">荣耀黄金Ⅱ</option>
+					<option value="荣耀黄金Ⅰ">荣耀黄金Ⅰ</option>
+					<option value="尊贵铂金Ⅴ">尊贵铂金Ⅴ</option>
+					<option value="尊贵铂金Ⅳ">尊贵铂金Ⅳ</option>
+					<option value="尊贵铂金Ⅲ">尊贵铂金Ⅲ</option>
+					<option value="尊贵铂金Ⅱ">尊贵铂金Ⅱ</option>
+					<option value="尊贵铂金Ⅰ">尊贵铂金Ⅰ</option>
+					<option value="永恒钻石Ⅴ">永恒钻石Ⅴ</option>
+					<option value="永恒钻石Ⅳ">永恒钻石Ⅳ</option>
+					<option value="永恒钻石Ⅲ">永恒钻石Ⅲ</option>
+					<option value="永恒钻石Ⅱ">永恒钻石Ⅱ</option>
+					<option value="永恒钻石Ⅰ">永恒钻石Ⅰ</option>
+					<option value="最强王者">最强王者</option>
+					<option value="荣耀王者">荣耀王者</option>
+				</select>
+				<span class="error-tip"></span>
+			</div>
+			<div class="pvp-pic f-cb">
+				<div class="pic f-fl">
+					<img src="/activity/images/pvp_default.jpg" alt="">
+				</div>
+				<div class="pic-btn f-fr">
+					<span></span>
+					<div class="upload-container">上传
+	                    <input type="file" name="资料截图未上传" id="fileToUpload1" class="fileupload" accept="image/*" />
+	                </div>
+				</div>
+				
+			</div>
+			<div class="pvp-end-submit">
+				<button>提交</button>
+			</div>
+			<div class="mask">
+				<div class="pop">
+					<img src="/activity/images/pvp_pop.png" alt="">
+				</div>
+			</div>			
+		</div>
+		<div class="form-result">
+			<h3>报名信息提交中......</h3>
+			<p>非注册用户报名后报名手机号码进行验证码登录娱儿直播</p>
+			<button class="rewrite">重新提交</button>
+			<a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.miqtech.master.wyrecorder" class="download">下载娱儿手播开启直播</a>
+			<a href="http://qm.qq.com/cgi-bin/qm/qr?k=XV36m7Kd4bLQPhQKKeZVxeAgii754bNH" class="joinin">加入娱儿直播QQ群</a>
+		</div>
+	</div>
+    <script src="/activity/js/swiper.min.js"></script>
+    <script src="/activity/js/swiper.animate.min.js"></script>
+    <script src="/mobile/dist/lrz.bundle.js"></script>
+    <script src="/activity/js/pvp.js"></script>
+</body>
+</html>

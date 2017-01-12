@@ -1,0 +1,338 @@
+html, body {
+    position: relative;
+    height: 100%;
+    -webkit-tap-highlight-color:transparent;
+}
+body,ul,li,p,h3,h4,h2,em,button,input{margin: 0; padding: 0;}
+body {
+    font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; font-size:62.5%; font-style:normal; max-width: 800px; margin:0 auto; height:100%; color:#9da4ad; background: #0d0d0d; overflow-x:hidden; -webkit-overflow-scrolling:touch;
+}
+img{border:0; max-width:100%;}
+li{ list-style:none;}
+a{text-decoration: none;}
+h3{font-size: 1.5rem;line-height: 1.25;}
+input,select{
+	border:none;
+	outline: none;
+	background: none;
+	-webkit-appearance:none;
+	appearance:none;
+	text-indent: 12px;
+	font-size: 14px;
+	color:#d2d2d2;
+}
+button{
+	border:none;
+	outline: none;
+	background: none;
+	font-size: 16px;
+}
+
+.f-cb:after,.f-cbli li:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
+.f-cb,.f-cbli li{zoom:1;}
+.f-ib{display:inline-block;*display:inline;*zoom:1;}
+.f-dn{display:none;}
+.f-db{display:block;}
+.f-fl{float:left;}
+.f-fr{float:right;}
+.f-re{position: relative;}
+.f-ab{position: absolute;}
+.f-tr{text-align: right;}
+.f-tc{text-align: center;}
+
+/*介绍页*/
+.pvp-intro {
+    width: 100%;
+    height: 100%;
+    background: url('/activity/images/pvp_bg.jpg') no-repeat;
+    background-size: 100% 100%;
+}
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.swiper-slide img{
+	width: 100%;
+}
+.timedelay{
+	position: relative;
+}
+.timedelay img{
+	position: absolute;
+}
+.timedelay .ani1{
+	top:0;
+	left: 0;
+}
+.timedelay .ani2{
+	left: 12px;
+	bottom: 23%;
+	width: 65%;
+}
+.timedelay .ani3{
+	right: 0;
+	bottom: 0;
+	width: 32%;
+}
+.pvp-container{
+	position: relative;
+	bottom: 120px;
+	z-index: 999;
+	text-align: center;
+	width: 44%;
+	margin:0 auto;
+}
+.pvp-container .pvp-btn{
+	display: block;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 1.2rem;
+	margin:0 auto 10px;
+	background: url(/activity/images/pvp_btn.png) no-repeat;
+	background-size: 100% 100%;
+	color:#ffc494;
+}
+.pvp-container .gray{
+	background: url(/activity/images/pvp_btn_gray.png) no-repeat;
+	background-size: 100% 100%;
+	color:#3f3f3f;
+}
+.pvp-list{
+	color:#a3875d;
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	overflow: hidden;
+}
+.pvp-container .pvp-arrow{
+	width: 25%;
+	margin:0 auto;
+	-webkit-animation: float ease-in-out 1.2s infinite;
+    		animation: float ease-in-out 1.2s infinite;
+}
+.pvp-container .pvp-arrow img{
+	width: 100%;
+}
+@-webkit-keyframes float {
+
+    0% {
+
+        -webkit-transform: translateY(12px);
+
+        transform: translateY(12px);
+        opacity: 0.66;
+
+    }
+
+    33% {
+
+        -webkit-transform: translateY(8px);
+
+        transform: translateY(8px);
+        opacity: 1;
+
+    }
+
+    100% {
+
+        -webkit-transform: translateY(0);
+
+        transform: translateY(0);
+        opacity: 0;
+
+    }
+
+}
+
+/*报名页*/
+.pvp-intro{
+	/*display: none;*/
+}
+.pvp-form{
+	display: none;
+	width: 100%;
+    height: 100%;
+    background: url('/activity/images/pvp_form_bg.jpg') no-repeat;
+    background-size: 100% 100%;
+}
+.form,.form-ending{
+	width: 80%;
+	margin:0 auto;
+	color:#bfbfbf;
+	font-size: 12px;
+	line-height: 1.5;
+}
+.m-input{
+	margin-bottom: 10px;
+	position: relative;
+}
+.m-input input{
+	width: 100%;
+	height: 14px;
+	padding: 13px 0;
+	background: rgba(191,191,191,0.3);
+	border-radius: 5px;
+}
+.m-input select{
+	width: 100%;
+	height: 39px;
+	line-height: 39px;
+	background: url('/activity/images/pvp_select.png') 95% center no-repeat rgba(191,191,191,0.3);
+	background-size: 6px 12px;
+	border-radius: 5px;
+	text-indent: 8px;
+}
+.m-input .getCode,
+.m-input .error-tip{
+	position: absolute;
+	display: block;
+	right: 0;
+	top:0;
+	width: 41%;
+	text-align: center;
+	height: 39px;
+	line-height: 39px;
+	color:#fff2bc;
+}
+.m-input .getCode{
+	background: url('/activity/images/pvp_form_btn.png') no-repeat;
+    background-size: 100% 100%;
+    color:#feecc5;
+    font-size: 14px;
+    border-radius: 5px;
+}
+.m-input .cant{
+	background: url('/activity/images/pvp_form_gray.png') no-repeat;
+    background-size: 100% 100%;
+}
+.pvp-pic .pic{
+	width: 45%;
+	height: 78px;
+	border:1px solid rgba(120,120,120,0.6);
+}
+.pvp-pic .pic img{
+	border:3px solid rgba(102,102,102,0.6);
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+}
+.pic-btn span{
+	display: block;
+	height: 25px;
+	line-height: 25px;
+	margin-top: 5px;
+	color:#fff2bc;
+	text-align: center;
+}
+.pvp-pic .pic-btn{
+	width: 40%;
+}
+.upload-container{
+	position: relative;
+	text-align: center;
+	height: 39px;
+	line-height: 39px;
+	background: url('/activity/images/pvp_form_btn.png') no-repeat;
+    background-size: 100% 100%;
+    color:#feecc5;
+    font-size: 16px;
+}
+.fileupload{
+	position: absolute;
+	left: 0;
+	width:100%;
+	height:39px;
+	line-height:25px;
+	opacity:0;
+	filter:alpha(opacity=0);
+	padding: 0;
+}
+.pvp-submit button,
+.pvp-end-submit button{
+	display: block;
+	width: 44%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	margin:30px auto 0;
+	background: url(/activity/images/pvp_btn.png) no-repeat;
+	background-size: 100% 100%;
+	color:#ffc494;
+}
+/*结果页*/
+.form{
+	/*display: none;*/
+}
+.form-ending{
+	padding-top: 50px;
+	display: none;
+}
+.mask{
+	position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    z-index:999999;
+}
+.mask .pop{
+	width: 60%;
+	margin:50% auto 0;
+}
+.form-result{
+	display: none;
+	text-align: center;
+}
+.form-result h3{
+	margin-top: 64px;
+	margin-bottom: 15px;
+	margin-bottom: 
+	color:#8c8c8c;
+	font-size: 13px;
+	font-weight: normal;
+}
+.form-result p,
+.form-result .joinin{
+	display: none;
+}
+.form-result a,
+.rewrite{
+	display: block;
+	width: 53%;
+	margin:10px auto;
+	height: 40px;
+	line-height: 40px;
+	background: url('/activity/images/pvp_down1.png') no-repeat;
+    background-size: 100% 100%;
+    color:#fff2bc;
+    font-size: 13px;
+}
+.rewrite{
+	display: none;
+}
+.form-result .joinin{
+	background: url('/activity/images/pvp_down2.png') no-repeat;
+    background-size: 100% 100%;
+}
