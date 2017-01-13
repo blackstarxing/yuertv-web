@@ -78,7 +78,7 @@ $(function(){
 	    success: function(data) {
 	    	var content = "";
 	    	for(var i = 0;i<data.object.length;i++){
-	    		content+='<li>用户'+data.object[i].nickname+'已报名</li>';
+	    		content+='<li>用户<span>'+data.object[i].nickname+'</span>已报名</li>';
 	    	}
 	   	  	$('#list1').html(content);
 	   	  	var index = 1;
@@ -113,7 +113,8 @@ $(function(){
 	}
 
 	var userId = getQueryString("userId"),
-		token = getQueryString("token");
+		token = getQueryString("token"),
+		source = getQueryString("source");
 
 	// 代理
 	var ua = navigator.userAgent.toLowerCase();	
@@ -134,36 +135,61 @@ $(function(){
 	    async:false,
 	    success: function(data) {
 	    	var state = data.object;
-	    	if(state.activity_state==1){
-	    		$('.pvp-btn').html('活动未开始').addClass('gray');
+	    	if(state.activity_state!=2){
+	    		$('.pvp-list').hide();
+	    	}
+	    	if(state.activity_state==1){	    		
+	    		if(inyuer){
+	    			$('.pvp-btn').html('活动未开始').addClass('gray');
+	    		}else{
+	    			$('.pvp-btn').html('立即下载').addClass('down');
+	    		}
 	    	}else if(state.activity_state==2){
 	    		if(inyuer && userId){
 	    			mobile = state.mobile;
 	    			qq = state.qq;
 	    			if(state.user_state==10){
-	    				$('.pvp-btn').html('审核中').addClass('gray');
+	    				$('.pvp-btn').html('报名审核中').addClass('gray');
 	    			}else if(state.user_state==11){
 	    				$('.pvp-btn').html('已报名').addClass('gray');
 	    			}
 	    		}
 	    	}else if(state.activity_state==3){
-	    		$('.pvp-btn').html('报名结束').addClass('gray');
+	    		if(inyuer){
+	    			$('.pvp-btn').html('报名结束').addClass('gray');
+	    		}else{
+	    			$('.pvp-btn').html('立即下载').addClass('down');
+	    		}
 	    	}else if(state.activity_state==4){
-	    		$('.pvp-btn').html('活动已结束').addClass('gray');
+	    		if(inyuer){
+	    			$('.pvp-btn').html('活动已结束').addClass('gray');
+	    		}else{
+	    			$('.pvp-btn').html('立即下载').addClass('down');
+	    		}
 	    	}else if(state.activity_state==5){
 	    		if(inyuer && userId){
 	    			if(state.user_state==20){
 	    				$('.pvp-btn').html('成绩审核中').addClass('gray');
 	    			}else if(state.user_state==21){
 	    				$('.pvp-btn').html('成绩已提交').addClass('gray');
+	    			}else if(state.user_state==10){
+	    				$('.pvp-btn').html('报名审核中').addClass('gray');
+	    			}else if(state.user_state==12 || state.user_state==0){
+	    				$('.pvp-btn').html('报名结束').addClass('gray');
 	    			}else{
 	    				$('.pvp-btn').html('立即提交').addClass('apply');
 	    			}
+	    		}else if(inyuer && !userId){
+	    			$('.pvp-btn').html('报名结束').addClass('gray');
 	    		}else if(!inyuer){
-	    			$('.pvp-btn').html('立即提交').addClass('down');
+	    			$('.pvp-btn').html('立即下载').addClass('down');
 	    		}
 	    	}else if(state.activity_state==6){
-	    		$('.pvp-btn').html('不可提交').addClass('gray');
+	    		if(inyuer){
+	    			$('.pvp-btn').html('提交结束').addClass('gray');
+	    		}else{
+	    			$('.pvp-btn').html('立即下载').addClass('down');
+	    		}
 	    	}
 	    },
 	    error: function(a, b, c) {
@@ -352,9 +378,22 @@ $(function(){
 		            	var s = 5;
 
 		            	$('.joinin').css('display','block');
+		            	$('.form-result p').show();
 		            	if(!inyuer){
-		            		$('.form-result p').show();
 							$('.download').attr('href','https://yuertvfile.wangyuhudong.com').text('下载娱儿直播');
+							if(source=='wap'){
+								if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+									$('.download').attr('href','https://at.umeng.com/Oziyym').text('下载娱儿直播');
+						        }else if(navigator.userAgent.match(/android/i)){
+						        	$('.download').attr('href','/activity/images/WyLive1.4.4-wap.apk').text('下载娱儿直播');
+						        }
+							}else if(source=='baidu'){
+								if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+									$('.download').attr('href','https://at.umeng.com/nSn01v').text('下载娱儿直播');
+						        }else if(navigator.userAgent.match(/android/i)){
+						        	$('.download').attr('href','/activity/images/WyLive1.4.4-baidu.apk').text('下载娱儿直播');
+						        }
+							}
 						}   
 						function settime(val) { 
 		                    if (s > 0) { 
@@ -425,7 +464,7 @@ $(function(){
 			        url: "http://wy.yuerapi.wangyuhudong.com/activity/kingGloryResultSubmit",  
 			        data: {
 			               rank:$(".endrank").val(),
-			               img:$(".pic img").attr('src'),
+			               img:$(".form-ending .pic img").attr('src'),
 			               userId:userId,
 			               token:token
 			        },  
