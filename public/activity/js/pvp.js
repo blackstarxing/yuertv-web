@@ -301,10 +301,10 @@ $(function(){
 
     // 截图放大
     $('.pic').click(function(){
-    	if(scanisUpload){
+    	// if(scanisUpload){
     		$('.img-mask').show();
     		$('.imgScan').find('img').attr('src',$(this).find('img').attr('src'));
-    	}
+    	// }
     })
     $('.imgScan').click(function(){
     	$('.img-mask').hide();
@@ -344,7 +344,7 @@ $(function(){
     	}
 
 	  	if($(".tel").val() && $(".code").val() && $(".qq").val() && $('.rank').val() && scanisUpload){
-	    	if($(".qq").val().length<5 && $(".qq").val().length>12){
+	    	if($(".qq").val().length<5 || $(".qq").val().length>11){
 		      	UsubmitCheck=false;
 		      	showTip("QQ号位数错误",'qq');
 		    }
@@ -376,7 +376,7 @@ $(function(){
 		        success: function(data){  
 		            if(data.code == 0){
 		            	var s = 5;
-
+		            	$('.rewrite').hide()
 		            	$('.joinin').css('display','block');
 		            	$('.form-result p').show();
 		            	if(!inyuer){
@@ -408,9 +408,14 @@ $(function(){
 		                    } 
 		                } 
 		                settime(s);	
-		            }else{
-		                $('.form-result h3').text(data.result+',报名信息提交失败...');
-		                $('.download').hide() && $('.rewrite').show();
+		            }else{		                
+		                if(data.result=='已报名'){
+		                	$('.form-result h3').text('该手机号已报名，请勿重复提交');
+		                	$('.download').hide();
+		                }else{
+		                	$('.form-result h3').text(data.result+',报名信息提交失败...');
+		                	$('.download').hide() && $('.rewrite').show();
+		                }		                
 		            }    
 		        },
 		        error: function() {
