@@ -72,7 +72,7 @@ $(function(){
     // 报名信息滚动
     $.ajax({
 	    method: "GET",
-	    url: "http://wy.yuerapi.wangyuhudong.com/activity/applyList",
+	    url: "http://yuerapi.wangyuhudong.com/activity/applyList",
 	    dataType: 'json',
 	    data:parm,
 	    success: function(data) {
@@ -82,15 +82,16 @@ $(function(){
 	    	}
 	   	  	$('#list1').html(content);
 	   	  	var index = 1;
+	   	  	var h = $('.pvp-list').height();
 		  	$("#list2").html($("#list1").html());
 		  	var mar = function () {
 		        if (index<=$('#list1 li').length) { 
-		            $('.pvp-list #list1').animate({marginTop:-index*20});
+		            $('.pvp-list #list1').animate({marginTop:-index*h});
 		            index++;
 		        }
 		        else {               
 		            index = 1;
-		            $('.pvp-list #list1').css('marginTop',0).animate({marginTop:-index*20});
+		            $('.pvp-list #list1').css('marginTop',0).animate({marginTop:-index*h});
 		            index++;
 		        }
 
@@ -129,7 +130,7 @@ $(function(){
 	}
 	$.ajax({
 	    method: "GET",
-	    url: "http://wy.yuerapi.wangyuhudong.com/activity/state",
+	    url: "http://yuerapi.wangyuhudong.com/activity/state",
 	    dataType: 'json',
 	    data:parm,
 	    async:false,
@@ -217,7 +218,7 @@ $(function(){
                 parm.mobile = $('.tel').val();
                 parm.type = 7;
                 $.ajax({
-		            url: 'http://wy.yuerapi.wangyuhudong.com/sendSMSCode',
+		            url: 'http://yuerapi.wangyuhudong.com/sendSMSCode',
 		            data: parm,
 		            type: 'get',
 		            dataType: 'json',
@@ -365,7 +366,7 @@ $(function(){
 
 	  		$.ajax({  
 		        type: "GET",  
-		        url: "http://wy.yuerapi.wangyuhudong.com/activity/kingGloryApply",  
+		        url: "http://yuerapi.wangyuhudong.com/activity/kingGloryApply",  
 		        data: {mobile:$(".tel").val(),
 		               checkCode:$(".code").val(),
 		               qq:$(".qq").val(),
@@ -375,7 +376,7 @@ $(function(){
 		        dataType: "json",  
 		        success: function(data){  
 		            if(data.code == 0){
-		            	var s = 5;
+		            	var s = 30;
 		            	$('.rewrite').hide()
 		            	$('.joinin').css('display','block');
 		            	$('.form-result p').show();
@@ -466,7 +467,7 @@ $(function(){
 			if(userId && token){
 				$.ajax({  
 			        type: "GET",  
-			        url: "http://wy.yuerapi.wangyuhudong.com/activity/kingGloryResultSubmit",  
+			        url: "http://yuerapi.wangyuhudong.com/activity/kingGloryResultSubmit",  
 			        data: {
 			               rank:$(".endrank").val(),
 			               img:$(".form-ending .pic img").attr('src'),

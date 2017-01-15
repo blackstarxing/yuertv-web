@@ -141,20 +141,25 @@ button{
 }
 .pvp-container{
 	position: relative;
-	bottom: 120px;
+	bottom: 140px;
 	z-index: 999;
 	text-align: center;
-	width: 44%;
+	width: 60%;
 	margin:0 auto;
+}
+.pvp-container p{
+	color:#fff0aa;
+	font-size: 12px;
+	margin-bottom: 5px;
 }
 .pvp-container .pvp-btn{
 	display: block;
-	width: 100%;
+	width: 67%;
 	height: 40px;
 	line-height: 40px;
 	text-align: center;
 	font-size: 1.2rem;
-	margin:0 auto 10px;
+	margin:0 auto 5px;
 	background: url(/activity/images/pvp_btn.png) no-repeat;
 	background-size: 100% 100%;
 	color:#ffc494;
@@ -171,9 +176,14 @@ button{
 	font-size: 12px;
 	overflow: hidden;
 }
+.pvp-list li{
+	height: 20px;
+	overflow: hidden;
+}
 .pvp-list span{
 	display: inline-block;
 	width: 70px;
+	line-height: 20px;
 	overflow:hidden;
 	white-space:nowrap;
 	text-overflow:ellipsis;
