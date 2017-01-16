@@ -66,10 +66,14 @@
                         </a>
                         <div class="m-info">
                             <div class="anchor-head">
+                                {% if hotlive.user_icon %}
                                 {% if hotlive.user_icon.indexOf('http')>-1 %}
                                 <img src="{{hotlive.user_icon}}" alt="" class="head-icon">
                                 {% else %}
                                 <img src="http://img.wangyuhudong.com/{{hotlive.user_icon}}" alt="" class="head-icon">
+                                {% endif %}
+                                {% else %}
+                                <img src="/images/default_avatar.png" alt="" class="head-icon">
                                 {% endif %}
                                 {% if hotlive.sex==0 %}
                                     <img src="/images/male.png" alt="" class="sex">

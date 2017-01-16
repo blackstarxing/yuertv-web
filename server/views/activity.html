@@ -26,10 +26,14 @@
                         </a>
                         <div class="m-info">
                             <div class="anchor-head">
+                                {% if recommend.user_icon %}
                                 {% if recommend.user_icon.indexOf('http')>-1 %}
                                 <img src="{{recommend.user_icon}}" alt="" class="head-icon">
                                 {% else %}
                                 <img src="http://img.wangyuhudong.com/{{recommend.user_icon}}" alt="" class="head-icon">
+                                {% endif %}
+                                {% else %}
+                                <img src="/images/default_avatar.png" alt="" class="head-icon">
                                 {% endif %}
                                 {% if recommend.sex==0 %}
                                     <img src="/images/female.png" alt="" class="sex">
