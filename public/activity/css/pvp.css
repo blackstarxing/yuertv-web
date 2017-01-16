@@ -301,6 +301,11 @@ button{
 	height: 78px;
 	border:1px solid rgba(120,120,120,0.6);
 }
+.pic p{
+	text-align: center;
+	color:#fff2bc;
+	margin:0;
+}
 .pvp-pic .pic img{
 	border:3px solid rgba(102,102,102,0.6);
 	width: 100%;
