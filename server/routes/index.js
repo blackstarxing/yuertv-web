@@ -472,7 +472,7 @@ router.get('/allvideo', function(req, res, next) {
 router.get('/liveShare', function(req, res, next) {
     var id = req.query.id;
     var nowtime = new Date().getTime();
-    if(!ticket || (nowtime-ticketline)>7000){
+    if(!ticket || (nowtime-ticketline)>7000000){
         getTicket();
     }
     Thenjs.parallel([function(cont) {
@@ -564,7 +564,7 @@ router.get('/activity/cecforum', function(req, res, next) {
 });
 router.get('/activity/propage', function(req, res, next) {
     var nowtime = new Date().getTime();
-    if(!ticket || (nowtime-ticketline)>7000){
+    if(!ticket || (nowtime-ticketline)>7000000){
         getTicket();
     }
     res.render('activity/propage', {
@@ -578,7 +578,7 @@ router.get('/mobile/down', function(req, res, next) {
 
 router.get('/mobile/author', function(req, res, next) {
     var nowtime = new Date().getTime();
-    if(!ticket || (nowtime-ticketline)>7000){
+    if(!ticket || (nowtime-ticketline)>7000000){
         getTicket();
     }
     res.render('mobile/author', {
@@ -593,7 +593,7 @@ router.get('/activity/recruit', function(req, res, next) {
 router.get('/mobile/activityShare', function(req, res, next) {
     var id = req.query.id;
     var nowtime = new Date().getTime();
-    if(!ticket || (nowtime-ticketline)>7000){
+    if(!ticket || (nowtime-ticketline)>7000000){
         getTicket();
     }
     Thenjs.parallel([function(cont) {
@@ -871,7 +871,7 @@ router.get('/activity/hrecruit', function(req, res, next) {
 });
 router.get('/activity/general', function(req, res, next) {
     var nowtime = new Date().getTime();
-    if(!ticket || (nowtime-ticketline)>7000){
+    if(!ticket || (nowtime-ticketline)>7000000){
         getTicket();
     }
     res.render('activity/general', {
@@ -1005,7 +1005,7 @@ router.get('/activity/christmas', function(req, res, next) {
 
 router.get('/activity/anchorRecruit', function(req, res, next) {
     var nowtime = new Date().getTime();
-    if(!ticket || (nowtime-ticketline)>7000){
+    if(!ticket || (nowtime-ticketline)>7000000){
         getTicket();
     }
     res.render('activity/anchorRecruit', {
@@ -1015,7 +1015,7 @@ router.get('/activity/anchorRecruit', function(req, res, next) {
 
 router.get('/activity/conduct', function(req, res, next) {
     var nowtime = new Date().getTime();
-    if(!ticket || (nowtime-ticketline)>7000){
+    if(!ticket || (nowtime-ticketline)>7000000){
         getTicket();
     }
     res.render('activity/conduct', {
@@ -1033,7 +1033,7 @@ router.get('/mobile/liveagreement', function(req, res, next) {
 
 router.get('/activity/pvp', function(req, res, next) {
     var nowtime = new Date().getTime();
-    if(!ticket || (nowtime-ticketline)>7000){
+    if(!ticket || (nowtime-ticketline)>7000000){
         getTicket();
     }
     res.render('activity/pvp', {
