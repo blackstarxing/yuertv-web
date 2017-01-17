@@ -399,8 +399,7 @@ button{
 	font-size: 13px;
 	font-weight: normal;
 }
-.form-result p,
-.form-result .joinin{
+.form-result p{
 	display: none;
 }
 .form-result a,
