@@ -1,4 +1,5 @@
 $(function(){
+    // 布局自适应
     function resize(){
         var clientW = document.body.clientWidth;
         var clientH = document.body.offsetHeight;
@@ -18,8 +19,10 @@ $(function(){
         resize();
     });
 
+    // 是否登录
     var islogin = (document.cookie.indexOf('yuer_userId')>=0) ? 1 : 0;
 
+    // 云信账号
     var live_account = "",
         live_token = "",
         nickname = "";
@@ -33,7 +36,7 @@ $(function(){
         giftNumber = 1,
         giftName = "";
 
-
+    // 游客获取聊天室id
     if(!islogin){
         $.ajax({
             method: "GET",
@@ -59,6 +62,7 @@ $(function(){
         enterLiveroom();
     }
 
+    // 礼物排行榜
     var giftparm = {};
     giftparm.type = 2;
     giftparm.upUserId = $('.hide-rtmp').attr('data-anchorid');
@@ -92,6 +96,7 @@ $(function(){
         }
     });
 
+    // 举报弹窗
     $('.wantreport').click(function(e){
         e.preventDefault();
         if(islogin){
@@ -101,12 +106,14 @@ $(function(){
         }
     })
 
+    // 举报单选框
     $('.report-radio label').click(function(){
         var radioId = $(this).attr('name');
         $('.report-radio label').removeAttr('class') && $(this).attr('class', 'checked');
         $('.report-radio input[type="radio"]').removeAttr('checked') && $('#' + radioId).attr('checked', 'checked');
     });
 
+    // 举报
     $('.u-report-next').click(function(e){
         e.preventDefault();
         var parm = {};
@@ -148,6 +155,7 @@ $(function(){
         $('.m-report-mask').hide();
     });
 
+    // 充值
     $('.givemoney').click(function(e){
         e.preventDefault();
         if(islogin){
@@ -157,6 +165,7 @@ $(function(){
         }
     });
 
+    // 聊天室tab切换
     $('.room-tab li').each(function(index){
         $(this).click(function(){
             $(this).addClass('current').siblings().removeClass('current');
@@ -164,6 +173,7 @@ $(function(){
         })
     })
 
+    // 直播推荐
     $('.m-livenav li').each(function(index){
         $(this).click(function(){
             $(this).addClass('current').siblings().removeClass('current');
@@ -171,6 +181,7 @@ $(function(){
         })
     });
 
+    // 关注主播
     $('.follow,.disfollow').click(function(e){
         e.preventDefault();
         if(islogin){
@@ -216,6 +227,7 @@ $(function(){
         $('.shield-radio input[type="radio"]').removeAttr('checked') && $('#' + radioId).attr('checked', 'checked');
     });
 
+    // 聊天室设置
     $('#shield1').click(function(){
         hidegiftmes = '';
         hideEnter = '';
@@ -237,13 +249,15 @@ $(function(){
         $('.memberEnter').addClass('hideEnter');
     });
 
+    // 清空消息
     $('.clearmes').click(function(){
         $('.mes-block').html('');
     })
     
+    // 礼物赠送倒计时
     var endingtime = $('.hide-rtmp').attr('data-time')*60;
      
-
+    // 礼物悬停
     $('.gift').hover(function(){
         $(this).find('.gift-hover').show();
     },function(){
@@ -260,6 +274,7 @@ $(function(){
     var proplist = [];
     var yuerCoin = null;
 
+    // 播放器礼物列表
     function getGift(){
         $.ajax({
             method: "GET",
@@ -291,6 +306,7 @@ $(function(){
     getGift();
     // getProp();
     
+    // 聊天室初始化
     function enterLiveroom(){
         // 聊天室服务器地址
         var address=[];
@@ -447,6 +463,7 @@ $(function(){
                 
             }
 
+            // 获取我的道具列表
             function getProp(){
                 $.ajax({
                     method: "GET",
@@ -517,6 +534,7 @@ $(function(){
 
             }
 
+            // 定时福利
             function endingTime(val) { 
                 if (endingtime > 0 && endingtime <1500) { 
                     $('.endingtime').text(endingtime);
@@ -564,6 +582,7 @@ $(function(){
                 }
             } 
 
+            // 播放器初始化
             liveRoomInterf = {
 
                 //直播间Flash对象
@@ -765,6 +784,7 @@ $(function(){
             att.data = "YeVideoPlayer.swf";
             videoPlayerInterf.flash = swfobject.createSWF(att, par, "VideoPlayerDiv");
 
+            // 发送弹幕
             $('.sendText').click(function(){
                 if(islogin){
                     if($('.live-text').val()){
@@ -782,6 +802,7 @@ $(function(){
                 }
             }); 
 
+            // 快捷消息
             $('.quicktext li').click(function(){
                 if(islogin){
                     flashSend($(this).text());
@@ -792,6 +813,7 @@ $(function(){
                 
             });
 
+            // 礼物赠送
             $('.gift').click(function(){
                 if(islogin){
                     flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),$(this).attr('data-frame'),0); 
@@ -800,6 +822,7 @@ $(function(){
                }           
             });
 
+            // 视频播放
             $('.m-video .live-address').click(function(e){
                 e.preventDefault();
                 $(this).addClass('video-open').siblings('.live-address').removeClass('video-open');
@@ -897,6 +920,7 @@ $(function(){
         }
     }
 
+    // 推荐关注
     $('.followme,.is-subscibe').click(function(e){
         e.preventDefault();
         var follownum = $('.follownum').text();

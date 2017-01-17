@@ -358,6 +358,7 @@ button{
 /*结果页*/
 .form{
 	/*display: none;*/
+	padding-bottom: 40px;
 }
 .form-ending{
 	padding-top: 50px;
@@ -418,6 +419,6 @@ button{
 	display: none;
 }
 .form-result .joinin{
-	background: url('/activity/images/pvp_down2.png') no-repeat;
+	background: url('/activity/images/pvp_joinin.png') no-repeat;
     background-size: 100% 100%;
 }
