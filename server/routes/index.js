@@ -116,7 +116,7 @@ router.get('/liveroom', function(req, res, next) {
     }]).then(function(cont, result) {
         console.log(result);
         res.render('liveroom', {
-            title: "直播间",
+            title: JSON.parse(result[0]).object.info.title+'-娱儿直播',
             detail: JSON.parse(result[0]).object,
             gift: JSON.parse(result[1]).object,
             islogin: islogin,
