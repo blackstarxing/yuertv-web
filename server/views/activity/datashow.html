@@ -225,11 +225,11 @@
 		        			{% if datainfo.max_duration_game !== "" %}
 		        			<p class="lefts sexpublic"><span>{{datainfo.max_duration_game}}</span>是你直播时间最长的游戏</p>
 		        			<p class="lefts sexpublic"><span>{{datainfo.max_times_game}}</span>是你直播次数最多的游戏</p>
-		        			<p class="lefts sexcenter spub">这是你来到娱儿的第<span><span class="t_num">{{datainfo.register_days}}</span></span>天</p>
-		        			<p class="total lefts spub">累计开播<span class="t_num">{{datainfo.live_times}}</span>次</p>
-		        			<p class="total lefts spub">开播时长超过了<span class="t_num">{{datainfo.over_duration}}</span> <span>％</span>的娱儿主播</p>
+		        			<p class="lefts sexcenter spub">这是你来到娱儿的第<span><span class="t_num showTime">{{datainfo.register_days}}</span></span>天</p>
+		        			<p class="total lefts spub">累计开播<span class="t_num showTime">{{datainfo.live_times}}</span>次</p>
+		        			<p class="total lefts spub">开播时长超过了<span class="t_num showTime">{{datainfo.over_duration}}</span> <span style="font-size:20px;font-weight:bold;">％</span>的娱儿主播</p>
 		        			{% else %}
-		        			<p class="centers total">这是你来到娱儿的第<span class="t_num">{{datainfo.register_days}}</span>天</p>
+		        			<p class="centers total">这是你来到娱儿的第<span class="t_num showTime">{{datainfo.register_days}}</span>天</p>
 		        			<p class="centers sexcenter spub">王者荣耀、球球大作战、阴阳师...</p>
 		        			<p class="centers spub">手游世界里的那一款才是你的本命游戏？</p>
 		        			<p class="centers spub">打开娱儿手播，开启直播之旅吧</p>
@@ -303,37 +303,14 @@
 		       $(this).text($(this).text().substr(0,4)+"***");
 		    });
 			var mySwiper = new Swiper ('.swiper-container', {
-
+			      onSlideChangeStart: function(swiper){
+				    $(".showTime").each(function(){
+						dataUp($(this),parseInt($(this).text()));
+					})
+				  }
 			})  
-			$("#showhide").click(function(){
-    			mySwiper.slideTo(0, 1000, false);;
-    		})     
-    		function show_num(n){
-				var it = $(".t_num i");
-				var len = String(n).length;
-				for(var i=0;i<len;i++){
-					if(it.length<=i){
-						$(".t_num").append("<i></i>");
-					}
-					var num=String(n).charAt(i);
-					var y = -parseInt(num)*30;
-					var obj = $(".t_num i").eq(i);
-					obj.animate({
-						backgroundPosition :'(0 '+String(y)+'px)' 
-						}, 'slow','swing',function(){}
-					);
-				}
-				$("#cur_num").val(n);
-			}
-			show_num($(".t_num").text());
-			// $(".total").each(function(){
-			// 	var oDate = new Date(); 
-		 //       $(this).text(oDate.getMonth()+1);
-		 //       $(this).text(oDate.getDate());
-		 //    })
-
-
 			function dataUp(id,domEnd){
+				console.log(2);
 				// 得到的值
 				var _dom = id;
 				_dom.text(0);
@@ -353,9 +330,7 @@
 					_dom.text(Math.floor(parseInt(_dom.text())) + _step);
 				},100)
 			}
-			$(".showTime").each(function(){
-				dataUp($(this),parseInt($(this).text()));
-			})
+
 
 			$("#disableds").on("click",function(){
 				showTip();
