@@ -10,216 +10,7 @@
     <meta content="email=no" name="format-detection">
     <link rel="stylesheet" href="/activity/css/swiper.min.css">
     <link rel="stylesheet" href="/activity/css/animate.min.css">
-    <style type="text/css">
-    	*{margin: 0; padding: 0;}
-		body{
-			font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC;
-			width: 100%;
-			max-width: 800px;
-			margin:0 auto;
-		}
-		img{
-			border:0;
-			max-width:100%;
-			vertical-align:top; 
-		}
-		.g-container{
-			width:100%;
-			position:relative;
-		}
-		.swiper-slide{
-			position:relative;
-		}
-		.m-float{
-			position:absolute;
-		}
-		.m-fbutton{
-			width:75%;
-			top:90%;
-			left:13.5%;
-		}
-		.m-twoblock{
-			width:80%;
-			height:80%;
-			top:8%;
-			left:10%;
-			text-align:center;
-		}
-		.u-icon{
-			width:25%;
-			height:25%;
-			margin:0 auto;
-		}
-		.u-icon img{
-			display:inline-block;
-			width:100%;
-			border-radius:50%;
-		}
-		.u-in p{
-			margin-top:5%;
-			font-size:16px;
-			color:#fff;
-		}
-		.u-in p span{
-			color:#f36;
-		}
-		.u-dates{
-			margin-top:20%;
-		}
-		.right img,.left img{
-			display:inline-block;
-			width:15%;
-			margin-top:-6%;
-		}
-		.right span ,.left span{
-			font-size:14px;
-			color:#fff;
-		}
-		.right{
-			text-align:right;
-		}
-		.u-dates .right{
-			font-size:14px;
-			color:#fff;
-		}
-		.left{
-			text-align:left;
-		}
-		.u-dates .left{
-			margin-top:65%;
-			font-size:14px;
-			color:#fff;
-		}
-		.u-dates p{
-			font-size:14px;
-			color:#fff;
-			margin-top:4%;
-		}
-		p.rights{
-			text-align:right;
-		}
-		p.lefts{
-			text-align:left;
-		}
-		p.centers{
-			text-align:center;
-		}
-		/*第三页*/
-		.m-threeblock{
-			width:75%;
-			height:70%;
-			top:10%;
-			left:12.5%;
-			margin:0 auto;
-		}
-		p{
-			font-size:14px;
-			color:#fff;
-		}
-		.threetop{
-			margin:5% 0% 4% 0%;
-		}
-		.threecenter{
-			margin:70% 6% 4% 0%;
-		}
-		.rightsix{
-			margin-right:6%;
-		}
-		.threebottom{
-			margin:3% 6% 30% 0%;
-		}
-		p span{
-			font-size:14px;
-			color:#f36;
-		}
-		/*第四页*/
-		.m-fourblock{
-			width:70%;
-			height:70%;
-			top:10%;
-			left:15%;
-			margin:0 auto;
-		}
-		.fourtop{
-			margin-bottom:4%;
-		}
-		.fourcenter{
-			margin:3% 0% 90% 0%;
-		}
-		.fourbottom{
-			margin-top:3%;
-		}
-		/*第五页*/
-		.m-fiveblock{
-			width:70%;
-			height:80%;
-			top:5%;
-			left:10%;
-		}
-		.fivepublic{
-			margin:0% 0% 3% 5%;
-		}
-		.fivetop{
-			margin-bottom:1%;
-		}
-		.fivecenter{
-			margin:80% 0% 4% 0%;
-		}
-		.fivebottom{
-			margin:3% 0% 20% 0%;
-		}
-		/*第六页*/
-		.m-sixblock{
-			width:70%;
-			height:80%;
-			top:10%;
-			left:15%;
-		}
-		.sixblock p{
-			margin-bottom:4%;
-		}
-		p.sexpublic{
-			font-size:16px;
-		}
-		.sexcenter{
-			margin-top:110%;
-		}
-		p.spub img{
-			display:inline-block;
-			width:15%;
-			margin-top:-5%;
-		}
-		/*第七页*/
-		.m-sevenblock{
-			width:40%;
-			height:40%;
-			top:71.5%;
-			left:29.5%;
-			margin:0 auto;
-		}
-		.sevtop{
-			display:inline-block;
-			width:100%;
-			margin-bottom:10%;
-		}
-		.tips{
-			background:rgba(0,0,0,0.8);
-			width: 75%;
-			height: 35px;
-			line-height: 35px;
-			text-align: center;
-			color:#fff;
-			border-radius: 5px;
-			position: fixed;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			top: 0;
-			margin:auto;
-			display: none;
-			z-index: 999;
-		}
-    </style>
+        <link rel="stylesheet" href="/activity/css/dataSwitch.css">
     <script src="/jquery.js"></script>
     <script src="/jquery.sha1.js"></script>
 	<script src="/wxjsapi.js"></script>
@@ -243,30 +34,33 @@
 	</script>
 </head>
 <body>
-	<div class="g-container">
+	<div class="g-containers">
 		<div class="swiper-container">
 		    <div class="swiper-wrapper">
 		        <div class="swiper-slide" id="shareone">
-		        	<!-- <img src="/activity/images/data_top.jpg"> -->
 		        	<img src="/activity/images/data_onebg.jpg">
-		        	<!-- <img src="/activity/images/data_bottom.jpg"> -->
 		        	<div class="m-float m-fbutton">
+		        		<div class="oneblock">
+		        			{% if datainfo.user_sex == 0 %}
+							<p>你属于这<span>70%</span></p>
+							{% else %}
+							<p>你属于这<span>30%</span></p>
+							{% endif %}
+		        		</div>
 		        		<img src="/activity/images/data_xz.png">
 		        	</div>
 		        </div>
 		        <div class="swiper-slide" id="sharetwo">
-		        	<!-- <img src="/activity/images/data_top.jpg"> -->
 		        	<img src="/activity/images/data_two.jpg">
-		        	<!-- <img src="/activity/images/data_bottom.jpg"> -->
 		        	<div class="m-float m-twoblock">
 		        		<div class="u-in">
 		        			<div class="u-icon"><img src="/activity/images/icon.png"></div>
 		        			<p class="infirst">娱儿直播<span>sss</span>的主播成绩单</p>
 		        		</div>
 		        		<div class="u-dates">
-		        			<div class="right">
-		        				<img src="/activity/images/9.png" class="specnum"><span>月</span>
-		        				<img src="/activity/images/2.png" class="specnum"><span>日</span>
+		        			<div id="total">
+		        				<span class="t_num">{{datainfo.daily_max_fans_date}}</span>月
+		        				<span class="t_num"></span>日
 		        			</div>
 		        			<p class="right">你来到娱儿报到注册</p>
 
@@ -282,16 +76,14 @@
 		        	</div>
 		        </div>
 		        <div class="swiper-slide" id="sharethree">
-		        	<!-- <img src="/activity/images/data_top.jpg"> -->
 		        	<img src="/activity/images/data_three.jpg">
-		        	<!-- <img src="/activity/images/data_bottom.jpg"> -->
 		        	<div class="m-float m-threeblock">
 		        		<div class="threeblock">
 		        			<div class="left threetop">
 		        				<img src="/activity/images/1.png" class="specnum"><span>月</span>
 		        				<img src="/activity/images/2.png" class="specnum"><span>日</span>
 		        			</div>
-		        			<p class="lefts"><span></span>关注了你，这是你的第一位粉丝</p>
+		        			<p class="lefts"><span>{{datainfo.first_fan_name}}</span>关注了你，这是你的第一位粉丝</p>
 		        			<!-- else -->
 		        			<p class="centers threetop">你还没有收到粉丝的关注</p>
 
@@ -300,30 +92,28 @@
 		        				<img src="/activity/images/1.png" class="specnum"><span>月</span>
 		        				<img src="/activity/images/2.png" class="specnum"><span>日</span>
 		        			</div>
-		        			<p class="rights rightsix">收获了 <span id="showTime"></span>位粉丝</p>
+		        			<p class="rights rightsix">收获了 <span id="showTime">{{datainfo.total_fans}}</span>位粉丝</p>
 		        			<p class="rights threebottom">这是你开播以来赢得粉丝关注最多的一天</p>
-		        			<p class="lefts">截止今天，你一共获得了<span id="showTime"></span>位小伙伴的关注</p>
+		        			<p class="lefts">截止今天，你一共获得了<span id="showTime">{{datainfo.daily_max_fans}}</span>位小伙伴的关注</p>
 		        			<!-- else -->
 		        			<p class="centers">多多直播才能涨人气哦！</p>
 		        		</div>
 		        	</div>
 		        </div>
 		        <div class="swiper-slide" id="sharefour">
-		        	<!-- <img src="/activity/images/data_top.jpg"> -->
 		        	<img src="/activity/images/data_four.jpg">
-		        	<!-- <img src="/activity/images/data_bottom.jpg"> -->
 		        	<div class="m-float m-fourblock">
 		        		<div class="fourblock">
 		        			<div class="left fourtop">
 		        				<img src="/activity/images/1.png" class="specnum"><span>月</span>
 		        				<img src="/activity/images/2.png" class="specnum"><span>日</span>
 		        			</div>
-		        			<p class="lefts">关注了<span></span></p>
+		        			<p class="lefts">关注了<span>{{datainfo.first_concern}}</span></p>
 		        			<!-- else -->
 		        			<p class="centers fourtop">你还没有关注任何主播</p>
 
 		        			<p class="lefts fourcenter">在这里，有志同道合的小伙伴一起成长</p>
-		        			<p class="centers">截止今天，你一共关注了<span id="showTime"></span>位小伙伴</p>
+		        			<p class="centers">截止今天，你一共关注了<span id="showTime">{{datainfo.total_concern}}</span>位小伙伴</p>
 		        			<p class="centers fourbottom">他们给予你看待游戏和世界的角度</p>
 		        			<!-- else -->
 		        			<p class="centers fourcenter">点一点手指关注他们打开新世界的大门吧！</p>
@@ -331,42 +121,38 @@
 		        	</div>
 		        </div>
 		        <div class="swiper-slide" id="sharefive">
-		        	<!-- <img src="/activity/images/data_top.jpg"> -->
 		        	<img src="/activity/images/data_five.jpg">
-		        	<!-- <img src="/activity/images/data_bottom.jpg"> -->
 		        	<div class="m-float m-fiveblock">
 		        		<div class="fiveblock">
 		        			<div class="left fivetop fivepublic">
 		        				<img src="/activity/images/1.png" class="specnum"><span>月</span>
 		        				<img src="/activity/images/2.png" class="specnum"><span>日</span>
 		        			</div>
-		        			<p class="lefts fivepublic">你收到了来自<span></span>的第一份礼物</p>
+		        			<p class="lefts fivepublic">你收到了来自<span>{{datainfo.first_get_gift_user_name}}</span>的第一份礼物</p>
 		        			<!-- else -->
 		        			<p class="centers ">你还没有收到任何礼物</p>
 		        			<p class="centers ">赶紧开启手播，秀一下你的酷炫的操作</p>
 
-		        			<p class="lefts fivepublic">目前已经累计获得<span id="showTime"></span>鱼币的礼物</p>
-		        			<p class="lefts fivepublic"><span></span>是你贡献榜的第一名</p>
+		        			<p class="lefts fivepublic">目前已经累计获得<span id="showTime">{{datainfo.total_yuer_coin}}</span>鱼币的礼物</p>
+		        			<p class="lefts fivepublic"><span>{{datainfo.first_contribution_user}}</span>是你贡献榜的第一名</p>
 		        			<!-- else -->
 		        			<!-- 空白 -->
 		        			<div class="right fivecenter">
 		        				<img src="/activity/images/1.png" class="specnum"><span>月</span>
 		        				<img src="/activity/images/2.png" class="specnum"><span>日</span>
 		        			</div>
-		        			<p class="rights">你为<span></span>送出了你的第一份礼物</p>
-		        			<p class="rights fivebottom">目前你一共送出<span id="showTime">0</span>鱼币的礼物</p>
+		        			<p class="rights">你为<span>{{datainfo.first_send_gift_user_name}}</span>送出了你的第一份礼物</p>
+		        			<p class="rights fivebottom">目前你一共送出<span id="showTime">{{datainfo.total_send_yuer_coin}}</span>鱼币的礼物</p>
 		        			<p class="lefts">除了弹幕，礼物能更好的表达你对主播的喜爱与崇拜</p>
 		        		</div>
 		        	</div>
 		        </div>
 		        <div class="swiper-slide" id="sharesix">
-		        	<!-- <img src="/activity/images/data_top.jpg"> -->
-		        	<img src="/activity/images/data_six.jpg">
-		        	<!-- <img src="/activity/images/data_bottom.jpg"> -->
+					<img src="/activity/images/data_six.jpg">
 		        	<div class="m-float m-sixblock">
 		        		<div class="sixblock">
-		        			<p class="lefts sexpublic"><span></span>是你直播时间最长的游戏</p>
-		        			<p class="lefts sexpublic"><span></span>是你直播次数最多的游戏</p>
+		        			<p class="lefts sexpublic"><span>{{datainfo.max_duration_game}}</span>是你直播时间最长的游戏</p>
+		        			<p class="lefts sexpublic"><span>{{datainfo.max_times_game}}</span>是你直播次数最多的游戏</p>
 		        			<p class="lefts sexcenter spub">这是你来到娱儿的第<span><img src="/activity/images/1.png"></span>天</p>
 		        			<p class="lefts spub">累计开播<span><img src="/activity/images/3.png"><img src="/activity/images/2.png"></span>次</p>
 		        			<p class="lefts spub">开播时长超过了<span><img src="/activity/images/3.png"><img src="/activity/images/data_num.png"></span>的娱儿主播</p>
@@ -379,9 +165,7 @@
 		        	</div>
 		        </div>
 		        <div class="swiper-slide" id="shareseven">
-		        	<!-- <img src="/activity/images/data_top.jpg"> -->
 		        	<img src="/activity/images/data_seven.jpg">
-		        	<!-- <img src="/activity/images/data_bottom.jpg"> -->
 		        	<div class="m-float m-sevenblock">
 		        		<img src="/activity/images/data_sevencopy.png" class="sevtop" id="">
 		        		<img src="/activity/images/data_sevenshare.png" class="sevbottom" id="disableds">
@@ -393,6 +177,7 @@
 	</div>
     <script src="/activity/js/swiper.min.js"></script>
     <script src="/activity/js/swiper.animate.min.js"></script>
+    <script src="/activity/js/animateBackground-plugin.js"></script>
     <script type="text/javascript">
     	$(function(){
     		// 报名
@@ -418,6 +203,25 @@
 			    	swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
 			  	} 
 			}) 
+    		function show_num(n){
+				var it = $(".t_num i");
+				var len = String(n).length;
+				for(var i=0;i<len;i++){
+					if(it.length<=i){
+						$(".t_num").append("<i></i>");
+					}
+					var num=String(n).charAt(i);
+					var y = -parseInt(num)*30;
+					var obj = $(".t_num i").eq(i);
+					obj.animate({
+						backgroundPosition :'(0 '+String(y)+'px)' 
+						}, 'slow','swing',function(){}
+					);
+				}
+				$("#cur_num").val(n);
+			}
+
+
 			function dataUp(id,domEnd){
 				// 得到的值
 				var _dom = id;

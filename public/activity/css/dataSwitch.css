@@ -1,0 +1,211 @@
+*{margin: 0; padding: 0;}
+body{
+	font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC;
+	width: 100%;
+	max-width: 800px;
+	margin:0 auto;
+}
+img{
+	border:0;
+	max-width:100%;
+	vertical-align:top; 
+}
+.g-containers{
+	width:100%;
+	position:relative;
+}
+.g-containers .swiper-slide{
+	position:relative;
+}
+.g-containers .m-float{
+	position:absolute;
+}
+.g-containers .m-fbutton{
+	width:75%;
+	top:90%;
+	left:13.5%;
+}
+.g-containers .m-twoblock{
+	width:80%;
+	height:80%;
+	top:8%;
+	left:10%;
+	text-align:center;
+}
+.g-containers .u-icon{
+	width:25%;
+	height:25%;
+	margin:0 auto;
+}
+.g-containers .u-icon img{
+	display:inline-block;
+	width:100%;
+	border-radius:50%;
+}
+.g-containers .u-in p{
+	margin-top:5%;
+	font-size:16px;
+	color:#fff;
+}
+.g-containers .u-in p span{
+	color:#f36;
+}
+.g-containers .u-dates{
+	margin-top:20%;
+}
+.g-containers .right img,.g-containers .left img{
+	display:inline-block;
+	width:15%;
+	margin-top:-6%;
+}
+.g-containers .right span ,.g-containers .left span{
+	font-size:14px;
+	color:#fff;
+}
+.g-containers .right{
+	text-align:right;
+}
+.g-containers .u-dates .right{
+	font-size:14px;
+	color:#fff;
+}
+.g-containers .left{
+	text-align:left;
+}
+.g-containers .u-dates .left{
+	margin-top:65%;
+	font-size:14px;
+	color:#fff;
+}
+.g-containers .u-dates p{
+	font-size:14px;
+	color:#fff;
+	margin-top:4%;
+}
+.g-containers p.rights{
+	text-align:right;
+}
+.g-containers p.lefts{
+	text-align:left;
+}
+.g-containers p.centers{
+	text-align:center;
+}
+/*第三页*/
+.g-containers .m-threeblock{
+	width:75%;
+	height:70%;
+	top:10%;
+	left:12.5%;
+	margin:0 auto;
+}
+.g-containers p{
+	font-size:14px;
+	color:#fff;
+}
+.g-containers .threetop{
+	margin:5% 0% 4% 0%;
+}
+.g-containers .threecenter{
+	margin:70% 6% 4% 0%;
+}
+.g-containers .rightsix{
+	margin-right:6%;
+}
+.g-containers .threebottom{
+	margin:3% 6% 30% 0%;
+}
+.g-containers p span{
+	font-size:14px;
+	color:#f36;
+}
+/*第四页*/
+.g-containers .m-fourblock{
+	width:70%;
+	height:70%;
+	top:10%;
+	left:15%;
+	margin:0 auto;
+}
+.g-containers .fourtop{
+	margin-bottom:4%;
+}
+.g-containers .fourcenter{
+	margin:3% 0% 90% 0%;
+}
+.g-containers .fourbottom{
+	margin-top:3%;
+}
+/*第五页*/
+.g-containers .m-fiveblock{
+	width:70%;
+	height:80%;
+	top:5%;
+	left:10%;
+}
+.g-containers .fivepublic{
+	margin:0% 0% 3% 5%;
+}
+.g-containers .fivetop{
+	margin-bottom:1%;
+}
+.g-containers .fivecenter{
+	margin:80% 0% 4% 0%;
+}
+.g-containers .fivebottom{
+	margin:3% 0% 20% 0%;
+}
+/*第六页*/
+.g-containers .m-sixblock{
+	width:70%;
+	height:80%;
+	top:10%;
+	left:15%;
+}
+.g-containers .sixblock p{
+	margin-bottom:4%;
+}
+.g-containers p.sexpublic{
+	font-size:16px;
+}
+.g-containers .sexcenter{
+	margin-top:110%;
+}
+.g-containers p.spub img{
+	display:inline-block;
+	width:15%;
+	margin-top:-5%;
+}
+/*第七页*/
+.g-containers .m-sevenblock{
+	width:40%;
+	height:40%;
+	top:71.5%;
+	left:29.5%;
+	margin:0 auto;
+}
+.g-containers .sevtop{
+	display:inline-block;
+	width:100%;
+	margin-bottom:10%;
+}
+.g-containers .tips{
+	background:rgba(0,0,0,0.8);
+	width: 75%;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	color:#fff;
+	border-radius: 5px;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	margin:auto;
+	display: none;
+	z-index: 999;
+}
+.g-containers #total{width:10%; height:10%; margin-top:-10%;font-size:20px}
+.g-containers #total .t_num{ display:inline-block; line-height:13px; margin:2px 4px 0 4px;}
+.g-containers #total .t_num i{width:15px;height:23px; display:inline-block; background: url(/activity/images/number.png) no-repeat; background-position:0 0; text-indent:-999em}
