@@ -170,61 +170,63 @@ li span.scfouro{
     height: 100%;
 }
 .m-fbutton{
-    		width:90%;
-    		height:80%;
-    		top:20%;
-    		left:10%;
-    	}
-    	.oneblock{
-    		margin:40% 10% 0% 60%;
-    	}
-    	.g-containers .m-fbutton img{
-    		display:inline-block;
-			width:85%;
-			margin:80% 0% 0% 3%;
-		}
-		.fontsize{
-			font-size:16px;
-		}
-		.white{
-			color:#fff;
-		}
-		.g-containers .total{
-			display:inline-block;
-			width:90%;
-			 height:10%; 
-			 font-size:16px;	 
-		}
-		.g-containers .total .t_num{ 
-			display:inline-block; 
-			line-height:100%; 
-		}
-		.g-containers .total .t_num i{
-			display:inline-block;
-			width:100%;
-			height:100%; 
-			margin-top:-10%;
-			display:inline-block; 
-			background: url(/activity/images/number.png) no-repeat; 
-		}
-		.fivenone{
-			margin-top:30% 0% 3% 0%;
-		}
-		.fivenonetwo{
-			margin:3% 0% 50% 0%;
-		}
-		.fournone{
-			margin:30% 0% 80% 0%;
-		}
-		.threenon{
-			margin-top:40%;
-		}
-		.threenone{
-			margin-top:100%;
-		}
-		p.twonone{
-			margin-bottom:60%;
-		}
+	width:90%;
+	height:80%;
+	top:20%;
+	left:10%;
+}
+.oneblock{
+	margin:30% 5% 0% 60%;
+}
+.g-containers .m-fbutton img{
+	display:inline-block;
+	width:85%;
+	margin:73.5% 0% 0% -7%;
+}
+.fontsize{
+	font-size:16px;
+}
+.white{
+	color:#fff;
+}
+/*.g-containers .total{
+	display:inline-block;
+	width:90%;
+	 height:10%; 
+	 font-size:16px;	 
+}*/
+/*.g-containers .total .t_num{ */
+	/*display:inline-block; */
+	/*line-height:100%; */
+/*}*/
+/*.g-containers .total .t_num i{
+	display:inline-block;
+	width:100%;
+	height:10%;
+	overflow:hidden;*/
+	/*height:100%; */
+/*	margin-top:-10%;
+	display:inline-block; 
+	background: url(/activity/images/number.png) no-repeat; 
+}*/
+.fivenone{
+	margin-top:30% 0% 3% 0%;
+}
+.fivenonetwo{
+	margin:3% 0% 50% 0%;
+}
+.fournone{
+	margin:30% 0% 80% 0%;
+}
+.threenon{
+	margin-top:40%;
+}
+.threenone{
+	margin-top:100%;
+}
+p.twonone{
+	margin-bottom:60%;
+}
 .swiper-slide {
     text-align: center;
     font-size: 18px;
@@ -419,6 +421,9 @@ li span.scfouro{
 	display:inline-block;
 	width:100%;
 	margin-bottom:10%;
+}
+.showTime{
+	font-size:18px;
 }
 .tips{
 	background:rgba(0,0,0,0.8);
