@@ -40,7 +40,7 @@
 		<div class="u-stotal">
 
 			<div class="u-switch">
-				<i>人气财富榜</i><i class="u-sright">直播劳模榜</i>
+				<i class="u-sleft u-current">人气财富榜</i><i class="u-sright">直播劳模榜</i>
 			</div>
 			<div class="switchs">
 				<div class="switch-content switchtss">
@@ -65,7 +65,11 @@
 					<ul>
 						{% for datash in dataShow.durationList %}
 						<li>
-							<span class="scone">01</span>
+							{% if loop.index < 10 %}
+							<span class="scone">0{{loop.index}}</span>
+							{% else %}
+							<span class="scone">{{loop.index}}</span>
+							{% endif %}
 							<img src="http://img.wangyuhudong.com/{{datash.icon}}" class="sctwo">
 							<span class="scthree">{{datash.nickname}}</span>
 							<span class="scfour">
@@ -238,11 +242,24 @@
     			$(".m-startpage").hide();
     			$(".g-containers").show();
     		})
+
+    		var w = $(window).width();
+    		// tab切换
+    		if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i) || navigator.userAgent.match(/android/i)) {
+				// window.location.href = '/activity/recruit';
+	        }else{
+	        	// window.location.href = '/activity/hrecruit';
+	        }
+
 		    $(".u-switch i").on("click", function() {
-		    	// 第二个的名字
-		    	// (".switchts").eq($(this).index()).animate({left:0},300)
-		    	// 两个共同的名字
-			    $(".switch-content").eq($(this).index()).animate({left:0},300).siblings('.switch-content').css('left','-100%');
+		    	$(this).addClass('u-current').siblings().removeClass('u-current');
+		    	$('.switch-content').scrollTop(0);
+		    	if($(this).index()==1){
+		    		$(".switch-content").eq(1).animate({left:0},300).siblings('.switch-content').animate({left:-w+'px'},300);
+		    	}else{
+		    		$(".switch-content").eq(0).animate({left:0},300).siblings('.switch-content').animate({left:w+'px'},300);
+		    	}
+			    
 			})
 		    $(".scthree").each(function(){
 		       $(this).text($(this).text().substr(0,4)+"***");
