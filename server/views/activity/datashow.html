@@ -227,7 +227,7 @@
 		        			<p class="lefts sexpublic"><span>{{datainfo.max_times_game}}</span>是你直播次数最多的游戏</p>
 		        			<p class="lefts sexcenter spub">这是你来到娱儿的第<span><span class="t_num">{{datainfo.register_days}}</span></span>天</p>
 		        			<p class="total lefts spub">累计开播<span class="t_num">{{datainfo.live_times}}</span>次</p>
-		        			<p class="total lefts spub">开播时长超过了<span class="t_num">{{datainfo.over_duration}}</span>的娱儿主播</p>
+		        			<p class="total lefts spub">开播时长超过了<span class="t_num">{{datainfo.over_duration}}</span> <span>％</span>的娱儿主播</p>
 		        			{% else %}
 		        			<p class="centers total">这是你来到娱儿的第<span class="t_num">{{datainfo.register_days}}</span>天</p>
 		        			<p class="centers sexcenter spub">王者荣耀、球球大作战、阴阳师...</p>
@@ -293,24 +293,11 @@
     		$('.download').click(function(){
     			window.location.href = "https://yuertvfile.wangyuhudong.com";
     		})
-
-    		var w = $(window).width();
-    		// tab切换
-    		if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i) || navigator.userAgent.match(/android/i)) {
-				// window.location.href = '/activity/recruit';
-	        }else{
-	        	// window.location.href = '/activity/hrecruit';
-	        }
-
 		    $(".u-switch i").on("click", function() {
-		    	$(this).addClass('u-current').siblings().removeClass('u-current');
-		    	$('.switch-content').scrollTop(0);
-		    	if($(this).index()==1){
-		    		$(".switch-content").eq(1).animate({left:0},300).siblings('.switch-content').animate({left:-w+'px'},300);
-		    	}else{
-		    		$(".switch-content").eq(0).animate({left:0},300).siblings('.switch-content').animate({left:w+'px'},300);
-		    	}
-			    
+		    	// 第二个的名字
+		    	// (".switchts").eq($(this).index()).animate({left:0},300)
+		    	// 两个共同的名字
+			    $(".switch-content").eq($(this).index()).animate({left:0},300).siblings('.switch-content').css('left','-100%');
 			})
 		    $(".scthree").each(function(){
 		       $(this).text($(this).text().substr(0,4)+"***");
@@ -346,29 +333,29 @@
 		 //    })
 
 
-function dataUp(id,domEnd){
-		// 得到的值
-		var _dom = id;
-		_dom.text(0);
-		var _domStart = _dom.text();
-		// 最后的值
-		var _domEnd = domEnd;
-		// 次数
-		var _interCount = 5;
-		var _step = parseInt(_domEnd / _interCount);
-		var _setInterval = setInterval(function(){
-		// 稳定拉回
-		if(parseInt(_dom.text()) >= _domEnd){
-			_dom.text(_domEnd)
-			clearInterval(_setInterval);return;
-		}
-		// 定时器
-			_dom.text(Math.floor(parseInt(_dom.text())) + _step);
-		},100)
-	}
-	$(".showTime").each(function(){
-		dataUp($(this),$(this).text());
-	})
+			function dataUp(id,domEnd){
+				// 得到的值
+				var _dom = id;
+				_dom.text(0);
+				var _domStart = _dom.text();
+				// 最后的值
+				var _domEnd = domEnd;
+				// 次数
+				var _interCount = 5;
+				var _step = parseInt(_domEnd / _interCount);
+				var _setInterval = setInterval(function(){
+				// 稳定拉回
+				if(parseInt(_dom.text()) >= _domEnd){
+					_dom.text(_domEnd)
+					clearInterval(_setInterval);return;
+				}
+				// 定时器
+					_dom.text(Math.floor(parseInt(_dom.text())) + _step);
+				},100)
+			}
+			$(".showTime").each(function(){
+				dataUp($(this),parseInt($(this).text()));
+			})
 
 			$("#disableds").on("click",function(){
 				showTip();
