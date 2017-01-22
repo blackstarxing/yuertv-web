@@ -52,7 +52,15 @@
 							{% else %}
 							<span class="scone">{{loop.index}}</span>
 							{% endif %}
-							<img src="http://img.wangyuhudong.com/{{datas.icon}}" class="sctwo">
+							{% if datas.icon %}
+                            {% if datas.icon.indexOf('http')>-1 %}
+                            <img src="{{datas.icon}}" alt="" class="sctwo">
+                            {% else %}
+                            <img src="http://img.wangyuhudong.com/{{datas.icon}}" alt="" class="sctwo">
+                            {% endif %}
+                            {% else %}
+                            <img src="/images/default_avatar.png" alt="" class="sctwo head-icon">
+                            {% endif %}
 							<span class="scthree">{{datas.nickname}}</span>
 							<span class="scfour">
 								<span class="scfouro">{{datas.total_gift}}</span>
@@ -65,8 +73,20 @@
 					<ul>
 						{% for datash in dataShow.durationList %}
 						<li>
-							<span class="scone">01</span>
-							<img src="http://img.wangyuhudong.com/{{datash.icon}}" class="sctwo">
+							{% if loop.index < 10 %}
+							<span class="scone">0{{loop.index}}</span>
+							{% else %}
+							<span class="scone">{{loop.index}}</span>
+							{% endif %}
+							{% if datash.icon %}
+                            {% if datash.icon.indexOf('http')>-1 %}
+                            <img src="{{datash.icon}}" alt="" class="sctwo">
+                            {% else %}
+                            <img src="http://img.wangyuhudong.com/{{datash.icon}}" alt="" class="sctwo">
+                            {% endif %}
+                            {% else %}
+                            <img src="/images/default_avatar.png" alt="" class="sctwo head-icon">
+                            {% endif %}
 							<span class="scthree">{{datash.nickname}}</span>
 							<span class="scfour">
 								<span class="scfouro">{{datash.duration}}</span>分钟</span></li>
@@ -234,9 +254,44 @@
     <!-- <script src="/activity/js/animateBackground-plugin.js"></script> -->
     <script type="text/javascript">
     	$(function(){
-    		$("#dataswitch").click(function(){
-    			$(".m-startpage").hide();
+    		// 获取参数
+			function getQueryString(name) {
+			    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+			    var r = window.location.search.substr(1).match(reg);
+			    if (r != null) {
+			        return unescape(r[2]);
+			    }
+			    return null;
+			}
+
+			var userId = getQueryString("userId");
+
+			// 代理
+			var ua = navigator.userAgent.toLowerCase();	
+			// 是否用娱儿直播打开
+			var inyuer = ua.match(/YuertvBrowser/i)=="yuertvbrowser";
+
+			if(!inyuer && userId){
+				$(".m-startpage").hide();
     			$(".g-containers").show();
+			}else if(!inyuer && !userId){
+				$('#dataswitch').addClass('download');
+			}
+
+    		$("#dataswitch").click(function(){
+    			if(inyuer){
+    				if(userId){
+    					$(".m-startpage").hide();
+    					$(".g-containers").show();
+    				}else{
+    					window.location.href = "yuertvopen://login";
+    				}
+    			}
+    			
+    		})
+
+    		$('.download').click(function(){
+    			window.location.href = "https://yuertvfile.wangyuhudong.com";
     		})
 		    $(".u-switch i").on("click", function() {
 		    	// 第二个的名字
