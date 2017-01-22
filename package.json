@@ -15,6 +15,7 @@
     "flv.js": "^1.1.0",
     "morgan": "~1.7.0",
     "nunjucks": "^2.5.2",
+    "redis": "^2.6.5",
     "request": "^2.75.0",
     "serve-favicon": "~2.3.0",
     "thenjs": "^2.0.3"

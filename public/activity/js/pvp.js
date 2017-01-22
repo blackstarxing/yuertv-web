@@ -378,7 +378,6 @@ $(function(){
 		            if(data.code == 0){
 		            	var s = 30;
 		            	$('.rewrite').hide()
-		            	$('.joinin').css('display','block');
 		            	$('.form-result p').show();
 		            	if(!inyuer){
 							$('.download').attr('href','https://yuertvfile.wangyuhudong.com').text('下载娱儿直播');
