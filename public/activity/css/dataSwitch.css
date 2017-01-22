@@ -34,6 +34,7 @@ img{
 	width:90%;
 	height:65.5%;
 	top:34.5%;
+	left: 5%;
 }
 .switchs{
 	position:relative;
@@ -41,33 +42,61 @@ img{
 	height:67%;
 }
 .u-switch{
-	display:absolute;
 	width:100%;
-	height:9%;
-	margin-left:25%;
+	/*height:30px;*/
+	margin-left:10%;
 }
 .u-switch i{
 	display:inline-block;
-	width:25%;
-	height:100%;
+	width:40%;
+	height:30px;
+	line-height: 26px;
 	margin-top:0.5%;
-	margin-left:2.5%;
 	font-style:normal;
 	font-size:16px;
 	color:#000;
+	background: #f33030;
+	border:2px solid #000;
+	text-align: center;
+	box-sizing: border-box;
+	background: url(/activity/images/data_arrowleft.png) 5% center no-repeat;
+	background-size:9px 15px;
+}
+.u-switch .u-sleft{
+	border-radius:15px 0 0 15px;
+	border-right: none;
 }
 .u-switch .u-sright{
-	margin-left:5.5%;
+	border-radius:0 15px 15px 0;
+	background: url(/activity/images/data_arrowright.png) 90% center no-repeat;
+	background-size:9px 15px;
+}
+.u-switch .u-current{
+	background-color: #fde401;
+}
+.switch-content li:first-child{
+	background: url('/activity/images/data_one.png') 18px 0 no-repeat;
+	background-size: 20px 20px;
+}
+.switch-content li:nth-child(2){
+	background: url('/activity/images/data_two.png') 18px 0 no-repeat;
+	background-size: 20px 20px;
+}
+.switch-content li:nth-child(3){
+	background: url('/activity/images/data_three.png') 18px 0 no-repeat;
+	background-size: 20px 20px;
 }
 .switch-content{
 	display:absolute;
 	width:100%;
 	height:100%;
 	overflow:hidden;
-	margin-left:10%;
+	/*margin-left:10%;*/
 	top:0;
+	overflow-y: auto;
 }
 div.switchtss{
+	position: absolute;
 	width:100%;
 	left:0;
 }
@@ -79,7 +108,7 @@ div.switchts{
 }
 .switch-content ul{
 	list-style:none;
-	margin-top:8%;
+	margin-top:10px;
 	margin-left:13%;
 	width:100%;
 	height:100%;
@@ -87,8 +116,9 @@ div.switchts{
 }
 .switch-content ul li{
 	width:100%;
-	height:16%;
-	line-height: 16%;
+	padding:20px 0 5px; 
+	/*height:16%;*/
+	/*line-height: 16%;*/
 	margin-left:-5%;
 }
 ul li span{
@@ -127,7 +157,7 @@ li span.scfouro{
 .u-canc{
 	width:70%;
 	height:18%;
-	margin-left:21%;
+	margin-left:15%;
 	margin-top:5%;
 }
 .g-containers{
