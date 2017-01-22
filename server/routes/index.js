@@ -594,7 +594,7 @@ router.get('/activity/datashow', function(req, res, next) {
     var userId = req.query.userId;
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.2.62:8099/yearly/rank',
+            uri: 'http://yuerapi.wangyuhudong.com/yearly/rank',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -608,7 +608,7 @@ router.get('/activity/datashow', function(req, res, next) {
         })
     },function(cont) {
         request({
-            uri:'http://172.16.2.62:8099/yearlyUserData?userId='+userId+'&token='+token,
+            uri:'http://yuerapi.wangyuhudong.com/yearlyUserData?userId='+userId+'&token='+token,
              headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
