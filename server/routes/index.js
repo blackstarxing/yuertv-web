@@ -623,7 +623,52 @@ router.get('/mobile/author', function(req, res, next) {
     });
     // res.render('mobile/author', { title: "娱儿TV--领跑移动电竞的直播平台" });
 });
-
+router.get('/activity/datashow', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    Thenjs.parallel([function(cont) {
+        request({
+            uri: ' http://172.16.2.62:8099/yearly/rank',
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+              }
+        }, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        console.log(result);
+        res.render('activity/datashow', {
+            title: "数据分享",
+            dataShow: JSON.parse(result[0]).object,
+            islogin: islogin,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+});
+router.get('/activity/dataSwitch', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('activity/dataSwitch');
+});
 router.get('/activity/recruit', function(req, res, next) {
     res.render('activity/recruit');
 });
