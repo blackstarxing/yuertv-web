@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数据分享</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <style type="text/css">
+    	*{margin: 0; padding: 0;}
+		body{
+			font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC;
+			width: 100%;
+			max-width: 800px;
+			margin:0 auto;
+		}
+		img{
+			border:0;
+			max-width:100%;
+			vertical-align:top; 
+		}
+		.g-container{
+			width:100%;
+			position:relative;
+		}
+		.m-startpage{
+			position:relative;
+			width:100%;
+		}
+		.u-stotal{
+			position:absolute;
+			width:90%;
+			height:65.5%;
+			top:34.5%;
+		}
+		.switchs{
+			position:relative;
+			width:100%;
+			height:67%;
+		}
+		.u-switch{
+			display:absolute;
+			width:100%;
+			height:9%;
+			margin-left:25%;
+		}
+		.u-switch i{
+			display:inline-block;
+			width:25%;
+			height:100%;
+			margin-top:0.5%;
+			margin-left:2.5%;
+			font-style:normal;
+			font-size:16px;
+			color:#000;
+		}
+		.u-switch .u-sright{
+			margin-left:5.5%;
+		}
+		.switch-content{
+			display:absolute;
+			width:100%;
+			height:100%;
+			overflow:hidden;
+			margin-left:10%;
+			top:0;
+		}
+		div.switchtss{
+			width:100%;
+			left:0;
+		}
+		div.switchts{
+			/*display:none;*/
+			position: absolute;
+			width:100%;
+			left: 750px;
+		}
+		.switch-content ul{
+			list-style:none;
+			margin-top:8%;
+			margin-left:13%;
+			width:100%;
+			height:100%;
+			top:-2%;
+		}
+		.switch-content ul li{
+			width:100%;
+			height:16%;
+			line-height: 16%;
+			margin-left:-5%;
+		}
+		ul li span{
+			display:inline-block;
+			height:100%;
+			font-size:16px;
+			color:#fff;
+		}
+		li .scone{
+			width:5%;
+			font-size:16px;
+			color:#000;
+		}
+		li .sctwo{
+			width:10%;
+			border-radius: 50%;
+			margin:-3% 2% 0% 2%;
+			overflow:hidden;
+		}
+		li .sctwo img{
+			float:left;
+			display:inline-block;
+			width:100%;
+		}
+		li .scthree{
+			width:30%;
+		}
+		li .scfour{
+			width:35%;
+			margin-left:5%;
+			margin-right:0.5%;
+		}
+		li span.scfouro{
+			color:#ffff01;
+		}
+		.u-canc{
+			width:70%;
+			height:18%;
+			margin-left:21%;
+			margin-top:5%;
+		}
+		.swiper-container{
+			display:none;
+		}
+		.swiper-container{
+			width:100%;
+		}
+
+    	.swiper-slide{
+    		height:100%;
+    	}
+
+    </style>
+    <script src="/jquery.js"></script>
+    <script src="/jquery.sha1.js"></script>
+	<script src="/wxjsapi.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+	  		var hm = document.createElement("script");
+	  		hm.src = "https://hm.baidu.com/hm.js?1869b3a9db6347d35265d4d340edfd0a";
+	  		var s = document.getElementsByTagName("script")[0]; 
+	  		s.parentNode.insertBefore(hm, s);
+		})();
+
+		enableWxShare({
+			appId: 'wxf96f728533f32fa8',
+			ticket: '{{ticket}}',
+			title: '王者荣耀上铂金=199点券，“排好队，一个一个来!”',		
+			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/2017/yuerlogo.png',
+			desc: 'S6赛季来和娱儿直播决战王者峡谷，千元大奖等你领！'
+		})
+	</script>
+</head>
+<body>
+<div class="g-container">
+	<div class="m-startpage">
+		<img src="/activity/images/data_bg.jpg">
+		<div class="u-stotal">
+		
+			<div class="u-switch">
+				<i>人气财富榜</i><i class="u-sright">直播劳模榜</i>
+			</div>
+			<div class="switchs">
+				<div class="switch-content switchtss">
+					<ul>
+						{% for datas in dataShow.giftList %}
+						<li>
+							{% if loop.index < 10 %}
+							<span class="scone">0{{loop.index}}</span>
+							{% else %}
+							<span class="scone">{{loop.index}}</span>
+							{% endif %}
+							<img src="http://img.wangyuhudong.com/{{datas.icon}}" class="sctwo">
+							<span class="scthree">{{datas.nickname}}</span>
+							<span class="scfour">
+								<span class="scfouro">{{datas.total_gift}}</span>
+							鱼币</span>
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="switch-content switchts">
+					<ul>
+						{% for datash in dataShow.durationList %}
+						<li>
+							<span class="scone">01</span>
+							<img src="http://img.wangyuhudong.com/{{datash.icon}}" class="sctwo">
+							<span class="scthree">{{datash.nickname}}</span>
+							<span class="scfour">
+								<span class="scfouro">{{datash.duration}}</span>分钟</span></li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+			
+			<div class="u-canc">
+				<img src="/activity/images/data_switch.png" id="dataswitch">
+			</div>
+		</div>
+	</div>
+</div>
+    <script type="text/javascript">
+    	$(function(){
+    		// tab切换
+    		if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i) || navigator.userAgent.match(/android/i)) {
+				// window.location.href = '/activity/recruit';
+	        }else{
+	        	window.location.href = '/activity/hrecruit';
+	        }
+		    $(".u-switch i").on("click", function() {
+		    	// 第二个的名字
+		    	// (".switchts").eq($(this).index()).animate({left:0},300)
+		    	// 两个共同的名字
+			    $(".switch-content").eq($(this).index()).animate({left:0},300).siblings('.switch-content').css('left','-100%');
+			})
+		    $(".scthree").each(function(){
+		       $(this).text($(this).text().substr(0,4)+"***");
+		    });
+    		// 报名
+			// $('.join').click(function(e){
+			// url里面有用户名和id
+			// 	if($('.join').html()=='我要报名' && ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+			// 		e.preventDefault();
+			// 		if(userId && token){
+			// 			$(".swiper-container").show();
+			// 		}else{
+			// 			window.location.href = "yuertvopen://login";
+			// 		}
+			// 	}
+			// })
+			$('#dataswitch').click(function(){
+				window.location.href="http://www.yuerlive.cn/activity/dataSwitch";
+			})
+			$(".u-switch i:eq(0)").trigger("click");
+    	})
+    </script>
+     
+</body>
+</html>
