@@ -84,7 +84,7 @@
 		<div class="swiper-container">
 		    <div class="swiper-wrapper">
 		        <div class="swiper-slide" id="shareone">
-		        	<img src="/activity/images/data_onebg.jpg">
+		        	<img src="/activity/images/data_one.jpg">
 		        	<div class="m-float m-fbutton">
 		        		<div class="oneblock">
 		        			{% if datainfo.user_sex == 0 %}
@@ -105,14 +105,14 @@
 		        		</div>
 		        		<div class="u-dates">
 		        			<div class="total white rights">
-		        				<span class="t_num">{{datainfo.register_date}}</span>月
-		        				<span class="t_num"></span>日
+		        				<span class="t_num month">{{datainfo.register_date}}</span>月
+		        				<span class="t_num day">{{datainfo.register_date}}</span>日
 		        			</div>
 		        			<p class="right twonone">你来到娱儿报到注册</p>
 		        			{% if datainfo.first_live_date !== "" %}
 		        			<div class="total left u-datespec">
-		        				<span class="t_num">{{datainfo.first_live_date}}</span>月
-		        				<span class="t_num"></span>日
+		        				<span class="t_num month">{{datainfo.first_live_date}}</span>月
+		        				<span class="t_num day">{{datainfo.first_live_date}}</span>日
 		        			</div>
 		        			<p class="lefts">第一次开播成长，总需要迈出那勇敢的第一步</p>
 		        			{% else %}
@@ -128,8 +128,8 @@
 		        		<div class="threeblock">
 		        			{% if datainfo.first_fan_name !== "" %}
 		        			<div class="total left threetop white">
-		        				<span class="t_num">{{datainfo.first_fan_date}}</span>月
-		        				<span class="t_num"></span>日
+		        				<span class="t_num month">{{datainfo.first_fan_date}}</span>月
+		        				<span class="t_num day">{{datainfo.first_fan_date}}</span>日
 		        			</div>
 		        			<p class="lefts"><span>{{datainfo.first_fan_name}}</span>关注了你，这是你的第一位粉丝</p>
 		        			{% else %}
@@ -137,8 +137,8 @@
 		        			{% endif %}
 		        			{% if datainfo.total_fans !== "" %}
 		        			<div class="total right threecenter white">
-		        				<span class="t_num">{{datainfo.daily_max_fans_date}}</span>月
-		        				<span class="t_num"></span>日
+		        				<span class="t_num month">{{datainfo.daily_max_fans_date}}</span>月
+		        				<span class="t_num day">{{datainfo.daily_max_fans_date}}</span>日
 		        			</div>
 		        			<p class="rights rightsix">收获了<span class="showTime">{{datainfo.daily_max_fans}}</span>位粉丝</p>
 		        			<p class="rights threebottom">这是你开播以来赢得粉丝关注最多的一天</p>
@@ -155,8 +155,8 @@
 		        		<div class="fourblock">
 		        			{% if datainfo.first_concern !== "" %}
 		        			<div class="total left fourtop white">
-		        				<span class="t_num">{{datainfo.daily_max_fans_date}}</span>月
-		        				<span class="t_num"></span>日
+		        				<span class="t_num month">{{datainfo.first_concern_date}}</span>月
+		        				<span class="t_num day">{{datainfo.first_concern_date}}</span>日
 		        			</div>
 		        			<p class="lefts">关注了<span>{{datainfo.first_concern}}</span></p>
 		        			{% else %}
@@ -178,8 +178,8 @@
 		        		<div class="fiveblock">
 		        			{% if datainfo.first_get_gift_user_name !== "" %}
 		        			<div class="total left fivetop fivepublic white">
-		        				<span class="t_num">{{datainfo.daily_max_fans_date}}</span>月
-		        				<span class="t_num"></span>日
+		        				<span class="t_num month">{{datainfo.first_get_gift_date}}</span>月
+		        				<span class="t_num day">{{datainfo.first_get_gift_date}}</span>日
 		        			</div>
 		        			<p class="lefts fivepublic">你收到了来自<span>{{datainfo.first_get_gift_user_name}}</span>的第一份礼物</p>
 		        			<p class="lefts fivepublic">目前已经累计获得<span class="showTime">{{datainfo.total_yuer_coin}}</span>鱼币的礼物</p>
@@ -189,8 +189,8 @@
 		        			<p class="centers fivenonetwo">赶紧开启手播，秀一下你的酷炫的操作</p>
 		        			{% endif %}
 		        			<div class="total right fivecenter white ">
-		        				<span class="t_num">{{datainfo.daily_max_fans_date}}</span>月
-		        				<span class="t_num"></span>日
+		        				<span class="t_num month">{{datainfo.first_send_gift_date}}</span>月
+		        				<span class="t_num day">{{datainfo.first_send_gift_date}}</span>日
 		        			</div>
 		        			<p class="rights">你为<span>{{datainfo.first_send_gift_user_name}}</span>送出了你的第一份礼物</p>
 		        			<p class="rights fivebottom">目前你一共送出<span class="showTime">{{datainfo.total_send_yuer_coin}}</span>鱼币的礼物</p>
@@ -231,7 +231,7 @@
 </div>
 	<script src="/activity/js/swiper.min.js"></script>
     <script src="/activity/js/swiper.animate.min.js"></script>
-    <script src="/activity/js/animateBackground-plugin.js"></script>
+    <!-- <script src="/activity/js/animateBackground-plugin.js"></script> -->
     <script type="text/javascript">
     	$(function(){
     		$("#dataswitch").click(function(){
@@ -270,33 +270,38 @@
 				}
 				$("#cur_num").val(n);
 			}
-			
-			// $(".total span").each(function(){
+			show_num($(".t_num").text());
+			// $(".total").each(function(){
 			// 	var oDate = new Date(); 
-		 //       $("span i").text($(this).text(oDate.getMonth()+1));
-		 //       $("span i").text($(this).text(oDate.getDate()));
-		 //    });
-			function dataUp(id){
-				// 得到的值
-				var _dom = id;
-				var _domStart = _dom.text();
-				// 最后的值
-				var _domEnd = _domEnd;
-				// 次数
-				var _interCount = 5;
-				var _step = parseInt(_domEnd / _interCount);
-				var _setInterval = setInterval(function(){
-				// 稳定拉回
-				if(parseInt(_dom.text()) >= _domEnd){
-					_dom.text(_domEnd)
-					clearInterval(_setInterval);return;
-				}
-				// 定时器
-					_dom.text(Math.floor(parseInt(_dom.text())) + _step);
-				},100)
-			}
-			// dataUp($(".showTime"));
-			
+		 //       $(this).text(oDate.getMonth()+1);
+		 //       $(this).text(oDate.getDate());
+		 //    })
+
+
+function dataUp(id,domEnd){
+		// 得到的值
+		var _dom = id;
+		_dom.text(0);
+		var _domStart = _dom.text();
+		// 最后的值
+		var _domEnd = domEnd;
+		// 次数
+		var _interCount = 5;
+		var _step = parseInt(_domEnd / _interCount);
+		var _setInterval = setInterval(function(){
+		// 稳定拉回
+		if(parseInt(_dom.text()) >= _domEnd){
+			_dom.text(_domEnd)
+			clearInterval(_setInterval);return;
+		}
+		// 定时器
+			_dom.text(Math.floor(parseInt(_dom.text())) + _step);
+		},100)
+	}
+	$(".showTime").each(function(){
+		dataUp($(this),$(this).text());
+	})
+
 			$("#disableds").on("click",function(){
 				showTip();
 			})
