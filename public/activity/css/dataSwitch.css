@@ -1,4 +1,4 @@
-*{margin: 0; padding: 0;}
+/**{margin: 0; padding: 0;}
 body{
 	font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC;
 	width: 100%;
@@ -13,18 +13,14 @@ img{
 .g-containers{
 	width:100%;
 	position:relative;
-}
+}*/
 .g-containers .swiper-slide{
 	position:relative;
 }
 .g-containers .m-float{
 	position:absolute;
 }
-.g-containers .m-fbutton{
-	width:75%;
-	top:90%;
-	left:13.5%;
-}
+
 .g-containers .m-twoblock{
 	width:80%;
 	height:80%;
@@ -82,10 +78,10 @@ img{
 	color:#fff;
 	margin-top:4%;
 }
-.g-containers p.rights{
+.rights{
 	text-align:right;
 }
-.g-containers p.lefts{
+.lefts{
 	text-align:left;
 }
 .g-containers p.centers{
@@ -121,10 +117,10 @@ img{
 }
 /*第四页*/
 .g-containers .m-fourblock{
-	width:70%;
+	width:80%;
 	height:70%;
 	top:10%;
-	left:15%;
+	left:10%;
 	margin:0 auto;
 }
 .g-containers .fourtop{
@@ -180,7 +176,7 @@ img{
 .g-containers .m-sevenblock{
 	width:40%;
 	height:40%;
-	top:71.5%;
+	top:72.5%;
 	left:29.5%;
 	margin:0 auto;
 }
@@ -189,7 +185,7 @@ img{
 	width:100%;
 	margin-bottom:10%;
 }
-.g-containers .tips{
+.tips{
 	background:rgba(0,0,0,0.8);
 	width: 75%;
 	height: 35px;
@@ -197,15 +193,12 @@ img{
 	text-align: center;
 	color:#fff;
 	border-radius: 5px;
-	position: fixed;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	top: 0;
+	position: absolute;
+	left: 20%;
+	/*right: 0;*/
+	bottom:10%;
+	/*top: 0;*/
 	margin:auto;
 	display: none;
 	z-index: 999;
 }
-.g-containers #total{width:10%; height:10%; margin-top:-10%;font-size:20px}
-.g-containers #total .t_num{ display:inline-block; line-height:13px; margin:2px 4px 0 4px;}
-.g-containers #total .t_num i{width:15px;height:23px; display:inline-block; background: url(/activity/images/number.png) no-repeat; background-position:0 0; text-indent:-999em}
