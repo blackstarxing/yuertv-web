@@ -125,14 +125,14 @@
 		        		</div>
 		        		<div class="u-dates">
 		        			<div class="total white rights">
-		        				<span class="t_num month">{{datainfo.register_date}}</span>月
-		        				<span class="t_num day">{{datainfo.register_date}}</span>日
+		        				<span class="t_num month">{{register_date_month}}</span>月
+		        				<span class="t_num day">{{register_date_day}}</span>日
 		        			</div>
 		        			<p class="right twonone">你来到娱儿报到注册</p>
 		        			{% if datainfo.first_live_date !== "" %}
 		        			<div class="total left u-datespec">
-		        				<span class="t_num month">{{datainfo.first_live_date}}</span>月
-		        				<span class="t_num day">{{datainfo.first_live_date}}</span>日
+		        				<span class="t_num month">{{first_live_date_month}}</span>月
+		        				<span class="t_num day">{{first_live_date_day}}</span>日
 		        			</div>
 		        			<p class="lefts">第一次开播成长，总需要迈出那勇敢的第一步</p>
 		        			{% else %}
@@ -148,8 +148,8 @@
 		        		<div class="threeblock">
 		        			{% if datainfo.first_fan_name !== "" %}
 		        			<div class="total left threetop white">
-		        				<span class="t_num month">{{datainfo.first_fan_date}}</span>月
-		        				<span class="t_num day">{{datainfo.first_fan_date}}</span>日
+		        				<span class="t_num month">{{first_fan_date_month}}</span>月
+		        				<span class="t_num day">{{first_fan_date_day}}</span>日
 		        			</div>
 		        			<p class="lefts"><span>{{datainfo.first_fan_name}}</span>关注了你，这是你的第一位粉丝</p>
 		        			{% else %}
@@ -157,8 +157,8 @@
 		        			{% endif %}
 		        			{% if datainfo.total_fans !== "" %}
 		        			<div class="total right threecenter white">
-		        				<span class="t_num month">{{datainfo.daily_max_fans_date}}</span>月
-		        				<span class="t_num day">{{datainfo.daily_max_fans_date}}</span>日
+		        				<span class="t_num month">{{daily_max_fans_date_month}}</span>月
+		        				<span class="t_num day">{{daily_max_fans_date_day}}</span>日
 		        			</div>
 		        			<p class="rights rightsix">收获了<span class="showTime">{{datainfo.daily_max_fans}}</span>位粉丝</p>
 		        			<p class="rights threebottom">这是你开播以来赢得粉丝关注最多的一天</p>
@@ -175,8 +175,8 @@
 		        		<div class="fourblock">
 		        			{% if datainfo.first_concern !== "" %}
 		        			<div class="total left fourtop white">
-		        				<span class="t_num month">{{datainfo.first_concern_date}}</span>月
-		        				<span class="t_num day">{{datainfo.first_concern_date}}</span>日
+		        				<span class="t_num month">{{first_concern_date_month}}</span>月
+		        				<span class="t_num day">{{first_concern_date_day}}</span>日
 		        			</div>
 		        			<p class="lefts">关注了<span>{{datainfo.first_concern}}</span></p>
 		        			{% else %}
@@ -198,8 +198,8 @@
 		        		<div class="fiveblock">
 		        			{% if datainfo.first_get_gift_user_name !== "" %}
 		        			<div class="total left fivetop fivepublic white">
-		        				<span class="t_num month">{{datainfo.first_get_gift_date}}</span>月
-		        				<span class="t_num day">{{datainfo.first_get_gift_date}}</span>日
+		        				<span class="t_num month">{{first_get_gift_date_month}}</span>月
+		        				<span class="t_num day">{{first_get_gift_date_day}}</span>日
 		        			</div>
 		        			<p class="lefts fivepublic">你收到了来自<span>{{datainfo.first_get_gift_user_name}}</span>的第一份礼物</p>
 		        			<p class="lefts fivepublic">目前已经累计获得<span class="showTime">{{datainfo.total_yuer_coin}}</span>鱼币的礼物</p>
@@ -209,8 +209,8 @@
 		        			<p class="centers fivenonetwo">赶紧开启手播，秀一下你的酷炫的操作</p>
 		        			{% endif %}
 		        			<div class="total right fivecenter white ">
-		        				<span class="t_num month">{{datainfo.first_send_gift_date}}</span>月
-		        				<span class="t_num day">{{datainfo.first_send_gift_date}}</span>日
+		        				<span class="t_num month">{{first_send_gift_date_month}}</span>月
+		        				<span class="t_num day">{{first_send_gift_date_day}}</span>日
 		        			</div>
 		        			<p class="rights">你为<span>{{datainfo.first_send_gift_user_name}}</span>送出了你的第一份礼物</p>
 		        			<p class="rights fivebottom">目前你一共送出<span class="showTime">{{datainfo.total_send_yuer_coin}}</span>鱼币的礼物</p>
