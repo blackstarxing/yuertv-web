@@ -1,8 +1,15 @@
 *{margin: 0; padding: 0;}
+html, body {
+    position: relative;
+    height: 100%;
+    -webkit-tap-highlight-color:transparent;
+}
 body{
 	font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC;
 	width: 100%;
+	height: 100%;
 	max-width: 800px;
+	overflow:hidden;
 	margin:0 auto;
 }
 img{
@@ -10,9 +17,151 @@ img{
 	max-width:100%;
 	vertical-align:top; 
 }
+.g-container{
+	width:100%;
+	height: 100%;
+	position:relative;
+	overflow: hidden;
+}
+.m-startpage{
+	position:relative;
+	width:100%;
+	height: 100%;
+	z-index: 999;
+}
+.u-stotal{
+	position:absolute;
+	width:90%;
+	height:65.5%;
+	top:34.5%;
+}
+.switchs{
+	position:relative;
+	width:100%;
+	height:67%;
+}
+.u-switch{
+	display:absolute;
+	width:100%;
+	height:9%;
+	margin-left:25%;
+}
+.u-switch i{
+	display:inline-block;
+	width:25%;
+	height:100%;
+	margin-top:0.5%;
+	margin-left:2.5%;
+	font-style:normal;
+	font-size:16px;
+	color:#000;
+}
+.u-switch .u-sright{
+	margin-left:5.5%;
+}
+.switch-content{
+	display:absolute;
+	width:100%;
+	height:100%;
+	overflow:hidden;
+	margin-left:10%;
+	top:0;
+}
+div.switchtss{
+	width:100%;
+	left:0;
+}
+div.switchts{
+	/*display:none;*/
+	position: absolute;
+	width:100%;
+	left: 750px;
+}
+.switch-content ul{
+	list-style:none;
+	margin-top:8%;
+	margin-left:13%;
+	width:100%;
+	height:100%;
+	top:-2%;
+}
+.switch-content ul li{
+	width:100%;
+	height:16%;
+	line-height: 16%;
+	margin-left:-5%;
+}
+ul li span{
+	display:inline-block;
+	height:100%;
+	font-size:16px;
+	color:#fff;
+}
+li .scone{
+	width:5%;
+	font-size:16px;
+	color:#000;
+}
+li .sctwo{
+	width:10%;
+	border-radius: 50%;
+	margin:-3% 2% 0% 2%;
+	overflow:hidden;
+}
+li .sctwo img{
+	float:left;
+	display:inline-block;
+	width:100%;
+}
+li .scthree{
+	width:30%;
+}
+li .scfour{
+	width:35%;
+	margin-left:5%;
+	margin-right:0.5%;
+}
+li span.scfouro{
+	color:#ffff01;
+}
+.u-canc{
+	width:70%;
+	height:18%;
+	margin-left:21%;
+	margin-top:5%;
+}
+.g-containers{
+	width:100%;
+	overflow:hidden;
+	/*display:none;*/
+}
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
 .g-containers{
 	width:100%;
 	position:relative;
+	top:0;
 }
 .g-containers .swiper-slide{
 	position:relative;

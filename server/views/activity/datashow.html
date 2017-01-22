@@ -11,142 +11,6 @@
     <link rel="stylesheet" href="/activity/css/swiper.min.css">
     <link rel="stylesheet" href="/activity/css/animate.min.css">
     <link rel="stylesheet" href="/activity/css/dataSwitch.css">
-    <style type="text/css">
-    	*{margin: 0; padding: 0;}
-		body{
-			font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC;
-			width: 100%;
-			max-width: 800px;
-			overflow:hidden;
-			margin:0 auto;
-		}
-		img{
-			border:0;
-			max-width:100%;
-			vertical-align:top; 
-		}
-		.g-container{
-			width:100%;
-			position:relative;
-		}
-		.m-startpage{
-			position:relative;
-			width:100%;
-		}
-		.u-stotal{
-			position:absolute;
-			width:90%;
-			height:65.5%;
-			top:34.5%;
-		}
-		.switchs{
-			position:relative;
-			width:100%;
-			height:67%;
-		}
-		.u-switch{
-			display:absolute;
-			width:100%;
-			height:9%;
-			margin-left:25%;
-		}
-		.u-switch i{
-			display:inline-block;
-			width:25%;
-			height:100%;
-			margin-top:0.5%;
-			margin-left:2.5%;
-			font-style:normal;
-			font-size:16px;
-			color:#000;
-		}
-		.u-switch .u-sright{
-			margin-left:5.5%;
-		}
-		.switch-content{
-			display:absolute;
-			width:100%;
-			height:100%;
-			overflow:hidden;
-			margin-left:10%;
-			top:0;
-		}
-		div.switchtss{
-			width:100%;
-			left:0;
-		}
-		div.switchts{
-			/*display:none;*/
-			position: absolute;
-			width:100%;
-			left: 750px;
-		}
-		.switch-content ul{
-			list-style:none;
-			margin-top:8%;
-			margin-left:13%;
-			width:100%;
-			height:100%;
-			top:-2%;
-		}
-		.switch-content ul li{
-			width:100%;
-			height:16%;
-			line-height: 16%;
-			margin-left:-5%;
-		}
-		ul li span{
-			display:inline-block;
-			height:100%;
-			font-size:16px;
-			color:#fff;
-		}
-		li .scone{
-			width:5%;
-			font-size:16px;
-			color:#000;
-		}
-		li .sctwo{
-			width:10%;
-			border-radius: 50%;
-			margin:-3% 2% 0% 2%;
-			overflow:hidden;
-		}
-		li .sctwo img{
-			float:left;
-			display:inline-block;
-			width:100%;
-		}
-		li .scthree{
-			width:30%;
-		}
-		li .scfour{
-			width:35%;
-			margin-left:5%;
-			margin-right:0.5%;
-		}
-		li span.scfouro{
-			color:#ffff01;
-		}
-		.u-canc{
-			width:70%;
-			height:18%;
-			margin-left:21%;
-			margin-top:5%;
-		}
-		.g-containers{
-			width:100%;
-			overflow:hidden;
-			display:none;
-		}
-		.swiper-container{
-			width:100%;
-		}
-    	.swiper-slide{
-    		height:100%;
-    	}
-
-    </style>
     <script src="/jquery.js"></script>
     <script src="/jquery.sha1.js"></script>
 	<script src="/wxjsapi.js"></script>
@@ -371,7 +235,7 @@
     		if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i) || navigator.userAgent.match(/android/i)) {
 				// window.location.href = '/activity/recruit';
 	        }else{
-	        	window.location.href = '/activity/hrecruit';
+	        	// window.location.href = '/activity/hrecruit';
 	        }
 		    $(".u-switch i").on("click", function() {
 		    	// 第二个的名字
@@ -382,30 +246,10 @@
 		    $(".scthree").each(function(){
 		       $(this).text($(this).text().substr(0,4)+"***");
 		    });
-    		// 报名
-			// $('.join').click(function(e){
-			// url里面有用户名和id
-			// 	if($('.join').html()=='我要报名' && ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
-			// 		e.preventDefault();
-			// 		if(userId && token){
-			// 			$(".swiper-container").show();
-			// 		}else{
-			// 			window.location.href = "yuertvopen://login";
-			// 		}   
-			// 	}
-			// })
-			// $(".u-switch i:eq(0)").trigger("click");
+
 			var mySwiper = new Swiper ('.swiper-container', {
-    			direction: 'horizontal',
-		    	// loop:true,
-			  	onInit: function(swiper){ //Swiper2.x的初始化是onFirstInit
-				    swiperAnimateCache(swiper); //隐藏动画元素 
-				    swiperAnimate(swiper); //初始化完成开始动画
-				}, 
-			  	onSlideChangeEnd: function(swiper){ 
-			    	swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
-			  	} 
-			}) 
+
+			})       
     		function show_num(n){
 				var it = $(".t_num i");
 				var len = String(n).length;
@@ -454,6 +298,11 @@
 	            	$('.tips').hide();
 	        	},1000);
 			}
+
+			$('.sevtop').click(function(){
+				// $(".m-startpage").show();
+				mySwiper.slideTo(0,false);
+			})
     	})
     </script>
      
