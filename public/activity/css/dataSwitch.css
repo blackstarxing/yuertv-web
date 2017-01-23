@@ -12,6 +12,15 @@ body{
 	overflow:hidden;
 	margin:0 auto;
 }
+@font-face {
+ font-family: 'fontNameRegular';
+ src: url('fontName.eot');
+ src: local('fontName Regular'),
+        local('fontName'),
+        url('fontName.woff') format('woff'),
+        url('fontName.ttf') format('truetype'),
+        url('fontName.svg#fontName') format('svg');
+}  
 img{
 	border:0;
 	max-width:100%;
@@ -189,26 +198,6 @@ li span.scfouro{
 .white{
 	color:#fff;
 }
-/*.g-containers .total{
-	display:inline-block;
-	width:90%;
-	 height:10%; 
-	 font-size:16px;	 
-}*/
-/*.g-containers .total .t_num{ */
-	/*display:inline-block; */
-	/*line-height:100%; */
-/*}*/
-/*.g-containers .total .t_num i{
-	display:inline-block;
-	width:100%;
-	height:10%;
-	overflow:hidden;*/
-	/*height:100%; */
-/*	margin-top:-10%;
-	display:inline-block; 
-	background: url(/activity/images/number.png) no-repeat; 
-}*/
 .fivenone{
 	margin-top:30% 0% 3% 0%;
 }
@@ -427,19 +416,21 @@ p span.showTime{
 	font-weight:bold;
 }
 .tips{
-	background:rgba(0,0,0,0.8);
-	width: 75%;
-	height: 35px;
-	line-height: 35px;
+	/*background:rgba(0,0,0,0.8);*/
+	width: 35%;
+	height: 30%;
+	line-height: 30%;
 	text-align: center;
 	color:#fff;
 	border-radius: 5px;
 	position: absolute;
-	left: 20%;
-	/*right: 0;*/
-	bottom:10%;
-	/*top: 0;*/
+	right:0%;
+	top:0%;
 	margin:auto;
 	display: none;
 	z-index: 999;
+}
+.tips img{
+	display:inline-block;
+	width:100%;
 }

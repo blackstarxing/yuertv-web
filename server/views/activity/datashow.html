@@ -124,7 +124,7 @@
 		        			<p class="infirst">娱儿直播<span>{{datainfo.user_nickname}}</span>的主播成绩单</p>
 		        		</div>
 		        		<div class="u-dates">
-		        			<div class="total white rights">
+		        			<div class="right total white">
 		        				<span class="t_num month">{{register_date_month}}</span>月
 		        				<span class="t_num day">{{register_date_day}}</span>日
 		        			</div>
@@ -156,7 +156,7 @@
 		        			<p class="centers threetop threenon">你还没有收到粉丝的关注</p>
 		        			{% endif %}
 		        			{% if datainfo.total_fans !== "" %}
-		        			<div class="total right threecenter white">
+		        			<div class="right total threecenter white">
 		        				<span class="t_num month">{{daily_max_fans_date_month}}</span>月
 		        				<span class="t_num day">{{daily_max_fans_date_day}}</span>日
 		        			</div>
@@ -208,7 +208,7 @@
 		        			<p class="centers fivenone">你还没有收到任何礼物</p>
 		        			<p class="centers fivenonetwo">赶紧开启手播，秀一下你的酷炫的操作</p>
 		        			{% endif %}
-		        			<div class="total right fivecenter white ">
+		        			<div class="rights total  fivecenter white ">
 		        				<span class="t_num month">{{first_send_gift_date_month}}</span>月
 		        				<span class="t_num day">{{first_send_gift_date_day}}</span>日
 		        			</div>
@@ -226,10 +226,10 @@
 		        			<p class="lefts sexpublic"><span>{{datainfo.max_duration_game}}</span>是你直播时间最长的游戏</p>
 		        			<p class="lefts sexpublic"><span>{{datainfo.max_times_game}}</span>是你直播次数最多的游戏</p>
 		        			<p class="lefts sexcenter spub">这是你来到娱儿的第<span><span class="t_num showTime">{{datainfo.register_days}}</span></span>天</p>
-		        			<p class="total lefts spub">累计开播<span class="t_num showTime">{{datainfo.live_times}}</span>次</p>
-		        			<p class="total lefts spub">开播时长超过了<span class="t_num showTime">{{datainfo.over_duration}}</span> <span style="font-size:20px;font-weight:bold;">％</span>的娱儿主播</p>
+		        			<p class="lefts spub">累计开播<span class="t_num showTime">{{datainfo.live_times}}</span>次</p>
+		        			<p class="lefts spub">开播时长超过了<span class="t_num showTime">{{datainfo.over_duration}}</span> <span style="font-size:20px;font-weight:bold;">％</span>的娱儿主播</p>
 		        			{% else %}
-		        			<p class="centers total">这是你来到娱儿的第<span class="t_num showTime">{{datainfo.register_days}}</span>天</p>
+		        			<p class="centers ">这是你来到娱儿的第<span class="t_num showTime">{{datainfo.register_days}}</span>天</p>
 		        			<p class="centers sexcenter spub">王者荣耀、球球大作战、阴阳师...</p>
 		        			<p class="centers spub">手游世界里的那一款才是你的本命游戏？</p>
 		        			<p class="centers spub">打开娱儿手播，开启直播之旅吧</p>
@@ -247,7 +247,7 @@
 		    </div>
 		</div>
 	</div>
-	<div class="tips" style="display:none">点击右上角分享给朋友</div>
+	<div class="tips" style="display:none"><img src="/activity/images/data_yd.png"></div>
 </div>
 	<script src="/activity/js/swiper.min.js"></script>
     <script src="/activity/js/swiper.animate.min.js"></script>
