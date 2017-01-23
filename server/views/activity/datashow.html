@@ -113,8 +113,8 @@
 							<p>你属于这<span>16%</span></p>
 							{% endif %}
 		        		</div>
-		        		<img src="/activity/images/data_xz.png">
 		        	</div>
+		        	<img src="/activity/images/data_xz.png" class="downBtn">
 		        </div>
 		        <div class="swiper-slide" id="sharetwo">
 		        	<img src="/activity/images/data_two.jpg">
@@ -141,6 +141,7 @@
 		        			{% endif %}
 		        		</div>
 		        	</div>
+		        	<img src="/activity/images/data_xz.png" class="downBtn">
 		        </div>
 		        <div class="swiper-slide" id="sharethree">
 		        	<img src="/activity/images/data_three.jpg">
@@ -168,6 +169,7 @@
 		        			{% endif %}
 		        		</div>
 		        	</div>
+		        	<img src="/activity/images/data_xz.png" class="downBtn">
 		        </div>
 		        <div class="swiper-slide" id="sharefour">
 		        	<img src="/activity/images/data_four.jpg">
@@ -191,6 +193,7 @@
 		        			{% endif %}
 		        		</div>
 		        	</div>
+		        	<img src="/activity/images/data_xz.png" class="downBtn">
 		        </div>
 		        <div class="swiper-slide" id="sharefive">
 		        	<img src="/activity/images/data_five.jpg">
@@ -217,6 +220,7 @@
 		        			<p class="lefts">除了弹幕，礼物能更好的表达你对主播的喜爱与崇拜</p>
 		        		</div>
 		        	</div>
+		        	<img src="/activity/images/data_xz.png" class="downBtn">
 		        </div>
 		        <div class="swiper-slide" id="sharesix">
 					<img src="/activity/images/data_six.jpg">
@@ -236,6 +240,7 @@
 		        			{% endif %}
 		        		</div>
 		        	</div>
+		        	<img src="/activity/images/data_xz.png" class="downBtn">
 		        </div>
 		        <div class="swiper-slide" id="shareseven">
 		        	<img src="/activity/images/data_seven.jpg">
@@ -270,12 +275,18 @@
 			var ua = navigator.userAgent.toLowerCase();	
 			// 是否用娱儿直播打开
 			var inyuer = ua.match(/YuertvBrowser/i)=="yuertvbrowser";
+			var w = $(window).width();
+
 
 			if(!inyuer && userId){
 				$(".m-startpage").hide();
     			$(".g-containers").show();
 			}else if(!inyuer && !userId){
 				$('#dataswitch').addClass('download');
+			}
+
+			if(!inyuer){
+				$('.downBtn').show();
 			}
 
     		$("#dataswitch").click(function(){
@@ -290,14 +301,17 @@
     			
     		})
 
-    		$('.download').click(function(){
+    		$('.download,.downBtn').click(function(){
     			window.location.href = "https://yuertvfile.wangyuhudong.com";
     		})
 		    $(".u-switch i").on("click", function() {
-		    	// 第二个的名字
-		    	// (".switchts").eq($(this).index()).animate({left:0},300)
-		    	// 两个共同的名字
-			    $(".switch-content").eq($(this).index()).animate({left:0},300).siblings('.switch-content').css('left','-100%');
+		    	$(this).addClass('u-current').siblings().removeClass('u-current');
+		    	$('.switch-content').scrollTop(0);
+		    	if($(this).index()==1){
+		    		$(".switch-content").eq(1).animate({left:0},300).siblings('.switch-content').animate({left:-w+'px'},300);
+		    	}else{
+		    		$(".switch-content").eq(0).animate({left:0},300).siblings('.switch-content').animate({left:w+'px'},300);
+		    	}
 			})
 		    $(".scthree").each(function(){
 		       $(this).text($(this).text().substr(0,4)+"***");
@@ -305,9 +319,7 @@
 			var mySwiper = new Swiper ('.swiper-container', {
 
 			})  
-			$("#showhide").click(function(){
-    			mySwiper.slideTo(0, 1000, false);;
-    		})     
+
     		function show_num(n){
 				var it = $(".t_num i");
 				var len = String(n).length;

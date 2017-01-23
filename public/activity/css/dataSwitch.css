@@ -178,10 +178,14 @@ li span.scfouro{
 .oneblock{
 	margin:30% 5% 0% 60%;
 }
-.g-containers .m-fbutton img{
+.downBtn{
+	position: absolute;
 	display:inline-block;
-	width:85%;
-	margin:73.5% 0% 0% -7%;
+	width:70%;
+	bottom: 40px;
+	left: 50%;
+	margin-left: -35%;
+	display: none;
 }
 .fontsize{
 	font-size:16px;
@@ -386,7 +390,7 @@ p.twonone{
 	margin:90% 0% 4% 0%;
 }
 .g-containers .fivebottom{
-	margin:3% 0% 20% 0%;
+	margin:3% 0% 10% 0%;
 }
 /*第六页*/
 .g-containers .m-sixblock{
