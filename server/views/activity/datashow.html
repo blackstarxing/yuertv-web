@@ -126,7 +126,15 @@
 		        	<img src="/activity/images/data_two.jpg">
 		        	<div class="m-float m-twoblock">
 		        		<div class="u-in">
-		        			<div class="u-icon"><img src="http://img.wangyuhudong.com/{{datainfo.user_icon}}"></div>
+		        			{% if datainfo.user_icon %}
+                            {% if datainfo.user_icon.indexOf('http')>-1 %}
+                            <div class="u-icon"><img src="{{datainfo.user_icon}}"></div>
+                            {% else %}
+                            <div class="u-icon"><img src="http://img.wangyuhudong.com/{{datainfo.user_icon}}"></div>
+                            {% endif %}
+                            {% else %}
+                            <div class="u-icon"><img src="/images/default_avatar.png"></div>
+                            {% endif %}
 		        			<p class="infirst">娱儿直播<span>{{datainfo.user_nickname}}</span>的主播成绩单</p>
 		        		</div>
 		        		<div class="u-dates">
