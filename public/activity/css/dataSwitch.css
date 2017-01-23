@@ -12,15 +12,6 @@ body{
 	overflow:hidden;
 	margin:0 auto;
 }
-@font-face {
- font-family: 'fontNameRegular';
- src: url('fontName.eot');
- src: local('fontName Regular'),
-        local('fontName'),
-        url('fontName.woff') format('woff'),
-        url('fontName.ttf') format('truetype'),
-        url('fontName.svg#fontName') format('svg');
-}  
 img{
 	border:0;
 	max-width:100%;
