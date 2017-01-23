@@ -284,10 +284,13 @@
 
 
 			if(!inyuer && userId){
-				$(".m-startpage").hide();
+				// $(".m-startpage").hide();
     			$(".g-containers").show();
 			}else if(!inyuer && !userId){
+				$(".m-startpage").show();
 				$('#dataswitch').addClass('download');
+			}else{
+				$(".m-startpage").show();
 			}
 
 			if(!inyuer){
