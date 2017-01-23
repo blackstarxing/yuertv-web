@@ -622,26 +622,34 @@ router.get('/activity/datashow', function(req, res, next) {
         })
     }]).then(function(cont, result) {
         console.log(result);
-        res.render('activity/datashow', {
-            title: "数据分享",
-            dataShow: JSON.parse(result[0]).object,
-            datainfo: JSON.parse(result[1]).object,
-            daily_max_fans_date_month:JSON.parse(result[1]).object.daily_max_fans_date.split('-')[1],
-            daily_max_fans_date_day:JSON.parse(result[1]).object.daily_max_fans_date.split('-')[2],
-            first_concern_date_month:JSON.parse(result[1]).object.first_concern_date.split('-')[1],
-            first_concern_date_day:JSON.parse(result[1]).object.first_concern_date.split('-')[2],
-            first_live_date_month:JSON.parse(result[1]).object.first_live_date.split('-')[1],
-            first_live_date_day:JSON.parse(result[1]).object.first_live_date.split('-')[2],
-            register_date_month:JSON.parse(result[1]).object.register_date.split('-')[1],
-            register_date_day:JSON.parse(result[1]).object.register_date.split('-')[2],
-            first_get_gift_date_month:JSON.parse(result[1]).object.first_get_gift_date.split('-')[1],
-            first_get_gift_date_day:JSON.parse(result[1]).object.first_get_gift_date.split('-')[2],
-            first_send_gift_date_month:JSON.parse(result[1]).object.first_send_gift_date.split('-')[1],
-            first_send_gift_date_day:JSON.parse(result[1]).object.first_send_gift_date.split('-')[2],
-            first_fan_date_month:JSON.parse(result[1]).object.first_fan_date.split('-')[1],
-            first_fan_date_day:JSON.parse(result[1]).object.first_fan_date.split('-')[2],
-            ticket:ticket,
-        });
+        if(JSON.parse(result[0]).code == 0){
+            res.render('activity/datashow', {
+                title: "数据分享",
+                dataShow: JSON.parse(result[0]).object,
+                datainfo: JSON.parse(result[1]).object,
+                daily_max_fans_date_month:JSON.parse(result[1]).object.daily_max_fans_date.split('-')[1],
+                daily_max_fans_date_day:JSON.parse(result[1]).object.daily_max_fans_date.split('-')[2],
+                first_concern_date_month:JSON.parse(result[1]).object.first_concern_date.split('-')[1],
+                first_concern_date_day:JSON.parse(result[1]).object.first_concern_date.split('-')[2],
+                first_live_date_month:JSON.parse(result[1]).object.first_live_date.split('-')[1],
+                first_live_date_day:JSON.parse(result[1]).object.first_live_date.split('-')[2],
+                register_date_month:JSON.parse(result[1]).object.register_date.split('-')[1],
+                register_date_day:JSON.parse(result[1]).object.register_date.split('-')[2],
+                first_get_gift_date_month:JSON.parse(result[1]).object.first_get_gift_date.split('-')[1],
+                first_get_gift_date_day:JSON.parse(result[1]).object.first_get_gift_date.split('-')[2],
+                first_send_gift_date_month:JSON.parse(result[1]).object.first_send_gift_date.split('-')[1],
+                first_send_gift_date_day:JSON.parse(result[1]).object.first_send_gift_date.split('-')[2],
+                first_fan_date_month:JSON.parse(result[1]).object.first_fan_date.split('-')[1],
+                first_fan_date_day:JSON.parse(result[1]).object.first_fan_date.split('-')[2],
+                ticket:ticket,
+            });
+        }else{
+            res.render('activity/datashow', {
+                title: "数据分享",
+                dataShow: JSON.parse(result[0]).object,
+            }); 
+        }
+        
     }).fail(function(cont, error) { 
         console.log(error);
         res.render('error', { title: "错误"});
