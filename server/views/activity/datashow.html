@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>数据分享</title>
+	<title>这份成绩单,你一定感兴趣…</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/activity/css/swiper.min.css">
     <link rel="stylesheet" href="/activity/css/animate.min.css">
     <link rel="stylesheet" href="/activity/css/dataSwitch.css">
-    <script src="/jquery.js"></script>
+    <script src="/jquery.min.js"></script>
     <script src="/jquery.sha1.js"></script>
 	<script src="/wxjsapi.js"></script>
 	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -27,9 +27,9 @@
 		enableWxShare({
 			appId: 'wxf96f728533f32fa8',
 			ticket: '{{ticket}}',
-			title: '王者荣耀上铂金=199点券，“排好队，一个一个来!”',		
+			title: '这份成绩单,你一定感兴趣…',		
 			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/2017/yuerlogo.png',
-			desc: 'S6赛季来和娱儿直播决战王者峡谷，千元大奖等你领！'
+			desc: '娱儿直播年终大数据总结，知道你不知道想知道却不知道的信息'
 		})
 	</script>
 </head>
@@ -114,7 +114,6 @@
 							{% endif %}
 		        		</div>
 		        	</div>
-		        	<img src="/activity/images/data_xz.png" class="downBtn">
 		        </div>
 		        <div class="swiper-slide" id="sharetwo">
 		        	<img src="/activity/images/data_two.jpg">
@@ -125,14 +124,14 @@
 		        		</div>
 		        		<div class="u-dates">
 		        			<div class="total white rights">
-		        				<span class="t_num month">{{register_date_month}}</span>月
-		        				<span class="t_num day">{{register_date_day}}</span>日
+		        				<span class="t_num month" data-num="{{register_date_month}}"></span>月
+		        				<span class="t_num day" data-num="{{register_date_day}}"></span>日
 		        			</div>
 		        			<p class="right twonone">你来到娱儿报到注册</p>
 		        			{% if datainfo.first_live_date !== "" %}
 		        			<div class="total left u-datespec">
-		        				<span class="t_num month">{{first_live_date_month}}</span>月
-		        				<span class="t_num day">{{first_live_date_day}}</span>日
+		        				<span class="t_num month" data-num="{{first_live_date_month}}"></span>月
+		        				<span class="t_num day" data-num="{{first_live_date_day}}"></span>日
 		        			</div>
 		        			<p class="lefts">第一次开播成长，总需要迈出那勇敢的第一步</p>
 		        			{% else %}
@@ -141,7 +140,6 @@
 		        			{% endif %}
 		        		</div>
 		        	</div>
-		        	<img src="/activity/images/data_xz.png" class="downBtn">
 		        </div>
 		        <div class="swiper-slide" id="sharethree">
 		        	<img src="/activity/images/data_three.jpg">
@@ -149,8 +147,8 @@
 		        		<div class="threeblock">
 		        			{% if datainfo.first_fan_name !== "" %}
 		        			<div class="total left threetop white">
-		        				<span class="t_num month">{{first_fan_date_month}}</span>月
-		        				<span class="t_num day">{{first_fan_date_day}}</span>日
+		        				<span class="t_num month" data-num="{{first_fan_date_month}}"></span>月
+		        				<span class="t_num day" data-num="{{first_fan_date_day}}"></span>日
 		        			</div>
 		        			<p class="lefts"><span>{{datainfo.first_fan_name}}</span>关注了你，这是你的第一位粉丝</p>
 		        			{% else %}
@@ -158,8 +156,8 @@
 		        			{% endif %}
 		        			{% if datainfo.total_fans !== "" %}
 		        			<div class="total right threecenter white">
-		        				<span class="t_num month">{{daily_max_fans_date_month}}</span>月
-		        				<span class="t_num day">{{daily_max_fans_date_day}}</span>日
+		        				<span class="t_num month" data-num="{{daily_max_fans_date_month}}"></span>月
+		        				<span class="t_num day" data-num="{{daily_max_fans_date_day}}"></span>日
 		        			</div>
 		        			<p class="rights rightsix">收获了<span class="showTime">{{datainfo.daily_max_fans}}</span>位粉丝</p>
 		        			<p class="rights threebottom">这是你开播以来赢得粉丝关注最多的一天</p>
@@ -169,7 +167,6 @@
 		        			{% endif %}
 		        		</div>
 		        	</div>
-		        	<img src="/activity/images/data_xz.png" class="downBtn">
 		        </div>
 		        <div class="swiper-slide" id="sharefour">
 		        	<img src="/activity/images/data_four.jpg">
@@ -177,8 +174,8 @@
 		        		<div class="fourblock">
 		        			{% if datainfo.first_concern !== "" %}
 		        			<div class="total left fourtop white">
-		        				<span class="t_num month">{{first_concern_date_month}}</span>月
-		        				<span class="t_num day">{{first_concern_date_day}}</span>日
+		        				<span class="t_num month" data-num="{{first_concern_date_month}}"></span>月
+		        				<span class="t_num day" data-num="{{first_concern_date_day}}"></span>日
 		        			</div>
 		        			<p class="lefts">关注了<span>{{datainfo.first_concern}}</span></p>
 		        			{% else %}
@@ -193,7 +190,6 @@
 		        			{% endif %}
 		        		</div>
 		        	</div>
-		        	<img src="/activity/images/data_xz.png" class="downBtn">
 		        </div>
 		        <div class="swiper-slide" id="sharefive">
 		        	<img src="/activity/images/data_five.jpg">
@@ -201,8 +197,8 @@
 		        		<div class="fiveblock">
 		        			{% if datainfo.first_get_gift_user_name !== "" %}
 		        			<div class="total left fivetop fivepublic white">
-		        				<span class="t_num month">{{first_get_gift_date_month}}</span>月
-		        				<span class="t_num day">{{first_get_gift_date_day}}</span>日
+		        				<span class="t_num month" data-num="{{first_get_gift_date_month}}"></span>月
+		        				<span class="t_num day" data-num="{{first_get_gift_date_day}}"></span>日
 		        			</div>
 		        			<p class="lefts fivepublic">你收到了来自<span>{{datainfo.first_get_gift_user_name}}</span>的第一份礼物</p>
 		        			<p class="lefts fivepublic">目前已经累计获得<span class="showTime">{{datainfo.total_yuer_coin}}</span>鱼币的礼物</p>
@@ -212,15 +208,14 @@
 		        			<p class="centers fivenonetwo">赶紧开启手播，秀一下你的酷炫的操作</p>
 		        			{% endif %}
 		        			<div class="total right fivecenter white ">
-		        				<span class="t_num month">{{first_send_gift_date_month}}</span>月
-		        				<span class="t_num day">{{first_send_gift_date_day}}</span>日
+		        				<span class="t_num month" data-num="{{first_send_gift_date_month}}"></span>月
+		        				<span class="t_num day" data-num="{{first_send_gift_date_day}}"></span>日
 		        			</div>
 		        			<p class="rights">你为<span>{{datainfo.first_send_gift_user_name}}</span>送出了你的第一份礼物</p>
 		        			<p class="rights fivebottom">目前你一共送出<span class="showTime">{{datainfo.total_send_yuer_coin}}</span>鱼币的礼物</p>
 		        			<p class="lefts">除了弹幕，礼物能更好的表达你对主播的喜爱与崇拜</p>
 		        		</div>
 		        	</div>
-		        	<img src="/activity/images/data_xz.png" class="downBtn">
 		        </div>
 		        <div class="swiper-slide" id="sharesix">
 					<img src="/activity/images/data_six.jpg">
@@ -229,18 +224,17 @@
 		        			{% if datainfo.max_duration_game !== "" %}
 		        			<p class="lefts sexpublic"><span>{{datainfo.max_duration_game}}</span>是你直播时间最长的游戏</p>
 		        			<p class="lefts sexpublic"><span>{{datainfo.max_times_game}}</span>是你直播次数最多的游戏</p>
-		        			<p class="lefts sexcenter spub">这是你来到娱儿的第<span><span class="t_num showTime">{{datainfo.register_days}}</span></span>天</p>
-		        			<p class="total lefts spub">累计开播<span class="t_num showTime">{{datainfo.live_times}}</span>次</p>
-		        			<p class="total lefts spub">开播时长超过了<span class="t_num showTime">{{datainfo.over_duration}}</span> <span style="font-size:20px;font-weight:bold;">％</span>的娱儿主播</p>
+		        			<p class="lefts sexcenter spub">这是你来到娱儿的第<span><span class="showTime">{{datainfo.register_days}}</span></span>天</p>
+		        			<p class="total lefts spub">累计开播<span class="showTime">{{datainfo.live_times}}</span>次</p>
+		        			<p class="total lefts spub">开播时长超过了<span class="showTime">{{datainfo.over_duration}}</span> <span style="font-size:20px;font-weight:bold;">％</span>的娱儿主播</p>
 		        			{% else %}
-		        			<p class="centers total">这是你来到娱儿的第<span class="t_num showTime">{{datainfo.register_days}}</span>天</p>
+		        			<p class="centers total">这是你来到娱儿的第<span class="showTime">{{datainfo.register_days}}</span>天</p>
 		        			<p class="centers sexcenter spub">王者荣耀、球球大作战、阴阳师...</p>
 		        			<p class="centers spub">手游世界里的那一款才是你的本命游戏？</p>
 		        			<p class="centers spub">打开娱儿手播，开启直播之旅吧</p>
 		        			{% endif %}
 		        		</div>
 		        	</div>
-		        	<img src="/activity/images/data_xz.png" class="downBtn">
 		        </div>
 		        <div class="swiper-slide" id="shareseven">
 		        	<img src="/activity/images/data_seven.jpg">
@@ -252,11 +246,12 @@
 		    </div>
 		</div>
 	</div>
+	<img src="/activity/images/data_xz.png" class="downBtn">
 	<div class="tips" style="display:none">点击右上角分享给朋友</div>
 </div>
 	<script src="/activity/js/swiper.min.js"></script>
     <script src="/activity/js/swiper.animate.min.js"></script>
-    <!-- <script src="/activity/js/animateBackground-plugin.js"></script> -->
+    <script src="/activity/js/animateBackground-plugin.js"></script>
     <script type="text/javascript">
     	$(function(){
     		// 获取参数
@@ -287,6 +282,9 @@
 
 			if(!inyuer){
 				$('.downBtn').show();
+				if(ua.match(/MicroMessenger/i)=="micromessenger"){
+					$('.downBtn').css('bottom','15px');
+				}
 			}
 
     		$("#dataswitch").click(function(){
@@ -320,31 +318,45 @@
 			      onSlideChangeStart: function(swiper){
 				    $(".showTime").each(function(){
 						dataUp($(this),parseInt($(this).text()));
+					});
+
+					$(".t_num").each(function(){
+						show_num($(this),parseInt($(this).attr('data-num')));
 					})
+
+					if(mySwiper.isEnd){
+						$('.downBtn').hide();
+					}else{
+						if(!inyuer){
+							$('.downBtn').show();
+						}
+					}
 				  }
 			})  
 
-    		function show_num(n){
-				var it = $(".t_num i");
+    		function show_num(id,n){
+    			var _dom = id;
+				var it = _dom.find('i');
 				var len = String(n).length;
 				for(var i=0;i<len;i++){
 					if(it.length<=i){
-						$(".t_num").append("<i></i>");
+						_dom.append("<i></i>");
 					}
 					var num=String(n).charAt(i);
-					var y = -parseInt(num)*30;
-					var obj = $(".t_num i").eq(i);
+					var y = -parseInt(num)*36.5;
+					var obj = _dom.find('i').eq(i);
+					obj.css('background-position','0px 0px');
 					obj.animate({
-						backgroundPosition :'(0 '+String(y)+'px)' 
+						backgroundPosition :'(0px '+y+'px)' 
 						}, 'slow','swing',function(){}
 					);
+					// obj.css('background-position','0px '+y+'px');
 				}
-				$("#cur_num").val(n);
 			}
-			show_num($(".t_num").text());
+
+			// show_num($(".t_num").text());
 
 			function dataUp(id,domEnd){
-				console.log(2);
 				// 得到的值
 				var _dom = id;
 				_dom.text(0);
@@ -376,7 +388,9 @@
 	        	},1000);
 			}
 			$('.sevtop').click(function(){
-				// $(".m-startpage").show();
+				if(!inyuer){
+					$('.downBtn').show();
+				}
 				mySwiper.slideTo(0,false);
 			})
     	})

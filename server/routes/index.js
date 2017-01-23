@@ -617,7 +617,7 @@ router.get('/activity/datashow', function(req, res, next) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
-                cont(new Error('error!a'));
+                cont(new Error('error!'));
             }
         })
     }]).then(function(cont, result) {
