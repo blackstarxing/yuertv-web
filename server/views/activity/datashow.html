@@ -135,7 +135,7 @@
 		        				<span class="t_num day" data-num="{{register_date_day}}"></span>日
 		        			</div>
 		        			<p class="right twonone">你来到娱儿报到注册</p>
-		        			{% if datainfo.first_live_date !== "" %}
+		        			{% if datainfo.first_live_date %}
 		        			<div class="total left u-datespec">
 		        				<span class="t_num month" data-num="{{first_live_date_month}}"></span>月
 		        				<span class="t_num day" data-num="{{first_live_date_day}}"></span>日
@@ -152,7 +152,7 @@
 		        	<img src="/activity/images/data_three.jpg">
 		        	<div class="m-float m-threeblock">
 		        		<div class="threeblock">
-		        			{% if datainfo.first_fan_name !== "" %}
+		        			{% if datainfo.first_fan_name %}
 		        			<div class="total left threetop white">
 		        				<span class="t_num month" data-num="{{first_fan_date_month}}"></span>月
 		        				<span class="t_num day" data-num="{{first_fan_date_day}}"></span>日
@@ -161,7 +161,7 @@
 		        			{% else %}
 		        			<p class="centers threetop threenon">你还没有收到粉丝的关注</p>
 		        			{% endif %}
-		        			{% if datainfo.total_fans !== "" %}
+		        			{% if datainfo.total_fans %}
 		        			<div class="total right threecenter white">
 		        				<span class="t_num month" data-num="{{daily_max_fans_date_month}}"></span>月
 		        				<span class="t_num day" data-num="{{daily_max_fans_date_day}}"></span>日
@@ -179,7 +179,7 @@
 		        	<img src="/activity/images/data_four.jpg">
 		        	<div class="m-float m-fourblock">
 		        		<div class="fourblock">
-		        			{% if datainfo.first_concern !== "" %}
+		        			{% if datainfo.first_concern %}
 		        			<div class="total left fourtop white">
 		        				<span class="t_num month" data-num="{{first_concern_date_month}}"></span>月
 		        				<span class="t_num day" data-num="{{first_concern_date_day}}"></span>日
@@ -188,7 +188,7 @@
 		        			{% else %}
 		        			<p class="centers fournone">你还没有关注任何主播</p>
 		        			{% endif %}
-		        			{% if datainfo.total_concern !== "" %}
+		        			{% if datainfo.total_concern %}
 		        			<p class="lefts fourcenter">在这里，有志同道合的小伙伴一起成长</p>
 		        			<p class="centers">截止今天，你一共关注了<span class="showTime">{{datainfo.total_concern}}</span>位小伙伴</p>
 		        			<p class="centers fourbottom">他们给予你看待游戏和世界的角度</p>
@@ -202,7 +202,7 @@
 		        	<img src="/activity/images/data_five.jpg">
 		        	<div class="m-float m-fiveblock">
 		        		<div class="fiveblock">
-		        			{% if datainfo.first_get_gift_user_name !== "" %}
+		        			{% if datainfo.first_get_gift_user_name %}
 		        			<div class="total left fivetop fivepublic white">
 		        				<span class="t_num month" data-num="{{first_get_gift_date_month}}"></span>月
 		        				<span class="t_num day" data-num="{{first_get_gift_date_day}}"></span>日
@@ -214,12 +214,14 @@
 		        			<p class="centers fivenone">你还没有收到任何礼物</p>
 		        			<p class="centers fivenonetwo">赶紧开启手播，秀一下你的酷炫的操作</p>
 		        			{% endif %}
-		        			<div class="total right fivecenter white ">
+		        			{% if datainfo.first_send_gift_user_name %}
+		        			<div class="total right fivecenter white">
 		        				<span class="t_num month" data-num="{{first_send_gift_date_month}}"></span>月
 		        				<span class="t_num day" data-num="{{first_send_gift_date_day}}"></span>日
 		        			</div>
 		        			<p class="rights">你为<span>{{datainfo.first_send_gift_user_name}}</span>送出了你的第一份礼物</p>
 		        			<p class="rights fivebottom">目前你一共送出<span class="showTime">{{datainfo.total_send_yuer_coin}}</span>鱼币的礼物</p>
+		        			{% endif %}
 		        			<p class="lefts">除了弹幕，礼物能更好的表达你对主播的喜爱与崇拜</p>
 		        		</div>
 		        	</div>
@@ -228,7 +230,7 @@
 					<img src="/activity/images/data_six.jpg">
 		        	<div class="m-float m-sixblock">
 		        		<div class="sixblock">
-		        			{% if datainfo.max_duration_game !== "" %}
+		        			{% if datainfo.max_duration_game %}
 		        			<p class="lefts sexpublic"><span>{{datainfo.max_duration_game}}</span>是你直播时间最长的游戏</p>
 		        			<p class="lefts sexpublic"><span>{{datainfo.max_times_game}}</span>是你直播次数最多的游戏</p>
 		        			<p class="lefts sexcenter spub">这是你来到娱儿的第<span><span class="showTime">{{datainfo.register_days}}</span></span>天</p>
@@ -290,6 +292,7 @@
 
 			if(!inyuer){
 				$('.downBtn').show();
+				$('.arrowf').show();
 				if(ua.match(/MicroMessenger/i)=="micromessenger"){
 					$('.downBtn').css('bottom','15px');
 				}
@@ -300,6 +303,7 @@
     				if(userId){
     					$(".m-startpage").hide();
     					$(".g-containers").show();
+    					$('.arrowf').show();
     				}else{
     					window.location.href = "yuertvopen://login";
     				}
@@ -329,7 +333,9 @@
 					});
 
 					$(".t_num").each(function(){
-						show_num($(this),parseInt($(this).attr('data-num')));
+						if($(this).attr('data-num')){
+							show_num($(this),parseInt($(this).attr('data-num')));
+						}						
 					})
 
 					if(mySwiper.isEnd){

@@ -224,7 +224,7 @@ li span.scfouro{
 }
 .onegb img.dboy{
 	display:inline-block;
-	width:30%;
+	width:31%;
 	height:25%;
 	line-height:25%;
 	left:25%;
@@ -233,10 +233,10 @@ li span.scfouro{
 .onegb img.oneloadings{
 	display:inline-block;
 	width:15%;
-	height:13%;
-	line-height:13%;
+	height:12%;
+	line-height:12%;
 	left:45.5%;
-	top:11%;
+	top:11.5%;
 	-webkit-animation:gogogo 2s linear ;
 }
 .oneblock{
@@ -282,7 +282,7 @@ li span.scfouro{
 	margin-top:30% 0% 3% 0%;
 }
 .fivenonetwo{
-	margin:3% 0% 50% 0%;
+	margin:3% 0% 110% 0%;
 }
 .fournone{
 	margin:30% 0% 80% 0%;
@@ -504,6 +504,7 @@ div.arrowf{
 	right:0%;
 	background:url("/activity/images/arrows.png") no-repeat;
 	background-size: 100% 100%;
+	display: none;
 }
 img.arrow{
 	z-index:999;
