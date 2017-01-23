@@ -12,6 +12,15 @@ body{
 	overflow:hidden;
 	margin:0 auto;
 }
+@font-face {
+ font-family: 'fontNameRegular';
+ src: url('fontName.eot');
+ src: local('fontName Regular'),
+        local('fontName'),
+        url('fontName.woff') format('woff'),
+        url('fontName.ttf') format('truetype'),
+        url('fontName.svg#fontName') format('svg');
+}  
 img{
 	border:0;
 	max-width:100%;
@@ -431,19 +440,21 @@ p span.showTime{
 	font-weight:bold;
 }
 .tips{
-	background:rgba(0,0,0,0.8);
-	width: 75%;
-	height: 35px;
-	line-height: 35px;
+	/*background:rgba(0,0,0,0.8);*/
+	width: 35%;
+	height: 30%;
+	line-height: 30%;
 	text-align: center;
 	color:#fff;
 	border-radius: 5px;
 	position: absolute;
-	right: 2%;
-	/*right: 0;*/
-	top:2%;
-	/*top: 0;*/
+	right:0%;
+	top:0%;
 	margin:auto;
 	display: none;
 	z-index: 999;
+}
+.tips img{
+	display:inline-block;
+	width:100%;
 }
