@@ -499,11 +499,11 @@ div.arrowf{
 	z-index:9999;
 	position:absolute;
 	width:9%;
-	height:30%;
+	height:24%;
 	top:35%;
 	right:0%;
-	background:url("/activity/images/arrows.png") no-repeat ;
-	background-size: 100%;
+	background:url("/activity/images/arrows.png") no-repeat;
+	background-size: 100% 100%;
 }
 img.arrow{
 	z-index:999;
@@ -513,7 +513,8 @@ img.arrow{
 	height:18px;
 	line-height:18px;
 	right:18%;
-	top:30%;
+	top:50%;
+	margin-top: -9px;
 }
 .tips{
 	width: 35%;
