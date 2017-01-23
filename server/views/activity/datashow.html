@@ -106,6 +106,13 @@
 		        <div class="swiper-slide" id="shareone">
 		        	<img src="/activity/images/data_one.jpg">
 		        	<div class="m-float m-fbutton">
+		        		<div class="onegb">
+		        			{% if datainfo.user_sex == 0 %}
+		        			<img src="/activity/images/data_boy.png" class="oneloading"><img src="/activity/images/data_boy.png" class="dgirl">
+		        			{% else %}	
+		        			<img src="/activity/images/data_boy.png" class="dboy"><img src="/activity/images/data_girl.png" class="oneloadings">
+		        			{% endif %}
+		        		</div>
 		        		<div class="oneblock">
 		        			{% if datainfo.user_sex == 0 %}
 							<p>你属于这<span>84%</span></p>
@@ -246,6 +253,7 @@
 		    </div>
 		</div>
 	</div>
+	<div class="arrowf"><img src="/activity/images/data_arrow.png" class="arrow"></div>
 	<div class="tips" style="display:none"><img src="/activity/images/data_yd.png"></div>
 </div>
 	<script src="/activity/js/swiper.min.js"></script>
@@ -392,6 +400,9 @@
 				}
 				mySwiper.slideTo(0,false);
 			})
+			setInterval(function(){
+			$('.arrow').fadeOut(500).delay(200).fadeIn(500);	
+			},1200);
     	})
     </script>
      

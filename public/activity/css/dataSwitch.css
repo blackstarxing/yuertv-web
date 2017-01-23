@@ -175,9 +175,74 @@ li span.scfouro{
 	top:20%;
 	left:10%;
 }
+@-webkit-keyframes gogogo {
+	/*0%{*/
+	    
+	   /*transform:scale(0,0);*/
+        /*-ms-transform:scale(0,0); /* IE 9 */*/
+        /*-moz-transform:scale(0,0); /* Firefox */*/
+        /*-webkit-transform:scale(0,0); /* Safari and Chrome */*/
+        /*-o-transform:scale(0,0);*/
+
+	/*}*/
+
+	0%{
+	   transform:scale(0.5,0.5);
+        -ms-transform:scale(0.5,0.5); /* IE 9 */
+        -moz-transform:scale(0.5,0.5); /* Firefox */
+        -webkit-transform:scale(0.5,0.5); /* Safari and Chrome */
+        -o-transform:scale(0.5,0.5);
+	}
+	100%{
+	    transform:scale(0,0);
+        -ms-transform:scale(0,0); /* IE 9 */
+        -moz-transform:scale(0,0); /* Firefox */
+        -webkit-transform:scale(0,0); /* Safari and Chrome */
+        -o-transform:scale(0,0);
+	}
+}
+.onegb img{
+	display:inline-block;
+	position: absolute;
+}
+.onegb img.oneloading{
+	display:inline-block;
+	width:25%;
+	height:30%;
+	line-height:30%;
+	left:25%;
+	top:5%;
+	-webkit-animation:gogogo 2s linear ;
+}
+.onegb img.dgirl{
+	display:inline-block;
+	width:15%;
+	height:13%;
+	line-height:13%;
+	left:45.5%;
+	top:11%;
+}
+.onegb img.dboy{
+	display:inline-block;
+	width:30%;
+	height:25%;
+	line-height:25%;
+	left:25%;
+	top:5%;
+}
+.onegb img.oneloadings{
+	display:inline-block;
+	width:15%;
+	height:13%;
+	line-height:13%;
+	left:45.5%;
+	top:11%;
+	-webkit-animation:gogogo 2s linear ;
+}
 .oneblock{
 	margin:30% 5% 0% 60%;
 }
+
 .downBtn{
 	position: fixed;
 	z-index: 999;
@@ -430,8 +495,27 @@ p span.showTime{
 	font-size:20px;
 	font-weight:bold;
 }
+div.arrowf{
+	z-index:9999;
+	position:absolute;
+	width:9%;
+	height:30%;
+	top:35%;
+	right:0%;
+	background:url("/activity/images/arrows.png") no-repeat ;
+	background-size: 100%;
+}
+img.arrow{
+	z-index:999;
+	position: absolute;
+	display:inline-block;
+	width:20px;
+	height:18px;
+	line-height:18px;
+	right:18%;
+	top:30%;
+}
 .tips{
-	/*background:rgba(0,0,0,0.8);*/
 	width: 35%;
 	height: 30%;
 	line-height: 30%;
