@@ -290,23 +290,20 @@
 			var inyuer = ua.match(/YuertvBrowser/i)=="yuertvbrowser";
 			var w = $(window).width();
 
-
-			if(!inyuer && userId){
-				// $(".m-startpage").hide();
-    			$(".g-containers").show();
-			}else if(!inyuer && !userId){
-				$(".m-startpage").show();
-				$('#dataswitch').addClass('download');
-			}else{
-				$(".m-startpage").show();
-			}
-
 			if(!inyuer){
-				$('.downBtn').show();
-				$('.arrowf').show();
 				if(ua.match(/MicroMessenger/i)=="micromessenger"){
 					$('.downBtn').css('bottom','15px');
 				}
+				if(userId){
+					$('.arrowf').show();
+					$('.downBtn').show();
+	    			$(".g-containers").show();
+				}else{
+					$(".m-startpage").show();
+					$('#dataswitch').addClass('download');
+				}
+			}else{
+				$(".m-startpage").show();
 			}
 
     		$("#dataswitch").click(function(){
@@ -368,7 +365,7 @@
 						_dom.append("<i></i>");
 					}
 					var num=String(n).charAt(i);
-					var y = -parseInt(num)*36.5;
+					var y = -parseInt(num)*48.5;
 					var obj = _dom.find('i').eq(i);
 					obj.css('background-position','0px 0px');
 					obj.animate({
