@@ -1,18 +1,6 @@
 $(function() {
     var checked = false;
-// 个人中心的tab切换
-    // $("#leftmain li").on('click', function(event) {
-    //     event.preventDefault();
-    //     $(this).addClass("rightswitchcolor").siblings().removeClass("rightswitchcolor");
-    //     $("div.rightswitch").eq($(this).index()).show().siblings().hide();
     var UsubmitCheck=false;
-    // 个人中心的tab切换
-    $("#leftmain li").on('click', function() {
-        // event.preventDefault();
-        // $(this).addClass("rightswitchcolor");
-        // .siblings().removeClass("rightswitchcolor")
-        // $("div.rightswitch").eq($(this).index()).show().siblings().hide();
-    });
     //我的资料的tab切换；
     $(".m-bottom a").on("click", function(e) {
         e.preventDefault();
