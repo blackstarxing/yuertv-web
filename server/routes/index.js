@@ -164,8 +164,7 @@ router.get('/service', function(req, res, next) {
     res.render('service', { title: "用户协议" ,islogin:islogin});
 });
 
-router.get('/center', function(req, res, next) {
-    var type = req.url.split('=')[1];
+router.get('/center/information', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){
@@ -188,7 +187,40 @@ router.get('/center', function(req, res, next) {
                 cont(new Error('error!'));
             }
         })
-    },function(cont) {
+    }]).then(function(cont, result) {
+        console.log(result);
+        res.render('center/information', {
+            title: "我的资料",
+            index:0,
+            info: JSON.parse(result[0]).object,
+            islogin: islogin,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+});
+router.get('/center/focus', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('center/focus', { title: "我的关注" ,index:1,islogin:islogin});
+});
+router.get('/center/props', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    Thenjs.parallel([function(cont) {
         request({
             uri: 'http://172.16.2.62:8777/person-center/my-gifts',
             headers: {
@@ -202,7 +234,40 @@ router.get('/center', function(req, res, next) {
                 cont(new Error('error!'));
             }
         })
-    },function(cont) {
+    }]).then(function(cont, result) {
+        console.log(result);
+        res.render('center/props', {
+            title: "我的道具",
+            index:2,
+            myprops: JSON.parse(result[0]).object,
+            islogin: islogin,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+});
+router.get('/center/message', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('center/message', { title: "我的消息" ,index:3,islogin:islogin});
+});
+router.get('/center/topup', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    Thenjs.parallel([function(cont) {
         request({
             uri: 'http://172.16.2.62:8777/pay/recharge-list',
             headers: {
@@ -218,12 +283,10 @@ router.get('/center', function(req, res, next) {
         })
     }]).then(function(cont, result) {
         console.log(result);
-        res.render('center', {
-            title: "个人中心",
-            info: JSON.parse(result[0]).object,
-            myprops: JSON.parse(result[1]).object,
-            valuelist: JSON.parse(result[2]).object,
-            type:type,
+        res.render('center/topup', {
+            title: "我要充值",
+            index:4,
+            valuelist: JSON.parse(result[0]).object,
             islogin: islogin,
         });
     }).fail(function(cont, error) { 
@@ -231,7 +294,21 @@ router.get('/center', function(req, res, next) {
         res.render('error', { title: "错误"});
     });
 });
+router.get('/center/host', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('center/host', { title: "我要当主播" ,index:5,islogin:islogin});
+});
 
+router.get('/helpcenter', function(req, res, next) {
+    res.render('helpcenter', { title: "帮助中心" });
+});
 
 router.get('/alipay', function(req, res, next) {
     var id = req.url.split('=')[1];
@@ -562,6 +639,7 @@ router.get('/activity/cecforum', function(req, res, next) {
     });
     // res.render('cecforum', { title: "CEC" });
 });
+
 router.get('/activity/propage', function(req, res, next) {
     var nowtime = new Date().getTime();
     if(!ticket || (nowtime-ticketline)>7000000){
@@ -621,7 +699,6 @@ router.get('/activity/datashow', function(req, res, next) {
             }
         })
     }]).then(function(cont, result) {
-        console.log(result);
         if(JSON.parse(result[1]).code == 0){
             var daily_max_fans_date_month = "",
                 daily_max_fans_date_day = "",

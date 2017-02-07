@@ -1,0 +1,161 @@
+{% extends 'layout.html' %} 
+
+{% block css %}
+<link rel="stylesheet" href="/dist/center.css">
+
+{% endblock %}
+
+{% block content %}
+ <div class="g-container f-cb">
+	<div class="g-main"> 
+		 {% include 'common/cenleft.html' %}  
+	    <div id="rightmain" class="g-right">
+<!-- 我要当主播 -->
+			<div class="g-host rightswitch">
+				<div class="m-mainh">
+					<div class="u-top">
+						<a href="">主播认证</a><a href="" id="jump">如何直播</a><a href="">提现说明</a>
+					</div>
+					<div class="u-certification switchcontent">
+						<div class="u-ctleft switchrepeat">
+						{% if info.mobile=="" %}
+							<!-- 如何直播页面 -->
+							<div class="totelphone" id="totelphone">
+			  					<div>
+			  						<span>手机认证：</span><a href="information#m-change">去认证</a>
+			  					</div>
+			  				</div>
+			  			{% else %}
+			  				<div class="thephoneauth modifyphone" id="woyaodangzhuboshoujirenz">
+			  					<div>
+			  						<span>手机号码：</span><span id="hiddenFields">{{info.mobile}}</span><span>已认证</span><button href="" id="modifyTelVer">修改手机号码</button>
+			  					</div>
+			  				</div>
+			  				<div class="toCertification modifyshiming" id="toCertification">
+			  						<span>实名认证：</span><a href="information#m-realname">去认证</a>
+		  					</div>
+			  			{% endif %}
+							
+						</div>
+					</div>
+					<div class="u-live switchcontent">
+						<div class="u-liveAI" id="u-liveAI">
+							<a>娱儿TV【安卓版】直播流程</a>
+							<a>娱儿TV【iOS版】直播流程</a>
+							<div id="biulive"></div>
+						</div>
+						<div class="u-liveAndroid switchAI">
+							<div class="u-ljoin">
+								<p>
+									1.在应用宝搜索下载：娱儿TV和娱儿手播
+								</p>
+								<div><img src="/images/Android1.png" class="Android1"></div>
+								<div><img src="/images/Android2.png" class="Android2"></div>
+							</div>
+							<div class="u-lsearch">
+								<p>
+									2.打开娱儿TV，输入手机号进行注册。如需观看直播，可以打开娱儿TV进行观看
+								</p>
+								<p>
+									3.打开娱儿手播，输入手机号密码登录，点击开始直播；输入直播名称，选择游戏，根据游戏选择横竖屏，选择高清，点击开始直播
+								</p>
+								<div class="Android3Father"><img src="/images/Android3.png" class="Android3"></div>
+							</div>
+							<div class="u-lopen">
+								<p>
+									4.如图显示，已处于正常直播状态
+								</p>
+								<div><img src="/images/Android4.png" class="Android4"></div>
+							</div>
+							<div class="u-lstart">
+								<p>5.打开游戏 开始直播</p>
+								<p>
+									<h6 class="changeRed">注意：</h6>
+									<p class="changeRed">1.每次直播时长一定要大于5分钟，否则直播数据不能存入网娱大师后台</p>
+									<p class="changeRed">2.直播时你的屏幕会被所有观众所看到，请注意个人隐私信息的泄漏</p>
+								</p>
+							</div>
+						</div>
+						<div class="u-liveIphone switchAI">
+							<div class="u-ljoin">
+								<p>
+									1.在苹果的AppStore下载娱儿TV
+								</p>
+								<div class="IphoneFather"><img src="/images/Iphone1.png" class="Iphone1"></div>
+							</div>
+							<div class="u-lsearchIphone">
+								<p>
+									2.手机注册后获取直播权限，扫码下载娱儿手播
+								</p>
+								<div><img src="/images/Iphone2.png" class="Iphone2"></div>
+							</div>
+							<div class="u-lsearch">
+								<p>
+									3.下载安装娱儿手播APP后，进入设置-通用，找到设备管理，选择信任
+								</p>
+								<div class="IphoneFather"><img src="/images/Iphone3.1.png" class="Iphone3_1"><img src="/images/Iphone3.2.png" class="Iphone3_2"><img src="/images/Iphone3.3.png" class="Iphone3_3"></div>
+							</div>
+							<div class="u-lopen">
+								<p>
+									4.打开娱儿手播APP，输入账号密码登录，点击开始直播，输入直播名称，选择游戏，根据游戏选择横竖屏，选择高清，点击开始直播 
+								</p>
+								<div class="IphoneFather"><img src="/images/Iphone4.1.png" class="Iphone4_1"><img src="/images/Iphone4.2.png" class="Iphone4_2"><img src="/images/Iphone4.3.png" class="Iphone4_3"></div>
+							</div>
+							<div class="u-lstart">
+								<p>5.如图显示，手机已正常直播，按home返回桌面，打开游戏进行直播 <br> &nbsp;&nbsp;如需观看直播，可以打开娱儿TV进行观看</p>
+								<div class="IphoneFather"><img src="/images/Iphone5.png" class="Iphone5"></div>
+								<p>
+									<h6 class="changeRed">注意：</h6>
+									<p class="changeRed">1.每次直播时长一定要大于5分钟，否则直播数据不能存入网娱大师后台</p>
+									<p class="changeRed chengeMargin">2.直播时你的屏幕会被所有观众所看到，请注意个人隐私信息的泄漏</p>
+								</p>
+							</div>
+						</div>
+						
+					</div>
+					<div class="u-withdrawal switchcontent">
+						<div>正式的提现规则以及提现系统正在开发过程中，详细进度请个人主播留意系统通知消息，谢谢</div>
+					</div>
+				</div>
+			</div>
+	</div><!-- 右侧结尾 -->
+	    
+	</div> <!-- 整个块结尾 -->
+
+</div>	
+<div class="asdfasdfa" id="telValBounced">
+<div class="telValBounced" >
+	<div class="u-divTelVer thePhone">
+		<label for="numberTelVer" class="numLable">手机号码</label>
+		<input type="text" class="u-userboxTelVer telnumberTelVer inputTelTelVer" name="" id="numberTelVer" maxlength="11" >
+		<span class="u-numberphoneTelVer">请输入手机号</span>
+		<span class="u-numbertelTelVer">请输入正确的手机号</span>
+		<span class="u-numberTelVer" id="gainnumberTelVer" >获取验证码</span>
+		<span class="u-copySecondTelVer" id="copySecondTelVer" >秒后重新获取</span>
+	</div>
+	<div class="u-divTelVer">
+		<label for="verifyTelVer" class="numLable numVerify">验证码</label>
+		<input type="text" class="u-userboxTelVer u-userboxTelVerS" name="" id="verifyTelVer">
+		<span class="u-verifyInputTelVer">请输入验证码</span>
+		<span class="u-verifyTelVer error-tipTelVer" >验证码错误</span>
+	</div>
+	<div class="u-divButtonVer">
+		<input type="button" class="u-submitTelVer" value="提交" id="userboxTelVer">
+		<input type="button" class="u-submitTelCancel" value="取消" id="userboxTelCancel">
+	</div>
+</div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/dist/center.js"></script>
+<script type="text/javascript">
+	$('.g-left li').eq('{{index+1}}').addClass('rightswitchcolor');                                           
+	// $('.g-left li').each(function(){
+	// 	if($(this).attr("data-type")=='{{type}}'){
+	// 		$(this).addClass('rightswitchcolor');
+	// 	}
+	// })
+	// $('.rightswitch').eq({{type}}).show().siblings().hide();
+</script>
+{% endblock %}

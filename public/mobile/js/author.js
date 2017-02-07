@@ -569,14 +569,14 @@ $(function(){
 	  	var UsubmitCheck=true;
 
 	  	$(".Ucenter input").each(function(){
-	    	if(!$(this).val()){
+	    	if(!$(this).val().trim()){
 	      		showTip($(this).attr("name"));
 	      		UsubmitCheck=false;
 	      		return false;
 	    	}
 	  	});
 	  	
-	  	if($("#checkName").val() && $("#checkQQ").val() && $("#checkIdCard").val()){
+	  	if($("#checkName").val().trim() && $("#checkQQ").val().trim() && $("#checkIdCard").val().trim()){
 	    	if($("#checkName").val().length>8){
 		      	UsubmitCheck=false;
 		      	showTip("名字过长");
@@ -593,13 +593,13 @@ $(function(){
 	  		$.ajax({  
 		        type: "GET",  
 		        url: "http://yuerapi.wangyuhudong.com/h5/upCertificate",  
-		        data: {idCard:$("#checkIdCard").val(),
+		        data: {idCard:$("#checkIdCard").val().trim(),
 		               idCardBackScan:$("#idCardBackScan").attr('src'),
 		               idCardDueDate:$("#idCardDueDate").val(),
 		               idCardFrontScan:$("#idCardFrontScan").attr('src'),
 		               idCardHandScan:$("#idCardHandScan").attr('src'),
-		               qq:$("#checkQQ").val(),
-		               realname:$("#checkName").val(),
+		               qq:$("#checkQQ").val().trim(),
+		               realname:$("#checkName").val().trim(),
 		               token:token,
 		               userId:userId
 		        },  

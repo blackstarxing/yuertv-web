@@ -1,0 +1,94 @@
+{% extends 'layout.html' %} 
+
+{% block css %}
+<link rel="stylesheet" href="/dist/center.css">
+
+{% endblock %}
+
+{% block content %}
+ <div class="g-container f-cb">
+	<div class="g-main"> 
+		 {% include 'common/cenleft.html' %}  
+	    <div id="rightmain" class="g-right">
+<!-- 我要充值 -->
+	<div class="g-top-up rightswitch">
+		<div class="m-maint">
+			<div class="u-balance">
+				<p>余额：<span>111</span>鱼币</p>
+			</div>
+			<div class="u-value f-cb">
+			  {% for valuelist in valuelist%}
+                <div data-id="{{valuelist.id}}">
+                   <span class="u-vfish">{{valuelist.yuer_amount}}鱼币</span>
+					<span class="u-vmoney">{{valuelist.rmb}}元</span>
+                </div>       
+            	{% endfor %}
+			</div>
+			<div class="u-determine">
+				<a href="" class="u-topvalue" id="topupvalue">充值</a>
+			</div>
+		</div>
+		<div class="u-topupwindow">
+			<div class="u-iconwindow">
+				<img src="/images/iconwindow.png" id="cancel">
+			</div>
+			<div class="u-wintop">
+				<div class="u-ws">
+					<img src="/images/iconcancel.png">
+					<span>订单提交成功，请您尽快付款 ！</span>
+				</div>
+				<div class="u-wm">
+					<span class="u-wntop">金&nbsp;&nbsp;&nbsp;&nbsp;额：</span><span class="u-wmtips"></span><span>元</span>
+				</div>
+				<div class="u-wn">
+					<span class="u-wntop">订单号：</span><span class="hiddenOrder" id="hiddenOrder">14763398738814</span>
+				</div>
+			</div>
+			<div class="u-winbottom">
+				<div class="u-wbtop">
+					<div class="paycontent">
+						<span>支付方式</span>
+					</div>
+					<div class="payimg initShow">
+						<img src="/images/focusclick.png" class="u-wpleft">
+						<img src="/images/iconpay.png">
+					</div>
+					<div class="payimg payshow">
+						<img src="/images/iconclick.png" class="u-wpleft">
+						<img src="/images/iconwec.png">
+						<p>暂未开放敬请期待</p>
+					</div>
+					<div class="payimg pay">
+						<img src="/images/iconclick.png" class="u-wpleft">
+						<img src="/images/iconcard.png">
+						<p>暂未开放敬请期待</p>
+					</div>
+				</div>
+				<div class="u-wbbottom">
+					<a href="" id="tovalue">下一步</a>
+					<p>选择支付平台，点击“下一步”完成支付流程</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div><!-- 右侧结尾 -->
+	    
+	</div> <!-- 整个块结尾 -->
+
+</div>	
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/dist/center.js"></script>
+<script type="text/javascript">
+	$('.g-left li').eq('{{index+1}}').addClass('rightswitchcolor');
+	// $('.g-left li').each(function(){
+	// 	if($(this).attr("data-type")=='{{type}}'){
+	// 		$(this).addClass('rightswitchcolor');
+	// 	}
+	// })
+	// $('.rightswitch').eq({{type}}).show().siblings().hide();
+</script>
+{% endblock %}

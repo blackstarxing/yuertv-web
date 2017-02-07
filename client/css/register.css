@@ -6,6 +6,9 @@ body{
 .m-float,.footer{
 	display: none;
 }
+.m-register{
+	margin-top: 90px;
+}
 .m-register img{
 	width: 15%;
 	display: block;
@@ -14,7 +17,7 @@ body{
 .m-regbox{
 	width: 480px;
 	padding:30px 0;
-	margin:120px auto 0;
+	margin:10px auto 0;
 	border-radius: 20px;
 	text-align: center;
 	background:rgba(60,72,86,0.7);
