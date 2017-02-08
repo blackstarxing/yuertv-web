@@ -1,9 +1,9 @@
 $(function(){
     $('.avatar-icon').attr('src',"http://img.wangyuhudong.com/"+window.localStorage.getItem("avatar")); 
 
-    $('.head_logo').click(function(){
-        window.location.href = "/";
-    })
+    // $('.head_logo').click(function(){
+    //     window.location.href = "/";
+    // })
     // 下载二维码显示
     $('.sweepme').hover(function(){
         $('.QRbox').show();
