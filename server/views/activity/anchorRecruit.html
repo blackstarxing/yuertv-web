@@ -29,6 +29,14 @@
 		.top{
 			position: relative;
 		}
+		.acTime{
+			position: absolute;
+			width: 100%;
+			bottom: 72px;
+			text-align: center;
+			color:#fff;
+			font-size: 14px;
+		}
 		.join{
 			position: absolute;
 			bottom: 0;
@@ -146,8 +154,8 @@
 			appId: 'wxf96f728533f32fa8',
 			ticket: '{{ticket}}',
 			title: '娱儿直播百万薪金招募令！',		
-			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/yuerlogo.png',
-			desc: '新年谁还抢红包？娱儿主播招募百万薪金等你瓜分！'
+			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/2017/yuerlogo.png',
+			desc: '娱儿直播2月主播招募令，百万薪金等你瓜分！'
 		})
 	</script>
 </head>
@@ -155,6 +163,7 @@
 	<div class="m-recruit">
 		<div class="top">
 			<img src="/activity/images/mrecruit1.jpg" alt="">
+			<p class="acTime">活动时间：2月9日-3月10日</p>
 			<a href="https://yuertvfile.wangyuhudong.com" class="join">我要报名</a>
 		</div>
 		<img src="/activity/images/mrecruit2.jpg" alt="">
@@ -222,7 +231,8 @@
 			var parm={
 				userId:userId,
 				token:token,
-				type:type
+				type:type,
+				id:3
 			}
 			$.ajax({
 			    method: "GET",
@@ -259,32 +269,32 @@
 		
 
 		// 报名
-		// $('.join').click(function(e){
-		// 	if($('.join').html()=='我要报名' && ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
-		// 		e.preventDefault();
-		// 		if(userId && token){
-		// 			engaged(1);
-		// 		}else{
-		// 			window.location.href = "yuertvopen://login";
-		// 		}
-		// 	}
-		// })
-
-		
 		$('.join').click(function(e){
 			if($('.join').html()=='我要报名' && ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
 				e.preventDefault();
-				// if(ua.match(/android/i)){
-				// 	if(userId && token){
-				// 		engaged(1);
-				// 	}else{
-				// 		window.location.href = "yuertvopen://login";
-				// 	}
-				// }else{
-					$('.form-mask').show();
-				// }
-			}				
+				if(userId && token){
+					engaged(1);
+				}else{
+					window.location.href = "yuertvopen://login";
+				}
+			}
 		})
+
+		
+		// $('.join').click(function(e){
+		// 	if($('.join').html()=='我要报名' && ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+		// 		e.preventDefault();
+		// 		// if(ua.match(/android/i)){
+		// 		// 	if(userId && token){
+		// 		// 		engaged(1);
+		// 		// 	}else{
+		// 		// 		window.location.href = "yuertvopen://login";
+		// 		// 	}
+		// 		// }else{
+		// 			$('.form-mask').show();
+		// 		// }
+		// 	}				
+		// })
 
 		$('.submit').click(function(e){
 			e.preventDefault();
