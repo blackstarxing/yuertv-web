@@ -1,7 +1,15 @@
 $(function(){
-    $('.avatar-icon').attr('src',"http://img.wangyuhudong.com/"+window.localStorage.getItem("avatar")); 
-
-    // $('.head_logo').click(function(){
+    var icon = window.localStorage.getItem("avatar");
+    if(icon){
+        if(icon.indexOf('http')>-1){
+            $('.avatar-icon').attr('src',icon); 
+        }else{
+            $('.avatar-icon').attr('src','http://img.wangyuhudong.com/'+icon);
+        }
+    }else{
+        $('.avatar-icon').attr('src','/images/default_avatar.png'); 
+    }
+    // $('.head_logo').click(function(){    
     //     window.location.href = "/";
     // })
     // 下载二维码显示

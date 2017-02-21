@@ -1,0 +1,159 @@
+{% extends 'layout.html' %} 
+
+{% block content %}
+
+<div class="comWidth" id="join">
+	<div class="m-content">
+		<ul class="m-navlink f-cb">
+			<li><a href="/guide/about">关于我们</a>|</li>
+			<li><a href="/guide/join" class="current">人才招聘</a>|</li>
+			<li><a href="/guide/contact">联系我们</a>|</li>
+			<li><a href="/guide/copyright">著作权声明</a></li>
+		</ul>
+		<img src="/images/about.jpg" alt="">
+		<div class="join">
+			<table width="100%">
+				<tr>
+					<th width="40%">职位名称</th>
+					<th width="25%">职位类别</th>
+					<th width="25%">工作地点</th>
+					<th width="10%">发布时间</th>
+				</tr>
+				<tr v-for="(job,index) in jobs" @click="showDetail(index)">
+					<td>${ job.name }</td>
+					<td>${ job.type }</td>
+					<td>${ job.place }</td>
+					<td>${ job.time }</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="job-mask" @click="closeMask">
+		<div class="job-detail">
+			<span class="job-close" @click="closeMask"></span>
+			<div class="job">
+				<h2>${job_name}</h2>
+				<div style="margin-bottom: 15px;">
+					<h3>岗位职责</h3>
+					<div v-html="job_duty"></div>
+				</div>
+				<div>
+					<h3>任职要求</h3>
+					<div v-html="job_demand"></div>
+				</div>
+			</div>
+			<div class="job-tip">
+				请将简历投递至hr-wangyu@miqtech.com，主题表明“职位+姓名”
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+    var join = new Vue({
+	  	el: '#join',
+	  	delimiters: ['${', '}'],
+	  	data: {
+	    	jobs: [{
+	    		name:'Java开发',
+	    		type:'研发工程师',
+	    		place:'杭州',
+	    		time:'2017-2-27'
+	    	},
+	    	{
+	    		name:'web前端开发',
+	    		type:'研发工程师',
+	    		place:'杭州',
+	    		time:'2017-2-27'
+	    	},
+	    	{
+	    		name:'ios开发',
+	    		type:'研发工程师',
+	    		place:'杭州',
+	    		time:'2017-2-27'
+	    	},
+	    	{
+	    		name:'高级产品经理',
+	    		type:'产品经理',
+	    		place:'杭州',
+	    		time:'2017-2-27'
+	    	},
+	    	{
+	    		name:'直播运营',
+	    		type:'产品运营',
+	    		place:'杭州',
+	    		time:'2017-2-27'
+	    	},
+	    	{
+	    		name:'高级UI设计师',
+	    		type:'设计师',
+	    		place:'杭州',
+	    		time:'2017-2-27'
+	    	},
+	    	{
+	    		name:'高级平面设计师',
+	    		type:'设计师',
+	    		place:'杭州',
+	    		time:'2017-2-27'
+	    	}],
+	    	details:[{
+	    		name:'Java开发',
+	    		duty:'<p>1、负责需求分析设计、系统功能设计与相关文档的编写；</p><p>2、负责核心代码实现以及指导中级、初级工程师完成开发任务；</p><p>3、参与技术规范制定，解决日常开发中出现的技术问题。</p>',
+	    		demand:'<p>1、熟悉Web开发，从事过数据挖掘、机器学习等相关工作者优先；  </p><p>2、具有与直播平台对接的相关经验；</p><p>3、具备良好的需求分析能力和设计能力，掌握需求分析、设计的方法和常用工具，善于主动推动项目进展并达成项目目标；  </p><p>4、熟悉架构设计、概要设计和详细设计，熟练使用UML设计工具；  </p><p>5、精通Java、MySQL，理解I/O、多线程等基础框架。熟悉Spark、Hadoop、Hbase等技术者优先；  </p><p>6、具有强烈的责任感及敬业精神，沟通协调能力良好，思路清晰善于总结提炼，有互联网公司工作经验优先。</p>'
+	    	},
+	    	{
+	    		name:'web前端开发',
+	    		duty:'<p>1、负责参与公司网站（PC端）、商户后台管理（PC端）开发，微信功能页面开发，微网站开发，后台（PC端）开发，H5分享（移动端）、传播页面开发；</p><p>2、持续优化前端体验和页面响应速度，并保证适配、兼容性和执行效率；</p><p>3、配合服务端工程师一起研讨技术实现方案，进行应用及系统集成；</p>',
+	    		demand:'<p>1.相关工作2年以上开发经验；</p><p>2. 精通WEB前端开发技术，能持续优化页面效果；</p><p>3. 了解与服务端的对接，可以熟练完成对接服务端；</p><p>4. 至少熟练使用Jquery Mobile、Sencha Touch，Zepto，RequireJS等一种；</p><p>5. 对不同设备、浏览器上页面适配有较好的了解；</p>'
+	    	},
+	    	{
+	    		name:'ios开发',
+	    		duty:'<p>1、负责公司iOS平台客户端应用的开发、优化与维护；</p><p>2、负责小组分配的模块，按时、按质，独立完成开发；</p><p>3、参与iOS平台项目的技术讨论；</p>',
+	    		demand:'<p>1、3-5年音视频流媒体编解码开发经验，本科及以上学历；</p><p>2、主导过1个以上完整的产品研发项目，能根据既定设计独立完成模块开发工作；</p><p>3、丰富的Object C和Cocoa编程经验，熟练使用iphone SDK和XCode等开发工具；</p><p>4、熟悉iOS应用开发框架，能独立开发高性能的iOS应用；</p><p>5、熟悉HTTP/Socket等通信协议，熟悉iOS网络通信；</p><p>6、有成熟的应用产品APP开发者优先考虑（面试时请带上作品）。</p>'
+	    	},
+	    	{
+	    		name:'高级产品经理',
+	    		duty:'<p>1、负责直播产品的全过程管理，包括产品和竞品分析，产品规划，需求设计，产品设计等方面；</p><p>2、负责直播产品具体功能设计，包括页面设计，APP设计等，不断优化产品体验；</p><p>3、协助研发团队完成产品开发，跨部门协调和沟通；</p><p>4、通过有效的数据分析，提出改善产品和用户体验的新方法，不断完善产品、提高用户体验。</p>',
+	    		demand:'<p>1、五年以上互联网产品经理工作经验，两年以上直播产品经验，能够独立担当产品经理，有独立负责、设计和实施运营产品的经验及能力，了解互联网产品研发和运营；</p><p>2、了解直播相关产品及业务，了解主播及网络经纪公司市场；</p><p>3、具有出色的沟通和协调能力，能够和不同团队进行沟通并达成任务，可对项目立项、管理、跟踪及协调，具有敏锐的市场洞察力和分析能力；</p><p>4、熟悉常见社交产品和社交形态，对社交产品有较深刻认识；</p><p>5、热爱游戏，或对传统游戏行业和游戏直播有一定认知和了解优先，熟悉映客、yy、9158等秀场的优先；</p><p>6、有海外产品经验、英文交流无障碍的产品经理优先；</p>'
+	    	},
+	    	{
+	    		name:'直播运营',
+	    		duty:'<p>1、负责公司直播平台的设计、规划、搭建、运营</p><p>2、直播运营思路的制定、完善，推广策略的优化；</p><p>3、负责原创的直播节目的策划制作，包括前期策划、制作。</p>',
+	    		demand:'<p>1、两年以上直播运营工作经验，熟悉直播运营管理方式和手段。</p><p>2、有视频网站和视频直播运营工作经验；</p><p>3、负责公司直播平台搭建；</p><p>4、通过网络招募、拓展、挖掘、管理主播。</p>'
+	    	},
+	    	{
+	    		name:'高级UI设计师',
+	    		duty:'<p>1、主要负责平台app端和web端产品的界面设计；</p><p>2、参与产品前期风格界面UI研究、设计流行趋势分析；</p><p>3、参与设计体验、流程的制定和规范；</p><p>4、分享设计经验、推动和提高团队的设计能力。</p>',
+	    		demand:'<p>1、艺术设计类相关专业，有游戏工作经验者优先；</p><p>2、两年及以上设计经验，有PC客户端设计经验者优先；</p><p>3、善于创新，对视觉设计追求极致化，色彩感觉敏锐，有出色的观察与产品界面分析能力；</p><p>4、有较强的审美设计能力，有良好的创意理念和界面版式规划能力，能很好的把握色彩与界面布局，熟悉用户体验； </p><p>5、对视觉用户研究有一定经验和见解；</p><p>6、具备良好合作态度及团队精神，并富有工作激情、创造力和责任感；</p><p>7、投递简历时，请同时提交作品。 </p>'
+	    	},
+	    	{
+	    		name:'高级平面设计师',
+	    		duty:'<p>1、负责公司品牌形象主题创意、VI建设、各类宣传物料及会务活动策划设计； </p><p>2、独立承接和把控单个项目的设计、完稿和后期制作的执行跟进； </p><p>3、参与公司内部和外部客户品牌形象设计提案、创意策略的研讨和定制； </p><p>4、配合项目及外网相应促销活动完成所需海报的设计； </p><p>5、根据上级的安排制定设计进度计划，并按时按质完成任务； </p><p>6、了解掌握设计市场最新动态，收集各种参考和应用设计素材</p>',
+	    		demand:'<p>1、3年以上广告设计或网站设计工作经验；熟悉运作设计软件。 </p><p>2、大专以上学历，男女不限，美术设计及相关专业。 熟悉操作PS、CDR、AI等设计软件。   </p><p>3、为人正直、严谨细心；有高度的责任感与团队协作精神，持之以恒。</p><p>4、要求较强的表达能力及沟通、亲和力强、思路清晰明了。   </p><p>5、良好的职业操守；热爱设计工作，积极主动进取，富有挑战和创新精神。</p>'
+	    	}],
+	    	job_name:'',
+	    	job_duty:'',
+	    	job_demand:''
+	  	},
+	  	methods: {
+	  		// 职位信息弹框
+	    	showDetail:function(index){
+        		this.job_name = this.details[index].name;
+        		this.job_duty = this.details[index].duty;
+        		this.job_demand = this.details[index].demand;
+        		$('.job-mask').show() && $('body').addClass('noscroll');
+        	},
+        	// 关闭弹框
+        	closeMask:function(e){
+        		e.stopPropagation();
+        		if($(e.target).attr('class') == 'job-mask' || $(e.target).attr('class') == 'job-close'){
+        			$('.job-mask').hide() && $('body').removeClass('noscroll');
+        		}        		
+        	}
+	  	}
+	})
+</script>
+{% endblock %}

@@ -7,7 +7,7 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-var path = 'http://172.16.10.134:8777';
+var path = 'http://wy.yuerwebapi.wangyuhudong.com';
 
 function getTicket(){
     Thenjs.parallel([function(cont) {
@@ -1004,7 +1004,7 @@ router.get('/activity/chinatop', function(req, res, next) {
     });
 });
 
-router.get('/about', function(req, res, next) {
+router.get('/guide/about', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){
@@ -1013,10 +1013,10 @@ router.get('/about', function(req, res, next) {
     }else{
         islogin = false;
     };
-    res.render('about', { title: "关于我们" ,islogin:islogin});
+    res.render('guide/about', { title: "关于我们" ,islogin:islogin});
 });
 
-router.get('/connect', function(req, res, next) {
+router.get('/guide/contact', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){
@@ -1025,7 +1025,7 @@ router.get('/connect', function(req, res, next) {
     }else{
         islogin = false;
     };
-    res.render('connect', { title: "联系我们" ,islogin:islogin});
+    res.render('guide/contact', { title: "联系我们" ,islogin:islogin});
 });
 
 router.get('/rules', function(req, res, next) {
@@ -1040,7 +1040,7 @@ router.get('/rules', function(req, res, next) {
     res.render('rules', { title: "主播管理条例" ,islogin:islogin});
 });
 
-router.get('/copyright', function(req, res, next) {
+router.get('/guide/copyright', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){
@@ -1049,7 +1049,19 @@ router.get('/copyright', function(req, res, next) {
     }else{
         islogin = false;
     };
-    res.render('copyright', { title: "著作权声明" ,islogin:islogin});
+    res.render('guide/copyright', { title: "著作权声明" ,islogin:islogin});
+});
+
+router.get('/guide/join', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('guide/join', { title: "人才招聘" ,islogin:islogin});
 });
 
 router.get('/activity/hrecruit', function(req, res, next) {
