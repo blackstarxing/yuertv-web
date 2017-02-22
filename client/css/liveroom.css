@@ -1,6 +1,9 @@
 html,body{
 	height: 100%;
 }
+#liveroom{
+	height: 100%;
+}
 .g-lb{
 	position: relative;
 	min-width: 1100px;
@@ -68,13 +71,13 @@ html,body{
 }
 .avatar-info .u-label{
 	display: inline-block;
-	width: 150px;
+	width: 230px;
 }
 .avatar-info .u-label img{
 	vertical-align: middle;
 	margin-left: 5px;
 }
-.follow button{
+.follow-anchor button{
 	display: inline-block;
 	background: #f36;
 	color:#fff;
@@ -86,25 +89,25 @@ html,body{
 	text-align: center;
 	float: right;
 }
-.followme .iconfont{
+.follow-anchor .iconfont{
 	margin:0 5px;
 	font-size: 20px;
 	vertical-align: middle;
 }
-.follow .is-subscibe{
+.follow-anchor .is-subscibe{
 	background: #999;
 }
 .follownum{
 	background: #878b90;
 	color: #fff;
-	float: left;
+	float: right;
 	min-width: 50px;
 	text-align: center;
 	height: 30px;
 	line-height: 30px;
 	margin-top: 5px;
 	position: relative;
-	margin-left: 5px;
+	margin-right: 10px;
 	padding:0 10px;
 }
 .follownum:after{
@@ -125,13 +128,17 @@ html,body{
 	height: 21px;
 	font-size: 14px;
 }
+.option .punish{
+	background: none;
+}
 .option .report{
 	background: url('/images/report.png') left top no-repeat;
 }
 .option .share{
 	background: url('/images/share.png') left top no-repeat;
 }
-.report-pop{
+.report-pop,
+.punish-pop{
 	width: 276px;
 	padding:17px;
 	height: 540px;
@@ -145,36 +152,46 @@ html,body{
     color:#fff;
     border-radius: 20px;
 }
-.report-pop h3{
+.punish-pop{
+	/*width: 366px;*/
+	height: 450px;
+}
+.report-pop h3,
+.punish-pop h3{
 	text-align: center;
 	font-size: 24px;
 	line-height: 2;
 	border-bottom: 2px dotted #2e363f;
 	margin-bottom: 15px;
 }
-.report-radio{
+.report-radio,
+.punish-radio{
 	height: 55px;
 	line-height: 55px;
 	text-indent: 40px;
 }
-.report-pop input[type="radio"] {
+.report-pop input[type="radio"],
+.punish-radio input[type="radio"]{
   display: none;
 }
-.report-pop label {
+.report-pop label,
+.punish-pop label {
   display: inline-block;
   height: 25px;
   line-height: 25px;
   cursor: pointer;
   background: url('/images/dischecked.png') no-repeat 10px center;
 }
-.report-pop label.checked {
+.report-pop label.checked,
+.punish-pop label.checked {
   background: url('/images/checked.png') no-repeat 10px center;
 }
 .report-pop p{
 	color:#7d8ea0;
 	text-indent: 45px;
 }
-.report-pop button{
+.report-pop button,
+.punish-pop button{
 	display: inline-block;
 	width: 70px;
 	height: 30px;
@@ -184,11 +201,33 @@ html,body{
 	color: #9faebe;
 	margin:20px 20px 0;
 	margin-left: 42px;
+	border-radius: 5px;
 }
-.report-pop .u-report-next{
+.report-pop .u-report-next,
+.punish-pop .u-report-next{
 	background: #f36;
 	color:#fff;
 	margin-left: 20px;
+}
+.punish-pop .u-report-next{
+	margin-left: 30px;
+}
+.punish-text{
+	display: block;
+	width: 190px;
+	background: transparent;
+	margin:0 auto;
+	color:#fff;
+}
+.punish-tip{
+	height: 25px;
+}
+.punish-pop p{
+	color: #f36;
+	font-size: 12px;
+	text-indent: 45px;
+	padding-top: 5px;
+	display: none;
 }
 .wallet-empty{
 	position: absolute;

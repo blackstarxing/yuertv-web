@@ -20,13 +20,13 @@ q:before,q:after{content:none;}
 textarea{overflow:auto;resize:none;}
 label,summary{cursor:default;}
 a,button{cursor:pointer;}
-h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}
+h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:normal;}
 del,ins,u,s,a{text-decoration:none;}
 body,textarea,input,button,select,keygen,legend{font:12px/1.14 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;color:#333;outline:0;}
 body{font:14px/1.5 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;background: #f3f3f3;}
 input{font:14px/1.5 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;/*letter-spacing:1px;*/}
 a/*,a:hover*/{color:#333;}
-button{border:none;font-size: 14px;}
+button{border:none;font-size: 12px;}
 input:-webkit-autofill { 
 -webkit-box-shadow: 0 0 0px 1000px #14181d inset;
 color: #fff !important;
@@ -121,8 +121,8 @@ color: #fff !important;
     cursor: pointer;
 }
 .header_left .head_logo{
-    height: 70px;
-    margin-top: 0;
+    height: 50px;
+    margin-top: 10px;
 }
 .m-nav{
     margin-right: 110px;
@@ -451,9 +451,9 @@ color: #fff !important;
     width: 33.3%;
 }
 .mini-hd .head_logo{
-    width:38px;
-    height: 37px;
-    margin:1px 16px 0;
+    width:86px;
+    height: 29px;
+    margin:5px 16px 0;
     vertical-align: middle;
 }
 .mini-hd .m-search input{
@@ -505,7 +505,9 @@ color: #fff !important;
 /*视频弹窗*/
 .m-video-mask,
 .m-report-mask,
-.m-result-mask{
+.m-punish-mask,
+.m-result-mask,
+.job-mask{
     position:fixed;
     left:0;
     top:0;
@@ -558,7 +560,7 @@ color: #fff !important;
     font-size:14px;
     margin-left:25px;
 }
-.m-video .anchor-head{
+.m-lst .video-head{
     top:-35px;
 }
 .video-name{
@@ -583,6 +585,13 @@ color: #fff !important;
     background: #1a2129;
     color:#898c8f;
 }
+.ft-logo{
+    width: 106px;
+}
+.footer-left,
+.ft-logo{
+    margin-top: 30px;
+}
 .footer-left li{
     float:left;
     margin:0 30px 20px;
@@ -592,6 +601,9 @@ color: #fff !important;
 }
 .footer-left li a:hover{
     color:#f36;
+}
+.guide li a{
+    color:#ccc;
 }
 .footer-left h3{
     text-indent: 30px;
@@ -612,7 +624,7 @@ color: #fff !important;
     float: left;
     width: 164px;
     text-align: center;
-    margin-left: 10px;
+    margin-left: 50px;
 }
 .footer-qr img{
     width: 100%;
@@ -723,45 +735,57 @@ color: #fff !important;
     height: 56px;
     background: #fff;
 }
+.live-info{
+    height: 72px;
+}
 .anchor-head{
     position: relative;
     float: left;
-    margin-left: 2px;
+    margin-left: 5px;
     width: 50px;
     height: 46px;
     display: table-cell;
 }
 .anchor-head .head-icon{
-    width: 46px;
-    height: 46px;
+    width: 54px;
+    height: 54px;
     border-radius: 50%;
 }
 .anchor-head .sex{
     width: 18px;
     height: 18px;
     position: absolute;
-    bottom: -3px;
-    right: 0; 
+    bottom: -10px;
+    right: -5px; 
 }
 .anchor-info{
     float: left;
     margin-left: 10px;
 }
-.anchor-info a{
-    cursor: default;
+.anchor-info .live-title{
+    font-size: 16px;
     width: 140px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.anchor-id{
+.anchor-info a{
+    cursor: default;
+    width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-size: 12px;
     color:#999;
+}
+.anchor-id{
+    font-size: 12px;
+    color:#6e6e6e;
 }
 .m-info .follow,.m-info .disfollow{
     position: absolute;
     right: 5px;
-    bottom: 7px;
+    bottom: 11px;
     width: 45px;
     height: 20px;
     line-height: 20px;
@@ -788,7 +812,123 @@ color: #fff !important;
     text-align: center;
     display: none;
 }
-
-
-
-
+/*关于我们*/
+.m-guide{
+    margin-top: 85px;
+    background: #fff;
+}
+.m-navlink li{
+    float: left;
+    height: 80px;
+    line-height: 80px;
+    font-size: 16px;
+    color:#999;
+}
+.m-navlink li a{
+    display: block;
+    float: left;
+    width: 220px;
+    text-align: center;
+    color:#999;
+}
+.m-navlink li a.current,
+.m-navlink li a:hover{
+    color:#f36;
+}
+.about-box{
+    padding: 20px 105px;
+}
+.about-intro{
+    float: left;
+    width: 500px;
+    padding-top: 230px;
+}
+.about-intro p{
+    font-size: 16px;
+    color:#666;
+    line-height: 2.5;
+}
+.about-intro img{
+    margin-bottom: 20px;
+}
+.ml120{
+    margin-left: 115px;
+}
+.mr120{
+    margin-right: 115px;
+}
+.contact{
+    padding: 20px 50px;
+}
+.contact h3{
+    font-size: 18px;
+    color:#333;
+    margin-bottom: 15px;
+}
+.contact p{
+    line-height: 2.5;
+}
+.join{
+    padding:25px 45px 100px;
+}
+.join tr{
+    height: 50px;
+}
+.join th{
+    color:#333;
+    font-weight: bolder;
+}
+.join td{
+    cursor: pointer;
+    border-bottom: 1px dashed #ccc;
+}
+.job-detail{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 880px;
+    height: 600px;
+    padding:30px 60px;
+    margin:auto;
+    background: #fff;
+}
+.job-close{
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 15px;
+    height: 15px;
+    background: url('/images/close.png');
+    cursor: pointer;
+}
+.job h2{
+    font-size: 30px;
+    font-weight: normal;
+    margin-bottom: 35px;
+}
+.job h3{
+    font-size: 16px;
+    font-weight: normal;
+    color:#666;
+}
+.job p{
+    line-height: 2;
+    color:#666;
+}
+.job-tip{
+    width: 780px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    margin:25px auto 0;
+    border-radius: 5px;
+    color:#fff;
+    background: #f36;
+    font-size: 16px;
+}
+.noscroll{
+    overflow: hidden;
+}

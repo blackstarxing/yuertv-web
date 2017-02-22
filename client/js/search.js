@@ -9,7 +9,7 @@ $(function(){
         }
 	})
 
-	$("body").keydown(function() {
+	$(".search-key").keydown(function() {
         if (event.keyCode == "13") {//keyCode=13是回车键
             $('.search-btn').click();
         }

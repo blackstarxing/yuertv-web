@@ -541,7 +541,7 @@ var local={
                     var data = new FormData();
                     data.append('upload', $(this)[0].files[0]);
                     $.ajax({
-                         url: 'http://yuerwebapi.wangyuhudong.com/common/upload',
+                         url: '/api/common/upload',
                          type: 'POST',
                           data: data,
                           cache: false,

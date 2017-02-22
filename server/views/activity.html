@@ -24,7 +24,7 @@
                             <span><i>·</i>{{recommend.name}}</span>
                             <div class="play-mask online"></div>
                         </a>
-                        <div class="m-info">
+                        <div class="m-info live-info">
                             <div class="anchor-head">
                                 {% if recommend.user_icon %}
                                 {% if recommend.user_icon.indexOf('http')>-1 %}
@@ -36,14 +36,15 @@
                                 <img src="/images/default_avatar.png" alt="" class="head-icon">
                                 {% endif %}
                                 {% if recommend.sex==0 %}
-                                    <img src="/images/female.png" alt="" class="sex">
-                                {% else %}
                                     <img src="/images/male.png" alt="" class="sex">
+                                {% else %}
+                                    <img src="/images/female.png" alt="" class="sex">
                                 {% endif %}
                             </div>
                             <div class="anchor-info">
-                                <div><a href="">{{recommend.nickname}}</a></div>
-                                <div class="anchor-id">ID:{{recommend.room_number}}</div>
+                                <div class="live-title">{{recommend.title}}</div>
+                                <div class="anchor-id">房间:{{recommend.room_number}}</div>
+                                <div><a href="javascript:void(0)">{{recommend.nickname}}</a></div>                                
                             </div>
                             <button class="follow">关注</button>
                         </div>
@@ -55,7 +56,6 @@
     </div>
     <script>
         $('.main-body').html('{{detail.info.content | safe }}');
-        // console.log({{detail.info.content}});
     </script>
     
 {% endblock %}

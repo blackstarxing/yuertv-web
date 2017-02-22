@@ -5,54 +5,65 @@
 {% endblock %}
 
 {% block content %}
-<div class="m-register">
+<div class="m-register" id="register">
 	<img src="images/logo_center.png" alt="">
 	<div class="m-regbox">
-		<h3>注册即可获得两个贝壳，快来注册吧！</h3>
-		<div class="m-regform">
-			<div class="m-input">
-				<input type="text" class="u-ipt nickname" placeholder="请输入1~16位昵称（中文占两位）">
-				<span class="error-tip">昵称不能为空</span>
+		<!-- <h3>注册即可获得两个贝壳，快来注册吧！</h3> -->
+		<div class="reg-step">
+			<div class="m-regform">
+				<div class="m-step">
+					<i>昵称</i>
+					<input type="text" class="u-ipt nickname" placeholder="请输入1~16位昵称（中文占两位）">
+					<span class="error-tip">昵称不能为空</span>
+				</div>
+				<div class="m-step m-sex">
+					<i>性别</i>
+					<div class="sex-box">
+						<label for="male" class="sex checked" name="male">
+							<input type="radio" checked="" value="0" name="sex" id="male"/>男
+						</label>
+						<label for="female" class="sex" name=female>
+							<input type="radio" value="1" name="sex" id="female"/> 女
+						</label>
+						<span class="error-tip"></span>
+					</div>				
+				</div>
+				<div class="m-step m-tel">
+					<i>手机号</i>
+					<input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>11)value=value.slice(0,11)" class="u-ipt telnumber" placeholder="请输入手机号码">
+					<button class="getCode" @click="getCode">获取验证码</button>
+					<span class="error-tip">手机号码不能为空</span>
+				</div>
+				<div class="m-step">
+					<i>验证码</i>
+					<input type="text" class="u-ipt code" placeholder="请输入验证码" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>6)value=value.slice(0,6)">
+					<span class="error-tip">验证码不能为空</span>
+				</div>
+				<div class="m-step">
+					<i>密码</i>
+					<input type="password" class="u-ipt password" placeholder="请输入6~20位密码" maxlength="20">
+					<span class="error-tip">密码不能为空</span>
+				</div>
+				<div class="m-step">
+					<i>确认密码</i>
+					<input type="password" class="u-ipt repassword" placeholder="请再次确认密码" maxlength="20">
+					<span class="error-tip">密码不能为空</span>
+				</div>
+				<div class="m-step">
+					<p style="margin-top: 20px;text-align: center;">注册即视为同意 <a href="/service" target="_blank" class="agreement">《娱儿直播用户服务协议》</a></p>
+					<span class="error">aasss</span>
+					<button class="u-reg-btn" @click="register">注册</button>
+				</div>			
 			</div>
-			<div class="m-input m-tel">
-				<input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>11)value=value.slice(0,11)" class="u-ipt telnumber" placeholder="请输入手机号码">
-				<button class="getCode">获取验证码</button>
-				<span class="error-tip">手机号码不能为空</span>
+			<div class="m-switch">
+				<div class="process">${step} / 7</div>
+				<button class="next-step" v-show="step<7" @click="nextStep">下一步</button><button class="prev-btn prev-step" v-if="step>1" @click="prevStep">上一步</button>
 			</div>
-			<div class="m-input">
-				<input type="text" class="u-ipt code" placeholder="请输入验证码" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>6)value=value.slice(0,6)">
-				<span class="error-tip">验证码不能为空</span>
-			</div>
-			<div class="m-input">
-				<input type="password" class="u-ipt password" placeholder="请输入6~20位密码" maxlength="20">
-				<span class="error-tip">密码不能为空</span>
-			</div>
-			<div class="m-input">
-				<input type="password" class="u-ipt repassword" placeholder="请再次确认密码" maxlength="20">
-				<span class="error-tip">密码不能为空</span>
-			</div>
-			<p style="margin-top: 20px;">注册即视为同意 <a href="/service" target="_blank" class="agreement">《娱儿直播用户服务协议》</a></p>
-			<a href="" class="u-reg-btn">注册</a>
 		</div>
-	</div>
-</div>
-
-<div class="m-mask">
-	<div class="code-wrap">
-		<p>请输入图中验证码完成本次发送</p>
-		<div class="m-input">
-			<input type="text" maxlength="4">
-			<span class="error-tip">验证码错误</span>
+		<div class="reg-success f-cb">
+			<p>恭喜你注册成功!</p>
+			<a href="/" class="u-success-btn jump-index">（3s）回到首页</a><a href="/center/topup" class="u-success-btn">去充值</a>
 		</div>
-		
-		<div class="pic-code f-cb">
-			<img src="" alt=""><a href="" class="changePic">看不清，换一个</a>
-		</div>
-		<a href="" class="u-wrap-btn confirm">确认</a><a href="" class="u-wrap-btn cancel">取消</a>
-	</div>
-	<div class="reg-success">
-		<p>恭喜你注册成功！成功获得 <span>2个贝壳</span></p>
-		<a href="/" class="u-success-btn jump-index">（3s）回到首页</a><a href="/center?type=4" class="u-success-btn">去充值</a>
 	</div>
 </div>
 
@@ -60,4 +71,5 @@
 
 {% block js %}
 <script type="text/javascript" src="/dist/register.js"></script>
+
 {% endblock %}

@@ -64,7 +64,7 @@
                             <span><i>·</i>{{hotlive.name}}</span>
                             <div class="play-mask online"></div>
                         </a>
-                        <div class="m-info">
+                        <div class="m-info live-info">
                             <div class="anchor-head">
                                 {% if hotlive.user_icon %}
                                 {% if hotlive.user_icon.indexOf('http')>-1 %}
@@ -82,8 +82,9 @@
                                 {% endif %}
                             </div>
                             <div class="anchor-info">
-                                <div><a href="javascript:void(0)">{{hotlive.nickname}}</a></div>
-                                <div class="anchor-id">ID:{{hotlive.room_number}}</div>
+                                <div class="live-title">{{hotlive.title}}</div>
+                                <div class="anchor-id">房间:{{hotlive.room_number}}</div>
+                                <div><a href="javascript:void(0)">{{hotlive.nickname}}</a></div>                                
                             </div>
                             {% if hotlive.is_concern==1 %}
                                 <button class="disfollow" data-id="{{hotlive.up_user_id}}">已关注</button>
@@ -106,7 +107,7 @@
                             <div class="play-mask online"></div>
                         </div>
                         <div class="m-info">
-                            <div class="anchor-head">
+                            <div class="anchor-head video-head">
                                 {% if video.user_icon %}
                                 {% if video.user_icon.indexOf('http')>-1 %}
                                 <img src="{{video.user_icon}}" alt="" class="head-icon">

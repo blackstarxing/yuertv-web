@@ -7,6 +7,8 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
+var path = 'http://172.16.10.144:8777';
+
 function getTicket(){
     Thenjs.parallel([function(cont) {
         request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxf96f728533f32fa8&secret=5007eda46723c5faf79a8b9ca3be131a', function(error, response, body) {
@@ -51,7 +53,7 @@ router.get('/', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.10.144:8777/index?from='+from,
+            uri: path+'/index?from='+from,
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -90,10 +92,10 @@ router.get('/liveroom', function(req, res, next) {
     }else{
         islogin = false;
     };
-    console.log('http://172.16.10.144:8777/live/detail?id='+id+'&from='+from);
+    console.log(path+'/live/detail?id='+id+'&from='+from);
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.10.144:8777/live/detail?id='+id+'&from='+from,
+            uri: path+'/live/detail?id='+id+'&from='+from,
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -106,7 +108,7 @@ router.get('/liveroom', function(req, res, next) {
             }
         })
     },function(cont) {
-        request('http://172.16.10.144:8777/gift/list', function(error, response, body) {
+        request(path+'/gift/list', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -175,7 +177,7 @@ router.get('/center/information', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri:'http://172.16.10.144:8777/person-center/user-info',
+            uri: path+'/person-center/user-info',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -222,7 +224,7 @@ router.get('/center/props', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.10.144:8777/person-center/my-gifts',
+            uri: path+'/person-center/my-gifts',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -269,7 +271,7 @@ router.get('/center/topup', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.10.144:8777/pay/recharge-list',
+            uri: path+'/pay/recharge-list',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -283,7 +285,7 @@ router.get('/center/topup', function(req, res, next) {
         })
     },function(cont) {
         request({
-            uri: 'http://172.16.10.144:8777/person-center/my-yuer-coin',
+            uri: path+'/pay/recharge-list',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -334,7 +336,7 @@ router.get('/alipay', function(req, res, next) {
     console.log(id);
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.10.144:8777/pay/alipay?id='+id,
+            uri: path+'/pay/alipay?id='+id,
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -373,7 +375,7 @@ router.get('/helpcenter', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.10.144:8777/helpCenter/list?moduleId='+moduleId,
+            uri: path+'/helpCenter/list?moduleId='+moduleId,
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -424,7 +426,7 @@ router.get('/activity', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.10.144:8777/activity/detail?id='+id,
+            uri: path+'/activity/detail?id='+id,
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -461,7 +463,7 @@ router.get('/search', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.10.144:8777/search/live?param='+content+'&page=1&pageSize=30',
+            uri: path+'/search/live?param='+content+'&page=1&pageSize=30',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -497,7 +499,7 @@ router.get('/alllive', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.10.144:8777/live/list?page=1&pageSize=30',
+            uri: path+'/live/list?page=1&pageSize=30',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -533,7 +535,7 @@ router.get('/allvideo', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.10.144:8777/video/list?page=1&pageSize=30',
+            uri: path+'/video/list?page=1&pageSize=30',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -565,7 +567,7 @@ router.get('/liveShare', function(req, res, next) {
     }
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.10.144:8777/live/detail?id='+id,
+            uri: path+'/live/detail?id='+id,
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -593,7 +595,7 @@ router.get('/liveShare', function(req, res, next) {
 
 router.get('/activity/cecgame', function(req, res, next) {
     Thenjs.parallel([function(cont) {
-        request('http://172.16.10.144:8777/live/detail?id=4', function(error, response, body) {
+        request(path+'/live/detail?id=4', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -601,7 +603,7 @@ router.get('/activity/cecgame', function(req, res, next) {
             }
         })
     },function(cont) {
-        request('http://172.16.10.144:8777/live/detail?id=8', function(error, response, body) {
+        request(path+'/live/detail?id=8', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -623,7 +625,7 @@ router.get('/activity/cecgame', function(req, res, next) {
 
 router.get('/activity/cecforum', function(req, res, next) {
     Thenjs.parallel([function(cont) {
-        request('http://172.16.10.144:8777/live/detail?id=8', function(error, response, body) {
+        request(path+'/live/detail?id=8', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -631,7 +633,7 @@ router.get('/activity/cecforum', function(req, res, next) {
             }
         })
     },function(cont) {
-        request('http://172.16.10.144:8777/live/detail?id=4', function(error, response, body) {
+        request(path+'/live/detail?id=4', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -797,7 +799,7 @@ router.get('/mobile/activityShare', function(req, res, next) {
     }
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.10.144:8777/activity/detail?id='+id,
+            uri: path+'/activity/detail?id='+id,
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -878,7 +880,7 @@ router.get('/activity/bostonMain', function(req, res, next) {
             ticket = JSON.parse(result[0]).ticket;
             Thenjs.parallel([function(cont) {
                 request({
-                    uri: 'http://172.16.10.144:8777/live/detail?id=3751',
+                    uri: path+'/live/detail?id=3751',
                     headers: {
                         'User-Agent': 'request',
                         'cookie': req.headers.cookie,
@@ -932,7 +934,7 @@ router.get('/activity/bostonSecond', function(req, res, next) {
             ticket = JSON.parse(result[0]).ticket;
             Thenjs.parallel([function(cont) {
                 request({
-                    uri: 'http://172.16.10.144:8777/live/detail?id=3751',
+                    uri: path+'/live/detail?id=3751',
                     headers: {
                         'User-Agent': 'request',
                         'cookie': req.headers.cookie,
@@ -986,7 +988,7 @@ router.get('/activity/chinatop', function(req, res, next) {
             ticket = JSON.parse(result[0]).ticket;
             Thenjs.parallel([function(cont) {
                 request({
-                    uri: 'http://172.16.10.144:8777/live/detail?id=3751',
+                    uri: path+'/live/detail?id=3751',
                     headers: {
                         'User-Agent': 'request',
                         'cookie': req.headers.cookie,
@@ -1017,7 +1019,7 @@ router.get('/activity/chinatop', function(req, res, next) {
     });
 });
 
-router.get('/about', function(req, res, next) {
+router.get('/guide/about', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){
@@ -1026,10 +1028,10 @@ router.get('/about', function(req, res, next) {
     }else{
         islogin = false;
     };
-    res.render('about', { title: "关于我们" ,islogin:islogin});
+    res.render('guide/about', { title: "关于我们" ,islogin:islogin});
 });
 
-router.get('/connect', function(req, res, next) {
+router.get('/guide/contact', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){
@@ -1038,7 +1040,7 @@ router.get('/connect', function(req, res, next) {
     }else{
         islogin = false;
     };
-    res.render('connect', { title: "联系我们" ,islogin:islogin});
+    res.render('guide/contact', { title: "联系我们" ,islogin:islogin});
 });
 
 router.get('/rules', function(req, res, next) {
@@ -1053,7 +1055,7 @@ router.get('/rules', function(req, res, next) {
     res.render('rules', { title: "主播管理条例" ,islogin:islogin});
 });
 
-router.get('/copyright', function(req, res, next) {
+router.get('/guide/copyright', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){
@@ -1062,7 +1064,19 @@ router.get('/copyright', function(req, res, next) {
     }else{
         islogin = false;
     };
-    res.render('copyright', { title: "著作权声明" ,islogin:islogin});
+    res.render('guide/copyright', { title: "著作权声明" ,islogin:islogin});
+});
+
+router.get('/guide/join', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('guide/join', { title: "人才招聘" ,islogin:islogin});
 });
 
 router.get('/activity/hrecruit', function(req, res, next) {
@@ -1133,7 +1147,7 @@ router.get('/activity/ucg', function(req, res, next) {
             ticket = JSON.parse(result[0]).ticket;
             Thenjs.parallel([function(cont) {
                 request({
-                    uri: 'http://172.16.10.144:8777/live/detail?id=3754',
+                    uri: path+'/live/detail?id=3754',
                     headers: {
                         'User-Agent': 'request',
                         'cookie': req.headers.cookie,
@@ -1177,7 +1191,7 @@ router.get('/spread/tashan', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: 'http://172.16.10.144:8777/taShanLive?type='+type+'&from=tashan',
+            uri: path+'/taShanLive?type='+type+'&from=tashan',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,

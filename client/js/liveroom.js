@@ -1,23 +1,240 @@
 $(function(){
-    // 布局自适应
-    function resize(){
-        var clientW = document.body.clientWidth;
-        var clientH = document.body.offsetHeight;
-        var liveW = clientW - 440;
-        var chatroomH = clientH - 300;
-        $('.m-live-left').css("width",liveW+"px");
-        $('.videoBox').css("height",0.56*liveW+"px");
-        $('.right-block').css("height",chatroomH+"px");
-        if(clientW<1340){
-            $('.send-gift').addClass('m-l-gift');
-        }else{
-            $('.send-gift').removeClass('m-l-gift');
+    var liveroom = new Vue({
+        el: '#liveroom',
+        delimiters: ['${', '}'],
+        data: {
+            islogin: 0,
+            is_report: false,
+            is_punish:false
+        },
+        mounted: function () {
+            this.islogin = (document.cookie.indexOf('yuer_userId')>=0) ? 1 : 0;
+
+            // 布局自适应
+            function resize(){
+                var clientW = document.body.clientWidth;
+                var clientH = document.body.offsetHeight;
+                var liveW = clientW - 440;
+                var chatroomH = clientH - 300;
+                $('.m-live-left').css("width",liveW+"px");
+                $('.videoBox').css("height",0.56*liveW+"px");
+                $('.right-block').css("height",chatroomH+"px");
+                if(clientW<1340){
+                    $('.send-gift').addClass('m-l-gift');
+                }else{
+                    $('.send-gift').removeClass('m-l-gift');
+                }
+            }
+            resize();
+            $(window).resize(function() {
+                resize();
+            });
+
+            $('.live-address').hover(function(){
+                $(this).find('.play-mask').show();
+            },function(){
+                $(this).find('.play-mask').hide();
+            })
+
+            // 举报单选框
+            $('.report-radio label').click(function(){
+                var radioId = $(this).attr('name');
+                $('.report-radio label').removeAttr('class') && $(this).attr('class', 'checked');
+                $('.report-radio input[type="radio"]').removeAttr('checked') && $('#' + radioId).attr('checked', 'checked');
+            });
+
+            // 管理单选框
+            $('.punish-radio label').click(function(){
+                var radioId = $(this).attr('name');
+                $('.punish-radio label').removeAttr('class') && $(this).attr('class', 'checked');
+                $('.punish-radio input[type="radio"]').removeAttr('checked') && $('#' + radioId).attr('checked', 'checked');
+            });
+        },
+        methods: {
+            // 举报弹窗
+            reportPop:function(){
+                var _this = this;
+                if(_this.islogin){
+                    if(!_this.is_report){
+                        $('.m-report-mask').show();
+                    }
+                }else{
+                    $('.m-login-wrap').show();
+                }
+            },
+            // 关闭举报弹窗
+            reportCancel:function(){
+                $('.m-report-mask').hide();
+            },
+            // 确认举报
+            report:function(){
+                var _this = this;
+                var parm = {};
+                parm.liveUpId = $('.hide-rtmp').attr('data-anchorid');
+                parm.roomNumber = $('.room-number').text();
+                parm.type = $('.report-radio input[type="radio"][checked]').val();
+                parm.userId = window.localStorage.getItem("id");
+                $.ajax({
+                    method: "GET",
+                    url: "/api/live/inform",
+                    dataType: 'json',
+                    data: parm,
+                    success: function(data) {
+                        if (data.code == 0) {
+                            $('.m-report-mask').hide();
+                            $('.m-result-mask').show();
+                            setTimeout(function(){
+                                $('.m-result-mask').hide();
+                            },1500);
+                            $('.report').text('已举报');
+                            _this.is_report = true;
+                        }else{
+                            $('.m-report-mask').hide();
+                            $('.result-pop').css('backgroundImage','url(/images/wrong.png)').text(data.result);
+                            $('.m-result-mask').show();
+                            setTimeout(function(){
+                                $('.m-result-mask').hide();
+                            },1500);
+                        }
+                    },
+                    error: function(a, b, c) {
+                        console.log("接口出问题啦");
+                    }
+                });            
+            },
+            // 管理弹窗
+            punishPop:function(){
+                var _this = this;
+                if(!_this.is_punish){
+                    $('.m-punish-mask').show();
+                }
+            },
+            // 关闭管理弹窗
+            punishCancel:function(){
+                $('.m-punish-mask').hide();
+            },
+            // 确认管理员操作
+            punish:function(){
+                var _this = this;
+                if(!_this.is_punish){
+                    var parm = {};
+                    parm.liveUpId = $('.hide-rtmp').attr('data-anchorid');
+                    parm.remark = $('.punish-text').val();
+                    parm.treatement = $('.punish-radio input[type="radio"][checked]').val();
+                    parm.adminUserId = window.localStorage.getItem("id");
+                    if($('.punish-text').val().length>=6){
+                        $.ajax({
+                            method: "GET",
+                            url: "/api/live/frontSuperAdminManage",
+                            dataType: 'json',
+                            data: parm,
+                            success: function(data) {
+                                if (data.code == 0) {
+                                    $('.m-punish-mask').hide();
+                                    $('.m-result-mask').show();
+                                    setTimeout(function(){
+                                        $('.m-result-mask').hide();
+                                    },1500);
+                                    $('.punish').text('已处理');
+                                    _this.is_punish = true;
+                                }else{
+                                    $('.m-punish-mask').hide();
+                                    $('.result-pop').css('backgroundImage','url(/images/wrong.png)').text(data.result);
+                                    $('.m-result-mask').show();
+                                    setTimeout(function(){
+                                        $('.m-result-mask').hide();
+                                    },1500);
+                                }
+                            },
+                            error: function(a, b, c) {
+                                console.log("接口出问题啦");
+                            }
+                        });  
+                    }else{
+                        $('.punish-pop p').show();
+                        setTimeout(function(){
+                            $('.punish-pop p').hide();
+                        },1500);
+                    }              
+                } 
+            },
+            // 关注主播
+            followAnchor:function(e){
+                var _this = this;
+                e.preventDefault();
+                var follownum = $('.follownum').text();
+                var _target = $(e.currentTarget);
+                if(_this.islogin){
+                    var parm = {};
+                    parm.userId = window.localStorage.getItem("id");
+                    parm.upUserId = _target.attr('data-id');
+                    $.ajax({
+                            method: "GET",
+                            url: "/api/concern/up",
+                            dataType: 'json',
+                            data: parm,
+                            success: function(data) {
+                                if (data.code == 0) {
+                                    // console.log('关注成功！');
+                                    if(_target.attr('class')=='followme'){
+                                        $('.follownum').text(parseInt(follownum)+1);
+                                        _target.attr('class','is-subscibe').html('已关注');
+                                    }else{
+                                        $('.follownum').text(parseInt(follownum)-1);
+                                        _target.attr('class','followme').html('<i class="iconfont icon-follow"></i>关注');
+                                    }
+                                }else{
+                                    console.log(data.result);
+                                }
+                            },
+                            error: function(a, b, c) {
+                                console.log("接口出问题啦");
+                            }
+                        });
+                }else{
+                    $('.m-login-wrap').show();
+                }
+            },
+            // 关注
+            follow:function(e){
+                var _this = this;
+                var _target = $(e.currentTarget);
+                e.preventDefault();
+                if(islogin){
+                    var parm = {};
+                    parm.userId = window.localStorage.getItem("id");
+                    parm.upUserId = _target.attr('data-id');
+                    $.ajax({
+                        method: "GET",
+                        url: "/api/concern/up",
+                        dataType: 'json',
+                        data: parm,
+                        success: function(data) {
+                            if (data.code == 0) {
+                                // console.log('关注成功！');
+                                if(_target.attr('class')=='follow'){
+                                    _target.attr('class','disfollow').text('已关注');
+                                }else{
+                                    _target.attr('class','follow').text('关注');
+                                }
+                            }else{
+                                console.log(data.result);
+                            }
+                        },
+                        error: function(a, b, c) {
+                            console.log("接口出问题啦");
+                        }
+                    });
+                }else{
+                    $('.m-login-wrap').show();
+                }
+            },
+            // 清屏
+            clearMes:function(){
+                $('.mes-block').html('');
+            }
         }
-    }
-    resize();
-    $(window).resize(function() {
-        resize();
-    });
+    })
 
     // 是否登录
     var islogin = (document.cookie.indexOf('yuer_userId')>=0) ? 1 : 0;
@@ -96,63 +313,11 @@ $(function(){
         }
     });
 
-    // 举报弹窗
-    $('.wantreport').click(function(e){
-        e.preventDefault();
-        if(islogin){
-           $('.m-report-mask').show();
-        }else{
-            $('.m-login-wrap').show();
-        }
-    })
-
     // 举报单选框
     $('.report-radio label').click(function(){
         var radioId = $(this).attr('name');
         $('.report-radio label').removeAttr('class') && $(this).attr('class', 'checked');
         $('.report-radio input[type="radio"]').removeAttr('checked') && $('#' + radioId).attr('checked', 'checked');
-    });
-
-    // 举报
-    $('.u-report-next').click(function(e){
-        e.preventDefault();
-        var parm = {};
-        parm.liveUpId = $('.hide-rtmp').attr('data-anchorid');
-        parm.roomNumber = $('.room-number').text();
-        parm.type = $('.report-radio input[type="radio"][checked]').val();
-        parm.userId = window.localStorage.getItem("id");
-        $.ajax({
-            method: "GET",
-            url: "/api/live/inform",
-            dataType: 'json',
-            data: parm,
-            success: function(data) {
-                if (data.code == 0) {
-                    $('.m-report-mask').hide();
-                    $('.m-result-mask').show();
-                    setTimeout(function(){
-                        $('.m-result-mask').hide();
-                    },1500);
-                    $('.report').text('已举报').off().click(function(e){e.preventDefault()});
-                }else{
-                    $('.m-report-mask').hide();
-                    $('.result-pop').css('backgroundImage','url(/images/wrong.png)').text(data.result);
-                    $('.m-result-mask').show();
-                    setTimeout(function(){
-                        $('.m-result-mask').hide();
-                    },1500);
-                }
-            },
-            error: function(a, b, c) {
-                console.log("接口出问题啦");
-            }
-        });
-        
-    });
-
-    $('.u-report-cancel').click(function(e){
-        e.preventDefault();
-        $('.m-report-mask').hide();
     });
 
     // 充值
@@ -180,39 +345,6 @@ $(function(){
             $('.recommendBox').eq(index).show().siblings('.recommendBox').hide();
         })
     });
-
-    // 关注主播
-    $('.follow,.disfollow').click(function(e){
-        e.preventDefault();
-        if(islogin){
-            var parm = {};
-            parm.userId = window.localStorage.getItem("id");
-            parm.upUserId = $(this).attr('data-id');
-            $.ajax({
-                method: "GET",
-                url: "/api/concern/up",
-                dataType: 'json',
-                data: parm,
-                success: function(data) {
-                    if (data.code == 0) {
-                        console.log('关注成功！');
-                        if($(e.currentTarget).attr('class')=='follow'){
-                            $(e.currentTarget).attr('class','disfollow').text('已关注');
-                        }else{
-                            $(e.currentTarget).attr('class','follow').text('关注');
-                        }
-                    }else{
-                        console.log(data.result);
-                    }
-                },
-                error: function(a, b, c) {
-                    console.log("接口出问题啦");
-                }
-            });
-        }else{
-            $('.m-login-wrap').show();
-        }
-    })
 
     // 消息设置
     $('.set-option').hover(function(){
@@ -248,11 +380,6 @@ $(function(){
         $('.gift-mes').removeClass('hidegiftmes');
         $('.memberEnter').addClass('hideEnter');
     });
-
-    // 清空消息
-    $('.clearmes').click(function(){
-        $('.mes-block').html('');
-    })
     
     // 礼物赠送倒计时
     var endingtime = $('.hide-rtmp').attr('data-time')*60;
@@ -796,7 +923,7 @@ $(function(){
                 
             });
 
-            $("body").keydown(function() {
+            $(".live-text").keydown(function() {
                 if (event.keyCode == "13") {//keyCode=13是回车键
                     $('.sendText').click();
                 }
@@ -919,42 +1046,4 @@ $(function(){
 
         }
     }
-
-    // 推荐关注
-    $('.followme,.is-subscibe').click(function(e){
-        e.preventDefault();
-        var follownum = $('.follownum').text();
-        if(islogin){
-            var parm = {};
-            parm.userId = window.localStorage.getItem("id");
-            parm.upUserId = $(this).attr('data-id');
-            $.ajax({
-                    method: "GET",
-                    url: "/api/concern/up",
-                    dataType: 'json',
-                    data: parm,
-                    success: function(data) {
-                        if (data.code == 0) {
-                            console.log('关注成功！');
-                            if($(e.currentTarget).attr('class')=='followme'){
-                                $('.follownum').text(parseInt(follownum)+1);
-                                $(e.currentTarget).attr('class','is-subscibe').html('已关注');
-                            }else{
-                                $('.follownum').text(parseInt(follownum)-1);
-                                $(e.currentTarget).attr('class','followme').html('<i class="iconfont icon-follow"></i>关注');
-                            }
-                        }else{
-                            console.log(data.result);
-                        }
-                    },
-                    error: function(a, b, c) {
-                        console.log("接口出问题啦");
-                    }
-                });
-        }else{
-            $('.m-login-wrap').show();
-        }
-    })
-
-
 })

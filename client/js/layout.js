@@ -1,7 +1,15 @@
 $(function(){
-    $('.avatar-icon').attr('src',"http://img.wangyuhudong.com/"+window.localStorage.getItem("avatar")); 
-
-    // $('.head_logo').click(function(){
+    var icon = window.localStorage.getItem("avatar");
+    if(icon){
+        if(icon.indexOf('http')>-1){
+            $('.avatar-icon').attr('src',icon); 
+        }else{
+            $('.avatar-icon').attr('src','http://img.wangyuhudong.com/'+icon);
+        }
+    }else{
+        $('.avatar-icon').attr('src','/images/default_avatar.png'); 
+    }
+    // $('.head_logo').click(function(){    
     //     window.location.href = "/";
     // })
     // 下载二维码显示
@@ -11,11 +19,11 @@ $(function(){
         $('.QRbox').hide();
     });
     // 注册奖励提示
-    $('.register-hover').hover(function(){
-        $('.reward-tip').show();
-    },function(){
-        $('.reward-tip').hide();
-    });
+    // $('.register-hover').hover(function(){
+    //     $('.reward-tip').show();
+    // },function(){
+    //     $('.reward-tip').hide();
+    // });
     // 显示个人中心
     $('.avatar').hover(function(){
         $(this).css('background',"#0c1014");
@@ -117,9 +125,14 @@ $(function(){
     	
     });
 
-    $("body").keydown(function() {
+    $(".login-content").keydown(function() {
         if (event.keyCode == "13") {//keyCode=13是回车键
             $('.u-login').click();
+        }
+    }); 
+
+    $(".m-search").keydown(function() {
+        if (event.keyCode == "13") {//keyCode=13是回车键
             $('.u-search-btn').click();
         }
     }); 

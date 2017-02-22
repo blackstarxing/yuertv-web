@@ -36,7 +36,7 @@
                             <div class="play-mask outline">主播已离开</div>
                         {% endif %}
                     </a>
-                    <div class="m-info">
+                    <div class="m-info live-info">
                         <div class="anchor-head">
                             {% if live.user_icon %}
                             {% if live.user_icon.indexOf('http')>-1 %}
@@ -54,8 +54,9 @@
                             {% endif %}
                         </div>
                         <div class="anchor-info">
+                            <div class="live-title">{{live.title}}</div>
+                            <div class="anchor-id">房间:{{live.room_number}}</div>
                             <div><a href="javascript:void(0);">{{live.nickname}}</a></div>
-                            <div class="anchor-id">ID:{{live.room_number}}</div>
                         </div>
                         {% if live.is_concern==1 %}
                             <button class="disfollow" data-id="{{live.up_user_id}}">已关注</button>
