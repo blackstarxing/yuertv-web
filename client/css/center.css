@@ -571,7 +571,9 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	width:135px;
 	text-align:right;
 }
-
+.u-divmodify{
+	position:relative;
+}
 .u-userbox{
 	width:300px;
 	height:40px;
@@ -580,6 +582,33 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	background:transparent;
 	margin-left:5px;
 	border:1px solid #353d48;
+}
+.namemodify,.qqmodify,.idcardmodify{
+	/*display:none;*/
+	position:absolute;
+	display:inline-block;
+	left:359px;
+	text-align:center;
+	top:1px;
+	width:110px;
+	height:40px;
+	line-height:40px;
+	font-size:14px;
+	color:#fff;
+	background:#f93;
+}
+.namefieldempty,.qqfieldempty,.cardfieldempty,.timefieldempty{
+	position:absolute;
+	display:inline-block;
+	left:359px;
+	text-align:center;
+	top:1px;
+	width:110px;
+	height:40px;
+	line-height:40px;
+	font-size:14px;
+	color:#fff;
+	background:#f93;
 }
 input.full{
 	border:1px solid #f36;
@@ -724,7 +753,7 @@ input.full{
 	color:#f36;
 }
 .m-switchi .u-agree{
-	width:230px;
+	width:290px;
 	margin-left:210px;
 	font-size:14px;
 	color:#666e72;
@@ -732,8 +761,11 @@ input.full{
 }
 .m-switchi .u-agree span.u-spec{
 	color:#0ff;
+	cursor:pointer;
 }
 .m-switchi .u-submit{
+	display:inline-block;
+	border:0;
 	width:325px;
 	height:40px;
 	background:#f36;
@@ -746,7 +778,7 @@ input.full{
 	margin-left:170px;
 	border-radius:5px;
 }
-.m-switchi input.infogrey{
+.switchshowcard button.infogrey{
 	background:#ccc;
 }
 .tip{
@@ -765,6 +797,44 @@ input.full{
 	margin:auto;
 	display: none;
 	z-index: 999;
+}
+.switchshowcard{
+	width:800px;
+	height:1000px;
+}
+/*修改实名认证*/
+.idcardtwomodify{
+	width:800px;
+	height:430px;
+}
+.idcardtwomodify p{
+	font-size:18px;
+	font-size:#fff;
+}
+.idcardtwomodifys{
+	margin-top:50px;
+	border:0;
+	text-align:center;
+	font-size:18px;
+	color:#f36;
+	background:transparent;
+}
+/*审核状态*/
+.cardreviewing,.cardreviewingpass,.cardreviewingfailure{
+	display:none;
+	width:800px;
+	height:430px;
+}
+.cardreviewing p,.cardreviewingpass p,.cardreviewingfailure p{
+	font-size:18px;
+	color:#fff;
+}
+.wingfailure{
+	margin-top:50px;
+	border:0;
+	font-size:18px;
+	color:#f36;
+	background:transparent;
 }
 /*修改头像*/
 .iconModify{
@@ -830,6 +900,11 @@ input.full{
 	
 	border:1px solid #353d48;
 }
+.u-div .warningtips{
+	margin:5px 0px 0px 110px;
+	font-size:10px;
+	color:#ffe278;
+}
 #userboxPay{
 	display:inline-block;
 	width:300px;
@@ -843,6 +918,44 @@ input.full{
 	margin-left:102px;
 	font-size:18px;
 	color:#333;
+}
+.u-paybind .paynametip, .u-paybind .paycounttip{
+	display:none;
+	position:absolute;
+	left:660px;
+	/*top:1px;*/
+	width:100px;
+	border-radius:5%;
+	height:41px;
+	line-height:41px;
+	text-align:center;
+	color:#fff;
+	font-size:14px;
+	background:#f93;
+}
+/*支付宝已被绑定*/
+.paycontainer{
+	width:800px;
+	height:430px;
+}
+.payzfb{
+	font-size:18px;
+	color:#666e72;
+}
+.payzfb .payzfbtip{
+	color:#f36;
+}
+.payzfbmodify{
+	margin-top:40px;
+	border:0;
+	border-radius:5px;
+	width:130px;
+	height:50px;
+	line-height: 50px;
+	text-align: center;
+	background:#f36;
+	color:#fff;
+	font-size:18px;
 }
 /* 操作型弹出浮层-默认居中 */
 .m-layer{
@@ -980,7 +1093,59 @@ input.full{
 	margin:0px 125px;
 
 }
+/*提交成功的弹框*/
+.submitmask{
+	display:none;
+	position:fixed;
+	top:0;left:0;
+	width:100%;height:100%;
+	background:rgba(0,0,0,0.6);
+	z-index:999999;
+}
+.m-submitsuccess{
+	position:fixed;
+	width:365px;
+	height:200px;
+	top:0;
+	right:0;
+	bottom: 0;
+	left: 0;
+	margin:auto;
+	background:#323a43;
+	border-radius:5px;
+}
+.m-submitsuccess .u-submitsuccess{
+	width:220px;
+	height:45px;
+	margin:50px 75px 35px 70px;
+}
+.m-submitsuccess img{
+	display:inline-block;
+	width:40px;
+	height:40px;
+	border:none;
+}
+.m-submitsuccess span{
+	display:inline-block;
+	color:#fff;
+	font-size:24px;
+	color:#f36;
+	margin-left:25px;
 
+}
+
+.m-submitsuccess .u-submitcancel a{
+	display:inline-block;
+	width:100px;
+	height:35px;
+	line-height:35px;
+	text-align: center;
+	border-radius:5px;
+	color:#fff;
+	background:#f36;
+	margin:0px 125px;
+
+}
 
 /*我的关注*/
 .g-focus{
@@ -1916,6 +2081,88 @@ display:block;
 	font-size:14px;
 	color:#cecfd2;
 }
+/*修改支付宝的弹框*/
+.paytips{
+	display:none;
+	position:fixed;
+	top:0;left:0;
+	width:100%;height:100%;
+	background:rgba(0,0,0,0.6);
+	z-index:999999;
+}
+div.paytipsbind{
+	position:absolute;
+	background:#f00;
+	width:400px;
+	height:265px;
+	background:#303840;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	margin:auto;
+	z-index:8888;
+}
+.paytipsbind .u-divpays{
+	margin-top:30px;
+	margin-left:20px;
+}
+.u-divpays label.paynames,.u-divpays label.paynums{
+	display:inline-block;
+	font-size:14px;
+	color:#d2d2d2;
+	width:80px;
+	height:40px;
+	line-height:40px;
+}
+.u-divpays input.payname,.u-divpays input.paynum{
+	display:inline-block;
+	width:240px;
+	height:40px;
+	line-height:40px;
+	border:1px solid #5b6169;
+	font-size:14px;
+	color:#d2d2d2;
+	margin-left:15px;
+}
+.paytipsbind .paytipsmo,.paytipsbind .paytipscel{
+	border:0;
+	width:100px;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	font-size:16px;
+	border-radius:50px;
+	background:#f36;
+	color:#fff;
+	margin:20px 0px 0px 50px;
+}
+.paytipsbind p.paywarning{
+	margin:5px 0px 0px 100px;
+	font-size:10px;
+	color:#ffe278;
+}
+.paytipsbind .paymocel{
+	margin-top:50px;
+}
+.paytipsbind .paytipscel{
+	margin-left:70px;
+	background:#575d65;
+	
+}
+#paytips .paynametips, #paytips .paycounttips{
+	display:none;
+	position:absolute;
+	left:285px;
+	width:90px;
+	border-radius:5%;
+	height:41px;
+	line-height:41px;
+	text-align:center;
+	color:#fff;
+	font-size:14px;
+	background:#f93;
+}
 /*修改手机号码弹框*/
 .telValBounced{
 	/*display:none;*/
@@ -1935,7 +2182,7 @@ display:block;
 	margin-top:20px;
 	margin-left:15px;
 }
-.telValBounced .thePhone{
+.telValBounced .thePhoness{
 	margin-top:40px;
 }
 .u-divTelVer label.numLable{
@@ -2007,7 +2254,7 @@ display:block;
 }
 .u-divTelVer .u-verifyInputTelVer,.u-verifyTelVer{
 	position:absolute;
-	left:230px;
+	left:232px;
 	top:1px;
 	width:105px;
 	height:40px;

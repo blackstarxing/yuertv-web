@@ -190,7 +190,7 @@ router.get('/center/information', function(req, res, next) {
             }
         })
     }]).then(function(cont, result) {
-        console.log(result);
+        console.log("zhangli"+JSON.parse(result[0]).object.icon);
         res.render('center/information', {
             title: "我的资料",
             index:0,
@@ -283,12 +283,27 @@ router.get('/center/topup', function(req, res, next) {
                 cont(new Error('error!'));
             }
         })
+    },function(cont) {
+        request({
+            uri: path+'/person-center/my-yuer-coin',
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+              }
+        }, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
     }]).then(function(cont, result) {
         console.log(result);
         res.render('center/topup', {
             title: "我要充值",
             index:4,
             valuelist: JSON.parse(result[0]).object,
+            valueyuer: JSON.parse(result[1]).object,
             islogin: islogin,
         });
     }).fail(function(cont, error) { 

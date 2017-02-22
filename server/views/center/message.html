@@ -86,11 +86,22 @@
 <script type="text/javascript" src="/dist/center.js"></script>
 <script type="text/javascript">
 	$('.g-left li').eq('{{index}}').addClass('rightswitchcolor');
-	// $('.g-left li').each(function(){
-	// 	if($(this).attr("data-type")=='{{type}}'){
-	// 		$(this).addClass('rightswitchcolor');
-	// 	}
-	// })
-	// $('.rightswitch').eq({{type}}).show().siblings().hide();
+	//我的消息中的div之间的切换
+    $(".m-mainm a").on("click", function(e) {
+        e.preventDefault();
+        $(this).addClass("focuscurrent").siblings().removeClass("focuscurrent");
+        $(".mcurrent").hide().eq($(this).index()).show();
+    })
+    $(".m-mainm a:eq(0)").trigger("click");
+    //我的消息－－关注消息的划入事件
+    $(".u-foucscolor").on("mouseenter", function() { 
+        $(".u-messnickname").show().css("top", $(this).position().top+'2px') 
+    });
+    $(".u-foucscolor").on("mouseleave", function() { 
+        $(".u-messnickname").hide() 
+    })       
+    $("#cancel").off("click").on("click", function() {
+            $(".u-topupwindow").hide();
+    })
 </script>
 {% endblock %}
