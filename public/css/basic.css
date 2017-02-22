@@ -20,7 +20,7 @@ q:before,q:after{content:none;}
 textarea{overflow:auto;resize:none;}
 label,summary{cursor:default;}
 a,button{cursor:pointer;}
-h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}
+h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:normal;}
 del,ins,u,s,a{text-decoration:none;}
 body,textarea,input,button,select,keygen,legend{font:12px/1.14 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;color:#333;outline:0;}
 body{font:14px/1.5 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;background: #f3f3f3;}
@@ -505,6 +505,7 @@ color: #fff !important;
 /*视频弹窗*/
 .m-video-mask,
 .m-report-mask,
+.m-punish-mask,
 .m-result-mask,
 .job-mask{
     position:fixed;
@@ -770,7 +771,7 @@ color: #fff !important;
 }
 .anchor-info a{
     cursor: default;
-    width: 140px;
+    width: 110px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

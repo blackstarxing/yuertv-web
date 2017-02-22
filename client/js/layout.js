@@ -19,11 +19,11 @@ $(function(){
         $('.QRbox').hide();
     });
     // 注册奖励提示
-    $('.register-hover').hover(function(){
-        $('.reward-tip').show();
-    },function(){
-        $('.reward-tip').hide();
-    });
+    // $('.register-hover').hover(function(){
+    //     $('.reward-tip').show();
+    // },function(){
+    //     $('.reward-tip').hide();
+    // });
     // 显示个人中心
     $('.avatar').hover(function(){
         $(this).css('background',"#0c1014");
@@ -125,9 +125,14 @@ $(function(){
     	
     });
 
-    $("body").keydown(function() {
+    $(".login-content").keydown(function() {
         if (event.keyCode == "13") {//keyCode=13是回车键
             $('.u-login').click();
+        }
+    }); 
+
+    $(".m-search").keydown(function() {
+        if (event.keyCode == "13") {//keyCode=13是回车键
             $('.u-search-btn').click();
         }
     }); 

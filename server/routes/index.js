@@ -7,7 +7,7 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-var path = 'http://wy.yuerwebapi.wangyuhudong.com';
+var path = 'http://172.16.10.144:8777';
 
 function getTicket(){
     Thenjs.parallel([function(cont) {
