@@ -12,7 +12,17 @@
 	    <div id="rightmain" class="g-right">
 		    <div class="m-top">
 	  			<div class="m-tleft">
-	  				<img src="http://img.wangyuhudong.com/{{info.icon}}">
+            {% if info.icon %}
+              {% if info.icon.indexOf('http')>-1 %}
+              <img src="{{info.icon}}" alt="" class="iconfileup">
+              {% else %}
+              <img src="http://img.wangyuhudong.com/{{info.icon}}" alt="" class="iconfileup">
+              {% endif %}
+            {% else %}
+              <img src="/images/default_avatar.png" alt="" class="iconfileup">
+            {% endif %}
+
+
 	  				{% if info.sex==0 %}
 	  					<img src="/images/male.png" class="seximg" id="seximg">
                     {% else %}
@@ -23,7 +33,7 @@
 	  				<p class="u-p1"><span class="u-nicknameonly">{{info.nickname}}</span>&nbsp;<i class="iconfont icon-vip"></i><span id="nickname" class="u-p1-s">[点击修改]</span></p>
 		  			<p class="u-p2">粉丝:<span class="u-change">{{info.fans}}</span></p>
 		  			<p class="u-p3">鱼币:<span class="u-change1">{{info.yuerCoin}}</span>
-		  			<a href="/center?type=4" class="u-tovalue">充值</a>
+		  			<a href="/center/topup" class="u-tovalue">充值</a>
 	  			</div>	  			
 	  		</div>
 	  	<div class="m-rightswitch">
@@ -88,40 +98,42 @@
 	  			
   			</div>
 <!-- 实名认证 -->
+       
   			<div class="m-switchi switch-content switch-conCard" >
-            <div>
-              <div class="u-div">
-              <label for="name">姓名</label><input type="text" class="u-userbox" name="" id="name" >
+        <!-- 申请提交部分 -->
+            <div class="switchshowcard" id="switchshowcard">
+              <div class="u-div u-divmodify">
+              <label for="name">姓名</label><input type="text" class="u-userbox nameuserbox" name="" id="name" ><span style="display:none" class="namemodify">名字过长</span><span style="display:none" class="namefieldempty">该字段不能为空</span>
             </div>
-            <div class="u-div">
-              <label for="Qqnumber">QQ号码</label><input type="text" class="u-userbox" name="" id="Qqnumber">
+            <div class="u-div u-divmodify">
+              <label for="Qqnumber">QQ号码</label><input type="text" class="u-userbox qquserbox" name="" id="Qqnumber"><span style="display:none" class="qqmodify">QQ位数错误</span><span style="display:none" class="qqfieldempty">该字段不能为空</span>
             </div>
-            <div class="u-div">
-              <label for="Idcard">身份证号</label><input type="text" class="u-userbox" name="" id="Idcard">
+            <div class="u-div u-divmodify">
+              <label for="Idcard">身份证号</label><input type="text" class="u-userbox idcarduserbox" name="" id="Idcard"><span style="display:none" class="idcardmodify">身份证号不正确</span><span style="display:none" class="cardfieldempty">该字段不能为空</span>
             </div>
-            <div class="u-div">
+            <div class="u-div u-divmodify">
               <label for="time">身份证到期时间</label>
-              <input type="text" name="" class="u-finaltime" id="datetimepicker" date-date="" date-date-format="yyyy-mm-dd">
+              <input type="text" name="" class="u-finaltime timeuserbox" id="datetimepicker" date-date="" date-date-format="yyyy-mm-dd"><span style="display:none" class="timefieldempty">该字段不能为空</span>
             </div>
             <div class="u-idcard">
               <div class="u-dleft" style="color:#666e72;">身份证扫描件</div>
               <div class="u-dright">
                 <div class="u-card cardRight">
-                  <div class="img hand"><img src="" id="idCardHandScan"></div>
+                  <div class="img hand"><img src="" id="idCardHandScan1"></div>
                   <span>手持身份证正面照</span><br>
                   <div class="upload-container">上传
                     <input type="file" name="证件照未上传" id="fileToUpload1" class="fileupload" accept="image/*" />
                   </div>
                 </div>
                 <div class="u-card cardRight">
-                  <div class="img front"><img src="" id="idCardFrontScan"></div>
+                  <div class="img front"><img src="" id="idCardFrontScan2"></div>
                   <span>身份证正面照</span><br>
                   <div class="upload-container">上传
                     <input type="file" name="证件照未上传" id="fileToUpload2" class="fileupload" accept="image/*" />
                   </div>
                 </div>
                 <div class="u-card">
-                  <div class="img back"><img src="" id="idCardBackScan"></div>
+                  <div class="img back"><img src="" id="idCardBackScan3"></div>
                   <span>身份证背面照</span><br>
                   <div class="upload-container">上传
                     <input type="file" name="证件照未上传" id="fileToUpload3" class="fileupload" accept="image/*"/>
@@ -147,18 +159,46 @@
                 <p>如果以上信息有所不符，实名认证将驳回</p>
               </div>
               <div class="u-agree">
-                我已阅读并同意 <span class="u-spec">《娱儿tv主播协议》</span>
+                我已阅读并同意 <span class="u-spec" id="clickjump">《娱儿直播个人直播协议》</span>
               </div>
               <div>
-                <input type="button" class="u-submit" value="提交" id="userbox">
+                <button  class="u-submit" id="carduserbox">提交</button>
               </div>
             </div>
           </div>
-	  		</div>
+          <!-- 成功部分 -->
+          <div class="idcardtwomodify" >
+            <p class="idcardtwo">恭喜您已完成实名认证</p>
+            <p class="idcardtwos">如果您的认证已经过了有效日期请进行重新验证</p>
+            <button class="idcardtwomodifys" id="idcardtwomodifys">修改认证信息</button>
+          </div> 
+        <!-- 审核中 -->
+          <div class="cardreviewing" >
+            <p>认证资料审核中</p>
+            <p>工作人员将于1-3个工作日内完成审核，请耐心等待</p>
+          </div>
+        <!-- 审核未通过 -->
+          <div class="cardreviewingfailure" >
+            <p>审核未通过</p>
+            <p>请上传正确无误的个人身份信息，并重新提交</p>
+            <button class="wingfailure" id="wingfailure">重新申请认证信息</button>
+          </div>
+	  		</div> <!--最外面的div-->
+        
+        
+
+        <!-- 修改头像 -->
 	  		<div class="m-switch switch-content iconModify" >
   				<div class="u-addIcon">
-  					<img src="http://img.wangyuhudong.com/{{info.icon}}">
-  					
+  					{% if info.icon %}
+              {% if info.icon.indexOf('http')>-1 %}
+              <img src="{{info.icon}}" alt="" id="modifyPics">
+              {% else %}
+              <img src="http://img.wangyuhudong.com/{{info.icon}}" alt="" id="modifyPics">
+              {% endif %}
+            {% else %}
+              <img src="/images/default_avatar.png" alt="" id="modifyPics">
+            {% endif %}
               <span id="modPic">修改头像</span>
               <input type="file" id="modifyPic" value="修改头像" name="修改头像" accept="image/*" style="cursor:pointer;"/>
               
@@ -166,20 +206,27 @@
   				</div>
   			</div>
   			<div class="m-switch switch-content payAdd" >
+         {% if info.alipay_account == null %}
   				<div class="u-paybind">
   					<div class="u-div ">
-  					<label for="realName">真实姓名</label>
-  					<input type="text" class="u-userbox telnumber inputTel" name="" id="realName">
+  					 <label for="realName">真实姓名</label>
+  					 <input type="text" class="u-userbox telnumber" name="" id="realName"><span class="paynametip">姓名不能为空</span>
 						</div>
 		  			<div class="u-div">
 		  				<label for="payaccount">支付宝账号</label>
-		  				<input type="text" class="u-userbox" name="" id="payaccount">
+		  				<input type="text" class="u-userbox" name="" id="payaccount"><span class="paycounttip">账号不能为空</span>
+              <p class="warningtips">请务必保证支付宝账号真实有效，确保活动奖励或资金正常发放，如有错误概不负责</p>
 		  			</div>
 		  			<div>
-						<input type="button" class="u-submitPay" value="提交" id="userboxPay">
-					</div>
+						  <input type="button" class="u-submitPay" value="提交" id="userboxPay">
+					  </div>
   				</div>
-  				
+  				{% else %}
+          <div class="paycontainer">
+            <p class="payzfb">您的支付宝账号<span class="payzfbtip">{{info.alipay_account}}</span>已绑定</p>
+            <button class="payzfbmodify" id="payzfbmodify">修改帐号</button>
+          </div>
+          {% endif %}
   			</div>
   		</div> 
 <!-- <div class="asdfasdfa"> -->
@@ -206,32 +253,22 @@
 <!-- </div> -->
 <div class="m-psuccess">
 	<div class="u-success">
-		<img src="/images/iconcancel.png"><span>密码修改成功!</span>
+		<img src="/images/iconcancel.png"><span>修改成功!</span>
 	</div>
 	<div class="u-cancel">
 		<a href="">确定</a>
 	</div>
 </div>
-<div class="m-mask">
-	<div class="code-wrap">
-		<p>请输入图中验证码完成本次发送</p>
-		<div class="m-input">
-			<input type="text">
-			<span class="error-tip">验证码错误</span>
-		</div>
-		
-		<div class="pic-code f-cb">
-			<img src="" alt=""><a href="" class="changePic">看不清，换一个</a>
-		</div>
-		<a href="" class="u-wrap-btn confirm">确认</a><a href="" class="u-wrap-btn cancel">取消</a>
-	</div>
-</div>	
-
-
-
-
-
-
+<div class="submitmask">
+  <div class="m-submitsuccess">
+    <div class="u-submitsuccess">
+      <img src="/images/iconcancel.png"><span>提交成功!</span>
+    </div>
+    <div class="u-submitcancel">
+      <a href="">确定</a>
+    </div>
+  </div>
+</div>
 
 		</div>	<!-- 右侧下侧结尾 -->
 	    </div><!-- 右侧结尾 -->
@@ -239,29 +276,46 @@
 	</div> <!-- 整个块结尾 -->
 
 </div>	
-<div class="asdfasdfa" id="telValBounced">
-<div class="telValBounced" >
-	<div class="u-divTelVer thePhone">
-		<label for="numberTelVer" class="numLable">手机号码</label>
-		<input type="text" class="u-userboxTelVer telnumberTelVer inputTelTelVer" name="" id="numberTelVer" maxlength="11" >
-		<span class="u-numberphoneTelVer">请输入手机号</span>
-		<span class="u-numbertelTelVer">请输入正确的手机号</span>
-		<span class="u-numberTelVer" id="gainnumberTelVer" >获取验证码</span>
-		<span class="u-copySecondTelVer" id="copySecondTelVer" >秒后重新获取</span>
-	</div>
-	<div class="u-divTelVer">
-		<label for="verifyTelVer" class="numLable numVerify">验证码</label>
-		<input type="text" class="u-userboxTelVer u-userboxTelVerS" name="" id="verifyTelVer">
-		<span class="u-verifyInputTelVer">请输入验证码</span>
-		<span class="u-verifyTelVer error-tipTelVer" >验证码错误</span>
-	</div>
-	<div class="u-divButtonVer">
-		<input type="button" class="u-submitTelVer" value="提交" id="userboxTelVer">
-		<input type="button" class="u-submitTelCancel" value="取消" id="userboxTelCancel">
-	</div>
-</div>
-</div>
 <div class="tip"></div>
+<div class="asdfasdfa" id="telValBounced">
+  <div class="telValBounced" >
+  	<div class="u-divTelVer thePhoness">
+  		<label for="numberTelVer" class="numLable">手机号码</label>
+  		<input type="text" class="u-userboxTelVer telnumberTelVer inputTelTelVer" name="" id="numberTelVer" maxlength="11" >
+  		<span class="u-numberphoneTelVer">请输入手机号</span>
+  		<span class="u-numbertelTelVer">请输入正确的手机号</span>
+  		<span class="u-numberTelVer" id="gainnumberTelVer" >获取验证码</span>
+  		<span class="u-copySecondTelVer" id="copySecondTelVer" >秒后重新获取</span>
+  	</div>
+  	<div class="u-divTelVer">
+  		<label for="verifyTelVer" class="numLable numVerify">验证码</label>
+  		<input type="text" class="u-userboxTelVer u-userboxTelVerS" name="" id="verifyTelVer">
+  		<span class="u-verifyInputTelVer">请输入验证码</span>
+  		<span class="u-verifyTelVer error-tipTelVer" >验证码错误</span>
+  	</div>
+  	<div class="u-divButtonVer">
+  		<input type="button" class="u-submitTelVer" value="提交" id="userboxTelVer">
+  		<input type="button" class="u-submitTelCancel" value="取消" id="userboxTelCancel">
+  	</div>
+  </div>
+</div>
+<div class="paytips" id="paytips">
+    <div class="u-paybind paytipsbind">
+      <div class="u-div u-divpays">
+       <label for="payname" class="paynames">真实姓名</label>
+       <input type="text" class="u-userbox telnumber payname" name="" id="payname"><span class="paynametips">姓名不能为空</span>
+      </div>
+      <div class="u-div u-divpays">
+        <label for="paynumber" class="paynums">支付宝账号</label>
+        <input type="text" class="u-userbox paynum" name="" id="paynumber"><span class="paycounttips">账号不能为空</span>
+        <p class="paywarning">请务必保证支付宝账号真实有效，确保活动奖励或资金正常发放，如有错误概不负责</p>
+      </div>
+      <div class="paymocel">
+        <input type="button" class="u-submitPay paytipsmo" value="修改" id="paybox">
+        <input type="button" class="paytipscel" value="取消" id="payboxcel">
+      </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block js %}
@@ -269,5 +323,42 @@
 <script type="text/javascript" src="/dist/center.js"></script>
 <script type="text/javascript">
 	$('.g-left li').eq('{{index}}').addClass('rightswitchcolor');
+  var UsubmitCheck=false;
+  //我的资料的tab切换；
+  $(".m-bottom a").on("click", function(e) {
+      e.preventDefault();
+      $(this).addClass("switch").siblings().removeClass("switch");
+      $(".switch-content").hide().eq($(this).index()).show();
+  })
+  $(".m-bottom a:eq(0)").trigger("click");
+  // 修改昵称弹出框
+  $("#nickname").on("click", function() {
+       $(".m-layer").show();
+  });
+  $(".lybt .u-btn").on("click", function() {
+      $(this).parents(".m-layer").hide();
+  });
+  //我的资料对应的手机认证
+  if(window.location.hash=="#m-change"){
+      $("#m-change").trigger("click");
+  }
+  //我的资料对应的实名认证
+  // if(window.location.hash=="#m-realname"){
+  //     $("#m-realname").trigger("click");
+  // }
+  // window.location.hash = "";
+
+  // 日期插件
+  $('#datetimepicker').datetimepicker({
+        lang:"ch",           //语言选择中文
+        format:"Y-m-d",      //格式化日期
+        timepicker:false,    //关闭时间选项
+        yearStart:2000,     //设置最小年份
+       yearEnd:2050,        //设置最大年份
+        todayButton:false    //关闭选择今天按钮
+  });
+  $.datetimepicker.setLocale('ch');
+  // 设置等到当前日期之后的时间
+  $('#datetimepicker').datetimepicker('setStartDAte',new Date().toLocaleDateString().replace(/\//g,"-"));
 </script>
 {% endblock %}

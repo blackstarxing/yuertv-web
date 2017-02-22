@@ -40,21 +40,21 @@
 					</div>
 					<div class="u-live switchcontent">
 						<div class="u-liveAI" id="u-liveAI">
-							<a>娱儿TV【安卓版】直播流程</a>
-							<a>娱儿TV【iOS版】直播流程</a>
+							<a>娱儿直播【安卓版】直播流程</a>
+							<a>娱儿直播【iOS版】直播流程</a>
 							<div id="biulive"></div>
 						</div>
 						<div class="u-liveAndroid switchAI">
 							<div class="u-ljoin">
 								<p>
-									1.在应用宝搜索下载：娱儿TV和娱儿手播
+									1.在应用宝搜索下载：娱儿直播和娱儿手播
 								</p>
 								<div><img src="/images/Android1.png" class="Android1"></div>
 								<div><img src="/images/Android2.png" class="Android2"></div>
 							</div>
 							<div class="u-lsearch">
 								<p>
-									2.打开娱儿TV，输入手机号进行注册。如需观看直播，可以打开娱儿TV进行观看
+									2.打开娱儿直播，输入手机号进行注册。如需观看直播，可以打开娱儿直播进行观看
 								</p>
 								<p>
 									3.打开娱儿手播，输入手机号密码登录，点击开始直播；输入直播名称，选择游戏，根据游戏选择横竖屏，选择高清，点击开始直播
@@ -79,7 +79,7 @@
 						<div class="u-liveIphone switchAI">
 							<div class="u-ljoin">
 								<p>
-									1.在苹果的AppStore下载娱儿TV
+									1.在苹果的AppStore下载娱儿直播
 								</p>
 								<div class="IphoneFather"><img src="/images/Iphone1.png" class="Iphone1"></div>
 							</div>
@@ -102,7 +102,7 @@
 								<div class="IphoneFather"><img src="/images/Iphone4.1.png" class="Iphone4_1"><img src="/images/Iphone4.2.png" class="Iphone4_2"><img src="/images/Iphone4.3.png" class="Iphone4_3"></div>
 							</div>
 							<div class="u-lstart">
-								<p>5.如图显示，手机已正常直播，按home返回桌面，打开游戏进行直播 <br> &nbsp;&nbsp;如需观看直播，可以打开娱儿TV进行观看</p>
+								<p>5.如图显示，手机已正常直播，按home返回桌面，打开游戏进行直播 <br> &nbsp;&nbsp;如需观看直播，可以打开娱儿直播进行观看</p>
 								<div class="IphoneFather"><img src="/images/Iphone5.png" class="Iphone5"></div>
 								<p>
 									<h6 class="changeRed">注意：</h6>
@@ -151,11 +151,35 @@
 <script type="text/javascript" src="/dist/center.js"></script>
 <script type="text/javascript">
 	$('.g-left li').eq('{{index}}').addClass('rightswitchcolor');                                           
-	// $('.g-left li').each(function(){
-	// 	if($(this).attr("data-type")=='{{type}}'){
-	// 		$(this).addClass('rightswitchcolor');
-	// 	}
-	// })
-	// $('.rightswitch').eq({{type}}).show().siblings().hide();
+	//我要当主播的div之间的切换
+    $(".m-mainh .u-top a").on("click", function(e) {
+        e.preventDefault();
+        $(this).addClass("switchcon").siblings().removeClass("switchcon");
+        $(".switchcontent").hide().eq($(this).index()).show();
+    })
+    $(".m-mainh a:eq(0)").trigger("click");
+    //我要当主播中的下级div的切换
+    $(".u-certification .u-ctop a").on("click", function(e) {
+        e.preventDefault();
+         $(this).addClass("underline").siblings().removeClass("underline");
+        $(".switchrepeat").hide().eq($(this).index()).show();
+    })
+    $(".u-certification .u-ctop a:eq(0)").trigger("click");
+    // 我要当主播的如何直播下面的切换
+        $(".u-live #u-liveAI a").on("click", function(e) {
+        e.preventDefault();
+         $(this).addClass("underline").siblings().removeClass("underline");
+        $(".switchAI").hide().eq($(this).index()).show();
+    })
+    $(".u-live #u-liveAI a:eq(0)").trigger("click");
+    // 我要当直播－如何直播下面的滑块实现
+    $("#biulive").css({width:"220px",left:0,position:"absolute",height:"3px",background:"#cecfd2"})
+        $("#u-liveAI a").on("click",function(e){
+        $("#biulive").animate({left:$(this).position().left},300)
+    })
+    //我要当主播手机认证－－修改手机号码弹框
+    $("#modifyTelVer").on("click",function(){
+        window.location.href="information#m-change";
+    }); 
 </script>
 {% endblock %}

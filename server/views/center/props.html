@@ -61,11 +61,14 @@
 <script type="text/javascript" src="/dist/center.js"></script>
 <script type="text/javascript">
 	$('.g-left li').eq('{{index}}').addClass('rightswitchcolor');
-	// $('.g-left li').each(function(){
-	// 	if($(this).attr("data-type")=='{{type}}'){
-	// 		$(this).addClass('rightswitchcolor');
-	// 	}
-	// })
-	// $('.rightswitch').eq({{type}}).show().siblings().hide();
+	// 我的道具弹出框
+    $(".imgprops .u-props").off("click").on("click", function(e) {
+        e.preventDefault();
+        $(".m-layerMask").show();
+    });
+    $(".u-propsgtips a").off("click").on("click", function(e) {
+        e.preventDefault();
+        $(".m-layerMask").hide();
+    });
 </script>
 {% endblock %}

@@ -14,7 +14,7 @@
 	<div class="g-top-up rightswitch">
 		<div class="m-maint">
 			<div class="u-balance">
-				<p>余额：<span>111</span>鱼币</p>
+				<p>余额：<span>{{valueyuer.yuer_coin}}</span>鱼币</p>
 			</div>
 			<div class="u-value f-cb">
 			  {% for valuelist in valuelist%}
@@ -84,11 +84,56 @@
 <script type="text/javascript" src="/dist/center.js"></script>
 <script type="text/javascript">
 	$('.g-left li').eq('{{index}}').addClass('rightswitchcolor');
-	// $('.g-left li').each(function(){
-	// 	if($(this).attr("data-type")=='{{type}}'){
-	// 		$(this).addClass('rightswitchcolor');
-	// 	}
-	// })
-	// $('.rightswitch').eq({{type}}).show().siblings().hide();
+	//选中支付宝
+    // $(".payimg.initShow").off("click").on("click",function(){$(".payimg .u-checked").hide();
+    // $(".initShow").off("click").on("click",function(){$(".payimg .u-checked").hide();
+    // $(".payimg .u-dischecked").show();$(this).find(".u-checked").show();$(this).find(".u-dischecked").hide();})
+    // 我要充值－－选中鱼币的样式
+    $(".u-value div").on("click", function() {
+        $(this).addClass("checktopup").siblings().removeClass("checktopup");
+        window.checktopup=this;
+        checked = true
+    })
+    // 我要充值－－－点击充值出现弹框
+    $("#topupvalue").off("click").on("click", function(e) {
+        e.preventDefault();  
+        if(checked){
+            $(".u-wmtips").text($(window.checktopup).find(".u-vmoney").text().substr(0,$(window.checktopup).find(".u-vmoney").text().length-1));
+            $(".u-topupwindow").show(); 
+            $.ajax({
+                method: "GET", //对于请求类型
+                url: "/api/pay/recharge",
+                dataType: 'json',
+                data:{id:$(window.checktopup).attr("data-id")}, //这个是一个验证是否重名的接口。参数只有一个 名字
+                success: function(data) {
+                    if (data.code == 0) { //data.code的值这个是后端人员规定的。
+                        console.log("请求成功");
+                        $("#tovalue").attr("href","/alipay?id="+data.object);
+                        $(".u-wn span:eq(1)").text(data.object);
+                        // 隐藏订单号
+                        $("#hiddenOrder").text("***********"); 
+                        if (data.object == 1) { //1为重复
+                            console.log("这个重复啦");
+                        } else if (data.object == 0) {
+                            console.log("这个不重复");
+                        } else {
+                            console.log("未知异常");
+                        }
+                    } else if (data.code == -2) {
+                        console.log("你没有权限，通常来讲，你是没有登录");
+                    } else if (data.code == -5) {
+                        console.log("参数错误哦。");
+                    } else {
+                        console.log(data.result);
+                    }
+                },
+                error: function(a, b, c) {
+                    console.log("接口出问题啦");
+                }
+            })
+        }else{
+            alert('请选择鱼币');
+        }
+    })
 </script>
 {% endblock %}
