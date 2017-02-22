@@ -285,7 +285,7 @@ router.get('/center/topup', function(req, res, next) {
         })
     },function(cont) {
         request({
-            uri: path+'/pay/recharge-list',
+            uri: path+'/person-center/my-yuer-coin',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
