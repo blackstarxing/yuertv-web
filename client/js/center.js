@@ -339,6 +339,8 @@ var local={
         // 手机号中间隐藏（我的资料手机认证，我要当主播手机认证）
         $("#hiddenField").text($("#hiddenField").text().substr(0,3)+"****"+$("#hiddenField").text().substr(7,4))   
         $("#hiddenFields").text($("#hiddenFields").text().substr(0,3)+"****"+$("#hiddenFields").text().substr(7,4)) 
+        // 身份证号的隐藏
+        $("#hiddenIdCard").text($("#hiddenIdCard").text().substr(0,3)+"************"+$("#hiddenIdCard").text().substr(7,4))
         //我的资料手机认证－－修改手机号码弹框
         $("#modifyTel").on("click",function(){
             $("#telValBounced").show();

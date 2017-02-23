@@ -32,7 +32,14 @@
 			  					</div>
 			  				</div>
 			  				<div class="toCertification modifyshiming" id="toCertification">
+			  					{% if info.id_card=="" %}
 			  						<span>实名认证：</span><a href="information#m-realname">去认证</a>
+			  					{% else %}
+			  					<div class="idcardmodifytwo">
+			  						<span>身份证号码：</span><span id="hiddenIdCard">{{info.id_card}}</span><span>已认证</span><button href="" id="modifyIdCard">修改认证信息</button>
+			  					</div>
+			  						
+			  					{% endif %}	
 		  					</div>
 			  			{% endif %}
 							
@@ -177,9 +184,12 @@
         $("#u-liveAI a").on("click",function(e){
         $("#biulive").animate({left:$(this).position().left},300)
     })
-    //我要当主播手机认证－－修改手机号码弹框
+    //我要当主播手机认证－－修改手机号码
     $("#modifyTelVer").on("click",function(){
         window.location.href="information#m-change";
-    }); 
+    });
+    $("#modifyIdCard").on("click",function(){
+        window.location.href="information#m-realname";
+    });  
 </script>
 {% endblock %}

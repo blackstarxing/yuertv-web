@@ -820,7 +820,7 @@ input.full{
 	background:transparent;
 }
 /*审核状态*/
-.cardreviewing,.cardreviewingpass,.cardreviewingfailure{
+.switchshowcard,.cardreviewing,.cardreviewingpass,.cardreviewingfailure{
 	display:none;
 	width:800px;
 	height:430px;
@@ -1870,6 +1870,16 @@ display:block;
 	background:#f36;
 	color:#fff;
 
+}
+.idcardmodifytwo{
+	margin-top:50px;
+}
+#modifyIdCard{
+	border:0;
+	background:transparent;
+	font-size:18px;
+	color:#f36;
+	margin-left:20px;
 }
 /*我要当主播－－主播认证*/
 .u-live,.u-withdrawal{
