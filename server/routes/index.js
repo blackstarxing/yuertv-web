@@ -118,7 +118,7 @@ router.get('/liveroom', function(req, res, next) {
     }]).then(function(cont, result) {
         console.log(result);
         res.render('liveroom', {
-            title: JSON.parse(result[0]).object.info.title+'-娱儿直播',
+            title: JSON.parse(result[0]).object.info.title+JSON.parse(result[0]).object.info.nickname+'-娱儿-手游直播攻略平台',
             detail: JSON.parse(result[0]).object,
             gift: JSON.parse(result[1]).object,
             islogin: islogin,
@@ -513,7 +513,7 @@ router.get('/alllive', function(req, res, next) {
         })
     }]).then(function(cont, result) {
         res.render('alllive', {
-            title: "全部直播",
+            title: "娱儿-手游直播攻略平台",
             live: JSON.parse(result[0]).object,
             islogin: islogin,
             nav_index : 1,
