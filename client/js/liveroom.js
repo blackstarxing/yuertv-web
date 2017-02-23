@@ -819,6 +819,11 @@ $(function(){
                     }
                     getGift();
                 },
+                //直播结束
+                liveEnd: function ()
+                {
+                    // alert("直播已结束");
+                },
             };
 
             //视频播放器接口
