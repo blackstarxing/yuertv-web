@@ -74,10 +74,10 @@ $(function(){
         $('.l-pwd').val('');
         $('.m-login-wrap').hide();
     })
-	function delCookie($name){    
+	function delCookie($name){   
         var myDate=new Date();    
         myDate.setTime(-1000);//设置时间    
-        document.cookie=$name+"=''; expires="+myDate.toGMTString();                
+        document.cookie=$name+"=''; expires="+myDate.toGMTString()+"; path=/";                
   	} 
      
     $('.u-login').click(function(e){

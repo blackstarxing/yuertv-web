@@ -28,14 +28,7 @@ $(function() {
                         if(_this.step==1){
                             _this.checkNickname();
                         }else if(_this.step==3){
-                            if(!/^1([0-9]){10}$/.test($('.telnumber').val())){
-                                $('.getCode').text('请输入正确号码');
-                                setTimeout(function(){
-                                    $('.getCode').text('获取验证码');
-                                },2000);
-                            }else{
-                                _this.enterNext();
-                            }
+                            _this.checkTel();
                         }else if(_this.step==4){
                             if($('.code').val().length<6){
                                 $('.error-tip').eq(_this.step-1).text('验证码错误').show();
@@ -207,11 +200,43 @@ $(function() {
                     },2000);
                 }
             },
+            // 验证手机号
+            checkTel:function(){
+                var _this = this;
+                if(/^1([0-9]){10}$/.test($('.telnumber').val())){
+                    var parm = {};
+                    parm.mobile = $('.telnumber').val();
+                    $.ajax({
+                        url: '/api/isMobileExist',
+                        data: parm,
+                        type: 'post',
+                        dataType: 'json',
+                        success: function(data) {
+                            if (data.object==0) {
+                                _this.enterNext();
+                            }else{
+                                $('.getCode').text('手机号已被注册');
+                                setTimeout(function(){
+                                    $('.getCode').text('获取验证码');
+                                },2000);
+                            }
+                        },
+                        error: function() {
+                            alert('通讯服务器错误');
+                        }
+                    });
+                }else{
+                    $('.getCode').text('请输入正确号码');
+                    setTimeout(function(){
+                        $('.getCode').text('获取验证码');
+                    },2000);
+                }
+            },
             // 清除cookie
             delCookie:function($name){
                 var myDate=new Date();    
                 myDate.setTime(-1000);//设置时间    
-                document.cookie=$name+"=''; expires="+myDate.toGMTString(); 
+                document.cookie=$name+"=''; expires="+myDate.toGMTString()+"; path=/"; 
             },
             // 注册
             register:function(){
@@ -263,53 +288,5 @@ $(function() {
                 });               
             }
         }
-    })
-
-    // $('.getCode').click(function(e){
-    //     var _current = $(e.currentTarget);
-    //     var _error = _current.next('.error-tip');
-    //     if($telnumber.val()){
-    //         if(/^1([0-9]){10}$/.test($telnumber.val())){
-    //             var parm = {};
-    //             parm.mobile = $telnumber.val();
-    //             $.ajax({
-    //                 url: '/api/isMobileExist',
-    //                 data: parm,
-    //                 type: 'post',
-    //                 dataType: 'json',
-    //                 success: function(data) {
-    //                     if (data.object==0) {
-    //                         $('.code-wrap input').val('');
-    //                         $('.code-wrap .error-tip').hide();
-    //                         $('.m-mask').show();
-    //                         changeCode();
-    //                     }else{
-    //                         _error.show();
-    //                         _error.text('手机号已被注册');
-    //                         setTimeout(function(){
-    //                             _error.hide();
-    //                             _error.text('手机号码不能为空');
-    //                         },2000);
-    //                     }
-    //                 },
-    //                 error: function() {
-    //                     alert('通讯服务器错误');
-    //                 }
-    //             });
-    //         }else{
-    //             _error.show();
-    //             _error.text('请输入正确号码');
-    //             setTimeout(function(){
-    //                 _error.hide();
-    //                 _error.text('手机号码不能为空');
-    //             },2000);
-    //         }
-    //     }else{
-    //         _error.show();
-    //         setTimeout(function(){
-    //             _error.hide();
-    //         },2000);
-    //     }
-    // })
-    
+    })   
 })

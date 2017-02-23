@@ -1144,20 +1144,6 @@ var local={
         }
     };
     local.init();
-    // cookie
-    function delCookie($name){    
-            var myDate=new Date();    
-            myDate.setTime(-1000);//设置时间    
-            document.cookie=$name+"=''; expires="+myDate.toGMTString();                
-    } 
-    // 登出
-    $('.logout').click(function(e){
-        e.preventDefault();
-        delCookie('yuer_userId');
-        delCookie('yuer_token');
-        localStorage.clear();
-        window.location.href = "/";
-    }) 
 });
 // ;(function(window,$,undefined){
 
