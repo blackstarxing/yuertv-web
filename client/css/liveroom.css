@@ -58,7 +58,36 @@ html,body{
 	display: none;
 }
 .videoBox{
+	position: relative;
 	min-height: 375px;
+}
+.anchor-leave{
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background: #1a2129;
+}
+.leave-text{
+	color:#f36;
+	margin-top: 10%;
+	margin-left: 33%;
+}
+.other-live{
+	width: 510px;
+	margin:0 auto;
+}
+.go-other{
+	width: 235px;
+	height: 132px;
+	float: left;
+	margin: 8% 10px 0;
+}
+.go-lives{
+	color:#f3f3f3;
+	display: block;
+	margin:20px auto;
+	text-align: center;
 }
 .live-avatar{
 	width: 80px;
