@@ -112,13 +112,6 @@
                         $(".u-wn span:eq(1)").text(data.object);
                         // 隐藏订单号
                         $("#hiddenOrder").text("***********"); 
-                        if (data.object == 1) { //1为重复
-                            console.log("这个重复啦");
-                        } else if (data.object == 0) {
-                            console.log("这个不重复");
-                        } else {
-                            console.log("未知异常");
-                        }
                     } else if (data.code == -2) {
                         console.log("你没有权限，通常来讲，你是没有登录");
                     } else if (data.code == -5) {
@@ -134,6 +127,9 @@
         }else{
             alert('请选择鱼币');
         }
+    })
+    $("#cancel").on("click",function(){
+    	$(".u-topupwindow").hide();
     })
 </script>
 {% endblock %}
