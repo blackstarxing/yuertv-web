@@ -2,104 +2,167 @@
 
 {% block css %}
 <link rel="stylesheet" href="/dist/center.css">
-
 {% endblock %}
 
 {% block content %}
- <div class="g-container f-cb">
+ <div class="g-container f-cb" id="confocus">
 	<div class="g-main"> 
 		 {% include 'common/cenleft.html' %}  
-	    <div id="rightmain" class="g-right">
-		   
-	  	<!-- <div class="m-rightswitch"> -->
+	    <div id="rightmain" class="g-right" >   
 <!-- 我的关注 -->
 			<div class="g-focus rightswitch">
 				<div class="m-main f-cb">
 					<div class="focushost f-cb">
 						<img src="/images/empty.png" class="empty" alt="你还没有关注任何人哦！" title="你还没有关注任何人哦！">
 						<p class="emptyText">当前没有关注任何人哦！</p>
-						<!-- <div class="u-host">
-								<div class="u-hleft">
-									<div class="u-focusimg">
-										<img src="/images/focusimg.png">
-									</div>
-									<div class="u-nickhost">
-										<p class="u-nicksex">
-											<span>小飞~超影路</span>
-											<img src="">
-										</p>
-										<div class="u-hostfans">
-											<p>
-												<span class="u-hf">直播间ID</span>&nbsp;
-												<span class="u-num">123456789</span>
-											</p>
-											<p class="u-hhf">
-												<span class="u-hf">粉丝</span>&nbsp;
-												<span class="u-num">3764</span>
-											</p>
-										</div>
-									</div>
+						<div class="u-host" v-for="(item,index) in focusmsg">
+							<div class="u-hleft">
+								<div class="u-focusimg"><img v-bind:src="'http://img.wangyuhudong.com/'+item.icon"></div>
+								<div class="u-nickhost">
+									<p class="u-nicksex">
+										<span>${item.nickname}</span>
+										<img v-if="item.sex==0" src="/images/male.png">
+										<img v-else src="/images/female.png">
+									</p>
+								<div class="u-hostfans">
+									<p>
+										<span class="u-hf">直播间ID</span>&nbsp;<span class="u-num">${item.room_number}</span>
+									</p>
+									<p class="u-hhf">
+										<span class="u-hf">粉丝</span>&nbsp;<span class="u-num">${item.fans}</span>
+									</p>
 								</div>
-								<div class="u-hright">
-									<img src="/images/focusclick.png">
-									<a href="">进入房间</a>
 								</div>
 							</div>
-							<div class="u-host stopdark">
-								<div class="u-hleft">
-									<div class="u-focusimg">
-										<img src="/images/focusimg.png">
-									</div>
-									<div class="u-nickhost">
-										<p class="u-nicksex">
-											<span>小飞~超影路</span>
-											<img src="">
-										</p>
-										<div class="u-hostfans">
-											<p>
-												<span class="u-hf">直播间ID</span>&nbsp;
-												<span class="u-num">123456789</span>
-											</p>
-											<p class="u-hhf">
-												<span class="u-hf">粉丝</span>&nbsp;
-												<span class="u-num">3764</span>
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="u-hright">
-									<img src="/images/focusclick.png" class="u-blur">
-									<a href="">进入房间</a>
-								</div>
-								<span class="dark">该主播已离开</span>
-							</div> -->
+							<div class="u-hright">
+								<a v-bind:href="'/liveroom?id='+item.live_id" v-if="item.state">进入房间</a>
+								<a href="" id="haveBeenOffline" v-else>已经离线</a>
+							</div>
 						</div>
-						<div class="M-box">
-							<a href="javascript:;" class="prevBtn">上一页</a>
-							<span class="totalPage"></span>
-							<a href="javascript:;" class="nextBtn">下一页</a>
-						</div>
+					</div>
+					<div class="M-box">
+						<a href="javascript:;" class="prevBtn" @click="prevBtn">上一页</a>
+						<span class="totalPage">${local.cur_page}/${local.cur_maxPage}</span>
+						<a href="javascript:;" class="nextBtn" @click="nextBtn">下一页</a>
+					</div>
 				</div>
 			</div>
 			<!-- </div>	右侧下侧结尾 -->
-	    </div><!-- 右侧结尾 -->
-	    
+	    </div><!-- 右侧结尾 --> 
 	</div> <!-- 整个块结尾 -->
-
 </div>	
-
 {% endblock %}
 
 {% block js %}
-<script type="text/javascript" src="/dist/center.js"></script>
 <script type="text/javascript">
 	$('.g-left li').eq('{{index}}').addClass('rightswitchcolor');
-	// $('.g-left li').each(function(){
-	// 	if($(this).attr("data-type")=='{{type}}'){
-	// 		$(this).addClass('rightswitchcolor');
-	// 	}
-	// })
-	// $('.rightswitch').eq({{type}}).show().siblings().hide();
+	var confocus = new Vue({
+        el: '#confocus',
+        delimiters: ['${', '}'],
+        data: {
+            focusmsg:'',
+            local:{
+            	cur_page:1,
+		 		cur_pageSize:5,
+		    	cur_maxPage:1,
+		    	cur_total:0,
+		    	cur_pageCallback:null,
+		    	cur_type:0,
+            }
+        },
+        mounted: function () {
+            this.$nextTick(function () {
+                // 代码保证 this.$el 在 document 中
+                this.eventBind();
+                this.followList();
+            })
+        },
+        methods:{
+        	followList:function(){
+        		var _this = this;
+	            $.ajax({
+	                method: "GET",
+	                url: "/api/person-center/my-concern",
+	                dataType: 'json',
+	                data: {
+	                    page: _this.local.cur_page,
+	                    pageSize: _this.local.cur_pageSize,
+	                }, 
+	                success: function(data) {
+	                    console.log(data);
+	                    if (data.code == 0) {
+	                        if(data.object.list.length>0){
+	                            _this.focusmsg = data.object.list;
+	                            console.log(_this.focusmsg);
+	                            $(".empty").hide();
+	                            $(".emptyText").hide();
+	                            $(".M-box").show();
+	                            _this.Pagination(_this.local.cur_page,data.object.total,_this.local.cur_pageSize,"follow");
+	                        }else{
+	                            $(".M-box").hide();
+	                            $(".u-host").remove();
+	                            $(".empty").show();
+	                            $(".emptyText").show();
+	                        }                  
+	                    } else {
+	                        console.log(data.result);
+	                    }
+	                },
+	                error: function(a, b, c) {
+	                    console.log("接口出问题啦");
+	                }
+	            })
+	        },
+        	prevBtn:function(){
+        		var _this = this;
+        		event.preventDefault();
+                _this.local.cur_page--;
+                if(_this.local.cur_pageCallback != "news"){
+                    _this.local.cur_type=0;
+                    _this.followList();
+                }
+        	},
+        	nextBtn:function(){
+        		var _this = this;
+        		event.preventDefault();
+                _this.local.cur_page++;
+                if(_this.local.cur_pageCallback != "news"){
+                    _this.local.cur_type=0;
+                    _this.followList();
+                }
+        	},
+        	Pagination:function(_page,_total,_pageSize,callback){
+        		var _this = this;
+		        _this.local.cur_page = _page || 1;
+		        _this.local.cur_total = _total || 0;
+		        _this.local.cur_pageSize = _pageSize || 5;
+		        _this.local.cur_maxPage = (Math.ceil((_this.local.cur_total)/ _this.local.cur_pageSize));
+		        _this.local.cur_pageCallback=callback;
+
+		        $(".nextBtn").show();
+		        $(".prevBtn").show();
+		        if(_this.local.cur_page==1){
+		            $(".prevBtn").hide();
+		        }
+		        if(_this.local.cur_page==_this.local.cur_maxPage){
+		            $(".nextBtn").hide();
+		        }
+		        if(_this.local.cur_maxPage==1){
+		            $(".prevBtn").hide();
+		            $(".nextBtn").hide();
+		        }
+		        if(_this.local.cur_total == 0 ){ $(".totalPage").hide()};
+	        },
+	        eventBind : function(){ 
+		        $(".focushost a").on("click",function(e){
+		            e.preventDefault();
+		        })
+	            $("#myfocusclick").on("click",function(){
+	                _this.local.Pagination(1,0,5,"follow");
+	                _this.local.followList();
+	            })
+		    }
+        } 
+    })
 </script>
 {% endblock %}
