@@ -12,18 +12,8 @@ var local={
     updatePasswordTag_new:false,
     updatePasswordTag_confirm:false,
     iphoneAuth:false,
-    // 分页的变量
-    cur_page:1,
-    cur_pageSize:5,
-    cur_maxPage:1,
-    cur_total:0,
-    cur_pageCallback:null,
-    cur_type:0,
     init : function(){
         local.eventBind();
-        local.cur_type=0;
-        local.newsList();
-        local.followList();
     },
     eventBind : function(){ 
         // 我的资料－修改密码
@@ -341,6 +331,8 @@ var local={
         $("#hiddenFields").text($("#hiddenFields").text().substr(0,3)+"****"+$("#hiddenFields").text().substr(7,4)) 
         // 身份证号的隐藏
         $("#hiddenIdCard").text($("#hiddenIdCard").text().substr(0,3)+"************"+$("#hiddenIdCard").text().substr(7,4))
+        // 支付宝账号的隐藏
+        $(".payzfbtip").text($(".payzfbtip").text().substr(0,3)+"*****"+$(".payzfbtip").text().substr(7,4))
         //我的资料手机认证－－修改手机号码弹框
         $("#modifyTel").on("click",function(){
             $("#telValBounced").show();
@@ -488,9 +480,11 @@ var local={
                         }else if(data.object.code == 3){
                             //审核不通过
                             $(".switchshowcard").hide();
+                            $(".idcardtwomodify").hide();
                             $(".cardreviewingfailure").show();
                         }else{
                             $(".switchshowcard").show();
+                            $(".idcardtwomodify").hide();
                         }    
                     }else{
                         console(data.result); 
@@ -859,292 +853,7 @@ var local={
             $(this).hide();
             window.location.href = window.location.href;
         });
-        // 分页－－我的关注，我的消息
-         $(".focushost a").on("click",function(e){
-                e.preventDefault();
-            })
-             $(".prevBtn").off().on("click",function(event){
-                event.preventDefault();
-                local.cur_page--;
-                if(local.cur_pageCallback == "news"){
-                    local.cur_type=0;
-                    local.newsList();
-                }else{
-                    local.cur_type=0;
-                    local.followList();
-                }
-            })
-            $(".nextBtn").off().on("click",function(event){
-                event.preventDefault();
-                local.cur_page++;
-                if(local.cur_pageCallback == "news"){
-                    local.cur_type=0;
-                    local.newsList();
-                }else{
-                    local.cur_type=0;
-                    local.followList();
-                }
-            })
-            $("#myfocusclick").on("click",function(){
-                local.Pagination(1,0,5,"follow");
-                local.followList();
-            })
-            $("#mymessageclick").on("click",function(e){
-                e.preventDefault();
-                local.Pagination(1,0,5,"news");
-                local.cur_type=0;
-                // local.newsList();
-            });
-            $(".u-m-top a:eq(0)").on("click",function(e){
-                e.preventDefault();
-                local.Pagination(1,0,5,"news");
-                local.cur_type=0;
-                local.newsList();
-            })
-            $(".u-m-top a:eq(1)").on("click",function(e){
-                e.preventDefault();
-                local.Pagination(1,0,5,"news");
-                local.cur_type=1;
-                local.newsList();
-            })
-        },
-        Pagination:function(_page,_total,_pageSize,callback){
-            local.cur_page = _page || 1;
-            local.cur_total = _total || 0;
-            local.cur_pageSize = _pageSize || 5;
-            local.cur_maxPage = (parseInt((local.cur_total+5)/ local.cur_pageSize)) || 1;
-            local.cur_pageCallback=callback;
-            var _total = (_total<5) ? 1 : (parseInt(_total/5));
-            $(".totalPage").show().text(local.cur_page+"/"+ local.cur_maxPage);
-
-            $(".nextBtn").show();
-            $(".prevBtn").show();
-            if(local.cur_page==1){
-                $(".prevBtn").hide();
-            }
-            if(local.cur_page==local.cur_maxPage){
-                $(".nextBtn").hide();
-            }
-            if(local.cur_maxPage==1){
-                $(".prevBtn").hide();
-                $(".nextBtn").hide();
-            }
-            if( local.cur_total == 0 ){ $(".totalPage").hide()};
-        },
-        
-        
-    //     $(".focushost a").on("click",function(e){
-    //         e.preventDefault();
-    //     })
-    //     $(".prevBtn").off().on("click",function(event){
-    //         event.preventDefault();
-    //         local.cur_page--;
-    //         if(local.cur_pageCallback == "news"){
-    //             local.cur_type=0;
-    //             local.newsList();
-    //         }else{
-    //             local.cur_type=0;
-    //             local.followList();
-    //         }
-    //     })
-    //     $(".nextBtn").off().on("click",function(event){
-    //         event.preventDefault();
-    //         local.cur_page++;
-    //         if(local.cur_pageCallback == "news"){
-    //             local.cur_type=0;
-    //             local.newsList();
-    //         }else{
-    //             local.cur_type=0;
-    //             local.followList();
-    //         }
-    //     })
-    //     $("#myfocusclick").on("click",function(){
-    //         local.Pagination(1,0,5,"follow");
-    //         local.followList();
-    //     })
-    //     $("#mymessageclick").on("click",function(){
-    //         // e.preventDefault();
-    //         local.Pagination(1,0,5,"news");
-    //         local.cur_type=0;
-    //         // local.newsList();
-    //     });
-    //     $(".u-m-top a:eq(0)").on("click",function(e){
-    //         e.preventDefault();
-    //         local.Pagination(1,0,5,"news");
-    //         local.cur_type=0;
-    //         local.newsList();
-    //     })
-    //     $(".u-m-top a:eq(1)").on("click",function(e){
-    //         e.preventDefault();
-    //         local.Pagination(1,0,5,"news");
-    //         local.cur_type=1;
-    //         local.newsList();
-    //     })
-    // },
-        // 分页插件
-        // Pagination:function(_page,_total,_pageSize,callback){
-        //     local.cur_page = _page || 1;
-        //     local.cur_total = _total || 0;
-        //     local.cur_pageSize = _pageSize || 5;
-        //     local.cur_maxPage = Math.ceil(local.cur_total / local.cur_pageSize)
-        //     local.cur_pageCallback=callback;
-
-
-        //     $(".totalPage").show().text(local.cur_page + "/"+ local.cur_maxPage);
-
-            
-        //     if(local.cur_page == 1){
-        //         $(".prevBtn").hide();
-        //     }else{
-        //         $(".prevBtn").show();
-        //     }
-        //     if(local.cur_page == local.cur_maxPage){
-        //         $(".nextBtn").hide();
-        //     }else{
-        //         $(".nextBtn").show();
-        //     }
-
-        //     if(local.cur_maxPage <= 1){
-        //         $(".prevBtn").hide();
-        //         $(".nextBtn").hide();
-        //     }
-        //     if(local.cur_total == 0 ){
-        //         $(".totalPage").hide()
-        //     };
-        // },
-        // 我的关注页面的事件处理
-        followList:function(){
-            $.ajax({
-                method: "GET",
-                url: "/api/person-center/my-concern",
-                dataType: 'json',
-                data: {
-                    page: local.cur_page,
-                    pageSize: local.cur_pageSize,
-                }, 
-                success: function(data) {
-                    console.log(data);
-                    if (data.code == 0) {
-                        if(data.object.list.length>0){
-                            var str = "";
-                            for (index in data.object.list) {
-                                if(data.object.list[index].state == 1){
-                                    str +='<div class="u-host"><div class="u-hleft"><div class="u-focusimg">'+
-                                        '<img src="http://img.wangyuhudong.com/' + data.object.list[index].icon + '">'+
-                                        '</div><div class="u-nickhost"><p class="u-nicksex">'+
-                                        '<span>' + data.object.list[index].nickname + '</span>'+
-                                        '<img src="' + (data.object.list[index].sex==0?"/images/male.png":"/images/female.png") + '">'+
-                                        '</p><div class="u-hostfans"><p><span class="u-hf">直播间ID</span>&nbsp;'+
-                                        '<span class="u-num">' + data.object.list[index].room_number + '</span>'+
-                                        '</p><p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;'+
-                                        '<span class="u-num">' + data.object.list[index].fans + '</span>'+
-                                        '</p></div></div></div><div class="u-hright">'+
-                                        '<a href="/liveroom?live_id=' + data.object.list[index].live_id+'">进入房间</a>'+
-                                        '</div></div>'
-                                }else{
-                                     str +='<div class="u-host"><div class="u-hleft"><div class="u-focusimg">'+
-                                        '<img src="http://img.wangyuhudong.com/' + data.object.list[index].icon + '">'+
-                                        '</div><div class="u-nickhost"><p class="u-nicksex">'+
-                                        '<span>' + data.object.list[index].nickname + '</span>'+
-                                        '<img src="' + (data.object.list[index].sex==0?"/images/male.png":"/images/female.png") + '">'+
-                                        '</p><div class="u-hostfans"><p><span class="u-hf">直播间ID</span>&nbsp;'+
-                                        '<span class="u-num">' + data.object.list[index].room_number + '</span>'+
-                                        '</p><p class="u-hhf"><span class="u-hf">粉丝</span>&nbsp;'+
-                                        '<span class="u-num">' + data.object.list[index].fans + '</span>'+
-                                        '</p></div></div></div><div class="u-hright">'+
-                                        '<a href="" id="haveBeenOffline">已经离线</a>'+
-                                        '</div></div>'
-                                }
-                            }
-                            $(".u-host").remove();
-                            $(".empty").hide();
-                            $(".emptyText").hide();
-                            $(".focushost").html($(".focushost").html()+str);
-                            local.Pagination(local.cur_page,data.object.total,local.cur_pageSize,"follow");
-                        }else{
-                            $(".u-host").remove();
-                            $(".empty").show();
-                            $(".emptyText").show();
-                        }                  
-                    } else {
-                        console.log(data.result);
-                    }
-                },
-                error: function(a, b, c) {
-                    console.log("接口出问题啦");
-                }
-            })
-        },
-        // 我的消息的页面的事件处理
-        newsList:function(){
-            $.ajax({
-                method: "GET",
-                url: "/api/person-center/my-msg",
-                dataType: 'json',
-                data: {
-                    page: local.cur_page,
-                    pageSize: local.cur_pageSize,
-                    type:local.cur_type,
-                }, 
-                success: function(data) {
-                    if (data.code == 0) {
-                        if(data.object.list.length>0){
-                            // console.log(data.object.list.length);
-                            $(".empty").hide();
-                            $(".emptyText").hide();
-                            if(local.cur_type == 0){
-                                var str = "";
-                                for (index in data.object.list) {
-                                    str+='<div class="u-message"><div class="u-msystem">'+
-                                        '<img src="/images/messagehead.png">'+
-                                        '</div><div class="u-yuer"><p>'+
-                                        '<h3>'+data.object.list[index].title+'</h3>'+
-                                        '<span class="u-messagetime">'+data.object.list[index].create_date+'</span>'+
-                                        '<p><p>'+
-                                        '<span class="u-messagecontent">'+data.object.list[index].content+'</span>'+
-                                        '<span class="u-messtips" id="messshow">全文&gt;&gt;</span>'+
-                                        '</p></div></div>';
-                                }
-                                $(".u-message").remove();
-                                $(".messageBox").html($(".messageBox").html()+str).show();
-                            }else{
-                                var str = "";
-                                for (index in data.object.list) {
-                                    str+='<div class="u-focusmess"><p class="u-focusnc">'+
-                                        '<span class="u-foucscolor">'+data.object.list[index].nickname+'</span>'+
-                                        '<span class="u-focusc">关注了你</span></p>'+
-                                        '<span class="u-focustime">'+data.object.list[index].create_date+'</span>'+
-                                        '</div><div class="u-messnickname">'+
-                                        '<img src="'+data.object.list[index].icon+'"><img src="'+data.object.list[index].sex+'" class="messimgsex">'+
-                                        '<p class="u-mkname">'+data.object.list[index].nickname+'</p>'+
-                                        '<p><span>ID：</span><span>'+data.object.list[index].user_id+'</span></p></div>';
-                                }
-                                $(".u-focusmess").remove();
-                                $(".focusmessage").show().html($(".focusmessage").html()+str);
-                            }
-                            
-                            local.Pagination(local.cur_page,data.object.total,local.cur_pageSize,"follow");      
-                        }else{
-                            // console.log(local.cur_type);
-                            // $(".u-message").remove();
-                            // $(".u-focusmess").remove();
-                            $(".messageBox").hide();
-                            // $(".focusmessage").hide();
-                            $(".empty").show();
-                            $(".emptyText").show();
-                        }             
-                    } else {
-                        console.log(data.result);
-                    }
-                },
-                error: function(a, b, c) {
-                    console.log("接口出问题啦");
-                }
-            })
-        }
+    },
     };
     local.init();
 });
-// ;(function(window,$,undefined){
-
-// })(window,jQuery);

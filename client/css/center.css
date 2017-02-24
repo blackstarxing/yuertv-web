@@ -220,6 +220,7 @@ input{
 	background:#f36;
 	border:0px;
 	font-size:18px;
+	color:#fff;
 	text-align:center;
 	border-radius:5px;
 	margin:50px 0px 165px 110px;
@@ -897,7 +898,6 @@ input.full{
 	width:300px;
 	height:40px;
 	background:transparent;
-	
 	border:1px solid #353d48;
 }
 .u-div .warningtips{
@@ -917,7 +917,7 @@ input.full{
 	margin-top:50px;
 	margin-left:102px;
 	font-size:18px;
-	color:#333;
+	color:#fff;
 }
 .u-paybind .paynametip, .u-paybind .paycounttip{
 	display:none;
@@ -1172,6 +1172,9 @@ input.full{
 	height:95px;
 	background:#2d3741;
 	margin-bottom:15px;
+}
+.focushost{
+	min-height:560px;
 }
 .u-hleft{
 	width:590px;
@@ -2040,7 +2043,6 @@ display:block;
 /*我要当主播－－如何直播*/
 .u-live{
 	padding-bottom:50px;
-	height:1100px;
 }
 .u-liveAI{
 	position:relative;

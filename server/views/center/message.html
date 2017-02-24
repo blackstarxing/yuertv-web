@@ -101,7 +101,149 @@
         $(".u-messnickname").hide() 
     })       
     $("#cancel").off("click").on("click", function() {
-            $(".u-topupwindow").hide();
+        $(".u-topupwindow").hide();
     })
+    var local={
+    // 分页的变量
+	    cur_page:1,
+	    cur_pageSize:5,
+	    cur_maxPage:1,
+	    cur_total:0,
+	    cur_pageCallback:null,
+	    cur_type:0,
+	    init : function(){
+	        local.eventBind();
+	        local.cur_type=0;
+	        local.newsList();
+	    },
+	    eventBind : function(){ 
+	        // 分页－－我的关注，我的消息
+	        $(".focushost a").on("click",function(e){
+	            e.preventDefault();
+	        })
+	        $(".prevBtn").off().on("click",function(event){
+	            event.preventDefault();
+	            local.cur_page--;
+	            // if(local.cur_pageCallback == "news"){
+	                local.cur_type=0;
+	                local.newsList();
+	            // }
+	        })
+	        $(".nextBtn").off().on("click",function(event){
+	            event.preventDefault();
+	            local.cur_page++;
+	            // if(local.cur_pageCallback == "news"){
+	                local.cur_type=0;
+	                local.newsList();
+	            // }
+	        })
+	        $("#mymessageclick").on("click",function(e){
+	            e.preventDefault();
+	            local.Pagination(1,0,5,"news");
+	            local.cur_type=0;
+	            // local.newsList();
+	        });
+	        $(".u-m-top a:eq(0)").on("click",function(e){
+	            e.preventDefault();
+	            local.Pagination(1,0,5,"news");
+	            local.cur_type=0;
+	            local.newsList();
+	        })
+	        $(".u-m-top a:eq(1)").on("click",function(e){
+	            e.preventDefault();
+	            local.Pagination(1,0,5,"news");
+	            local.cur_type=1;
+	            local.newsList();
+	        })
+	    },
+	    Pagination:function(_page,_total,_pageSize,callback){
+	        local.cur_page = _page || 1;
+	        local.cur_total = _total || 0;
+	        local.cur_pageSize = _pageSize || 5;
+	        local.cur_maxPage = (Math.ceil((local.cur_total)/ local.cur_pageSize));
+	        local.cur_pageCallback=callback;
+	        // var _total = (_total<5) ? 1 : (parseInt(_total/5));
+	        $(".totalPage").show().text(local.cur_page+"/"+ local.cur_maxPage);
+
+	        $(".nextBtn").show();
+	        $(".prevBtn").show();
+	        if(local.cur_page==1){
+	            $(".prevBtn").hide();
+	        }
+	        if(local.cur_page==local.cur_maxPage){
+	            $(".nextBtn").hide();
+	        }
+	        if(local.cur_maxPage==1){
+	            $(".prevBtn").hide();
+	            $(".nextBtn").hide();
+	        }
+	        if( local.cur_total == 0 ){ $(".totalPage").hide()};
+	    },
+        // 我的消息的页面的事件处理
+        newsList:function(){
+            $.ajax({
+                method: "GET",
+                url: "/api/person-center/my-msg",
+                dataType: 'json',
+                data: {
+                    page: local.cur_page,
+                    pageSize: local.cur_pageSize,
+                    type:local.cur_type,
+                }, 
+                success: function(data) {
+                    if (data.code == 0) {
+                        if(data.object.list.length>0){
+                            // console.log(data.object.list.length);
+                            $(".empty").hide();
+                            $(".emptyText").hide();
+                            if(local.cur_type == 0){
+                                var str = "";
+                                for (index in data.object.list) {
+                                    str+='<div class="u-message"><div class="u-msystem">'+
+                                        '<img src="/images/messagehead.png">'+
+                                        '</div><div class="u-yuer"><p>'+
+                                        '<h3>'+data.object.list[index].title+'</h3>'+
+                                        '<span class="u-messagetime">'+data.object.list[index].create_date+'</span>'+
+                                        '<p><p>'+
+                                        '<span class="u-messagecontent">'+data.object.list[index].content+'</span>'+
+                                        '<span class="u-messtips" id="messshow">全文&gt;&gt;</span>'+
+                                        '</p></div></div>';
+                                }
+                                $(".u-message").remove();
+                                $(".messageBox").html($(".messageBox").html()+str).show();
+                            }else{
+                                var str = "";
+                                for (index in data.object.list) {
+                                    str+='<div class="u-focusmess"><p class="u-focusnc">'+
+                                        '<span class="u-foucscolor">'+data.object.list[index].nickname+'</span>'+
+                                        '<span class="u-focusc">关注了你</span></p>'+
+                                        '<span class="u-focustime">'+data.object.list[index].create_date+'</span>'+
+                                        '</div><div class="u-messnickname">'+
+                                        '<img src="'+data.object.list[index].icon+'"><img src="'+data.object.list[index].sex+'" class="messimgsex">'+
+                                        '<p class="u-mkname">'+data.object.list[index].nickname+'</p>'+
+                                        '<p><span>ID：</span><span>'+data.object.list[index].user_id+'</span></p></div>';
+                                }
+                                $(".u-focusmess").remove();
+                                $(".focusmessage").show().html($(".focusmessage").html()+str);
+                            }
+                            $(".M-box").show();
+                            local.Pagination(local.cur_page,data.object.total,local.cur_pageSize,"follow");      
+                        }else{
+                            $(".messageBox").hide();
+                            $(".M-box").hide();
+                            $(".empty").show();
+                            $(".emptyText").show();
+                        }             
+                    } else {
+                        console.log(data.result);
+                    }
+                },
+                error: function(a, b, c) {
+                    console.log("接口出问题啦");
+                }
+            })
+        }
+    };
+    local.init();
 </script>
 {% endblock %}
