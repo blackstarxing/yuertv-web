@@ -820,7 +820,7 @@ input.full{
 	background:transparent;
 }
 /*审核状态*/
-.switchshowcard,.cardreviewing,.cardreviewingpass,.cardreviewingfailure{
+.cardreviewing,.cardreviewingpass,.cardreviewingfailure{
 	display:none;
 	width:800px;
 	height:430px;
