@@ -2040,7 +2040,7 @@ display:block;
 /*我要当主播－－如何直播*/
 .u-live{
 	padding-bottom:50px;
-	height:1100px;
+	/*height:1100px;*/
 }
 .u-liveAI{
 	position:relative;
