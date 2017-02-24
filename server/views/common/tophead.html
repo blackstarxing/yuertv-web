@@ -119,7 +119,9 @@
                     if(!data.object.is_concern){
                         is_concern = '<span class="concern"></span>';
                     }
-                    content+='<li><a href="/liveroom?id='+data.object[i].id+'"><img src="http://img.wangyuhudong.com/'+data.object[i].user_icon+'" alt="">'+is_concern+'</a></li>';
+                    var icon = '';
+                    icon = (data.object[i].user_icon.indexOf('http')>-1) ? data.object[i].user_icon : 'http://img.wangyuhudong.com/'+data.object[i].user_icon;
+                    content+='<li><a href="/liveroom?id='+data.object[i].id+'"><img src="'+icon+'" alt="">'+is_concern+'</a></li>';
                 }
                 $('.anchor-list').html(content);
             }else{
