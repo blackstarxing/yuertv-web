@@ -68,6 +68,9 @@ html,body{
 	width: 100%;
 	background: #1a2129;
 }
+.anchor-outline{
+	display: none;
+}
 .leave-text{
 	color:#f36;
 	margin-top: 10%;
@@ -589,6 +592,7 @@ html,body{
 }
 .m-gift{
 	float: right;
+	display: none;
 }
 .m-gift .gift{
 	position: relative;

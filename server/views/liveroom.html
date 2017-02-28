@@ -72,6 +72,7 @@
                     <div class="leave-text">
                         <img src="/images/ft_logo.png" alt="">主播当前不在线,看看其他的吧
                     </div>
+                    {% if detail.hotLive.length>1 %}
                     <div class="other-live f-cb">                        
                         <div class="go-other">
                             {% if detail.hotLive[0].state==1 %}
@@ -104,9 +105,50 @@
                             </a>
                         </div>
                     </div>
+                    {% endif %}
                     <a href="/alllive" class="go-lives">观看更多直播&gt;&gt;</a>
                 </div>
                 {% endif %}
+                <div class="anchor-leave anchor-outline">
+                    <div class="leave-text">
+                        <img src="/images/ft_logo.png" alt="">主播当前不在线,看看其他的吧
+                    </div>
+                    {% if detail.hotLive.length>1 %}
+                    <div class="other-live f-cb">                        
+                        <div class="go-other">
+                            {% if detail.hotLive[0].state==1 %}
+                            <a href="/liveroom?id={{detail.hotLive[0].id}}" class="live-address">
+                            {% else %}
+                            <a href="javascript:void(0);" class="live-address">
+                            {% endif %}
+                                <img src="{{detail.hotLive[0].icon}}" alt="">
+                                <span><i>·</i>{{detail.hotLive[0].name}}</span>
+                                {% if detail.hotLive[0].state==1 %}
+                                    <div class="play-mask online"></div>
+                                {% else %}
+                                    <div class="play-mask outline">主播已离开</div>
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="go-other">
+                            {% if detail.hotLive[1].state==1 %}
+                            <a href="/liveroom?id={{detail.hotLive[1].id}}" class="live-address">
+                            {% else %}
+                            <a href="javascript:void(0);" class="live-address">
+                            {% endif %}
+                                <img src="{{detail.hotLive[1].icon}}" alt="">
+                                <span><i>·</i>{{detail.hotLive[1].name}}</span>
+                                {% if detail.hotLive[1].state==1 %}
+                                    <div class="play-mask online"></div>
+                                {% else %}
+                                    <div class="play-mask outline">主播已离开</div>
+                                {% endif %}
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <a href="/alllive" class="go-lives">观看更多直播&gt;&gt;</a>
+                </div>
             </div> 
             <div class="send-gift f-cb">
                 <div class="award">
@@ -195,7 +237,9 @@
                             </div>
                         </div>
                     {% endfor %} 
+                    {% if detail.hotLive.length >9 %}
                     <a href="/alllive" class="room-link">更多直播</a>
+                    {% endif%}
                     {% endif%}
                 </div>
                 <div class="recommendBox m-video f-cb" style="display: none;">
@@ -236,7 +280,9 @@
                             </div>
                         </div>
                     {% endfor %}
+                    {% if detail.upVideo.length > 9 %}
                     <a href="/allvideo" class="room-link">更多视频</a>
+                    {% endif%}
                     {% endif%}
                 </div>
             </div>

@@ -3,10 +3,10 @@
         <img src="/images/qrcode.png" alt="">
         <img src="/images/qrimage.png" alt="" class="showQR">
     </div>
-    <div class="fade">
+    <div class="fade skip-anchor">
         <ul class="f-cb">
-            <li><a href="/center/host"><img src="/images/beanchor.png" alt=""></a></li>
-            <li><a href="/center/host">做主播</a></li>
+            <li><img src="/images/beanchor.png" alt=""></li>
+            <li>做主播</li>
         </ul>
     </div>
     <div class="fade collect">
@@ -22,3 +22,15 @@
         </ul>
     </div>
 </div>
+<script>
+    var islogin = (document.cookie.indexOf('yuer_userId')>=0) ? 1 : 0;
+    $('.skip-anchor').click(function(){
+        if(islogin){
+            window.location.href = '/center/host';
+        }else{
+            $('.l-usrname').val('');
+            $('.l-pwd').val('');
+            $('.m-login-wrap').show();
+        }
+    })
+</script>

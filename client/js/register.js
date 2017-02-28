@@ -150,7 +150,7 @@ $(function() {
                 var _error = $('.getCode');
                 // var _error = _current.next('.error-tip');
                 if($('.telnumber').val()){
-                    if(/^1([0-9]){10}$/.test($('.telnumber').val())){
+                    if(/^1[34578][0-9]{9}$/.test($('.telnumber').val())){
                         var parm = {};
                         parm.type = 1;
                         parm.mobile = $('.telnumber').val();
@@ -203,7 +203,7 @@ $(function() {
             // 验证手机号
             checkTel:function(){
                 var _this = this;
-                if(/^1([0-9]){10}$/.test($('.telnumber').val())){
+                if(/^1[34578][0-9]{9}$/.test($('.telnumber').val())){
                     var parm = {};
                     parm.mobile = $('.telnumber').val();
                     $.ajax({

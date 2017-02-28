@@ -32,6 +32,7 @@
 </div>
 <div class="g-mb">
     <div class="comWidth">
+        {% if index.activity.length>0 %}
         <div class="m-activity">
             <div class="title"><img src="/images/index_icon1.png" alt="">热门活动</div>
             <div class="m-content f-cb">
@@ -43,6 +44,7 @@
                 {% endfor %}
             </div>
         </div>
+        {% endif %}
         <!-- <div class="m-game">
             <div class="title"><img src="/images/index_icon2.png" alt="">游戏专区<a class="more">更多>></a></div>
             <div class="m-content f-cb">
@@ -54,8 +56,13 @@
                 {% endfor %}
             </div>
         </div> -->
+        {% if index.live.length>0 %}
         <div class="m-hot">
-            <div class="title"><img src="/images/index_icon3.png" alt="">热门直播<a href="/alllive" class="more">更多>></a></div>
+            <div class="title"><img src="/images/index_icon3.png" alt="">热门直播
+                {% if index.live.length>15 %}
+                    <a href="/alllive" class="more">更多>></a>
+                {% endif %}
+            </div>
             <div class="m-content f-cb">
                 {% for hotlive in index.live %}
                     <div class="m-lst">
@@ -96,8 +103,14 @@
                 {% endfor %}
             </div>
         </div>
+        {% endif %}
+        {% if index.video.length>0 %}
         <div class="m-video">
-            <div class="title"><img src="/images/index_icon4.png" alt="">精彩视频<a href="/allvideo" class="more">更多>></a></div>
+            <div class="title"><img src="/images/index_icon4.png" alt="">精彩视频
+                {% if index.video.length>10 %}
+                <a href="/allvideo" class="more">更多>></a>
+                {% endif %}
+            </div>
             <div class="m-content f-cb">
                 {% for video in index.video %}
                     <div class="m-lst">
@@ -132,6 +145,7 @@
                 {% endfor %}
             </div>
         </div>
+        {% endif %}
     </div>   
 </div>
 <div class="m-video-mask">

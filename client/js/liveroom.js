@@ -823,6 +823,7 @@ $(function(){
                 liveEnd: function ()
                 {
                     // alert("直播已结束");
+                    $('.anchor-outline').show();
                 },
             };
 
