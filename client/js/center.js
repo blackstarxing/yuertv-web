@@ -470,10 +470,14 @@ var local={
                     if(data.code == 0){
                         console.log("请求成功");
                         if(data.object.code == 1){
+                            $(".switchshowcard").show();
+                            $(".idcardtwomodify").hide();
+                        }else if(data.object.code == 1){
                             // 审核中
                             $(".switchshowcard").hide();
                             $("cardreviewing").show();
-                        }else if(data.object.code == 2){
+                        }
+                        else if(data.object.code == 2){
                             // 审核通过
                             $(".switchshowcard").hide();
                             $(".idcardtwomodify").show();
@@ -483,8 +487,7 @@ var local={
                             $(".idcardtwomodify").hide();
                             $(".cardreviewingfailure").show();
                         }else{
-                            $(".switchshowcard").show();
-                            $(".idcardtwomodify").hide();
+                            alert("查无信息");
                         }    
                     }else{
                         console(data.result); 

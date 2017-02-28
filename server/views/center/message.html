@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
- <div class="g-container f-cb">
+ <div class="g-container f-cb" id="messagevue">
 	<div class="g-main"> 
 		 {% include 'common/cenleft.html' %}  
 	    <div id="rightmain" class="g-right">
@@ -14,61 +14,70 @@
 	<div class="m-message rightswitch">
 		<div class="m-mainm">
 			<div class="u-m-top">
-				<a href="" id="initMessage">系统消息</a>
-				<a href="" id="initFocusMessage">关注消息</a>
+				<a href="" id="initMessage" @click="umtop">系统消息</a>
+				<a href="" id="initFocusMessage" @click="umtopeq">关注消息</a>
 			</div>
 			<div class="u-systemmessage mcurrent">
-				<div class="messageBox">
-					<img src="/images/empty.png" class="empty" alt="暂无任何系统消息" title="暂无任何系统消息">
-					<p class="emptyText">当前没有系统消息哦！</p>
-					<!-- <div class="u-message">
-						<div class="u-msystem">
-							<img src="/images/messagehead.png">
+				<div class="messageBox" >
+					<div v-if="vuemessage">
+						<div class="u-message" v-for="(item,index) in vuemessage" >
+							<div class="u-msystem">
+								<img src="/images/messagehead.png">
+							</div>
+							<div class="u-yuer">
+								<p>
+									<h3>${item.title}</h3>
+									<span class="u-messagetime">${item.create_date}</span>
+								<p>
+								<p>
+								<span class="u-messagecontent">${item.content}</span><span class="u-messtips" id="messshow">全文&gt;&gt;</span>
+								</p>
+							</div>
 						</div>
-						<div class="u-yuer">
-							<p>
-								<h3></h3>
-								<span class="u-messagetime"></span>
-							<p>
-							<p>
-							<span class="u-messagecontent"></span><span class="u-messtips" id="messshow">全文&gt;&gt;</span>
-							</p>
-						</div>
-					</div> -->
+					</div>
+					<div v-else>
+						<img src="/images/empty.png" class="empty" alt="暂无任何系统消息" title="暂无任何系统消息">
+						<p class="emptyText">当前没有系统消息哦！</p>
+					</div>
+					
 				</div>
 				
 				<div class="M-box">
-					<a href="javascript:;" class="prevBtn">上一页</a>
+					<a href="javascript:;" @click="prevBtnmsg" class="prevBtn">上一页</a>
 					<span class="totalPage"></span>
-					<a href="javascript:;" class="nextBtn">下一页</a>
+					<a href="javascript:;" @click="nextBtnmsg" class="nextBtn">下一页</a>
 				</div>
 			</div>
 			
 			<div class="u-focusmessage mcurrent">
 				<div class="focusmessage">
-					<img src="/images/empty.png" class="empty" alt="暂无任何关注消息" title="暂无任何关注消息">
-					<p class="emptyText">当前没有关注消息哦！</p>
-						<!-- <div class="u-focusmess">
-							<p class="u-focusnc">
-								<span class="u-foucscolor">我在那里找到你
-									
-								</span>
-								<span class="u-focusc">关注了你</span>
-							</p>
-							<span class="u-focustime">
-								2016-10-13  18：00
-							</span>
+					<div v-if="vuemessage">
+						<div v-for="(item,index) in vuemessage">
+							<div class="u-focusmess" >
+								<p class="u-focusnc">
+									<span class="u-foucscolor">${item.nickname}</span>
+									<span class="u-focusc">关注了你</span>
+								</p>
+								<span class="u-focustime">${item.create_date}</span>
+							</div>
+							<div class="u-messnickname">
+								<img v-bind:src="'http://img.wangyuhudong.com/'+item.icon"><img v-bind:src="'http://img.wangyuhudong.com/'+item.sex" class="messimgsex">
+								<p class="u-mkname">${item.nickname}</p>
+								<p><span>ID：</span><span>${item.user_id}</span></p>
+							</div>
 						</div>
-						<div class="u-messnickname">
-							<img src="/images/ico7.png"><img src="" class="messimgsex">
-							<p class="u-mkname">我从哪里找到你</p>
-							<p><span>ID：</span><span>1987272</span></p>
-						</div> -->
+					</div>
+						
+					<div v-else>
+						<img src="/images/empty.png" class="empty" alt="暂无任何关注消息" title="暂无任何关注消息">
+						<p class="emptyText">当前没有关注消息哦！</p>
+					</div>
+						
 				</div>
 				<div class="M-box">
-					<a href="javascript:;" class="prevBtn">上一页</a>
+					<a href="javascript:;" @click="prevBtnmsgs" class="prevBtn">上一页</a>
 					<span class="totalPage"></span>
-					<a href="javascript:;" class="nextBtn">下一页</a>
+					<a href="javascript:;" @click="nextBtnmsgs" class="nextBtn">下一页</a>
 				</div>
 			</div>
 			
@@ -83,16 +92,9 @@
 {% endblock %}
 
 {% block js %}
-<script type="text/javascript" src="/dist/center.js"></script>
+<!-- <script type="text/javascript" src="/dist/center.js"></script> -->
 <script type="text/javascript">
 	$('.g-left li').eq('{{index}}').addClass('rightswitchcolor');
-	//我的消息中的div之间的切换
-    $(".m-mainm a").on("click", function(e) {
-        e.preventDefault();
-        $(this).addClass("focuscurrent").siblings().removeClass("focuscurrent");
-        $(".mcurrent").hide().eq($(this).index()).show();
-    })
-    $(".m-mainm a:eq(0)").trigger("click");
     //我的消息－－关注消息的划入事件
     $(".u-foucscolor").on("mouseenter", function() { 
         $(".u-messnickname").show().css("top", $(this).position().top+'2px') 
@@ -100,150 +102,143 @@
     $(".u-foucscolor").on("mouseleave", function() { 
         $(".u-messnickname").hide() 
     })       
-    $("#cancel").off("click").on("click", function() {
-        $(".u-topupwindow").hide();
-    })
-    var local={
-    // 分页的变量
-	    cur_page:1,
-	    cur_pageSize:5,
-	    cur_maxPage:1,
-	    cur_total:0,
-	    cur_pageCallback:null,
-	    cur_type:0,
-	    init : function(){
-	        local.eventBind();
-	        local.cur_type=0;
-	        local.newsList();
-	    },
-	    eventBind : function(){ 
-	        // 分页－－我的关注，我的消息
-	        $(".focushost a").on("click",function(e){
-	            e.preventDefault();
-	        })
-	        $(".prevBtn").off().on("click",function(event){
-	            event.preventDefault();
-	            local.cur_page--;
-	            // if(local.cur_pageCallback == "news"){
-	                local.cur_type=0;
-	                local.newsList();
-	            // }
-	        })
-	        $(".nextBtn").off().on("click",function(event){
-	            event.preventDefault();
-	            local.cur_page++;
-	            // if(local.cur_pageCallback == "news"){
-	                local.cur_type=0;
-	                local.newsList();
-	            // }
-	        })
-	        $("#mymessageclick").on("click",function(e){
-	            e.preventDefault();
-	            local.Pagination(1,0,5,"news");
-	            local.cur_type=0;
-	            // local.newsList();
-	        });
-	        $(".u-m-top a:eq(0)").on("click",function(e){
-	            e.preventDefault();
-	            local.Pagination(1,0,5,"news");
-	            local.cur_type=0;
-	            local.newsList();
-	        })
-	        $(".u-m-top a:eq(1)").on("click",function(e){
-	            e.preventDefault();
-	            local.Pagination(1,0,5,"news");
-	            local.cur_type=1;
-	            local.newsList();
-	        })
-	    },
-	    Pagination:function(_page,_total,_pageSize,callback){
-	        local.cur_page = _page || 1;
-	        local.cur_total = _total || 0;
-	        local.cur_pageSize = _pageSize || 5;
-	        local.cur_maxPage = (Math.ceil((local.cur_total)/ local.cur_pageSize));
-	        local.cur_pageCallback=callback;
-	        // var _total = (_total<5) ? 1 : (parseInt(_total/5));
-	        $(".totalPage").show().text(local.cur_page+"/"+ local.cur_maxPage);
-
-	        $(".nextBtn").show();
-	        $(".prevBtn").show();
-	        if(local.cur_page==1){
-	            $(".prevBtn").hide();
-	        }
-	        if(local.cur_page==local.cur_maxPage){
-	            $(".nextBtn").hide();
-	        }
-	        if(local.cur_maxPage==1){
-	            $(".prevBtn").hide();
-	            $(".nextBtn").hide();
-	        }
-	        if( local.cur_total == 0 ){ $(".totalPage").hide()};
-	    },
-        // 我的消息的页面的事件处理
-        newsList:function(){
-            $.ajax({
-                method: "GET",
-                url: "/api/person-center/my-msg",
-                dataType: 'json',
-                data: {
-                    page: local.cur_page,
-                    pageSize: local.cur_pageSize,
-                    type:local.cur_type,
-                }, 
-                success: function(data) {
-                    if (data.code == 0) {
-                        if(data.object.list.length>0){
-                            // console.log(data.object.list.length);
-                            $(".empty").hide();
-                            $(".emptyText").hide();
-                            if(local.cur_type == 0){
-                                var str = "";
-                                for (index in data.object.list) {
-                                    str+='<div class="u-message"><div class="u-msystem">'+
-                                        '<img src="/images/messagehead.png">'+
-                                        '</div><div class="u-yuer"><p>'+
-                                        '<h3>'+data.object.list[index].title+'</h3>'+
-                                        '<span class="u-messagetime">'+data.object.list[index].create_date+'</span>'+
-                                        '<p><p>'+
-                                        '<span class="u-messagecontent">'+data.object.list[index].content+'</span>'+
-                                        '<span class="u-messtips" id="messshow">全文&gt;&gt;</span>'+
-                                        '</p></div></div>';
-                                }
-                                $(".u-message").remove();
-                                $(".messageBox").html($(".messageBox").html()+str).show();
-                            }else{
-                                var str = "";
-                                for (index in data.object.list) {
-                                    str+='<div class="u-focusmess"><p class="u-focusnc">'+
-                                        '<span class="u-foucscolor">'+data.object.list[index].nickname+'</span>'+
-                                        '<span class="u-focusc">关注了你</span></p>'+
-                                        '<span class="u-focustime">'+data.object.list[index].create_date+'</span>'+
-                                        '</div><div class="u-messnickname">'+
-                                        '<img src="'+data.object.list[index].icon+'"><img src="'+data.object.list[index].sex+'" class="messimgsex">'+
-                                        '<p class="u-mkname">'+data.object.list[index].nickname+'</p>'+
-                                        '<p><span>ID：</span><span>'+data.object.list[index].user_id+'</span></p></div>';
-                                }
-                                $(".u-focusmess").remove();
-                                $(".focusmessage").show().html($(".focusmessage").html()+str);
-                            }
-                            $(".M-box").show();
-                            local.Pagination(local.cur_page,data.object.total,local.cur_pageSize,"follow");      
-                        }else{
-                            $(".messageBox").hide();
-                            $(".M-box").hide();
-                            $(".empty").show();
-                            $(".emptyText").show();
-                        }             
-                    } else {
-                        console.log(data.result);
-                    }
-                },
-                error: function(a, b, c) {
-                    console.log("接口出问题啦");
-                }
+    var messagevue = new Vue({
+        el: '#messagevue',
+        delimiters: ['${', '}'],
+        data: {
+            vuemessage:'',
+            local:{
+            	cur_page:1,
+		 		cur_pageSize:5,
+		    	cur_maxPage:1,
+		    	cur_total:0,
+		    	cur_pageCallback:null,
+		    	cur_type:0,
+            },
+        },
+        mounted: function () {
+            this.$nextTick(function () {
+                // 代码保证 this.$el 在 document 中
+                this.eventBind();
+                this.newsList();
             })
+        },
+        methods:{
+        	eventBind:function(){ 
+		        $("#mymessageclick").on("click",function(e){
+		        	var _this = this;
+		            e.preventDefault();
+		            _this.local.Pagination(1,0,5,"news");
+		            _this.local.cur_type=0;
+		        })
+		        $(".u-m-top a").on("click", function(e) {
+			        e.preventDefault();
+			        $(this).addClass("focuscurrent").siblings().removeClass("focuscurrent");
+			        $(".mcurrent").hide().eq($(this).index()).show();
+			    })
+			    $(".m-mainm a:eq(0)").trigger("click");
+		    },
+		    umtop:function(e){
+		    	var _this = this;
+	            e.preventDefault();
+	            _this.Pagination(1,0,5,"news");
+	            _this.local.cur_type=0;
+	            _this.newsList();
+	        },
+	        umtopeq:function(e){
+	        	var _this = this;
+	            e.preventDefault();
+	            _this.Pagination(1,0,5,"news");
+	            _this.local.cur_type=1;
+	            _this.newsList();
+	        },
+		    prevBtnmsg:function(event){
+	        	var _this = this;
+	        	event.preventDefault();
+	            _this.local.cur_page--;
+	                _this.local.cur_type=0;
+	                _this.newsList();
+	        },
+	        nextBtnmsg:function(event){
+	        	var _this = this
+	        	event.preventDefault();
+	            _this.local.cur_page++;
+	                _this.local.cur_type=0;
+	                _this.newsList();
+	        },
+	        prevBtnmsgs:function(){
+	        	var _this = this;
+	        	event.preventDefault();
+	            _this.local.cur_page--;
+	            	_this.local.cur_type=1;
+	                _this.newsList();
+	        },
+	        nextBtnmsgs:function(event){
+	        	var _this = this
+	        	event.preventDefault();
+	            _this.local.cur_page++;
+	            	_this.local.cur_type=1;
+	                _this.newsList();
+	        },
+		    Pagination:function(_page,_total,_pageSize,callback){
+		    	var _this = this;
+		        _this.local.cur_page = _page || 1;
+		        _this.local.cur_total = _total || 0;
+		        _this.local.cur_pageSize = _pageSize || 5;
+		        _this.local.cur_maxPage = (Math.ceil((_this.local.cur_total)/ _this.local.cur_pageSize));
+		        _this.local.cur_pageCallback=callback;
+		        $(".totalPage").show().text(_this.local.cur_page+"/"+ _this.local.cur_maxPage);
+
+		        $(".nextBtn").show();
+		        $(".prevBtn").show();
+		        if(_this.local.cur_page==1){
+		            $(".prevBtn").hide();
+		        }
+		        if(_this.local.cur_page==_this.local.cur_maxPage){
+		            $(".nextBtn").hide();
+		        }
+		        if(_this.local.cur_maxPage==1){
+		            $(".prevBtn").hide();
+		            $(".nextBtn").hide();
+		        }
+		        if( _this.local.cur_total == 0 ){ $(".totalPage").hide()};
+		    },
+	        // 我的消息的页面的事件处理
+	        newsList:function(){
+	        	var _this = this;
+	            $.ajax({
+	                method: "GET",
+	                url: "/api/person-center/my-msg",
+	                dataType: 'json',
+	                data: {
+	                    page: _this.local.cur_page,
+	                    pageSize: _this.local.cur_pageSize,
+	                    type:_this.local.cur_type,
+	                }, 
+	                success: function(data) {
+	                    if (data.code == 0) {
+	                        if(data.object.list.length>0){
+	                        	_this.vuemessage = data.object.list;
+	                        	$('body').scrollTop(0);
+	                            $(".M-box").show();  
+	                            if(_this.local.cur_type == 0){
+	                            }else{
+	                            }
+	                            _this.Pagination(_this.local.cur_page,data.object.total,_this.local.cur_pageSize,"follow");       
+	                        }else{
+	                            _this.vuemessage = '';
+	                            $(".M-box").hide();
+	                        }             
+	                    } else {
+	                        console.log(data.result);
+	                    }
+	                },
+	                error: function(a, b, c) {
+	                    console.log("接口出问题啦");
+	                }
+	            })
+	        }
         }
-    };
-    local.init();
+    })
 </script>
 {% endblock %}
