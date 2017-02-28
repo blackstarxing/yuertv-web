@@ -1231,7 +1231,7 @@ input.full{
 	line-height: 95px;
 
 }
-.u-hright a{
+.u-hright a.liveids{
 	display:inline-block;
 	width:100px;
 	height:30px;
@@ -2315,5 +2315,5 @@ h3{
 	font-weight:normal;
 	font-size:16px;
 }
-
+[v-cloak]{display:none;}
 
