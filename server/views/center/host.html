@@ -28,7 +28,7 @@
 			  			{% else %}
 			  				<div class="thephoneauth modifyphone" id="woyaodangzhuboshoujirenz">
 			  					<div>
-			  						<span>手机号码：</span><span id="hiddenFields">{{info.mobile}}</span><span>已认证</span><button href="" id="modifyTelVer">修改手机号码</button>
+			  						<span>手机认证：</span><span id="hiddenFields">{{info.mobile}}</span><span>已认证</span><button href="" id="modifyTelVer">修改手机号码</button>
 			  					</div>
 			  				</div>
 			  				<div class="toCertification modifyshiming" id="toCertification">
@@ -36,7 +36,7 @@
 			  						<span>实名认证：</span><a href="information#m-realname">去认证</a>
 			  					{% else %}
 			  					<div class="idcardmodifytwo">
-			  						<span>身份证号码：</span><span id="hiddenIdCard">{{info.id_card}}</span><span>已认证</span><button href="" id="modifyIdCard">修改认证信息</button>
+			  						<span>实名认证：</span><span id="hiddenIdCard">{{info.id_card}}</span><span>已认证</span><button href="" id="modifyIdCard">修改认证信息</button>
 			  					</div>
 			  						
 			  					{% endif %}	
@@ -155,7 +155,7 @@
 {% endblock %}
 
 {% block js %}
-<script type="text/javascript" src="/dist/center.js"></script>
+<!-- <script type="text/javascript" src="/dist/center.js"></script> -->
 <script type="text/javascript">
 	$('.g-left li').eq('{{index}}').addClass('rightswitchcolor');                                           
 	//我要当主播的div之间的切换
@@ -190,6 +190,13 @@
     });
     $("#modifyIdCard").on("click",function(){
         window.location.href="information#m-realname";
-    });  
+    }); 
+    // 手机号，身份证号的隐藏
+ 	$("#hiddenFields").text($("#hiddenFields").text().substr(0,3)+"****"+$("#hiddenFields").text().substr(7,4)) 
+    $("#hiddenIdCard").text($("#hiddenIdCard").text().substr(0,3)+"************"+$("#hiddenIdCard").text().substr(7,4))
+    // 若都认证过就跳转到，如何直播
+    if(0!==$("#hiddenFields").length && 0!==$("#hiddenIdCard").length){
+        $("#jump").trigger("click");
+    }
 </script>
 {% endblock %}
