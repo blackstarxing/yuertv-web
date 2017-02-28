@@ -320,7 +320,32 @@ router.get('/center/host', function(req, res, next) {
     }else{
         islogin = false;
     };
-    res.render('center/host', { title: "我要当主播" ,index:5,islogin:islogin});
+    Thenjs.parallel([function(cont) {
+        request({
+            uri: path+'/person-center/user-info',
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+              }
+        }, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        console.log("zhangli"+JSON.parse(result[0]).object.icon);
+        res.render('center/host', {
+            title: "我要当主播",
+            index:5,
+            info: JSON.parse(result[0]).object,
+            islogin: islogin,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
 });
 
 router.get('/alipay', function(req, res, next) {

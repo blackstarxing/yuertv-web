@@ -47,7 +47,7 @@
   			<div class="m-switch switch-content switch">
   				<div class="u-pcurrent">
   					<label for="u-current">当前密码</label>
-  					<input type="" name="current" id="u-current" placeholder="请输入密码">
+  					<input type="password" name="current" id="u-current" placeholder="请输入密码">
   					<span class="u-verifypassword" >密码验证中</span>
   					<span class="PleaseEnterThePassword" >请输入密码</span>
   					<span class="u-failpassword" >密码错误</span>
@@ -56,13 +56,13 @@
   				</div>
   				<div class="u-pnew">
   					<label for="u-new">新密码</label>
-	  				<input type="" name="new" id="u-new" class="u-ifail" placeholder="密码长度必须大于6位">
+	  				<input type="password" name="new" id="u-new" class="u-ifail" placeholder="密码长度必须大于6位">
 	  				<span class="u-vpassword">密码长度必须大于5位！</span>
 	  				<br>
   				</div>
   				<div class="u-pcancel">
   					<label for="u-confirm">确认新密码</label>
-	  				<input type="" name="confirm" id="u-confirm" class="u-iright" placeholder="密码与新密码保持一致">
+	  				<input type="password" name="confirm" id="u-confirm" class="u-iright" placeholder="密码与新密码保持一致">
 	  				<span class="u-failpassword" >密码错误</span>
 	  				<span class="u-rightpassword" >密码正确</span><br>
   				</div>
@@ -359,6 +359,6 @@
   });
   $.datetimepicker.setLocale('ch');
   // 设置等到当前日期之后的时间
-  $('#datetimepicker').datetimepicker('setStartDAte',new Date().toLocaleDateString().replace(/\//g,"-"));
+  $('#datetimepicker').datetimepicker({minDate:new Date()});
 </script>
 {% endblock %}

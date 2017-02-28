@@ -1491,9 +1491,8 @@ input.full{
 	font-size:18px;
 	color:#fff;
 }
-.u-yuer p .u-messagetime{
+span.u-messagetime{
 	display:inline-block;
-	float:left;
 	font-size:12px;
 	color:#626f7e;
 }

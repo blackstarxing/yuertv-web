@@ -16,6 +16,11 @@ var local={
         local.eventBind();
     },
     eventBind : function(){ 
+        // $(".u-cbottom").on("click",function(){
+        //     if(""!==$("#hiddenField").html() || ""!==$("#hiddenIdCard")){
+        //         $("#jump").trigger("click");
+        //     }
+        // }
         // 我的资料－修改密码
         // 当前密码的校验
         $("#u-current").off().on("blur",function(){
@@ -73,7 +78,7 @@ var local={
         });   
         // 新密码字段的校验  
         $("#u-new").off().on("blur",function(){
-            if($(this).val().length<=6){
+            if($(this).val().length<6){
                 $("#u-new").parent().find("span").each(function(){
                     if($(this).attr("class").indexOf("u-vpassword") != -1){
                         $(this).show();
@@ -114,7 +119,7 @@ var local={
         });
         // 修改密码提交的校验
         $("#send").off().on("click",function(){
-            if(local.updatePasswordTag_current && local.updatePasswordTag_new){
+            if(local.updatePasswordTag_current && local.updatePasswordTag_confirm){
                 $.ajax({
                     method: "GET",
                     url: "/api/person-center/update-password",
@@ -262,12 +267,12 @@ var local={
             $("#verify").removeClass("change-color");
         });
         // 我要当主播的实名认证
-        $(".u-cbottom").on("click",function(){
-            if(""!==$("#hiddenField").html()){
-                $("#jump").trigger("click");
-            }else{
-            }
-        });
+        // $(".u-cbottom").on("click",function(){
+        //     if(""!==$("#hiddenField").html()){
+        //         $("#jump").trigger("click");
+        //     }else{
+        //     }
+        // });
         // 修改昵称
         $("#checktips").off().on("focus",function(){
                 $(this).parent().find("span").each(function(){
@@ -306,7 +311,8 @@ var local={
                     },
                     success: function(data) {
                         if (data.code == 0) {
-                            alert("昵称修改成功");//没找到弹框
+                            $(".m-psuccess").show();
+                            window.location.href=window.location.href;
                         }else if(data.code == 1){
                             alert("更新失败");//没找到弹窗
                         }else if(data.code == 2){
@@ -323,14 +329,11 @@ var local={
                     }
                 })
             }else{
-                alert("请输入6-20位的中英文，数字，下划线");
+                alert("请输入6-20位的字符");
             }
         })
         // 手机号中间隐藏（我的资料手机认证，我要当主播手机认证）
         $("#hiddenField").text($("#hiddenField").text().substr(0,3)+"****"+$("#hiddenField").text().substr(7,4))   
-        $("#hiddenFields").text($("#hiddenFields").text().substr(0,3)+"****"+$("#hiddenFields").text().substr(7,4)) 
-        // 身份证号的隐藏
-        $("#hiddenIdCard").text($("#hiddenIdCard").text().substr(0,3)+"************"+$("#hiddenIdCard").text().substr(7,4))
         // 支付宝账号的隐藏
         $(".payzfbtip").text($(".payzfbtip").text().substr(0,3)+"*****"+$(".payzfbtip").text().substr(7,4))
         //我的资料手机认证－－修改手机号码弹框
@@ -395,7 +398,7 @@ var local={
                         $("#copySecondTelVer").show();
                         settime(60);
                     }else{
-                        alert(data.result);//这个先这样用，后台应该是文档写的有问题
+                        // alert(data.result);//这个先这样用，后台应该是文档写的有问题
                     }
                 },
                 error: function(a, b, c) {
@@ -469,7 +472,7 @@ var local={
                 Iscardmodify=data.object.code; 
                     if(data.code == 0){
                         console.log("请求成功");
-                        if(data.object.code == 1){
+                        if(data.object.code == 0){
                             $(".switchshowcard").show();
                             $(".idcardtwomodify").hide();
                         }else if(data.object.code == 1){
@@ -589,15 +592,6 @@ var local={
             e.preventDefault();
             console.log(123);
             var UsubmitCheck=true;
-            // for(var i=0; i<=$(".switchshowcard input").length;i++){
-            //     if(!$(".switchshowcard input").eq(i).val()){
-            //         // showTip($(this).attr("name"));
-            //         // UsubmitCheck=false;
-                    
-            //          $(".switchshowcard input").eq(i).focus();
-            //          return false;
-            //      }
-            // }
             console.log(123);
             $(".switch-conCard input").each(function(){
                 if(!$(this).val()){
