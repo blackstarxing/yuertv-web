@@ -32,7 +32,9 @@ input:-webkit-autofill {
 color: #fff !important;
 } 
 /*input:focus,select:focus,textarea:focus{outline: none;border-color: #42ac59;}*/
-
+html,body{
+    height: 100%;
+}
 .content{
 	display: flex; min-height: 100vh; flex-direction: column;
 }
@@ -100,6 +102,8 @@ color: #fff !important;
 }
 .m-common{
     padding-top: 110px;
+    min-height: 100%;
+    box-sizing: border-box;
 }
 .g-hd{
     padding:17px 0;   
@@ -576,11 +580,14 @@ color: #fff !important;
 }
 .video-name a{
     cursor: default;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
 }
 .footer{
 	/*height: 112px;*/
     padding:45px 0;
-	margin-top: 80px;
+	margin-top: -285px;
 	overflow: hidden;
     background: #1a2129;
     color:#898c8f;

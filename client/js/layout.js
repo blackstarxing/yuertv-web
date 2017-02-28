@@ -36,8 +36,9 @@ $(function(){
     $('.m-search input').click(function(e){
         // $(this).css({'background':'#fff','color':"#333"});
         e.stopPropagation();
-        $('.hot-anchor').show();
-
+        if($('.anchor-list').html()!=''){
+            $('.hot-anchor').show();
+        }   
     })
 
     $("body").click(function(e){
