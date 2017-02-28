@@ -73,7 +73,7 @@ $(function() {
         var _current = $(e.currentTarget);
         var _error = _current.next('.error-tip');
         if($telnumber.val()){
-            if(/^1([0-9]){10}$/.test($telnumber.val())){
+            if(/^1[34578][0-9]{9}$/.test($telnumber.val())){
                 var parm = {};
                 parm.mobile = $telnumber.val();
                 $.ajax({
@@ -83,11 +83,11 @@ $(function() {
                     dataType: 'json',
                     success: function(data) {
                         if (data.object==0) {
-                            _error.show();
-                            _error.text('手机号未被注册');
+                            // _error.show();
+                            $('.getCode').text('手机号未被注册');
                             setTimeout(function(){
-                                _error.hide();
-                                _error.text('手机号码不能为空');
+                                // _error.hide();
+                                $('.getCode').text('获取验证码');
                             },2000);
                         }else{
                             $('.code-wrap input').val('');
@@ -101,17 +101,17 @@ $(function() {
                     }
                 });
             }else{
-                _error.show();
-                _error.text('请输入正确号码');
+                // _error.show();
+                $('.getCode').text('请输入正确号码');
                 setTimeout(function(){
-                    _error.hide();
-                    _error.text('手机号码不能为空');
+                    // _error.hide();
+                    $('.getCode').text('获取验证码');
                 },2000);
             }
         }else{
-            _error.show();
+            $('.getCode').text('号码为空');
             setTimeout(function(){
-                _error.hide();
+                $('.getCode').text('获取验证码');
             },2000);
         }
     })
