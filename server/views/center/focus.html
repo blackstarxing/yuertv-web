@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
- <div class="g-container f-cb" id="confocus">
+ <div class="g-container f-cb" id="confocus" v-cloak>
 	<div class="g-main"> 
 		 {% include 'common/cenleft.html' %}  
 	    <div id="rightmain" class="g-right" >   
@@ -15,7 +15,8 @@
 					<div class="focushost f-cb">
 						<img src="/images/empty.png" class="empty" alt="你还没有关注任何人哦！" title="你还没有关注任何人哦！">
 						<p class="emptyText">当前没有关注任何人哦！</p>
-						<div class="u-host" v-for="(item,index) in focusmsg">
+						<div class="u-host" v-for="(item,index) in focusmsg" >
+						<a v-bind:href="'/liveroom?id='+item.live_id" style="display:block">
 							<div class="u-hleft">
 								<div class="u-focusimg"><img v-bind:src="'http://img.wangyuhudong.com/'+item.icon"></div>
 								<div class="u-nickhost">
@@ -35,9 +36,10 @@
 								</div>
 							</div>
 							<div class="u-hright">
-								<a v-bind:href="'/liveroom?id='+item.live_id" v-if="item.state">进入房间</a>
+								<a v-bind:href="'/liveroom?id='+item.live_id" v-if="item.state" class="liveids">进入房间</a>
 								<a href="" id="haveBeenOffline" v-else>已经离线</a>
 							</div>
+						</a>
 						</div>
 					</div>
 					<div class="M-box">
@@ -113,7 +115,7 @@
 	                }
 	            })
 	        },
-        	prevBtn:function(){
+        	prevBtn:function(event){
         		var _this = this;
         		event.preventDefault();
                 _this.local.cur_page--;
@@ -122,7 +124,7 @@
                     _this.followList();
                 }
         	},
-        	nextBtn:function(){
+        	nextBtn:function(event){
         		var _this = this;
         		event.preventDefault();
                 _this.local.cur_page++;
