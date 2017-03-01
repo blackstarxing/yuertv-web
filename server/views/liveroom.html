@@ -57,7 +57,7 @@
                     </div>
                     <div class="option">
                         {% if detail.info.state == 1 %}
-                        {% if detail.info.front_user_type != 2 %}
+                        {% if detail.info.front_user_type != -1 %}
                         <button class="punish" @click="punishPop">管理</button>
                         {% endif %}
                         {% endif %}

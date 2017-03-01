@@ -360,7 +360,7 @@ body{
     z-index: 999999
 }
 
-.code-wrap,.reg-success {
+.code-wrap{
     position: absolute;
     left: 0;
     right: 0;
@@ -369,13 +369,10 @@ body{
     margin: auto;
     border-radius: 20px;
     background: #323a43;
-    color: #fff
-}
-
-.code-wrap {
+    color: #fff;
     width: 240px;
     height: 200px;
-    padding: 30px
+    padding: 30px;
 }
 .reg-step{
 	/*display: none;*/

@@ -1,6 +1,6 @@
 $(function(){
     var icon = window.localStorage.getItem("avatar");
-    if(icon){
+    if(icon && icon != 'undefined'){
         if(icon.indexOf('http')>-1){
             $('.avatar-icon').attr('src',icon); 
         }else{

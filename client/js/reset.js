@@ -66,7 +66,7 @@ $(function() {
     function changeCode(){
         $('.code-wrap input').val('');
         // $picCode.attr('src','http://172.16.2.62:8777/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
-        $picCode.attr('src','http://yuerwebapi.wangyuhudong.com/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
+        $picCode.attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
     }
 
     $('.getCode').click(function(e){
@@ -125,6 +125,7 @@ $(function() {
         e.preventDefault();
         var _error = $('.code-wrap .error-tip');
         var parm = {};
+        parm.type = 2;
         parm.mobile = $telnumber.val();
         parm.imgCheckCode = $('.code-wrap input').val();
         if(!parm.imgCheckCode){
