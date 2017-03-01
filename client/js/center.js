@@ -364,10 +364,12 @@ var local={
             $("#numberTelVer").removeClass("change-color");
         });
         $("#gainnumberTelVer").off().on("click",function(event){
-             if(($("#numberTelVer").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#numberTelVer").val()))){
+           
+            if(($("#numberTelVer").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#numberTelVer").val()))){
                 $("#numberTelVer").removeClass("change-color");
                 $("#telValBounced").hide();
             } else {
+                 $("input").val("");
                  $("#gainnumberTelVer").hide();
                  $(".u-numbertelTelVer").show();//请输入正确的手机号
             }
@@ -779,17 +781,21 @@ var local={
         });
         // 修改支付宝的弹框
           $("#payname").on("blur",function(){
+            // $("input").val();
             if($("#payname").val()==''){
                 $(".paynametips").show();
             }else{
                 $(".paynametips").hide();
+                $("input").val();
             }
         })
         $("#paynumber").on("blur",function(){
+            // $("input").val();
             if($("#paynumber").val()==''){
                 $(".paycounttips").show();
             }else{
                 $(".paycounttips").hide();
+                $("input").val();
             }
         })
         $("#payzfbmodify").on("click",function(){
