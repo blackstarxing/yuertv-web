@@ -52,7 +52,7 @@
 			<div class="u-focusmessage mcurrent">
 				<div class="focusmessage">
 					<div v-if="vuemessage">
-						<div v-for="(item,index) in vuemessage">
+						<div v-for="(item,index) in vuemessage" style="position:relative;">
 							<div class="u-focusmess" >
 								<p class="u-focusnc">
 									<span class="u-foucscolor">${item.title}</span>
@@ -223,10 +223,10 @@
 	                            if(_this.local.cur_type == 0){
 	                            }else{
 	                            	 $(".u-foucscolor").on("mouseenter", function() { 
-								        $(".u-messnickname").show().css("top", $(this).position().top+'2px') 
+								        $(".u-messnickname").show().css("top", '25px');
 								    });
 								    $(".u-foucscolor").on("mouseleave", function() { 
-								        $(".u-messnickname").hide() 
+								        $(".u-messnickname").hide();
 								    }) 
 	                            }
 	                            _this.Pagination(_this.local.cur_page,data.object.total,_this.local.cur_pageSize,"follow");       
