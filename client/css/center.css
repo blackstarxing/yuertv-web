@@ -1525,6 +1525,7 @@ span.u-messagetime{
 .u-focusmess .u-foucscolor{
 	font-size:16px;
 	color:#f36;
+	cursor: pointer;
 }
 .u-focusmess p span.u-focusc{
 	font-size:14px;
@@ -1538,6 +1539,7 @@ span.u-messagetime{
 	display:none;
 	position:absolute;
 	left:0;
+	top:25px;
 	width:180px;
 	height:215px;
 	text-align:center;
