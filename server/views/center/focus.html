@@ -37,7 +37,7 @@
 							</div>
 							<div class="u-hright">
 								<a v-bind:href="'/liveroom?id='+item.live_id" v-if="item.state" class="liveids">进入房间</a>
-								<a href="" id="haveBeenOffline" v-else>已经离线</a>
+								<a v-bind:href="'/liveroom?id='+item.live_id" id="haveBeenOffline" v-else>已经离线</a>
 							</div>
 						</a>
 						</div>

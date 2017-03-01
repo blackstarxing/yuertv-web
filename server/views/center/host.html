@@ -32,14 +32,10 @@
 			  					</div>
 			  				</div>
 			  				<div class="toCertification modifyshiming" id="toCertification">
-			  					{% if info.id_card=="" %}
 			  						<span>实名认证：</span><a href="information#m-realname">去认证</a>
-			  					{% else %}
-			  					<div class="idcardmodifytwo">
+			  					<!-- <div class="idcardmodifytwo">
 			  						<span>实名认证：</span><span id="hiddenIdCard">{{info.id_card}}</span><span>已认证</span><button href="" id="modifyIdCard">修改认证信息</button>
-			  					</div>
-			  						
-			  					{% endif %}	
+			  					</div> -->
 		  					</div>
 			  			{% endif %}
 							
@@ -195,8 +191,11 @@
  	$("#hiddenFields").text($("#hiddenFields").text().substr(0,3)+"****"+$("#hiddenFields").text().substr(7,4)) 
     $("#hiddenIdCard").text($("#hiddenIdCard").text().substr(0,3)+"************"+$("#hiddenIdCard").text().substr(7,4))
     // 若都认证过就跳转到，如何直播
-    if(0!==$("#hiddenFields").length && 0!==$("#hiddenIdCard").length){
+    if(0!==$("#hiddenFields").length){
         $("#jump").trigger("click");
     }
+    // if(0!==$("#hiddenFields").length && 0!==$("#hiddenIdCard").length){
+    //     $("#jump").trigger("click");
+    // }
 </script>
 {% endblock %}

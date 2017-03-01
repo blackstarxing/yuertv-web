@@ -16,11 +16,6 @@ var local={
         local.eventBind();
     },
     eventBind : function(){ 
-        // $(".u-cbottom").on("click",function(){
-        //     if(""!==$("#hiddenField").html() || ""!==$("#hiddenIdCard")){
-        //         $("#jump").trigger("click");
-        //     }
-        // }
         // 我的资料－修改密码
         // 当前密码的校验
         $("#u-current").off().on("blur",function(){
@@ -266,13 +261,6 @@ var local={
         $("#verify").on("blur",function(){
             $("#verify").removeClass("change-color");
         });
-        // 我要当主播的实名认证
-        // $(".u-cbottom").on("click",function(){
-        //     if(""!==$("#hiddenField").html()){
-        //         $("#jump").trigger("click");
-        //     }else{
-        //     }
-        // });
         // 修改昵称
         $("#checktips").off().on("focus",function(){
                 $(this).parent().find("span").each(function(){
@@ -420,7 +408,8 @@ var local={
                     },
                     success: function(data) {
                         if (data.code == 0) {
-                            alert("修改成功");//没找到你的弹框
+                            // alert("修改成功");//没找到你的弹框
+                            $(".m-psuccess").show();
                             $("#telValBounced").hide();
                             window.location.href=window.location.href;
                         }else if(data.code == 1){
@@ -568,13 +557,6 @@ var local={
                 e.preventDefault();
             }
         })
-        // 身份证到期时间
-        var currTime = new Date();
-        // var currentTime = currTime.getFullYear()+ "年"+ month + "月" + currTime.getDate()+ "日 "+"星期"+day+" "+currTime.getHours()+ ":"+ time.getMinutes() + ":" +time.getSeconds();
-        // document.write(currentTime);
-        // if($("#u-finaltime").val()>currentTime){
-        //     alert("请输入当前日期之后的有效日期");
-        // }
         // 实名认证的错误提示
         function showTip(text){
         $('.tip').text(text).fadeIn();
