@@ -1569,7 +1569,15 @@ span.u-messagetime{
 	font-size:14px;
 	color:#cecfd2;
 }
-
+.u-foucscolor:hover{
+	display:inline-block;
+	width:25px;
+	height:25px;
+	border-radius: 50%;
+	position:relative;
+	left:50px;
+	top:-50px;
+} 
 /*我要充值*/
 .g-top-up{
 	width:785px;
