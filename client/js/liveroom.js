@@ -744,7 +744,9 @@ $(function(){
                     //     {id:7, icon:"icon.png", tips:"海龟（<font color='#ffff00'>70</font>鱼币）<br/>点击送给主播"},
                     //     {id:8, icon:"icon.png", tips:"鲸鱼（<font color='#ffff00'>80</font>鱼币）<br/>点击送给主播"},
                     // ]);
-                    this.flash.updateItems(giftlist);
+
+                    // 礼物列表
+                    // this.flash.updateItems(giftlist);
 
                     //更新我的道具列表，参数：[道具1, 道具2, ...]
                     //道具格式：{id:道具ID, icon:道具图标, name:道具名称, count:道具数量}
@@ -753,6 +755,7 @@ $(function(){
                     //     {id:2, icon:"icon.png", name:"海星", count:2},
                     // ]);
 
+                    // 获取道具
                     getProp();
 
                     endingTime(endingtime); 
