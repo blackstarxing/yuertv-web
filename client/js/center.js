@@ -367,7 +367,7 @@ var local={
            
             if(($("#numberTelVer").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#numberTelVer").val()))){
                 $("#numberTelVer").removeClass("change-color");
-                $("#telValBounced").hide();
+                // $("#telValBounced").hide();
             } else {
                  $("input").val("");
                  $("#gainnumberTelVer").hide();
@@ -453,45 +453,45 @@ var local={
         // 我的资料－－实名认证
         // 实名认证的审核状态
         var Iscardmodify;
-        $("#m-realname").on("click",function(){
-                $.ajax({  
-                type: "GET",  
-                url: "/api/person-center/certificateState",  
-                data: {},  
-                dataType: "json",  
-                success: function(data){ 
-                Iscardmodify=data.object.code; 
-                    if(data.code == 0){
-                        console.log("请求成功");
-                        if(data.object.code == 0){
-                            $(".switchshowcard").show();
-                            $(".idcardtwomodify").hide();
-                        }else if(data.object.code == 1){
-                            // 审核中
-                            $(".switchshowcard").hide();
-                            $("cardreviewing").show();
-                        }
-                        else if(data.object.code == 2){
-                            // 审核通过
-                            $(".switchshowcard").hide();
-                            $(".idcardtwomodify").show();
-                        }else if(data.object.code == 3){
-                            //审核不通过
-                            $(".switchshowcard").hide();
-                            $(".idcardtwomodify").hide();
-                            $(".cardreviewingfailure").show();
-                        }else{
-                            alert("查无信息");
-                        }    
-                    }else{
-                        console(data.result); 
-                    }    
-                },
-                error: function() {
-                    console.log('连接失败，请检查您的网络设置后重试');
-                } 
-            });
-        })
+        // $("#m-realname").on("click",function(){
+        //         $.ajax({  
+        //         type: "GET",  
+        //         url: "/api/person-center/certificateState",  
+        //         data: {},  
+        //         dataType: "json",  
+        //         success: function(data){ 
+        //         Iscardmodify=data.object.code; 
+        //             if(data.code == 0){
+        //                 console.log("请求成功");
+        //                 if(data.object.code == 0){
+        //                     $(".switchshowcard").show();
+        //                     $(".idcardtwomodify").hide();
+        //                 }else if(data.object.code == 1){
+        //                     // 审核中
+        //                     $(".switchshowcard").hide();
+        //                     $("cardreviewing").show();
+        //                 }
+        //                 else if(data.object.code == 2){
+        //                     // 审核通过
+        //                     $(".switchshowcard").hide();
+        //                     $(".idcardtwomodify").show();
+        //                 }else if(data.object.code == 3){
+        //                     //审核不通过
+        //                     $(".switchshowcard").hide();
+        //                     $(".idcardtwomodify").hide();
+        //                     $(".cardreviewingfailure").show();
+        //                 }else{
+        //                     alert("查无信息");
+        //                 }    
+        //             }else{
+        //                 console(data.result); 
+        //             }    
+        //         },
+        //         error: function() {
+        //             console.log('连接失败，请检查您的网络设置后重试');
+        //         } 
+        //     });
+        // })
         $("#wingfailure").on("click",function(){
             $(".switchshowcard").show();
         })
@@ -781,7 +781,7 @@ var local={
         });
         // 修改支付宝的弹框
           $("#payname").on("blur",function(){
-            // $("input").val();
+            $("input").val();
             if($("#payname").val()==''){
                 $(".paynametips").show();
             }else{
@@ -790,7 +790,7 @@ var local={
             }
         })
         $("#paynumber").on("blur",function(){
-            // $("input").val();
+            $("input").val();
             if($("#paynumber").val()==''){
                 $(".paycounttips").show();
             }else{
@@ -802,7 +802,10 @@ var local={
             $("#paytips").show();
         })
         $("#payboxcel").on("click",function(){
+            $("#payname").val("");
+            $("#paynumber").val("");
             $("#paytips").hide();
+            // window.location.href=window.location.href;
         })
         $("#paybox").off().on("click",function(){
             if($("#payname").val()!="" && $("#paynumber").val()!=""){

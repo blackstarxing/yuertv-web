@@ -191,11 +191,11 @@
  	$("#hiddenFields").text($("#hiddenFields").text().substr(0,3)+"****"+$("#hiddenFields").text().substr(7,4)) 
     $("#hiddenIdCard").text($("#hiddenIdCard").text().substr(0,3)+"************"+$("#hiddenIdCard").text().substr(7,4))
     // 若都认证过就跳转到，如何直播
-    if(0!==$("#hiddenFields").length){
-        $("#jump").trigger("click");
-    }
-    // if(0!==$("#hiddenFields").length && 0!==$("#hiddenIdCard").length){
+    // if(0!==$("#hiddenFields").length){
     //     $("#jump").trigger("click");
     // }
+    if(undefined!==$("#hiddenIdCard").html()){
+        $("#jump").trigger("click");
+    }
 </script>
 {% endblock %}
