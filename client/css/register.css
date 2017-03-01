@@ -226,6 +226,13 @@ body{
 	padding:0 10px;
 	border-radius:0 4px 4px 0;
 }
+.m-resetform .error-tip{
+    top: 10px;
+    right: 50px;
+    background: #f93;
+    border-radius: 0 4px 4px 0;
+    color:#fff;
+}
 .flip-next{
 	-webkit-animation: flipnext .3s forwards;
 	   -moz-animation: flipnext .3s forwards;
