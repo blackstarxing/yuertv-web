@@ -61,8 +61,11 @@
 								<span class="u-focustime">${item.create_date}</span>
 							</div>
 							<div class="u-messnickname">
-								<img v-bind:src="'http://img.wangyuhudong.com/'+item.icon"><img v-bind:src="'http://img.wangyuhudong.com/'+item.sex" class="messimgsex">
-								<p class="u-mkname">${item.nickname}</p>
+								<img src="/images/default_avatar.png" class="messnickicon" v-if="item.icon==null">
+								<img v-bind:src="'http://img.wangyuhudong.com/'+item.icon" class="messnickicon" v-else>
+								<img v-if="item.sex==0" src="/images/male.png" class="messimgsex">
+								<img v-else src="/images/female.png">
+								<p class="u-mkname">${item.title}</p>
 								<p><span>ID：</span><span>${item.user_id}</span></p>
 							</div>
 						</div>
@@ -96,12 +99,8 @@
 <script type="text/javascript">
 	$('.g-left li').eq('{{index}}').addClass('rightswitchcolor');
     //我的消息－－关注消息的划入事件
-    $(".u-foucscolor").on("mouseenter", function() { 
-        $(".u-messnickname").show().css("top", $(this).position().top+'2px') 
-    });
-    $(".u-foucscolor").on("mouseleave", function() { 
-        $(".u-messnickname").hide() 
-    })       
+   
+
     var messagevue = new Vue({
         el: '#messagevue',
         delimiters: ['${', '}'],
@@ -223,6 +222,12 @@
 	                            $(".M-box").show();  
 	                            if(_this.local.cur_type == 0){
 	                            }else{
+	                            	 $(".u-foucscolor").on("mouseenter", function() { 
+								        $(".u-messnickname").show().css("top", $(this).position().top+'2px') 
+								    });
+								    $(".u-foucscolor").on("mouseleave", function() { 
+								        $(".u-messnickname").hide() 
+								    }) 
 	                            }
 	                            _this.Pagination(_this.local.cur_page,data.object.total,_this.local.cur_pageSize,"follow");       
 	                        }else{

@@ -1548,6 +1548,12 @@ span.u-messagetime{
 	margin:15px 45px 10px 30px;
 	border-radius: 50px;
 }
+.messnickicon{
+	display:inline-block;
+	 width:122px;
+	  height:122px;
+	   border-radius:50%;
+}
 .u-messnickname img.messimgsex{
 	display:inline-block;
 	width:25px;
@@ -1563,21 +1569,13 @@ span.u-messagetime{
 .u-messnickname .u-mkname{
 	font-size:18px;
 	color:#fff;
-	margin-bottom:5px;
+	margin-top:-50px;
+	/*margin-bottom:5px;*/
 }
 .u-messnickname span{
 	font-size:14px;
 	color:#cecfd2;
 }
-.u-foucscolor:hover{
-	display:inline-block;
-	width:25px;
-	height:25px;
-	border-radius: 50%;
-	position:relative;
-	left:50px;
-	top:-50px;
-} 
 /*我要充值*/
 .g-top-up{
 	width:785px;
