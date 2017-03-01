@@ -17,6 +17,7 @@ body{
 }
 .m-regbox{
 	width: 508px;
+	height: 285px;
 	padding:30px 96px;
 	margin:10px auto 0;
 	border-radius: 20px;
