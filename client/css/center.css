@@ -1553,9 +1553,6 @@ span.u-messagetime{
 	width:115px;
 	height:115px;
 	border-radius:50%;
-	overflow:hidden;
-	text-overflow:ellipsis;
-	white-space:nowrap;
 }
 .u-messnickname img.messimgsex{
 	display:inline-block;
@@ -1563,8 +1560,8 @@ span.u-messagetime{
 	height:25px;
 	border-radius: 50%;
 	position:relative;
-	left:50px;
-	top:-30px;
+	left:37px;
+	top:-42px;
 }
 .u-messnickname p{
 	text-align:center;
@@ -1572,8 +1569,10 @@ span.u-messagetime{
 .u-messnickname .u-mkname{
 	font-size:18px;
 	color:#fff;
-	margin-top:-50px;
-	/*margin-bottom:5px;*/
+	margin-top:-30px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
 }
 .u-messnickname span{
 	font-size:14px;

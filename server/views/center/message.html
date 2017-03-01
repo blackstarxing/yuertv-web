@@ -64,9 +64,9 @@
 								<img src="/images/default_avatar.png" class="messnickicon" v-if="item.icon==null">
 								<img v-bind:src="'http://img.wangyuhudong.com/'+item.icon" class="messnickicon" v-else>
 								<img v-if="item.sex==0" src="/images/male.png" class="messimgsex">
-								<img v-else src="/images/female.png">
+								<img v-else src="/images/female.png" class="messimgsex">
 								<p class="u-mkname">${item.title}</p>
-								<p><span>ID：</span><span>${item.user_id}</span></p>
+								<p><span>房间号：</span><span>${item.user_id}</span></p>
 							</div>
 						</div>
 					</div>
