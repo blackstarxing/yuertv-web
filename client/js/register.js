@@ -80,13 +80,15 @@ $(function() {
                 $('.m-step').eq(_this.step-1).addClass('flip-next').removeClass('flip-prev flip-show flip-hide') && $('.m-step').eq(_this.step).addClass('flip-show').removeClass('flip-prev flip-next flip-hide');
                 _this.step+=1;
                 if(_this.step==7){
-                    $('.prev-btn').removeClass('prev-step');
+                    $('.prev-btn').removeClass('prev-step').css({"width":0,"height":0,"marginLeft":0}).animate({width:"248px",height:"50px"},700);
                 } 
             },
             //上一步
             prevStep:function(){
                 if(this.step>1){
-                    $('.prev-btn').addClass('prev-step');
+                    if(this.step == 7){
+                        $('.prev-btn').addClass('prev-step').css({"width":"130px","height":"38px","marginLeft":"-248px"}).animate({marginLeft:"15px"},200);
+                    }
                     $('.m-step').eq(this.step-1).addClass('flip-hide').removeClass('flip-next flip-prev flip-show') && $('.m-step').eq(this.step-2).addClass('flip-prev').removeClass('flip-next flip-hide flip-show');
                     this.step-=1;
                 }
