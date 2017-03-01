@@ -570,6 +570,7 @@ html,body{
 	height: 50px;
 	padding:19px 0;
 	border:1px solid #ccc;
+	display: none;
 }
 .award img{
 	float: left;
@@ -592,7 +593,7 @@ html,body{
 }
 .m-gift{
 	float: right;
-	display: none;
+	/*display: none;*/
 }
 .m-gift .gift{
 	position: relative;
