@@ -89,7 +89,7 @@ $(function(){
                                                         '<span><i>·</i>'+list[i].name+'</span>'+
                                                             '<div class="play-mask '+online+'"></div>'+
                                                     '</a>'+
-                                                    '<div class="m-info">'+
+                                                    '<div class="m-info live-info">'+
                                                         '<div class="anchor-head">'+
                                                             '<img src="'+icon+'" alt="" class="head-icon">'+
                                                                 '<img src="/images/'+sex+'.png" alt="" class="sex">'+

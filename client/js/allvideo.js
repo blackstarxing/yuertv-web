@@ -148,11 +148,11 @@ $(function(){
                                     newPage += '<div class="m-lst m-video">'+
                                                 '<a href="" class="live-address" data-rtmp="'+list[i].rtmp+'" data-title="'+list[i].title+'" data-icon="'+list[i].up_user_icon+'" data-id="'+list[i].id+'" data-name="'+list[i].name+'" data-nickname="'+list[i].nickname+'">'+
                                                     '<img src="'+list[i].icon+'" alt="">'+
-                                                    '<span><i>·</i>'+list[i].name+'</span>'+
+                                                    '<span><i>·</i>'+list[i].game_name+'</span>'+
                                                     '<div class="play-mask online"></div>'+
                                                 '</a>'+
                                                 '<div class="m-info">'+
-                                                    '<div class="anchor-head">'+
+                                                    '<div class="anchor-head video-head">'+
                                                         '<img src="'+icon+'" alt="" class="head-icon">'+
                                                             '<img src="/images/'+sex+'.png" alt="" class="sex">'+
                                                     '</div>'+

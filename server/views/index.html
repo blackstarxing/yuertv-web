@@ -59,7 +59,7 @@
         {% if index.live.length>0 %}
         <div class="m-hot">
             <div class="title"><img src="/images/index_icon3.png" alt="">热门直播
-                {% if index.live.length>15 %}
+                {% if index.live.length>14 %}
                     <a href="/alllive" class="more">更多>></a>
                 {% endif %}
             </div>
@@ -107,7 +107,7 @@
         {% if index.video.length>0 %}
         <div class="m-video">
             <div class="title"><img src="/images/index_icon4.png" alt="">精彩视频
-                {% if index.video.length>10 %}
+                {% if index.video.length>9 %}
                 <a href="/allvideo" class="more">更多>></a>
                 {% endif %}
             </div>
@@ -116,7 +116,7 @@
                     <div class="m-lst">
                         <div class="live-address" data-rtmp="{{video.flv}}" data-title="{{video.title}}" data-icon="{{video.user_icon}}" data-id="{{video.up_user_id}}" data-name="{{video.name}}" data-nickname="{{video.nickname}}" data-follow="{{video.is_concern}}">
                             <img src="{{video.icon}}" alt="">
-                            <span><i>·</i>{{video.name}}</span>
+                            <span><i>·</i>{{video.game_name}}</span>
                             <div class="play-mask online"></div>
                         </div>
                         <div class="m-info">
