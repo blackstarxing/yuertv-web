@@ -34,11 +34,15 @@
 				
 			</div>
 			<div class="u-bottom">
+				{% if myprops.totalValue == null %}
 				<p>
 					<span class="u-bvalue">道具价值：</span>
 					<span class="u-bmoney">{{myprops.totalValue}}</span>
 					<span class="u-bunit">鱼币</span>
 				</p>
+				{% else %}
+				<p></p>
+				{% endif %}
 			</div>
 		</div>
 		<div class="m-layerMask">

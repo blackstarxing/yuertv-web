@@ -804,7 +804,7 @@ var local={
         $("#payzfbmodify").on("click",function(){
             $("#paytips").show();
         })
-        $("#payboxcel").on("click",function(){
+        $("#payboxcel").on("click",function(){s
             $("#payname").val("");
             $("#paynumber").val("");
             $("#paytips").hide();
@@ -822,8 +822,9 @@ var local={
                     },
                     success: function(data) {
                         if (data.object.code == 0) {
+                            $(".paytips").hide();
                             $(".m-psuccess").show();//没找到你的弹框
-                            window.location.href=window.location.href;
+                            console.log(data.object.code);
                         }else if(data.object.code == 1){
                             alert("更新失败");//没找到你的弹窗
                         }else if(data.object.code == 2){
