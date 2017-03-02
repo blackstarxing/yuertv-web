@@ -849,7 +849,7 @@ input.full{
 	height:430px;
 }
 .u-addIcon{
-	position:relative;
+	position:fixed;
 	width:122px;
 	height:122px;
 	border-radius: 5px;
@@ -873,6 +873,7 @@ input.full{
 	color:#f36;
 	cursor:pointer;
 	display:none
+
 }
 .u-addIcon input[type="file"]{
 	width:100%;height:100%;
@@ -883,6 +884,7 @@ input.full{
 	cursor:pointer;
 }
 .u-addIcon:hover #modPic{
+	position:absolute;
 	display:block;
 	width:100%;height:100%;
 	/*height:35px;*/
@@ -890,6 +892,7 @@ input.full{
 	left:0;
 	top:0;
 	cursor:pointer;
+	background:rgba(0,0,0,0.7);
 }
 /*支付宝绑定*/
 .u-paybind{
