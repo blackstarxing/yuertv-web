@@ -588,7 +588,7 @@ html,body{
 .footer{
 	/*height: 112px;*/
     padding:45px 0;
-	margin-top: -285px;
+	margin-top: -221px;
 	overflow: hidden;
     background: #1a2129;
     color:#898c8f;
@@ -598,7 +598,7 @@ html,body{
 }
 .footer-left,
 .ft-logo{
-    margin-top: 30px;
+    margin-top: 10px;
 }
 .footer-left li{
     float:left;
@@ -630,12 +630,12 @@ html,body{
 }
 .footer-qr{
     float: left;
-    width: 164px;
+    width: 100px;
     text-align: center;
     margin-left: 50px;
 }
 .footer-qr img{
-    width: 100%;
+    width: 100px;
     margin-top: 5px;
 }
 .m-lst{
