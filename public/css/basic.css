@@ -520,7 +520,7 @@ html,body{
     height:100%;
     background:rgba(0,0,0,0.6);
     display:none;
-    z-index:999999;
+    z-index:9999;
 }
 .m-video-mask .close{
     position: absolute;
