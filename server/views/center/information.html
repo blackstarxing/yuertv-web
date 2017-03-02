@@ -184,9 +184,15 @@
             <button class="wingfailure" id="wingfailure">重新申请认证信息</button>
           </div> -->
           <!-- 采取以前的方案 -->
+          {% if info.id_card=="" %}
           <div style="color:#fff;padding-bottom: 100px;">
             <h3>请在娱儿TV APP-我的-我要当主播中进行认证并查看认证状态</h3><img src="/images/anchor.jpg" alt="" style="width: 300px;margin:10px auto;height: auto;">
           </div>
+          {% else %}
+          <div class="idcardmodifyinfo" style="height:450px;font-size:18px;color:#fff;">
+            <span>实名认证：</span><span id="hiddenIdCardss">{{info.id_card}}</span><span>已认证</span>
+          </div>
+          {% endif %}
 	  		</div> <!--最外面的div-->
         
         
@@ -351,7 +357,7 @@
       $("#m-realname").trigger("click");
   }
   window.location.hash = "";
-
+  $("#hiddenIdCardss").text($("#hiddenIdCardss").text().substr(0,3)+"************"+$("#hiddenIdCardss").text().substr(14,4))
   // 日期插件
   $('#datetimepicker').datetimepicker({
         lang:"ch",           //语言选择中文
