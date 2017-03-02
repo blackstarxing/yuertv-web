@@ -330,7 +330,10 @@ var local={
         }); 
         // 修改手机号码弹框的取消事件
         $("#userboxTelCancel").on("click",function(){
+            $("#numberTelVer").val("");
+            $("#verifyTelVer").val("");
             $("#telValBounced").hide();
+            // window.location.href=window.location.href;
         }); 
         // 修改手机号码的弹框事件
         function settime(time){
@@ -369,7 +372,7 @@ var local={
                 $("#numberTelVer").removeClass("change-color");
                 // $("#telValBounced").hide();
             } else {
-                 $("input").val("");
+                 
                  $("#gainnumberTelVer").hide();
                  $(".u-numbertelTelVer").show();//请输入正确的手机号
             }
