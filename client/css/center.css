@@ -404,7 +404,14 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 .thephoneauth{
 	display:block;
 }
-.thephoneauth,.toCertification{
+
+.thephoneauth{
+	width:500px;
+	height:40px;
+	color:#fff;	
+}
+
+.toCertification{
 	margin-left:50px;
 	width:500px;
 	height:40px;
@@ -429,7 +436,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 .thephoneauth #modifyTel{
 	display:inline-block;
-	width:150px;
+/*	width:150px;*/
 	height:40px;
 	line-height:40px;
 	text-align:center;
@@ -1317,6 +1324,7 @@ input.full{
 	float:left;
 	margin-right:20px;
 	border-radius:5%;
+	cursor:pointer;
 }
 .u-props span{
 	display:inline-block;
@@ -1620,6 +1628,7 @@ span.u-messagetime{
 	float:left;
 	margin-left:15px;
 	margin-bottom:15px;
+	cursor:pointer;
 }
 .u-value span.u-vfish{
 	display:inline-block;
@@ -2047,6 +2056,9 @@ display:block;
 .changeRed{
 	color:#972e2e;
 }
+.totelphone{
+	margin-left:50px;
+}
 /*我要当主播－－如何直播*/
 .u-live{
 	padding-bottom:50px;
@@ -2156,6 +2168,7 @@ div.paytipsbind{
 	background:#f36;
 	color:#fff;
 	margin:20px 0px 0px 50px;
+	cursor:pointer;
 }
 .paytipsbind p.paywarning{
 	margin:5px 0px 0px 100px;
@@ -2304,6 +2317,7 @@ div.paytipsbind{
 	text-align:center;
 	border:none;
 	margin-top:40px;
+	cursor:pointer;
 }
 .u-submitTelCancel{
 	background:#575d65;
