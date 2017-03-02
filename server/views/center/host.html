@@ -32,10 +32,13 @@
 			  					</div>
 			  				</div>
 			  				<div class="toCertification modifyshiming" id="toCertification">
+			  					{% if info.id_card=="" %}
 			  						<span>实名认证：</span><a href="information#m-realname">去认证</a>
-			  					<!-- <div class="idcardmodifytwo">
-			  						<span>实名认证：</span><span id="hiddenIdCard">{{info.id_card}}</span><span>已认证</span><button href="" id="modifyIdCard">修改认证信息</button>
-			  					</div> -->
+			  					{% else %}
+			  					<div class="idcardmodifytwo">
+			  						<span>实名认证：</span><span id="hiddenIdCard">{{info.id_card}}</span><span>已认证</span>
+			  					</div>
+			  					{% endif %}
 		  					</div>
 			  			{% endif %}
 							
@@ -189,12 +192,9 @@
     }); 
     // 手机号，身份证号的隐藏
  	$("#hiddenFields").text($("#hiddenFields").text().substr(0,3)+"****"+$("#hiddenFields").text().substr(7,4)) 
-    $("#hiddenIdCard").text($("#hiddenIdCard").text().substr(0,3)+"************"+$("#hiddenIdCard").text().substr(7,4))
+    $("#hiddenIdCard").text($("#hiddenIdCard").text().substr(0,3)+"************"+$("#hiddenIdCard").text().substr(14,4))
     // 若都认证过就跳转到，如何直播
-    // if(0!==$("#hiddenFields").length){
-    //     $("#jump").trigger("click");
-    // }
-    if(undefined!==$("#hiddenIdCard").html()){
+    if(""!==$("#hiddenIdCard").html() && ""!=$("#hiddenFields").html()){
         $("#jump").trigger("click");
     }
 </script>
