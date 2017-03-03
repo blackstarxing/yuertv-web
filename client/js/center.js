@@ -804,7 +804,7 @@ var local={
         $("#payzfbmodify").on("click",function(){
             $("#paytips").show();
         })
-        $("#payboxcel").on("click",function(){s
+        $("#payboxcel").on("click",function(){
             $("#payname").val("");
             $("#paynumber").val("");
             $("#paytips").hide();
