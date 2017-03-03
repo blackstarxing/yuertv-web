@@ -51,6 +51,15 @@ $(function(){
             });
         },
         methods: {
+            // 做主播跳转
+            toBeanchor:function(){
+                var _this = this;
+                if(_this.islogin){
+                    window.location.href = '/center/host';
+                }else{
+                    $('.m-login-wrap').show();
+                }
+            },
             // 举报弹窗
             reportPop:function(){
                 var _this = this;

@@ -109,7 +109,7 @@
 <div class="g-container">
 	<div class="m-top">
 		{% for modules in navigation.modules %}
-			<button class="host" data-id="{{modules.id}}">
+			<button class="host" data-id="{{modules.num}}">
 				<img src="http://img.wangyuhudong.com/{{modules.thumbnails}}">
 				{{modules.module}}
 			</button>
@@ -118,7 +118,7 @@
 	</div>
 	<div class="htutorial hostSwitch">
 		<div class="htleft">
-			<button class="hosts" data-id="{{navigation.modules.id}}"></button>
+			<button class="hosts" data-id="{{navigation.modules.num}}"></button>
 			<div class="leftmodule">
 				<ul id="moduleIds">
 				{% for subsets in navigation.subsets %}

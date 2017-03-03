@@ -18,7 +18,11 @@
 						<div class="u-host" v-for="(item,index) in focusmsg" >
 						<a v-bind:href="'/liveroom?id='+item.live_id" style="display:block">
 							<div class="u-hleft">
-								<div class="u-focusimg"><img v-bind:src="'http://img.wangyuhudong.com/'+item.icon"></div>
+								<div class="u-focusimg">
+									<img v-bind:src="item.icon" v-if="item.icon.indexOf('http')>-1">
+									<img v-bind:src="'http://img.wangyuhudong.com/'+item.icon" v-else-if="item.icon">
+									<img src="/images/default_avatar.png" v-else>
+								</div>
 								<div class="u-nickhost">
 									<p class="u-nicksex">
 										<span>${item.nickname}</span>
