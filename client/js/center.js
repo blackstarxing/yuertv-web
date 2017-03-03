@@ -839,12 +839,6 @@ var local={
                 })
             }
         });
-        // 修改成功的支付宝的弹框
-        $(".u-cancel a").off().on("click",function(e){
-            e.preventDefault();
-            $(this).hide();
-            window.location.href = window.location.href;
-        });
     },
     };
     local.init();

@@ -266,8 +266,7 @@
 		<img src="/images/iconcancel.png"><span>修改成功!</span>
 	</div>
 	<div class="u-cancel">
-    <!-- <a href="">确定</a> -->
-		<a href="javascript:window.location.href=window.location.href;">确定</a>
+		<a href="" id="qdhref">确定</a>
 	</div>
 </div>
 <div class="submitmask">
@@ -353,6 +352,10 @@
   if(window.location.hash=="#m-change"){
       $("#m-change").trigger("click");
   }
+  $("#qdhref").on("click",function(e){
+    e.preventDefault();
+    window.location.reload();
+  })
   //我的资料对应的实名认证
   if(window.location.hash=="#m-realname"){
       $("#m-realname").trigger("click");
