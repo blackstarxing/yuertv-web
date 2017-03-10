@@ -744,7 +744,7 @@ html,body{
     background: #fff;
 }
 .live-info{
-    height: 72px;
+    height: 64px;
 }
 .anchor-head{
     position: relative;
@@ -771,11 +771,12 @@ html,body{
     margin-left: 10px;
 }
 .anchor-info .live-title{
-    font-size: 16px;
+    font-size: 13px;
     width: 140px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    margin:5px 0 12px 0;
 }
 .anchor-info a{
     cursor: default;
@@ -789,11 +790,12 @@ html,body{
 .anchor-id{
     font-size: 12px;
     color:#6e6e6e;
+    display: none;
 }
 .m-info .follow,.m-info .disfollow{
     position: absolute;
     right: 5px;
-    bottom: 11px;
+    bottom: 8px;
     width: 45px;
     height: 20px;
     line-height: 20px;

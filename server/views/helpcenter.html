@@ -109,7 +109,7 @@
 <div class="g-container">
 	<div class="m-top">
 		{% for modules in navigation.modules %}
-			<button class="host" data-id="{{modules.num}}">
+			<button class="host" data-id="{{modules.id}}" data-num="{{modules.num}}">
 				<img src="http://img.wangyuhudong.com/{{modules.thumbnails}}">
 				{{modules.module}}
 			</button>
@@ -118,7 +118,7 @@
 	</div>
 	<div class="htutorial hostSwitch">
 		<div class="htleft">
-			<button class="hosts" data-id="{{navigation.modules.num}}"></button>
+			<button class="hosts" data-num="{{navigation.modules.num}}" data-id="{{navigation.modules.id}}"></button>
 			<div class="leftmodule">
 				<ul id="moduleIds">
 				{% for subsets in navigation.subsets %}
@@ -150,14 +150,15 @@
 	    }
 	    return null;
 	}
-	var index = getQueryString("moduleId");
+	var index = getQueryString("num");
 	var copy=$('.host').eq(index-1).html();
 	$('.hosts').html(copy);
 	$(".m-top button").eq(index-1).addClass("switchColor");
 	$(".m-top button").click(function(e) {
-		var moduleid=$(this).attr("data-id");
+		var num=$(this).attr("data-num");
+		var id=$(this).attr("data-id");
 		var leftid=$("leftmodule li").attr("data-id");
-        window.location.href="/helpcenter?moduleId="+moduleid;
+        window.location.href="/helpcenter?moduleId="+id+"&num="+num;
     })
     $(".biubiubiu").css({width:"160px",left:150+215*(index-1),position:"absolute",height:"2px",background:"#f36"})
     // $(".m-top button").on("click",function(){

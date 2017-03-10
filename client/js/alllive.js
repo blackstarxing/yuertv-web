@@ -95,8 +95,9 @@ $(function(){
                                                                 '<img src="/images/'+sex+'.png" alt="" class="sex">'+
                                                         '</div>'+
                                                         '<div class="anchor-info">'+
-                                                            '<div><a href="javascript:void(0);">'+list[i].nickname+'</a></div>'+
+                                                            '<div class="live-title">'+list[i].title+'</div>'+
                                                             '<div class="anchor-id">ID:'+list[i].room_number+'</div>'+
+                                                            '<div><a href="javascript:void(0);">'+list[i].nickname+'</a></div>'+
                                                         '</div>'+
                                                             '<button class="'+concernclass+'" data-id="'+list[i].up_user_id+'">'+concerntext+'</button>'+
                                                     '</div>'+
