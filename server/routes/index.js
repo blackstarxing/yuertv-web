@@ -1312,4 +1312,14 @@ router.get('/activity/pvp', function(req, res, next) {
     });
 });
 
+router.get('/activity/cardCoupon', function(req, res, next) {
+    var nowtime = new Date().getTime();
+    if(!ticket || (nowtime-ticketline)>7000000){
+        getTicket();
+    }
+    res.render('activity/cardCoupon', {
+        ticket: ticket
+    });
+});
+
 module.exports = router;
