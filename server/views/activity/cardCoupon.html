@@ -24,9 +24,10 @@
 		body{
 			background: #2d0041;
 		}
+		[v-cloak] { display: none }
 		.cover img{
 			width: 100%;
-			height: 10rem;
+			/*height: 10rem;*/
 		}
 		.card{
 			background: #573367;
@@ -34,6 +35,21 @@
 			border-radius: 5px;
 			color:#fff;
 			position: relative;
+		}
+		.notice{
+			background: #573367;
+			height: 90px;
+			line-height: 90px;
+			font-size: 15px;
+			margin:10px;
+			border-radius: 5px;
+			padding:10px 10%;
+		}
+		.notice img{
+			float: left;
+			height: 90px;
+			vertical-align: bottom;
+			margin-right: 5%;
 		}
 		.left-circle,
 		.right-circle{
@@ -52,9 +68,18 @@
 			right:0;
 		}
 		.receiveList{
-			height: 30px;
 			padding:10px;
+			height: 30px;
 			border-bottom: 2px dashed #000;
+			text-align: center;
+		}
+		.list{
+			height: 30px;
+			overflow: hidden;
+		}
+		.receiveList li{
+			line-height: 30px;
+			font-size: 15px;
 		}
 		.codeWrap{
 			height: 30px;
@@ -69,7 +94,7 @@
 			width: 45%;
 			height: 28px;
 			line-height: 28px;
-			font-size: 1.3rem;
+			font-size: 18px;
 			overflow: hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
@@ -83,14 +108,15 @@
 			line-height: 30px;
 			text-align: center;
 			border-radius: 12.5px;
-
+			font-size: 14px;
 		}
 		.card-title{
+			padding: 5px 0;
 			background: url(/activity/images/coupon_bg.png) no-repeat;
-			font-size: 1.1rem;
+			font-size: 15px;
 			font-weight: normal;
 			background-size:contain;
-			text-indent: 15px;
+			text-indent: 10px;
 		}
 		.wrap{
 			padding:10px;
@@ -99,6 +125,7 @@
 			line-height: 1.5;
 		}
 		.activity-list{
+			display: block;
 			background: #fff;
 			border-radius: 5px;
 			margin:10px 0;
@@ -119,52 +146,95 @@
 			font-size: 13px;
 			margin-top: 20px;
 		}
+		.mask{
+			position:fixed;
+		    left:0;
+		    top:0;
+		    width:100%;
+		    height:100%;
+		    background:rgba(0,0,0,0.5);
+		    /*display:none;*/
+		    z-index:9999;
+		}
+		.pop{
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			width: 67%;
+			height: 150px;
+			margin:auto;
+			background: #323a43;
+			border-radius: 10px;
+		}
+		.pop h3{
+			font-size: 18px;
+			text-align: center;
+			margin:45px 0 15px;
+		}
+		.pop button{
+			display: block;
+			width: 40%;
+			height: 30px;
+			border-radius: 15px;
+			text-align: center;
+			background: #f36;
+			color:#fff;
+			margin:0 auto;
+			font-size: 16px;
+		}
 	</style>
 </head>
 <body>
-	<div id="app">
+	<div id="app" v-cloak>
 		<div class="g-bd">
 			<div class="cover">
-				<img src="" alt="">
+				<img v-bind:src="'http://img.wangyuhudong.com/'+couponInfo.icon" alt="">
 			</div>
-			<div class="card">
-				<div class="receiveList"></div>
+			<div class="notice" v-if="state==1">
+				<img src="/activity/images/coupon_notstart.png" alt="">活动尚未开启，请耐心等待
+			</div>
+			<div class="card" v-if="state==2">
+				<div class="receiveList">
+					<div class="list">
+						<ul id='list1'>
+							<li v-for="list in receiveList">${list.nickname}已成功领取兑换码</li>
+						</ul>
+						<ul id="list2"></ul>
+					</div>					
+				</div>
 				<div class="codeWrap f-cb">
 					<div class="code f-fl" id="code">1231435456445</div>
-					<button class="u-copy f-fl" data-clipboard-target="#code" id="clone" @click="copyCode">复制兑换码</button>
+					<button class="u-copy f-fl" data-clipboard-target="#code" id="clone">复制兑换码</button>
 				</div>
 				<div class="left-circle"></div>
 				<div class="right-circle"></div>
 			</div>
+			<div class="notice" v-if="state==3">
+				<img src="/activity/images/coupon_empty.png" alt="">手速太慢，礼包被领完了
+			</div>
+			<div class="notice" v-if="state==4">
+				<img src="/activity/images/coupon_end.png" alt="">来晚一步，活动已经结束了
+			</div>
 			<h3 class="card-title">礼券详情</h3>
 			<div class="wrap">
-				<p class="intro">这个礼券非常厉害特别厉害，超级厉害！那它可以领到神秘礼物，爆神装瞬间带你超神！只有你想不到，没有我们办不到，只要你想要都来领</p>
-				<div class="activity-list f-cb">
+				<div class="intro" v-html="couponInfo.introduce"></div>
+				<a v-bind:href="activity.url" class="activity-list f-cb" v-for="activity in couponActivity" @click="statistics(activity.id,2)">
 					<div class="activity-pic f-fl">
-                        <img src="" alt="">
+                        <img v-bind:src="'http://img.wangyuhudong.com/'+activity.icon" alt="">
                     </div>
                     <div class="activity-title f-fl">
-                        <h4>王者荣耀娱乐挑战赛</h4>
+                        <h4>${activity.title}</h4>
                     </div>
-				</div>
-				<div class="activity-list f-cb">
-					<div class="activity-pic f-fl">
-                        <img src="" alt="">
-                    </div>
-                    <div class="activity-title f-fl">
-                        <h4>王者荣耀娱乐挑战赛</h4>
-                    </div>
-				</div>
-				<div class="activity-list f-cb">
-					<div class="activity-pic f-fl">
-                        <img src="" alt="">
-                    </div>
-                    <div class="activity-title f-fl">
-                        <h4>王者荣耀娱乐挑战赛</h4>
-                    </div>
+				</a>
+			</div>
+			<div class="mask" v-show="showPop?showPop:false || state == 0">
+				<div class="pop">
+					<h3>${popWord}</h3>
+					<button @click="hidePop">确定</button>
 				</div>
 			</div>
-			
 		</div>
 	</div>
 	<script src="/clipboard.min.js"></script>
@@ -173,56 +243,107 @@
 	        el: '#app',
 	        delimiters: ['${', '}'],
 	        data: {
-	            
+	        	couponInfo:'',
+	        	couponActivity:'',
+	        	receiveList:'',
+	        	showPop:false,
+	        	popWord:'',
+	            state:1,
+	            couponId:'',
+	            nickname:'',
+	            uid:''
 	        },
 	        mounted: function () {
 	            this.$nextTick(function () {
+	            	var _this = this;
+
+	            	_this.couponId = _this.getQueryString('couponId');
+	            	_this.nickname = _this.getQueryString('nickname');
+	            	_this.uid = _this.getQueryString('uid');
+
 	            	$.ajax({
-			            url: 'https://api.weixin.qq.com/sns/oauth2/access_token',
+			            url: 'http://172.16.10.144:8777/api/gift/coupon/index',
 			            data: {
-			            	appid:'wxab4f9af9e7ecd7fa',
-			            	secret:'a921eb4bd08249e03b5b0c08aefcfc2c',
-					        code:'021SqQLb1ySBwr0tJNMb1IWvLb1SqQLR',
-					        grant_type:'authorization_code'
+			            	couponId:_this.couponId,
+			            	nickname:_this.nickname,
+					        uid:_this.uid
 					  	},  
 			            type: 'get',
 			            dataType: 'json',
 			            success: function(data) {
-			                $.ajax({
-					            url: 'https://api.weixin.qq.com/sns/userinfo',
-					            data: {
-					            	access_token:data.access_token,
-					            	openid:data.openid,
-							        lang:'zh_CN'
-							  	},  
-					            type: 'get',
-					            dataType: 'json',
-					            success: function(data) {
-					                
-					            },
-					            error: function() {
-					                
-					            }
-					        });
+			                _this.couponInfo = data.object.couponInfo;
+			                _this.couponActivity = data.object.couponActivity;
+			                _this.receiveList = data.object.receiveList;
 			            },
 			            error: function() {
-			                
+			                console.log(123);
 			            }
 			        });
 
+	            	// 礼券统计
+	            	_this.statistics(_this.couponId,1);
+
+			        var index = 1;
+			   	  	var h = $('.list').height();
+				  	$("#list2").html($("#list1").html());
+				  	var mar = function () {
+				        if (index<=$('#list1 li').length) { 
+				            $('.list #list1').animate({marginTop:-index*h});
+				            index++;
+				        }
+				        else {               
+				            index = 1;
+				            $('.list #list1').css('marginTop',0).animate({marginTop:-index*h});
+				            index++;
+				        }
+
+				    };
+				    var vid = setInterval(mar, 2000);
+
 	                var clipboard = new Clipboard('#clone');
 					clipboard.on('success', function(e) {
-
+						_this.showPop = true;
+						_this.popWord = '复制成功';
 				    });
 
 				    clipboard.on('error', function(e) {
-
+				    	_this.showPop = true;
+						_this.popWord = '复制失败';
 				    });
+
+				    $('.mask').bind( "touchmove", function (e) {
+					   e.preventDefault();
+					});
 	            })
 	        },
 	        methods:{
-	        	copyCode : function(){
-	        		console.log(123)
+	        	hidePop : function(){
+	        		this.showPop = false;
+	        	},
+	        	getQueryString : function(name){
+	        		var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+				    var r = window.location.search.substr(1).match(reg);
+				    if (r != null) {
+				        return unescape(r[2]);
+				    }
+				    return null;
+	        	},
+	        	statistics : function(id,type){
+	        		$.ajax({
+			            url: 'http://172.16.10.144:8777/api/gift/coupon/statistics',
+			            data: {
+			            	id:id,
+			            	type:type
+					  	},  
+			            type: 'get',
+			            dataType: 'json',
+			            success: function(data) {
+			                
+			            },
+			            error: function() {
+			                console.log(123);
+			            }
+			        });
 	        	}
 	        }
 	    })
