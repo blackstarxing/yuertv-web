@@ -691,7 +691,9 @@ router.get('/activity/propage', function(req, res, next) {
 router.get('/mobile/down', function(req, res, next) {
     res.render('mobile/down', { title: "娱儿TV--领跑移动电竞的直播平台" });
 });
-
+router.get('/mobile/teachhost', function(req, res, next) {
+    res.render('mobile/teachhost', { title: "娱儿TV--领跑移动电竞的直播平台" });
+});
 router.get('/mobile/author', function(req, res, next) {
     var nowtime = new Date().getTime();
     if(!ticket || (nowtime-ticketline)>7000000){
@@ -815,7 +817,12 @@ router.get('/activity/datashow', function(req, res, next) {
 router.get('/activity/recruit', function(req, res, next) {
     res.render('activity/recruit');
 });
-
+router.get('/activity/wkthr', function(req, res, next) {
+    res.render('activity/wkthr');
+});
+router.get('/activity/wkthrweb', function(req, res, next) {
+    res.render('activity/wkthrweb');
+});
 router.get('/mobile/activityShare', function(req, res, next) {
     var id = req.query.id;
     var nowtime = new Date().getTime();

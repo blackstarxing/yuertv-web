@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>！</title>
+	<style>
+		html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
+		body,ul,li,p,h3,h4,h2,em,button,input{margin: 0; padding: 0;}
+		body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; 
+			font-size:62.5%; font-style:normal; 
+			height:100%; color:#9da4ad; 
+			background: #141a20; 
+			overflow-x:hidden; 
+			-webkit-overflow-scrolling:touch;
+		}
+		img{border:0; max-width:100%;}
+		.g-bd{
+			position:relative;
+		}
+		.m-img{
+			display:none;
+			position:absolute;
+			width:11%;
+			height:18%;
+			top:40.3%;
+			left:23%;
+		}
+		.m-top-two{
+			left:44.5%;
+		}
+		.m-top-three{
+			left:65%;
+		}
+		.u-img{
+			position:absolute;
+			display:block;
+			width:12%;		
+			height:5%;
+			top:40%;
+			left:22%;
+		}
+		.u-imgtwo{
+			left:44%;
+		}
+		.u-imgthree{
+			left:64%;
+		}
+		.m-bottom{
+			position:absolute;
+			width:28%;
+			height:35%;
+			top:58.5%;
+			left:22%;
+		}
+		.m-bottom-two{
+			left:50%;
+		}
+		.m-img-bg{
+			position:relative;
+			display:none;
+		}
+		.u-img-bg{
+			position:absolute;
+			width:20%;
+			height:20%;
+			top:13%;
+			left:40%;
+		}
+	</style>
+	<script src="/jquery.js"></script>
+	<script>
+		var ua = navigator.userAgent.toLowerCase(); 
+		if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i) || navigator.userAgent.match(/android/i)) {
+			window.location.href = '/activity/wkthr';
+        }
+        if(navigator.userAgent.indexOf("MSIE")>0){   
+		    if(navigator.userAgent.indexOf("MSIE 6.0")>0 || navigator.userAgent.indexOf("MSIE 7.0")>0 || navigator.userAgent.indexOf("MSIE 8.0")>0 || navigator.userAgent.indexOf("MSIE 9.0")>0 || navigator.userAgent.indexOf("MSIE 10.0")>0){ alert('请使用ie10以上版本或Chrome浏览器浏览！');
+		    }     
+		} 
+	</script>
+</head>
+<body>
+	<div class="g-bd">
+		<img src="/activity/images/wkthrweb.jpg" alt="">
+		<div class="m-top"><img src="/activity/images/wkthrt1.png" alt="" class="m-img" id="imgone">
+			<img src="/activity/images/wkthrt_btn1.png" alt="" class="u-img" id="uone">
+		</div>
+		<div class="m-top "><img src="/activity/images/wkthrt2.png" alt="" class="m-img m-top-two" id="imgtwo">
+			<img src="/activity/images/wkthrt_btn2.png" alt="" class="u-img u-imgtwo" id="utwo">
+		</div>
+		<div class="m-top "><img src="/activity/images/wkthrt3.png" alt="" class="m-img m-top-three" id="imgthree">
+			<img src="/activity/images/wkthrt_btn3.png" alt="" class="u-img u-imgthree" id="uthree">
+		</div>
+		<div class="m-bottom"><img src="/activity/images/wkthrbg_b1.jpg" alt="" class="m-img-bg" id="imgfour">
+			<img src="/activity/images/wkthrb1.png" alt="" class="u-img-bg" id="ufour">
+		</div>
+		<div class="m-bottom m-bottom-two"><img src="/activity/images/wkthrbg_b2.jpg" alt="" class="m-img-bg" id="imgfive">
+			<img src="/activity/images/wkthrb2.png" alt="" class="u-img-bg" id="ufive">
+		</div>
+	</div>
+	<script>
+		$(function(){
+			$("#uone").mouseover(function(){
+			  $("#imgone").show();
+			});
+			$("#uone").mouseout(function(){
+			  $("#imgone").hide();
+			});
+			$("#utwo").mouseover(function(){
+			  $("#imgtwo").show();
+			});
+			$("#utwo").mouseout(function(){
+			  $("#imgtwo").hide();
+			});
+			$("#uthree").mouseover(function(){
+			  $("#imgthree").show();
+			});
+			$("#uthree").mouseout(function(){
+			  $("#imgthree").hide();
+			});
+			$("#ufour").mouseover(function(){
+			  $("#imgfour").show();
+			});
+			$("#ufour").mouseout(function(){
+			  $("#imgfour").hide();
+			});
+			$("#ufive").mouseover(function(){
+			  $("#imgfive").show();
+			});
+			$("#ufive").mouseout(function(){
+			  $("#imgfive").hide();
+			});
+		})
+	</script>
+</body>
+</html>
