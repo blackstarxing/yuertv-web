@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <link rel="stylesheet" href="/activity/css/swiper.min.css">
+    <link rel="stylesheet" href="/activity/css/animate.min.css">
+    <style>
+    	html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
+		body,ul,li,p,h3,h4,h2,em,button,input{margin: 0; padding: 0;}
+		body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; 
+			font-size:62.5%; font-style:normal; 
+			max-width: 800px; margin:0 auto;
+			height:100%; color:#9da4ad; 
+			background: #486bbc; 
+			overflow-x:hidden; 
+			-webkit-overflow-scrolling:touch;
+		}
+		img{border:0; max-width:100%;}
+		.g-containers{
+			position:absolute;
+			width:85%;
+			margin:0 auto;
+			height:30%;
+			top:65%;
+			left:7.5%;
+		}
+		#share p{
+			font-size:16px;
+			color:#fff;
+		}
+		#share h3{
+			text-align:center;
+			font-size:16px;
+			color:#fff;
+		}
+		#page-bottom{
+			/*top:95%;*/
+		}
+		.u-btns{
+			position:absolute;
+			top:100%;
+			width:75%;
+			height:12%;
+			line-height:12%;
+			text-align:center;
+			left:10%;
+			padding-bottom:5%;
+		}
+		.u-btn{
+			width:35%;
+		}
+		.download{
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			max-width: 800px;
+			height:60px;
+			padding:0;
+			box-sizing: border-box;
+			z-index: 999;
+			background:rgba(28,35,45,0.7);
+		}
+		.download img.f-fl{
+			height: 36px;
+			margin-top:12px;
+			margin-left: 10px;
+		}
+		.download .download-btn{
+			position:absolute;
+			top:13px;
+			left:70%;
+			width: 80px;
+			height: 34px;
+			text-align: center;
+			line-height: 34px;
+			border-radius: 5px;
+			vertical-align: middle;
+			font-size: 14px;
+			color:#fff;
+			background: #ff3366;
+			font-family: Arial;
+		}
+		.swiper-pagination-bullet-active{
+			background:#ffff3c;
+		}
+    </style>
+    <script src="/jquery.min.js"></script>
+    <script src="/jquery.sha1.js"></script>
+	<script src="/wxjsapi.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+		if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i) || navigator.userAgent.match(/android/i)) {
+        }else{
+        	window.location.href = '/activity/wkthrweb';
+        }
+		enableWxShare({
+			appId: 'wxf96f728533f32fa8',
+			ticket: '{{ticket}}',
+			title: '',		
+			imgUrl: '',
+			desc: ''
+		})
+	</script>
+</head>
+<body>
+<div class="g-container">
+	<img src="/activity/images/wkthr.jpg" alt="" style="position:relative;">
+	<div class="g-containers">
+		<div class="swiper-container" id="wrappershare">
+		    <div class="swiper-wrapper" >
+		        <div class="swiper-slide" id="share">
+					<p>
+						《天天狼人杀》，比真金还真的狼人杀，国内最火爆的狼人杀，比谍战片更烧脑的逻辑型社交桌游。在这里你可以用精湛的演技舌战群雄，也可以卖萌装傻抱大腿安全上垒，更可以做起MC开麦唱歌。总之，在这里你可以放飞自我，找回最真实的你我他
+					</p>
+		        </div>
+		        <div class="swiper-slide" id="share">
+		        	<h3>推荐与签约资格</h3><br>
+		        	<p>
+		        		活动期间所有参加活动的主播，均有机会获得官方推荐，直播内容越优质、直播时长越饱满、直播时间越稳定，越有机会获得官方推荐资源与百万年薪主播的签约资格
+		        	</p>
+		        </div>
+		        <div class="swiper-slide" id="share">
+		        	<h3>直播时长奖励</h3><br>
+		        	<p>
+		        		1、直播达到最低标准15小时的主播奖励500钻<br>
+		        		2、直播达到30小时的主播奖励1200钻<br>
+		        		3、直播达到50小时的主播奖励 2500钻<br>
+		        		4、直播达到80小时的主播奖励现金6500钻<br>
+		        	</p>
+		        </div>
+		        <div class="swiper-slide" id="share">
+		        	<h3>特别奖励</h3><br>
+		        	<p>
+		        		1、活动时间内直播时长前3主播将会获得2500钻<br>
+		        		2、活动时间内粉丝量前3主播将会获得2500钻<br>
+		        		3、活动时间内礼物数前3主播将会获得2500钻<br>
+		        	</p>
+		        </div>
+		    </div>
+		    <div class="swiper-pagination" id="page-bottom"></div>
+		</div>
+	</div>
+	<div class="u-btns">
+		<img src="/activity/images/wkthr_bm.png" alt="" class="u-btn" id="btnbm">
+		<img src="/activity/images/wkthr_dl.png" alt="" class="u-btn" style="margin-left:25%;" id="btndl">
+	</div>
+	<div class="download">
+		<img src="/activity/images/wkthr_bdl.png" class="f-fl">
+		<img src="/activity/images/wkthr_bdlbtn.png" class="download-btn" id="dlbtn">
+	</div>
+</div>
+	<script src="/activity/js/swiper.min.js"></script>
+	<script src="/activity/js/swiper.animate.min.js"></script>
+    <script src="/activity/js/animateBackground-plugin.js"></script>
+    <script type="text/javascript">
+    	$(function(){
+			var mySwiper = new Swiper ('.swiper-container', {
+				direction: 'horizontal',
+                loop: true,
+                autoplay : 2500,
+                autoplayDisableOnInteraction : false,
+                pagination: '.swiper-pagination',
+                observer:true,
+                observeParents:true,
+			})  
+			var ua = navigator.userAgent.toLowerCase();
+			if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+				$(".download").hide();
+			}
+			$("#btnbm").on("click",function(){
+				window.location.href="http://qm.qq.com/cgi-bin/qm/qr?k=CJRI2cBkEaFBNRnO263y79iLuogv7nGr";
+			})
+			$("#btndl").on("click",function(){
+				window.location.href="https://itunes.apple.com/cn/app/id1156715399";
+			})
+			$("#dlbtn").on("click",function(){
+				window.location.href="https://yuertvfile.wangyuhudong.com";
+			})
+
+		})
+    </script>
+     
+</body>
+</html>
