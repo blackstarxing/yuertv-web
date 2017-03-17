@@ -8,6 +8,9 @@
 	<title>礼券</title>
 	<script type="text/javascript" src="/jquery.js"></script>
 	<script type="text/javascript" src="/vue.js"></script>
+	<script src="/jquery.sha1.js"></script>
+	<script src="/wxjsapi.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<style>
 		html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
 		body,ul,li,p,h3,h4,h2,em,button,input{margin: 0; padding: 0;}
@@ -185,6 +188,15 @@
 			font-size: 16px;
 		}
 	</style>
+	<script>
+		enableWxShare({
+			appId: 'wxf96f728533f32fa8',
+			ticket: '{{ticket}}',
+			title: '娱儿直播百万薪金招募令！',		
+			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/2017/yuerlogo.png',
+			desc: '娱儿直播3月主播招募令，百万薪金等你瓜分！'
+		})
+	</script>
 </head>
 <body>
 	<div id="app" v-cloak>
@@ -248,7 +260,8 @@
 	        	receiveList:'',
 	        	showPop:false,
 	        	popWord:'',
-	            state:1,
+	            state:'',
+	            code:'',
 	            couponId:'',
 	            nickname:'',
 	            uid:''
@@ -257,13 +270,15 @@
 	            this.$nextTick(function () {
 	            	var _this = this;
 
+	            	_this.code = _this.getQueryString('code');
 	            	_this.couponId = _this.getQueryString('couponId');
 	            	_this.nickname = _this.getQueryString('nickname');
 	            	_this.uid = _this.getQueryString('uid');
 
 	            	$.ajax({
-			            url: 'http://172.16.10.144:8777/api/gift/coupon/index',
+			            url: '/api/gift/coupon/index',
 			            data: {
+			            	code:_this.code,
 			            	couponId:_this.couponId,
 			            	nickname:_this.nickname,
 					        uid:_this.uid
@@ -274,6 +289,7 @@
 			                _this.couponInfo = data.object.couponInfo;
 			                _this.couponActivity = data.object.couponActivity;
 			                _this.receiveList = data.object.receiveList;
+			                _this.state = _this.couponInfo.state;
 			            },
 			            error: function() {
 			                console.log(123);
@@ -330,7 +346,7 @@
 	        	},
 	        	statistics : function(id,type){
 	        		$.ajax({
-			            url: 'http://172.16.10.144:8777/api/gift/coupon/statistics',
+			            url: '/api/gift/coupon/statistics',
 			            data: {
 			            	id:id,
 			            	type:type
