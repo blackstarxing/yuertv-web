@@ -6,14 +6,17 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta content="telephone=no" name="format-detection" />
 	<title>礼券</title>
+	<script type="text/javascript" src="/jquery.js"></script>
+	<script type="text/javascript" src="/vue.js"></script>
 	<style>
 		html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
 		body,ul,li,p,h3,h4,h2,em,button,input{margin: 0; padding: 0;}
-		body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; font-size:62.5%; font-style:normal; max-width: 800px; margin:0 auto; min-height:100%; color:#9da4ad; background: #141a20; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
+		body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; font-size:62.5%; font-style:normal; max-width: 800px; margin:0 auto; min-height:100%; color:#fff; background: #141a20; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
 		img{border:0; max-width:100%;}
 		li{ list-style:none;}
 		a{text-decoration: none; color:#9da4ad;}
 		h3{font-size: 1.5rem;line-height: 1.25;}
+		button{border:none;outline: none;}
 
 		.f-fl{float:left;}.f-fr{float:right;}
 		.f-cb{*zoom:1;}.f-cb:after{display:block; content:"$"; height:0; clear:both; overflow:hidden; visibility:hidden;}
@@ -21,32 +24,329 @@
 		body{
 			background: #2d0041;
 		}
+		[v-cloak] { display: none }
 		.cover img{
 			width: 100%;
-			height: 10rem;
+			/*height: 10rem;*/
 		}
 		.card{
 			background: #573367;
+			margin:10px;
+			border-radius: 5px;
+			color:#fff;
+			position: relative;
+		}
+		.notice{
+			background: #573367;
+			height: 90px;
+			line-height: 90px;
+			font-size: 15px;
+			margin:10px;
+			border-radius: 5px;
+			padding:10px 10%;
+		}
+		.notice img{
+			float: left;
+			height: 90px;
+			vertical-align: bottom;
+			margin-right: 5%;
+		}
+		.left-circle,
+		.right-circle{
+			background: #2d0041;
+			width:6px;
+			height:12px;
+			position: absolute;
+			top:45px;
+		}
+		.left-circle{
+			border-radius:0 6px 6px 0;
+			left: 0;
+		}
+		.right-circle{
+			border-radius:6px 0 0 6px;
+			right:0;
 		}
 		.receiveList{
-			height: 4.5rem;
+			padding:10px;
+			height: 30px;
+			border-bottom: 2px dashed #000;
+			text-align: center;
+		}
+		.list{
+			height: 30px;
+			overflow: hidden;
+		}
+		.receiveList li{
+			line-height: 30px;
+			font-size: 15px;
+		}
+		.codeWrap{
+			height: 30px;
+			width: 80%;
+			padding:15px 0;
+			margin:0 auto;
+		}
+		.code{
+			border:1px solid #fff;
+			border-radius: 3px;
+			padding:0 10px;
+			width: 45%;
+			height: 28px;
+			line-height: 28px;
+			font-size: 18px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			margin-right: 15%;
+		}
+		.u-copy{
+			background: #ffff00;
+			color:#1c232d;
+			width: 30%;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			border-radius: 12.5px;
+			font-size: 14px;
+		}
+		.card-title{
+			padding: 5px 0;
+			background: url(/activity/images/coupon_bg.png) no-repeat;
+			font-size: 15px;
+			font-weight: normal;
+			background-size:contain;
+			text-indent: 10px;
+		}
+		.wrap{
+			padding:10px;
+		}
+		.intro{
+			line-height: 1.5;
+		}
+		.activity-list{
+			display: block;
+			background: #fff;
+			border-radius: 5px;
+			margin:10px 0;
+			padding:10px;
+			height: 4rem;
+			color:#333;
+		}
+		.activity-pic{
+			width: 30%;
+			height: 100%;
+			margin-right: 5%;
+		}
+		.activity-pic img{
+			width: 100%;
+			height: 100%;
+		}
+		.activity-title h4{
+			font-size: 13px;
+			margin-top: 20px;
+		}
+		.mask{
+			position:fixed;
+		    left:0;
+		    top:0;
+		    width:100%;
+		    height:100%;
+		    background:rgba(0,0,0,0.5);
+		    /*display:none;*/
+		    z-index:9999;
+		}
+		.pop{
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			width: 67%;
+			height: 150px;
+			margin:auto;
+			background: #323a43;
+			border-radius: 10px;
+		}
+		.pop h3{
+			font-size: 18px;
+			text-align: center;
+			margin:45px 0 15px;
+		}
+		.pop button{
+			display: block;
+			width: 40%;
+			height: 30px;
+			border-radius: 15px;
+			text-align: center;
+			background: #f36;
+			color:#fff;
+			margin:0 auto;
+			font-size: 16px;
 		}
 	</style>
 </head>
 <body>
-	<div id="app">
+	<div id="app" v-cloak>
 		<div class="g-bd">
 			<div class="cover">
-				<img src="" alt="">
+				<img v-bind:src="'http://img.wangyuhudong.com/'+couponInfo.icon" alt="">
 			</div>
-			<div class="card">
-				<div class="receiveList"></div>
+			<div class="notice" v-if="state==1">
+				<img src="/activity/images/coupon_notstart.png" alt="">活动尚未开启，请耐心等待
+			</div>
+			<div class="card" v-if="state==2">
+				<div class="receiveList">
+					<div class="list">
+						<ul id='list1'>
+							<li v-for="list in receiveList">${list.nickname}已成功领取兑换码</li>
+						</ul>
+						<ul id="list2"></ul>
+					</div>					
+				</div>
 				<div class="codeWrap f-cb">
-					<div class="code f-fl">1231435456445</div>
-					<button class="u-copy f-fl">复制兑换码</button>
+					<div class="code f-fl" id="code">1231435456445</div>
+					<button class="u-copy f-fl" data-clipboard-target="#code" id="clone">复制兑换码</button>
+				</div>
+				<div class="left-circle"></div>
+				<div class="right-circle"></div>
+			</div>
+			<div class="notice" v-if="state==3">
+				<img src="/activity/images/coupon_empty.png" alt="">手速太慢，礼包被领完了
+			</div>
+			<div class="notice" v-if="state==4">
+				<img src="/activity/images/coupon_end.png" alt="">来晚一步，活动已经结束了
+			</div>
+			<h3 class="card-title">礼券详情</h3>
+			<div class="wrap">
+				<div class="intro" v-html="couponInfo.introduce"></div>
+				<a v-bind:href="activity.url" class="activity-list f-cb" v-for="activity in couponActivity" @click="statistics(activity.id,2)">
+					<div class="activity-pic f-fl">
+                        <img v-bind:src="'http://img.wangyuhudong.com/'+activity.icon" alt="">
+                    </div>
+                    <div class="activity-title f-fl">
+                        <h4>${activity.title}</h4>
+                    </div>
+				</a>
+			</div>
+			<div class="mask" v-show="showPop?showPop:false || state == 0">
+				<div class="pop">
+					<h3>${popWord}</h3>
+					<button @click="hidePop">确定</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script src="/clipboard.min.js"></script>
+	<script>
+		var app = new Vue({
+	        el: '#app',
+	        delimiters: ['${', '}'],
+	        data: {
+	        	couponInfo:'',
+	        	couponActivity:'',
+	        	receiveList:'',
+	        	showPop:false,
+	        	popWord:'',
+	            state:1,
+	            couponId:'',
+	            nickname:'',
+	            uid:''
+	        },
+	        mounted: function () {
+	            this.$nextTick(function () {
+	            	var _this = this;
+
+	            	_this.couponId = _this.getQueryString('couponId');
+	            	_this.nickname = _this.getQueryString('nickname');
+	            	_this.uid = _this.getQueryString('uid');
+
+	            	$.ajax({
+			            url: 'http://172.16.10.144:8777/api/gift/coupon/index',
+			            data: {
+			            	couponId:_this.couponId,
+			            	nickname:_this.nickname,
+					        uid:_this.uid
+					  	},  
+			            type: 'get',
+			            dataType: 'json',
+			            success: function(data) {
+			                _this.couponInfo = data.object.couponInfo;
+			                _this.couponActivity = data.object.couponActivity;
+			                _this.receiveList = data.object.receiveList;
+			            },
+			            error: function() {
+			                console.log(123);
+			            }
+			        });
+
+	            	// 礼券统计
+	            	_this.statistics(_this.couponId,1);
+
+			        var index = 1;
+			   	  	var h = $('.list').height();
+				  	$("#list2").html($("#list1").html());
+				  	var mar = function () {
+				        if (index<=$('#list1 li').length) { 
+				            $('.list #list1').animate({marginTop:-index*h});
+				            index++;
+				        }
+				        else {               
+				            index = 1;
+				            $('.list #list1').css('marginTop',0).animate({marginTop:-index*h});
+				            index++;
+				        }
+
+				    };
+				    var vid = setInterval(mar, 2000);
+
+	                var clipboard = new Clipboard('#clone');
+					clipboard.on('success', function(e) {
+						_this.showPop = true;
+						_this.popWord = '复制成功';
+				    });
+
+				    clipboard.on('error', function(e) {
+				    	_this.showPop = true;
+						_this.popWord = '复制失败';
+				    });
+
+				    $('.mask').bind( "touchmove", function (e) {
+					   e.preventDefault();
+					});
+	            })
+	        },
+	        methods:{
+	        	hidePop : function(){
+	        		this.showPop = false;
+	        	},
+	        	getQueryString : function(name){
+	        		var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+				    var r = window.location.search.substr(1).match(reg);
+				    if (r != null) {
+				        return unescape(r[2]);
+				    }
+				    return null;
+	        	},
+	        	statistics : function(id,type){
+	        		$.ajax({
+			            url: 'http://172.16.10.144:8777/api/gift/coupon/statistics',
+			            data: {
+			            	id:id,
+			            	type:type
+					  	},  
+			            type: 'get',
+			            dataType: 'json',
+			            success: function(data) {
+			                
+			            },
+			            error: function() {
+			                console.log(123);
+			            }
+			        });
+	        	}
+	        }
+	    })
+	</script>
 </body>
 </html>
