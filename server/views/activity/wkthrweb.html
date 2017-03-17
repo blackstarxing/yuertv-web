@@ -9,11 +9,11 @@
 		body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; 
 			font-size:62.5%; font-style:normal; 
 			height:100%; color:#9da4ad; 
-			background: #141a20; 
+			background: #020524; 
 			overflow-x:hidden; 
 			-webkit-overflow-scrolling:touch;
 		}
-		img{border:0; max-width:100%;}
+		img{border:0; max-width:100%;vertical-align:top;}
 		.g-bd{
 			position:relative;
 		}
@@ -42,32 +42,32 @@
 			z-index:99;
 		}
 		.u-imgtwo{
-			left:44%;
+			left:43.4%;
 		}
 		.u-imgthree{
 			left:64%;
 		}
-		.m-bottom{
+		/*.m-bottom{
 			position:absolute;
 			width:28%;
 			height:35%;
 			top:48.5%;
 			left:22%;
-		}
-		.m-bottom-two{
+		}*/
+		/*.m-bottom-two{
 			left:50%;
-		}
-		.m-img-bg{
+		}*/
+		/*.m-img-bg{
 			position:relative;
 			display:none;
-		}
-		.u-img-bg{
+		}*/
+		/*.u-img-bg{
 			position:absolute;
 			width:20%;
 			height:22%;
 			top:13%;
 			left:40%;
-		}
+		}*/
 	</style>
 	<script src="/jquery.js"></script>
 	<script>
@@ -84,6 +84,7 @@
 <body>
 	<div class="g-bd">
 		<img src="/activity/images/wkthrweb.jpg" alt="">
+		<img src="/activity/images/wkthrwebtwo.jpg" alt="">
 		<div class="m-top"><img src="/activity/images/wkthrt1.png" alt="" class="m-img" id="imgone">
 			<img src="/activity/images/wkthrt_btn1.png" alt="" class="u-img" id="uone">
 		</div>
@@ -93,12 +94,12 @@
 		<div class="m-top "><img src="/activity/images/wkthrt3.png" alt="" class="m-img m-top-three" id="imgthree">
 			<img src="/activity/images/wkthrt_btn3.png" alt="" class="u-img u-imgthree" id="uthree">
 		</div>
-		<div class="m-bottom"><img src="/activity/images/wkthrbg_b1.jpg" alt="" class="m-img-bg" id="imgfour">
+<!-- 		<div class="m-bottom"><img src="/activity/images/wkthrbg_b1.jpg" alt="" class="m-img-bg" id="imgfour">
 			<img src="/activity/images/wkthrb1.png" alt="" class="u-img-bg" id="ufour">
 		</div>
 		<div class="m-bottom m-bottom-two"><img src="/activity/images/wkthrbg_b2.jpg" alt="" class="m-img-bg" id="imgfive">
 			<img src="/activity/images/wkthrb2.png" alt="" class="u-img-bg" id="ufive">
-		</div>
+		</div> -->
 	</div>
 	<script>
 		$(function(){
@@ -120,20 +121,20 @@
 			$("#uthree").mouseout(function(){
 			  $("#imgthree").hide();
 			});
-			$("#ufour").mouseover(function(){
-			  $("#imgfour").show();
-			  $('body')[0].scrollTop = $('body')[0].scrollHeight;
-			});
-			$("#ufour").mouseout(function(){
-			  $("#imgfour").hide();
-			});
-			$("#ufive").mouseover(function(){
-			  $("#imgfive").show();
-			  $('body')[0].scrollTop = $('body')[0].scrollHeight;
-			});
-			$("#ufive").mouseout(function(){
-			  $("#imgfive").hide();
-			});
+			// $("#ufour").mouseover(function(){
+			//   $("#imgfour").show();
+			//   $('body')[0].scrollTop = $('body')[0].scrollHeight;
+			// });
+			// $("#ufour").mouseout(function(){
+			//   $("#imgfour").hide();
+			// });
+			// $("#ufive").mouseover(function(){
+			//   $("#imgfive").show();
+			//   $('body')[0].scrollTop = $('body')[0].scrollHeight;
+			// });
+			// $("#ufive").mouseout(function(){
+			//   $("#imgfive").hide();
+			// });
 		})
 	</script>
 </body>
