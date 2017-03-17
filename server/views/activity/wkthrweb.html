@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>！</title>
+	<title>天天狼人杀主播招募</title>
 	<style>
 		html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
 		body,ul,li,p,h3,h4,h2,em,button,input{margin: 0; padding: 0;}
@@ -24,6 +24,7 @@
 			height:18%;
 			top:40.3%;
 			left:23%;
+			z-index:99;
 		}
 		.m-top-two{
 			left:44.5%;
@@ -38,6 +39,7 @@
 			height:5%;
 			top:40%;
 			left:22%;
+			z-index:99;
 		}
 		.u-imgtwo{
 			left:44%;
@@ -49,7 +51,7 @@
 			position:absolute;
 			width:28%;
 			height:35%;
-			top:58.5%;
+			top:48.5%;
 			left:22%;
 		}
 		.m-bottom-two{
@@ -62,7 +64,7 @@
 		.u-img-bg{
 			position:absolute;
 			width:20%;
-			height:20%;
+			height:22%;
 			top:13%;
 			left:40%;
 		}
@@ -120,12 +122,14 @@
 			});
 			$("#ufour").mouseover(function(){
 			  $("#imgfour").show();
+			  $('body')[0].scrollTop = $('body')[0].scrollHeight;
 			});
 			$("#ufour").mouseout(function(){
 			  $("#imgfour").hide();
 			});
 			$("#ufive").mouseover(function(){
 			  $("#imgfive").show();
+			  $('body')[0].scrollTop = $('body')[0].scrollHeight;
 			});
 			$("#ufive").mouseout(function(){
 			  $("#imgfive").hide();
