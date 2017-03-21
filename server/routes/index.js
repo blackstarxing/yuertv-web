@@ -818,15 +818,27 @@ router.get('/activity/recruit', function(req, res, next) {
     res.render('activity/recruit');
 });
 router.get('/activity/wkthr', function(req, res, next) {
-    res.render('activity/wkthr');
+    var nowtime = new Date().getTime();
+    if(!ticket || (nowtime-ticketline)>7000000){
+        getTicket();
+    }
+    res.render('activity/wkthr',{ ticket:ticket});
 });
 router.get('/activity/wkthrmiddle', function(req, res, next) {
-    res.render('activity/wkthrmiddle');
+    var nowtime = new Date().getTime();
+    if(!ticket || (nowtime-ticketline)>7000000){
+        getTicket();
+    }
+    res.render('activity/wkthrmiddle',{ ticket:ticket});
 });
 router.get('/activity/wkthrweb', function(req, res, next) {
     res.render('activity/wkthrweb');
 });
 router.get('/activity/king', function(req, res, next) {
+    var nowtime = new Date().getTime();
+    if(!ticket || (nowtime-ticketline)>7000000){
+        getTicket();
+    }
     Thenjs.parallel([function(cont) {
         request(path+'/live/detail?id=8548', function(error, response, body) {
             if (!error && response.statusCode == 200) {
@@ -839,6 +851,7 @@ router.get('/activity/king', function(req, res, next) {
         console.log(result);
         res.render('activity/king', {
             one: JSON.parse(result[0]).object.info,
+            ticket:ticket
         });
     }).fail(function(cont, error) { 
         console.log(error);

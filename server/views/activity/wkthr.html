@@ -113,7 +113,7 @@
 			appId: 'wxf96f728533f32fa8',
 			ticket: '{{ticket}}',
 			title: '天天狼人杀主播招募',		
-			imgUrl: '',
+			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/2017/03/17/89e9652c3a0a4ab0913af581d5c6a62a.jpg',
 			desc: '前排回收悍跳狼，冲锋狼，倒钩狼用不完的钻石，花不完的钱等你来拿！'
 		})
 	</script>
@@ -199,7 +199,7 @@
 	                success: function(data) {
 	                    console.log(data);
 	                    if (data.code == 0) {
-	                        window.location.href="/activity/wkthrmiddle";        
+	                               
 	                    } else {
 	                        console.log(data.result);
 	                    }
@@ -208,6 +208,7 @@
 	                    console.log("接口出问题啦");
 	                }
 	            })
+	            window.location.href="/activity/wkthrmiddle"; 
 			})
 			$("#dlbtn").on("click",function(){
 				window.location.href="http://a.app.qq.com/o/simple.jsp?pkgname=com.miqtech.wymaster.wylive";
