@@ -831,6 +831,9 @@ router.get('/activity/wkthrmiddle', function(req, res, next) {
     }
     res.render('activity/wkthrmiddle',{ ticket:ticket});
 });
+router.get('/activity/wkthrshow', function(req, res, next) {
+    res.render('activity/wkthrshow');
+});
 router.get('/activity/wkthrweb', function(req, res, next) {
     res.render('activity/wkthrweb');
 });
