@@ -80,7 +80,7 @@
                             {% else %}
                             <a href="javascript:void(0);" class="live-address">
                             {% endif %}
-                                <img src="{{detail.hotLive[0].icon}}" alt="">
+                                <img src="{{detail.hotLive[0].icon}}" alt="" class="screen">
                                 <span><i>·</i>{{detail.hotLive[0].name}}</span>
                                 {% if detail.hotLive[0].state==1 %}
                                     <div class="play-mask online"></div>
@@ -95,7 +95,7 @@
                             {% else %}
                             <a href="javascript:void(0);" class="live-address">
                             {% endif %}
-                                <img src="{{detail.hotLive[1].icon}}" alt="">
+                                <img src="{{detail.hotLive[1].icon}}" alt="" class="screen">
                                 <span><i>·</i>{{detail.hotLive[1].name}}</span>
                                 {% if detail.hotLive[1].state==1 %}
                                     <div class="play-mask online"></div>
@@ -121,7 +121,7 @@
                             {% else %}
                             <a href="javascript:void(0);" class="live-address">
                             {% endif %}
-                                <img src="{{detail.hotLive[0].icon}}" alt="">
+                                <img src="{{detail.hotLive[0].icon}}" alt="" class="screen">
                                 <span><i>·</i>{{detail.hotLive[0].name}}</span>
                                 {% if detail.hotLive[0].state==1 %}
                                     <div class="play-mask online"></div>
@@ -136,7 +136,7 @@
                             {% else %}
                             <a href="javascript:void(0);" class="live-address">
                             {% endif %}
-                                <img src="{{detail.hotLive[1].icon}}" alt="">
+                                <img src="{{detail.hotLive[1].icon}}" alt="" class="screen">
                                 <span><i>·</i>{{detail.hotLive[1].name}}</span>
                                 {% if detail.hotLive[1].state==1 %}
                                     <div class="play-mask online"></div>
@@ -199,7 +199,7 @@
                             {% else %}
                                 <a href="javascript:void(0);" class="live-address">
                             {% endif %}
-                                <img src="{{live.icon}}" alt="">
+                                <img src="{{live.icon}}" alt="" class="screen">
                                 <span><i>·</i>{{live.name}}</span>
                                 {% if live.state==1 %}
                                     <div class="play-mask online"></div>
@@ -252,7 +252,7 @@
                     {% for video in detail.upVideo %}
                         <div class="m-lst m-video">
                             <div class="live-address" data-rtmp="{{video.flv}}" data-title="{{video.title}}" data-icon="{{video.up_user_icon}}" data-id="{{video.id}}" data-name="{{video.name}}" data-nickname="{{video.nickname}}" data-follow="{{video.is_concern}}">
-                                <img src="{{video.icon}}" alt="">
+                                <img src="{{video.icon}}" alt="" class="screen">
                                 <span><i>·</i>{{video.name}}</span>
                                 <div class="play-mask online"></div>
                             </div>

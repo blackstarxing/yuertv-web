@@ -25,6 +25,11 @@
 		.f-cb{*zoom:1;}.f-cb:after{display:block; content:"$"; height:0; clear:both; overflow:hidden; visibility:hidden;}
 		
 		body{
+			background: #fff;
+		}
+		.error_box{width:80%; height:260px; background-color:#fff;  font-size:16px; margin:auto; top:0; right:0; bottom:0; left:0; position:absolute; text-align:center;}
+		.error_pic{width:120px; height:120px; margin:25px auto; background:url(/activity/images/error.png) no-repeat; background-size:100%;}
+		.g-bd{
 			background: #2d0041;
 		}
 		[v-cloak] { display: none }
@@ -46,7 +51,7 @@
 			font-size: 15px;
 			margin:10px;
 			border-radius: 5px;
-			padding:10px 10%;
+			padding:10px 8%;
 		}
 		.notice img{
 			float: left;
@@ -91,7 +96,7 @@
 			margin:0 auto;
 		}
 		.code{
-			border:1px solid #fff;
+			border:1px solid #ab99b3;
 			border-radius: 3px;
 			padding:0 10px;
 			width: 45%;
@@ -133,7 +138,7 @@
 			border-radius: 5px;
 			margin:10px 0;
 			padding:10px;
-			height: 4rem;
+			/*height: 4rem;*/
 			color:#333;
 		}
 		.activity-pic{
@@ -143,7 +148,7 @@
 		}
 		.activity-pic img{
 			width: 100%;
-			height: 100%;
+			/*height: 100%;*/
 		}
 		.activity-title h4{
 			font-size: 13px;
@@ -200,14 +205,14 @@
 </head>
 <body>
 	<div id="app" v-cloak>
-		<div class="g-bd">
+		<div class="g-bd" v-show="loaded">
 			<div class="cover">
 				<img v-bind:src="'http://img.wangyuhudong.com/'+couponInfo.icon" alt="">
 			</div>
 			<div class="notice" v-if="state==1">
 				<img src="/activity/images/coupon_notstart.png" alt="">活动尚未开启，请耐心等待
 			</div>
-			<div class="card" v-if="state==2">
+			<div class="card" v-if="state==2 || state==0">
 				<div class="receiveList">
 					<div class="list">
 						<ul id='list1'>
@@ -217,7 +222,7 @@
 					</div>					
 				</div>
 				<div class="codeWrap f-cb">
-					<div class="code f-fl" id="code">1231435456445</div>
+					<div class="code f-fl" id="code">${cdkey}</div>
 					<button class="u-copy f-fl" data-clipboard-target="#code" id="clone">复制兑换码</button>
 				</div>
 				<div class="left-circle"></div>
@@ -241,12 +246,17 @@
                     </div>
 				</a>
 			</div>
-			<div class="mask" v-show="showPop?showPop:false || state == 0">
+			<div class="mask" v-show="showPop?showPop:false">
 				<div class="pop">
 					<h3>${popWord}</h3>
 					<button @click="hidePop">确定</button>
 				</div>
 			</div>
+		</div>
+		<div class="error_box" v-if="notwechat">
+			<div class="error_pic"></div>
+			<p>对不起，访问出错了</p>
+			<p>请在微信浏览器中访问</p>
 		</div>
 	</div>
 	<script src="/clipboard.min.js"></script>
@@ -255,51 +265,25 @@
 	        el: '#app',
 	        delimiters: ['${', '}'],
 	        data: {
+	        	loaded:false,
+	        	notwechat:false,
+	        	cdkey:'',
 	        	couponInfo:'',
 	        	couponActivity:'',
 	        	receiveList:'',
 	        	showPop:false,
-	        	popWord:'',
+	        	popWord:'您已领取兑换码',
 	            state:'',
 	            code:'',
 	            couponId:'',
 	            nickname:'',
-	            uid:''
+	            uid:'',
+	            timer:false,
 	        },
-	        mounted: function () {
-	            this.$nextTick(function () {
-	            	var _this = this;
-
-	            	_this.code = _this.getQueryString('code');
-	            	_this.couponId = _this.getQueryString('couponId');
-	            	_this.nickname = _this.getQueryString('nickname');
-	            	_this.uid = _this.getQueryString('uid');
-
-	            	$.ajax({
-			            url: '/api/gift/coupon/index',
-			            data: {
-			            	code:_this.code,
-			            	couponId:_this.couponId,
-			            	nickname:_this.nickname,
-					        uid:_this.uid
-					  	},  
-			            type: 'get',
-			            dataType: 'json',
-			            success: function(data) {
-			                _this.couponInfo = data.object.couponInfo;
-			                _this.couponActivity = data.object.couponActivity;
-			                _this.receiveList = data.object.receiveList;
-			                _this.state = _this.couponInfo.state;
-			            },
-			            error: function() {
-			                console.log(123);
-			            }
-			        });
-
-	            	// 礼券统计
-	            	_this.statistics(_this.couponId,1);
-
-			        var index = 1;
+	        updated: function () {
+	        	if(!this.timer){
+	        		this.timer = true;
+		        	var index = 1;
 			   	  	var h = $('.list').height();
 				  	$("#list2").html($("#list1").html());
 				  	var mar = function () {
@@ -314,22 +298,71 @@
 				        }
 
 				    };
-				    var vid = setInterval(mar, 2000);
+				    var vid = setInterval(mar, 3000);	
+	        	}
+	        	
+	        },
+	        mounted: function () {
+	            this.$nextTick(function () {
+	            	var _this = this;
 
-	                var clipboard = new Clipboard('#clone');
-					clipboard.on('success', function(e) {
-						_this.showPop = true;
-						_this.popWord = '复制成功';
-				    });
+	            	var ua = navigator.userAgent.toLowerCase(); 
+	            	// if(ua.match(/MicroMessenger/i)=="micromessenger"){
+	            		_this.code = _this.getQueryString('code');
+		            	_this.couponId = _this.getQueryString('couponId');
+		            	_this.nickname = _this.getQueryString('nickname');
+		            	_this.uid = _this.getQueryString('uid');
 
-				    clipboard.on('error', function(e) {
-				    	_this.showPop = true;
-						_this.popWord = '复制失败';
-				    });
+		            	$.ajax({
+				            url: '/api/gift/coupon/index',
+				            data: {
+				            	code:_this.code,
+				            	couponId:_this.couponId,
+				            	nickname:_this.nickname,
+						        uid:_this.uid
+						  	},  
+				            type: 'get',
+				            dataType: 'json',
+				            success: function(data) {
+				            	if(data.code==302){
+				            		window.location.href = data.result;
+				            	}else{
+				            		_this.loaded = true;
+				            		_this.couponInfo = data.object.couponInfo;
+					                _this.couponActivity = data.object.couponActivity;
+					                _this.receiveList = data.object.receiveList;
+					                _this.state = _this.couponInfo.state;
+				            		_this.cdkey = data.object.couponCode?data.object.couponCode.cdkey:'';
+				            		// 礼券统计
+		            				_this.statistics(_this.couponId,1);
+					                if(_this.state==0){
+					                	_this.showPop = true;
+					                }
+				            	}			                
+				            },
+				            error: function() {
+				                console.log(123);
+				            }
+				        });
 
-				    $('.mask').bind( "touchmove", function (e) {
-					   e.preventDefault();
-					});
+		                var clipboard = new Clipboard('#clone');
+						clipboard.on('success', function(e) {
+							_this.showPop = true;
+							_this.popWord = '复制成功';
+					    });
+
+					    clipboard.on('error', function(e) {
+					    	_this.showPop = true;
+							_this.popWord = '复制失败，请长按复制';
+					    });
+
+					    $('.mask').bind( "touchmove", function (e) {
+						   e.preventDefault();
+						});
+						
+					// }else{
+					// 	_this.notwechat = true;
+					// }
 	            })
 	        },
 	        methods:{
