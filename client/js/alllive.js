@@ -85,7 +85,7 @@ $(function(){
                                         concerntext = (list[i].is_concern == 1) ? '已关注' : '关注';
                                     newPage += '<div class="m-lst m-video">'+
                                                         '<a href="'+link+'" class="live-address">'+
-                                                        '<img src="'+list[i].icon+'" alt="">'+
+                                                        '<img src="'+list[i].icon+'" alt="" class="screen">'+
                                                         '<span><i>·</i>'+list[i].name+'</span>'+
                                                             '<div class="play-mask '+online+'"></div>'+
                                                     '</a>'+

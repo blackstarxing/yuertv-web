@@ -24,7 +24,7 @@
             {% for video in video.list %}
                 <div class="m-lst m-video">
                     <div class="live-address" data-rtmp="{{video.flv}}" data-title="{{video.title}}" data-icon="{{video.up_user_icon}}" data-id="{{video.id}}" data-name="{{video.name}}" data-nickname="{{video.nickname}}" data-follow="{{video.is_concern}}">
-                        <img src="{{video.icon}}" alt="">
+                        <img src="{{video.icon}}" alt="" class="screen">
                         <span><i>·</i>{{video.game_name}}</span>
                         <div class="play-mask online"></div>
                     </div>

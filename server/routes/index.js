@@ -52,6 +52,11 @@ router.get('/', function(req, res, next) {
     }else{
         islogin = false;
     };
+    var deviceAgent = req.headers["user-agent"].toLowerCase();
+    var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
+    if(agentID){
+        res.redirect('http://m.yuerlive.cn/#/index');
+    }
     Thenjs.parallel([function(cont) {
         request({
             uri: path+'/index?from='+from,
@@ -93,7 +98,11 @@ router.get('/liveroom', function(req, res, next) {
     }else{
         islogin = false;
     };
-    console.log(path+'/live/detail?id='+id+'&from='+from);
+    var deviceAgent = req.headers["user-agent"].toLowerCase();
+    var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
+    if(agentID){
+        res.redirect('http://m.yuerlive.cn/#/liveDetail?id='+id);
+    }
     Thenjs.parallel([function(cont) {
         request({
             uri: path+'/live/detail?id='+id+'&from='+from,
@@ -523,6 +532,11 @@ router.get('/alllive', function(req, res, next) {
     }else{
         islogin = false;
     };
+    var deviceAgent = req.headers["user-agent"].toLowerCase();
+    var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
+    if(agentID){
+        res.redirect('http://m.yuerlive.cn/#/lives');
+    }
     Thenjs.parallel([function(cont) {
         request({
             uri: path+'/live/list?page=1&pageSize=30',
@@ -559,6 +573,11 @@ router.get('/allvideo', function(req, res, next) {
     }else{
         islogin = false;
     };
+    var deviceAgent = req.headers["user-agent"].toLowerCase();
+    var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
+    if(agentID){
+        res.redirect('http://m.yuerlive.cn/#/videos');
+    }
     Thenjs.parallel([function(cont) {
         request({
             uri: path+'/video/list?page=1&pageSize=30',
@@ -833,6 +852,10 @@ router.get('/activity/wkthrmiddle', function(req, res, next) {
     res.render('activity/wkthrmiddle',{ ticket:ticket});
 });
 router.get('/activity/wkthrshow', function(req, res, next) {
+    var nowtime = new Date().getTime();
+    if(!ticket || (nowtime-ticketline)>7000000){
+        getTicket();
+    }
     res.render('activity/wkthrshow');
 });
 router.get('/activity/wkthrweb', function(req, res, next) {
