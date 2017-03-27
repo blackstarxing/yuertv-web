@@ -8,7 +8,7 @@ var ticket = '';
 var ticketline = '';
 
 var path = 'http://172.16.10.144:8777';
-var apipath ="http://172.16.10.134:8099"
+var apipath ="http://172.16.10.134:8099";
 
 function getTicket(){
     Thenjs.parallel([function(cont) {
