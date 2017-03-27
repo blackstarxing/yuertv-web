@@ -17,12 +17,12 @@
 		.g-con .g-bg-r{
 			position:relative;
 		}
-		.m-login,.m-title,.m-copy{
+		.m-login{
 			position:absolute;
 			width:25%;
 			height:37%;
 			border-radius:5%;
-			background:rgba(28,35,45,0.3);
+			background:rgba(49,62,76,0.3);
 			top:27.5%;
 			left:37.5%;
 		}
@@ -46,7 +46,7 @@
 		    font-size:9px;
 		    padding-left:2%;
 		} 
-		.m-login input,input.u-sl{
+		.m-login input{
 			display:block;
 			width:85%;
 			height:12%;
@@ -59,16 +59,22 @@
 			color:#b6c0cd;
 		}
 		input.u-tel,input.u-pw{
-			margin-top:15%;
+			margin-top:10%;
 			color:#b6c0cd;
 		}
-		.m-login span,span.u-sl-empty,span.u-sl-length{
+		.m-login span{
 			display:block;
 			font-size:8px;
 			color:#f36;
 			margin:2% 0 0 8%;
 		}
-		.u-open,.u-start,.u-copy{
+		span.u-sl-empty,span.u-sl-length{
+			display:block;
+			font-size:8px;
+			color:#f36;
+			margin:2% 0 0 0%;
+		}
+		.u-open{
 			display:block;
 			border:none;
 			width:85%;
@@ -81,12 +87,79 @@
 			font-size:10px;
 			color:#fff;
 			background:#f36;
+			margin-bottom:10%;
 		}
 		/*第二块*/
+		.m-title{
+			position:absolute;
+			width:25%;
+			border-radius:5%;
+			background:rgba(49,62,76,0.3);
+			top:27.5%;
+			left:37.5%;
+			margin-bottom:3%;
+		}
+		.u-clm{
+			width:85%;
+			height:20px;
+			margin-left:7.5%;
+			margin-top:10%;
+		}
+		.u-obsclm{
+			font-size:8px;
+			color:#999;
+			word-wrap:break-word;
+		}
+		.u-copy{
+			border:none;
+			display:inline-block;
+			width:20%;
+			height:30px;
+			background:#f36;
+			border-radius:5px;
+			font-size:12px;
+			color:#fff;
+			text-align:center;
+		}
+		.u-clmdesc{
+			font-size:7px;
+			color:#52c4f8;
+			margin-left:2%;
+		}
+		.u-hostgame{
+			margin-left:7.5%;
+			width:85%;
+			margin-top:33%;
+		}
+		input.u-sl,input.u-sgame{
+			display:block;
+			width:100%;
+			height:40px;
+			border-radius:5px;
+			margin:0 auto;
+			margin-top:10%;
+			border:1px solid #3c4856;
+			background:#272c39;
+			color:#b6c0cd;
+		}
+		.u-start{
+			display:block;
+			border:none;
+			width:100%;
+			height:40px;
+			border-radius:5px;
+			margin:0 auto;
+			margin-top:10%;
+			text-align:center;
+			font-size:10px;
+			color:#fff;
+			background:#f36;
+			margin-bottom:10%;
+		}
+		/*第三块*/
 		.m-select{
 			position:absolute;
 			width:47%;
-			/*height:56%;*/
 			background:#141a20;
 			top:20%;
 			left:27%;
@@ -150,10 +223,6 @@
 		.m-s-describe p{
 			margin-top:2%;
 		}
-		/*第三块*/
-		input.u-sl{
-			margin-top:18%;
-		}
 		/*第四块*/
 		.m-c-obs{
 			width:75%;
@@ -163,13 +232,14 @@
 		}
 		.g-jump{
 			position:absolute;
-			width:15%;
 			height:2%;
 			line-height:2%;
-			top:68%;
-			left:43%;
+			margin-top:10%;
+			top:78%;
+			left:40%;
 			font-size:8px;
 			color:#fff;
+			cursor:pointer;
 		}
 		.m-layer{
 			display:none;
@@ -235,14 +305,126 @@
 			color:#999;
 			margin:0 20%;
 		}
+		.m-layersg{
+			display:none;
+			position:fixed;
+			top:0;left:0;
+			width:100%;height:100%;
+			background:rgba(0,0,0,0.6);
+			z-index:999999;
+		}
+		.m-bouncedsg{
+			position:fixed;
+			width:20%;
+			height:18%;
+			top:0;
+			right:0;
+			bottom: 0;
+			left: 0;
+			margin:auto;
+			background:#323a43;
+			border-radius:5px;
+			z-index:999;
+		}
+		img.m-b-imgsg{
+			display:inline-block;
+			width:30px;
+			height:30px;
+			margin:10% 45%;
+		}
+		p.m-b-fsg{
+			font-size:10px;
+			color:#999;
+			margin:0 20%;
+		}
+		.m-layerw{
+			display:none;
+			position:fixed;
+			top:0;left:0;
+			width:100%;height:100%;
+			background:rgba(0,0,0,0.6);
+			z-index:999999;
+		}
+		.m-bouncedw{
+			position:fixed;
+			width:20%;
+			height:18%;
+			top:0;
+			right:0;
+			bottom: 0;
+			left: 0;
+			margin:auto;
+			background:#323a43;
+			border-radius:5px;
+			z-index:999;
+		}
+		img.m-b-imgw{
+			display:inline-block;
+			width:30px;
+			height:30px;
+			margin:10% 45%;
+		}
+		p.m-b-fw{
+			font-size:10px;
+			color:#999;
+			margin:0 30%;
+		}
+		.m-layerws{
+			display:none;
+			position:fixed;
+			top:0;left:0;
+			width:100%;height:100%;
+			background:rgba(0,0,0,0.6);
+			z-index:999999;
+		}
+		.m-bouncedws{
+			position:fixed;
+			width:23%;
+			height:28%;
+			top:0;
+			right:0;
+			bottom: 0;
+			left: 0;
+			margin:auto;
+			background:#323a43;
+			border-radius:5px;
+			z-index:999;
+		}
+		img.m-b-imgws{
+			display:inline-block;
+			width:30px;
+			height:30px;
+			margin:6% 45%;
+		}
+		p.m-b-fws{
+			font-size:10px;
+			color:#999;
+			margin:0 4%;
+			font-size:8px;
+			color:#fff;
+		}
+		.m-b-ws{
+			border:none;
+			display:block;
+			width:50%;
+			height:30px;
+			background:#f36;
+			border-radius:5px;
+			margin:10% 25%;
+			text-align:center;
+			color:#fff;
+			font-size:9px;
+			/*margin-bottom:5%;*/
+		}
 		input.addclass{
 			border:1px solid #f36;
 		}
 		input{
-			outline: none;
+			outline:none;
+			text-indent:5px;
 		}
 		button.u-start,button.u-open,button.u-copy{
-			margin-top:20%;
+			margin-top:15%;
 		}
 	</style>
 </head>
@@ -250,7 +432,7 @@
 	<div class="g-con">
 		<img src="/images/obs_bg.jpg" alt="" class="g-bg-r">
 		<div class="g-main">
-			<div class="m-login" >
+			<div class="m-login" id="m-login">
 				<input type="text" name="" id="u-tel" class="u-tel" placeholder="手机号码">
 				<span class="u-tel-empty" style="display:none;">手机号码不能为空</span>
 				<span class="u-tel-wrong" style="display:none;">手机号码错误</span>
@@ -300,15 +482,19 @@
 				</div>
 			</div>
 			<div class="m-title" style="display:none;">
-				<input type="text" name="" id="u-sl" class="u-sl" placeholder="请输入直播标题">
-				<span class="u-sl-empty" style="display:none;">直播标题不能为空</span>
-				<span class="u-sl-length" style="display:none;">直播标题不要超过20位</span>
-				<button class="u-start" id="u-start">开始直播</button>
-			</div>
-			<div class="m-copy" style="display:none;">
-				<p class="m-c-obs">OBS串流码：<span id="code" class="code">OBS串流码：rtmp://pili-publish.wangyuhudong.com/w yds/wyds_4230983?OBS串流码：rtmp://pili-publish.wangyuhudong.com/w yds/wyds_4230983?OBS串流码：rtmp://pili-publish.wangyuhudong.com/w yds/wyds_4230983?</span></p>
-				<button class="u-copy" data-clipboard-target="#code"> 复制串流码</button>
-			</div>
+				<div class="u-clm">
+					<p id="code" class="code u-obsclm"></p>
+					<button class="u-copy" data-clipboard-target="#code">复制</button>
+					<span class="u-clmdesc">开始直播后记得回来完善信息</span>
+				</div>
+				<div class="u-hostgame">
+					<input type="text" name="" id="u-sl" class="u-sl" placeholder="请输入直播标题">
+					<span class="u-sl-empty" style="display:none;">直播标题不能为空</span>
+					<span class="u-sl-length" style="display:none;">直播标题不要超过20位</span>
+					<input type="text" name="" placeholder="请选择游戏" class="u-sgame" id="u-sgame" >
+					<button class="u-start" id="u-start">开始直播</button>
+				</div>
+			</div>	
 		</div>
 		<div class="g-jump" id="g-jump">
 			点击加入娱儿直播官方群：<span style="color:#f36">421322720</span>
@@ -316,14 +502,34 @@
 	</div>
 	<div class="m-layer">
 		<div class="m-bounced">
-			<img src="/images/wrong.png" alt="" class="m-b-img"> 
+			<img src="/images/iconcancel.png" alt="" class="m-b-img"> 
 			<p class="m-b-f">主播链接已复制，快去直播吧！</p>
+		</div>
+	</div>
+	<div class="m-layerws">
+		<div class="m-bouncedws">
+			<img src="/images/wrong.png" alt="" class="m-b-imgws"> 
+			<p class="m-b-fws">复制串流码后请务必回来输入房间标题以及并选择开播
+游戏，如因此造成开播时长、收益等受到影响概不负责</p>
+			<button class="m-b-ws">我一定会回来的</button>
 		</div>
 	</div>
 	<div class="m-layers">
 		<div class="m-bounceds">
-			<img src="/images/iconcancel.png" alt="" class="m-b-imgs"> 
+			<img src="/images/wrong.png" alt="" class="m-b-imgs"> 
 			<p class="m-b-fs">链接复制失败，请手动复制！</p>
+		</div>
+	</div>
+	<div class="m-layersg">
+		<div class="m-bouncedsg">
+			<img src="/images/wrong.png" alt="" class="m-b-imgsg"> 
+			<p class="m-b-fsg">请选择开播游戏！</p>
+		</div>
+	</div>
+	<div class="m-layerw">
+		<div class="m-bouncedw">
+			<img src="/images/wrong.png" alt="" class="m-b-imgw"> 
+			<p class="m-b-fw">主播不在线！</p>
 		</div>
 	</div>
 	<script src="/jquery.js"></script>
@@ -333,16 +539,31 @@
 			// 第一块的登录
 			// 确保输入框纯数字
 			var keyword="";
+			var keyname="";
 			var title="";
 			var id="";
 			var token="";
-			var clipboard = new Clipboard('#clone');
+			var content="";
+			var clipboard = new Clipboard('.u-copy');
 			clipboard.on('success', function(e) {
-				$(".m-layer").show();
+				showTip(".m-layer");
 		    });
 		    clipboard.on('error', function(e) {
-		    	$(".m-layers").show();
+		    	showTip(".m-layers");
 			});
+			// 错误弹出提示
+			function showTip(cname){
+				$(cname).show();
+		        setTimeout(function(){
+		            $(cname).hide();
+		        },1500);
+			}
+			function showTips(textc){
+				$(".m-layer").text(textc).show();
+		        setTimeout(function(){
+		            $(".m-layer").hide();
+		        },1500);
+			}
 	        $("#u-tel").off("keydown").on("keydown",function(e){
 	            if((e.keyCode >=48 && e.keyCode <=57)||(e.keyCode >=97 && e.keyCode <=105)||(e.keyCode == 8)){
 	            
@@ -382,11 +603,12 @@
 		                },
 		                success: function(data) {
 		                    if(data.code == 0){
-		                    	console.log(data.code);
 		                    	$(".m-login").hide();
-		                        $(".m-select").show();
+		                        $(".m-layerws").show();
 		                        id=data.object.id;
 		                        token=data.object.token;
+		                        content=data.object.rtmp;
+		                        $(".u-obsclm").text(content);
 		                    }else if(data.code == 1){
 	                            $("#m-login").find("span").each(function(){
 	                                if($(this).attr("class").indexOf("u-tel-nouser") != -1){
@@ -423,14 +645,19 @@
                     });
 				}     
 	        });
+	        $(".m-b-ws").on("click",function(){
+	        	$(".m-layerws").hide();
+	        	$(".m-title").show();
+	        })
+	        $("#u-sgame").on("click",function(){
+	        	$(".m-select").show();
+	        })
 	        // 第二块的选择游戏
 	        $(".m-srs").on("click",function(){
 	        	keyword=$(this).find(".m-srs-gname").attr('data-id');
-				// $.ajax({
-				// 	url:'http://172.16.2.62/v4/live/liveNotify?keyword='+keyword
-				// })
-		        	$(".m-select").hide();
-		        	$(".m-title").show();
+	        	$("#u-sgame").val($(this).find(".m-srs-gname").html());
+	        	$(".m-select").hide();
+	        	$(".m-title").show();
 	        })
 	        $("#u-sl").on("blur",function(){
 	        	if($("#u-sl").val()==""){
@@ -447,33 +674,41 @@
 	        })
 
 	        $(".u-start").on("click",function(){
-	        	title=$("#u-sl").val();
-	        	console.log(keyword);
-	        	console.log(title);
-	        	$.ajax({
-                    method: "GET",
-                    url: "http://172.16.10.134:8099/v4/live/liveNotify",
-                    dataType: 'json',
-                    data: {
-                        gameId: keyword,
-                        screen:1,
-                        source:2,
-                        title:title,
-                        userId:id,
-                        token:token
-                    },
-                    success: function(data) {
-                        if(data.code == 0) {
-                            $(".m-title").hide();
-                            $(".m-copy").show();
-                        }else{
-                            console.log(data.result);
-                        }
-                    },
-                    error: function(a, b, c) {
-                        console.log("接口出问题啦");
-                    }
-                })
+	        	if($(".u-sgame").val()==""){
+            		showTip(".m-layersg");
+            	}else if($(".u-sl").val()==""){
+            		$(".u-sl-empty").show();
+            	}else{
+            		title=$("#u-sl").val();
+		        	$.ajax({
+	                    method: "GET",
+	                    url: "http://172.16.10.134:8099/v4/live/liveNotify",
+	                    dataType: 'json',
+	                    data: {
+	                        gameId: keyword,
+	                        screen:1,
+	                        source:2,
+	                        title:title,
+	                        userId:id,
+	                        token:token
+	                    },
+	                    success: function(data) {
+	                        if(data.code == 0) {
+	                        	showTips("可成功开播");
+	                        	window.location.href=window.location.href;
+	                            
+	                        }else if(data.code ==2){
+	                        	showTip(".m-layerw");
+	                        }else{
+	                            console.log(data.result);
+	                        }
+	                    },
+	                    error: function(a, b, c) {
+	                        console.log("接口出问题啦");
+	                    }
+	                })
+            	}
+	        	
 	        })
 	        // 加群的跳转
 	        $("#g-jump").on("click",function(){
