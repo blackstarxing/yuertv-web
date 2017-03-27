@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
+		body,ul,li,p,h3,h4,h2,em,button,input{margin: 0; padding: 0;}
+		body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; 
+			font-size:62.5%; font-style:normal;  margin:0 auto;
+			height:100%; color:#9da4ad; 
+			background: #17121d; 
+			overflow-x:hidden; 
+			-webkit-overflow-scrolling:touch;
+		}
+		img{border:0; max-width:100%;vertical-align: top;}
+		.g-con .g-bg-r{
+			position:relative;
+		}
+		.m-login,.m-title,.m-copy{
+			position:absolute;
+			width:25%;
+			height:37%;
+			border-radius:5%;
+			background:rgba(28,35,45,0.3);
+			top:27.5%;
+			left:37.5%;
+		}
+		input::-webkit-input-placeholder { /* WebKit browsers */ 
+		    color: #b6c0cd; 
+		    font-size:9px;
+		    padding-left:2%;
+		} 
+		input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+		    color: #b6c0cd; 
+		    font-size:9px;
+		    padding-left:2%;
+		} 
+		input::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+		    color: #b6c0cd; 
+		    font-size:9px;
+		    padding-left:2%;
+		} 
+		input:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+		    color: #b6c0cd; 
+		    font-size:9px;
+		    padding-left:2%;
+		} 
+		.m-login input,input.u-sl{
+			display:block;
+			width:85%;
+			height:12%;
+			line-height:12%;
+			border-radius:5px;
+			margin:0 auto;
+			margin-top:10%;
+			border:1px solid #3c4856;
+			background:#272c39;
+			color:#b6c0cd;
+		}
+		input.u-tel,input.u-pw{
+			margin-top:15%;
+			color:#b6c0cd;
+		}
+		.m-login span,span.u-sl-empty,span.u-sl-length{
+			display:block;
+			font-size:8px;
+			color:#f36;
+			margin:2% 0 0 8%;
+		}
+		.u-open,.u-start,.u-copy{
+			display:block;
+			border:none;
+			width:85%;
+			height:12%;
+			line-height:12%;
+			border-radius:5px;
+			margin:0 auto;
+			margin-top:10%;
+			text-align:center;
+			font-size:10px;
+			color:#fff;
+			background:#f36;
+		}
+		/*第二块*/
+		.m-select{
+			position:absolute;
+			width:47%;
+			/*height:56%;*/
+			background:#141a20;
+			top:20%;
+			left:27%;
+			z-index:99;
+		}
+		.m-s-top{
+			width:100%;
+			background:#1c232d;
+			font-size:15px;
+			color:#fff;
+		}
+		span.m-st-select{
+			display:inline-block;
+			margin:2% 0 2% 4%;
+		}
+		.m-s-recently{
+			width:95%;
+			height:20%;
+			margin:3.5% auto;
+		}
+		.m-s-all{width:95%;margin:0 auto;height:45%;line-height:45%;}
+		.m-s-recently h4,h4.m-sa-title{
+			line-height:100%;
+			font-size:10px;
+			color:#fff;
+			border-left:2px solid #f36;
+			padding-left:1%;
+		}
+		.m-sr-select,.m-sa-all{overflow:hidden;}
+		.m-srs{
+			width:30%;
+			height:73px;
+			line-height:73px;
+			float:left;
+			background:#242d3c;
+			border-radius:5px;
+			margin-top:2%;
+			margin-right:2.5%;
+			cursor:pointer;
+		}
+		.m-srs img{
+			display:inline-block;
+			width:50px;
+			height:50px;
+			margin:7.5% 5%;
+			border-radius:5px;
+		}
+		.m-srs span{
+			display:inline-block;
+			font-size:12px;
+			color:#98a9bb;
+			margin-left:10%;
+		}
+		.m-s-describe{
+			width:95%;
+			font-size:10px;
+			color:#98a9bb;
+			margin-left:2.8%;
+			padding:3% 0%;
+		}
+		.m-s-describe p{
+			margin-top:2%;
+		}
+		/*第三块*/
+		input.u-sl{
+			margin-top:18%;
+		}
+		/*第四块*/
+		.m-c-obs{
+			width:75%;
+			margin:20% auto 10%;
+			font-size:9px;
+			color:#999;
+		}
+		.g-jump{
+			position:absolute;
+			width:15%;
+			height:2%;
+			line-height:2%;
+			top:68%;
+			left:43%;
+			font-size:8px;
+			color:#fff;
+		}
+		.m-layer{
+			display:none;
+			position:fixed;
+			top:0;left:0;
+			width:100%;height:100%;
+			background:rgba(0,0,0,0.6);
+			z-index:999999;
+		}
+		.m-bounced{
+			position:fixed;
+			width:20%;
+			height:18%;
+			top:0;
+			right:0;
+			bottom: 0;
+			left: 0;
+			margin:auto;
+			background:#323a43;
+			border-radius:5px;
+			z-index:999;
+		}
+		img.m-b-img{
+			display:inline-block;
+			width:30px;
+			height:30px;
+			margin:10% 45%;
+		}
+		p.m-b-f{
+			font-size:10px;
+			color:#999;
+			margin:0 20%;
+		}
+		.m-layers{
+			display:none;
+			position:fixed;
+			top:0;left:0;
+			width:100%;height:100%;
+			background:rgba(0,0,0,0.6);
+			z-index:999999;
+		}
+		.m-bounceds{
+			position:fixed;
+			width:20%;
+			height:18%;
+			top:0;
+			right:0;
+			bottom: 0;
+			left: 0;
+			margin:auto;
+			background:#323a43;
+			border-radius:5px;
+			z-index:999;
+		}
+		img.m-b-imgs{
+			display:inline-block;
+			width:30px;
+			height:30px;
+			margin:10% 45%;
+		}
+		p.m-b-fs{
+			font-size:10px;
+			color:#999;
+			margin:0 20%;
+		}
+		input.addclass{
+			border:1px solid #f36;
+		}
+		input{
+			outline: none;
+		}
+		button.u-start,button.u-open,button.u-copy{
+			margin-top:20%;
+		}
+	</style>
+</head>
+<body>
+	<div class="g-con">
+		<img src="/images/obs_bg.jpg" alt="" class="g-bg-r">
+		<div class="g-main">
+			<div class="m-login" >
+				<input type="text" name="" id="u-tel" class="u-tel" placeholder="手机号码">
+				<span class="u-tel-empty" style="display:none;">手机号码不能为空</span>
+				<span class="u-tel-wrong" style="display:none;">手机号码错误</span>
+				<span class="u-tel-nouser" style="display:none;">用户不存在</span>
+				<input type="password" name="" id="u-pw" class="u-pw" placeholder="密码">
+				<span class="u-pw-empty" style="display:none;">密码不能为空</span>
+				<span class="u-pw-wrong" style="display:none;">密码错误</span>
+				<button class="u-open" id="u-open">开启直播</button>
+			</div>
+			<div class="m-select" style="display:none;">
+				<div class="m-s-top">
+					<span class="m-st-select">选择游戏</span>
+				</div>
+				<div class="m-s-recently">
+					<h4 class="m-sr-select">最近选择</h4>
+					<div class="m-sr-select">
+					{% for index in index %}
+						<div class="m-srs">
+				              {% if index.icon.indexOf('http')>-1 %}
+				              <img src="{{index.icon}}" alt="" class="m-srs-icon">
+				              {% else %}
+				              <img src="http://img.wangyuhudong.com/{{index.icon}}" alt="" class="m-srs-icon">
+				              {% endif %}
+							<span class="m-srs-gname" data-id="{{index.id}}">{{index.name}}</span>
+						</div>
+					{% endfor %}
+					</div>
+				</div>
+				<div class="m-s-all">
+					<h4 class="m-sa-title">全部游戏</h4>
+					<div class="m-sa-all">
+					{% for index in index %}
+						<div class="m-srs">
+							{% if index.icon.indexOf('http')>-1 %}
+				              <img src="{{index.icon}}" alt="" class="m-srs-icon">
+				            {% else %}
+				              <img src="http://img.wangyuhudong.com/{{index.icon}}" alt="" class="m-srs-icon">
+				            {% endif %}
+							<span class="m-srs-gname" data-id="{{index.id}}">{{index.name}}</span>
+						</div>
+					{% endfor %}
+					</div>
+				</div>
+				<div class="m-s-describe">
+					<p>没找到您喜欢的游戏？您可以选择上方游戏列表中的“综合手游” </p>
+					<p>我们的工作人员将尽快添加您喜爱的游戏^_^！</p>
+				</div>
+			</div>
+			<div class="m-title" style="display:none;">
+				<input type="text" name="" id="u-sl" class="u-sl" placeholder="请输入直播标题">
+				<span class="u-sl-empty" style="display:none;">直播标题不能为空</span>
+				<span class="u-sl-length" style="display:none;">直播标题不要超过20位</span>
+				<button class="u-start" id="u-start">开始直播</button>
+			</div>
+			<div class="m-copy" style="display:none;">
+				<p class="m-c-obs">OBS串流码：<span id="code" class="code">OBS串流码：rtmp://pili-publish.wangyuhudong.com/w yds/wyds_4230983?OBS串流码：rtmp://pili-publish.wangyuhudong.com/w yds/wyds_4230983?OBS串流码：rtmp://pili-publish.wangyuhudong.com/w yds/wyds_4230983?</span></p>
+				<button class="u-copy" data-clipboard-target="#code"> 复制串流码</button>
+			</div>
+		</div>
+		<div class="g-jump" id="g-jump">
+			点击加入娱儿直播官方群：<span style="color:#f36">421322720</span>
+		</div>
+	</div>
+	<div class="m-layer">
+		<div class="m-bounced">
+			<img src="/images/wrong.png" alt="" class="m-b-img"> 
+			<p class="m-b-f">主播链接已复制，快去直播吧！</p>
+		</div>
+	</div>
+	<div class="m-layers">
+		<div class="m-bounceds">
+			<img src="/images/iconcancel.png" alt="" class="m-b-imgs"> 
+			<p class="m-b-fs">链接复制失败，请手动复制！</p>
+		</div>
+	</div>
+	<script src="/jquery.js"></script>
+	<script src="/clipboard.min.js"></script>
+	<script>
+		$(function(){
+			// 第一块的登录
+			// 确保输入框纯数字
+			var keyword="";
+			var title="";
+			var id="";
+			var token="";
+			var clipboard = new Clipboard('#clone');
+			clipboard.on('success', function(e) {
+				$(".m-layer").show();
+		    });
+		    clipboard.on('error', function(e) {
+		    	$(".m-layers").show();
+			});
+	        $("#u-tel").off("keydown").on("keydown",function(e){
+	            if((e.keyCode >=48 && e.keyCode <=57)||(e.keyCode >=97 && e.keyCode <=105)||(e.keyCode == 8)){
+	            
+	            }else{
+	                e.preventDefault();
+	            }
+	        })
+			$("#u-tel").on("blur",function(){
+				if($("#u-tel").val()!=''){
+					if(/^1[34578][0-9]{9}$/.test($('#u-tel').val())){
+		                $(".u-tel-wrong").hide();
+		            }else{
+		            	$(".u-tel-empty").hide();
+			            $(".u-tel-wrong").show();
+		            }		
+				}else{
+					$(".u-tel-empty").show();
+				}				
+			})	
+			$("#u-pw").on("blur",function(){
+				if($("#u-pw").val()==''){
+					$(".u-pw-empty").show();
+				}else{
+					$(".u-pw-empty").hide();
+				}
+			})
+			$("#u-open").on("click",function(){
+				if($("#u-tel").val()!='' && $("").val()!=''){
+					$.ajax({
+		                method: "GET",
+		                url: "http://172.16.10.134:8099/login",
+		                dataType: 'json',
+		                data: {
+		                    username:$("#u-tel").val(),
+		                    password:$("#u-pw").val(),
+		                    type:3,
+		                },
+		                success: function(data) {
+		                    if(data.code == 0){
+		                    	console.log(data.code);
+		                    	$(".m-login").hide();
+		                        $(".m-select").show();
+		                        id=data.object.id;
+		                        token=data.object.token;
+		                    }else if(data.code == 1){
+	                            $("#m-login").find("span").each(function(){
+	                                if($(this).attr("class").indexOf("u-tel-nouser") != -1){
+	                                    $(this).show();
+	                                }else{
+	                                    $(this).hide();
+	                                }
+	                                if($(this).attr("class").indexOf("u-pw-wrong") != -1){
+	                                    $(this).show();
+	                                }else{
+	                                    $(this).hide();
+	                                }
+	                            });
+	                        }else{
+		                        alert(data.result);
+		                    }
+		                },
+		                error: function(a, b, c) {
+		                    console.log("接口出问题啦");
+		                }
+		            });
+				}else{
+					$("#m-login").find("span").each(function(){
+                        if($(this).attr("class").indexOf("u-tel-empty") != -1){
+                            $(this).show();
+                        }else{
+                            $(this).hide();
+                        }
+                        if($(this).attr("class").indexOf("u-pw-empty") != -1){
+                            $(this).show();
+                        }else{
+                            $(this).hide();
+                        }
+                    });
+				}     
+	        });
+	        // 第二块的选择游戏
+	        $(".m-srs").on("click",function(){
+	        	keyword=$(this).find(".m-srs-gname").attr('data-id');
+				// $.ajax({
+				// 	url:'http://172.16.2.62/v4/live/liveNotify?keyword='+keyword
+				// })
+		        	$(".m-select").hide();
+		        	$(".m-title").show();
+	        })
+	        $("#u-sl").on("blur",function(){
+	        	if($("#u-sl").val()==""){
+	        		$(".u-sl-empty").show();
+	        	}else{
+	        		$(".u-sl-empty").hide();
+	        	}
+	        	console.log($("#u-sl").length);
+	        	if($("#u-sl").val().length>20){
+	        		$(".u-sl-length").show();
+	        	}else{
+	        		$(".u-sl-length").hide();
+	        	}
+	        })
+
+	        $(".u-start").on("click",function(){
+	        	title=$("#u-sl").val();
+	        	console.log(keyword);
+	        	console.log(title);
+	        	$.ajax({
+                    method: "GET",
+                    url: "http://172.16.10.134:8099/v4/live/liveNotify",
+                    dataType: 'json',
+                    data: {
+                        gameId: keyword,
+                        screen:1,
+                        source:2,
+                        title:title,
+                        userId:id,
+                        token:token
+                    },
+                    success: function(data) {
+                        if(data.code == 0) {
+                            $(".m-title").hide();
+                            $(".m-copy").show();
+                        }else{
+                            console.log(data.result);
+                        }
+                    },
+                    error: function(a, b, c) {
+                        console.log("接口出问题啦");
+                    }
+                })
+	        })
+	        // 加群的跳转
+	        $("#g-jump").on("click",function(){
+				window.location.href="http://qm.qq.com/cgi-bin/qm/qr?k=CydURcDl-D9axsd1Uy2U-K_9q2zYf3a1";
+			})
+		});
+		
+	</script>
+</body>
+</html>
