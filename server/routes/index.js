@@ -8,6 +8,7 @@ var ticket = '';
 var ticketline = '';
 
 var path = 'http://172.16.10.144:8777';
+var apipath ="http://172.16.10.134:8099"
 
 function getTicket(){
     Thenjs.parallel([function(cont) {
@@ -1307,7 +1308,32 @@ router.get('/spread/tashan', function(req, res, next) {
         res.render('error', { title: "错误"});
     });
 });
-
+router.get('/spread/login', function(req, res, next) {
+    Thenjs.parallel([function(cont) {
+        request({
+            uri: apipath+'/v4/live/gameType?hasNum=0',
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+              }
+        }, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        res.render('spread/login', {
+            title: "娱儿直播--领跑移动电竞的直播平台",
+            index: JSON.parse(result[0]).object,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+    // res.render('spread/login');
+});
 router.get('/activity/christmas', function(req, res, next) {
     Thenjs.parallel([function(cont) {
         request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxf96f728533f32fa8&secret=5007eda46723c5faf79a8b9ca3be131a', function(error, response, body) {
