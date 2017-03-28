@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />
+	<title>王者校园赛群雄逐鹿水利水电</title>
+	<script src="/jquery.js"></script>		
+	<script src="/activity/build/mediaelement-and-player.min.js"></script>
+	<script src="/jquery.sha1.js"></script>
+	<script src="/wxjsapi.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<link rel="stylesheet" href="/activity/build/mediaelementplayer.min.css" />
+	<style>
+		html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
+		*{margin: 0; padding: 0;}
+		body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; 
+			font-size:62.5%; 
+			font-style:normal; 
+			max-width: 800px; 
+			margin:0 auto; 
+			height:100%; 
+			color:#9da4ad;
+			background: #141a20; 
+			overflow-x:hidden; 
+			-webkit-overflow-scrolling:touch;
+		}
+		img{border:0; max-width:100%;}
+		body{
+			background: #fff;
+		}
+		img{
+			vertical-align: top;
+			width: 100%;
+		}
+		img.m-gb{
+			position:relative;
+		}
+		img.m-f{
+			position:absolute;
+			display:inline-block;
+			width:30%;
+			top:22.5%;
+			left:10%;
+		}
+		img.m-f-game{
+			margin-left:50%;
+		}
+		img.m-f-arrow{
+			width:20%;
+			left:40%;
+			top:24%;
+		}
+		img.m-f-signup{
+			left:35%;
+			top:96.5%;
+		}
+		.m-chat{
+			position:absolute;
+			width:92%;
+			top:17.6%;
+			margin:0% 4%;
+			border:1px solid #ff0;
+			font-size:12px;
+			color:#f3f3f3;
+		}
+		img.m-c{
+			display:inline-block;
+			width:3%;
+		}
+		img.m-c-r{
+			display:inline-block;
+			width:10%;
+		}
+		.g-convedio{
+			position:relative;
+			width:100%;
+		}
+		.g-convedio .videoBox{
+			position:absolute;
+			top:35.2%;
+			width:100%; 
+			z-index:888;
+		}
+		.g-bofingers{
+			left:6%;
+			top:35%;
+			z-index:888;
+			overflow:hidden;
+		}
+		.g-fingers{
+			position: absolute;
+			width:25%;
+			left:3%;
+			float:left;
+			top:37%;
+			z-index:9999;
+		}
+		.g-buttons{
+			position: absolute;
+			width:75%;
+			left:18%;
+			top:22%;
+			z-index:999;
+			background:transparent;
+		}
+		.videoBox .mask,.videoBox .end-mask{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,0.8);
+			/*border:1px solid ;*/
+		}
+		.videoBox .mask{
+			display: none;
+		}
+		.videoBox .mask h3,.videoBox .end-mask h3{
+			font-size: 14px;
+			color: #fff;
+			text-align: center;
+			margin-top: 18%;
+		}
+		.btn-group{
+			width: 70%;
+			margin:0 auto;
+		}
+		.btn-group a{
+			text-decoration: none;
+			display: inline-block;
+			width: 45%;
+			height: 30px;
+			line-height: 28px;
+			background: rgba(255,51,102,0.1);
+			border:1px solid #f36;
+			border-radius: 6px;
+			color:#fff;
+			text-align: center;
+			font-size: 12px;
+			box-sizing: border-box;
+			margin-top: 8%;
+			border-color:#5885dd;
+		}
+		.btn-group .return{
+			margin-left: 10%;
+		}
+		.single a{
+			display: block;
+			margin: 8% auto 0;
+		}
+
+	</style>
+	<script>
+		enableWxShare({
+			appId: 'wxf96f728533f32fa8',
+			ticket: '{{ticket}}',
+			title: '王者校园赛群雄逐鹿水利水电',
+			type:'video',			
+			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/yuerlogo.png',
+			desc: '《王者荣耀》第三届王者校园争霸赛荣耀开战！'
+		})
+	</script>
+</head>
+<body>
+	<div class="g-container">
+		<div class="g-convedio">
+			<img src="/activity/images/w-bg-1.jpg" class="m-bg">
+			<img src="/activity/images/w-bg-11.jpg" class="m-bg">
+			<img src="/activity/images/w-bg-2.jpg" class="m-bg">
+			<img src="/activity/images/w-bg-3.jpg" class="m-bg">
+			<img src="/activity/images/w-bg-4.jpg" class="m-bg">
+			<div class="videoBox">
+				{% if one.state==1 %}
+                    <video width="100%" height="100%" id="player1" poster="" controls="" autoplay="" webkit-playsinline playsinline style="margin:0;border:0;"><source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_4255779.m3u8" /></video>
+					<div class="mask">
+						<h3>下载娱儿直播观看更多精彩直播</h3>
+						<div class="btn-group">
+							<a href="https://yuertvfile.wangyuhudong.com?type=live&objId=21" class="enter">下载娱儿直播</a><a href="" class="return">继续观看</a>
+						</div>				
+					</div>
+				{% else %}
+                    <div class="end-mask">
+						<h3>直播尚未开始</h3>
+						<div class="btn-group single">
+							<a href="https://yuertvfile.wangyuhudong.com?type=live&objId=21">下载娱儿直播</a>
+						</div>				
+					</div>
+                {% endif %}		
+			</div>
+			<div class="m-chat">
+				<p><img src="/activity/images/w-c-a.png" class="m-c">欢迎来到<span>奔波</span>的直播间，喜欢直播的别忘点关注哦！</p>
+				<p><img src="/activity/images/w-c-r.png" class="m-c-r">我是房管：</p>
+			</div>
+			<img src="/activity/images/w-interactive.png" class="m-f" id="inter">
+			<img src="/activity/images/w-game.png" class="m-f m-f-game" id="game">
+			<img src="/activity/images/w-arrow.png" class="m-f m-f-arrow" id="arrow">
+			<img src="/activity/images/w-signup.png" class="m-f m-f-signup" id="signup">
+		</div>
+	</div>
+	<script>
+		$('video').mediaelementplayer({
+			features: ['playpause','volume','fullscreen'],
+		});
+		var client = $(window).width();
+		$('.videoBox').css('height',client*0.55+'px');
+		// 三个按钮的跳转
+		$("#inter").on("click",function(){
+			window.location.href="http://yuerapi.wangyuhudong.com/v4/live/download?from=singlemessage&isappinstalled=0";
+		})
+		$("#game").on("click",function(){
+			window.location.href="/activity/wolfmiddle"; 
+		})
+		$("#signup").on("click",function(){
+			window.location.href="http://qm.qq.com/cgi-bin/qm/qr?k=dMNhuGq5f2LUA-_IQ5qKIaHDn81Rc9Yi";
+		})
+		var ua = navigator.userAgent.toLowerCase(); 
+		if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+			$('.mask h3').text('进入直播间观看直播');
+			$('.enter').text('进入直播间');
+			$('.enter').attr('href','yuertvopen://live?objId=21');
+		}
+		function rotate(){ 
+		  	if(window.orientation==180||window.orientation==0){ 
+		  		var screenw = (ua.match(/QQ/i)=="qq" && ua.match(/android/i)) ? screen.width :document.body.clientWidth;
+		    	$('.videoBox').css({'height':screenw*0.55+'px','top':screenw*0.565+'px'});
+		    	$('video').css('height',screenw*0.55+'px');
+		  	} 
+			if(window.orientation==90||window.orientation==-90){ 
+				var screenw = (ua.match(/QQ/i)=="qq" && ua.match(/android/i)) ? screen.width :document.body.clientWidth;
+		        $('.videoBox').css({'height':screenw*0.55+'px','top':screenw*0.565+'px'});
+		        $('video').css('height',screenw*0.55+'px');
+		    } 
+		} 
+		rotate();
+		window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", rotate, false); 
+		var second = 0;
+		function showMask(val) { 
+            if (second < 180) { 
+                second++;
+                setTimeout(function() { 
+	                showMask(val);
+	            },1000);
+            } else {
+                $('.mask').show();                   
+            }
+        }
+		if('{{state}}'==1){
+        	showMask(second); 
+        }
+        $('.return').click(function(e){
+        	e.preventDefault();
+        	$('.mask').hide();
+        	second = 0;
+        	showMask(second); 
+        })
+	</script>
+</body>
+</html>
