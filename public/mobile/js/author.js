@@ -345,7 +345,7 @@ $(function(){
             if(/^1[34578]\d{9}$/.test($bindnumber.val())){
                 var parm = {};
                 parm.mobile = $bindnumber.val();
-                parm.type = 6;
+                parm.type = 5;
                 $.ajax({
 		            url: 'http://api.yuerlive.cn/sendSMSCode',
 		            data: parm,

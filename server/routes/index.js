@@ -7,8 +7,10 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-var path = 'http://172.16.10.6:8777';
-var apipath ="http://172.16.10.134:8099";
+// var path = 'http://172.16.10.6:8777';
+// var apipath ="http://172.16.10.134:8099";
+var path = 'http://webapi.yuerlive.cn';
+var apipath ="http://api.yuerlive.cn";
 
 function getTicket(){
     Thenjs.parallel([function(cont) {
@@ -1421,7 +1423,7 @@ router.get('/activity/wolf', function(req, res, next) {
         getTicket();
     }
     Thenjs.parallel([function(cont) {
-        request(path+'/live/detail?id=21', function(error, response, body) {
+        request(path+'/live/detail?id=8549', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -1432,6 +1434,8 @@ router.get('/activity/wolf', function(req, res, next) {
         console.log(result);
         res.render('activity/wolf', {
             one: JSON.parse(result[0]).object.info,
+            result: JSON.parse(result[0]).object,
+            link:JSON.parse(result[0]).object.info.rtmp.replace(/rtmp:/, "http:").replace(/rtmp/, "hls")+'.m3u8',
             ticket:ticket
         });
     }).fail(function(cont, error) { 

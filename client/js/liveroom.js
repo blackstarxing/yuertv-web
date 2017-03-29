@@ -131,7 +131,7 @@ $(function(){
                     parm.remark = $('.punish-text').val();
                     parm.treatement = $('.punish-radio input[type="radio"][checked]').val();
                     parm.adminUserId = window.localStorage.getItem("id");
-                    if($('.punish-text').val().length>=6){
+                    if($('.punish-text').val().trim().length>=6){
                         $.ajax({
                             method: "GET",
                             url: "/api/live/frontSuperAdminManage",

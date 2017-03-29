@@ -57,7 +57,7 @@
                     </div>
                     <div class="option">
                         {% if detail.info.state == 1 %}
-                        {% if detail.info.front_user_type != -1 %}
+                        {% if detail.info.permissions %}
                         <button class="punish" @click="punishPop">管理</button>
                         {% endif %}
                         {% endif %}
@@ -393,18 +393,27 @@
         <div class="punish-pop">
             <h3>房间管理</h3>
             <div>
+                {% for punish in detail.info.permissions %}
+                {% if loop.first %}
                 <div class="punish-radio">
-                    <input type="radio" id="01" checked="checked" name="punish" value="0">
-                    <label name="01" class="checked" for="01">警告</label>
+                    <input type="radio" id="{{punish.permissionId}}" checked="checked" name="punish" value="{{punish.permissionId}}">
+                    <label name="{{punish.permissionId}}" class="checked" for="{{punish.permissionId}}">{{punish.permissionName}}</label>
                 </div>
+                {% else %}
                 <div class="punish-radio">
+                    <input type="radio" id="{{punish.permissionId}}" name="punish" value="{{punish.permissionId}}">
+                    <label name="{{punish.permissionId}}" for="{{punish.permissionId}}">{{punish.permissionName}}</label>
+                </div>
+                {% endif %}
+                {% endfor %}
+                <!-- <div class="punish-radio">
                     <input type="radio" id="02" name="punish" value="1">
                     <label name="02" for="02">下线24小时</label>
                 </div>
                 <div class="punish-radio">
                     <input type="radio" id="03" name="punish" value="2">
                     <label name="03" for="03">冻结账号</label>
-                </div>
+                </div> -->
                 <textarea name="" id="" cols="30" rows="10" placeholder="请输入6~100字的操作备注" class="punish-text"></textarea>
                 <div class="punish-tip">
                    <p>操作备注过短或为空</p> 
