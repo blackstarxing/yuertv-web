@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>obs直播</title>
+	<link rel="shortcut icon" type="image/ico" href="/yuer.ico">
 	<style>
 		html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
 		body,ul,li,p,h3,h4,h2,em,button,input{margin: 0; padding: 0;}
@@ -231,15 +232,17 @@
 			color:#999;
 		}
 		.g-jump{
-			position:absolute;
-			height:2%;
-			line-height:2%;
-			margin-top:10%;
-			top:78%;
-			left:40%;
-			font-size:8px;
-			color:#fff;
-			cursor:pointer;
+			position: absolute;
+		    height: 2%;
+		    line-height: 2%;
+		    margin-top: 10px;
+		    width: 100%;
+		    top: 86%;
+		    /* left: 40%; */
+		    text-align: center;
+		    font-size: 8px;
+		    color: #fff;
+		    cursor: pointer;
 		}
 		.m-layer{
 			display:none;
@@ -594,7 +597,7 @@
 				if($("#u-tel").val()!='' && $("").val()!=''){
 					$.ajax({
 		                method: "GET",
-		                url: "http://172.16.10.134:8099/login",
+		                url: "http://api.yuerlive.cn/login",
 		                dataType: 'json',
 		                data: {
 		                    username:$("#u-tel").val(),
@@ -682,7 +685,7 @@
             		title=$("#u-sl").val();
 		        	$.ajax({
 	                    method: "GET",
-	                    url: "http://172.16.10.134:8099/v4/live/liveNotify",
+	                    url: "http://api.yuerlive.cn/v4/live/liveNotify",
 	                    dataType: 'json',
 	                    data: {
 	                        gameId: keyword,

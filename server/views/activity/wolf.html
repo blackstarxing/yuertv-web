@@ -5,13 +5,15 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta content="telephone=no" name="format-detection" />
-	<title>王者校园赛群雄逐鹿水利水电</title>
+    <meta name="baidu-site-verification" content="nD6yyolNXN" />
+	<title>东钩教主刘二龙狼人杀露脸羞耻开黑</title>
 	<script src="/jquery.js"></script>		
 	<script src="/activity/build/mediaelement-and-player.min.js"></script>
 	<script src="/jquery.sha1.js"></script>
 	<script src="/wxjsapi.js"></script>
 	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<link rel="stylesheet" href="/activity/build/mediaelementplayer.min.css" />
+	<link rel="stylesheet" href="/css/share.css" />
 	<style>
 		html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
 		*{margin: 0; padding: 0;}
@@ -163,12 +165,19 @@
 
 	</style>
 	<script>
+		var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?5f199d5d81411ab659081729f1f34008";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
 		enableWxShare({
 			appId: 'wxf96f728533f32fa8',
 			ticket: '{{ticket}}',
-			title: '天天狼人杀主播招募',		
+			title: '东钩教主刘二龙狼人杀露脸羞耻开黑',		
 			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/2017/03/17/89e9652c3a0a4ab0913af581d5c6a62a.jpg',
-			desc: '前排回收悍跳狼，冲锋狼，倒钩狼用不完的钻石，花不完的钱等你来拿！'
+			desc: '想亲身体验教主我的实力么，戳进来你就有机会和我一起玩！'
 		})
 	</script>
 </head>
@@ -182,7 +191,7 @@
 			<img src="/activity/images/w-bg-4.jpg" class="m-bg">
 			<div class="videoBox">
 				{% if one.state==1 %}
-                    <video width="100%" height="100%" id="player1" poster="{{result.info.icon}}" controls="" autoplay="" webkit-playsinline playsinline style="margin:0;border:0;"><source type="application/x-mpegURL" src="http://pili-live-hls.wangyuhudong.com/wyds/wyds_4255779.m3u8" /></video>
+                    <video width="100%" height="100%" id="player1" poster="{{result.info.icon}}" controls="" autoplay="" webkit-playsinline playsinline style="margin:0;border:0;"><source type="application/x-mpegURL" src="{{link}}" /></video>
 					<div class="mask">
 						<h3>下载娱儿直播观看更多精彩直播</h3>
 						<div class="btn-group">
