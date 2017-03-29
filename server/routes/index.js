@@ -7,7 +7,7 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-var path = 'http://172.16.10.144:8777';
+var path = 'http://172.16.10.6:8777';
 var apipath ="http://172.16.10.134:8099";
 
 function getTicket(){
@@ -1415,5 +1415,37 @@ router.get('/activity/cardCoupon', function(req, res, next) {
         ticket: ticket
     });
 });
-
+router.get('/activity/wolf', function(req, res, next) {
+    var nowtime = new Date().getTime();
+    if(!ticket || (nowtime-ticketline)>7000000){
+        getTicket();
+    }
+    Thenjs.parallel([function(cont) {
+        request(path+'/live/detail?id=21', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        console.log(result);
+        res.render('activity/wolf', {
+            one: JSON.parse(result[0]).object.info,
+            ticket:ticket
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+});
+router.get('/activity/wolfmiddle', function(req, res, next) {
+    var nowtime = new Date().getTime();
+    if(!ticket || (nowtime-ticketline)>7000000){
+        getTicket();
+    }
+    res.render('activity/wolfmiddle', {
+        ticket: ticket
+    });
+});
 module.exports = router;
