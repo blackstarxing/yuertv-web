@@ -437,13 +437,13 @@
 		<div class="g-main">
 			<div class="m-login" id="m-login">
 				<input type="text" name="" id="u-tel" class="u-tel" placeholder="手机号码">
-				<span class="u-tel-empty show" style="display:none;">手机号码不能为空</span>
-				<span class="u-tel-wrong show" style="display:none;">手机号码错误</span>
-				<span class="u-tel-nouser show" style="display:none;">用户不存在</span>
+				<span class="u-tel-empty" style="display:none;">手机号码不能为空</span>
+				<span class="u-tel-wrong" style="display:none;">手机号码错误</span>
+				<span class="u-tel-nouser" style="display:none;">用户不存在</span>
 				<input type="password" name="" id="u-pw" class="u-pw" placeholder="密码">
-				<span class="u-pw-empty show" style="display:none;">密码不能为空</span>
-				<span class="u-pw-wrong show" style="display:none;">密码错误</span>
-				<div style="height:60px;"></div><button class="u-open" id="u-open">开启直播</button>
+				<span class="u-pw-empty" style="display:none;">密码不能为空</span>
+				<span class="u-pw-wrong" style="display:none;">密码错误</span>
+				<div style="height:60px;margin-bottom:5%;"></div><button class="u-open" id="u-open">开启直播</button>
 			</div>
 			<div class="m-select" style="display:none;">
 				<div class="m-s-top">
@@ -492,8 +492,8 @@
 				</div>
 				<div class="u-hostgame">
 					<input type="text" name="" id="u-sl" class="u-sl" placeholder="请输入直播标题">
-					<span class="u-sl-empty show" style="display:none;">直播标题不能为空</span>
-					<span class="u-sl-length show" style="display:none;">直播标题不要超过20位</span>
+					<span class="u-sl-empty" style="display:none;">直播标题不能为空</span>
+					<span class="u-sl-length" style="display:none;">直播标题不要超过20位</span>
 					<input type="text" name="" placeholder="请选择游戏" class="u-sgame" id="u-sgame" >
 					<button class="u-start" id="u-start">开始直播</button>
 				</div>
@@ -573,7 +573,6 @@
 		            $("show").hide();
 		        },1500);
 			}
-			show(".show");
 	        $("#u-tel").off("keydown").on("keydown",function(e){
 	            if((e.keyCode >=48 && e.keyCode <=57)||(e.keyCode >=97 && e.keyCode <=105)||(e.keyCode == 8)){
 	            
@@ -587,15 +586,17 @@
 		                $(".u-tel-wrong").hide();
 		            }else{
 		            	$(".u-tel-empty").hide();
-			            $(".u-tel-wrong").show();
+			            show(".u-tel-wrong");
 		            }		
 				}else{
-					$(".u-tel-empty").show();
+					// $(".u-tel-empty").show();
+					show(".u-tel-empty");
 				}				
 			})	
 			$("#u-pw").on("blur",function(){
 				if($("#u-pw").val()==''){
-					$(".u-pw-empty").show();
+					// $(".u-pw-empty").show();
+					show(".u-pw-empty");
 				}else{
 					$(".u-pw-empty").hide();
 				}
@@ -622,12 +623,12 @@
 		                    }else if(data.code == 1){
 	                            $("#m-login").find("span").each(function(){
 	                                if($(this).attr("class").indexOf("u-tel-nouser") != -1){
-	                                    $(this).show();
+	                                    show(this);
 	                                }else{
 	                                    $(this).hide();
 	                                }
 	                                if($(this).attr("class").indexOf("u-pw-wrong") != -1){
-	                                    $(this).show();
+	                                   show(this);
 	                                }else{
 	                                    $(this).hide();
 	                                }
@@ -643,12 +644,12 @@
 				}else{
 					$("#m-login").find("span").each(function(){
                         if($(this).attr("class").indexOf("u-tel-empty") != -1){
-                            $(this).show();
+                            show(this);
                         }else{
                             $(this).hide();
                         }
                         if($(this).attr("class").indexOf("u-pw-empty") != -1){
-                            $(this).show();
+                            show(this);
                         }else{
                             $(this).hide();
                         }
@@ -671,13 +672,15 @@
 	        })
 	        $("#u-sl").on("blur",function(){
 	        	if($("#u-sl").val()==""){
-	        		$(".u-sl-empty").show();
+	        		// $(".u-sl-empty").show();
+	        		show(".u-sl-empty")
 	        	}else{
 	        		$(".u-sl-empty").hide();
 	        	}
 	        	console.log($("#u-sl").length);
 	        	if($("#u-sl").val().length>20){
-	        		$(".u-sl-length").show();
+	        		// $(".u-sl-length").show();
+	        		show(".u-sl-length");
 	        	}else{
 	        		$(".u-sl-length").hide();
 	        	}
@@ -687,7 +690,8 @@
 	        	if($(".u-sgame").val()==""){
             		showTip(".m-layersg");
             	}else if($(".u-sl").val()==""){
-            		$(".u-sl-empty").show();
+            		// $(".u-sl-empty").show();
+            		show(".u-sl-empty");
             	}else{
             		title=$("#u-sl").val();
 		        	$.ajax({
