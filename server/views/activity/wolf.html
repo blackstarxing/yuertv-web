@@ -225,6 +225,17 @@
 		$('.videoBox').css('height',client*0.55+'px');
 		// 三个按钮的跳转
 		$("#inter").on("click",function(){
+			$.ajax({
+                method: "GET",
+                url: "/api/countKillingWerewolfPlus",
+                dataType: 'json',
+                success: function(data) {
+                    
+                },
+                error: function(a, b, c) {
+                    console.log("接口出问题啦");
+                }
+	        })
 			window.location.href="http://yuerapi.wangyuhudong.com/v4/live/download?from=singlemessage&isappinstalled=0";
 		})
 		$("#game").on("click",function(){

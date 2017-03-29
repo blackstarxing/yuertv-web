@@ -724,7 +724,7 @@ html,body{
 }
 .live-address .screen{
     height: 100%;
-    /*width: auto;*/
+    width: auto;
     margin:0 auto;
     display: block;
 }
