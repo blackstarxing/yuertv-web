@@ -1452,4 +1452,14 @@ router.get('/activity/wolfmiddle', function(req, res, next) {
         ticket: ticket
     });
 });
+// 微信提现
+router.get('/cash/withdrawCash', function(req, res, next) {
+    var nowtime = new Date().getTime();
+    if(!ticket || (nowtime-ticketline)>7000000){
+        getTicket();
+    }
+    res.render('cash/withdrawCash', {
+        ticket: ticket
+    });
+});
 module.exports = router;

@@ -221,14 +221,14 @@ $(function(){
     $(".arrow-down").click(function(){
         if(listindex<$('.m-play-list li').length-6){
             listindex++;
-            listpos = -96.8*listindex+"px";
+            listpos = -116.8*listindex+"px";
             $('.m-play-list ul').animate({marginTop:listpos},300);
         }       
     });
     $(".arrow-up").click(function(){
         if(listindex>0){
             listindex--;
-            listpos = -96.8*listindex+"px";
+            listpos = -116.8*listindex+"px";
             $('.m-play-list ul').animate({marginTop:listpos},300);
         }        
     })

@@ -38,10 +38,12 @@
 }
 .m-play-list li{
     width: 182px;
-    height: 82px;
+    height: 102px;
     border: 2px solid transparent;
     background: #1a2129;
     margin-bottom: 10.8px;
+    background: url(/images/cover.png) no-repeat;
+    background-size: cover;
 }
 .m-play-list li:last-child{
     margin-bottom: 0;
@@ -53,8 +55,10 @@
     cursor: pointer;
 }
 .m-play-list li .indexLive img{
-    width: 100%;
+    width: auto;
     height: 100%;
+    margin:0 auto;
+    display: block;
 }
 .m-play-list li.current,
 .m-play-list li:hover{

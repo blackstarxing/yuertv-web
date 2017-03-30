@@ -50,8 +50,8 @@
 		.m-login input{
 			display:block;
 			width:85%;
-			height:12%;
-			line-height:12%;
+			height:40px;
+			line-height:40px;
 			border-radius:5px;
 			margin:0 auto;
 			margin-top:10%;
@@ -142,6 +142,7 @@
 			display:block;
 			width:100%;
 			height:40px;
+			line-height: 40px;
 			border-radius:5px;
 			margin:0 auto;
 			margin-top:10%;
@@ -187,7 +188,7 @@
 			height:20%;
 			margin:3.5% auto;
 		}
-		.m-s-all{width:95%;margin:0 auto;height:45%;line-height:45%;}
+		.m-s-all{width:95%;margin:0 auto;height:45%;line-height:45%;padding-top: 15px;}
 		.m-s-recently h4,h4.m-sa-title{
 			line-height:100%;
 			font-size:16px;
@@ -211,14 +212,14 @@
 			display:inline-block;
 			width:50px;
 			height:50px;
-			margin:7.5% 5%;
+			margin:7.5% 5px;
 			border-radius:5px;
 		}
 		.m-srs span{
 			display:inline-block;
 			font-size:18px;
 			color:#98a9bb;
-			margin-left:10%;
+			margin-left:5px;
 		}
 		.m-s-describe{
 			width:95%;
@@ -246,7 +247,7 @@
 		    top: 86%;
 		    /* left: 40%; */
 		    text-align: center;
-		    font-size: 8px;
+		    font-size: 14px;
 		    color: #fff;
 		    cursor: pointer;
 		}
@@ -345,6 +346,7 @@
 			font-size:16px;
 			color:#999;
 			margin:0 20%;
+			text-align: center;
 		}
 		.m-layerw{
 			display:none;
@@ -442,13 +444,13 @@
 		<img src="/images/obs_bg.jpg" alt="" class="g-bg-r">
 		<div class="g-main">
 			<div class="m-login" id="m-login">
-				<input type="text" name="" id="u-tel" class="u-tel" placeholder="手机号码">
+				<input type="text" name="" id="u-tel" class="u-tel" placeholder="手机号码" tabIndex="1">
 				<div style="height:20px;margin-top: 5px;">	
 					<span class="u-tel-empty" style="display:none;">手机号码不能为空</span>
 					<span class="u-tel-wrong" style="display:none;">手机号码错误</span>
 					<span class="u-tel-nouser" style="display:none;">用户不存在</span>
 				</div>
-				<input type="password" name="" id="u-pw" class="u-pw" placeholder="密码">
+				<input type="password" name="" id="u-pw" class="u-pw" placeholder="密码" tabIndex="2">
 				<div style="height:20px;margin-top: 5px;">
 					<span class="u-pw-empty" style="display:none;">密码不能为空</span>
 					<span class="u-pw-wrong" style="display:none;">密码错误</span>
@@ -460,7 +462,7 @@
 				<div class="m-s-top">
 					<span class="m-st-select">选择游戏</span>
 				</div>
-				<div class="m-s-recently">
+				<!-- <div class="m-s-recently">
 					<h4 class="m-sr-select">最近选择</h4>
 					<div class="m-sr-select">
 					{% for index in index %}
@@ -474,7 +476,7 @@
 						</div>
 					{% endfor %}
 					</div>
-				</div>
+				</div> -->
 				<div class="m-s-all">
 					<h4 class="m-sa-title">全部游戏</h4>
 					<div class="m-sa-all">
@@ -587,7 +589,7 @@
 		        },2000);
 			}
 	        $("#u-tel").off("keydown").on("keydown",function(e){
-	            if((e.keyCode >=48 && e.keyCode <=57)||(e.keyCode >=97 && e.keyCode <=105)||(e.keyCode == 8)){
+	            if((e.keyCode >=48 && e.keyCode <=57)||(e.keyCode >=97 && e.keyCode <=105)||(e.keyCode == 8)||(e.keyCode == 9)){
 	            
 	            }else{
 	                e.preventDefault();
@@ -658,13 +660,9 @@
 					$("#m-login").find("span").each(function(){
                         if($(this).attr("class").indexOf("u-tel-empty") != -1){
                             show(this);
-                        }else{
-                            $(this).hide();
                         }
                         if($(this).attr("class").indexOf("u-pw-empty") != -1){
                             show(this);
-                        }else{
-                            $(this).hide();
                         }
                     });
 				}     
@@ -700,11 +698,11 @@
 	        })
 
 	        $(".u-start").on("click",function(){
-	        	if($(".u-sgame").val()==""){
-            		showTip(".m-layersg");
-            	}else if($(".u-sl").val()==""){
+	        	if($(".u-sl").val()==""){
             		// $(".u-sl-empty").show();
             		show(".u-sl-empty");
+            	}else if($(".u-sgame").val()==""){
+            		showTip(".m-layersg");
             	}else{
             		title=$("#u-sl").val();
 		        	$.ajax({
