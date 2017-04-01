@@ -179,17 +179,20 @@ $(function(){
 		    method: "GET",
 		    url: "http://172.16.10.8:8777/withdraw/enroll",
 		    dataType: 'json',
-		    xhrFields: {
-	            withCredentials: true
-	        },
+		    // xhrFields: {
+	     //        withCredentials: true
+	     //    },
 		    data:parm,
 		    success: function(data) {
+		    	console.log(222);
 		    	if(data.code==0){
+		    		console.log(data.code);
 		    		if(data.object.code==0){
 			    		$(".m-layer").show();
 			    	}else if(data.object.code==1){
 			    		showTips("失败");
 			    	}else if(data.object.code==2){
+			    		console.log(data.object.code);
 			    		showTips("请绑定手机并实名认证后再报名");
 			    	}else if(data.object.code!=3){
 			    		showTips("签约主播不能报名");		    		
