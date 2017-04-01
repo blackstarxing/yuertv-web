@@ -108,7 +108,6 @@
 		}
 		.u-clm{
 			width:85%;
-			height:20px;
 			margin-left:7.5%;
 			margin-top:10%;
 		}
@@ -136,7 +135,7 @@
 		.u-hostgame{
 			margin-left:7.5%;
 			width:85%;
-			margin-top:33%;
+			/*margin-top:33%;*/
 		}
 		input.u-sl,input.u-sgame{
 			display:block;
@@ -196,7 +195,7 @@
 			border-left:2px solid #f36;
 			padding-left:1%;
 		}
-		.m-sr-select,.m-sa-all{overflow:hidden;}
+		.m-sr-select,.m-sa-all{overflow:hidden;padding-left: 4%;}
 		.m-srs{
 			width:30%;
 			height:73px;
@@ -435,7 +434,7 @@
 			text-indent:5px;
 		}
 		button.u-start,button.u-open,button.u-copy{
-			margin-top:12%;
+			margin-top:15px;
 		}
 	</style>
 </head>
@@ -478,7 +477,7 @@
 					</div>
 				</div> -->
 				<div class="m-s-all">
-					<h4 class="m-sa-title">全部游戏</h4>
+					<!-- <h4 class="m-sa-title">全部游戏</h4> -->
 					<div class="m-sa-all">
 					{% for index in index %}
 						<div class="m-srs">
@@ -509,7 +508,7 @@
 						<span class="u-sl-empty" style="display:none;">直播标题不能为空</span>
 						<span class="u-sl-length" style="display:none;">直播标题不要超过20位</span>
 					</div>
-					<input type="text" name="" placeholder="请选择游戏" class="u-sgame" id="u-sgame" >
+					<input type="text" name="" placeholder="请选择游戏" readOnly="true" class="u-sgame" id="u-sgame" >
 					<button class="u-start" id="u-start">开始直播</button>
 				</div>
 			</div>	
