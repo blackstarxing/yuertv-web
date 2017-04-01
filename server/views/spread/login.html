@@ -243,7 +243,7 @@
 		    line-height: 2%;
 		    margin-top: 10px;
 		    width: 100%;
-		    top: 86%;
+		    top: 93%;
 		    /* left: 40%; */
 		    text-align: center;
 		    font-size: 14px;
@@ -426,6 +426,39 @@
 			font-size:15px;
 			/*margin-bottom:5%;*/
 		}
+		.u-btn-s{
+			display:inline-block;
+			width:30%;
+			height:35px;
+			text-align:center;
+			background:#f36;
+			color:#fff;
+			font-size:18px;
+			border:none;
+			margin-top:5%;
+			border-radius:5px;
+			cursor:pointer;
+		}
+		.u-btn-s:visited{background:#f93;}
+		.u-btn-s:hover{background:#f93;}
+		.u-btn-s:active{background:#f93;}
+		.u-btn-sc{
+			display:inline-block;
+			width:30%;
+			height:35px;
+			text-align:center;
+			background:#f36;
+			color:#fff;
+			font-size:18px;
+			border:none;
+			margin-top:5%;
+			margin-left:39%;
+			border-radius:5px;
+			cursor:pointer;
+		}
+		.u-btn-sc:visited{background:#f93;}
+		.u-btn-sc:hover{background:#f93;}
+		.u-btn-sc:active{background:#f93;}
 		input.addclass{
 			border:1px solid #f36;
 		}
@@ -509,6 +542,8 @@
 						<span class="u-sl-length" style="display:none;">直播标题不要超过20位</span>
 					</div>
 					<input type="text" name="" placeholder="请选择游戏" readOnly="true" class="u-sgame" id="u-sgame" >
+					<button id="u-btn-screen" class="u-btn-s">横屏</button>
+					<button id="u-btn-sc" class="u-btn-sc">竖屏</button>
 					<button class="u-start" id="u-start">开始直播</button>
 				</div>
 			</div>	
@@ -561,6 +596,7 @@
 			var id="";
 			var token="";
 			var content="";
+			var screen=0;
 			var clipboard = new Clipboard('.u-copy');
 			clipboard.on('success', function(e) {
 				showTip(".m-layer");
@@ -695,7 +731,13 @@
 	        		$(".u-sl-length").hide();
 	        	}
 	        })
-
+	        // 横竖屏
+	        $("#u-btn-screen").on("click",function(){
+	        	screen==0;
+	        })
+	        $("#u-btn-sc").on("click",function(){
+	        	screen==1;
+	        })
 	        $(".u-start").on("click",function(){
 	        	if($(".u-sl").val()==""){
             		// $(".u-sl-empty").show();
@@ -710,7 +752,7 @@
 	                    dataType: 'json',
 	                    data: {
 	                        gameId: keyword,
-	                        screen:1,
+	                        screen:screen,
 	                        source:2,
 	                        title:title,
 	                        userId:id,
