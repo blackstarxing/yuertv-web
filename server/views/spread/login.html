@@ -144,7 +144,7 @@
 			line-height: 40px;
 			border-radius:5px;
 			margin:0 auto;
-			margin-top:10%;
+			margin-top:15px;
 			border:1px solid #3c4856;
 			background:#272c39;
 			color:#b6c0cd;
@@ -426,39 +426,27 @@
 			font-size:15px;
 			/*margin-bottom:5%;*/
 		}
-		.u-btn-s{
+		.u-btn-radio{
+			display:block;
+			width:100%;
+			color:#b6c0cd;
+			font-size:18px;
+			margin-top:5%;
+		}
+		.u-btn-radio label{
 			display:inline-block;
 			width:30%;
-			height:35px;
-			text-align:center;
-			background:#f36;
+			height:30px;
+			line-height:30px;
+			font-size:17px;
 			color:#fff;
-			font-size:18px;
-			border:none;
-			margin-top:5%;
-			border-radius:5px;
-			cursor:pointer;
-		}
-		.u-btn-s:visited{background:#f93;}
-		.u-btn-s:hover{background:#f93;}
-		.u-btn-s:active{background:#f93;}
-		.u-btn-sc{
-			display:inline-block;
-			width:30%;
-			height:35px;
 			text-align:center;
-			background:#f36;
-			color:#fff;
-			font-size:18px;
-			border:none;
-			margin-top:5%;
-			margin-left:39%;
+			/*background:#f36;*/
 			border-radius:5px;
-			cursor:pointer;
+			margin-top:3%;
 		}
-		.u-btn-sc:visited{background:#f93;}
-		.u-btn-sc:hover{background:#f93;}
-		.u-btn-sc:active{background:#f93;}
+		label.u-label{margin-left:38%;}
+		.u-btn-radio input{margin-right:10%;}
 		input.addclass{
 			border:1px solid #f36;
 		}
@@ -542,8 +530,11 @@
 						<span class="u-sl-length" style="display:none;">直播标题不要超过20位</span>
 					</div>
 					<input type="text" name="" placeholder="请选择游戏" readOnly="true" class="u-sgame" id="u-sgame" >
-					<button id="u-btn-screen" class="u-btn-s">横屏</button>
-					<button id="u-btn-sc" class="u-btn-sc">竖屏</button>
+					<form action="" method="get" class="u-btn-radio"> 
+					    请选择横竖屏<br/>
+					    <label><input name="screen" type="radio" value="0" checked="" id="u-btn-screen" class="u-btn-s"/>横屏</label> 
+					    <label class="u-label"><input name="screen" type="radio" value="1" id="u-btn-sc" class="u-btn-sc"/>竖屏</label> 
+    				</form> 
 					<button class="u-start" id="u-start">开始直播</button>
 				</div>
 			</div>	
@@ -561,8 +552,7 @@
 	<div class="m-layerws">
 		<div class="m-bouncedws">
 			<img src="/images/wrong.png" alt="" class="m-b-imgws"> 
-			<p class="m-b-fws">复制串流码后请务必回来输入房间标题以及并选择开播
-游戏，如因此造成开播时长、收益等受到影响概不负责</p>
+			<p class="m-b-fws">复制串流码后请务必回来输入房间标题以及并选择开播游戏，如因此造成开播时长、收益等受到影响概不负责</p>
 			<button class="m-b-ws">我一定会回来的</button>
 		</div>
 	</div>
@@ -732,12 +722,12 @@
 	        	}
 	        })
 	        // 横竖屏
-	        $("#u-btn-screen").on("click",function(){
-	        	screen==0;
-	        })
-	        $("#u-btn-sc").on("click",function(){
-	        	screen==1;
-	        })
+	        // $("#u-btn-screen").on("click",function(){
+	        // 	screen==0;
+	        // })
+	        // $("#u-btn-sc").on("click",function(){
+	        // 	screen==1;
+	        // })
 	        $(".u-start").on("click",function(){
 	        	if($(".u-sl").val()==""){
             		// $(".u-sl-empty").show();
@@ -752,7 +742,7 @@
 	                    dataType: 'json',
 	                    data: {
 	                        gameId: keyword,
-	                        screen:screen,
+	                        screen:$('input:radio[name="screen"]:checked').val(),
 	                        source:2,
 	                        title:title,
 	                        userId:id,

@@ -153,12 +153,12 @@ $(function(){
 		token = getQueryString("token");
 	$.ajax({
 	    method: "GET",
-	    url: "http://172.16.10.8:8777/login?password=123456&nickname=15757126356",
+	    url: "http://172.16.10.8:8777/login?password=123456&nickname=18257153272",
 	    dataType: 'json',
 	    success: function(data) {
 	    	if(data.code==0){
-	    		document.cookie="yuer_userId="+data.object.id; 
-                document.cookie="yuer_token="+data.object.token; 
+	    		userId=data.object.id; 
+                token=data.object.token; 
 	    		console.log(userId);
 		console.log(token);
 	    	}
@@ -169,10 +169,10 @@ $(function(){
 	}); 
 	//用户状态
 	$("#btn").on("click",function(){
-		// var parm={
-		// 	// userId:userId,
-		// 	// token:token,
-		// }
+		var parm={
+			userId:userId,
+			token:token,
+		}
 		console.log(userId);
 		console.log(token);
 		$.ajax({
@@ -182,17 +182,19 @@ $(function(){
 		    xhrFields: {
 	            withCredentials: true
 	        },
-		    // data:parm,
+		    data:parm,
 		    success: function(data) {
 		    	if(data.code==0){
-		    		$(".m-layer").show();
-		    	}else if(data.code==1){
-		    		showTips("失败");
-		    	}else if(data.code==2){
-		    		showTips("请绑定手机并实名认证后再报名");
-		    	}else if(data.code!=3){
-		    		showTips("签约主播不能报名");		    		
-		    	}
+		    		if(data.object.code==0){
+			    		$(".m-layer").show();
+			    	}else if(data.object.code==1){
+			    		showTips("失败");
+			    	}else if(data.object.code==2){
+			    		showTips("请绑定手机并实名认证后再报名");
+			    	}else if(data.object.code!=3){
+			    		showTips("签约主播不能报名");		    		
+			    	}
+		    	}	
 		    },
 		    error: function(a, b, c) {
 		        console.log("接口出问题啦");
