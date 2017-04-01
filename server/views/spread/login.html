@@ -427,39 +427,28 @@
 			font-size:15px;
 			/*margin-bottom:5%;*/
 		}
-		.u-btn-s{
+		.u-btn-radio{
+			display:block;
+			width:100%;
+			height:35px;
+			color:#b6c0cd;
+			font-size:18px;
+			margin-top:5%;
+		}
+		.u-btn-radio label{
 			display:inline-block;
 			width:30%;
-			height:35px;
+			height:30px;
+			line-height:30px;
+			font-size:17px;
+			color:#fff;
 			text-align:center;
 			background:#f36;
-			color:#fff;
-			font-size:18px;
-			border:none;
-			margin-top:5%;
 			border-radius:5px;
-			cursor:pointer;
+			margin-top:3%;
 		}
-		.u-btn-s:visited{background:#f93;}
-		.u-btn-s:hover{background:#f93;}
-		.u-btn-s:active{background:#f93;}
-		.u-btn-sc{
-			display:inline-block;
-			width:30%;
-			height:35px;
-			text-align:center;
-			background:#f36;
-			color:#fff;
-			font-size:18px;
-			border:none;
-			margin-top:5%;
-			margin-left:39%;
-			border-radius:5px;
-			cursor:pointer;
-		}
-		.u-btn-sc:visited{background:#f93;}
-		.u-btn-sc:hover{background:#f93;}
-		.u-btn-sc:active{background:#f93;}
+		label.u-label{margin-left:38%;}
+		.u-btn-radio input{margin-right:10%;}
 		input.addclass{
 			border:1px solid #f36;
 		}
@@ -543,8 +532,11 @@
 						<span class="u-sl-length" style="display:none;">直播标题不要超过20位</span>
 					</div>
 					<input type="text" name="" placeholder="请选择游戏" class="u-sgame" id="u-sgame" >
-					<button id="u-btn-screen" class="u-btn-s">横屏</button>
-					<button id="u-btn-sc" class="u-btn-sc">竖屏</button>
+					<form action="" method="get" class="u-btn-radio"> 
+					    请选择横竖屏<br/>
+					    <label><input name="" type="radio" value="" id="u-btn-screen" class="u-btn-s"/>横屏</label> 
+					    <label class="u-label"><input name="" type="radio" value="" id="u-btn-sc" class="u-btn-sc"/>竖屏</label> 
+    				</form> 
 					<button class="u-start" id="u-start">开始直播</button>
 				</div>
 			</div>	
