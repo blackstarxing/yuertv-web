@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />
+    <link rel="shortcut icon" type="image/ico" href="/yuer.ico">
+	<title>个人中心</title>
+	<style type="text/css">
+		html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
+		body,ul,li,p,h3,h4,h2,em,button,input{margin: 0; padding: 0;}
+		body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; 
+			font-size:62.5%; font-style:normal;  margin:0 auto; height:100%; color:#9da4ad; 
+			background: #f0f6ff; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
+		img{border:0; max-width:100%;vertical-align: top;}
+		img.m-bg{
+			position:relative;
+		}
+		.g-m{
+			position:absolute;
+			width:94%;
+			margin:0% 3%;
+			background:#fff;
+			border-radius:5px;
+		}
+		/*如何提现*/
+		.m-main{
+			height:20%;
+			margin-top:5%;
+			top:5%;
+		}
+		.m-m-icon{
+			display:block;
+			width:50px;
+			height:50px;
+			position:absolute;
+			top:-20%;
+			left:45%;
+			border-radius:50px;
+		}
+		.m-m-withdrawal{
+			display:block;
+			width:40%;
+			height:20px;
+			line-height:20px;
+			background:#00acff;
+			text-align:center;
+			border-radius:20px;
+			font-size:16px;
+			color:#fff;
+			margin:10% auto 5%;
+		}
+		.m-mtr{
+			overflow:hidden;
+			width:88%;
+			margin:0% 5% 4% 8.55%;
+		}
+		.u-mtr{
+			float:left;
+			width:30%;
+			font-size:13px;
+			color:#98a5b3;
+		}
+		.u-mtr-s,.u-mtr-t,.u-mtr-m{
+			display:block;
+			margin-left:25%;
+			font-size:18px;
+			color:#647580;
+		}
+		.m-mtr-t{
+			margin-left:3.3%;
+		}
+		.m-mtr-m{
+			margin-left:6.7%;
+		}
+		/*直播时长*/
+		.m-time{
+			top:29%;
+			height:30%;
+			margin-top:2%;
+		}
+		.m-t-e,.m-t-l,.m-r-live,.m-r-tc,.m-r-empty{
+			width:92%;
+			margin:2% auto;
+			font-size:18px;
+			color:#647580;
+		}
+		.m-t-e span{
+			font-size:12px;
+		}
+		/*柱形图*/
+		.m-t-l{overflow:hidden;}
+		.m-tl{float:left;}
+		.m-tl-left{width:5%;height:130px;}
+		.u-tl{display:block;margin:13.5px 2px 0px 0%;font-size:12px;color:#647580;}
+		.u-tl-lb{margin-bottom:0%;}
+		.m-tl-right{width:90%;height:130px;}
+		.m-tl-bottom{width:90%; margin-left:10%;font-size:12px;color:#647580;}
+		.u-tl-bar{width:10px;height:115px;border-radius:5px;margin:12px 15px 0px;
+			background:linear-gradient(#03b5ff,#a2e3ff);}
+		/*直播纪录*/
+		.m-record{
+			top:62%;
+		}
+		.m-r-tc{
+			overflow:hidden;
+			margin:5%;
+		}
+		.m-rt{
+			float:left;
+		}
+		.m-rt-d{
+			font-size:24px;
+			color:#333;
+			font-weight:bold;
+		}
+		.u-rt-spec{
+			font-weight:normal;
+			font-size:12px;
+			margin-left:-2.79%;
+		}
+		.m-rt-title{
+			width:79%;
+			height:20px;
+			line-height:20px;
+			background:#f0f6ff;
+			font-size:13px;
+			color:#647580;
+			margin-left:5.5%;
+		}
+		.u-rtt{
+			display:inline-block;
+			margin:0 3.5%;
+		}
+		/*为空状态*/
+		.m-re-img{
+			display:block;
+			width:70px;
+			height:100px;
+			margin:10% auto 5%;
+		}
+		.m-re-i{
+			font-size:13px;
+			margin:0 11.5% 5%;
+		}
+	</style>
+</head>
+<body>
+<div class="g-con">
+	<img src="/cash/images/pc-bg.jpg" class="m-bg">
+	<div class="m-main g-m">
+		{% if info.icon %}
+          <img src="{{info.icon}}" alt="" class="m-m-icon">
+        {% else %}
+          <img src="/cash/images/default_avatar.png" class="m-m-icon">
+        {% endif %}
+		<span class="m-m-withdrawal">如何提现</span>
+		<div class="m-mtr">
+			<div class="m-mtr-s u-mtr"><span class="u-mtr-s">{{livenum.upInfo.liveNum}}</span>直播场次(场)</div>
+			<div class="m-mtr-t u-mtr"><span class="u-mtr-t">{{livenum.upInfo.time}}</span>直播时长(小时)</div>
+			<div class="m-mtr-m u-mtr"><span class="u-mtr-m">{{livenum.upInfo.total_amount}}</span>我的收益(元)</div>
+		</div>
+	</div>
+	<div class="m-time g-m">
+		<p class="m-t-e">每日直播时长<span>(有效)</span></p>
+		<div class="m-t-l">
+			<div class="m-tl-left m-tl">
+				<span class="u-tl">4h</span>
+				<span class="u-tl">3h</span>
+				<span class="u-tl">2h</span>
+				<span class="u-tl">1h</span>
+				<span class="u-tl u-tl-lb">0h</span>
+			</div>
+			<div class="m-tl-right m-tl">
+				<div class="u-tl-bar"></div>
+			</div>
+			<hr style="display:block;width:100%;border:1px solid #e3e3e3;">
+			<div class="m-tl-bottom"><span>03/08</span></div>
+			
+		</div>
+	</div>
+	<div class="m-record g-m">
+		<p class="m-r-live">直播纪录</p>
+		{% if livenum.liveRecord!="" %}
+		<div class="m-r-tc">
+			<p class="m-rt-date m-rt"><span class="m-rt-d">{{daily_day}}</span>
+				<span class="u-rt-spec">{{daily_month}}<span>月</span></span>
+			</p>
+			<p class="m-rt-title m-rt">
+				<span class="u-rtt">{{livenum.liveRecord.duration}}</span>{{livenum.liveRecord.title}}
+			</p>
+		</div>
+		{% else %}
+		<div class="m-r-empty">
+			<img src="/cash/images/pc-empty.jpg" class="m-re-img">
+			<p class="m-re-i">您还没有产生有效直播记录，快去直播吧！</p>
+		{% endif %}
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	function progressBar(){
+		//初始化js进度条
+		$("#bar").css("height","0px");
+		//进度条的速度，越小越快
+		var speed = 20;
+		bar = setInterval(function(){
+		   nowheight = parseInt($("#bar").height());
+		   if(nowheight<=115){
+		    barheight = (nowheight + 1)+"px";
+		    $("#bar").css("height",barheight);
+		   }else{
+		    //进度条读满后，停止
+		    clearInterval(bar);
+		   } 
+		},speed);
+    }
+    var xhr = new XMLHttpRequest();  
+	xhr.open('post', FileController, true);  
+	xhr.onload = function () {  
+	// alert('上传完成!');  
+	};  
+	xhr.upload.addEventListener('progress', progressFunction, false);  
+    function progressFunction(evt) {  
+		var progressBar = $('#progressBar');  
+		var percentageDiv = $('#percentage');  
+		if (evt.lengthComputable) {  
+			progressBar.max(evt.total);  
+			progressBar.value(evt.loaded);  
+			percentageDiv.html(Math.round(evt.loaded / evt.total * 100) + '%');  
+		}  
+	}  
+	// <progress id='progressBar' value='0' max='100'>  
+	// </progress>  
+	// <span id='percentage'></span>
+})
+</script>
+</body>
+</html>
