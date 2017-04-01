@@ -534,8 +534,8 @@
 					<input type="text" name="" placeholder="请选择游戏" class="u-sgame" id="u-sgame" >
 					<form action="" method="get" class="u-btn-radio"> 
 					    请选择横竖屏<br/>
-					    <label><input name="" type="radio" value="" id="u-btn-screen" class="u-btn-s"/>横屏</label> 
-					    <label class="u-label"><input name="" type="radio" value="" id="u-btn-sc" class="u-btn-sc"/>竖屏</label> 
+					    <label><input name="screen" type="radio" value="" id="u-btn-screen" class="u-btn-s"/>横屏</label> 
+					    <label class="u-label"><input name="screen" type="radio" value="" id="u-btn-sc" class="u-btn-sc"/>竖屏</label> 
     				</form> 
 					<button class="u-start" id="u-start">开始直播</button>
 				</div>
@@ -726,10 +726,12 @@
 	        })
 	        // 横竖屏
 	        $("#u-btn-screen").on("click",function(){
-	        	screen==0;
+	        	screen=0;
+	        	console.log(screen);
 	        })
 	        $("#u-btn-sc").on("click",function(){
-	        	screen==1;
+	        	screen=1;
+	        	console.log(screen);
 	        })
 	        $(".u-start").on("click",function(){
 	        	if($(".u-sl").val()==""){
