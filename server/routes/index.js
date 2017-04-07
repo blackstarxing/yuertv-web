@@ -1573,4 +1573,32 @@ router.get('/mobile/bbs', function(req, res, next) {
         res.render('error', { title: "错误"});
     });
 });
+router.get('/mobile/news', function(req, res, next) {
+    var id = req.query.id;
+    var nowtime = new Date().getTime();
+    if(!ticket || (nowtime-ticketline)>7000000){
+        getTicket();
+    }
+    // Thenjs.parallel([function(cont) {
+    //     request(path+'/bbs/share?id='+id, function(error, response, body) {
+    //         if (!error && response.statusCode == 200) {
+    //             cont(null, body);
+    //         } else {
+    //             cont(new Error('error!'));
+    //         }
+    //     })
+    // }]).then(function(cont, result) {
+    //     res.render('mobile/news', {
+    //         info:JSON.parse(result[0]).object.bbsInfo,
+    //         comment:JSON.parse(result[0]).object.comment,
+    //         ticket:ticket
+    //     });
+    // }).fail(function(cont, error) { 
+    //     console.log(error);
+    //     res.render('error', { title: "错误"});
+    // });
+    res.render('mobile/news', {
+        ticket:ticket
+    });
+});
 module.exports = router;
