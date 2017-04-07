@@ -264,7 +264,7 @@
 	                    if(/^1[34578][0-9]{9}$/.test(tel)){
 	                    	if(type==1){
 	                    		var parm = {};
-		                        parm.type = 4;
+		                        parm.type = 3;
 		                        parm.mobile = tel;
 		                        $.ajax({
 		                            url: '/api/sendSMSCode',

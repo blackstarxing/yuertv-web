@@ -7,10 +7,10 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-var path = 'http://172.16.10.11:8777';
-var apipath ="http://172.16.10.134:8099";
-// var path = 'http://webapi.yuerlive.cn';
-// var apipath ="http://api.yuerlive.cn";
+// var path = 'http://172.16.10.11:8777';
+// var apipath ="http://172.16.10.134:8099";
+var path = 'http://qa.webapi.yuerlive.cn';
+var apipath ="http://qa.api.yuerlive.cn";
 
 function getTicket(){
     Thenjs.parallel([function(cont) {
@@ -1524,7 +1524,7 @@ router.get('/cash/signup', function(req, res, next) {
     }
     Thenjs.parallel([function(cont) {
         request({
-            uri: path+"/withdraw/personalCenter?userId="+userId,
+            uri: path+"/withdraw/enroll?userId="+userId,
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -1537,15 +1537,16 @@ router.get('/cash/signup', function(req, res, next) {
             }
         })
     }]).then(function(cont, result) {
-        if(JSON.parse(result[0]).code != 1){
+        if(JSON.parse(result[0]).code == 1){
             res.redirect('/cash/personcenter');
+        }else{
+            res.render('cash/signup', {
+                ticket: ticket
+            });
         }
     }).fail(function(cont, error) { 
         console.log(error);
         res.render('error', { title: "错误"});
-    });
-    res.render('cash/signup', {
-        ticket: ticket
     });
 });
 router.get('/mobile/bbs', function(req, res, next) {
