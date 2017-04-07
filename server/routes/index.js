@@ -7,7 +7,7 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-var path = 'http://172.16.10.8:8777';
+var path = 'http://172.16.10.11:8777';
 var apipath ="http://172.16.10.134:8099";
 // var path = 'http://webapi.yuerlive.cn';
 // var apipath ="http://api.yuerlive.cn";
@@ -1458,8 +1458,11 @@ router.get('/cash/withdrawCash', function(req, res, next) {
     if(!ticket || (nowtime-ticketline)>7000000){
         getTicket();
     }
+    var deviceAgent = req.headers["user-agent"].toLowerCase();
+    var iswechat = deviceAgent.match(/MicroMessenger/i)=="micromessenger";
     res.render('cash/withdrawCash', {
-        ticket: ticket
+        ticket: ticket,
+        iswechat: iswechat
     });
 });
 router.get('/cash/personcenter', function(req, res, next) {
@@ -1520,6 +1523,31 @@ router.get('/cash/signup', function(req, res, next) {
     }
     res.render('cash/signup', {
         ticket: ticket
+    });
+});
+router.get('/mobile/bbs', function(req, res, next) {
+    var id = req.query.id;
+    var nowtime = new Date().getTime();
+    if(!ticket || (nowtime-ticketline)>7000000){
+        getTicket();
+    }
+    Thenjs.parallel([function(cont) {
+        request(path+'/bbs/share?id='+id, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        res.render('mobile/bbs', {
+            info:JSON.parse(result[0]).object.bbsInfo,
+            comment:JSON.parse(result[0]).object.comment,
+            ticket:ticket
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
     });
 });
 module.exports = router;
