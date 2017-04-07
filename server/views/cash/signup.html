@@ -26,7 +26,7 @@
 		.g-s{
 			position:fixed;
 			width:80%;
-			height:25%;
+			height:30%;
 			top:0;
 			right:0;
 			bottom: 0;
@@ -69,7 +69,7 @@
 		.g-f{
 			position:fixed;
 			width:80%;
-			height:25%;
+			height:30%;
 			top:0;
 			right:0;
 			bottom: 0;
@@ -119,7 +119,7 @@
 <div class="m-layers">
 	<div class="g-f">
 		<img src="/cash/images/pc-empty.jpg" class="g-f-img">
-		<p class="g-f-c"></p>
+		<p class="g-f-c">失败</p>
 	</div>
 	<img src="/cash/images/s-close.png" class="g-f-c" id="gfc">
 </div>
@@ -128,7 +128,7 @@
 $(function(){
 	// 失败状态的切换
 	function showTips(textc){
-		$(".m-layers").text(textc).show();
+		$(".m-layers").show().find("p").text(textc);
         setTimeout(function(){
             $(".m-layers").hide();
         },2500);
@@ -139,6 +139,10 @@ $(function(){
 	})
 	$("#gfc").on("click",function(){
 		$(".m-layers").hide();
+	})
+	// 报名成功的跳转
+	$(".m-layer").on("click",function(){
+		window.location.href="/cash/personcenter";
 	})
 	// 获取参数
 	function getQueryString(name) {
@@ -151,52 +155,50 @@ $(function(){
 	}
 	var userId = getQueryString("userId"),
 		token = getQueryString("token");
-	$.ajax({
-	    method: "GET",
-	    url: "http://172.16.10.8:8777/login?password=123456&nickname=18257153272",
-	    dataType: 'json',
-	    success: function(data) {
-	    	if(data.code==0){
-	    		userId=data.object.id; 
-                token=data.object.token; 
-	    		console.log(userId);
-		console.log(token);
-	    	}
-	    },
-	    error: function(a, b, c) {
-	        console.log("接口出问题啦");
-	    }
-	}); 
+	// var userId="",
+	// 	token="";
+	// $.ajax({
+	//     method: "GET",
+	//     url: "http://172.16.10.11:8777/login?password=123456&nickname=18257153272",
+	//     dataType: 'json',
+	//     success: function(data) {
+	//     	if(data.code==0){
+	//     		userId=data.object.id; 
+ //                token=data.object.token; 
+	//     		console.log(userId);
+	// 	console.log(token);
+	//     	}
+	//     },
+	//     error: function(a, b, c) {
+	//         console.log("接口出问题啦");
+	//     }
+	// }); 
 	//用户状态
 	$("#btn").on("click",function(){
 		var parm={
 			userId:userId,
 			token:token,
 		}
-		console.log(userId);
-		console.log(token);
 		$.ajax({
 		    method: "GET",
-		    url: "http://172.16.10.8:8777/withdraw/enroll",
+		    url: "http://172.16.10.11:8777/withdraw/enroll",
 		    dataType: 'json',
-		    // xhrFields: {
-	     //        withCredentials: true
-	     //    },
 		    data:parm,
 		    success: function(data) {
-		    	console.log(222);
 		    	if(data.code==0){
 		    		console.log(data.code);
 		    		if(data.object.code==0){
 			    		$(".m-layer").show();
 			    	}else if(data.object.code==1){
-			    		showTips("失败");
+			    		showTips("失败；已报名，无需重复报名 ");
 			    	}else if(data.object.code==2){
 			    		console.log(data.object.code);
 			    		showTips("请绑定手机并实名认证后再报名");
-			    	}else if(data.object.code!=3){
+			    	}else if(data.object.code==3){
 			    		showTips("签约主播不能报名");		    		
 			    	}
+		    	}else{
+		    		alert(data.result);
 		    	}	
 		    },
 		    error: function(a, b, c) {
