@@ -6,10 +6,23 @@ li{ list-style:none;}
 a{text-decoration: none; color:#9da4ad;}
 h3{font-size: 1.5rem;line-height: 1.25;}
 button{border: none;outline: none;}
-input{padding:0;margin:0;outline: none;}
+button,input{padding:0;margin:0;outline: none;}
 
 .f-fl{float:left;}.f-fr{float:right;}
 .f-cb{*zoom:1;}.f-cb:after{display:block; content:"$"; height:0; clear:both; overflow:hidden; visibility:hidden;}
+[v-cloak] { display: none }
+
+/*非微信浏览器打开*/
+.please-wechat{
+	font-size: 14px;
+	color:#647580;
+	text-align: center;
+}
+.please-wechat img{
+	width:30%;
+	display: block;
+	margin: 100px auto 20px;
+}
 
 /*登录*/
 .m-login-wrap{
@@ -33,6 +46,8 @@ input{padding:0;margin:0;outline: none;}
 	display: block;
 	height: 2rem;
 	line-height: 2rem;
+	color:#ff3366;
+	text-indent: 10px;
 }
 .m-input .tel{
 	background: url(/cash/images/phone_icon.png) 10px center no-repeat;
@@ -51,16 +66,303 @@ input{padding:0;margin:0;outline: none;}
 	background: #00acff;
 	color:#fff;
 	border-radius: 3px;
+	width: 7rem;
+	text-align: center;
 }
 .code-send{
 	color:#4d6580;
 	font-size: 1.4rem;
+	text-align: center;
+	margin-bottom: 10px;
+	height: 1.4rem;
+	line-height: 1.4rem;
 }
-.login{
+.login,.getCash,.submitCash,.done{
 	width: 100%;
 	height: 4rem;
 	border-radius: 2rem;
 	background: #00acff;
 	color:#fff;
 	font-size: 1.8rem;
+	-webkit-box-shadow: 0px 5px 20px rgba(71,202,255,.7);
+    -moz-box-shadow: 0px 5px 20px rgba(71,202,255,.7);
+    box-shadow: 0px 5px 20px rgba(71,202,255,.7);
+}
+.disabled{
+	background: #edf8ff;
+	color: #7a92ad;
+	-webkit-box-shadow: 0px 5px 20px rgba(255,255,255,.7);
+    -moz-box-shadow: 0px 5px 20px rgba(255,255,255,.7);
+    box-shadow: 0px 5px 20px rgba(255,255,255,.7);
+}
+/*提现首页*/
+.anchor-info{
+	position: relative;
+	color:#fff;
+}
+.anchor-info img{
+	vertical-align: bottom;
+}
+.info{
+	position: absolute;
+	top: 3rem;
+	width: 80%;
+	left: 50%;
+	margin-left:-40%;
+}
+.avatar{
+	position: relative;
+	width: 6rem;
+	height: 6rem;
+	margin:0 auto;
+}
+.avatar .author-icon{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	border:1px solid #fff;
+}
+.avatar .auth{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	height: 1.2rem;
+}
+.name{
+	font-size: 1.8rem;
+	text-align: center;
+	margin:5px 0;
+}
+.name img{
+	height: 1.8rem;
+	vertical-align: middle;
+}
+.data span{
+	display: inline-block;
+	width: 48%;
+	height: 1.8rem;
+	line-height: 1.8rem;
+	border-radius: 0.9rem;
+	margin: 0 1%;
+	background: #0096ff;
+	text-align: center;
+	font-size: 1rem;
+}
+.nav{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+.nav .tab{
+	width: 50%;
+	text-align: center;
+	font-size: 1.8rem;
+	padding-bottom: 12px;
+}
+.nav .current{
+	background: #07b2fc;
+}
+.nav .tab h3{
+	font-size: 1.2rem;
+}
+.getCash,.submitCash{
+	display: block;
+	width: 40%;
+	margin:10rem auto 0;
+}
+.record-wrap{
+	padding:12px;
+}
+.record{
+	position: relative;
+	height: 5rem;
+	padding-left: 30px;
+	margin:10px 0;
+	border-radius: 5px;
+	-webkit-box-shadow:0 0 15px rgba(241,246,250,1);  
+    -moz-box-shadow:0 0 15px rgba(241,246,250,1);  
+    box-shadow:0 0 15px rgba(241,246,250,1); 
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.record i,.form i{
+	position: absolute;
+	left: 0;
+	display: inline-block;
+	width: 5px;
+	height: 100%;
+	background: #08b2fc;
+}
+.fail i{
+	background: #ff2b65;
+}
+.success i{
+	background: #e3e3e3;
+}
+.record h3{
+	margin-top: 1.5rem;
+	color:#64757f;
+}
+.record span{
+	position: absolute;
+	right: 20px;
+	top:1.5rem;
+	width: 5rem;
+	height: 2rem;
+	line-height: 2rem;
+	text-align: center;
+	color:#98a5b3;
+	background: #ededed;
+	border-radius: 3px;
+}
+.fail span{
+	background: #f36;
+	color:#fff;
+}
+.mask{
+	position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    z-index:9999;
+}
+.sorry{
+	width: 80%;
+	margin:40% auto 0;
+}
+.sorry .reason{
+	border-radius: 10px;
+	padding:3rem 5rem;
+	background: #fff;
+	text-align: center;
+	line-height: 1.5;
+}
+.sorry .reason img{
+	display: block;
+	width: 50%;
+	margin:0 auto 10px;
+}
+.close{
+	width: 3rem;
+	margin:0 auto;
+	display: block;
+}
+/*提现页面*/
+.form{
+	position: relative;
+	width: 96%;
+	height: 5rem;
+	margin:15px auto;
+	padding-left: 4.5rem;
+	border-radius: 5px;
+	-webkit-box-shadow:0 0 15px rgba(241,246,250,1);  
+    -moz-box-shadow:0 0 15px rgba(241,246,250,1);  
+    box-shadow:0 0 15px rgba(241,246,250,1); 
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 0;
+}
+.username{
+	background: url(/cash/images/name_icon.png) 1.2rem center no-repeat;
+	background-size: 2.5rem;
+}
+.identify{
+	background: url(/cash/images/id_icon.png) 1.2rem center no-repeat;
+	background-size: 2.5rem;
+}
+.cash{
+	background: url(/cash/images/cash_icon.png) 1.4rem center no-repeat;
+	background-size: 2rem;
+}
+.form input{
+	height: 2rem;
+	line-height: 2rem;
+	padding:1.5rem 0;
+	width: 100%;
+	font-size: 15px;
+	border:none;
+	color:#647580;
+}
+.form input[disabled],.form input:disabled{
+	opacity:1;
+	color:#647580;
+	-webkit-text-fill-color:#647580;
+}
+.focus{
+	width: 97%;
+	font-size: 18px;
+	-webkit-box-shadow:0 5px 15px rgba(241,246,250,1);  
+    -moz-box-shadow:0 5px 15px rgba(241,246,250,1);  
+    box-shadow:0 5px 15px rgba(241,246,250,1); 
+}
+.form span{
+	position: absolute;
+	display: inline-block;
+	top:1.5rem;
+	right: 5px;
+	height: 2rem;
+	line-height: 2rem;
+	color:#f36;
+	font-size: 12px;
+}
+.form .chooseMoney{
+	font-size: 15px;
+	color:#00b4ff;
+}
+.tip{
+	text-indent: 2rem;
+}
+.submitCash{
+	margin-top: 2rem;
+}
+.rules{
+	padding:0 1.5rem;
+	position: absolute;
+	bottom: 3rem;
+	color:#647580;
+	line-height: 1.5;
+}
+.rules h3{
+	font-size: 1.5rem;
+	margin-bottom: 10px;
+}
+.money,.withdraw-done{
+	background: #fff;
+	border-radius: 10px;
+	padding:10%;
+}
+.money button{
+	width: 26%;
+	height: 2.5rem;
+	justify-content:center;
+	margin:10px 3%;
+	text-align: center;
+	border-radius: 3px;
+	background: #00b4ff;
+	color:#fff;
+}
+.money .gray{
+	background: #ededed;
+	color:#98a5b3;
+}
+.money .selected{
+	background: #f36;
+}
+.withdraw-done{
+	line-height: 1.5;
+	color:#647580;
+}
+.withdraw-done img{
+	display: block;
+	width: 50%;
+	margin:0 auto 10px;
+}
+.withdraw-done .done{
+	display: block;
+	width: 40%;
+	height: 3rem;
+	font-size: 1.5rem;
+	margin: 20px auto 0;
 }

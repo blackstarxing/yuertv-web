@@ -10,23 +10,513 @@
 	<link rel="stylesheet" href="/cash/css/cash.css">
 </head>
 <body>
-	<div class="g-bd">
-		<div class="m-login">
+	{% if iswechat %}
+	<div class="g-bd" id="app" v-cloak>
+		<div class="m-login" v-show="partone">
 			<img src="/cash/images/bg.jpg" alt="">
 			<div class="m-login-wrap">
 				<div class="m-input">
-					<input type="tel" placeholder="请输入手机号" class="tel">
-					<span class="error"></span>
+					<input type="tel" placeholder="请输入手机号" class="tel" v-on:keyup="separateNum" v-model="tel" maxlength="13" onpaste="return false" v-on:blur="checkTel">
+					<span class="error">${telerror}</span>
 				</div>
 				<div class="m-input">
-					<input type="tel" placeholder="请输入验证码" class="code">
-					<span class="error"></span>
-					<button class="getCode">获取验证码</button>
+					<input type="tel" placeholder="请输入验证码" class="code" maxlength="6" v-on:blur="checkCode" v-model="code">
+					<span class="error">${coderror}</span>
+					<button class="getCode" v-bind:class="{disabled:codedis}" v-bind:disabled="codedis" v-on:click="checkTel(1)">${codeText}</button>
 				</div>
-				<p class="code-send">验证码已发送</p>
-				<button class="login">确定</button>
+				<p class="code-send">${codesend}</p>
+				<button class="login" v-bind:class="{disabled:logindis}" v-bind:disabled="logindis" @click="logIn">确定</button>
+			</div>
+		</div>
+		<div class="m-index" v-show="partwo">
+			<div class="anchor-info">
+				<img src="/cash/images/withdraw_bg.png" alt="">
+				<div class="info">
+					<div class="head">
+						<div class="avatar">
+							<img v-bind:src="userInfo.icon" alt="" class="author-icon">
+							<img src="/cash/images/auth.png" alt="" class="auth" v-show="userInfo.is_certificate">
+						</div>
+						<div class="name">
+							${userInfo.nickname}
+							<img src="/cash/images/female.png" alt="" class="sex" v-if="userInfo.sex">
+							<img src="/cash/images/male.png" alt="" class="sex" v-else>
+						</div>
+						<div class="data">
+							<span>房间号：${userInfo.room_number}</span><span>已直播${userInfo.time}</span>
+						</div>
+					</div>
+				</div>
+				<div class="nav f-cb">
+					<div class="tab f-fl" v-bind:class="{current:!isCur}" @click="setCur(0)">
+						${userInfo.withdrawMoney}<br>
+						<h3>可提现金额</h3>	
+					</div>
+					<div class="tab f-fl" v-bind:class="{current:isCur}" @click="setCur(1)">
+						${myApply.length}<br>
+						<h3>我的申请</h3>	
+					</div>
+				</div>
+			</div>
+			<div v-show="isCur">
+				<button class="getCash" v-bind:class="{disabled:canApply}" v-bind:disabled="canApply" @click="withdraw">马上提现</button>
+			</div>
+			<div class="record-wrap" v-show="!isCur">
+				<div class="record" v-for="list in myApply" v-bind:class="{fail:list.state == 4,success:list.state==2}">
+					<i></i>
+					<h3>提现金额 ${list.amount}</h3>
+					<p>${list.create_date}</p>
+					<span v-if="list.state == 4" @click="getReason(list.reason)">未通过</span>
+					<span v-else-if="list.state == 2">已领取</span>
+					<span v-else>审核中</span>
+				</div>
+				<!-- <div class="record fail">
+					<i></i>
+					<h3>提现金额 200</h3>
+					<p>2017年3月27日</p>
+					<span @click="getReason">支付失败</span>
+				</div>
+				<div class="record success">
+					<i></i>
+					<h3>提现金额 200</h3>
+					<p>2017年3月27日</p>
+					<span>已领取</span>
+				</div> -->
+			</div>
+			<div class="mask" v-show="showReason">
+				<div class="sorry">
+					<div class="reason">
+						<img src="/cash/images/sorry.png">
+						很抱歉您的提现申请由于"${reason}"原因未能通过，请重新申请
+					</div>
+					<img src="/cash/images/close.png" class="close" @click="closeReason">
+				</div>
+			</div>
+		</div>
+		<div class="m-withdraw" v-show="parthree">
+			<div class="form username">
+				<i></i>
+				<input type="text" name="" placeholder="真实姓名" v-model="username" v-on:blur="checkUsername">
+				<span>${usernamerror}</span>
+			</div>
+			<div class="form identify">
+				<i></i>
+				<input type="text" name="" placeholder="真实身份证号码" maxlength="18" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" v-model="identify" v-on:blur="checkIdentify">
+				<span>${identifyerror}</span>
+			</div>
+			<div class="form cash" @click="chooseMoney">
+				<i></i>
+				<input type="text" name="" readonly="true" disabled="disabled" placeholder="提现金额" v-model="cashNum">
+				<span class="chooseMoney">选择金额</span>
+			</div>
+			<p class="tip">最低提现200元， 本次最高可提现200元</p>
+			<button class="submitCash" v-bind:class="{disabled:submitdis}" v-bind:disabled="submitdis" @click="applyMoney">申请提现</button>
+			<div class="rules">
+				<h3>提现规则：</h3>
+				<p>1.单次可提现额度最低200元，以及200以上100元整数倍金额 </p>
+				<p>2.单日可提现次数为1次</p>
+			</div>
+			<div class="mask" v-show="showMoney">
+				<div class="sorry">
+					<div class="money">
+						<button v-for="money in money" v-bind:class="{gray:money>haveMoney,selected:money==cashNum}" v-bind:disabled="money>haveMoney" @click="selectMoney(money)">${money}</button>
+					</div>
+					<img src="/cash/images/close.png" class="close" @click="closeMoney">
+				</div>
+			</div>
+			<div class="mask" v-show="submitDone">
+				<div class="sorry">
+					<div class="withdraw-done">
+						<img src="/cash/images/done.png">
+						申请已提交，审核将在三个工作日内完成 提现成功后将以微信零钱发放到您的账户
+						<button class="done" @click="closeSubmit">确定</button>
+					</div>					
+				</div>
 			</div>
 		</div>
 	</div>
+	{% else %}
+	<div class="please-wechat">
+		<img src="/cash/images/pc-empty.jpg" alt="">
+		<p>请在微信浏览器中打开页面</p>
+	</div>
+	{% endif %}
+	<script type="text/javascript" src="/jquery.js"></script>
+	<script type="text/javascript" src="/vue.js"></script>
+	{% if iswechat %}
+	<script>
+		var app = new Vue({
+	        el: '#app',
+	        delimiters: ['${', '}'],
+	        data: {
+	        	partone:true,
+	        	partwo:false,
+	        	parthree:false,
+	        	// 登录模块
+	        	tel:'',
+	        	code:'',
+	        	codedis:false,
+	        	logindis:true,
+	        	codeText:'获取验证码',
+	        	len:0,
+	        	codesend:'',
+	        	telerror:'',
+	        	coderror:'',
+	        	// 用户信息
+	        	isCur:true,
+	        	userInfo:'',
+	        	canApply:true,
+	        	myApply:'',
+	        	showReason:false,
+	        	reason:'',
+	        	username:'',
+	        	identify:'',
+	        	cashNum:'',
+	        	usernamerror:'',
+	        	identifyerror:'',
+	        	submitdis:true,
+	        	showMoney:false,
+	        	haveMoney:'',
+	        	money:[200,300,400,500,600,700,800,900,1000],
+	        	submitDone:false,
+	        },
+	        updated: function () {
+	        	var _this = this;
+	        	_this.$nextTick(function () {
+	        		// 
+		        	if(_this.code.length==6 && _this.tel.length==13){
+			            _this.logindis = false;		            			            
+	            	}else{
+	            		_this.logindis = true;	
+	            	}
+
+	            	if(_this.username && _this.identify.length==18 && _this.cashNum){
+			            _this.submitdis = false;		            			            
+	            	}else{
+	            		_this.submitdis = true;	
+	            	}
+            	})
+	        },
+	        mounted: function () {
+	            this.$nextTick(function () {
+	            	var _this = this;
+
+	            	$.ajax({
+			            url: '/api/withdraw/checkAuth',
+			            type: 'get',
+			            dataType: 'json',
+			            success: function(data) {
+			                if(data.code==0){
+			                	if(document.cookie.indexOf("yuer_wx_token")>-1){
+			                		_this.partone = false;
+	        						_this.partwo = true;
+			                	}
+			                }else{
+			                	window.location.href = data.result;
+			                }
+			            },
+			            error: function() {
+			                console.log(123);
+			            }
+			        });
+	            	
+	            	$('.form').click(function(){
+	            		$(this).addClass('focus').siblings().removeClass('focus');
+	            	})
+
+	            	_this.getDetails();
+	            })
+	        },
+	        methods:{
+	        	// 手机号码分隔
+	        	separateNum : function(){
+	        		var text_len = this.tel.length;
+	        		if(text_len>this.len){
+	        			if (text_len === 3 || text_len === 8) {
+							this.tel += " ";
+							text_len = this.tel.length;
+						}						
+	        		}
+	        		this.len = text_len;				
+	        	},
+	        	getQueryString : function(name){
+	        		var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+				    var r = window.location.search.substr(1).match(reg);
+				    if (r != null) {
+				        return unescape(r[2]);
+				    }
+				    return null;
+	        	},
+	        	// 去除空格
+	        	trimSpace:function(str,is_global){
+		            var result;
+		            result = str.replace(/(^\s+)|(\s+$)/g,"");
+		            if(is_global.toLowerCase()=="g"){
+		                result = result.replace(/\s/g,"");
+		            }
+		            return result;
+	        	},
+	        	// 验证手机号码
+	            checkTel:function(type){
+	                var _this = this;
+	                var tel = _this.trimSpace(_this.tel,'g');
+	                if(tel){
+	                    if(/^1[34578][0-9]{9}$/.test(tel)){
+	                    	if(type==1){
+	                    		var parm = {};
+		                        parm.type = 4;
+		                        parm.mobile = tel;
+		                        $.ajax({
+		                            url: '/api/sendSMSCode',
+		                            data: parm,
+		                            type: 'post',
+		                            dataType: 'json',
+		                            success: function(data) {
+		                                if (data.code==0) {
+		                                	_this.codesend = "验证码已发送"
+		                                    setTimeout(function(){
+		                                        _this.codesend = '';
+		                                    },2000);
+		                                    var second = 59;
+		                                    _this.codedis = true;
+		                                    _this.codeText = second+'(s)';
+		                                    function settime(val) { 
+		                                        if (second > 0) { 
+		                                        	_this.codeText = second+'(s)';
+		                                            second--;
+		                                            setTimeout(function() { 
+		                                                settime(val) 
+		                                            },1000);
+		                                        } else {
+		                                        	_this.codedis = false;
+		                                    		_this.codeText = '获取验证码';                             
+		                                        } 
+		                                    } 
+		                                    settime(second);                 
+		                                }else{
+		                                    _this.telerror = data.result;
+		                                    setTimeout(function(){
+		                                        _this.telerror = '';
+		                                    },2000);
+		                                }
+		                            },
+		                            error: function() {
+		                                alert('通讯服务器错误');
+		                            }
+		                    	})	                        
+	                        }
+	                    }else{
+	                        _this.telerror = '手机号码错误，请重新输入';
+	                        setTimeout(function(){
+	                            _this.telerror = '';
+	                        },2000);
+	                    }
+	                }else{
+	                    _this.telerror = '请输入手机号码';
+	                    setTimeout(function(){
+	                        _this.telerror = '';
+	                    },2000);
+	                }
+	            },
+	            // 校验验证码
+	            checkCode:function(){
+	            	var _this = this;
+	            	if(_this.code){
+	            		if(_this.code.length<6){
+	                        _this.coderror = '验证码错误，请重新输入';
+	                        setTimeout(function(){
+	                            _this.coderror = '';
+	                        },2000); 
+	                    }else{
+
+	                    }
+	            	}else{
+	            		_this.coderror = '请输入验证码';
+                        setTimeout(function(){
+                            _this.coderror = '';
+                        },2000); 
+	            	}	            	
+	            },
+	            // 登录
+	        	logIn:function(){
+	        		var _this = this;
+	        		$.ajax({
+			            url: '/api/withdraw/login',
+			            data: {
+			            	checkcode:_this.code,
+			            	phone:_this.trimSpace(_this.tel,'g')
+					  	},  
+			            type: 'get',
+			            dataType: 'json',
+			            success: function(data) {
+			                if(data.object.code==1){
+			                	_this.telerror = '非娱儿主播手机号';
+		                        setTimeout(function(){
+		                            _this.telerror = '';
+		                        },2000);
+			                	
+			                }else if(data.object.code==2){
+			                	_this.coderror = '验证码错误，请重新输入';
+		                        setTimeout(function(){
+		                            _this.coderror = '';
+		                        },2000); 
+			                }else if(data.object.code==3){
+			                	_this.coderror = '该手机号码已经绑定其他微信号';
+		                        setTimeout(function(){
+		                            _this.coderror = '';
+		                        },2000); 
+			                }else if(data.object.code==4){
+			                	_this.coderror = '该手机号码未报名活动';
+		                        setTimeout(function(){
+		                            _this.coderror = '';
+		                        },2000); 
+			                }else{
+			                	_this.partone = false;
+	        					_this.partwo = true;
+	        					_this.getDetails();
+			                }
+			            },
+			            error: function() {
+			                console.log(123);
+			            }
+			        });
+	        	},
+	        	// 用户信息
+	        	getDetails:function(){
+	        		var _this = this;
+	        		$.ajax({
+			            url: '/api/withdraw/index', 
+			            type: 'get',
+			            dataType: 'json',
+			            success: function(data) {
+			                if(data.code == 0){
+			                	_this.userInfo = data.object.data;
+			                	_this.haveMoney = _this.userInfo.withdrawMoney;
+			                	_this.canApply = (_this.userInfo.withdrawMoney>=200 && _this.userInfo.noAuditNum!=1) ? false:true;
+			                }
+			            },
+			            error: function() {
+			                console.log(123);
+			            }
+			        });
+			        $.ajax({
+			            url: '/api/withdraw/myApply', 
+			            type: 'get',
+			            dataType: 'json',
+			            success: function(data) {
+			                if(data.code == 0){
+			                	_this.myApply = data.object.data;
+			                }
+			            },
+			            error: function() {
+			                console.log(123);
+			            }
+			        });
+	        	},
+	        	// tab切换
+	            setCur : function(index){
+	            	if((index==1 && this.isCur) || (index==0 && !this.isCur)){
+	            		this.isCur = !this.isCur;
+	            	}
+	            },
+	            withdraw:function(){
+	            	var _this = this;
+	            	_this.partwo=false;
+	        		_this.parthree=true;
+	        		$.ajax({
+			            url: '/api/withdraw/withdrawUser', 
+			            type: 'get',
+			            dataType: 'json',
+			            success: function(data) {
+			                if(data.code == 0){
+			                	_this.username = data.object.data.realname;
+			                	_this.identify = data.object.data.id_card;
+			                }
+			            },
+			            error: function() {
+			                console.log(123);
+			            }
+			        });
+	            },
+	            // 提现失败原因
+	            getReason:function(string){
+	            	this.showReason = true;
+	            	this.reason = string;
+	            },
+	            closeReason:function(){
+	            	this.showReason = false;
+	            },
+	            // 提现表单校验
+	            checkUsername:function(){
+	            	var _this = this;
+	            	if(!_this.username){
+	            		_this.usernamerror = '姓名不能为空';
+	            		setTimeout(function(){
+                            _this.usernamerror = '';
+                        },2000); 
+	            	}
+	            },
+	            // 身份证校验
+	            checkIdentify:function(){
+	            	var _this = this;
+	            	if(_this.identify){
+	            		if(!/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test(_this.identify)){
+		            		_this.identifyerror = '身份证号码错误';
+		            		setTimeout(function(){
+	                            _this.identifyerror = '';
+	                        },2000); 
+		            	}
+	            	}else{
+	            		_this.identifyerror = '身份证号码不能为空';
+	            		setTimeout(function(){
+                            _this.identifyerror = '';
+                        },2000); 
+	            	}	            	
+	            },
+	            // 金额弹框
+	            chooseMoney:function(){
+	            	this.showMoney = true;
+	            },
+	            closeMoney:function(){
+	            	this.showMoney = false;
+	            },
+	            // 选择金额
+	            selectMoney:function(num){
+	            	this.cashNum = num;
+	            	this.showMoney = false;
+	            },
+	            closeSubmit:function(){
+	            	var _this = this;
+	            	_this.submitDone = false;
+	            	_this.partwo=true;
+	        		_this.parthree=false;
+	        		_this.getDetails();
+	            },
+	            // 提交申请
+	            applyMoney:function(){
+	            	var _this = this;
+	            	$.ajax({
+			            url: '/api/withdraw/apply',
+			            data: {
+			            	id_card:_this.identify,
+			            	realname:_this.username,
+			            	money:_this.cashNum
+					  	},  
+			            type: 'get',
+			            dataType: 'json',
+			            success: function(data) {
+			                if(data.code==0){
+			                	_this.submitDone = true;
+			                }
+			            },
+			            error: function() {
+			                console.log(123);
+			            }
+			        });
+	            }
+	        }
+	    })
+	</script>
+	{% endif %}
 </body>
 </html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />
+    <link rel="shortcut icon" type="image/ico" href="/yuer.ico">
+	<title>{{info.title}}</title>
+	<link rel="stylesheet" href="/mobile/css/share.css">
+</head>
+<body>
+	<div class="g-info">
+		<div class="content">
+			<div class="top f-cb">
+				<img src="{{info.icon}}" alt="" class="avatar f-fl">
+				<div class="title f-fl">
+					<h3>
+						{{info.nickname}}
+						{% if info.sex==0 %}
+						<img src="/mobile/images/male.png" alt="">
+						{% else %}
+						<img src="/mobile/images/female.png" alt="">
+						{% endif %}
+						<img src="/mobile/images/ico8.png" alt="">
+					</h3>
+					<p>{{info.create_date}}</p>
+				</div>
+				<a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.miqtech.wymaster.wylive" class="f-fr"><img src="/images/heart.png" alt="">关注</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
