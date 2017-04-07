@@ -7,7 +7,7 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-var path = 'http://172.16.10.6:8777';
+var path = 'http://172.16.10.11:8777';
 var apipath ="http://172.16.10.134:8099";
 // var path = 'http://webapi.yuerlive.cn';
 // var apipath ="http://api.yuerlive.cn";
@@ -1464,12 +1464,21 @@ router.get('/cash/withdrawCash', function(req, res, next) {
 });
 router.get('/cash/personcenter', function(req, res, next) {
     var nowtime = new Date().getTime();
+    var islogin = false;
+    var userId = req.query.userId;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
     if(!ticket || (nowtime-ticketline)>7000000){
         getTicket();
     }
     Thenjs.parallel([function(cont) {
         request({
-            uri:"http://172.16.10.8:8777/withdraw/personalCenter",
+            uri: path+"/withdraw/personalCenter?userId=4104215",
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -1483,29 +1492,10 @@ router.get('/cash/personcenter', function(req, res, next) {
         })
     }]).then(function(cont, result) {
           if(JSON.parse(result[0]).code == 0){
-            var daily_month = "",
-                daily_day = ""
-                console.log(111);
-                console.log(JSON.parse(result[0]).object);
-                console.log(JSON.parse(result[0]).object.liveRecord);
-                console.log(JSON.parse(result[0]).object.liveRecord.date);
-            if(JSON.parse(result[0]).object.liveRecord.date){
-                console.log(1222);
-                console.log(JSON.parse(result[0]).object.liveRecord.date);
-                daily_month = JSON.parse(result[0]).object.upInfo.create_date.split('-')[1];
-                daily_day = JSON.parse(result[0]).object.upInfo.create_date.split('-')[2];
-            }
             res.render('cash/personcenter', {
                 title: "娱儿直播--领跑移动电竞的直播平台",
                 livenum: JSON.parse(result[0]).object,
-                daily_month:daily_month,
-                daily_day:daily_day,
                 ticket:ticket,
-            });
-        }else{
-            res.render('cash/personcenter', {
-                title: "娱儿直播--领跑移动电竞的直播平台",
-                livenum: JSON.parse(result[0]).object,
             });
         }  
     }).fail(function(cont, error) { 
@@ -1515,9 +1505,42 @@ router.get('/cash/personcenter', function(req, res, next) {
 });
 router.get('/cash/signup', function(req, res, next) {
     var nowtime = new Date().getTime();
+    var userId= req.query.userId;
     if(!ticket || (nowtime-ticketline)>7000000){
         getTicket();
     }
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    if(!ticket || (nowtime-ticketline)>7000000){
+        getTicket();
+    }
+    Thenjs.parallel([function(cont) {
+        request({
+            uri: path+"/withdraw/personalCenter?userId="+userId,
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+              }
+        }, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        if(JSON.parse(result[0]).code != 1){
+            res.redirect('/cash/personcenter');
+        }
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
     res.render('cash/signup', {
         ticket: ticket
     });

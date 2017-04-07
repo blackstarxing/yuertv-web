@@ -89,15 +89,16 @@
 			font-size:12px;
 		}
 		/*柱形图*/
-		.m-t-l{overflow:hidden;}
+		div.m-t-l{overflow:hidden;}
 		.m-tl{float:left;}
 		.m-tl-left{width:5%;height:130px;}
 		.u-tl{display:block;margin:13.5px 2px 0px 0%;font-size:12px;color:#647580;}
 		.u-tl-lb{margin-bottom:0%;}
-		.m-tl-right{width:90%;height:130px;}
-		.m-tl-bottom{width:90%; margin-left:10%;font-size:12px;color:#647580;}
-		.u-tl-bar{width:10px;height:115px;border-radius:5px;margin:12px 15px 0px;
-			background:linear-gradient(#03b5ff,#a2e3ff);}
+		.m-tl-right{float:left;width:90%;height:115px;line-height:115px;margin-top:3%;margin-bottom:2%;position:relative;}
+		.m-tl-bottom{width:90%; margin-left:6%;font-size:12px;color:#647580;}
+		.m-tl-bottom span{display:inline-block;width:10%;margin:1% 2%;}
+		.u-tl-bar{display:inline-block;vertical-align:bottom;width:10px;border-radius:5px;background:linear-gradient(#03b5ff,#a2e3ff);margin:0 5.5%;}
+		.hrs{position:relative;display:inline-block;width:36px;left:-12px;top:-76px;font-size:10px;color:#fff;background:url(/cash/images/bg-r.png) no-repeat;background-size:contain;line-height:2;text-align:center;}
 		/*直播纪录*/
 		.m-record{
 			top:62%;
@@ -109,6 +110,7 @@
 		.m-rt{
 			float:left;
 		}
+		.m-rt-date{width:20%;height: 25px;}
 		.m-rt-d{
 			font-size:24px;
 			color:#333;
@@ -120,18 +122,24 @@
 			margin-left:-2.79%;
 		}
 		.m-rt-title{
-			width:79%;
+			position:relative;
+			width:70%;
 			height:20px;
 			line-height:20px;
 			background:#f0f6ff;
 			font-size:13px;
 			color:#647580;
-			margin-left:5.5%;
+			/*left:25%;*/
+			white-space:nowrap;/* 不换行 */
+			overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+			text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ 
+			float: left;
 		}
 		.u-rtt{
 			display:inline-block;
 			margin:0 3.5%;
 		}
+		.showmore{width:50%;margin:5% auto;font-size:14px;color:#98a5b3;text-align:center;}
 		/*为空状态*/
 		.m-re-img{
 			display:block;
@@ -146,19 +154,37 @@
 	</style>
 </head>
 <body>
-<div class="g-con">
+<div class="g-con" id="pvue">
 	<img src="/cash/images/pc-bg.jpg" class="m-bg">
 	<div class="m-main g-m">
-		{% if info.icon %}
-          <img src="{{info.icon}}" alt="" class="m-m-icon">
+		{% if livenum.icon %}
+          <img src="{{livenum.upInfo.icon}}" alt="" class="m-m-icon">
         {% else %}
           <img src="/cash/images/default_avatar.png" class="m-m-icon">
         {% endif %}
 		<span class="m-m-withdrawal">如何提现</span>
 		<div class="m-mtr">
-			<div class="m-mtr-s u-mtr"><span class="u-mtr-s">{{livenum.upInfo.liveNum}}</span>直播场次(场)</div>
-			<div class="m-mtr-t u-mtr"><span class="u-mtr-t">{{livenum.upInfo.time}}</span>直播时长(小时)</div>
-			<div class="m-mtr-m u-mtr"><span class="u-mtr-m">{{livenum.upInfo.total_amount}}</span>我的收益(元)</div>
+			<div class="m-mtr-s u-mtr">
+			{% if livenum.upInfo.liveNum=="" %}
+			<span class="u-mtr-s">0</span>
+			{% else %}
+			<span class="u-mtr-s">{{livenum.upInfo.liveNum}}</span>
+			{% endif %}
+			直播场次(场)</div>
+			<div class="m-mtr-t u-mtr">
+			{% if livenum.upInfo.time=="" %}
+			<span class="u-mtr-t">0</span>
+			{% else %}
+			<span class="u-mtr-t">{{livenum.upInfo.time}}</span>
+			{% endif %}
+			直播时长(小时)</div>
+			<div class="m-mtr-m u-mtr">
+			{% if livenum.upInfo.total_amount=="" %}
+			<span class="u-mtr-m">0</span>
+			{% else %}
+			<span class="u-mtr-m">{{livenum.upInfo.total_amount}}</span>
+			{% endif %}
+			我的收益(元)</div>
 		</div>
 	</div>
 	<div class="m-time g-m">
@@ -171,25 +197,28 @@
 				<span class="u-tl">1h</span>
 				<span class="u-tl u-tl-lb">0h</span>
 			</div>
-			<div class="m-tl-right m-tl">
-				<div class="u-tl-bar"></div>
+			<div class="m-tl-right m-tl" >
+				<div class="u-tl-bar" id="ms" v-for="(sli,index) in sevenLiveInfo" :style={height:formatTime(sli.time,3)+"px"}><span id="#hrs" class="hrs">${formatTime(sli.time,4)}h</span></div>
+				
 			</div>
-			<hr style="display:block;width:100%;border:1px solid #e3e3e3;">
-			<div class="m-tl-bottom"><span>03/08</span></div>
-			
+			<hr style="display:block;width:100%;border:1px solid #e3e3e3;margin-top:2%;">
+			<div class="m-tl-bottom" ><span v-for="(lr,index) in sevenLiveInfo">${formatTime(lr.date,2)}</span></div>
 		</div>
 	</div>
 	<div class="m-record g-m">
 		<p class="m-r-live">直播纪录</p>
 		{% if livenum.liveRecord!="" %}
-		<div class="m-r-tc">
-			<p class="m-rt-date m-rt"><span class="m-rt-d">{{daily_day}}</span>
-				<span class="u-rt-spec">{{daily_month}}<span>月</span></span>
+		<div class="m-r-tc" v-for="(item,index) in liveRecord">
+			<p class="m-rt-date m-rt"><span class="m-rt-d"  v-show="item.date!=null">${formatTime(item.date,1)}</span>
+				<span class="u-rt-spec" v-show="item.date!=null">${formatTime(item.date,0)}<span>月</span></span>
 			</p>
 			<p class="m-rt-title m-rt">
-				<span class="u-rtt">{{livenum.liveRecord.duration}}</span>{{livenum.liveRecord.title}}
+				<span class="u-rtt">${item.duration}</span>${item.title}
 			</p>
 		</div>
+		<div class="showmore" v-if="datatime.liveRecord==''">没有更多</div>
+		<div style="width:50%;margin:5% auto;font-size:14px;color:#98a5b3;text-align:center;" @click="pageList()"   v-else>加载更多</div>
+		
 		{% else %}
 		<div class="m-r-empty">
 			<img src="/cash/images/pc-empty.jpg" class="m-re-img">
@@ -199,43 +228,171 @@
 	</div>
 </div>
 <script type="text/javascript" src="/jquery.min.js"></script>
+<script src="/vue.js"></script>
 <script type="text/javascript">
-$(function(){
-	function progressBar(){
-		//初始化js进度条
-		$("#bar").css("height","0px");
-		//进度条的速度，越小越快
-		var speed = 20;
-		bar = setInterval(function(){
-		   nowheight = parseInt($("#bar").height());
-		   if(nowheight<=115){
-		    barheight = (nowheight + 1)+"px";
-		    $("#bar").css("height",barheight);
-		   }else{
-		    //进度条读满后，停止
-		    clearInterval(bar);
-		   } 
-		},speed);
-    }
-    var xhr = new XMLHttpRequest();  
-	xhr.open('post', FileController, true);  
-	xhr.onload = function () {  
-	// alert('上传完成!');  
-	};  
-	xhr.upload.addEventListener('progress', progressFunction, false);  
-    function progressFunction(evt) {  
-		var progressBar = $('#progressBar');  
-		var percentageDiv = $('#percentage');  
-		if (evt.lengthComputable) {  
-			progressBar.max(evt.total);  
-			progressBar.value(evt.loaded);  
-			percentageDiv.html(Math.round(evt.loaded / evt.total * 100) + '%');  
-		}  
-	}  
-	// <progress id='progressBar' value='0' max='100'>  
-	// </progress>  
-	// <span id='percentage'></span>
-})
+var pvue = new Vue({
+        el: '#pvue',
+        delimiters: ['${', '}'],
+        data: {
+            datatime:[],
+            liveRecord:[],
+            sevenLiveInfo:[],
+            upInfo:[],
+            date:0,
+            Y:0,
+            m:0,
+            d:0,
+            H:0,
+            i:0,
+            s:0,
+            rs:0,
+            value:0,
+            lrdate:0,
+            lrduration:0,
+            slidate:0,
+            page:1,
+            userId:"",
+        },
+        computed: {
+		    mylivefilter: function () {
+		      return this.formatTime(this.lrdate)
+		    },
+		    myliveRfilter: function () {
+		      return this.formatTime(this.lrduration)
+		    },
+		    mysevenfilter: function () {
+		      return this.formatTime(this.slidate)
+		    },
+		},
+        mounted: function () {
+            this.$nextTick(function () {
+            	// var _this=this;
+                this.newsList();
+                this.userId = getQueryString("userId");
+                // $(window).scroll(function(){ 
+                //     var totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop()); 
+                //     if($(document).height() <= totalheight){
+                //             _this.page+=1;
+                //             _this.pageList(_this.page);
+                //     }
+                // })
+            })
+        },
+        methods:{
+	        formatTime:function (value,type) {
+			    date = new Date(value);
+				m = date.getMonth() + 1,
+				d = date.getDate(),
+				H = date.getHours(),
+				i = date.getMinutes(),
+				s = date.getSeconds();
+				rs = Math.round((value/3600)*10)/10
+				if (m < 10) {
+					m = '0' + m;
+				}
+				if (d < 10) {
+					d = '0' + d;
+				}
+				if (H < 10) {
+					H = '0' + H;
+				}
+				if (i < 10) {
+					i = '0' + i;
+				}
+				if (s < 10) {
+					s = '0' + s;
+				}
+				if(type==0){
+					return m
+				}else if(type==1){
+					return d 
+				}else if(type==2){
+					return m+"/"+d
+				}else if(type==3){
+					return rs*28.75
+				}else if(type==4){
+					return rs
+				}
+			},
+			getQueryString:function (name) {
+			    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+			    var r = window.location.search.substr(1).match(reg);
+			    if (r != null) {
+			        return unescape(r[2]);
+			    }
+			    return null;
+			    // var userId = getQueryString("userId"),
+				// 	token = getQueryString("token");
+			},
+	        newsList:function(){
+	        	var _this = this;
+	            $.ajax({
+	                method: "GET",
+	                url:"http://172.16.10.11:8777/withdraw/personalCenter",
+	                dataType: 'json',
+	                data:{
+	                	userId:_this.userId
+	                },
+	                success: function(data) {
+	                    if (data.code == 0) {
+	                           _this.datatime=data.object;
+	                           // 页面第三块：直播记录
+	                           _this.liveRecord=data.object.liveRecord;
+	                           // 页面第二块：七日直播时长
+	                           _this.sevenLiveInfo=data.object.sevenLiveInfo;
+	                           _this.upInfo=data.object.upInfo;
+	                           // 页面第三块：直播记录－－日期
+	                           _this.lrdate=data.object.liveRecord[0].date;
+	                           console.log(data.object.liveRecord[0].date);
+	                           // 页面第三块：直播记录－－持续时间
+	                           _this.lrduration=data.object.liveRecord[0].duration;
+	                           // 页面第二块：七日直播时长日期
+	                           _this.slidate=data.object.sevenLiveInfo[0].date;         
+	                    } else {
+	                        console.log(data.result);
+	                    }
+	                },
+	                error: function(a, b, c) {
+	                    console.log("接口出问题啦");
+	                }
+	            })
+	        },
+	        pageList:function(page){
+	        	var _this = this;
+	        	_this.page+=1;
+	            $.ajax({
+	                method: "GET",
+	                url:"http://172.16.10.11:8777/withdraw/liveRecord?userId="+_this.userId,
+	                dataType: 'json',
+	                data:{
+	                	page:_this.page
+	                },
+	                success: function(data) {
+	                    if (data.code == 0) {
+	                          _this.datatime=data.object;
+	                          console.log(data.object);
+	                           // 页面第三块：直播记录
+	                           // _this.liveRecord=data.object.liveRecord;
+	                           console.log(data.object.liveRecord);
+	                           // 页面第三块：直播记录－－日期
+	                           _this.lrdate=data.object.liveRecord[0].date;
+	                           // 页面第三块：直播记录－－持续时间
+	                           _this.lrduration=data.object.liveRecord[0].duration;
+	                           // _this.newsList();    
+	                           _this.liveRecord=_this.liveRecord.concat(data.object.liveRecord);
+	                           console.log(data.object.liveRecord);
+	                    } else {
+	                        console.log(data.result);
+	                    }
+	                },
+	                error: function(a, b, c) {
+	                    console.log("接口出问题啦");
+	                }
+	            })
+	        }
+        }
+    })
+	
 </script>
 </body>
 </html>
