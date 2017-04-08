@@ -1602,8 +1602,6 @@ router.get('/mobile/news', function(req, res, next) {
                 time = "",
                 date = "",
                 m = "",
-                // datem = "",
-                // dated = "",
                 d="";
             if(JSON.parse(result[0]).object.newsInfo){
                 month=JSON.parse(result[0]).object.newsInfo.create_date.split('-')[1];
@@ -1612,28 +1610,12 @@ router.get('/mobile/news', function(req, res, next) {
                 date = new Date(JSON.parse(result[0]).object.newsInfo.create_date);
                 m = date.getMonth() + 1,
                 d = date.getDate();
-                // if(month.substr(0,1)==0){
-                //     datem=month.substr(1,1);
-                // }else{
-                //     datem=month;
-                // }
-                // if(day.substr(0,1)==0){
-                //     dated=day.substr(1,1);
-                // }else{
-                //     dated=day;
-                // }
-                // console.log(datem);
-                // console.log(dated);
-                console.log(m);
-                console.log(d);
-                console.log(month);
-                console.log(day);
-                console.log(time);
+                console.log(JSON.parse(result[0]).object.newsInfo.content);
             }
             res.render('mobile/news', {
                 title: "资讯详情",
                 info:JSON.parse(result[0]).object.newsInfo,
-                comment:JSON.parse(result[0]).object.comment,
+                comments:JSON.parse(result[0]).object.comment,
                 month:month,
                 day:day,
                 m:m,
@@ -1643,8 +1625,6 @@ router.get('/mobile/news', function(req, res, next) {
             });
         }else{
             res.render('mobile/news', {
-                // info:JSON.parse(result[0]).object.newsInfo,
-                // comment:JSON.parse(result[0]).object.comment,
                 ticket:ticket
             });
         } 
@@ -1652,8 +1632,5 @@ router.get('/mobile/news', function(req, res, next) {
         console.log(error);
         res.render('error', { title: "错误"});
     });
-    // res.render('mobile/news', {
-    //     ticket:ticket
-    // });
 });
 module.exports = router;

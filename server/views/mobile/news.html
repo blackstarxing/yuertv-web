@@ -5,38 +5,16 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta content="telephone=no" name="format-detection" />
     <link rel="shortcut icon" type="image/ico" href="/yuer.ico">
-	<title>资讯详情页</title>
-	<style type="text/css">
-		html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
-		body,ul,li,p,h3,h4,h2,em,button,input{margin: 0; padding: 0;}
-		body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; 
-			font-size:62.5%; font-style:normal;  margin:0 auto; height:100%;
-			background:#141a20; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
-		/*img{border:0; max-width:100%;vertical-align: top;}*/
-		.m-bg{background:#1c232d;padding:5% 2.5%;}
-		.g-top{font-size:21px;color:#fff;}
-		.g-nav{font-size:10px;color:#465667;}
-		.g-n-date{margin-right:5%;}
-		.g-n-title{display:inline-block; width:20%;height:13px;line-height:13px;text-align:center;margin-right:0.2%;font-size:9px;color:#00a3ff;border:1px solid #00a3ff;position:absolute;right:2.5%;left:auto;}
-		.g-n-line{border:1px solid #141a20;margin-top:5%;}
-		.g-mian{font-size:12px;color:#98a9bb;}
-		/*.g-m-top,.g-m-bottom,.m-b-source{text-indent:1em;}*/
-		.g-m-video{margin:5% 0;}
-		.g-comments{padding-bottom:42px;}
-		.g-share{position: fixed;bottom: 0;width: 100%;max-width: 800px;height: 42px;padding:0 10px;background: #1c232d;box-sizing: border-box;z-index: 999;
-		}
-		.g-s{display:inline-block;width:32%;height:20px;line-height:20px;font-size:11px;color:#c9c9cc;margin:9px 0;text-align:center;}
-		.g-s-co,.g-s-sh{border-right:1px solid #55545f;}
-		.m-s{display:inline-block;width:13px;height:13px;border:0;margin-right:2.5%;}
-	</style>
+    <link rel="stylesheet" href="/mobile/css/news.css">
+	<title>资讯详情</title>
 	<script>
-		enableWxShare({
-			appId: 'wxf96f728533f32fa8',
-			ticket: '{{ticket}}',
-			title: '{{title}}',		
-			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/yuerlogo.png',
-			desc: '娱儿直播带你装逼带你飞，新鲜好玩的一手游戏资讯都在这!'
-		})
+		// enableWxShare({
+		// 	appId: 'wxf96f728533f32fa8',
+		// 	ticket: '{{ticket}}',
+		// 	title: '{{title}}',		
+		// 	imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/yuerlogo.png',
+		// 	desc: '娱儿直播带你装逼带你飞，新鲜好玩的一手游戏资讯都在这!'
+		// })
 	</script>
 </head>
 <body>
@@ -62,19 +40,29 @@
 		</div> -->
 		{{info.content}}
 	</div>
-	<div class="g-comments">
-		<div class="g-c-top"><img src="/mobile/images/n-co.png" alt="" class="m-s"><span>评论</span></div>
+	<div class="g-comment">
+		<h3 class="u-title"><img src="/mobile/images/comment_icon.png" alt="">评论</h3>
+		{% for list in comments %}
+			<div class="comment f-cb">
+				<img src="{{list.icon}}" alt="" class="f-fl">
+				<div class="comment-content">
+					<h3>{{list.nickname}} <span class="f-fr">{{list.create_date}}</span></h3>
+					<div>{% if list.reply_nickname %}回复<span class="reply-nickname">{{list.reply_nickname}}</span>:{% endif %}{{list.content}}</div>
+				</div>
+			</div>
+		{% endfor %}
 	</div>
-	<div class="g-share">
-		<span class="g-s-sh g-s"><img src="/mobile/images/n-share.png" alt="" class="m-s"><span class="m-s-s">分享</span></span>
-		<span class="g-s-co g-s"><img src="/mobile/images/n-sco.png" alt="" class="m-s"><span class="m-s-s">{{info.comment_num}}</span></span>
-		<span class="g-s-th g-s"><img src="/mobile/images/n-sth.png" alt="" class="m-s"><span class="m-s-s">{{info.praise_num}}</span></span>
+	<div class="g-bt">
+		<ul class="f-cb">
+			<li><img src="/mobile/images/comment.png" alt="">{{info.comment_num}}<i></i></li>
+			<li><img src="/mobile/images/like.png" alt="">{{info.praise_num}}</li>
+		</ul>
 	</div>
 </div>
 <script type="text/javascript" src="/jquery.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	$(".g-share").on("click",function(){
+	$(".g-bt").on("click",function(){
 		window.location.href="";
 	})
 		
