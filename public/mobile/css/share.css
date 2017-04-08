@@ -162,3 +162,19 @@ button,input{padding:0;margin:0;outline: none;}
 	width: 100%;
 	display: none;
 }
+.swiper-container{
+	height: 100%;
+}
+.swiper-slide img{
+	width: 100%;
+	position: absolute;
+	top:50%;
+	transform: translate(0,-50%);
+}
+.swiper-pagination-bullet{
+	background: #fff;
+	opacity: 1;
+}
+.swiper-pagination-bullet-active{
+	background: #f36;
+}

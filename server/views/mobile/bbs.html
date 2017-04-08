@@ -7,8 +7,8 @@
     <meta content="telephone=no" name="format-detection" />
     <link rel="shortcut icon" type="image/ico" href="/yuer.ico">
 	<title>{{info.title}}</title>
-	<link rel="stylesheet" href="/mobile/css/share.css">
 	<link rel="stylesheet" href="/mobile/css/swiper.min.css">
+	<link rel="stylesheet" href="/mobile/css/share.css">
 </head>
 <body>
 	<div class="g-info">
@@ -35,20 +35,21 @@
 				<div class="lightbox">
 					{% if img.length>4 %}
 					{% for img in imgs %}
-						<img src="http://img.wangyuhudong.com/{{img}}" alt="" class="full">
+						<img src="http://img.wangyuhudong.com/{{img}}" alt="" class="full" onclick="showSwiper({{loop.index0}})">
 					{% endfor %}
 					{% elseif img.length==1 %}
 					{% for img in imgs %}
-						<img src="http://img.wangyuhudong.com/{{img}}" alt="" class="less">
+						<img src="http://img.wangyuhudong.com/{{img}}" alt="" class="less" onclick="showSwiper({{loop.index0}})">
 					{% endfor %}
 					{% else %}
 					{% for img in imgs %}
-						<img src="http://img.wangyuhudong.com/{{img}}" alt="" class="mid">
+						<img src="http://img.wangyuhudong.com/{{img}}" alt="" class="mid" onclick="showSwiper({{loop.index0}})">
 					{% endfor %}
 					{% endif %}
 				</div>
 				<span class="game-name">{{info.game_name}}</span>
 			</div>
+			<video class="mejs-wmp" width="100%" height="203" src="{{info.video_rtmp}}" poster="http://img.wangyuhudong.com/{{info.video_img}}" type="video/mp4" id="player1" poster="" controls="controls" preload="none" webkit-playsinline playsinline></video>
 		</div>
 	</div>
 	<div class="g-comment">
@@ -84,16 +85,23 @@
 	<script src="/jquery.js"></script>
 	<script src="/mobile/js/swiper.min.js"></script>
 	<script>
-		var mySwiper = new Swiper ('.swiper-container', {
-            direction: 'horizontal',
-            loop: true,
-            // autoplay : 2500,
-            autoplayDisableOnInteraction : false,
-            // 如果需要分页器
-            pagination: '.swiper-pagination',
-            observer:true,
-            observeParents:true,
-        }); 
+		function showSwiper(index){
+			$('.swiper-box').show();
+			var mySwiper = new Swiper ('.swiper-container', {
+	            direction: 'horizontal',
+	            loop: true,
+	            pagination: '.swiper-pagination',
+	            observer:true,
+	            observeParents:true,
+	            initialSlide :index,
+	        }); 
+		}
+		$('.swiper-container').click(function(e){
+			console.log(e.target.nodeName);
+			if(e.target.nodeName!='IMG'){
+				$('.swiper-box').hide();
+			}			
+		})
 	</script>
 </body>
 </html>
