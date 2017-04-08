@@ -173,6 +173,7 @@ $(function(){
 	// }); 
 	//用户状态
 	$("#btn").on("click",function(){
+		var ua = navigator.userAgent.toLowerCase(); 
 		if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
 			var parm={
 				userId:userId,

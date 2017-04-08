@@ -8,6 +8,7 @@
     <link rel="shortcut icon" type="image/ico" href="/yuer.ico">
 	<title>{{info.title}}</title>
 	<link rel="stylesheet" href="/mobile/css/share.css">
+	<link rel="stylesheet" href="/mobile/css/swiper.min.css">
 </head>
 <body>
 	<div class="g-info">
@@ -28,7 +29,71 @@
 				</div>
 				<a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.miqtech.wymaster.wylive" class="f-fr"><img src="/images/heart.png" alt="">关注</a>
 			</div>
+			<div class="middle">
+				<h3>{{info.title}}</h3>
+				<p>{{info.content}}</p>
+				<div class="lightbox">
+					{% if img.length>4 %}
+					{% for img in imgs %}
+						<img src="http://img.wangyuhudong.com/{{img}}" alt="" class="full">
+					{% endfor %}
+					{% elseif img.length==1 %}
+					{% for img in imgs %}
+						<img src="http://img.wangyuhudong.com/{{img}}" alt="" class="less">
+					{% endfor %}
+					{% else %}
+					{% for img in imgs %}
+						<img src="http://img.wangyuhudong.com/{{img}}" alt="" class="mid">
+					{% endfor %}
+					{% endif %}
+				</div>
+				<span class="game-name">{{info.game_name}}</span>
+			</div>
 		</div>
 	</div>
+	<div class="g-comment">
+		<h3 class="u-title"><img src="/mobile/images/comment_icon.png" alt="">评论</h3>
+		{% for list in comments %}
+			<div class="comment f-cb">
+				<img src="{{list.icon}}" alt="" class="f-fl">
+				<div class="comment-content">
+					<h3>{{list.nickname}} <span class="f-fr">{{list.create_date}}</span></h3>
+					<div>{% if list.reply_nickname %}回复<span class="reply-nickname">{{list.reply_nickname}}</span>:{% endif %}{{list.content}}</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	<div class="g-bt">
+		<ul class="f-cb">
+			<li><img src="/mobile/images/comment.png" alt="">{{info.comment_num}}<i></i></li>
+			<li><img src="/mobile/images/like.png" alt="">{{info.praise_num}}</li>
+		</ul>
+	</div>
+	<div class="swiper-box">
+		<div class="swiper-container">
+            <div class="swiper-wrapper">
+            	{% for img in imgs %}
+                <div class="swiper-slide">
+                    <img src="http://img.wangyuhudong.com/{{img}}" alt="">	
+                </div>
+                {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>  
+	</div>
+	<script src="/jquery.js"></script>
+	<script src="/mobile/js/swiper.min.js"></script>
+	<script>
+		var mySwiper = new Swiper ('.swiper-container', {
+            direction: 'horizontal',
+            loop: true,
+            // autoplay : 2500,
+            autoplayDisableOnInteraction : false,
+            // 如果需要分页器
+            pagination: '.swiper-pagination',
+            observer:true,
+            observeParents:true,
+        }); 
+	</script>
 </body>
 </html>

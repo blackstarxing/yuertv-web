@@ -6,8 +6,7 @@ var request = require('request');
 // 微信分享ticket
 var ticket = '';
 var ticketline = '';
-
-var path = 'http://172.16.10.6:8777';
+var path = 'http://172.16.10.11:8777';
 var apipath ="http://172.16.10.134:8099";
 // var path = 'http://qa.webapi.yuerlive.cn';
 // var apipath ="http://qa.api.yuerlive.cn";
@@ -1566,7 +1565,8 @@ router.get('/mobile/bbs', function(req, res, next) {
     }]).then(function(cont, result) {
         res.render('mobile/bbs', {
             info:JSON.parse(result[0]).object.bbsInfo,
-            comment:JSON.parse(result[0]).object.comment,
+            imgs:JSON.parse(result[0]).object.bbsInfo.imgs?JSON.parse(result[0]).object.bbsInfo.imgs.split(','):'',
+            comments:JSON.parse(result[0]).object.comment,
             ticket:ticket
         });
     }).fail(function(cont, error) { 
