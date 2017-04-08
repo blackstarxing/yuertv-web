@@ -7,7 +7,7 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-var path = 'http://172.16.10.6:8777';
+var path = 'http://172.16.10.11:8777';
 var apipath ="http://172.16.10.134:8099";
 // var path = 'http://qa.webapi.yuerlive.cn';
 // var apipath ="http://qa.api.yuerlive.cn";
