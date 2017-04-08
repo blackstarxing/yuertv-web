@@ -60,6 +60,12 @@
 			</div>
 			<div v-show="isCur">
 				<button class="getCash" v-bind:class="{disabled:canApply}" v-bind:disabled="canApply" @click="withdraw">马上提现</button>
+				<div class="rules">
+					<h3>提现规则：</h3>
+					<p>1.单次可提现额度最低200元，以及200以上100元整数倍金额 </p>
+					<p>2.单日可提现次数为1次</p>
+					<p>3.如有疑问请加【娱儿直播】官方群421322720咨询客服</p>
+				</div>
 			</div>
 			<div class="record-wrap" v-show="!isCur">
 				<div class="record" v-for="list in myApply" v-bind:class="{fail:list.state == 4,success:list.state==2}">
@@ -70,18 +76,6 @@
 					<span v-else-if="list.state == 2">已领取</span>
 					<span v-else>审核中</span>
 				</div>
-				<!-- <div class="record fail">
-					<i></i>
-					<h3>提现金额 200</h3>
-					<p>2017年3月27日</p>
-					<span @click="getReason">支付失败</span>
-				</div>
-				<div class="record success">
-					<i></i>
-					<h3>提现金额 200</h3>
-					<p>2017年3月27日</p>
-					<span>已领取</span>
-				</div> -->
 			</div>
 			<div class="mask" v-show="showReason">
 				<div class="sorry">
@@ -115,6 +109,7 @@
 				<h3>提现规则：</h3>
 				<p>1.单次可提现额度最低200元，以及200以上100元整数倍金额 </p>
 				<p>2.单日可提现次数为1次</p>
+				<p>3.如有疑问请加【娱儿直播】官方群421322720咨询客服</p>
 			</div>
 			<div class="mask" v-show="showMoney">
 				<div class="sorry">
@@ -140,7 +135,7 @@
 		<img src="/cash/images/pc-empty.jpg" alt="">
 		<p>请在微信浏览器中打开页面</p>
 	</div>
-	{% endif %}
+	{% endif %}	
 	<script type="text/javascript" src="/jquery.js"></script>
 	<script type="text/javascript" src="/vue.js"></script>
 	{% if iswechat %}
@@ -488,6 +483,7 @@
 	            closeSubmit:function(){
 	            	var _this = this;
 	            	_this.submitDone = false;
+	            	_this.isCur = false;
 	            	_this.partwo=true;
 	        		_this.parthree=false;
 	        		_this.getDetails();
@@ -517,6 +513,6 @@
 	        }
 	    })
 	</script>
-	{% endif %}
+	{% endif %}	
 </body>
 </html>
