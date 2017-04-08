@@ -7,10 +7,10 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-// var path = 'http://172.16.10.11:8777';
-// var apipath ="http://172.16.10.134:8099";
-var path = 'http://qa.webapi.yuerlive.cn';
-var apipath ="http://qa.api.yuerlive.cn";
+var path = 'http://172.16.10.6:8777';
+var apipath ="http://172.16.10.134:8099";
+// var path = 'http://qa.webapi.yuerlive.cn';
+// var apipath ="http://qa.api.yuerlive.cn";
 
 function getTicket(){
     Thenjs.parallel([function(cont) {
@@ -1587,26 +1587,73 @@ router.get('/mobile/news', function(req, res, next) {
     if(!ticket || (nowtime-ticketline)>7000000){
         getTicket();
     }
-    // Thenjs.parallel([function(cont) {
-    //     request(path+'/bbs/share?id='+id, function(error, response, body) {
-    //         if (!error && response.statusCode == 200) {
-    //             cont(null, body);
-    //         } else {
-    //             cont(new Error('error!'));
-    //         }
-    //     })
-    // }]).then(function(cont, result) {
-    //     res.render('mobile/news', {
-    //         info:JSON.parse(result[0]).object.bbsInfo,
-    //         comment:JSON.parse(result[0]).object.comment,
-    //         ticket:ticket
-    //     });
-    // }).fail(function(cont, error) { 
-    //     console.log(error);
-    //     res.render('error', { title: "错误"});
-    // });
-    res.render('mobile/news', {
-        ticket:ticket
+    Thenjs.parallel([function(cont) {
+        request('http://172.16.10.11:8777/news/share?id=4104215', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        if(JSON.parse(result[0]).code == 0){
+            var month = "",
+                day = "",
+                time = "",
+                date = "",
+                m = "",
+                // datem = "",
+                // dated = "",
+                d="";
+            if(JSON.parse(result[0]).object.newsInfo){
+                month=JSON.parse(result[0]).object.newsInfo.create_date.split('-')[1];
+                day=JSON.parse(result[0]).object.newsInfo.create_date.substr(8,2);
+                time = JSON.parse(result[0]).object.newsInfo.create_date.substr(11,5);
+                date = new Date(JSON.parse(result[0]).object.newsInfo.create_date);
+                m = date.getMonth() + 1,
+                d = date.getDate();
+                // if(month.substr(0,1)==0){
+                //     datem=month.substr(1,1);
+                // }else{
+                //     datem=month;
+                // }
+                // if(day.substr(0,1)==0){
+                //     dated=day.substr(1,1);
+                // }else{
+                //     dated=day;
+                // }
+                // console.log(datem);
+                // console.log(dated);
+                console.log(m);
+                console.log(d);
+                console.log(month);
+                console.log(day);
+                console.log(time);
+            }
+            res.render('mobile/news', {
+                title: "资讯详情",
+                info:JSON.parse(result[0]).object.newsInfo,
+                comment:JSON.parse(result[0]).object.comment,
+                month:month,
+                day:day,
+                m:m,
+                d:d,
+                time:time,
+                ticket:ticket,
+            });
+        }else{
+            res.render('mobile/news', {
+                // info:JSON.parse(result[0]).object.newsInfo,
+                // comment:JSON.parse(result[0]).object.comment,
+                ticket:ticket
+            });
+        } 
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
     });
+    // res.render('mobile/news', {
+    //     ticket:ticket
+    // });
 });
 module.exports = router;
