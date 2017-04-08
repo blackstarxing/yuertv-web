@@ -31,6 +31,9 @@ body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC;
 	position:absolute;
 	right:2.5%;
 	left:auto;
+	white-space:nowrap;/* 不换行 */
+	overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+	text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ 
 }
 .g-n-line{
 	border:1px solid #141a20;

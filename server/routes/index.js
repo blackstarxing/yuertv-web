@@ -1588,7 +1588,7 @@ router.get('/mobile/news', function(req, res, next) {
         getTicket();
     }
     Thenjs.parallel([function(cont) {
-        request('http://172.16.10.11:8777/news/share?id=4104215', function(error, response, body) {
+        request(path+'/news/share?id=4104215', function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {
@@ -1597,7 +1597,8 @@ router.get('/mobile/news', function(req, res, next) {
         })
     }]).then(function(cont, result) {
         if(JSON.parse(result[0]).code == 0){
-            var month = "",
+            var content="",
+                month = "",
                 day = "",
                 time = "",
                 date = "",
@@ -1610,7 +1611,7 @@ router.get('/mobile/news', function(req, res, next) {
                 date = new Date(JSON.parse(result[0]).object.newsInfo.create_date);
                 m = date.getMonth() + 1,
                 d = date.getDate();
-                console.log(JSON.parse(result[0]).object.newsInfo.content);
+                content=JSON.parse(result[0]).object.newsInfo.content.replace(/<\/?[^>]*>/g,'');
             }
             res.render('mobile/news', {
                 title: "资讯详情",
@@ -1621,6 +1622,7 @@ router.get('/mobile/news', function(req, res, next) {
                 m:m,
                 d:d,
                 time:time,
+                content:content,
                 ticket:ticket,
             });
         }else{
