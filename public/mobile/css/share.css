@@ -50,3 +50,115 @@ button,input{padding:0;margin:0;outline: none;}
 	margin-right: 5px;
 	vertical-align: middle;
 }
+.middle{
+	font-size: 1.2rem;
+	color:#98a9bb;
+}
+.middle h3{
+	color:#fff;
+	font-size: 1.2rem;
+	margin:1.8rem 0 1rem;
+}
+.lightbox{
+	margin:10px 0;
+}
+.lightbox img{
+	margin-bottom: 10px;
+	vertical-align: bottom;
+}
+.lightbox .less{
+	width: 100%;
+}
+.lightbox .mid{
+	width: 48%;
+	margin-right: 2.5%;
+}
+.lightbox .mid:nth-child(even){
+	margin-right: 0;
+}
+.lightbox .full{
+	width: 31%;
+	margin-right: 3%;
+}
+.lightbox .full:nth-child(3n+0){
+	margin-right: 0;
+}
+.game-name{
+	display: inline-block;
+	color:#00a3ff;
+	border:1px solid #00a3ff;
+	border-radius: 2px;
+	font-size: 1rem;
+	padding:3px 10px;
+}
+.g-comment{
+	padding:12px 12px 3.5rem;
+}
+.u-title{
+	font-size: 1rem;
+	color:#465667;
+}
+.u-title img{
+	height: 1rem;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+.comment{
+	border-top: 1px solid #1c232d;
+	padding:9px 0;
+	font-size: 1.2rem;
+}
+.comment img{
+	width: 2.8rem;
+	height: 2.8rem;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+.comment-content{
+	width: 100%;
+	padding-left: 4rem;
+	box-sizing: border-box;
+}
+.comment-content h3{
+	font-size: 1.2rem;
+	color:#f3f3f4;
+}
+.comment-content h3 span{
+	font-size: 0.9rem;
+	color:#465667;
+}
+.g-bt{
+	position: fixed;
+	bottom: 0;
+	background: #1c232d;
+	width: 100%;
+	padding:1rem 0;
+	color:#c9c9cc;
+}
+.g-bt li{
+	float: left;
+	width: 50%;
+	height: 1.5rem;
+	text-align: center;
+}
+.g-bt li i{
+	display: inline-block;
+	float: right;
+	font-style: normal;
+	width: 1px;
+	height: 100%;
+	background: #55545f;
+}
+.g-bt li img{
+	height: 100%;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+.swiper-box{
+	background: rgba(0,0,0,0.8);
+	position: fixed;
+	top:0;
+	height: 100%;
+	width: 100%;
+	display: none;
+}
