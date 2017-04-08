@@ -7,10 +7,10 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-var path = 'http://172.16.10.11:8777';
-var apipath ="http://172.16.10.134:8099";
-// var path = 'http://qa.webapi.yuerlive.cn';
-// var apipath ="http://qa.api.yuerlive.cn";
+// var path = 'http://172.16.10.11:8777';
+// var apipath ="http://172.16.10.134:8099";
+var path = 'http://qa.webapi.yuerlive.cn';
+var apipath ="http://qa.api.yuerlive.cn";
 
 function getTicket(){
     Thenjs.parallel([function(cont) {
@@ -1469,6 +1469,7 @@ router.get('/cash/personcenter', function(req, res, next) {
     var nowtime = new Date().getTime();
     var islogin = false;
     var userId = req.query.userId;
+    var token = req.query.token;
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){
            islogin = true; 
@@ -1481,7 +1482,7 @@ router.get('/cash/personcenter', function(req, res, next) {
     }
     Thenjs.parallel([function(cont) {
         request({
-            uri: path+"/withdraw/personalCenter?userId=4104215",
+            uri: path+"/withdraw/personalCenter?userId="+userId+"&token="+token,
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -1494,13 +1495,11 @@ router.get('/cash/personcenter', function(req, res, next) {
             }
         })
     }]).then(function(cont, result) {
-          if(JSON.parse(result[0]).code == 0){
-            res.render('cash/personcenter', {
-                title: "娱儿直播--领跑移动电竞的直播平台",
-                livenum: JSON.parse(result[0]).object,
-                ticket:ticket,
-            });
-        }  
+        res.render('cash/personcenter', {
+            title: "娱儿直播--领跑移动电竞的直播平台",
+            livenum: JSON.parse(result[0]).object,
+            ticket:ticket,
+        });  
     }).fail(function(cont, error) { 
         console.log(error);
         res.render('error', { title: "错误"});
@@ -1509,6 +1508,7 @@ router.get('/cash/personcenter', function(req, res, next) {
 router.get('/cash/signup', function(req, res, next) {
     var nowtime = new Date().getTime();
     var userId= req.query.userId;
+    var token= req.query.token;
     if(!ticket || (nowtime-ticketline)>7000000){
         getTicket();
     }
@@ -1522,32 +1522,38 @@ router.get('/cash/signup', function(req, res, next) {
     if(!ticket || (nowtime-ticketline)>7000000){
         getTicket();
     }
-    Thenjs.parallel([function(cont) {
-        request({
-            uri: path+"/withdraw/enroll?userId="+userId,
-            headers: {
-                'User-Agent': 'request',
-                'cookie': req.headers.cookie,
-              }
-        }, function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                cont(null, body);
-            } else {
-                cont(new Error('error!'));
+    if(userId && token){
+        Thenjs.parallel([function(cont) {
+            request({
+                uri: path+"/withdraw/enroll?userId="+userId+"&token="+token,
+                headers: {
+                    'User-Agent': 'request',
+                    'cookie': req.headers.cookie,
+                  }
+            }, function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    cont(null, body);
+                } else {
+                    cont(new Error('error!'));
+                }
+            })
+        }]).then(function(cont, result) {
+            if(JSON.parse(result[0]).object.code == 1){
+                res.redirect("/cash/personcenter?userId="+userId+"&token="+token);
+            }else{
+                res.render('cash/signup', {
+                    ticket: ticket
+                });
             }
-        })
-    }]).then(function(cont, result) {
-        if(JSON.parse(result[0]).code == 1){
-            res.redirect('/cash/personcenter');
-        }else{
-            res.render('cash/signup', {
-                ticket: ticket
-            });
-        }
-    }).fail(function(cont, error) { 
-        console.log(error);
-        res.render('error', { title: "错误"});
-    });
+        }).fail(function(cont, error) { 
+            console.log(error);
+            res.render('error', { title: "错误"});
+        });
+    }else{
+        res.render('cash/signup', {
+            ticket: ticket
+        });
+    }    
 });
 router.get('/mobile/bbs', function(req, res, next) {
     var id = req.query.id;

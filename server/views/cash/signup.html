@@ -182,38 +182,43 @@ $(function(){
 				userId:userId,
 				token:token,
 			}
-			$.ajax({
-			    method: "GET",
-			    url: "/api/withdraw/enroll",
-			    dataType: 'json',
-			    data:parm,
-			    success: function(data) {
-			    	if(data.code==0){
-			    		console.log(data.code);
-			    		if(data.object.code==0){
-				    		$(".m-layer").show();
-				    	}else if(data.object.code==1){
-				    		showTips("失败；已报名，无需重复报名 ");
-				    	}else if(data.object.code==2){
-				    		console.log(data.object.code);
-				    		showTips("请绑定手机并实名认证后再报名");
-				    	}else if(data.object.code==3){
-				    		showTips("签约主播不能报名");		    		
-				    	}
-			    	}else if(data.code == -1){
-			    		showTips("登录状态已失败，请登录 ");
-			    		window.location.href = "yuertvopen://login";
-			    	}else if(data.code == -4){
-			    		showTips("你还没有登录请登录 ");
-			    		window.location.href = "yuertvopen://login";
-			    	}else{
-			    		alert(data.result);
-			    	}	
-			    },
-			    error: function(a, b, c) {
-			        console.log("接口出问题啦");
-			    }
-			}); 
+			if(userId && token){
+				$.ajax({
+				    method: "GET",
+				    url: "/api/withdraw/enroll",
+				    dataType: 'json',
+				    data:parm,
+				    success: function(data) {
+				    	if(data.code==0){
+				    		console.log(data.code);
+				    		if(data.object.code==0){
+					    		$(".m-layer").show();
+					    	}else if(data.object.code==1){
+					    		showTips("已报名，无需重复报名 ");
+					    	}else if(data.object.code==2){
+					    		console.log(data.object.code);
+					    		showTips("请绑定手机并实名认证后再报名");
+					    	}else if(data.object.code==3){
+					    		showTips("签约主播不能报名");		    		
+					    	}
+				    	}else if(data.code == -1){
+				    		showTips("登录状态已失败，请登录 ");
+				    		window.location.href = "yuertvopen://login";
+				    	}else if(data.code == -4){
+				    		showTips("你还没有登录请登录 ");
+				    		window.location.href = "yuertvopen://login";
+				    	}else{
+				    		alert(data.result);
+				    	}	
+				    },
+				    error: function(a, b, c) {
+				        console.log("接口出问题啦");
+				    }
+				}); 
+			}else{
+				window.location.href = "yuertvopen://login";
+			}
+			
 		}else{
 			window.location.href = "https://yuertvfile.wangyuhudong.com";
 		}

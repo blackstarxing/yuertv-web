@@ -328,7 +328,7 @@ var pvue = new Vue({
 	        	var _this = this;
 	            $.ajax({
 	                method: "GET",
-	                url:"http://172.16.10.11:8777/withdraw/personalCenter",
+	                url:"/api/withdraw/personalCenter",
 	                dataType: 'json',
 	                data:{
 	                	userId:_this.userId
@@ -362,7 +362,7 @@ var pvue = new Vue({
 	        	_this.page+=1;
 	            $.ajax({
 	                method: "GET",
-	                url:"http://172.16.10.11:8777/withdraw/liveRecord?userId="+_this.userId,
+	                url:"/api/withdraw/liveRecord?userId="+_this.userId,
 	                dataType: 'json',
 	                data:{
 	                	page:_this.page
