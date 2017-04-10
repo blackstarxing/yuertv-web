@@ -1509,6 +1509,7 @@ router.get('/cash/signup', function(req, res, next) {
     var nowtime = new Date().getTime();
     var userId= req.query.userId;
     var token= req.query.token;
+    var type;
     if(!ticket || (nowtime-ticketline)>7000000){
         getTicket();
     }
@@ -1538,14 +1539,14 @@ router.get('/cash/signup', function(req, res, next) {
                 }
             })
         }]).then(function(cont, result) {
-            // if(JSON.parse(result[0]).object.code == 1){
-            //     res.redirect("/cash/personcenter?userId="+userId+"&token="+token);
-            // }else{
+            if(JSON.parse(result[0]).object.code == 1){
+                type=true;
                 res.render('cash/signup', {
                     title: "娱儿直播--领跑移动电竞的直播平台",
-                    ticket: ticket
+                    ticket: ticket,
+                    type:type,
                 });
-            // }
+            }
         }).fail(function(cont, error) { 
             console.log(error);
             res.render('error', { title: "错误"});

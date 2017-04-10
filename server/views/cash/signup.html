@@ -108,8 +108,8 @@
 	<img src="/cash/images/s-bg-1.jpg">
 	<img src="/cash/images/s-bg-2.jpg">
 	<img src="/cash/images/s-bg-3.jpg">
-	<img src="/cash/images/s-btn.png" class="m-btn" id="btn">
-	<img src="/cash/images/s-btncenter.png" class="m-btn" id="btncenter" style="display:none;">
+	<img src="/cash/images/s-btn.png" class="m-btn" id="btn" >
+	<img src="/cash/images/s-btncenter.png" class="m-btn" id="btncenter" style="display:none;" data-id="{{type}}">
 </div>
 <div class="m-layer">
 	<div class="g-s">
@@ -128,6 +128,7 @@
 <script type="text/javascript" src="/jquery.min.js"></script>
 <script type="text/javascript">
 $(function(){
+	var type;
 	// 失败状态的切换
 	function showTips(textc){
 		$(".m-layers").show().find("p").text(textc);
@@ -154,6 +155,11 @@ $(function(){
 	}
 	var userId = getQueryString("userId"),
 		token = getQueryString("token");
+	if(type==true){
+		$("#btncenter").show();
+	}else{
+		$("#btn").show();
+	}
 	$("#btncenter").on("click",function(){
 		window.location.href='"/cash/personcenter?userId="+userId+"&token="+token"';
 	})
@@ -195,8 +201,7 @@ $(function(){
 				    		if(data.object.code==0){
 					    		$(".m-layer").show();
 					    	}else if(data.object.code==1){
-					    		$("#btn").hide();
-					    		$("#btncenter").show();
+					    		// $(".m-layer").show();
 					    	}else if(data.object.code==2){
 					    		console.log(data.object.code);
 					    		showTips("请绑定手机并实名认证后再报名");
