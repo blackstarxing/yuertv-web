@@ -23,7 +23,9 @@
 						{% else %}
 						<img src="/mobile/images/female.png" alt="">
 						{% endif %}
+						{% if info.is_certificate==1 %}
 						<img src="/mobile/images/ico8.png" alt="">
+						{% endif %}
 					</h3>
 					<p>{{info.create_date}}</p>
 				</div>
