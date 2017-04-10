@@ -34,7 +34,8 @@
 				<div class="info">
 					<div class="head">
 						<div class="avatar">
-							<img v-bind:src="userInfo.icon" alt="" class="author-icon">
+							<img v-bind:src="userInfo.icon" alt="" class="author-icon" v-if="userInfo.icon">
+							<img src="/cash/images/default_avatar.png" alt="" class="author-icon" v-else>
 							<img src="/cash/images/auth.png" alt="" class="auth" v-show="userInfo.is_certificate">
 						</div>
 						<div class="name">
