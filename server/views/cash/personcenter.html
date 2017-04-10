@@ -373,7 +373,7 @@ var pvue = new Vue({
 	        	_this.page+=1;
 	            $.ajax({
 	                method: "GET",
-	                url:"/api/withdraw/liveRecord?userId="+_this.userId+"token"+_this.token,
+	                url:"/api/withdraw/liveRecord?userId="+_this.userId+"&token="+_this.token,
 	                dataType: 'json',
 	                data:{
 	                	page:_this.page
