@@ -330,43 +330,46 @@ var pvue = new Vue({
 			        return unescape(r[2]);
 			    }
 			    return null;
-			    // var userId = getQueryString("userId"),
-				// 	token = getQueryString("token");
 			},
 	        newsList:function(){
 	        	var _this = this;
-	            $.ajax({
-	                method: "GET",
-	                url:"/api/withdraw/personalCenter",
-	                dataType: 'json',
-	                data:{
-	                	userId:_this.userId,
-	                	token:_this.token
-	                },
-	                success: function(data) {
-	                    if (data.code == 0) {
-	                           _this.datatime=data.object;
-	                           alert(data.object);
-	                           // 页面第三块：直播记录
-	                           _this.liveRecord=data.object.liveRecord;
-	                           alert(_this.liveRecord);
-	                           // 页面第二块：七日直播时长
-	                           _this.sevenLiveInfo=data.object.sevenLiveInfo;
-	                           _this.upInfo=data.object.upInfo;
-	                           // 页面第三块：直播记录－－日期
-	                           _this.lrdate=data.object.liveRecord[0].date;
-	                           // 页面第三块：直播记录－－持续时间
-	                           _this.lrduration=data.object.liveRecord[0].duration;
-	                           // 页面第二块：七日直播时长日期
-	                           _this.slidate=data.object.sevenLiveInfo[0].date;       
-	                    } else {
-	                        console.log(data.result);
-	                    }
-	                },
-	                error: function(a, b, c) {
-	                    console.log("接口出问题啦");
-	                }
-	            })
+	        	if(_this.userId && _this.token){
+		            $.ajax({
+		                method: "GET",
+		                url:"/api/withdraw/personalCenter?userId="+_this.userId+"token"+_this.token,
+		                dataType: 'json',
+		                // data:{
+		                // 	userId:_this.userId,
+		                // 	token:_this.token
+		                // },
+		                success: function(data) {
+		                    if (data.code == 0) {
+		                           _this.datatime=data.object;
+		                           alert(data.object);
+		                           // 页面第三块：直播记录
+		                           _this.liveRecord=data.object.liveRecord;
+		                           alert(_this.liveRecord);
+		                           alert(_this.liveRecord.date);
+		                           // 页面第二块：七日直播时长
+		                           _this.sevenLiveInfo=data.object.sevenLiveInfo;
+		                           _this.upInfo=data.object.upInfo;
+		                           // 页面第三块：直播记录－－日期
+		                           _this.lrdate=data.object.liveRecord[0].date;
+		                           // 页面第三块：直播记录－－持续时间
+		                           _this.lrduration=data.object.liveRecord[0].duration;
+		                           // 页面第二块：七日直播时长日期
+		                           _this.slidate=data.object.sevenLiveInfo[0].date;       
+		                    } else {
+		                        console.log(data.result);
+		                    }
+		                },
+		                error: function(a, b, c) {
+		                    console.log("接口出问题啦");
+		                }
+		            })
+	            }else{
+	            	alert(123);
+	            }
 	        },
 	        pageList:function(page){
 	        	var _this = this;
