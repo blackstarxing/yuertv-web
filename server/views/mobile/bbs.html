@@ -27,7 +27,7 @@
 					</h3>
 					<p>{{info.create_date}}</p>
 				</div>
-				<a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.miqtech.wymaster.wylive" class="f-fr"><img src="/images/heart.png" alt="">关注</a>
+				<a href="https://yuertvfile.wangyuhudong.com/" class="f-fr"><img src="/images/heart.png" alt="">关注</a>
 			</div>
 			<div class="middle">
 				<h3>{{info.title}}</h3>
@@ -55,21 +55,21 @@
 	<div class="g-comment">
 		<h3 class="u-title"><img src="/mobile/images/comment_icon.png" alt="">评论</h3>
 		{% for list in comments %}
-			<div class="comment f-cb">
+			<a href="https://yuertvfile.wangyuhudong.com/" class="comment f-cb">
 				<img src="{{list.icon}}" alt="" class="f-fl">
 				<div class="comment-content">
 					<h3>{{list.nickname}} <span class="f-fr">{{list.create_date}}</span></h3>
 					<div>{% if list.reply_nickname %}回复<span class="reply-nickname">{{list.reply_nickname}}</span>:{% endif %}{{list.content}}</div>
 				</div>
-			</div>
+			</a>
 		{% endfor %}
 	</div>
-	<div class="g-bt">
+	<a href="https://yuertvfile.wangyuhudong.com/" class="g-bt">
 		<ul class="f-cb">
 			<li><img src="/mobile/images/comment.png" alt="">{{info.comment_num}}<i></i></li>
 			<li><img src="/mobile/images/like.png" alt="">{{info.praise_num}}</li>
 		</ul>
-	</div>
+	</a>
 	<div class="swiper-box">
 		<div class="swiper-container">
             <div class="swiper-wrapper">

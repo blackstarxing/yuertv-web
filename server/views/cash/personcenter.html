@@ -13,6 +13,7 @@
 			font-size:62.5%; font-style:normal;  margin:0 auto; height:100%; color:#9da4ad; 
 			background: #f0f6ff; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
 		img{border:0; max-width:100%;vertical-align: top;}
+		[v-cloak] { display: none }
 		img.m-bg{
 			position:relative;
 		}
@@ -154,7 +155,7 @@
 	</style>
 </head>
 <body>
-<div class="g-con" id="pvue">
+<div class="g-con" id="pvue" v-cloak>
 	<img src="/cash/images/pc-bg.jpg" class="m-bg">
 	<div class="m-main g-m">
 		{% if livenum.upInfo.icon %}
@@ -268,7 +269,7 @@ var pvue = new Vue({
             this.$nextTick(function () {
             	// var _this=this;
                 this.newsList();
-                this.userId = getQueryString("userId");
+                this.userId = this.getQueryString("userId");
                 // $(window).scroll(function(){ 
                 //     var totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop()); 
                 //     if($(document).height() <= totalheight){
@@ -276,6 +277,12 @@ var pvue = new Vue({
                 //             _this.pageList(_this.page);
                 //     }
                 // })
+                var ua = navigator.userAgent.toLowerCase(); 
+				if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+
+				}else{
+					window.location.href = "/cash/signup";
+				}
             })
         },
         methods:{
