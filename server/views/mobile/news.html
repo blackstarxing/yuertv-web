@@ -8,13 +8,6 @@
     <link rel="stylesheet" href="/mobile/css/news.css">
 	<title>资讯详情</title>
 	<script>
-		// enableWxShare({
-		// 	appId: 'wxf96f728533f32fa8',
-		// 	ticket: '{{ticket}}',
-		// 	title: '{{title}}',		
-		// 	imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/yuerlogo.png',
-		// 	desc: '娱儿直播带你装逼带你飞，新鲜好玩的一手游戏资讯都在这!'
-		// })
 	</script>
 </head>
 <body>
@@ -27,37 +20,26 @@
 		<div class="g-n-line"></div>
 	</div>
 	<div class="g-mian m-bg">
-		<!-- <div class="g-m-top">
-			       宝贝们，这里发现一只美人鱼，据说他还是明星鱼，我不管今 天把这个明星鱼送你们。关注主播在下方评论留言你们喜欢小飞       
-		</div>
-		<div class="g-m-video">
-			<img src="/mobile/images/n-video.jpg" alt="">
-		</div>
-		<div class="g-m-bottom">
-			       宝贝们，这里发现一只美人鱼，据说他还是明星鱼，我不管今 天把这个明星鱼送你们。关注主播在下方评论留言你们喜欢小飞
-			       <br>
-			       <span class="m-b-source">本文来源：可爱的玛丽苏</span>
-		</div> -->
 		{{content}}
 	</div>
 	<div class="g-comment">
 		<h3 class="u-title"><img src="/mobile/images/comment_icon.png" alt="">评论</h3>
 		{% for list in comments %}
-			<div class="comment f-cb">
+			<a href="https://yuertvfile.wangyuhudong.com/" class="comment f-cb">
 				<img src="{{list.icon}}" alt="" class="f-fl">
 				<div class="comment-content">
 					<h3>{{list.nickname}} <span class="f-fr">{{list.create_date}}</span></h3>
 					<div>{% if list.reply_nickname %}回复<span class="reply-nickname">{{list.reply_nickname}}</span>:{% endif %}{{list.content}}</div>
 				</div>
-			</div>
+			</a>
 		{% endfor %}
 	</div>
-	<div class="g-bt">
+	<a href="https://yuertvfile.wangyuhudong.com/" class="g-bt">
 		<ul class="f-cb">
 			<li><img src="/mobile/images/comment.png" alt="">{{info.comment_num}}<i></i></li>
 			<li><img src="/mobile/images/like.png" alt="">{{info.praise_num}}</li>
 		</ul>
-	</div>
+	</a>
 </div>
 <script type="text/javascript" src="/jquery.min.js"></script>
 <script type="text/javascript">

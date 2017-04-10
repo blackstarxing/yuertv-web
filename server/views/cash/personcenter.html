@@ -207,7 +207,7 @@
 		</div>
 	</div>
 	<div class="m-record g-m">
-		<p class="m-r-live">直播纪录</p>
+		<p class="m-r-live">直播记录</p>
 		{% if livenum.liveRecord!="" %}
 		<div class="m-r-tc" v-for="(item,index) in liveRecord">
 			<p class="m-rt-date m-rt"><span class="m-rt-d"  v-show="item.date!=null">${formatTime(item.date,1)}</span>
@@ -343,18 +343,19 @@ var pvue = new Vue({
 	                success: function(data) {
 	                    if (data.code == 0) {
 	                           _this.datatime=data.object;
+	                           alert(data.object);
 	                           // 页面第三块：直播记录
 	                           _this.liveRecord=data.object.liveRecord;
+	                           alert(_this.liveRecord);
 	                           // 页面第二块：七日直播时长
 	                           _this.sevenLiveInfo=data.object.sevenLiveInfo;
 	                           _this.upInfo=data.object.upInfo;
 	                           // 页面第三块：直播记录－－日期
 	                           _this.lrdate=data.object.liveRecord[0].date;
-	                           console.log(data.object.liveRecord[0].date);
 	                           // 页面第三块：直播记录－－持续时间
 	                           _this.lrduration=data.object.liveRecord[0].duration;
 	                           // 页面第二块：七日直播时长日期
-	                           _this.slidate=data.object.sevenLiveInfo[0].date;         
+	                           _this.slidate=data.object.sevenLiveInfo[0].date;       
 	                    } else {
 	                        console.log(data.result);
 	                    }
