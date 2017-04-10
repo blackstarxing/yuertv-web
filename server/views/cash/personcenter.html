@@ -102,7 +102,7 @@
 		.hrs{position:relative;display:inline-block;width:36px;left:-12px;top:-76px;font-size:10px;color:#fff;background:url(/cash/images/bg-r.png) no-repeat;background-size:contain;line-height:2;text-align:center;}
 		/*直播纪录*/
 		.m-record{
-			top:62%;
+			top:66%;
 		}
 		.m-r-tc{
 			overflow:hidden;
@@ -199,8 +199,11 @@
 				<span class="u-tl u-tl-lb">0h</span>
 			</div>
 			<div class="m-tl-right m-tl" >
+			{% if livenum.sevenLiveInfo.time!=0 %}
 				<div class="u-tl-bar" id="ms" v-for="(sli,index) in sevenLiveInfo" :style={height:formatTime(sli.time,3)+"px"}><span id="#hrs" class="hrs">${formatTime(sli.time,4)}h</span></div>
-				
+			{% else %}
+				<div class="u-tl-bar" id="ms" v-for="(sli,index) in sevenLiveInfo" :style={height:formatTime(sli.time,3)+"px"}><span id="#hrs" class="hrs">0h</span></div>
+			{% endif %}
 			</div>
 			<hr style="display:block;width:100%;border:1px solid #e3e3e3;margin-top:2%;">
 			<div class="m-tl-bottom" ><span v-for="(lr,index) in sevenLiveInfo">${formatTime(lr.date,2)}</span></div>
@@ -268,17 +271,9 @@ var pvue = new Vue({
 		},
         mounted: function () {
             this.$nextTick(function () {
-            	// var _this=this;
-                this.newsList();
                 this.userId = this.getQueryString("userId");
                 this.token = this.getQueryString("token");
-                // $(window).scroll(function(){ 
-                //     var totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop()); 
-                //     if($(document).height() <= totalheight){
-                //             _this.page+=1;
-                //             _this.pageList(_this.page);
-                //     }
-                // })
+                this.newsList();
     //             var ua = navigator.userAgent.toLowerCase(); 
 				// if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
 
@@ -326,6 +321,7 @@ var pvue = new Vue({
 			getQueryString:function (name) {
 			    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
 			    var r = window.location.search.substr(1).match(reg);
+			    alert(window.location.search);
 			    if (r != null) {
 			        return unescape(r[2]);
 			    }
@@ -336,12 +332,12 @@ var pvue = new Vue({
 	        	if(_this.userId && _this.token){
 		            $.ajax({
 		                method: "GET",
-		                url:"/api/withdraw/personalCenter?userId="+_this.userId+"token"+_this.token,
+		                url:"/api/withdraw/personalCenter",
 		                dataType: 'json',
-		                // data:{
-		                // 	userId:_this.userId,
-		                // 	token:_this.token
-		                // },
+		                data:{
+		                	userId:_this.userId,
+		                	token:_this.token
+		                },
 		                success: function(data) {
 		                    if (data.code == 0) {
 		                           _this.datatime=data.object;
@@ -368,6 +364,8 @@ var pvue = new Vue({
 		                }
 		            })
 	            }else{
+	            	alert(_this.userId);
+	            	alert(_this.token);
 	            	alert(123);
 	            }
 	        },
