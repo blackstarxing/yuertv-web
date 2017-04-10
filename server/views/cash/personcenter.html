@@ -253,6 +253,7 @@ var pvue = new Vue({
             slidate:0,
             page:1,
             userId:"",
+            token:"",
         },
         computed: {
 		    mylivefilter: function () {
@@ -270,6 +271,7 @@ var pvue = new Vue({
             	// var _this=this;
                 this.newsList();
                 this.userId = this.getQueryString("userId");
+                this.token = this.getQueryString("token");
                 // $(window).scroll(function(){ 
                 //     var totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop()); 
                 //     if($(document).height() <= totalheight){
@@ -338,7 +340,8 @@ var pvue = new Vue({
 	                url:"/api/withdraw/personalCenter",
 	                dataType: 'json',
 	                data:{
-	                	userId:_this.userId
+	                	userId:_this.userId,
+	                	token:_this.token
 	                },
 	                success: function(data) {
 	                    if (data.code == 0) {
@@ -370,7 +373,7 @@ var pvue = new Vue({
 	        	_this.page+=1;
 	            $.ajax({
 	                method: "GET",
-	                url:"/api/withdraw/liveRecord?userId="+_this.userId,
+	                url:"/api/withdraw/liveRecord?userId="+_this.userId+"token"+_this.token,
 	                dataType: 'json',
 	                data:{
 	                	page:_this.page
