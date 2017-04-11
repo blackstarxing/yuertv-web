@@ -11,7 +11,7 @@
 		body,ul,li,p,h3,h4,h2,em,button,input{margin: 0; padding: 0;}
 		body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; 
 			font-size:62.5%; font-style:normal;  margin:0 auto; height:100%; color:#9da4ad; 
-			background: #f0f6ff; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
+			background: #f0f6ff; overflow-x:hidden; -webkit-overflow-scrolling:touch;max-width:800px;}
 		img{border:0; max-width:100%;vertical-align: top;}
 		[v-cloak] { display: none }
 		img.m-bg{
@@ -55,17 +55,19 @@
 			overflow:hidden;
 			width:88%;
 			margin:2% 5% 4% 8.55%;
+			margin-top:1.5rem;
 		}
 		.u-mtr{
 			float:left;
 			width:30%;
 			font-size:13px;
+
 			color:#98a5b3;
 		}
 		.u-mtr-s,.u-mtr-t,.u-mtr-m{
 			display:block;
 			margin-left:25%;
-			font-size:18px;
+			font-size:18px;line-height:1.2;
 			color:#647580;
 		}
 		.m-mtr-t{
@@ -77,12 +79,12 @@
 		/*直播时长*/
 		.m-time{
 			top:34%;
-			height:45%;
 			margin-top:2%;
+			padding-bottom:0.5rem;
 		}
 		.m-t-e,.m-t-l,.m-r-live,.m-r-tc,.m-r-empty{
 			width:92%;
-			margin:2% auto;
+			margin:2% auto 0;
 			font-size:18px;
 			color:#647580;
 		}
@@ -92,17 +94,18 @@
 		/*柱形图*/
 		div.m-t-l{overflow:hidden;}
 		.m-tl{float:left;}
-		.m-tl-left{width:5%;height:130px;}
-		.u-tl{display:block;margin:13.5px 2px 0px 0%;font-size:12px;color:#647580;}
+		.m-tl-left{width:5%;}
+		.u-tl{display:block;margin:13.5px 2px 0px 0%;font-size:12px;height:12px;color:#647580;}
 		.u-tl-lb{margin-bottom:0%;}
-		.m-tl-right{float:left;width:90%;height:140px;line-height:140px;margin-top:7%;margin-bottom:2%;position:relative;}
+		.m-tl-right{float:left;width:90%;/*height:161px;line-height:161px;*/margin-top:5.5%;/*margin-bottom:2%;*/position:relative;left:20px;}
 		.m-tl-bottom{width:90%; margin-left:6%;font-size:12px;color:#647580;}
 		.m-tl-bottom span{display:inline-block;width:10%;margin:1% 2%;}
 		.u-tl-bar{display:inline-block;vertical-align:bottom;width:10px;border-radius:5px;background:linear-gradient(#03b5ff,#a2e3ff);margin:0 5.5%;}
-		.hrs{position:relative;display:inline-block;width:36px;left:-12px;top:-86px;font-size:10px;color:#fff;background:url(/cash/images/bg-r.png) no-repeat;background-size:contain;line-height:2;text-align:center;}
+		.hrs{position:relative;display:inline-block;width:36px;left:-10px;top:-26.5px;font-size:10px;color:#fff;background:url(/cash/images/bg-r.png) no-repeat;background-size:contain;line-height:2;text-align:center;}
 		/*直播纪录*/
 		.m-record{
-			top:85%;
+			margin-top:65%;
+			padding-bottom:1rem;
 		}
 		.m-r-tc{
 			overflow:hidden;
@@ -111,7 +114,7 @@
 		.m-rt{
 			float:left;
 		}
-		.m-rt-date{width:20%;height: 26px;}
+		.m-rt-date{width:20%;height:2.3rem;}
 		.m-rt-d{
 			font-size:24px;
 			color:#333;
@@ -130,6 +133,7 @@
 			background:#f0f6ff;
 			font-size:13px;
 			color:#647580;
+			margin-top:5px;
 			/*left:25%;*/
 			white-space:nowrap;/* 不换行 */
 			overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
@@ -152,6 +156,7 @@
 			font-size:13px;
 			margin:0 11.5% 5%;
 		}
+		.f-cb{overflow:hidden;}
 	</style>
 </head>
 <body>
@@ -191,33 +196,35 @@
 	<div class="m-time g-m">
 		<p class="m-t-e">每日直播时长<span>(有效)</span></p>
 		<div class="m-t-l">
-			{% if livenum.sevenLiveInfo!="" %}
-			<div class="m-tl-left m-tl" >
-				<span class="u-tl" v-for="(sli,index) in sevenLiveInfo" v-if="formatTime(sli.time,4)<=5" >
-					<span class="u-tl" v-for="n in 6">${6-n}h</span>
-				</span>
-				<span class="u-tl"  v-for="(sli,index) in sevenLiveInfo" v-else-if="5<formatTime(sli.time,4)<=10">
-					<span class="u-tl" v-for="n in 6" >${(6-n)*2}h</span>
-				</span>
-				<span class="u-tl" v-for="(sli,index) in sevenLiveInfo" v-else="10<formatTime(sli.time,4)<=15">
-					<span class="u-tl" v-for="n in 6">${(6-n)*3}h</span>
-				</span>
+			<div class="m-t-line f-cb" style="position:relative;height:180px;">
+				{% if livenum.sevenLiveInfo!="" %}
+				<div class="m-tl-left m-tl" style="position:absolute;bottom:1px;">
+					<span class="" v-if="formatTime(slitime,4)<=5" >
+						<span class="u-tl" v-for="n in 6">${6-n}h</span>
+					</span>
+					<span class="" v-else-if="5<formatTime(slitime,4) && formatTime(slitime,4)<=10">
+						<span class="u-tl" v-for="n in 6" >${(6-n)*2}h</span>
+					</span>
+					<span class="" v-else="10<formatTime(slitime,4) && formatTime(slitime,4)<=15">
+						<span class="u-tl" v-for="n in 6">${(6-n)*3}h</span>
+					</span>
+				</div>
+				{% else %}
+				<div class="m-tl-left m-tl">
+						<span class="u-tl" v-for="n in 6">${6-n}h</span>
+				</div>
+				{% endif %}
+				<div class="m-tl-right m-tl" style="position:absolute;bottom:0;">
+				{% if livenum.sevenLiveInfo.time!=0 %}
+					<div class="u-tl-bar" id="ms" v-for="(sli,index) in sevenLiveInfo" v-if="formatTime(sli.time,4)<=5" :style={height:formatTime(sli.time,3)+"px"}><span id="#hrs" class="hrs">${formatTime(sli.time,4)}h</span></div>
+					<div class="u-tl-bar" id="ms" v-for="(sli,index) in sevenLiveInfo" v-else-if="5<formatTime(slitime,4) && formatTime(slitime,4)<=10" :style={height:formatTime(sli.time,5)+"px"}><span id="#hrs" class="hrs">${formatTime(sli.time,4)}h</span></div>
+					<div class="u-tl-bar" id="ms" v-for="(sli,index) in sevenLiveInfo" v-else="10<formatTime(slitime,4) && formatTime(slitime,4)<=15" :style={height:formatTime(sli.time,6)+"px"}><span id="#hrs" class="hrs">${formatTime(sli.time,4)}h</span></div>
+				{% else %}
+					<div class="u-tl-bar" id="ms" v-for="(sli,index) in sevenLiveInfo" :style={height:formatTime(sli.time,3)+"px"}><span id="#hrs" class="hrs">0h</span></div>
+				{% endif %}
+				</div>
 			</div>
-			{% else %}
-			<div class="m-tl-left m-tl">
-					<span class="u-tl" v-for="n in 6">${6-n}h</span>
-			</div>
-			{% endif %}
-			<div class="m-tl-right m-tl" >
-			{% if livenum.sevenLiveInfo.time!=0 %}
-				<div class="u-tl-bar" id="ms" v-for="(sli,index) in sevenLiveInfo" v-if="formatTime(sli.time,4)<=5" :style={height:formatTime(sli.time,3)+"px"}><span id="#hrs" class="hrs">${formatTime(sli.time,4)}h</span></div>
-				<div class="u-tl-bar" id="ms" v-for="(sli,index) in sevenLiveInfo" v-else-if="5<formatTime(sli.time,4)<=10" :style={height:formatTime(sli.time,5)+"px"}><span id="#hrs" class="hrs">${formatTime(sli.time,4)}h</span></div>
-				<div class="u-tl-bar" id="ms" v-for="(sli,index) in sevenLiveInfo" v-else="10<formatTime(sli.time,4)<=15" :style={height:formatTime(sli.time,6)+"px"}><span id="#hrs" class="hrs">${formatTime(sli.time,4)}h</span></div>
-			{% else %}
-				<div class="u-tl-bar" id="ms" v-for="(sli,index) in sevenLiveInfo" :style={height:formatTime(sli.time,3)+"px"}><span id="#hrs" class="hrs">0h</span></div>
-			{% endif %}
-			</div>
-			<hr style="display:block;width:100%;border:1px solid #e3e3e3;margin-top:5%;">
+			<hr style="display:block;width:100%;border:1px solid #e3e3e3;margin-top:1rem;">
 			<div class="m-tl-bottom" ><span v-for="(lr,index) in sevenLiveInfo">${formatTime(lr.date,2)}</span></div>
 		</div>
 	</div>
@@ -234,7 +241,6 @@
 		</div>
 		<div class="showmore" v-if="datatime.liveRecord==''">没有更多</div>
 		<div style="width:50%;margin:5% auto;font-size:14px;color:#98a5b3;text-align:center;" @click="pageList()"   v-else>加载更多</div>
-		
 		{% else %}
 		<div class="m-r-empty">
 			<img src="/cash/images/pc-empty.jpg" class="m-re-img">
@@ -269,6 +275,7 @@ var pvue = new Vue({
             page:1,
             userId:"",
             token:"",
+            slitime:0,
         },
         computed: {
 		    mylivefilter: function () {
@@ -286,12 +293,13 @@ var pvue = new Vue({
                 this.userId = this.getQueryString("userId");
                 this.token = this.getQueryString("token");
                 this.newsList();
-    //             var ua = navigator.userAgent.toLowerCase(); 
-				// if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+                var ua = navigator.userAgent.toLowerCase(); 
+				if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
 
-				// }else{
-				// 	window.location.href = "/cash/signup";
-				// }
+				}else{
+
+					window.location.href = "/cash/signup";
+				}
             })
         },
         methods:{
@@ -322,13 +330,13 @@ var pvue = new Vue({
 				}else if(type==2){
 					return m+"/"+d
 				}else if(type==3){
-					return rs*28
+					return rs*27.8
 				}else if(type==4){
 					return rs
 				}else if(type==5){
-					return rs*14
+					return rs*13.9
 				}else if(type==6){
-					return rs*9.34
+					return rs*9.267
 				}else if(type==7){
 					return H
 				}
@@ -364,7 +372,9 @@ var pvue = new Vue({
 		                           // 页面第三块：直播记录－－持续时间
 		                           _this.lrduration=data.object.liveRecord[0].duration;
 		                           // 页面第二块：七日直播时长日期
-		                           _this.slidate=data.object.sevenLiveInfo[0].date;       
+		                           _this.slidate=data.object.sevenLiveInfo[0].date;   
+		                           _this.slitime=data.object.sevenLiveInfo[0].time;  
+		                           console.log(data.object.sevenLiveInfo[0].time);
 		                    } else {
 		                        console.log(data.result);
 		                    }
