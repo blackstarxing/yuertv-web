@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="telephone=no" name="format-detection" />
+	<title>娱儿直播女神专场，颜值即正义！</title>
+	<script src="/jquery.js"></script>
+	<script src="/jquery.sha1.js"></script>
+	<script src="/wxjsapi.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<style>
+		*{margin:0;padding:0;}
+		body{max-width: 800px; margin:0 auto;}
+		img{width: 100%;vertical-align: top;}
+		.wrap{
+			position: relative;
+		}
+		.btn{
+			position: absolute;
+			bottom:0;
+			width: 39%;
+		}
+		.left{
+			left: 5%;
+		}
+		.right{
+			right:5%;
+		}
+	</style>
+	<script>
+		var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?5f199d5d81411ab659081729f1f34008";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+		enableWxShare({
+			appId: 'wxf96f728533f32fa8',
+			ticket: '{{ticket}}',
+			title: '娱儿直播女神专场，颜值即正义！',		
+			imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/2017/yuerlogo.png',
+			desc: '高颜值娱儿女神陪你玩游戏，老司机赶紧上车！'
+		})
+	</script>
+</head>
+<body>
+	<div class="g-bd">
+		<div class="wrap">
+			<img src="/activity/images/girls_1.jpg" alt="">
+			<img src="/activity/images/girls_btn1.png" alt="" data-id="17069" class="btn left">
+		</div>
+		<div class="wrap">
+			<img src="/activity/images/girls_2.jpg" alt="">
+			<img src="/activity/images/girls_btn2.png" alt="" data-id="19173" class="btn right">
+		</div>
+		<div class="wrap">
+			<img src="/activity/images/girls_3.jpg" alt="">
+			<img src="/activity/images/girls_btn3.png" alt="" data-id="19174" class="btn left">
+		</div>
+		<div class="wrap">
+			<img src="/activity/images/girls_4.jpg" alt="">
+			<img src="/activity/images/girls_btn4.png" alt="" data-id="21880" class="btn right">
+		</div>
+		<div class="wrap">
+			<img src="/activity/images/girls_5.jpg" alt="">
+			<img src="/activity/images/girls_btn5.png" alt="" data-id="21194" class="btn left">
+		</div>
+		<img src="/activity/images/girls_6.jpg" alt="">
+	</div>
+	<script>
+		var ua = navigator.userAgent.toLowerCase(); 
+		$('.btn').click(function(){
+			if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+				window.location.href="yuertvopen://live?objId="+$(this).attr('data-id');
+			}else{
+				window.location.href="http://m.yuerlive.cn/#/liveDetail?id="+$(this).attr('data-id');
+			}
+		})
+		
+	</script>
+</body>
+</html>
