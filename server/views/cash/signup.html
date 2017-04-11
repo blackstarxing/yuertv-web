@@ -162,24 +162,6 @@ $(function(){
 	$("#btncenter").on("click",function(){
 		window.location.href="/cash/personcenter?userId="+userId+"&token="+token;
 	})
-	// var userId="",
-	// 	token="";
-	// $.ajax({
-	//     method: "GET",
-	//     url: "http://172.16.10.11:8777/login?password=123456&nickname=18257153272",
-	//     dataType: 'json',
-	//     success: function(data) {
-	//     	if(data.code==0){
-	//     		userId=data.object.id; 
- //                token=data.object.token; 
-	//     		console.log(userId);
-	// 	console.log(token);
-	//     	}
-	//     },
-	//     error: function(a, b, c) {
-	//         console.log("接口出问题啦");
-	//     }
-	// }); 
 	//用户状态
 	$("#btn").on("click",function(){
 		var ua = navigator.userAgent.toLowerCase(); 
