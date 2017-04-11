@@ -1510,6 +1510,8 @@ router.get('/cash/signup', function(req, res, next) {
     var userId= req.query.userId;
     var token= req.query.token;
     var type=false;
+    var deviceAgent = req.headers["user-agent"].toLowerCase();
+    var agentID = deviceAgent.match(/YuertvBrowser/i)=="yuertvbrowser";
     if(!ticket || (nowtime-ticketline)>7000000){
         getTicket();
     }
@@ -1539,7 +1541,7 @@ router.get('/cash/signup', function(req, res, next) {
                 }
             })
         }]).then(function(cont, result) {
-            if(JSON.parse(result[0]).object.code == 1){
+            if(JSON.parse(result[0]).object.code == 1 && agentID){
                 type=true;                
             }
             res.render('cash/signup', {

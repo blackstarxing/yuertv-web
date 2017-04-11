@@ -72,7 +72,7 @@
 				<div class="record" v-for="list in myApply" v-bind:class="{fail:list.state == 4,success:list.state==2}">
 					<i></i>
 					<h3>提现金额 ${list.amount}</h3>
-					<p>${list.create_date}</p>
+					<p>${list.date}</p>
 					<span v-if="list.state == 4" @click="getReason(list.reason)">未通过</span>
 					<span v-else-if="list.state == 2">已领取</span>
 					<span v-else>审核中</span>
@@ -388,7 +388,7 @@
 			                if(data.code == 0){
 			                	_this.userInfo = data.object.data;
 			                	_this.haveMoney = _this.userInfo.withdrawMoney;
-			                	_this.canApply = (_this.userInfo.withdrawMoney>=200 && _this.userInfo.noAuditNum!=1) ? false:true;
+			                	_this.canApply = (_this.userInfo.withdrawMoney>=200 && _this.userInfo.showTag>0) ? false:true;
 			                }
 			            },
 			            error: function() {
