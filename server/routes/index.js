@@ -1637,4 +1637,13 @@ router.get('/mobile/news', function(req, res, next) {
         res.render('error', { title: "错误"});
     });
 });
+router.get('/activity/s7', function(req, res, next) {
+    var nowtime = new Date().getTime();
+    if(!ticket || (nowtime-ticketline)>7000000){
+        getTicket();
+    }
+    res.render('activity/s7', {
+        ticket: ticket
+    });
+});
 module.exports = router;
