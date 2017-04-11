@@ -1482,7 +1482,7 @@ router.get('/cash/personcenter', function(req, res, next) {
     }
     Thenjs.parallel([function(cont) {
         request({
-            uri: path+"/withdraw/personalCenter?userId="+userId+"&token="+token,
+            uri:path+"/withdraw/personalCenter?userId="+userId+"&token="+token,
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
