@@ -111,7 +111,7 @@
 		.m-rt{
 			float:left;
 		}
-		.m-rt-date{width:20%;height: 25px;}
+		.m-rt-date{width:20%;height: 26px;}
 		.m-rt-d{
 			font-size:24px;
 			color:#333;
@@ -191,6 +191,7 @@
 	<div class="m-time g-m">
 		<p class="m-t-e">每日直播时长<span>(有效)</span></p>
 		<div class="m-t-l">
+			{% if livenum.sevenLiveInfo!="" %}
 			<div class="m-tl-left m-tl" >
 				<span class="u-tl" v-for="(sli,index) in sevenLiveInfo" v-if="formatTime(sli.time,4)<=5" >
 					<span class="u-tl" v-for="n in 6">${6-n}h</span>
@@ -202,6 +203,11 @@
 					<span class="u-tl" v-for="n in 6">${(6-n)*3}h</span>
 				</span>
 			</div>
+			{% else %}
+			<div class="m-tl-left m-tl">
+					<span class="u-tl" v-for="n in 6">${6-n}h</span>
+			</div>
+			{% endif %}
 			<div class="m-tl-right m-tl" >
 			{% if livenum.sevenLiveInfo.time!=0 %}
 				<div class="u-tl-bar" id="ms" v-for="(sli,index) in sevenLiveInfo" v-if="formatTime(sli.time,4)<=5" :style={height:formatTime(sli.time,3)+"px"}><span id="#hrs" class="hrs">${formatTime(sli.time,4)}h</span></div>
