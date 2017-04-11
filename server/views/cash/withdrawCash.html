@@ -36,12 +36,12 @@
 						<div class="avatar">
 							<img v-bind:src="userInfo.icon" alt="" class="author-icon" v-if="userInfo.icon">
 							<img src="/cash/images/default_avatar.png" alt="" class="author-icon" v-else>
-							<img src="/cash/images/auth.png" alt="" class="auth" v-show="userInfo.is_certificate">
+							<img src="/cash/images/female.png" alt="" class="sex" v-if="userInfo.sex">
+							<img src="/cash/images/male.png" alt="" class="sex" v-else>
 						</div>
 						<div class="name">
 							${userInfo.nickname}
-							<img src="/cash/images/female.png" alt="" class="sex" v-if="userInfo.sex">
-							<img src="/cash/images/male.png" alt="" class="sex" v-else>
+							<img src="/cash/images/auth.png" alt="" class="auth" v-show="userInfo.is_certificate">
 						</div>
 						<div class="data">
 							<span>房间号：${userInfo.room_number}</span><span>已直播${userInfo.time}</span>

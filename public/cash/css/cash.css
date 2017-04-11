@@ -122,11 +122,11 @@ button,input{padding:0;margin:0;outline: none;}
 	border-radius: 50%;
 	border:1px solid #fff;
 }
-.avatar .auth{
+.avatar .sex{
 	position: absolute;
 	right: 0;
 	bottom: 0;
-	height: 1.2rem;
+	height: 1.5rem;
 }
 .name{
 	font-size: 1.8rem;
