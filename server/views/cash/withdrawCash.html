@@ -388,7 +388,7 @@
 			                if(data.code == 0){
 			                	_this.userInfo = data.object.data;
 			                	_this.haveMoney = _this.userInfo.withdrawMoney;
-			                	_this.canApply = (_this.userInfo.withdrawMoney>=200 && _this.userInfo.showTag>0) ? false:true;
+			                	_this.canApply = (_this.userInfo.withdrawMoney>=200 && _this.userInfo.showTag==0) ? false:true;
 			                }
 			            },
 			            error: function() {
