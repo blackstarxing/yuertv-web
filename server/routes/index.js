@@ -1510,8 +1510,8 @@ router.get('/cash/signup', function(req, res, next) {
     var userId= req.query.userId;
     var token= req.query.token;
     var type=false;
-    // var deviceAgent = req.headers["user-agent"].toLowerCase();
-    // var agentID = deviceAgent.match(/YuertvBrowser/i)=="yuertvbrowser";
+    var deviceAgent = req.headers["user-agent"].toLowerCase();
+    var agentID = deviceAgent.match(/YuertvBrowser/i)=="yuertvbrowser";
     if(!ticket || (nowtime-ticketline)>7000000){
         getTicket();
     }

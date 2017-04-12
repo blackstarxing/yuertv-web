@@ -292,16 +292,13 @@ var pvue = new Vue({
                 this.userId = this.getQueryString("userId");
                 this.token = this.getQueryString("token");
                 this.newsList();
-               	// console.log(this.types);
-               	// console.log(this.maxs);
-               	// console.log(this.max());
                 var ua = navigator.userAgent.toLowerCase(); 
-				// if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
+				if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
 
-				// }else{
+				}else{
 
-				// 	window.location.href = "/cash/signup";
-				// }
+					window.location.href = "/cash/signup";
+				}
             })
         },
         methods:{
