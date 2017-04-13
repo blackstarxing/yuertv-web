@@ -158,13 +158,10 @@ $(function(){
 	// 点击叉号关闭弹框
 	$("#gsc").on("click",function(){
 		$(".m-layer").hide();
+		window.location.href=window.location.href;
 	})
 	$("#gfc").on("click",function(){
 		$(".m-layers").hide();
-	})
-	// 报名成功的跳转
-	$(".m-layer").on("click",function(){
-		window.location.href="/cash/personcenter";
 	})
 	// 获取参数
 	function getQueryString(name) {
@@ -199,6 +196,7 @@ $(function(){
 				    	if(data.code==0){
 				    		console.log(data.code);
 				    		if(data.object.code==0){
+				    			console.log(data.object.code);
 					    		$(".m-layer").show();
 					    	}else if(data.object.code==1){
 					    		// $(".m-layer").show();
