@@ -2,8 +2,7 @@ html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
 body,ul,li,p,h3,h4,h2,em,button,input{margin: 0; padding: 0;}
 body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; 
 	font-size:62.5%; font-style:normal;  margin:0 auto; height:100%;
-	background:#141a20; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
-/*img{border:0; max-width:100%;vertical-align: top;}*/
+	background:#141a20; overflow-x:hidden; -webkit-overflow-scrolling:touch;max-width:800px;}
 .m-bg{
 	background:#1c232d;
 	padding:5% 2.5%;
@@ -80,6 +79,17 @@ body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC;
 .comment-content h3 span{
 	font-size: 0.9rem;
 	color:#465667;
+}
+img.u-empty-img{
+	display:block;
+	width:45%;
+	margin:0 auto;
+}
+.u-empty-data{
+	font-size:14px;
+	color:#fff;
+	text-align:center;
+	margin-top:5px;
 }
 .g-bt{
 	position: fixed;
