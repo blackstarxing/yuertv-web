@@ -30,16 +30,17 @@
 		.m-main{
 			position:relative;
 			height:145px;
-			margin-top:-10rem;
+			margin-top:-12rem;
 			margin-bottom:1rem;
 		}
 		.m-m-icon{
 			display:block;
-			width:60px;
-			height:60px;
+			width:70px;
+			height:70px;
 			position:absolute;
 			top:-19%;
-			left:42%;
+			left:50%;
+			margin-left: -35px;
 			border-radius:50px;
 		}
 		.m-m-withdrawal{
@@ -60,7 +61,7 @@
 		.m-mtr{
 			overflow:hidden;
 			width:88%;
-			margin:2% 5% 2% 8.55%;
+			margin:2% auto;
 			margin-top:1rem;
 		}
 		.u-mtr{
@@ -68,12 +69,14 @@
 			width:30%;
 			font-size:13px;
 			color:#98a5b3;
+			text-align: center;
 		}
 		.u-mtr-s,.u-mtr-t,.u-mtr-m{
 			display:block;
-			margin-left:25%;
+			/*margin-left:25%;*/
 			font-size:18px;line-height:1.2;
 			color:#647580;
+			text-align: center;
 		}
 		.m-mtr-t{
 			margin-left:3.3%;
@@ -117,35 +120,43 @@
 		.m-record{
 			position:relative;
 			margin-top:1rem;
+			padding-top: 0.5rem;
 			padding-bottom:1rem;
 		}
 		.m-r-tc{
 			overflow:hidden;
-			margin:5%;
+			margin:5px auto;
+			height: 1.8rem;
 		}
 		.m-rt{
 			float:left;
 		}
-		.m-rt-date{width:20%;height:2.3rem;}
+		.m-rt-date{width:23%;height:1.8rem;margin-top: -0.5rem;}
 		.m-rt-d{
 			font-size:24px;
 			color:#333;
 			font-weight:bold;
+			display: inline-block;
+			width: 1.5rem;
+			text-align: center;
 		}
 		.u-rt-spec{
 			font-weight:normal;
 			font-size:12px;
 			margin-left:-2.79%;
+			display: inline-block;
+			width: 1.8rem;
+			text-align: right;
 		}
 		.m-rt-title{
 			position:relative;
 			width:70%;
-			height:20px;
-			line-height:20px;
+			height:1.8rem;
+			line-height:1.8rem;
 			background:#f0f6ff;
 			font-size:13px;
 			color:#647580;
-			margin-top:5px;
+			/*margin-top:5px;*/
 			white-space:nowrap;/* 不换行 */
 			overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
 			text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ 
@@ -154,6 +165,7 @@
 		.u-rtt{
 			display:inline-block;
 			margin:0 3.5%;
+			width: 55px;
 		}
 		.showmore{width:50%;margin:5% auto;font-size:14px;color:#98a5b3;text-align:center;}
 		/*为空状态*/
@@ -168,6 +180,9 @@
 			margin:0 11.5% 5%;
 		}
 		.f-cb{overflow:hidden;}
+		.space{
+			margin-top: 25px;
+		}
 	</style>
 </head>
 <body>
@@ -235,7 +250,7 @@
 	<div class="m-record g-m">
 		<p class="m-r-live">直播记录</p>
 		{% if livenum.liveRecord!="" %}
-		<div class="m-r-tc" v-for="(item,index) in liveRecord">
+		<div class="m-r-tc" v-for="(item,index) in liveRecord" v-bind:class="{space:item.date!=null}">
 			<p class="m-rt-date m-rt"><span class="m-rt-d"  v-show="item.date!=null">${formatTime(item.date,1)}</span>
 				<span class="u-rt-spec" v-show="item.date!=null">${formatTime(item.date,0)}<span>月</span></span>
 			</p>
@@ -303,7 +318,6 @@ var pvue = new Vue({
 				if(ua.match(/YuertvBrowser/i)=="yuertvbrowser"){
 
 				}else{
-
 					window.location.href = "/cash/signup";
 				}
             })
