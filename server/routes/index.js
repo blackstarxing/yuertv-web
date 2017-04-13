@@ -1657,4 +1657,13 @@ router.get('/activity/girls', function(req, res, next) {
         ticket: ticket
     });
 });
+router.get('/cash/hourly', function(req, res, next) {
+    var nowtime = new Date().getTime();
+    if(!ticket || (nowtime-ticketline)>7000000){
+        getTicket();
+    }
+    res.render('cash/hourly', {
+        ticket: ticket
+    });
+});
 module.exports = router;
