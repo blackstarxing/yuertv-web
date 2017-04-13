@@ -1528,7 +1528,7 @@ router.get('/cash/signup', function(req, res, next) {
     if(userId && token){
         Thenjs.parallel([function(cont) {
             request({
-                uri: path+"/withdraw/enroll?userId="+userId+"&token="+token,
+                uri: path+"/withdraw/checkEnroll?userId="+userId+"&token="+token,
                 headers: {
                     'User-Agent': 'request',
                     'cookie': req.headers.cookie,
