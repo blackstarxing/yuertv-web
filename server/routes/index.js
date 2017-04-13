@@ -7,10 +7,10 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-// var path = 'http://172.16.10.11:8777';
-// var apipath ="http://172.16.10.134:8099";
-var path = 'http://qa.webapi.yuerlive.cn';
-var apipath ="http://qa.api.yuerlive.cn";
+var path = 'http://172.16.10.11:8777';
+var apipath ="http://172.16.10.134:8099";
+// var path = 'http://qa.webapi.yuerlive.cn';
+// var apipath ="http://qa.api.yuerlive.cn";
 
 function getTicket(){
     Thenjs.parallel([function(cont) {
@@ -1592,7 +1592,7 @@ router.get('/mobile/news', function(req, res, next) {
         getTicket();
     }
     Thenjs.parallel([function(cont) {
-        request(path+'/news/share?id=4104215', function(error, response, body) {
+        request(path+'/news/share?id='+id, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {

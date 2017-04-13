@@ -87,19 +87,20 @@
 	<script src="/jquery.js"></script>
 	<script src="/mobile/js/swiper.min.js"></script>
 	<script>
+		var mySwiper = new Swiper ('.swiper-container', {
+            direction: 'horizontal',
+            loop: true,
+            pagination: '.swiper-pagination',
+            observer:true,
+            observeParents:true,
+            // initialSlide :index,
+        });
 		function showSwiper(index){
-			$('.swiper-box').show();
-			var mySwiper = new Swiper ('.swiper-container', {
-	            direction: 'horizontal',
-	            loop: true,
-	            pagination: '.swiper-pagination',
-	            observer:true,
-	            observeParents:true,
-	            initialSlide :index,
-	        }); 
+			var i = index+1;
+			$('.swiper-box').show(); 
+	        mySwiper.slideTo(i,false);
 		}
 		$('.swiper-container').click(function(e){
-			console.log(e.target.nodeName);
 			if(e.target.nodeName!='IMG'){
 				$('.swiper-box').hide();
 			}			
