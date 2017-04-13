@@ -1528,7 +1528,7 @@ router.get('/cash/signup', function(req, res, next) {
     if(userId && token){
         Thenjs.parallel([function(cont) {
             request({
-                uri: path+"/withdraw/enroll?userId="+userId+"&token="+token,
+                uri: path+"/withdraw/checkEnroll?userId="+userId+"&token="+token,
                 headers: {
                     'User-Agent': 'request',
                     'cookie': req.headers.cookie,
@@ -1592,7 +1592,7 @@ router.get('/mobile/news', function(req, res, next) {
         getTicket();
     }
     Thenjs.parallel([function(cont) {
-        request(path+'/news/share?id=4104215', function(error, response, body) {
+        request(path+'/news/share?id='+id, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 cont(null, body);
             } else {

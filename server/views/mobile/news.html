@@ -4,9 +4,10 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta content="telephone=no" name="format-detection" />
+    <meta name="baidu-site-verification" content="nD6yyolNXN" />
     <link rel="shortcut icon" type="image/ico" href="/yuer.ico">
     <link rel="stylesheet" href="/mobile/css/news.css">
-	<title>资讯详情</title>
+	<title>{{info.title}}</title>
 	<script>
 	</script>
 </head>
@@ -23,6 +24,7 @@
 		{{content}}
 	</div>
 	<div class="g-comment">
+	{% if info.comment %}
 		<h3 class="u-title"><img src="/mobile/images/comment_icon.png" alt="">评论</h3>
 		{% for list in comments %}
 			<a href="https://yuertvfile.wangyuhudong.com/" class="comment f-cb">
@@ -33,6 +35,12 @@
 				</div>
 			</a>
 		{% endfor %}
+	{% else %}
+		<div class="u-empty">
+			<img src="/mobile/images/empty_icon.png" alt="" class="u-empty-img">
+			<p class="u-empty-data">还没有评论数据</p>
+		</div>
+	{% endif %}
 	</div>
 	<a href="https://yuertvfile.wangyuhudong.com/" class="g-bt">
 		<ul class="f-cb">
@@ -42,13 +50,24 @@
 	</a>
 </div>
 <script type="text/javascript" src="/jquery.min.js"></script>
+<script src="/jquery.sha1.js"></script>
+<script src="/wxjsapi.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
-$(function(){
-	$(".g-bt").on("click",function(){
-		window.location.href="";
+	var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?5f199d5d81411ab659081729f1f34008";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+    })();
+	enableWxShare({
+		appId: 'wxf96f728533f32fa8',
+		ticket: '{{ticket}}',
+		title: '{{info.title}}',		
+		imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/2017/yuerlogo.png',
+		desc: '玩手游，做主播，打比赛，拿福利。尽在#娱儿直播#领跑移动电竞的直播平台'
 	})
-		
-})
 </script>
 </body>
 </html>

@@ -209,7 +209,6 @@
 		<p class="m-t-e">每日直播时长<span>(有效)</span></p>
 		<div class="m-t-l">
 			<div class="m-t-line f-cb" style="position:relative;height:180px;">
-				{% if livenum.sevenLiveInfo!="" %}
 				<div class="m-tl-left m-tl" style="position:absolute;bottom:1px;">
 					<span class="" v-if="types==1" >
 						<span class="u-tl" v-for="n in 6">${6-n}h</span>
@@ -221,11 +220,6 @@
 						<span class="u-tl" v-for="n in 6">${(6-n)*3}h</span>
 					</span>
 				</div>
-				{% else %}
-				<div class="m-tl-left m-tl">
-						<span class="u-tl" v-for="n in 6">${6-n}h</span>
-				</div>
-				{% endif %}
 				<div class="m-tl-right m-tl" style="position:absolute;bottom:0;">
 					<div class="u-tl-bar" id="ms" v-for="(sli,index) in sevenLiveInfo" v-if="types==1" :style={height:formatTime(sli.time,3)+"px"}><span id="#hrs" class="hrs">${formatTime(sli.time,4)}h</span></div>
 					<div class="u-tl-bar" id="ms" v-for="(sli,index) in sevenLiveInfo" v-if="types==2" :style={height:formatTime(sli.time,5)+"px"}><span id="#hrs" class="hrs">${formatTime(sli.time,4)}h</span></div>
@@ -285,7 +279,7 @@ var pvue = new Vue({
             token:"",
             slitime:0,
             maxs:0,
-            types:"",
+            types:1,
         },
         computed: {
 		    mylivefilter: function () {
@@ -365,9 +359,6 @@ var pvue = new Vue({
 					}
 				};
 				this.maxs=Math.round((max/3600)*10)/10;
-				// console.log(max);
-				// console.log(Math.round((max/3600)*10)/10);
-				// console.log(this.maxs);
 				if(this.maxs<=5){
 					this.types=1;
 				}else if(this.maxs>5 && this.maxs<=10){
@@ -410,7 +401,6 @@ var pvue = new Vue({
 		                           _this.slidate=data.object.sevenLiveInfo[0].date;   
 		                           _this.slitime=data.object.sevenLiveInfo[0].time;
 		                           _this.max();  
-		                           // console.log(data.object.sevenLiveInfo[0].time);
 		                    } else {
 		                        console.log(data.result);
 		                    }
@@ -435,8 +425,6 @@ var pvue = new Vue({
 	                          _this.datatime=data.object;
 	                          console.log(data.object);
 	                           // 页面第三块：直播记录
-	                           // _this.liveRecord=data.object.liveRecord;
-	                           console.log(data.object.liveRecord);
 	                           // 页面第三块：直播记录－－日期
 	                           _this.lrdate=data.object.liveRecord[0].date;
 	                           // 页面第三块：直播记录－－持续时间
