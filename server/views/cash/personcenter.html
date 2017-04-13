@@ -4,6 +4,8 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta content="telephone=no" name="format-detection" />
+    <meta name="" data-msg-img="" data-msg-title="手游主播月入百万的真相在这里！" data-msg-content="玩着手游，躺着赚钱！娱儿直播主播招募令，百万薪金等你瓜分！" data-msg-callBack="" data-line-img="" data-line-title="手游主播月入百万的真相在这里！" data-line-callBack=""/>
+    <meta name="baidu-site-verification" content="nD6yyolNXN" />
     <link rel="shortcut icon" type="image/ico" href="/yuer.ico">
 	<title>手游主播月入百万的真相在这里！</title>
 	<style type="text/css">
@@ -26,9 +28,10 @@
 		}
 		/*如何提现*/
 		.m-main{
+			position:relative;
 			height:145px;
-			margin-top:5%;
-			top:6%;
+			margin-top:-10rem;
+			margin-bottom:1rem;
 		}
 		.m-m-icon{
 			display:block;
@@ -73,13 +76,19 @@
 		.m-mtr-t{
 			margin-left:3.3%;
 		}
+		.m-mtr-t span{
+			display: block;
+			width: 100%;
+			text-align: center;
+		}
 		.m-mtr-m{
 			margin-left:6.7%;
 		}
+		.u-mtr-center{text-align:center;margin-left:0;}
 		/*直播时长*/
 		.m-time{
 			position:relative;
-			margin-top:-71px;padding-top:0.3rem;
+			padding-top:0.3rem;
 			padding-bottom:0.25rem;
 		}
 		.m-t-e,.m-t-l,.m-r-live,.m-r-tc,.m-r-empty{
@@ -98,7 +107,7 @@
 		.u-tl{display:block;margin:13.5px 2px 0px 0%;font-size:12px;height:12px;color:#647580;}
 		.u-tl-lb{margin-bottom:0%;}
 		.m-tl-right{float:left;width:90%;margin-top:5.5%;position:relative;left:20px;}
-		.m-tl-bottom{width:90%; margin-left:6%;font-size:12px;color:#647580;}
+		.m-tl-bottom{width:90%; margin-left:6%;font-size:10px;color:#647580;}
 		.m-tl-bottom span{display:inline-block;width:10%;margin:1% 2%;}
 		.u-tl-bar{display:inline-block;vertical-align:bottom;width:10px;border-radius:5px;background:linear-gradient(#03b5ff,#a2e3ff);margin:0 5%;}
 		.hrs{position:relative;display:inline-block;width:36px;left:-10px;top:-26.5px;font-size:10px;color:#fff;background:url(/cash/images/bg-r.png) no-repeat;background-size:contain;line-height:2;text-align:center;}
@@ -162,13 +171,15 @@
 <body>
 <div class="g-con" id="pvue" v-cloak>
 	<img src="/cash/images/pc-bg.jpg" class="m-bg">
+	<div style="position:absolute;width:94%;top:0;background:transparent;height:10px;"></div>
 	<div class="m-main g-m">
 		{% if livenum.upInfo.icon %}
           <img src="{{livenum.upInfo.icon}}" alt="" class="m-m-icon">
         {% else %}
           <img src="/cash/images/default_avatar.png" class="m-m-icon">
         {% endif %}
-		<span class="m-m-withdrawal">如何提现</span>
+        <div style="height:10px;"></div>
+		<a class="m-m-withdrawal">如何提现</a>
 		<div class="m-mtr">
 			<div class="m-mtr-s u-mtr">
 			{% if livenum.upInfo.liveNum=="" %}
@@ -181,9 +192,9 @@
 			{% if livenum.upInfo.time=="" %}
 			<span class="u-mtr-t">0</span>
 			{% else %}
-			<span class="u-mtr-t">{{livenum.upInfo.time}}</span>
+			<span class="u-mtr-t u-mtr-center" >{{livenum.upInfo.time}}</span>
 			{% endif %}
-			有效时长(小时)</div>
+			<span>有效时长&nbsp;&nbsp;(h)</span></div>
 			<div class="m-mtr-m u-mtr">
 			{% if livenum.upInfo.total_amount=="" %}
 			<span class="u-mtr-m">0</span>
@@ -193,7 +204,7 @@
 			我的收益(元)</div>
 		</div>
 	</div>
-	<div style="position:relative;width:94%;margin:0% 3%;background:#f0f6ff;height:10px;"></div>
+	
 	<div class="m-time g-m">
 		<p class="m-t-e">每日直播时长<span>(有效)</span></p>
 		<div class="m-t-l">
