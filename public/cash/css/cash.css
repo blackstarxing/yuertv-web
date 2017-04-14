@@ -25,6 +25,9 @@ button,input{padding:0;margin:0;outline: none;}
 }
 
 /*登录*/
+.g-bd{
+	padding-bottom: 20px;
+}
 .m-login-wrap{
 	width: 74%;
 	margin: 0 auto;
@@ -137,12 +140,15 @@ button,input{padding:0;margin:0;outline: none;}
 	height: 1.8rem;
 	vertical-align: middle;
 }
+.data{
+	margin-top: 10px;
+}
 .data span{
 	display: inline-block;
 	width: 48%;
-	height: 1.8rem;
-	line-height: 1.8rem;
-	border-radius: 0.9rem;
+	height: 2.2rem;
+	line-height: 2.2rem;
+	border-radius: 1.1rem;
 	margin: 0 1%;
 	background: #0096ff;
 	text-align: center;
@@ -231,6 +237,7 @@ button,input{padding:0;margin:0;outline: none;}
 .sorry{
 	width: 80%;
 	margin:40% auto 0;
+	font-size: 1.4rem;
 }
 .sorry .reason{
 	border-radius: 10px;
@@ -289,6 +296,7 @@ button,input{padding:0;margin:0;outline: none;}
 	opacity:1;
 	color:#647580;
 	-webkit-text-fill-color:#647580;
+	background: #fff;
 }
 .focus{
 	width: 97%;
@@ -319,10 +327,12 @@ button,input{padding:0;margin:0;outline: none;}
 }
 .rules{
 	padding:0 1.5rem;
-	position: absolute;
-	bottom: 3rem;
+	/*position: absolute;
+	bottom: 3rem;*/
+	margin-top: 8rem;
 	color:#647580;
 	line-height: 1.5;
+	font-size: 1.4rem;
 }
 .rules h3{
 	font-size: 1.5rem;
