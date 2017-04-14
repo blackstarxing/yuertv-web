@@ -1502,7 +1502,7 @@ router.get('/cash/personcenter', function(req, res, next) {
         });  
     }).fail(function(cont, error) { 
         console.log(error);
-        res.render('cash/signup', { title: "手游主播月入百万的真相在这里！"});
+        res.render('error', { title: "错误"});
     });
 });
 router.get('/cash/signup', function(req, res, next) {
@@ -1550,7 +1550,7 @@ router.get('/cash/signup', function(req, res, next) {
             });
         }).fail(function(cont, error) { 
             console.log(error);
-            res.render('error', { title: "错误"});
+            res.render('cash/signup', { title: "手游主播月入百万的真相在这里！"});
         });
     }else{
         res.render('cash/signup', {
