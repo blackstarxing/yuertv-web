@@ -16,7 +16,8 @@
 			font-size:62.5%; font-style:normal;  margin:0 auto; height:100%; color:#9da4ad; 
 			background: #f0f6ff; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
 		img{border:0; max-width:100%;vertical-align: top;}
-		img.m-btn{display:block;position:absolute;width:45%;top:48%;left:27%;}
+		.g-cimg{position:relative;}
+		img.m-btn{display:block;position:absolute;width:53%;left:23.5%;top:0;}
 		/*成功的状态*/
 		.m-layer{
 			display:none;
@@ -107,14 +108,18 @@
 </head>
 <body>
 <div class="g-container">
-	<img src="/cash/images/s-bg-1.jpg">
-	<img src="/cash/images/s-bg-2.jpg">
+	<img src="/cash/images/s-bg-1.jpg" >
+	<div class="g-cimg" style="position:relative;">
+		<img src="/cash/images/s-bg-2.jpg">
+		{% if type==false %}
+		<img src="/cash/images/s-btn.png" class="m-btn" id="btn">
+		{% else %}
+		<img src="/cash/images/s-btncenter.png" class="m-btn" id="btncenter">
+		{% endif %}
+	</div>
 	<img src="/cash/images/s-bg-3.jpg">
-	{% if type==false %}
-	<img src="/cash/images/s-btn.png" class="m-btn" id="btn" >
-	{% else %}
-	<img src="/cash/images/s-btncenter.png" class="m-btn" id="btncenter">
-	{% endif %}
+	<img src="/cash/images/s-bg-4.jpg">
+	<img src="/cash/images/s-bg-5.jpg">
 </div>
 <div class="m-layer">
 	<div class="g-s">

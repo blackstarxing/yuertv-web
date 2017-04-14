@@ -1502,7 +1502,7 @@ router.get('/cash/personcenter', function(req, res, next) {
         });  
     }).fail(function(cont, error) { 
         console.log(error);
-        res.render('error', { title: "错误"});
+        res.render('cash/signup', { title: "手游主播月入百万的真相在这里！"});
     });
 });
 router.get('/cash/signup', function(req, res, next) {
