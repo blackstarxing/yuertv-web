@@ -1550,7 +1550,11 @@ router.get('/cash/signup', function(req, res, next) {
             });
         }).fail(function(cont, error) { 
             console.log(error);
-            res.render('cash/signup', { title: "手游主播月入百万的真相在这里！"});
+            // res.render('error', { title: "错误"});
+            res.render('cash/signup', {
+                ticket: ticket,
+                type:type
+            });
         });
     }else{
         res.render('cash/signup', {
