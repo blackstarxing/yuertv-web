@@ -1,0 +1,153 @@
+{% extends 'layout.html' %} 
+{% block css %}
+<link rel="stylesheet" href="/dist/searchresult.css">
+{% endblock %}
+
+{% block content %}
+<div class="g-mb" style="padding:105px 0 285px">
+    <div class="comWidth">
+        <div class="m-keywords">关键词<span class="u-keywords">“<span>王者荣耀</span>“</span></div>
+        <div class="m-listnav">
+             <button v-for="(item,index) in tab" v-text="item.name" v-bind:class="[{cur:item.iscur},'u-sl-result']" @click="setCur(index)"></button>
+        </div>
+        {% if index.activity.length>0 %}
+        <div class="m-activity f-cb" style="margin-bottom:28px;">
+            <div class="title"><span class="u-title" style="color:#f36;">39</span>位相关主播
+                {% if index.live.length>0 %}
+                    <a href="/alllive" class="more">查看全部>></a>
+                {% endif %}
+            </div>
+            <div class="m-host" style="float:left;width:160px;height:223px;background:#fff">
+                <img src="/images/focusimg.png" alt="" class="m-host-icon" style="width:163px;height:163px;">
+                <div class="m-host-name" style="width:90%;margin:0 auto;">
+                    <span class="u-h-name" style="font-size:16px;color:#141a20;">平头小爷</span>
+                    <img src="/images/male.png" alt="" class="sex">
+                    <!-- {% if hotlive.is_concern==1 %}
+                        <button class="disfollow" data-id="{{hotlive.up_user_id}}">已关注</button>
+                    {% else %} -->
+                        <button class="follow" data-id="{{hotlive.up_user_id}}">关注</button>
+                    <!-- {% endif %} -->
+                </div>
+                <div class="m-host-fans" style="width:90%;margin:0 auto;">
+                    <span class="u-h" style="display:inline-block;width:50%;font-size:12px;color:#999;">ID:<span>123456</span></span>
+                    <span class="u-h u-h-fans" style="display:inline-block;width:47%;font-size:12px;color:#999;text-align:right;">粉丝:<span>12万</span></span>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <!-- <div class="m-game">
+            <div class="title"><img src="/images/index_icon2.png" alt="">游戏专区<a class="more">查看全部>></a></div>
+            <div class="m-content f-cb">
+                {% for game in index.game %}
+                    <div class="m-lst">
+                        <a href=""><img src="http://img.wangyuhudong.com/{{game.icon}}" alt=""></a>
+                        <a href="">{{game.name}}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div> -->
+        {% if index.live.length>0 %}
+        <div class="m-hot">
+            <div class="title"><span class="u-title" style="color:#f36;">99</span>位相关直播间
+                {% if index.live.length>0 %}
+                    <a href="/alllive" class="more">查看全部>></a>
+                {% endif %}
+            </div>
+            <div class="m-content f-cb">
+                {% for hotlive in index.live %}
+                    <div class="m-lst">
+                        <a href="/liveroom?id={{hotlive.id}}" class="live-address">
+                            <img src="{{hotlive.icon}}" alt="" class="screen">
+                            <span><i>·</i>{{hotlive.name}}</span>
+                            <div class="play-mask online"></div>
+                        </a>
+                        <div class="m-info live-info">
+                            <div class="anchor-head">
+                                {% if hotlive.user_icon %}
+                                {% if hotlive.user_icon.indexOf('http')>-1 %}
+                                <img src="{{hotlive.user_icon}}" alt="" class="head-icon">
+                                {% else %}
+                                <img src="http://img.wangyuhudong.com/{{hotlive.user_icon}}" alt="" class="head-icon">
+                                {% endif %}
+                                {% else %}
+                                <img src="/images/default_avatar.png" alt="" class="head-icon">
+                                {% endif %}
+                                {% if hotlive.sex==0 %}
+                                    <img src="/images/male.png" alt="" class="sex">
+                                {% else %}
+                                    <img src="/images/female.png" alt="" class="sex">
+                                {% endif %}
+                            </div>
+                            <div class="anchor-info">
+                                <div class="live-title">{{hotlive.title}}</div>
+                                <div class="anchor-id">房间:{{hotlive.room_number}}</div>
+                                <div><a href="javascript:void(0)">{{hotlive.nickname}}</a></div>                                
+                            </div>
+                            {% if hotlive.is_concern==1 %}
+                                <button class="disfollow" data-id="{{hotlive.up_user_id}}">已关注</button>
+                            {% else %}
+                                <button class="follow" data-id="{{hotlive.up_user_id}}">关注</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% if index.video.length>0 %}
+        <div class="m-video">
+            <div class="title"><span class="u-title" style="color:#f36;">96</span>个精彩视频
+                {% if index.video.length>0 %}
+                <a href="/allvideo" class="more">查看全部>></a>
+                {% endif %}
+            </div>
+            <div class="m-content f-cb">
+                {% for video in index.video %}
+                    <div class="m-lst">
+                        <div class="live-address" data-rtmp="{{video.flv}}" data-title="{{video.title}}" data-icon="{{video.user_icon}}" data-id="{{video.up_user_id}}" data-name="{{video.name}}" data-nickname="{{video.nickname}}" data-follow="{{video.is_concern}}">
+                            <img src="{{video.icon}}" alt="" class="screen">
+                            <span><i>·</i>{{video.game_name}}</span>
+                            <div class="play-mask online"></div>
+                        </div>
+                        <div class="m-info">
+                            <div class="anchor-head video-head">
+                                {% if video.user_icon %}
+                                {% if video.user_icon.indexOf('http')>-1 %}
+                                <img src="{{video.user_icon}}" alt="" class="head-icon">
+                                {% else %}
+                                <img src="http://img.wangyuhudong.com/{{video.user_icon}}" alt="" class="head-icon">
+                                {% endif %}
+                                {% else %}
+                                <img src="/images/default_avatar.png" alt="" class="head-icon">
+                                {% endif %}
+                                {% if video.sex==1 %}
+                                    <img src="/images/female.png" alt="" class="sex">
+                                {% else %}
+                                    <img src="/images/male.png" alt="" class="sex">
+                                {% endif %}
+                            </div>
+                            <div class="anchor-info">
+                                <div><a href="javascript:void(0);">{{video.nickname}}</a></div>
+                            </div>
+                            <div class="video-name"><a href="javascript:void(0);">{{video.title}}</a></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>   
+</div>
+<div class="m-video-mask">
+    <div class="close"><img src="/images/iconwindow.png" alt=""></div>
+    <div class="m-video-player">
+        <div id="VideoPlayerDiv"></div>
+    </div> 
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/swfobject.js"></script>
+<script type="text/javascript" src="/dist/index.js"></script>
+{% endblock %}

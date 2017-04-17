@@ -7,7 +7,7 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-var path = 'http://172.16.10.11:8777';
+var path = 'http://172.16.10.6:8777';
 var apipath ="http://172.16.10.134:8099";
 // var path = 'http://qa.webapi.yuerlive.cn';
 // var apipath ="http://qa.api.yuerlive.cn";
@@ -1664,6 +1664,47 @@ router.get('/cash/hourly', function(req, res, next) {
     }
     res.render('cash/hourly', {
         ticket: ticket
+    });
+});
+router.get('/searchresult', function(req, res, next) {
+    var from = req.query.from;
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    // var deviceAgent = req.headers["user-agent"].toLowerCase();
+    // var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
+    // if(agentID){
+    //     res.redirect('http://m.yuerlive.cn/#/index');
+    // }
+    Thenjs.parallel([function(cont) {
+        request({
+            uri: path+'/index?from='+from,
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+              }
+        }, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+    }]).then(function(cont, result) {
+        res.render('searchresult', {
+            title: "娱儿直播--领跑移动电竞的直播平台",
+            index: JSON.parse(result[0]).object,
+            islogin: islogin,
+            nav_index: 0,
+        });
+    }).fail(function(cont, error) { 
+        console.log(error);
+        res.render('error', { title: "错误"});
     });
 });
 module.exports = router;
