@@ -357,14 +357,19 @@
 		                            _this.coderror = '';
 		                        },2000); 
 			                }else if(data.object.code==3){
-			                	_this.coderror = '该手机号码已经绑定其他微信号';
+			                	_this.telerror = '该手机号码已经绑定其他微信号';
 		                        setTimeout(function(){
-		                            _this.coderror = '';
+		                            _this.telerror = '';
 		                        },2000); 
 			                }else if(data.object.code==4){
-			                	_this.coderror = '该手机号码未报名活动';
+			                	_this.telerror = '该手机号码未报名活动';
 		                        setTimeout(function(){
-		                            _this.coderror = '';
+		                            _this.telerror = '';
+		                        },2000); 
+			                }else if(data.object.code==5){
+			                	_this.telerror = '该微信号不能同时绑定两个手机号';
+		                        setTimeout(function(){
+		                            _this.telerror = '';
 		                        },2000); 
 			                }else{
 			                	_this.partone = false;
