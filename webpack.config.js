@@ -17,6 +17,7 @@ module.exports = {
         allvideo: ['./client/js/allvideo.js', hotMiddlewareScript],
         alllive: ['./client/js/alllive.js', hotMiddlewareScript],
         search: ['./client/css/search.css', './client/js/search.js', hotMiddlewareScript],
+        searchresult: ['./client/css/searchresult.css', './client/js/index.js', hotMiddlewareScript],
     },
     output: {
         filename: './[name].js',

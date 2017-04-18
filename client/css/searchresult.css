@@ -1,5 +1,6 @@
 .g-mb{
-    padding-bottom: 285px;
+    padding:105px 0 285px;
+    background:#f3f3f3;
 }
 .m-keywords{
     font-size:14px;
@@ -9,8 +10,29 @@
     font-size:18px;
     font-weight:bold;
 }
+.m-listnav{
+    background:#fff;
+    width:100%;
+    height:60px;
+    margin:30px 0 50px;
+}
+.u-sl-result{
+    border:0px;
+    display:inline-block;
+    width:60px;
+    height:60px;
+    line-height:60px;
+    text-align:center;
+    font-size:18px;
+    color:#333;
+    background:transparent;
+    margin-left:50px;
+}
+.cur{
+    color:#f36;
+    border-bottom:4px solid #f36;
+}
 .g-mb .title{
-    padding-top: 20px;
     font-size: 24px;
     color: #033;
     line-height: 2.5;
@@ -27,6 +49,52 @@
     color:#666;
     line-height: 60px;
     margin-right: 10px;
+}
+/*相关主播*/
+.m-tolive{margin-bottom:28px;}
+.u-title{color:#f36;}
+.m-host{
+    float:left;
+    width:160px;
+    height:223px;
+    background:#fff;
+    margin-right:11px;
+}
+img.m-host-icon{
+    width:163px;
+    height:163px;
+}
+img.sexs{
+    vertical-align:middle;
+}
+.m-host-name,.m-host-fans{
+    width:90%;
+    margin:0 auto;
+}
+.u-h-name{
+    font-size:16px;
+    color:#141a20;
+}
+.u-h{
+    display:inline-block;
+    width:47%;
+    font-size:12px;
+    color:#999;
+    white-space:nowrap;/* 不换行 */
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ 
+}
+.u-h-fans{
+    width:49%;
+    text-align:right;
+    white-space:none;/* 不换行 */
+    overflow:none;/* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:none;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ 
+}
+.f-right{
+    float:right;
+    width:40px;
+    height:20px;
 }
 /*活动*/
 .m-lst .active_name{
@@ -56,7 +124,6 @@
 .m-video .m-lst:nth-child(5){
     margin-right: 0;
 }
-
 /*视频*/ 
 .m-video .anchor-head .head-icon{
     border:1px solid #fff;
@@ -64,4 +131,23 @@
 .m-video .anchor-info a{
     margin-top: -5px;
     color:#999;
+}
+.f-cb{
+    overflow:hidden;
+}
+/*为空的状态*/
+.m-video-empty{
+    width:20%;
+    height:300px;
+    margin:50px auto;
+}
+.m-empty-img{
+    display:block;
+    width:250px;
+    height:250px;
+}
+.m-empty-text{
+    font-size:16px;
+    text-align:center;
+    margin-top:30px;
 }
