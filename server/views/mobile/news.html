@@ -28,7 +28,11 @@
 		<h3 class="u-title"><img src="/mobile/images/comment_icon.png" alt="">评论</h3>
 		{% for list in comments %}
 			<a href="https://yuertvfile.wangyuhudong.com/" class="comment f-cb">
-				<img src="{{list.icon}}" alt="" class="f-fl">
+				{% if list.icon %}
+                <img src="{{list.icon}}" alt="" class="f-fl">
+	            {% else %}
+	              <img src="/mobile/images/default_avatar.png" alt="" class="f-fl">
+	            {% endif %}
 				<div class="comment-content">
 					<h3>{{list.nickname}} <span class="f-fr">{{list.create_date}}</span></h3>
 					<div>{% if list.reply_nickname %}回复<span class="reply-nickname">{{list.reply_nickname}}</span>:{% endif %}{{list.content}}</div>
