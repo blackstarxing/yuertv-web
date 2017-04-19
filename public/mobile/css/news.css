@@ -4,6 +4,8 @@ body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC;
 	 font-style:normal;  margin:0 auto; height:100%;
 	background:#141a20; overflow-x:hidden; -webkit-overflow-scrolling:touch;max-width:800px;}
 li{ list-style:none;}
+h3{font-size: 1.5rem;line-height: 1.25;}
+a{text-decoration: none; color:#9da4ad;}
 .m-bg{
 	background:#1c232d;
 	padding:10px 2.5% 25px;
@@ -11,6 +13,7 @@ li{ list-style:none;}
 .g-top{
 	font-size:21px;
 	color:#fff;
+	padding-bottom: 15px;
 }
 .g-nav{
 	font-size:10px;
