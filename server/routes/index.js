@@ -1619,7 +1619,6 @@ router.get('/mobile/news', function(req, res, next) {
                 date = new Date(JSON.parse(result[0]).object.newsInfo.create_date);
                 m = date.getMonth() + 1,
                 d = date.getDate();
-                content=JSON.parse(result[0]).object.newsInfo.content.replace(/<\/?[^>]*>/g,'');
             }
             res.render('mobile/news', {
                 title: "资讯详情",
@@ -1684,5 +1683,8 @@ router.get('/searchresult', function(req, res, next) {
         islogin: islogin,
     });
 
+});
+router.get('/activity/signupweb', function(req, res, next) {
+    res.render('activity/signupweb', { title: "主播招募" });
 });
 module.exports = router;
