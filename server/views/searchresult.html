@@ -12,12 +12,13 @@
         </div>
         <div >
             <!-- 相关主播 -->
-            <div class="m-activity f-cb m-tolive" v-show="index=='0' || index=='1'">
-                <div v-if="uptotal!=0">
+            <div class="m-activity m-tolive" v-show="index=='0' || index=='1'">
+                <div v-if="uptotal!=0" >
                     <div class="title"><span class="u-title">${uptotal}</span>位相关主播
                             <a class="more" @click="resultswitch(1)" v-show="index=='0' || index!='1'">查看全部>></a>
                     </div>
-                    <div class="m-host" v-for="(up,index) in totaluplist" >
+                    <div class="f-cb">
+                        <div class="m-host" v-for="(up,index) in totaluplist" >
                             <div class="m-nlist">
                                 <img v-bind:src="up.icon" alt="" class="m-host-icon" v-if="up.icon">
                                 <img src="/images/default_avatar.png" alt="" class="m-host-icon" v-else>
@@ -32,8 +33,9 @@
                                     <span class="u-h u-h-fans">粉丝:<span>${watchPeople(up.fans)}</span></span>
                                 </div>
                             </div>
+                        </div>
                     </div>
-                    <p class="list-tip" v-if="totaluplists==''" v-show="index=='1'">没有更多主播了</p>
+                    <p class="list-tip" v-if="totaluplists.length==0" v-show="index=='1'">没有更多主播了</p>
                 </div>
                 <div class="m-video-empty" v-else v-show="index=='1'">
                     <img src="/images/empty.png" alt="" class="m-empty-img">
@@ -46,7 +48,7 @@
                     <div class="title"><span class="u-title">${livetotal}</span>位相关直播间
                             <a class="more" v-if="videototal!=0" v-show="index=='0' || index!='2'" @click="resultswitch(2)" >查看全部>></a>
                     </div>
-                    <div class="m-content" v-for="lives in totallivelist" >
+                    <div class="m-content f-cb" v-for="lives in totallivelist" >
                             <div class="m-lst">
                                 <a href="/alllive" style="display:block;">
                                     <a href="/liveroom?id=lives.id" class="live-address">
@@ -72,7 +74,7 @@
                                 </a>
                             </div>
                     </div>
-                    <p class="list-tip" v-if="totallivelists==''" v-show="index=='2'">没有更多直播了</p>
+                    <p class="list-tip" v-if="totallivelists.length==0" v-show="index=='2'">没有更多直播了</p>
                 </div>
                 <div class="m-video-empty" v-else v-show="index=='2'">
                     <img src="/images/empty.png" alt="" class="m-empty-img">
@@ -85,7 +87,7 @@
                     <div class="title"><span class="u-title">${videototal}</span>个精彩视频
                         <a  class="more" v-show="index=='0' || index!='3'" @click="resultswitch(3)">查看全部>></a>
                     </div>
-                    <div class="m-content" v-for="(video,index) in totalvideolist" >
+                    <div class="m-content f-cb" v-for="(video,index) in totalvideolist" >
                         <div class="m-lst" >
                             <a href="/allvideo" style="display:block;">
                                 <div class="live-address" data-rtmp="video.flv" data-title="video.title" data-icon="video.user_icon" data-id="video.up_user_id" data-name="video.name" data-nickname="video.nickname" data-follow="video.is_concern">
@@ -107,8 +109,9 @@
                                 </div>
                             </a>    
                         </div>   
+
                     </div>
-                    <p class="list-tip" v-if="totalvideolists==''" v-show="index=='3'">没有更多视频了</p>
+                    <p class="list-tip" v-if="totalvideolists.length==0" v-show="index=='3'">没有更多视频了</p>
                 </div>
                 <div class="m-video-empty" v-else v-show="index=='3'">
                     <img src="/images/empty.png" alt="" class="m-empty-img">
@@ -186,24 +189,24 @@ var mvue = new Vue({
     },
     mounted: function () {
         this.$nextTick(function () {
-            // var _this=this;
-            this.keyword = this.getQueryString("keyword");
-            this.searchkeyword = this.keyword;
-            this.totals(0);
+            var _this=this;
+            _this.keyword = _this.getQueryString("keyword");
+            _this.searchkeyword = _this.keyword;
+            _this.totals(0);
             $(window).scroll(function(){ 
                 var totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop()); 
-                if($(document).height() <= totalheight && this.index != 0){
-                    if(!this.liveislast && this.index==1){
-                        this.livepage+=1;
-                        this.pagetotal(this.index);
+                if($(document).height() <= totalheight && _this.index != 0){
+                    if(!_this.liveislast && _this.index==1){
+                        _this.livepage+=1;
+                        _this.pagetotal(_this.index);
                     }
-                    if(!this.upislast && this.index==2){
-                      this.uppage+=1;
-                      this.pagetotal(this.index);
+                    if(!_this.upislast && _this.index==2){
+                      _this.uppage+=1;
+                      _this.pagetotal(_this.index);
                     }
-                    if(!this.videoislast && this.index==3){
-                      this.videopage+=1;
-                      this.pagetoal(this.index);
+                    if(!_this.videoislast && _this.index==3){
+                      _this.videopage+=1;
+                      _this.pagetotal(_this.index);
                     }
                     
                 }
@@ -313,9 +316,9 @@ var mvue = new Vue({
                     if (data.code == 0) {
                         // 获得最大的对象
                         _this.totalshows = data.object; 
-                        _this.totallivelist=[];
-                        _this.totaluplist=[];
-                        _this.totalvideolist=[];
+                        // _this.totallivelist=[];
+                        // _this.totaluplist=[];
+                        // _this.totalvideolist=[];
                         // 全部直播
                         if(_this.totalshows.liveList){
                           _this.livetotals=_this.totalshow.liveList.total; 
