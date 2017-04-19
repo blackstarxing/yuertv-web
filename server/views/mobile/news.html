@@ -21,7 +21,6 @@
 		<div class="g-n-line"></div>
 	</div>
 	<div class="g-mian m-bg">
-		{{content}}
 	</div>
 	<div class="g-comment">
 	{% if comments %}
@@ -58,6 +57,7 @@
 <script src="/wxjsapi.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
+	$('.g-mian').html('{{info.content | safe }}');
 	var _hmt = _hmt || [];
     (function() {
         var hm = document.createElement("script");

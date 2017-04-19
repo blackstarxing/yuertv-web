@@ -136,7 +136,7 @@ img.sexs{
     border:1px solid #fff;
 }
 .m-video .anchor-info a{
-    margin-top: -5px;
+    /*margin-top: -5px;*/
     color:#999;
 }
 .f-cb{
@@ -159,6 +159,7 @@ img.sexs{
     margin-top:30px;
 }
 .list-tip{
+    display:block;
     text-align:center;
 }
 [v-cloak] { display: none }
