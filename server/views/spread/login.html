@@ -530,11 +530,11 @@
 						<span class="u-sl-length" style="display:none;">直播标题不要超过20位</span>
 					</div>
 					<input type="text" name="" placeholder="请选择游戏" readOnly="true" class="u-sgame" id="u-sgame" >
-					<form action="" method="get" class="u-btn-radio"> 
+					<!-- <form action="" method="get" class="u-btn-radio"> 
 					    请选择横竖屏<br/>
 					    <label><input name="screen" type="radio" value="0" checked="" id="u-btn-screen" class="u-btn-s"/>横屏</label> 
 					    <label class="u-label"><input name="screen" type="radio" value="1" id="u-btn-sc" class="u-btn-sc"/>竖屏</label> 
-    				</form> 
+    				</form>  -->
 					<button class="u-start" id="u-start">开始直播</button>
 				</div>
 			</div>	
@@ -742,7 +742,7 @@
 	                    dataType: 'json',
 	                    data: {
 	                        gameId: keyword,
-	                        screen:$('input:radio[name="screen"]:checked').val(),
+	                        screen:0,
 	                        source:2,
 	                        title:title,
 	                        userId:id,

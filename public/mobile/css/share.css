@@ -78,7 +78,7 @@ button,input{padding:0;margin:0;outline: none;}
 }
 .lightbox .full{
 	width: 31%;
-	margin-right: 3%;
+	margin-right: 2.5%;
 }
 .lightbox .full:nth-child(3n+0){
 	margin-right: 0;
