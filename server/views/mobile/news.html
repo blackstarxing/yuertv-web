@@ -23,8 +23,8 @@
 	<div class="g-mian m-bg">
 	</div>
 	<div class="g-comment">
-	{% if comments %}
 		<h3 class="u-title"><img src="/mobile/images/comment_icon.png" alt="">评论</h3>
+	{% if comments.length>0 %}
 		{% for list in comments %}
 			<a href="https://yuertvfile.wangyuhudong.com/" class="comment f-cb">
 				{% if list.icon %}
@@ -34,7 +34,7 @@
 	            {% endif %}
 				<div class="comment-content">
 					<h3>{{list.nickname}} <span class="f-fr">{{list.create_date}}</span></h3>
-					<div>{% if list.reply_nickname %}回复<span class="reply-nickname">{{list.reply_nickname}}</span>:{% endif %}{{list.content}}</div>
+					<div>{% if list.reply_nickname %}回复<span class="reply-nickname">@{{list.reply_nickname}}</span>:{% endif %}{{list.content}}</div>
 				</div>
 			</a>
 		{% endfor %}
@@ -47,8 +47,8 @@
 	</div>
 	<a href="https://yuertvfile.wangyuhudong.com/" class="g-bt">
 		<ul class="f-cb">
-			<li><img src="/mobile/images/comment.png" alt="">{{info.comment_num}}<i></i></li>
-			<li><img src="/mobile/images/like.png" alt="">{{info.praise_num}}</li>
+			<li><img src="/mobile/images/comment.png" alt="">{{'' if info.comment_num==0 else info.comment_num}}<i></i></li>
+			<li><img src="/mobile/images/like.png" alt="">{{'' if info.praise_num==0 else info.praise_num}}</li>
 		</ul>
 	</a>
 </div>

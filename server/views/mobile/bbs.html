@@ -33,19 +33,19 @@
 			</div>
 			<div class="middle">
 				<h3>{{info.title}}</h3>
-				<p>{{info.content}}</p>
-				<div class="lightbox">
+				<div class="pre">{{info.content}}</div>
+				<div class="lightbox f-cb">
 					{% if imgs.length>4 %}
 					{% for img in imgs %}
-						<img src="{{img}}" alt="" class="full" onclick="showSwiper({{loop.index0}})">
+						<div class="full" style="background: url({{img}});background-position: center;background-size:cover;" onclick="showSwiper({{loop.index0}})"></div>
 					{% endfor %}
 					{% elseif imgs.length==1 %}
 					{% for img in imgs %}
-						<img src="{{img}}" alt="" class="less" onclick="showSwiper({{loop.index0}})">
+						<div class="less" style="background: url({{img}});background-position: center;background-size:cover;" onclick="showSwiper({{loop.index0}})"></div>
 					{% endfor %}
 					{% else %}
 					{% for img in imgs %}
-						<img src="{{img}}" alt="" class="mid" onclick="showSwiper({{loop.index0}})">
+						<div class="mid" style="background: url({{img}});background-position: center;background-size:cover;" onclick="showSwiper({{loop.index0}})"></div>
 					{% endfor %}
 					{% endif %}
 				</div>
@@ -62,7 +62,7 @@
 					<img src="{{list.icon}}" alt="" class="f-fl">
 					<div class="comment-content">
 						<h3>{{list.nickname}} <span class="f-fr">{{list.create_date}}</span></h3>
-						<div>{% if list.reply_nickname %}回复<span class="reply-nickname">{{list.reply_nickname}}</span>:{% endif %}{{list.content}}</div>
+						<div>{% if list.reply_nickname %}回复<span class="reply-nickname">@{{list.reply_nickname}}</span>:{% endif %}{{list.content}}</div>
 					</div>
 				</a>
 			{% endfor %}
@@ -75,8 +75,8 @@
 	</div>
 	<a href="https://yuertvfile.wangyuhudong.com/" class="g-bt">
 		<ul class="f-cb">
-			<li><img src="/mobile/images/comment.png" alt="">{{info.comment_num}}<i></i></li>
-			<li><img src="/mobile/images/like.png" alt="">{{info.praise_num}}</li>
+			<li><img src="/mobile/images/comment.png" alt="">{{'' if info.comment_num==0 else info.comment_num}}<i></i></li>
+			<li><img src="/mobile/images/like.png" alt="">{{'' if info.praise_num==0 else info.praise_num}}</li>
 		</ul>
 	</a>
 	<div class="swiper-box">
@@ -113,6 +113,7 @@
 		})
 	</script>
 	<script>
+		// $('.content').html('{{content | safe }}');
 		var mySwiper = new Swiper ('.swiper-container', {
             direction: 'horizontal',
             loop: true,
@@ -121,15 +122,17 @@
             observeParents:true,
             // initialSlide :index,
         });
+        var w = $('.lightbox div').width();
+        $('.lightbox div').css('height',w+'px');
 		function showSwiper(index){
 			var i = index+1;
 			$('.swiper-box').show(); 
 	        mySwiper.slideTo(i,false);
 		}
-		$('.swiper-container').click(function(e){
-			if(e.target.nodeName!='IMG'){
+		$('.swiper-slide').click(function(e){
+			// if(e.target.nodeName!='IMG'){
 				$('.swiper-box').hide();
-			}			
+			// }			
 		})
 	</script>
 </body>

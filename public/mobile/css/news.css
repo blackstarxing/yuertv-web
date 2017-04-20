@@ -24,8 +24,8 @@ a{text-decoration: none; color:#9da4ad;}
 .g-n-title{
 	display:inline-block; 
 	width:20%;
-	height:13px;
-	line-height:13px;
+	height:20px;
+	line-height:20px;
 	text-align:center;
 	margin-right:0.2%;
 	font-size:9px;
@@ -34,6 +34,7 @@ a{text-decoration: none; color:#9da4ad;}
 	position:absolute;
 	right:2.5%;
 	left:auto;
+	border-radius: 2px;
 	white-space:nowrap;/* 不换行 */
 	overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
 	text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ 
@@ -44,6 +45,9 @@ a{text-decoration: none; color:#9da4ad;}
 }
 .g-mian{
 	font-size:12px;color:#98a9bb;
+}
+.g-mian img{
+	max-width: 100%;
 }
 .g-m-video{
 	margin:5% 0;
@@ -84,6 +88,9 @@ a{text-decoration: none; color:#9da4ad;}
 .comment-content h3 span{
 	font-size: 0.9rem;
 	color:#465667;
+}
+.reply-nickname{
+	color: #f36;
 }
 img.u-empty-img{
 	display:block;
