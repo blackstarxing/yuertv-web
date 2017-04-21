@@ -25,8 +25,8 @@
                                 <div class="m-host-name f-cb">
                                     <span class="u-h-name">${up.nickname}</span>
                                     <img src="/images/male.png" alt="" class="sexs">
-                                    <button class="disfollow f-right" v-if="up.is_concern==1" :data-id="up.up_user_id">已关注</button>
-                                    <button class="follow f-right" v-else :data-id="up.up_user_id">关注</button>
+                                    <button class="disfollow" v-if="up.is_concern==1" :data-id="up.up_user_id">已关注</button>
+                                    <button class="follow" v-else :data-id="up.up_user_id">关注</button>
                                 </div>
                                 <div class="m-host-fans">
                                     <span class="u-h">房间:<span>${up.room_number}</span></span>
