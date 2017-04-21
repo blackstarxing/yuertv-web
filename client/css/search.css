@@ -87,16 +87,16 @@ img.sexs{
     width:47%;
     font-size:12px;
     color:#999;
-    white-space:nowrap;/* 不换行 */
-    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
-    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ 
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 .u-h-fans{
     width:49%;
     text-align:right;
-    white-space:none;/* 不换行 */
-    overflow:none;/* 内容超出宽度时隐藏超出部分的内容 */
-    text-overflow:none;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ 
+    white-space:none;
+    overflow:none;
+    text-overflow:none;
 }
 .f-right{
     float:right;
@@ -136,7 +136,6 @@ img.sexs{
     border:1px solid #fff;
 }
 .m-video .anchor-info a{
-    /*margin-top: -5px;*/
     color:#999;
 }
 .f-cb{
@@ -161,5 +160,20 @@ img.sexs{
 .list-tip{
     display:block;
     text-align:center;
+}
+.m-host-name .disfollow,.m-info .disfollow,.m-host-name .follow,.m-info .follow{
+	border:none;
+	display:block;
+	width:45px;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	border-radius:2px;
+	color:#fff;
+	background:#f36;
+	font-size:12px;
+}
+.m-host-name .disfollow,.m-info .disfollow{
+	background:#999;
 }
 [v-cloak] { display: none }
