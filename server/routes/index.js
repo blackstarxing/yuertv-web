@@ -7,7 +7,7 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-var path = 'http://172.16.10.11:8777';
+var path = 'http://172.16.10.6:8777';
 var apipath ="http://172.16.10.134:8099";
 // var path = 'http://qa.webapi.yuerlive.cn';
 // var apipath ="http://qa.api.yuerlive.cn";
@@ -24,6 +24,7 @@ function getTicket(){
     }]).then(function(cont, result) {
         Thenjs.parallel([function(cont) {
             console.log(JSON.parse(result[0]).access_token);
+            console.log("112q");
             request('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+JSON.parse(result[0]).access_token+'&type=jsapi', function(error, response, body) {
                 if (!error && response.statusCode == 200) {
                     cont(null, body);
@@ -34,11 +35,11 @@ function getTicket(){
         }]).then(function(cont, result) {
             ticket = JSON.parse(result[0]).ticket;
             ticketline = new Date().getTime();
-        }).fail(function(cont, error) { 
+        }).fail(function(cont, error) {
             console.log(error);
             res.render('error', { title: "错误"});
         });
-    }).fail(function(cont, error) { 
+    }).fail(function(cont, error) {
         console.log(error);
         res.render('error', { title: "错误"});
     });
@@ -96,7 +97,7 @@ router.get('/liveroom', function(req, res, next) {
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){
            islogin = true; 
-       }        
+       }
     }else{
         islogin = false;
     };
@@ -173,7 +174,7 @@ router.get('/service', function(req, res, next) {
            islogin = true; 
        }        
     }else{
-        islogin = false;
+        islogin = false; 
     };
     res.render('service', { title: "用户协议" ,islogin:islogin});
 });
@@ -183,13 +184,14 @@ router.get('/center/information', function(req, res, next) {
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){
            islogin = true; 
-       }        
+       }
     }else{
         islogin = false;
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: path+'/person-center/user-info',
+            // uri: path+'/person-center/user-info',
+            uri: path+'/userInfo',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -201,12 +203,33 @@ router.get('/center/information', function(req, res, next) {
                 cont(new Error('error!'));
             }
         })
-    }]).then(function(cont, result) {
+
+    },function(cont){
+        request({
+            // uri: path+'/person-center/user-info',
+            uri: path+'/updateuUserInfo',
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+            }
+        }, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+
+    }
+    ]).then(function(cont, result) {
         console.log("zhangli"+JSON.parse(result[0]).object.icon);
+        console.log("zhangli"+JSON.parse(result[0]).object);
+        console.log("zhangli"+JSON.parse(result[0]).object.mobile);
         res.render('center/information', {
             title: "我的资料",
             index:0,
             info: JSON.parse(result[0]).object,
+            updateinfo: JSON.parse(result[1]).object,
             islogin: islogin,
         });
     }).fail(function(cont, error) { 
@@ -223,8 +246,37 @@ router.get('/center/focus', function(req, res, next) {
     }else{
         islogin = false;
     };
-    res.render('center/focus', { title: "我的关注" ,index:1,islogin:islogin});
+
+    Thenjs.parallel([function(cont) {
+        request({
+            // uri: path+'/person-center/user-info',
+            uri: path+'/userInfo',
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+            }
+        }, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+
+    }]).then(function(cont, result) {
+        console.log("zhangli"+JSON.parse(result[0]).object.icon);
+        res.render('center/focus', {
+            title: "我的关注",
+            index:1,
+            info: JSON.parse(result[0]).object,
+            islogin: islogin,
+        });
+    }).fail(function(cont, error) {
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
 });
+/*1.0.3 delete 我的道具*/
 router.get('/center/props', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
@@ -270,7 +322,35 @@ router.get('/center/message', function(req, res, next) {
     }else{
         islogin = false;
     };
-    res.render('center/message', { title: "我的消息" ,index:3,islogin:islogin});
+    Thenjs.parallel([function(cont) {
+        request({
+            // uri: path+'/person-center/user-info',
+            uri: path+'/userInfo',
+            headers: {
+                'User-Agent': 'request',
+                'cookie': req.headers.cookie,
+            }
+        }, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                cont(null, body);
+            } else {
+                cont(new Error('error!'));
+            }
+        })
+
+    }]).then(function(cont, result) {
+        console.log("zhangli"+JSON.parse(result[0]).object.icon);
+        res.render('center/message', {
+            title: "我的消息",
+            index:2,
+            info: JSON.parse(result[0]).object,
+            islogin: islogin,
+        });
+    }).fail(function(cont, error) {
+        console.log(error);
+        res.render('error', { title: "错误"});
+    });
+
 });
 router.get('/center/topup', function(req, res, next) {
     var islogin = false;
@@ -281,20 +361,21 @@ router.get('/center/topup', function(req, res, next) {
     }else{
         islogin = false;
     };
-    Thenjs.parallel([function(cont) {
-        request({
-            uri: path+'/pay/recharge-list',
-            headers: {
-                'User-Agent': 'request',
-                'cookie': req.headers.cookie,
-              }
-        }, function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                cont(null, body);
-            } else {
-                cont(new Error('error!'));
-            }
-        })
+    Thenjs.parallel([
+        function(cont) {
+            request({
+                uri: path+'/pay/recharge-list',
+                headers: {
+                    'User-Agent': 'request',
+                    'cookie': req.headers.cookie,
+                  }
+            }, function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    cont(null, body);
+                } else {
+                    cont(new Error('error!'));
+                }
+            })
     },function(cont) {
         request({
             uri: path+'/person-center/my-yuer-coin',
@@ -309,16 +390,33 @@ router.get('/center/topup', function(req, res, next) {
                 cont(new Error('error!'));
             }
         })
-    }]).then(function(cont, result) {
+    },
+        function(cont) {
+            request({
+                uri: path+'/userInfo',
+                headers: {
+                    'User-Agent': 'request',
+                    'cookie': req.headers.cookie,
+                }
+            }, function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    cont(null, body);
+                } else {
+                    cont(new Error('error!'));
+                }
+            })
+        },
+    ]).then(function(cont, result) {
         console.log(result);
         res.render('center/topup', {
             title: "我要充值",
-            index:4,
+            index:3,
             valuelist: JSON.parse(result[0]).object,
             valueyuer: JSON.parse(result[1]).object,
+            info: JSON.parse(result[2]).object,
             islogin: islogin,
         });
-    }).fail(function(cont, error) { 
+    }).fail(function(cont, error) {
         console.log(error);
         res.render('error', { title: "错误"});
     });
@@ -334,7 +432,7 @@ router.get('/center/host', function(req, res, next) {
     };
     Thenjs.parallel([function(cont) {
         request({
-            uri: path+'/person-center/user-info',
+            uri: path+'/userInfo',
             headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -350,7 +448,7 @@ router.get('/center/host', function(req, res, next) {
         console.log("zhangli"+JSON.parse(result[0]).object.icon);
         res.render('center/host', {
             title: "我要当主播",
-            index:5,
+            index:4,
             info: JSON.parse(result[0]).object,
             islogin: islogin,
         });
@@ -443,8 +541,8 @@ router.get('/valuesuccess', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){
-           islogin = true; 
-       }        
+           islogin = true;
+       }
     }else{
         islogin = false;
     };
@@ -748,7 +846,7 @@ router.get('/activity/datashow', function(req, res, next) {
         })
     },function(cont) {
         request({
-            uri:'http://yuerapi.wangyuhudong.com/yearlyUserData?userId='+userId,
+             uri:'http://yuerapi.wangyuhudong.com/yearlyUserData?userId='+userId,
              headers: {
                 'User-Agent': 'request',
                 'cookie': req.headers.cookie,
@@ -1131,8 +1229,8 @@ router.get('/guide/contact', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){
-           islogin = true; 
-       }        
+           islogin = true;
+       }
     }else{
         islogin = false;
     };
@@ -1500,7 +1598,7 @@ router.get('/cash/personcenter', function(req, res, next) {
             livenum: JSON.parse(result[0]).object,
             ticket:ticket,
         });  
-    }).fail(function(cont, error) { 
+    }).fail(function(cont, error) {
         console.log(error);
         res.render('error', { title: "错误"});
     });
@@ -1580,7 +1678,7 @@ router.get('/mobile/bbs', function(req, res, next) {
             comments:JSON.parse(result[0]).object.comment,
             ticket:ticket
         });
-    }).fail(function(cont, error) { 
+    }).fail(function(cont, error) {
         console.log(error);
         res.render('error', { title: "错误"});
     });

@@ -145,8 +145,7 @@ $(function(){
     },function(){
         $('.showQR').hide();
     });
-    $('.fade').hover(function(){
-        $('.fade ul').stop(true,true);
+    $('.fade').hover(function(){        $('.fade ul').stop(true,true);
         $(this).find("ul").animate({marginLeft:'-60px'},300);
     },function(){
         $('.fade ul').stop(true,true);

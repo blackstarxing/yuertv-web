@@ -11,7 +11,7 @@ input{
 }
 .g-container{
 	background: #141a20;
-	padding-bottom: 285px;
+	padding-bottom: 272px;
 }
 .g-container input{
 	text-indent: 12px;
@@ -28,10 +28,11 @@ input{
 .g-left{ 
 	position:absolute;
 	width:260px;
+	min-height: 790px;
 	background:#1a2129; 
-}   
+}
+.g-left ul{margin-bottom: 30px}
 .g-left ul li{
-	color:#fff;
 	height:60px;
 	font-size:16px;
 	color:#cecfd2;
@@ -68,22 +69,18 @@ input{
  	text-align:center;
  	font-weight:normal;
 
- } 
-.g-left ul li.u-cbottom{
-	margin-bottom:230px;
+ }
+
+
+/*1.0.3 资料卡片 左侧栏*/
+.g-right{
+	min-height: 790px;
 }
-/*右侧样式*/
-.g-right{ 
-	margin-left:280px; 
-	background:#1a2129; 
-}
-/*右侧上面的样式*/
 .g-right .m-top{
 	height:125px;
 	padding-top:40px;
 	padding-left:20px;
 }
-
 .m-tright .u-tovalue{
 	display:inline-block;
 	width:45px;
@@ -95,43 +92,54 @@ input{
 	border-radius: 5px;
 }
 .m-tleft{
-		position: relative;
+	position: relative;
+	padding:20px 0 0 0;
+	text-align: center;
 }
 .m-tleft img{
+	position: relative;
 	display: inline-block;
-	width:122px;
-	height:122px;
+	width:70px;
+	height:70px;
 	border-radius:50%;
 }
 .m-top .m-tleft img#seximg{
+	position: absolute;
+	bottom:0;
+	left: 56%;
 	display:inline-block;
-	width:25px;
-	height:25px;
+	width:18px;
+	height:18px;
 	border-radius: 50%;
-	position:relative;
-	left:-35px;
-	top:110;
-
 }
-/*右侧下面的样式－－－从修改密码起*/
+.m-tright{
+	margin-left: 63px;
+}
 .g-right .m-bottom{
 	width:450px;
+	min-height: 740px;
 	margin-top:65px;
 	margin-bottom:100px;
 }
 .g-right  .m-top .m-tleft{
 	position:absolute;
 	padding-left:35px;
-	 width:200px;
+	width:200px;
 }
 .g-right .m-top .m-tright{
 	margin-left:200px;
 	padding-left:40px;
 }
 .m-tright .u-nicknameonly{
+	font-size: 24px;
 	color:#fff;
 }
-.g-right .m-top .m-tright .u-p1{
+.m-top .m-tright{
+	color:#CECFD2;
+}
+.m-top .m-tright .u-p1{
+	margin: 15px 20px 22px -43px;
+	text-align: center;
 	font-size:24px;
 }
 .g-right .m-top .m-tright .u-p1 .u-p1-s{
@@ -144,22 +152,24 @@ input{
 	color:#f36;
 	margin:0px 10px;
 }
-.g-right .m-top .m-tright .u-p2{
-	margin-top:40px;
+.g-left .m-top{
+	margin-bottom: 19px;
+}
+.g-left .m-top .m-tright .u-p2{
 	color:#cecfd2;
 }
-.g-right .m-top .m-tright .u-p2 .u-change{
+.g-left .m-top .m-tright .u-p2 .u-change{
 	padding-left:10px;
 }
-.g-right .m-top .m-tright .u-p3{
-	margin-top:15px;
+.g-left .m-top .m-tright .u-p3{
+	margin-top:7px;
 	color:#cecfd2;
 }
-.g-right .m-top .m-tright .u-p3 .u-change1{
+.g-left .m-top .m-tright .u-p3 .u-change1{
 	color:#ff0;
 	padding-left:10px;
 }
-.g-right .m-top .m-tright .u-p3 input{
+.g-left .m-top .m-tright .u-p3 input{
 	background:#3ff;
 	margin-left:25px;
 	width:40px;
@@ -167,6 +177,38 @@ input{
 	padding:auto;
 	border:0px;
 }
+/*1.0.3左侧下载app add*/
+.g-left .m-bottomText{
+	margin-bottom: 15px;
+	font-size: 16px;
+	color:#fff;
+	text-align: center;
+}
+.g-left .m-bottomImgBox{
+	padding:0 25px;
+	font-size: 16px;
+	text-align: center;
+	color:#fff;
+}
+.g-left .m-bottomImg{
+	float: left;
+	width: 100px;
+}
+.g-left .m-bottomImg img{
+	width: 100px;
+	margin-top: 5px;
+}
+.g-left .bottomImgApp{
+	margin-left: 10px;
+}
+/*1.0.3左侧下载app add end*/
+
+/*右侧样式*/
+.g-right{ 
+	margin-left:280px; 
+	background:#1a2129; 
+}
+/*右侧下面的样式－－－从修改密码起*/
 /*右边下侧样式*/
 .thePhone,.thePhones,.switch-conCard,.iconModify,.payAdd{
 	display:none;
@@ -174,8 +216,81 @@ input{
 .g-right .rightswitch{
 	padding-top:50px;
 	width:800px;
-	margin:0px 70px 60px 55px;
+	margin:0px 70px 0px 55px;
 }
+/*1.0.3基本资料*/
+.g-right .m-basicInfo{
+	width:100%;
+	font-size: 14px;
+	cursor:pointer;
+}
+.g-right .m-basicInfo div{
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+	margin-bottom: 34px;
+}
+.g-right .m-basicInfo img{
+	width: 50px;
+	height: 50px;
+	border-radius:50%;
+	vertical-align: middle;
+}
+.g-right .m-basicInfo .u-left{
+	margin-right: 37px;
+	color:#666E72;
+}
+.g-right .m-basicInfo .u-middle{
+	width: 200px;
+	color:#fff;
+}
+.nickNameInput{
+	border:none;background: #1a2129;
+}
+.sexChange.active{display: none}
+.sexChange span.active{
+	background: #f36;
+}
+.u-middle .infoMale,.u-middle .infoFemale{
+	display: inline-block;
+	width: 80px;
+	text-align: center;
+}
+.u-middle .dot{
+	position: absolute;left:0;bottom: -37px;width: 80px;background:#cecfd2
+}
+.g-right .m-basicInfo .u-change{
+	color:#FF3366;
+}
+.u-change .u-nameSave,.u-change .sexSave{
+	margin-right: 20px;
+}
+
+.g-right .m-basicInfo .basicInfo-common{
+	position: relative;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+}
+.basicInfo-common .IconChange.active{
+	display: none;
+	background: red;
+}
+#nicknameChangeSave.active,.basicInfo-common .nicknameChange.active,.basicInfo-common .sexChange.active,.basicInfo-common .SexChange.active{
+	display: none;
+}
+.basicInfo-common .u-changeSuccess{
+	position: absolute;
+	top: 30px;
+	left: 70px;
+}
+.g-right .m-basicInfo .m-headIcon{
+	height: 50px;
+	line-height:50px;
+}
+
+
+
 .g-left ul li.rightswitchcolor a{
 	color:#f36;
 }
@@ -1161,7 +1276,7 @@ input.full{
 .g-focus{
 	box-sizing: border-box;
 	width:795px;
-	height:800px;
+	height:790px;
 	padding-bottom:60px;
 	position:relative;
 }
@@ -1420,7 +1535,6 @@ input.full{
 	height:25px;
 	line-height:25px;
 	margin:100px 0px 60px 560px;
-	padding:5px;
 	font-size:14px;
 }
 .M-box span.totalPage{
@@ -1453,12 +1567,12 @@ input.full{
 /*我的消息*/
 .m-mainm{
 	width:800px;
-	height:800px;
+	min-height:680px;
 }
 .m-message{
 	width:800px;
 	margin:85px 65px 60px 70px;
-	padding-bottom:60px;
+
 }
 .u-m-top a{
 	display:inline-block;
@@ -1482,23 +1596,54 @@ input.full{
 }
 .u-systemmessage .u-message{
 	width:780px;
-	height:100px;
+	min-height:93px;
 	border-bottom:1px dotted #2d3a46;
-	margin:0px 0px 20px 0px;
 }
 .u-message .u-msystem{
+	position: relative;
 	float:left;
 	width:75px;
-	height:100px;
+	min-height:93px;
+	line-height: 93px;
+	vertical-align: middle;
+}
+.u-message .u-msystem img{
+	width: 50px;
+	height: 50px;
+	border:1px solid #90ADCA;
+	border-radius: 50%;
+	vertical-align: middle;
+}
+.u-message .u-msystem .seximg{
+	position: absolute;
+	bottom: 18px;
+	right: 18px;
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
 }
 .u-message .u-yuer{
 	float:left;
 	width:700px;
-	height:100px;
+	min-height:93px;
+}
+.u-message .u-yuerContent{
+	width: 530px;
+	margin-top: 21px;
+	word-wrap: break-word;
+	word-break: break-all;
+	white-space: normal;
+}
+.u-message .u-yuerDate{
+	margin-top: 21px
 }
 .u-yuer h3{
 	display:inline-block;
-	width:530px;
+	width:100%;
+	height: 18px;
+	margin-top:21px;
+	line-height: 18px;
 	font-size:18px;
 	color:#fff;
 }
@@ -1507,26 +1652,35 @@ span.u-messagetime{
 	font-size:12px;
 	color:#626f7e;
 }
-.u-yuer p .u-messagecontent{
+.u-yuer div .u-messagecontent{
 	font-size:14px;
 	color:#626f7e;
 }
-.u-yuer p .u-messtips{
+.u-yuer div .u-messtips{
+	cursor:pointer;
+	margin-left: 25px;
 	font-size:14px;
 	color:#f36;
-	cursor:pointer;
 }
 
 /*关注消息*/
+.focusmessage{
+	width: 780px;
+	min-height: 620px;
+}
 .u-focusmessage{
 	position:relative;
 	width:780px;
-	height:400px;
+	min-height:400px;
+	margin-bottom: 60px;
 }
 .u-focusmessage .u-focusmess{
+	float:left;
 	width:780px;
-	height:60px;
+	min-height:93px;
+	line-height: 93px;
 	border-bottom:1px dotted #2d3a46;
+	vertical-align: middle;
 }
 
 .u-focusmess p{
@@ -2212,6 +2366,72 @@ div.paytipsbind{
 	bottom:0;
 	margin:auto;
 	z-index:8888;
+}
+.g-checkCode{
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin: -130px 0 0 -150px;
+	min-width: 240px;
+	min-height: 200px;
+	padding:30px;
+	background: #323A43;
+	z-index:999999999;
+}
+.codeError{
+	display: none;
+	color:#FF3366;
+}
+.g-checkCode.active{
+	display: none;
+}
+.g-checkCode .m-Content{
+	width:100%;
+	height: 14px;
+	margin-bottom: 30px;
+	line-height: 14px;
+	color: #fff;
+}
+.g-checkCode .m-codeInput{
+	width: 100%;
+	height: 41px;
+	font-size: 16px;
+	border:1px solid #312D2D;
+	background: #303840;
+	color:#fff;
+}
+.g-checkCode .m-codeImgBox{
+	width: 100%;
+	margin-top: 20px;
+}
+.g-checkCode .m-codeImgBox a{
+	color:#f36;
+}
+.m-codeImg{
+	width: 120px;
+	height: 50px;
+}
+.m-codeBtn{
+	width: 100%;
+	margin-top: 20px;
+}
+.m-codeBtn button{
+	width: 100px;
+	height: 30px;
+	border-radius: 20px;
+	font-size: 16px;
+	color:#fff;
+}
+.m-codeBtn button:nth-of-type(1){
+	background: #FF3366;
+	margin-right: 40px;
+}
+.m-codeBtn button:nth-of-type(2){
+	color:#575D65;
+}
+
+.telValBounced.active{
+	display: none;
 }
 .telValBounced .u-divTelVer{
 	position:relative;

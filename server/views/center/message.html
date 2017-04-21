@@ -9,7 +9,7 @@
  <div class="g-container f-cb" id="messagevue" v-cloak>
 	<div class="g-main"> 
 		 {% include 'common/cenleft.html' %}  
-	    <div id="rightmain" class="g-right">
+	   	 <div id="rightmain" class="g-right f-cb">
 <!-- 我的消息 -->
 	<div class="m-message rightswitch">
 		<div class="m-mainm">
@@ -18,20 +18,29 @@
 				<a href="" id="initFocusMessage" @click="umtopeq">关注消息</a>
 			</div>
 			<div class="u-systemmessage mcurrent">
-				<div class="messageBox" >
+				<div class="messageBox">
 					<div v-if="vuemessage">
-						<div class="u-message" v-for="(item,index) in vuemessage" >
+						<div class="u-message f-cb" v-for="(item,index) in vuemessage" >
+
 							<div class="u-msystem">
 								<img src="/images/messagehead.png">
 							</div>
 							<div class="u-yuer">
-								<p>
-									<h3>${item.title}</h3>
-									<span class="u-messagetime">${item.create_date}</span>
-								<p>
-								<p>
-								<span class="u-messagecontent">${item.content}</span><span class="u-messtips" id="messshow">全文&gt;&gt;</span>
-								</p>
+								<h3>${item.title}</h3>
+							 	<div class="u-yuerContent f-fl">
+									<span v-if='item.target_type==1' class="u-messagecontent">${item.content}</span>
+									<span v-else-if="item.target_type==2" class="u-messagecontent">${item.content}</span>
+									<span v-else-if="item.target_type==4"  class="u-messagecontent">${item.content}</span>
+									<span v-else class="u-messagecontent">
+										${item.content}
+									</span>
+									<a v-if='item.target_type==1' v-bind:href="'/liveroom?id='+item.room_number">	<span  class="u-messtips" id="messshow">查看<!--&gt;&gt;--></span></a>
+									<a v-if='item.target_type==2' v-bind:href="'/liveroom?id='+item.live_id">	<span  class="u-messtips" id="messshow">查看<!--&gt;&gt;--></span></a>
+									<a v-if='item.target_type==4' v-bind:href="item.url">	<span   class="u-messtips" id="messshow">查看<!--&gt;&gt;--></span></a>
+									<!--<a v-else href="javascript:;">	<span class="u-messtips" id="messshow">查看&lt;!&ndash;&gt;&gt;&ndash;&gt;</span></a>-->
+
+								</div>
+								<div class="u-yuerDate f-fr"><span class="u-messagetime f-fr">${item.create_date}</span></div>
 							</div>
 						</div>
 					</div>
@@ -39,51 +48,50 @@
 						<img src="/images/empty.png" class="empty" alt="暂无任何系统消息" title="暂无任何系统消息">
 						<p class="emptyText">当前没有系统消息哦！</p>
 					</div>
-					
 				</div>
-				
 				<div class="M-box">
 					<a href="javascript:;" @click="prevBtnmsg" class="prevBtn">上一页</a>
 					<span class="totalPage"></span>
 					<a href="javascript:;" @click="nextBtnmsg" class="nextBtn">下一页</a>
 				</div>
 			</div>
-			
-			<div class="u-focusmessage mcurrent">
-				<div class="focusmessage">
+			<div class="u-systemmessage u-focusmessage mcurrent">
+				<div class="messageBox">
 					<div v-if="vuemessage">
-						<div v-for="(item,index) in vuemessage" style="position:relative;" class="focuswitch">
-							<div class="u-focusmess" >
-								<p class="u-focusnc">
-									<span class="u-foucscolor">${item.title}</span>
-									<span class="u-focusc">关注了你</span>
-								</p>
-								<span class="u-focustime">${item.create_date}</span>
-							</div>
-							<div class="u-messnickname">
-								<img src="/images/default_avatar.png" class="messnickicon" v-if="item.icon==null">
-								<img v-bind:src="'http://img.wangyuhudong.com/'+item.icon" class="messnickicon" v-else>
-								<img v-if="item.sex==0" src="/images/male.png" class="messimgsex">
-								<img v-else src="/images/female.png" class="messimgsex">
-								<p class="u-mkname">${item.title}</p>
-								<p><span>房间号：</span><span>${item.user_id}</span></p>
-							</div>
+
+						<div class="u-message f-cb" v-for="(item,index) in vuemessage">
+									<div class="u-msystem">
+										<img v-bind:src="item.icon">
+										<!--{% if item.sex == 0 %}-->
+										<img v-if="item.sex == 0"  src="/images/male.png" class="seximg">
+										<!--{% else %}-->
+										<img v-else src="/images/female.png" class="seximg">
+										<!--{% endif %}-->
+
+									</div>
+									<div class="u-yuer">
+										<h3>${item.title}</h3>
+										<div class="u-yuerContent f-fl">
+											<span class="u-messagecontent">关注了你</span>
+											<a v-if="item.id=''" href="javascript:;"><span class="u-messtips">查看 该用户不是主播</span></a>
+											<a v-else v-bind:href="'/liveroom?id='+item.live_id"><span class="u-messtips">查看</span></a>
+
+										</div>
+										<div class="u-yuerDate f-fr"><span class="u-messagetime f-fr">${item.create_date}</span></div>
+									</div>
 						</div>
 					</div>
-						
 					<div v-else>
-						<img src="/images/empty.png" class="empty" alt="暂无任何关注消息" title="暂无任何关注消息">
+						<img src="/images/empty.png" class="empty" alt="暂无任何系统消息" title="暂无任何系统消息">
 						<p class="emptyText">当前没有关注消息哦！</p>
 					</div>
-						
 				</div>
 				<div class="M-box">
-					<a href="javascript:;" @click="prevBtnmsgs" class="prevBtn">上一页</a>
+					<a href="javascript:;" @click="prevBtnmsg" class="prevBtn">上一页</a>
 					<span class="totalPage"></span>
-					<a href="javascript:;" @click="nextBtnmsgs" class="nextBtn">下一页</a>
+					<a href="javascript:;" @click="nextBtnmsg" class="nextBtn">下一页</a>
 				</div>
 			</div>
-			
 		</div>
 	</div>
 </div><!-- 右侧结尾 -->
@@ -114,12 +122,15 @@
 		    	cur_pageCallback:null,
 		    	cur_type:0,
             },
+			target_type:'',
+
         },
         mounted: function () {
             this.$nextTick(function () {
                 // 代码保证 this.$el 在 document 中
                 this.eventBind();
                 this.newsList();
+
             })
         },
         methods:{
@@ -213,27 +224,28 @@
 	                    page: _this.local.cur_page,
 	                    pageSize: _this.local.cur_pageSize,
 	                    type:_this.local.cur_type,
-	                }, 
+	                },
 	                success: function(data) {
 	                    if (data.code == 0) {
 	                        if(data.object.list.length>0){
 	                        	_this.vuemessage = data.object.list;
+								console.log(_this.vuemessage);
 	                        	$('body').scrollTop(0);
-	                            $(".M-box").show();  
-	                            if(_this.local.cur_type == 0){
-	                            }else{
-	                            	 $(".u-foucscolor").on("mouseenter", function() { 
-								        $(this).parents('.focuswitch').find('.u-messnickname').show();
-								    });
-								    $(".u-foucscolor").on("mouseleave", function() { 
-								        $(this).parents('.focuswitch').find('.u-messnickname').hide();
-								    }) 
-	                            }
-	                            _this.Pagination(_this.local.cur_page,data.object.total,_this.local.cur_pageSize,"follow");       
+	                            $(".M-box").show();
+//	                            if(_this.local.cur_type == 0){
+//	                            }else{
+//	                            	 $(".u-foucscolor").on("mouseenter", function() {
+//								        $(this).parents('.focuswitch').find('.u-messnickname').show();
+//								    });
+//								    $(".u-foucscolor").on("mouseleave", function() {
+//								        $(this).parents('.focuswitch').find('.u-messnickname').hide();
+//								    })
+//	                            }
+	                            _this.Pagination(_this.local.cur_page,data.object.total,_this.local.cur_pageSize,"follow");
 	                        }else{
 	                            _this.vuemessage = '';
 	                            $(".M-box").hide();
-	                        }             
+	                        }
 	                    } else {
 	                        console.log(data.result);
 	                    }
@@ -243,7 +255,28 @@
 	                }
 	            })
 	        }
-        }
+        },
+		messagecontent : function(){
+			var box = document.getElementsByClassName("u-messagecontent");
+			var text = box.innerHTML;
+			var newBox = document.createElement("div");
+			var btn = document.createElement("a");
+			newBox.innerHTML = text.substring(0,20);
+			btn.innerHTML = text.length > 10 ? "...显示全部" : "";
+			btn.href = "###";
+			btn.onclick = function(){
+				if (btn.innerHTML == "...显示全部"){
+					btn.innerHTML = "收起";
+					newBox.innerHTML = text;
+				}else{
+					btn.innerHTML = "...显示全部";
+					newBox.innerHTML = text.substring(0,20);
+				}
+			}
+			box.innerHTML = "";
+			box.appendChild(newBox);
+			box.appendChild(btn);
+		}
     })
 </script>
 {% endblock %}
