@@ -156,7 +156,7 @@
 {% block js %}
 <!-- <script type="text/javascript" src="/dist/center.js"></script> -->
 <script type="text/javascript">
-	$('.g-left li').eq('{{index}}').addClass('rightswitchcolor');                                           
+	$('.g-left li').eq('{{index}}').addClass('rightswitchcolor');
 	//我要当主播的div之间的切换
     $(".m-mainh .u-top a").on("click", function(e) {
         e.preventDefault();
@@ -191,6 +191,8 @@
         window.location.href="information#m-realname";
     }); 
     // 手机号，身份证号的隐藏
+
+
  	$("#hiddenFields").text($("#hiddenFields").text().substr(0,3)+"****"+$("#hiddenFields").text().substr(7,4)) 
     $("#hiddenIdCard").text($("#hiddenIdCard").text().substr(0,3)+"************"+$("#hiddenIdCard").text().substr(14,4))
     // 若都认证过就跳转到，如何直播
