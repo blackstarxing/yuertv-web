@@ -1,81 +1,510 @@
 {% extends 'layout.html' %} 
-
 {% block css %}
 <link rel="stylesheet" href="/dist/search.css">
 {% endblock %}
 
 {% block content %}
-    <div class="m-common">
-        <div class="comWidth f-cb">
-            <div class="search-content" style="display: none;" data-last="{{result.isLast}}">{{content | safe }}</div>
-            <div class="searchPage">
-                <input type="text" class="search-key" value="{{content | safe }}"><button class="search-btn">搜索</button>
-            </div>
-            <h3 class="search-num">搜索到<span>{{result.total}}</span>个相关结果</h3>
-            <div class="search-result">
-                <h3><span>{{result.total}}</span>个直播页面</h3>
-                <div class="search-container">
-                    {% if result.list == "" %}
-                        <div class="m-empty">
-                            <img src="/images/empty.png" alt="">
-                            还没有任何内容哦
-                        </div>
-                    {% else %}
-                        {% for result in result.list %}
-                            <div class="m-lst m-video">
-                                {% if result.state==1 %}
-                                    <a href="/liveroom?id={{result.id}}" class="live-address">
-                                {% else %}
-                                    <a href="javascript:void(0);" class="live-address">
-                                {% endif %}
-                                    <img src="{{result.icon}}" alt="" class="screen">
-                                    <span><i>·</i>{{result.name}}</span>
-                                    {% if result.state==1 %}
-                                        <div class="play-mask online"></div>
-                                    {% else %}
-                                        <div class="play-mask outline">主播已离开</div>
-                                    {% endif %}
+<div class="g-mb" id="mvue" v-cloak>
+    <div class="comWidth">
+        <div class="m-keywords">关键词<span class="u-keywords">“<span>${keyword}</span>”</span></div>
+        <div class="m-listnav">
+             <button v-for="(item,index) in tab" v-text="item.name" v-bind:class="[{cur:item.iscur},'u-sl-result']" @click="setCur(index)"></button>
+        </div>
+        <div >
+            <!-- 相关主播 -->
+            <div class="m-activity m-tolive" v-show="index=='0' || index=='1'">
+                <div v-if="uptotal!=0" >
+                    <div class="title"><span class="u-title">${uptotal}</span>位相关主播
+                            <a class="more" @click="resultswitch(1)" v-show="index=='0' || index!='1'">查看全部>></a>
+                    </div>
+                    <div class="f-cb">
+                        <div class="m-host" v-for="(up,index) in totaluplist" >
+                            <div class="m-nlist">
+                                <a :href="'/liveroom?id='+up.room_number" style="display:block">
+                                    <img v-bind:src="up.icon" alt="" class="m-host-icon" v-if="up.icon">
+                                    <img src="/images/default_avatar.png" alt="" class="m-host-icon" v-else>
                                 </a>
-                                <div class="m-info live-info">
-                                    <div class="anchor-head">
-                                        {% if result.user_icon %}
-                                        {% if result.user_icon.indexOf('http')>-1 %}
-                                        <img src="{{result.user_icon}}" alt="" class="head-icon">
-                                        {% else %}
-                                        <img src="http://img.wangyuhudong.com/{{result.user_icon}}" alt="" class="head-icon">
-                                        {% endif %}
-                                        {% else %}
-                                        <img src="/images/default_avatar.png" alt="" class="head-icon">
-                                        {% endif %}
-                                        {% if result.sex==0 %}
-                                            <img src="/images/male.png" alt="" class="sex">
-                                        {% else %}
-                                            <img src="/images/female.png" alt="" class="sex">
-                                        {% endif %}
-                                    </div>
-                                    <div class="anchor-info">
-                                        <div class="live-title">{{result.title}}</div>
-                                        <div class="anchor-id">房间:{{result.room_number}}</div>
-                                        <div><a href="javascript:void(0);">{{result.nickname}}</a></div>
-                                    </div>
-                                    {% if result.is_concern==1 %}
-                                        <button class="disfollow" data-id="{{result.up_user_id}}">已关注</button>
-                                    {% else %}
-                                        <button class="follow" data-id="{{result.up_user_id}}">关注</button>
-                                    {% endif %}
+                                <div class="m-host-name f-cb">
+                                    <span class="u-h-name">${up.nickname}</span>
+                                    <img src="/images/male.png" alt="" class="sexs">
+                                    <button class="disfollow f-right" v-if="up.is_concern==1" :data-id="up.up_user_id" @click="follows()">已关注</button>
+                                    <button class="follow f-right" v-else :data-id="up.up_user_id" @click="follows()">关注</button>
+                                </div>
+                                <div class="m-host-fans">
+                                    <span class="u-h">ID:<span>${up.room_number}</span></span>
+                                    <span class="u-h u-h-fans">粉丝:<span>${watchPeople(up.fans)}</span></span>
                                 </div>
                             </div>
-                        {% endfor %}
-                    {% endif %}
+                        </div>
+                    </div>
+                    <p class="list-tip" v-if="totaluplists.length==0" v-show="index=='1'">没有更多主播了</p>
                 </div>
-                <p class="list-tip">没有更多内容了</p>
+                <div class="m-video-empty" v-else v-show="index=='1'">
+                    <img src="/images/empty.png" alt="" class="m-empty-img">
+                    <p class="m-empty-text">还没有任何主播内容哦</p>
+                </div>
+            </div>
+            <!-- 相关直播 -->
+            <div class="m-hot" v-show="index=='0' || index=='2'">
+                <div v-if="livetotal!=0" class="f-cb">
+                    <div class="title"><span class="u-title">${livetotal}</span>位相关直播间
+                            <a class="more" v-if="videototal!=0" v-show="index=='0' || index!='2'" @click="resultswitch(2)" >查看全部>></a>
+                    </div>
+                    <div class="f-cb">
+                        <div class="m-content" v-for="lives in totallivelist" >
+                            <div class="m-lst">
+                                    <a :href="'/liveroom?id='+lives.id" class="live-address">
+                                        <img v-bind:src="lives.icon" alt="" class="screen">
+                                        <span><i>·</i>${lives.name}</span>
+                                        <div class="play-mask online"></div>
+                                    </a>
+                                    <div class="m-info live-info">
+                                        <div class="anchor-head">
+                                            <img v-bind:src="lives.user_icon" alt="" class="head-icon" v-if="lives.user_icon">
+                                            <img src="/images/default_avatar.png" alt="" class="head-icon" v-else>
+                                            <img src="/images/female.png" alt="" class="sex" v-if="lives.sex">
+                                            <img src="/images/male.png" alt="" class="sex" v-else>
+                                        </div>
+                                        <div class="anchor-info">
+                                            <div class="live-title">${lives.title}</div>
+                                            <div class="anchor-id">房间:${lives.room_number}</div>
+                                            <div><a href="javascript:void(0)">${lives.nickname}</a></div>                                
+                                        </div>
+                                        <button class="disfollow" v-if="lives.is_concern==1" :data-id="lives.up_user_id" @click="follows()">已关注</button>
+                                        <button class="follow" v-else :data-id="lives.up_user_id" @click="follows()">关注</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="list-tip" v-if="totallivelists.length==0" v-show="index=='2'">没有更多直播了</p>
+                </div>
+                <div class="m-video-empty" v-else v-show="index=='2'">
+                    <img src="/images/empty.png" alt="" class="m-empty-img">
+                    <p class="m-empty-text">还没有任何直播内容哦</p>
+                </div>
+            </div>
+            <!-- 精彩视频 -->
+            <div class="m-video" v-show="index=='0' || index=='3'">
+                <div v-if="videototal!=0" class="f-cb">
+                    <div class="title"><span class="u-title">${videototal}</span>个精彩视频
+                        <a  class="more" v-show="index=='0' || index!='3'" @click="resultswitch(3)">查看全部>></a>
+                    </div>
+                    <div class="f-cb">
+                        <div class="m-content" v-for="(video,index) in totalvideolist" >
+                            <div class="m-lst" >
+                                    <div class="live-address" data-rtmp="video.flv" data-title="video.title" data-icon="video.user_icon" data-id="video.up_user_id" data-name="video.name" data-nickname="video.nickname" data-follow="video.is_concern">
+                                        <img v-bind:src="video.icon" alt="" class="screen">
+                                        <span><i>·</i>${video.game_name}</span>
+                                        <div class="play-mask online"></div>
+                                    </div>
+                                    <div class="m-info">
+                                        <div class="anchor-head video-head">
+                                            <img v-bind:src="video.user_icon" alt="" class="head-icon" v-if="video.user_icon">
+                                            <img src="/images/default_avatar.png" alt="" class="head-icon" v-else>
+                                            <img src="/images/female.png" alt="" class="sex" v-if="video.sex">
+                                            <img src="/images/male.png" alt="" class="sex" v-else>
+                                        </div>
+                                        <div class="anchor-info">
+                                            <div><a href="javascript:void(0);">${video.nickname}</a></div>
+                                        </div>
+                                        <div class="video-name"><a href="javascript:void(0);">${video.title}</a></div>
+                                    </div>   
+                            </div>   
+                        </div>
+                    </div>
+                    <p class="list-tip" v-if="totalvideolists.length==0" v-show="index=='3'">没有更多视频了</p>
+                </div>
+                <div class="m-video-empty" v-else v-show="index=='3'">
+                    <img src="/images/empty.png" alt="" class="m-empty-img">
+                    <p class="m-empty-text">还没有任何视频内容哦</p>
+                </div>
             </div>
         </div>
-        
-    </div>
-    
+        <div class="m-video-empty" v-if="show==2" v-show="0">
+            <img src="/images/empty.png" alt="" class="m-empty-img">
+            <p class="m-empty-text">还没有任何内容哦</p>
+        </div>
+    </div>   
+</div>
+<div class="m-video-mask">
+    <div class="close"><img src="/images/iconwindow.png" alt=""></div>
+    <div class="m-video-player">
+        <div id="VideoPlayerDiv"></div>
+    </div> 
+</div>
+
 {% endblock %}
 
 {% block js %}
-<script type="text/javascript" src="/dist/search.js"></script>
+<script src="/vue.js"></script>
+<script type="text/javascript" src="/swfobject.js"></script>
+<script type="text/javascript">
+var mvue = new Vue({
+    el: '#mvue',
+    delimiters: ['${', '}'],
+    data:{
+        totalshow:'',
+        totalshows:'',
+        totallivelist:[],
+        totaluplist:[],
+        totalvideolist:[],
+        totallivelists:[],
+        totaluplists:[],
+        totalvideolists:[],
+        livetotal:0,
+        uptotal:0,
+        videototal:0,
+        livetotals:0,
+        uptotals:0,
+        videototals:0,
+        liveislast:'',
+        upislast:'',
+        videoislast:'',
+        keyword:'',
+        page : 1,
+        livepage: 1,
+        uppage: 1,
+        videopage: 1,
+        pageSize : 30,
+        type: 0,
+        userId:'',
+        tab: [{
+            name:"综合",
+            iscur:true,
+            },
+            {
+            name:"主播",
+            iscur:false,
+            },
+            {
+            name:"直播",
+            iscur:false,
+            },
+            {
+            name:"视频",
+            iscur:false,
+        }],
+        index:0,
+        show:1,
+        islogin:"",
+    },
+    mounted: function () {
+        this.$nextTick(function () {
+            var _this=this;
+            _this.keyword = _this.getQueryString("content");
+            _this.islogin = (document.cookie.indexOf('yuer_userId')>=0) ? 1 : 0;
+            _this.totals(0);
+            $(window).scroll(function(){ 
+                var totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop()); 
+                if($(document).height() <= totalheight && _this.index != 0){
+                    if(!_this.liveislast && _this.index==1){
+                        _this.livepage+=1;
+                        _this.pagetotal(_this.index);
+                    }
+                    if(!_this.upislast && _this.index==2){
+                      _this.uppage+=1;
+                      _this.pagetotal(_this.index);
+                    }
+                    if(!_this.videoislast && _this.index==3){
+                      _this.videopage+=1;
+                      _this.pagetotal(_this.index);
+                    }
+                    
+                }
+            })
+            //视频播放器接口
+            videoPlayerInterf = {
+
+                //视频播放器Flash对象
+                flash: null,
+
+                isinit: false,
+
+                callLater: function (callback)
+                {
+                    // if (this.isinit)
+                    // {
+                    //     callback();
+                    // }
+                    // else
+                    // {
+                        this.callback = callback;
+                    // }
+                },
+                callback: null,
+
+                //初始化Flash
+                init: function ()
+                {   
+                    this.isinit = true;
+                    if (this.callback != null)
+                    {
+                        this.callback();
+                    }
+
+                    //播放视频，参数：视频地址, 视频标题, 游戏名称
+                    //this.flash.playVideo("http://pili-media.wangyuhudong.com/7FUkDXBrj3kr1leI8VjVFX6GGD0=/Fk8ffjjNrphUwlioPxjmXIB0R7tl", "界黄盖暴力输出，秒全场", "王者荣耀");
+
+                    //更新主播信息，参数：主播ID, 主播昵称, 主播头像，是否已关注
+                    //this.flash.updateAnchor("123", "奔波儿灞", "head.png", false);
+                },
+
+                //关注主播，参数：主播ID
+                focusAnchor: function ( anchorId )
+                {
+                    //调用后台，关注成功后请回调 flash.updateAnchor
+                    var _this = this;
+                    if(islogin){
+                        var parm = {};
+                        parm.userId = window.localStorage.getItem("id");
+                        parm.upUserId = anchorId;
+                        $.ajax({
+                            method: "GET",
+                            url: "/api/concern/up",
+                            dataType: 'json',
+                            data: parm,
+                            success: function(data) {
+                                if (data.code == 0) {
+                                    console.log('关注成功！');
+                                    _this.flash.updateAnchor(anchorId, null, null, true);
+                                    $('.video-open').attr('data-follow',1);
+                                }else{
+                                    console.log(data.result);
+                                }
+                            },
+                            error: function(a, b, c) {
+                                console.log("接口出问题啦");
+                            }
+                        });
+                    }else{
+                        $('.m-login-wrap').show();
+                    }
+                },
+            };
+
+            var att = {};
+            att.width = "100%";
+            att.height = "100%";
+            var par = {};
+            par.quality = "high";
+            par.bgcolor = "#000000";
+            par.allowscriptaccess = "sameDomain";
+            par.allowfullscreen = "true";
+            par.allowFullScreenInteractive = "true";
+            par.wmode = "transparent";
+
+            att.id = "VideoPlayer";
+            att.data = "YeVideoPlayer.swf";
+            videoPlayerInterf.flash = swfobject.createSWF(att, par, "VideoPlayerDiv");
+
+            $('.m-video .live-address').click(function(e){
+                e.preventDefault();
+                $('.m-video-mask').show();
+                $(this).addClass('video-open').siblings('.live-address').removeClass('video-open');
+                var name = $(this).attr('data-name'),
+                    title = $(this).attr('data-title'),
+                    flv = $(this).attr('data-rtmp'),
+                    id = $(this).attr('data-id'),
+                    nickname = $(this).attr('data-nickname'),
+                    icon = $(this).parent().find('.head-icon').attr('src'),
+                    follow = $(this).attr('data-follow')==1 ? true :false;
+                $('.m-video-mask').show();
+                videoPlayerInterf.callLater(function () {
+                    // videoPlayerInterf.flash.playVideo("http://pili-media.wangyuhudong.com/7FUkDXBrj3kr1leI8VjVFX6GGD0=/Fpe0CIJCfu80Ey29nmt4y2wVqhzx", "界黄盖暴力输出，秒全场", "王者荣耀");
+                    videoPlayerInterf.flash.playVideo(flv,title,name);
+                    videoPlayerInterf.flash.updateAnchor(id, nickname,icon, follow);
+                });
+                
+            });
+            $('.m-video-mask .close').click(function(e){
+                e.preventDefault();
+                $('.m-video-mask').hide();
+            });
+        })
+    },
+    methods:{
+        getQueryString:function (name) {
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        },
+        resultswitch:function(i){
+          var _this=this;
+          _this.index=i;
+          _this.setCur(_this.index);
+        },
+        watchPeople: function (num) {
+          return num>10000 ? (num/10000).toFixed(1)+'万' : num;
+        },
+        totals:function(type) {
+            var _this=this;
+            $.ajax({
+                method: "GET",
+                url:"http://172.16.10.134:8777/search",
+                dataType: 'json',
+                data:{
+                    keyword:_this.getQueryString("content"),
+                    type:0
+                },
+                success: function(data) {
+                    if (data.code == 0) {
+                        // 获得最大的对象
+                        _this.totalshow = data.object; 
+                        // 获得主播，直播，视频数组
+                        _this.totaluplist=data.object.upList;
+                        _this.totallivelist=data.object.liveList;
+                        _this.totalvideolist=data.object.videoList;
+                        // 获得主播，视频，直播的total
+                        _this.livetotal=_this.totalshow.liveTotal; 
+                        _this.uptotal=_this.totalshow.upTotal;
+                        _this.videototal=_this.totalshow.videoTotal;
+                        if(_this.uptotal!=0 && _this.livetotal!=0 && _this.videototal!=0){
+                            _this.show=1;
+                        }else{
+                            _this.show=2;
+                        }
+                    } else {
+                        console.log(data.result);
+                    }
+                },
+                error: function(a, b, c) {
+                    console.log("接口出问题啦");
+                }
+            })
+        },
+        pagetotal:function(type){
+            var _this=this;
+            if(type==1){
+              _this.page = _this.livepage;
+            }else if(type==2){
+              _this.page = _this.uppage;
+            }else if(type==3){
+              _this.page=_this.videopage;
+            }else{
+              _this.page=_this.page;
+            }
+            $.ajax({
+                method: "GET",
+                url:"http://172.16.10.134:8777/search",
+                dataType: 'json',
+                data:{
+                    keyword:_this.getQueryString("content"),
+                    page:_this.page,
+                    pageSize:_this.pageSize,
+                    type:type
+                },
+                success: function(data) {
+                    if (data.code == 0) {
+                        // 获得最大的对象
+                        _this.totalshows = data.object; 
+                        
+                        // 全部主播
+                        if(_this.totalshows.upList){ 
+                         _this.totaluplists=data.object.upList.list; 
+                         _this.uptotals=_this.totalshow.upList.total; 
+                          if(_this.page==1 || type==0){
+                            _this.totaluplist=[];
+                            _this.uppage=1;
+                          }
+                          if(_this.totaluplists!=0){
+                            _this.totaluplist=[];
+                          }
+                          _this.totaluplist=_this.totaluplist.concat(data.object.upList.list);
+                          _this.upislast=_this.totalshow.upList.isLast;
+                        } 
+                        // 全部直播
+                        if(_this.totalshows.liveList){
+                          _this.livetotals=_this.totalshow.liveList.total; 
+                          _this.totallivelists=data.object.liveList.list;
+                          if(_this.page==1 || type==0){
+                            _this.totallivelist=[];
+                            _this.livepage=1;
+                          }
+                          if(_this.livetotals!=0){
+                            _this.totallivelist=[];
+                          }
+                          _this.totallivelist=_this.totallivelist.concat(data.object.liveList.list);
+                          _this.liveislast=_this.totalshow.liveList.isLast;
+                        }
+                        // 全部视频
+                        if(_this.totalshows.videoList){
+                        _this.totalvideolists=data.object.videoList.list;
+                        _this.videototals=_this.totalshow.videoList.total;    
+                          if(_this.page==1 || type==0){
+                            _this.totalvideolist=[];
+                            _this.videopage=1;
+                          } 
+                          if(_this.totalvideolists!=0){
+                            _this.totalvideolist=[];
+                          }
+                          _this.totalvideolist=_this.totalvideolist.concat(data.object.videoList.list);
+                          _this.videoislast=_this.totalshow.videoList.isLast;
+                        }    
+                    } else {
+                        console.log(data.result);
+                    }
+                },
+                error: function(a, b, c) {
+                    console.log("接口出问题啦");
+                }
+            })
+        },
+        follows:function(){
+            $('.follow,.disfollow').click(function(e){
+                var _this=this;
+                e.preventDefault();
+                if(islogin){
+                    var parm = {};
+                    parm.userId = window.localStorage.getItem("id");
+                    console.log(222)
+                    console.log($(_this).attr('data-id'));
+                    parm.upUserId = $(_this).attr('data-id');
+                    $.ajax({
+                            method: "GET",
+                            url: "http://172.16.10.134:8777/concern/up",
+                            dataType: 'json',
+                            data: parm,
+                            success: function(data) {
+                                if (data.code == 0) {
+                                    console.log('关注成功！');
+                                    if($(e.currentTarget).attr('class')=='follow'){
+                                        $(e.currentTarget).attr('class','disfollow').text('已关注');
+                                    }else{
+                                        $(e.currentTarget).attr('class','follow').text('关注');
+                                    }
+                                }else{
+                                    console.log(data.result);
+                                }
+                            },
+                            error: function(a, b, c) {
+                                console.log("接口出问题啦");
+                            }
+                        });
+                }else{
+                    alert("您还没有登录或者登录已经失效，请登录");
+                }
+            })
+        },
+        setCur: function (index) {
+            var _this=this;
+                this.tab.map(function (v,i) {
+                    i==index? v.iscur=true: v.iscur=false;     
+                });
+                _this.index = index;
+                if(_this.index==0){
+                    _this.totals();
+                }else if(_this.index==1){
+                    _this.pagetotal(_this.index);
+                }else if(_this.index==2){
+                    _this.pagetotal(_this.index);
+                }else if(_this.index==3){
+                    _this.pagetotal(_this.index);
+                }           
+        }
+    }  
+})
+</script>
 {% endblock %}
