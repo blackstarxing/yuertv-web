@@ -905,6 +905,9 @@ html,body{
 .online{
     background: url(/images/play.png) center center rgba(26,33,41,0.5) no-repeat;
 }
+.live-address:hover .play-mask{
+    display: block;
+}
 .live-address img{
     width: 100%;
     height: 100%;
