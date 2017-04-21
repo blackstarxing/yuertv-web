@@ -3,12 +3,18 @@ $(function(){
         el: '#liveroom',
         delimiters: ['${', '}'],
         data: {
+            // 是否登录
             islogin: 0,
             is_report: false,
-            is_punish:false
+            is_punish:false,
+            contribution:'',
+            fans_num:'',
+            online_num:'',
+            ad:'',
         },
         mounted: function () {
-            this.islogin = (document.cookie.indexOf('yuer_userId')>=0) ? 1 : 0;
+            var _this = this;
+            _this.islogin = (document.cookie.indexOf('yuer_userId')>=0) ? 1 : 0;
 
             // 布局自适应
             function resize(){
@@ -29,6 +35,11 @@ $(function(){
             $(window).resize(function() {
                 resize();
             });
+
+            _this.floatAd();
+            // 刷新在线人数
+            _this.freshNum();
+            setInterval(_this.freshNum,900000);
 
             $('.live-address').hover(function(){
                 $(this).find('.play-mask').show();
@@ -51,6 +62,107 @@ $(function(){
             });
         },
         methods: {
+            // 获取url参数
+            getQueryString:function(name){
+                var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) {
+                    return unescape(r[2]);
+                }
+                return null;
+            },
+            // 浮标
+            floatAd:function(){
+                var _this = this;
+                $.ajax({
+                    method: "GET",
+                    url: "/api/live/buoy",
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.code == 0) {
+                            _this.ad = data.object;
+                        }else{
+                            console.log(data.result);
+                        }
+                    },
+                    error: function(a, b, c) {
+                        console.log("接口出问题啦");
+                    }
+                });
+            },
+            closeAd:function(){
+                $('.ad').hide();
+            },
+            adCount:function(){
+                $.ajax({
+                    method: "GET",
+                    url: "/api/live/buoyStatistics",
+                    dataType: 'json',
+                    success: function(data) {
+                        
+                    },
+                    error: function(a, b, c) {
+                        console.log("接口出问题啦");
+                    }
+                });
+                window.open(this.ad.url);
+            },
+            // 获取贡献榜
+            getContribution:function(){
+                var _this = this;
+                var giftparm = {};
+                giftparm.type = 2;
+                giftparm.upUserId = $('.hide-rtmp').attr('data-anchorid');
+                $.ajax({
+                    method: "GET",
+                    url: "/api/contributionRank",
+                    dataType: 'json',
+                    data: giftparm,
+                    success: function(data) {
+                        if (data.code == 0) {
+                            var contributionRank = '';
+                            for(var i=0;i<data.object.length;i++){
+                                var icon = '';
+                                if(data.object[i].icon){
+                                    icon = (data.object[i].icon.indexOf('http')>-1) ?  data.object[i].icon : 'http://img.wangyuhudong.com/'+data.object[i].icon;
+                                }else{
+                                    icon = '/images/default_avatar.png';
+                                }
+                                contributionRank+='<div class="contributionRank f-cb">'+
+                                '<div class="bank-left f-fl"><span class="rank-index">'+(i+1)+'</span><div class="bank-head"><img src="'+icon+'" alt=""></div>'+data.object[i].nickname+'</div>'+
+                                '<div class="bank-right f-fr"><span>'+data.object[i].yuer_coin+'</span>鱼币</div>'+
+                            '</div>';
+                            }
+                            $('.gift-block').html(contributionRank);
+                        }else{
+                            console.log(data.result);
+                        }
+                    },
+                    error: function(a, b, c) {
+                        console.log("接口出问题啦");
+                    }
+                });
+                
+            },
+            freshNum:function(){
+                var _this = this;
+                $.ajax({
+                    method: "GET",
+                    url: "/api/live/detail?id="+_this.getQueryString('id'),
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.code == 0) {
+                            _this.fans_num = data.object.info.fans;
+                            _this.online_num = data.object.info.online_num;
+                        }else{
+                            console.log(data.result);
+                        }
+                    },
+                    error: function(a, b, c) {
+                        console.log("接口出问题啦");
+                    }
+                });
+            },
             // 做主播跳转
             toBeanchor:function(){
                 var _this = this;
@@ -287,40 +399,7 @@ $(function(){
         nickname = window.localStorage.getItem("nickname");
         enterLiveroom();
     }
-
-    // 礼物排行榜
-    var giftparm = {};
-    giftparm.type = 2;
-    giftparm.upUserId = $('.hide-rtmp').attr('data-anchorid');
-    $.ajax({
-        method: "GET",
-        url: "/api/contributionRank",
-        dataType: 'json',
-        data: giftparm,
-        success: function(data) {
-            if (data.code == 0) {
-                var contributionRank = '';
-                for(var i=0;i<data.object.length;i++){
-                    var icon = '';
-                    if(data.object[i].icon){
-                        icon = (data.object[i].icon.indexOf('http')>-1) ?  data.object[i].icon : 'http://img.wangyuhudong.com/'+data.object[i].icon;
-                    }else{
-                        icon = '/images/default_avatar.png';
-                    }
-                    contributionRank+='<div class="contributionRank f-cb">'+
-                    '<div class="bank-left f-fl"><span class="rank-index">'+(i+1)+'</span><div class="bank-head"><img src="'+icon+'" alt=""></div>'+data.object[i].nickname+'</div>'+
-                    '<div class="bank-right f-fr"><span>'+data.object[i].yuer_coin+'</span>鱼币</div>'+
-                '</div>';
-                }
-                $('.gift-block').html(contributionRank);
-            }else{
-                console.log(data.result);
-            }
-        },
-        error: function(a, b, c) {
-            console.log("接口出问题啦");
-        }
-    });
+    
 
     // 举报单选框
     $('.report-radio label').click(function(){
@@ -408,7 +487,32 @@ $(function(){
 
     var giftlist = [];
     var proplist = [];
-    var yuerCoin = null;
+    var barragelist = [];
+    var yuerCoin = 0;
+    var propNum = 0;
+
+    // 热门弹幕
+    function hotBarrage(){
+        $.ajax({
+            method: "GET",
+            url: "/api/live/hotBarrage",
+            dataType: 'json',
+            success: function(data) {
+                if (data.code == 0) {
+                    for(var i=0;i<data.object.length;i++){
+                        $('.quicktext ul').append('<li>'+data.object[i].content+'</li>')
+                        barragelist.push(data.object[i].content);
+                    }
+                }else{
+                    console.log(data.result);
+                }
+            },
+            error: function(a, b, c) {
+                console.log("接口出问题啦");
+            }
+        });
+    } 
+    hotBarrage();
 
     // 播放器礼物列表
     function getGift(){
@@ -425,6 +529,7 @@ $(function(){
                             icon:'http://img.wangyuhudong.com/'+data.object[i].icon,
                             noframe:data.object[i].no_frame_icon,
                             tips:data.object[i].name+'（<font color=\'#ffff00\'>'+data.object[i].price+'</font>鱼币）<br/>点击送给主播',
+                            price:data.object[i].price
                         }
                         giftlist.push(gift);
                     }
@@ -483,7 +588,8 @@ $(function(){
                address = data.addr;
                getChat();
             }else{
-                alert("获取连接房间地址失败");
+                $('.anchor-leave').show();
+                $('.mes-block').append("<div>聊天室连接失败，请刷新页面<div>"); 
             }   
         })
 
@@ -533,70 +639,123 @@ $(function(){
                     console.log('正在发送聊天室text消息, id=' + msg.idClient);
             }
 
-            function flashSendCustom(name,id,icon,type){                
+            function flashSendCustom(name,id,icon,price,type){                
                 var parm = {};
                 parm.giftId = id;
                 parm.num = 1;
                 parm.upUserId = $('.hide-rtmp').attr('data-anchorid');
                 parm.type = type;
-                $.ajax({
-                    method: "GET",
-                    url: "/api/gift/send",
-                    dataType: 'json',
-                    data: parm,
-                    success: function(data) {
-                        if (data.code == 0) {
-                            if(data.object.state == 0){
-                                var nowTime = new Date().getTime();
-                                console.log(nowTime);
-                                if((nowTime-lastTime)<5000 && name == giftName){
-                                    giftNumber+=1;
-                                }else{
-                                    giftNumber = 1;
-                                }
-                                lastTime = nowTime;
-                                giftName = name;
-                                var content = {
-                                    type: 1,
-                                    data: {
-                                        giftName:name,
-                                        giftNum:giftNumber,
-                                        giftShowImage:icon,
-                                        senderName:nickname,
-                                        giftID:id,
-                                        senderID:live_account
+                if(type==0){
+                    if(yuerCoin>=price){
+                        $.ajax({
+                            method: "GET",
+                            url: "/api/gift/send",
+                            dataType: 'json',
+                            data: parm,
+                            success: function(data) {
+                                if (data.code == 0) {
+                                    if(data.object.state == 0){
+                                        
+                                        // getProp();
+                                    }else{
+                                        $('.wallet-text').text(data.object.str); 
+                                        $('.wallet-empty').fadeIn();
+                                        setTimeout(function(){
+                                            $('.wallet-empty').fadeOut();
+                                        },2000);                               
                                     }
-                                };
-                                var msg = chatroom.sendCustomMsg({
-                                    content: JSON.stringify(content),
-                                    done: sendChatroomCustomMsgDone
-                                });
-                                console.log('正在发送聊天室自定义消息, id=' + msg.idClient);
-                                getProp();
-                            }else{
-                                if(data.object.str == '娱币不足'){
-                                    $('.wallet-text').text('钱包空啦！赶紧去充值吧');
+                                }else{
+                                    console.log(data.result);
+                                }
+                            },
+                            error: function(a, b, c) {
+                                console.log("接口出问题啦");
+                            }
+                        });
+                        yuerCoin = yuerCoin - price;
+                        $('.yuerCoin').html(yuerCoin);
+                        liveRoomInterf.flash.updateCoins(yuerCoin);
+                        var nowTime = new Date().getTime();
+                        // console.log(nowTime);
+                        if((nowTime-lastTime)<5000 && name == giftName){
+                            giftNumber+=1;
+                        }else{
+                            giftNumber = 1;
+                        }
+                        lastTime = nowTime;
+                        giftName = name;
+                        // var content = {
+                        //     type: 1,
+                        //     data: {
+                        //         giftName:name,
+                        //         giftNum:giftNumber,
+                        //         giftShowImage:icon,
+                        //         senderName:nickname,
+                        //         giftID:id,
+                        //         senderID:live_account
+                        //     }
+                        // };
+                        // var msg = chatroom.sendCustomMsg({
+                        //     content: JSON.stringify(content),
+                        //     done: sendChatroomCustomMsgDone
+                        // });
+                        // console.log('正在发送聊天室自定义消息, id=' + msg.idClient);
+                        if(giftNumber>1){
+                            $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+nickname+' : 送给主播1个</span>'+name+'<span class="combo">'+giftNumber+'<i></i></span></div>');
+                            liveRoomInterf.flash.showDanmaku(nickname+'送给主播一个'+name, 0xffffff, 100);
+                        }else{
+                            $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+nickname+' : 送给主播1个</span>'+name+'</div>');
+                            liveRoomInterf.flash.showDanmaku(nickname+'送给主播一个'+name, 0xffffff, 100);
+                        }
+                    }else{
+                        $('.wallet-text').text('钱包空啦！赶紧去充值吧');
+                        $('.wallet-empty').fadeIn();
+                        setTimeout(function(){
+                            $('.wallet-empty').fadeOut();
+                        },2000);
+                    }
+                }else{
+                    $.ajax({
+                        method: "GET",
+                        url: "/api/gift/send",
+                        dataType: 'json',
+                        data: parm,
+                        success: function(data) {
+                            if (data.code == 0) {
+                                if(data.object.state == 0){
+                                    
+                                    // getProp();
+                                }else{
+                                    $('.wallet-text').text(data.object.str); 
                                     $('.wallet-empty').fadeIn();
                                     setTimeout(function(){
                                         $('.wallet-empty').fadeOut();
-                                    },2000);
-                                }else{
-                                   $('.wallet-text').text(data.object.str); 
-                                   $('.wallet-empty').fadeIn();
-                                    setTimeout(function(){
-                                        $('.wallet-empty').fadeOut();
-                                    },2000);
-                               }                                
+                                    },2000);                               
+                                }
+                            }else{
+                                console.log(data.result);
                             }
-                        }else{
-                            console.log(data.result);
+                        },
+                        error: function(a, b, c) {
+                            console.log("接口出问题啦");
                         }
-                    },
-                    error: function(a, b, c) {
-                        console.log("接口出问题啦");
+                    });
+                    var nowTime = new Date().getTime();
+                    if((nowTime-lastTime)<5000 && name == giftName){
+                        giftNumber+=1;
+                    }else{
+                        giftNumber = 1;
                     }
-                });
-                
+                    lastTime = nowTime;
+                    giftName = name;
+                    if(giftNumber>1){
+                        $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+nickname+' : 送给主播1个</span>'+name+'<span class="combo">'+giftNumber+'<i></i></span></div>');
+                        liveRoomInterf.flash.showDanmaku(nickname+'送给主播一个'+name, 0xffffff, 100);
+                    }else{
+                        $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+nickname+' : 送给主播1个</span>'+name+'</div>');
+                        liveRoomInterf.flash.showDanmaku(nickname+'送给主播一个'+name, 0xffffff, 100);
+                    }
+                }               
             }
 
             // 获取我的道具列表
@@ -614,21 +773,34 @@ $(function(){
                             }else{
                                 for(var i=0;i<data.object.gifts.length;i++){
                                     var prop = {
+                                        index:i,
                                         id:data.object.gifts[i].id,
                                         name: data.object.gifts[i].name,
                                         icon:'http://img.wangyuhudong.com/'+data.object.gifts[i].icon,
                                         noframe:data.object.gifts[i].no_frame_icon,
                                         count:data.object.gifts[i].num,
                                     }
-                                    myprop+='<div class="propBox" data-frame="'+data.object.gifts[i].no_frame_icon+'"data-name="'+data.object.gifts[i].name+'" data-id="'+data.object.gifts[i].id+'"><img src="http://img.wangyuhudong.com/'+data.object.gifts[i].icon+'" alt="">'+data.object.gifts[i].name+'<span>'+data.object.gifts[i].num+'</span></div>';
+                                    myprop+='<div class="propBox" data-index="'+i+'" data-frame="'+data.object.gifts[i].no_frame_icon+'"data-name="'+data.object.gifts[i].name+'" data-id="'+data.object.gifts[i].id+'"><img src="http://img.wangyuhudong.com/'+data.object.gifts[i].icon+'" alt="">'+data.object.gifts[i].name+'<span>'+data.object.gifts[i].num+'</span></div>';
                                     proplist.push(prop);
                                     liveRoomInterf.flash.updateMyItems(proplist);
                                 }
                             }                           
                             $('.my-prop').html(myprop);
-                            $('.propBox').click(function(){
+                            $('.propBox').click(function(index){
                                 if(islogin){
-                                    flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),$(this).attr('data-frame'),1);
+                                    if(parseInt($(this).find('span').text())>0){
+                                        var gift = parseInt($(this).find('span').text())-1;
+                                        $(this).find('span').text(gift);
+                                        proplist[$(this).index()].count = parseInt(proplist[$(this).index()].count)-1;
+                                        liveRoomInterf.flash.updateMyItems(proplist);
+                                        flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),$(this).attr('data-frame'),1,1);
+                                    }else{
+                                        $('.wallet-text').text('道具不足'); 
+                                        $('.wallet-empty').fadeIn();
+                                        setTimeout(function(){
+                                            $('.wallet-empty').fadeOut();
+                                        },2000);  
+                                    }
                                }else{
                                     $('.m-login-wrap').show();
                                } 
@@ -639,7 +811,7 @@ $(function(){
                             $('.my-prop').html(myprop);
                             $('.propBox').click(function(){
                                 if(islogin){
-                                    flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),$(this).find('img').attr('src'),1);
+                                    flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),$(this).find('img').attr('src'),1,1);
                                }else{
                                     $('.m-login-wrap').show();
                                } 
@@ -652,12 +824,12 @@ $(function(){
                 });
                 $.ajax({
                     method: "GET",
-                    url: "/api/person-center/user-info",
+                    url: "/api/person-center/my-yuer-coin",
                     dataType: 'json',
                     success: function(data) {
                         if (data.code == 0) {
-                            yuerCoin = data.object.yuerCoin;
-                            $('.yuerCoin').html(data.object.yuerCoin);
+                            yuerCoin = data.object.yuer_coin;
+                            $('.yuerCoin').html(data.object.yuer_coin);
                             liveRoomInterf.flash.updateCoins(yuerCoin);
                         }else{
                             $('.yuerCoin').html("0");
@@ -736,7 +908,7 @@ $(function(){
 
                     //更新热词列表，参数：[热词1, 热词2, ...]
 
-                    this.flash.updateHotWords(["666666666", "憋说话，吻我", "你是要上天吗？","主播求约", "1111111111111", "22222222222","23333333333", "不作死就不会死", "主播别逗", "简直要崩溃","快点吧", "带我飞", "夭寿啦"]);
+                    this.flash.updateHotWords(barragelist);
 
                     //更新鱼币数量，参数：鱼币数量
                     // this.flash.updateCoins(yuerCoin);
@@ -755,7 +927,7 @@ $(function(){
                     // ]);
 
                     // 礼物列表
-                    // this.flash.updateItems(giftlist);
+                    this.flash.updateItems(giftlist);
 
                     //更新我的道具列表，参数：[道具1, 道具2, ...]
                     //道具格式：{id:道具ID, icon:道具图标, name:道具名称, count:道具数量}
@@ -814,22 +986,35 @@ $(function(){
                 //赠送礼物，参数：道具ID
                 presentGift: function ( item , isMine)
                 {   
-                    // console.log(item.noframe)
+                    // console.log(item.index)
                     //调用后台，若赠送的是购买的道具，请回调 flash.updateCoins，若赠送的是我的道具，请回调 flash.updateMyItems
                     if(islogin){
                         if(isMine){
                             isMine=1;
+                            if(item.count>0){
+                                flashSendCustom(item.name,item.id,item.noframe,item.price,isMine);
+                                var num = parseInt(item.count)-1;
+                                $('.propBox').eq(item.index).find('span').html(num); 
+                                proplist[item.index].count = parseInt(proplist[item.index].count)-1;
+                                this.flash.updateMyItems(proplist);
+                            }else{
+                                this.flash.exitFullscreen();
+                                $('.wallet-text').text('道具不足'); 
+                                $('.wallet-empty').fadeIn();
+                                setTimeout(function(){
+                                    $('.wallet-empty').fadeOut();
+                                },2000); 
+                            }
                         }else{
                             isMine=0;
+                            flashSendCustom(item.name,item.id,item.noframe,item.price,isMine);
                         }
-                        // this.flash.showDanmaku(nickname+"送了一个"+name+"给主播", 0xffff00, 100);
-                       flashSendCustom(item.name,item.id,item.noframe,isMine); 
-                       
+                        // this.flash.showDanmaku(nickname+"送了一个"+name+"给主播", 0xffff00, 100);                       
                     }else{
                         this.flash.exitFullscreen();
                         $('.m-login-wrap').show();
                     }
-                    getGift();
+                    // getGift();
                 },
                 //直播结束
                 liveEnd: function ()
@@ -961,7 +1146,7 @@ $(function(){
             // 礼物赠送
             $('.gift').click(function(){
                 if(islogin){
-                    flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),$(this).attr('data-frame'),0); 
+                    flashSendCustom($(this).attr('data-name'),$(this).attr('data-id'),$(this).attr('data-frame'),$(this).find('span').html(),0); 
                }else{
                     $('.m-login-wrap').show();
                }           

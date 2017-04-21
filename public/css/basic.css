@@ -26,7 +26,7 @@ body,textarea,input,button,select,keygen,legend{font:12px/1.14 'Microsoft YaHei'
 body{font:14px/1.5 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;background: #f3f3f3;}
 input{font:14px/1.5 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif,STHeiTi;/*letter-spacing:1px;*/}
 a/*,a:hover*/{color:#333;}
-button{border:none;font-size: 12px;}
+button{border:none;font-size: 14px;background: none;}
 input:-webkit-autofill { 
 -webkit-box-shadow: 0 0 0px 1000px #14181d inset;
 color: #fff !important;
@@ -35,6 +35,7 @@ color: #fff !important;
 html,body{
     height: 100%;
 }
+[v-cloak] { display: none }
 .content{
 	display: flex; min-height: 100vh; flex-direction: column;
 }
@@ -53,11 +54,11 @@ html,body{
 
 /*字体图标*/
 @font-face {font-family: "iconfont";
-  src: url('/fonts/iconfont.eot?t=1479173802950'); /* IE9*/
-  src: url('/fonts/iconfont.eot?t=1479173802950#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('/fonts/iconfont.woff?t=1479173802950') format('woff'), /* chrome, firefox */
-  url('/fonts/iconfont.ttf?t=1479173802950') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('/fonts/iconfont.svg?t=1479173802950#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('/fonts/iconfont.eot?t=1492406498916'); /* IE9*/
+  src: url('/fonts/iconfont.eot?t=1492406498916#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('/fonts/iconfont.woff?t=1492406498916') format('woff'), /* chrome, firefox */
+  url('/fonts/iconfont.ttf?t=1492406498916') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('/fonts/iconfont.svg?t=1492406498916#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -95,6 +96,14 @@ html,body{
 
 .icon-index:before { content: "\e663"; }
 
+.icon-history:before { content: "\e669"; }
+
+.icon-change:before { content: "\e66a"; }
+
+.icon-down:before { content: "\e66b"; }
+
+.icon-focus:before { content: "\e66c"; }
+
 /*公共头部*/
 .comWidth{
     width: 1200px;
@@ -130,7 +139,7 @@ html,body{
     margin-top: 10px;
 }
 .m-nav{
-    margin-right: 110px;
+    margin-right: 70px;
 }
 .m-nav li{
     float: left;
@@ -144,17 +153,21 @@ html,body{
 .m-nav li.current a,.m-nav li a:hover{
     color: #f36;
 }
-.header_right a{
+.header_right button,.header_right a{
     display: inline-block;
     line-height: 36px;
-    width: 100px;
+    width: 46px;
     text-align: center;
     color:#fff;
 }
-.visitor a{
+.header_right .nav-list a{
+    width: 100px;
+}
+.visitor button,.visitor a{
     width: 46px;
     background: #3c4856;
     margin:0 8px;
+    font-size: 14px;
 }
 .reward-tip{
     height: 30px;
@@ -175,30 +188,90 @@ html,body{
     top:-14px;
     right: 25px;
 }
-.sweepme{
+.yuer-nav{
     position: relative;
     float: left;
-    margin-left: 50px;
+    padding:0 15px;
     font-size: 16px;
     color:#999;
+    cursor: pointer;
 }
-.sweepme img{
+.yuer-nav .iconfont{
+    margin-right: 5px;
+}
+.yuer-nav img{
     margin-right: 10px;
     vertical-align: text-bottom;
 }
-.sweepme .QRbox{
+.yuer-nav .livinglist{
     position: absolute;
-    left: -20px;
-    background: #fff;
+    right: 0;
+    background: #000;
     text-align: center;
-    color:#333;
+    color:#999;
     font-size: 14px;
     line-height: 1.5;
-    padding:10px;
     display: none;
 }
-.sweepme .QRbox img{
+.want-see{
+    display: block;
+    width: 150px;
+    padding:15px 10px;
+    color:#cecfd2;
+    font-size: 14px;
+}
+.want-see:hover{
+    background: #2d3741;
+    color:#f36;
+}
+.want-see img{
+    width: 34px;
+    height: 34px;
+    border:1px solid #3a3e47;
+    border-radius: 50%;
+    margin-top:0;
+}
+.want-see span{
+    display: block;
+    width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    line-height: 36px;
+}
+.want-see i{
+    display: inline-block;
+    width: 16px;
+    height: 36px;
+    background: url(../images/being.png) center center no-repeat;
+}
+.forget-login{
+    width: 200px;
+    padding:23px;
+}
+.forget-login button{
+    color:#f36;
+    background: none;
+    font-size: 14px;
+    margin:0 3px;
+}
+.yuer-nav .QRbox{
+    width: 164px;
+    left:50%;
+    margin-left: -105px;
+    background: #fff;
+    padding:23px;
+}
+.yuer-nav .QRbox img{
     margin:0 0 10px;
+}
+.yuer-nav:hover{
+    color:#fff;
+    background: #000;
+}
+.yuer-nav:hover .livinglist{
+    display: block;
 }
 .avatar{
     position: relative;
@@ -238,7 +311,7 @@ html,body{
     top:0;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.6);
+    background:rgba(0,0,0,0.7);
     display:none;
     z-index:999999;
 }
@@ -246,6 +319,7 @@ html,body{
     position: absolute;
     top:15px;
     right: 15px;
+    background: none;
 }
 .close img{
     width: 20px;
@@ -259,27 +333,48 @@ html,body{
     bottom: 0;
     margin:auto;
     width:380px;
-    /*height: 440px;*/
-    height: 250px;
+    height: 450px;
+    /*height: 250px;*/
     padding:40px 50px;
     border-radius: 20px;
-    background:rgba(60,72,86,0.8);
+    background:rgba(60,72,86,0.7);
     color:#fff;
 }
 .login-content h3{
-    text-align: center;
-    font-size: 18px;
+    /*text-align: center;*/
+    font-size: 24px;
     font-weight: bold;
+    margin-bottom: 24px;
+}
+.yuer-reg{
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    color:#9da4ad;
+}
+.yuer-reg button{
+    color:#f36;
+}
+.login-content .error{
+    display: inline-block;
+    /*width: 100%;*/
+    height: 24px;
+    line-height: 24px;
+    color:#f36;
+    font-size: 12px;
+    overflow: hidden;
+    text-indent: 10px;
+    vertical-align: text-bottom;
 }
 .login-content input{
     display: block;
-    width: 100%;
     width:100%;
     height: 40px;
-    margin:20px auto;
+    margin:0 auto;
     border-radius: 5px;
     border:1px solid transparent;
     text-indent: 12px;
+    box-sizing: border-box;
 }
 .login-content input:focus{
     border-color:#f36;
@@ -307,10 +402,9 @@ html,body{
     display: none;
     text-indent: 12px;
 }
-.m-link a{
+.m-link a,.m-link button{
     margin:20px 18px;
     color:#9da4ad;
-    text-decoration: underline;
 }
 .third-logins{
     /*display: none;*/
@@ -320,6 +414,7 @@ html,body{
     text-align: center;
     height: 17px;
     margin-bottom: 20px;
+    color:#9da4ad;
 }
 .line-through .line{
     position: absolute;
@@ -348,14 +443,98 @@ html,body{
     font-size: 14px;
     margin:32px 78px 0 10px;
 }
-.third-enter a{
+.third-enter button{
     color:#9da4ad;
+}
+.third-enter img{
+    margin-bottom: 5px;
 }
 .third-enter:last-child{
     margin-right: 0;
 }
+/*注册*/
+.yuer-input{
+    position: relative;
+}
+.yuer-input button{
+    position: absolute;
+    top:0;
+    right: 0;
+    background: #f36;
+    height: 40px;
+    width: 100px;
+    text-align: center;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color:#fff;
+}
+.slide{
+    display: none;
+}
+.slide img{
+    width: 130px;
+    height: 50px;
+}
+.slide .yuer-input{
+    width: 240px;
+}
+.slide input{
+    margin:5px 0 0;
+}
+.slide button{
+    top:5px;
+}
+.yuer-input .nickname{
+    width: 200px;
+    margin-left: 0;
+    margin-top: 0;
+}
+.yuer-sex{
+    height: 40px;
+    margin-left: 30px;
+}
+.yuer-sex span{
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+    height: 28px;
+    line-height: 28px;
+    margin:6px 10px 0;
+    cursor: pointer;
+}
+.yuer-sex .choose{
+    background: #f36;
+}
+.yuer-agree{
+    text-align: center;
+    color:#9da4ad;
+    margin-top: 15px;
+}
+.yuer-agree a{
+    color:#f36;
+}
+.change-picture{
+    color:#999;
+    line-height: 24px;
+    font-size: 12px;
+    width: 130px;
+    display:block;
+    text-align: center;
+}
+.yuer-input .disabled{
+    background: #999;
+    cursor: not-allowed;
+}
+/*快捷登录*/
+.phone-box{
+    margin-top: 20px;
+}
+.phone-box .yuer-reg{
+    top:70px;
+}
 .m-search{
     position: relative;
+    margin-right: 20px;
 }
 .m-search input{
     width: 300px;
@@ -445,11 +624,11 @@ html,body{
     min-width: 1100px;
 }
 .mini-hd .header_left{
-    width: 80%;
+    width: 90%;
 }
 .mini-hd .m-nav{
     width: 30%;
-    margin-right:8%;
+    margin-right:0;
 }
 .mini-hd .m-nav li{
     font-size: 14px;
@@ -470,7 +649,15 @@ html,body{
     width: 20px;
     height: 20px;
 }
-.mini-hd .visitor a{
+.mini-hd .yuer-nav{
+    font-size: 14px;
+    height: 40px;
+}
+.mini-hd .yuer-nav .livinglist{
+    top:40px;
+}
+.mini-hd .visitor a,.mini-hd .visitor button{
+    width: 46px;
     height: 26px;
     line-height: 26px;
     margin:0 8px;
@@ -787,6 +974,7 @@ html,body{
     margin:5px 0 12px 0;
 }
 .anchor-info a{
+    display: block;
     cursor: default;
     width: 110px;
     overflow: hidden;

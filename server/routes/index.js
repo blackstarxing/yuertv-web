@@ -133,6 +133,7 @@ router.get('/liveroom', function(req, res, next) {
             title: JSON.parse(result[0]).object.info.title+JSON.parse(result[0]).object.info.nickname+'-娱儿-手游直播攻略平台',
             detail: JSON.parse(result[0]).object,
             gift: JSON.parse(result[1]).object,
+            otherlives:JSON.parse(result[0]).object.hotLive.slice(0,2),
             islogin: islogin,
             minihead :true,
         });

@@ -66,23 +66,64 @@ html,body{
 	top: 0;
 	height: 100%;
 	width: 100%;
-	background: #1a2129;
+	background: rgba(0,0,0,1);
 }
 .anchor-outline{
 	display: none;
 }
 .leave-text{
-	color:#f36;
-	margin-top: 10%;
-	margin-left: 33%;
+	color:#fff;
+	width: 235px;
+	margin: 5% auto 0;
+	font-size: 18px;
+}
+.leave-text img{
+	width: 80px;
+	float: left;
+	margin-right: 10px;
+}
+.leave-text span{
+	display: inline-block;
+	margin-top: 60px;
+}
+.room-qr{
+	position: absolute;
+	width: 100px;
+	left: 50%;
+	bottom:0;
+	margin-left: -60px;
+	font-size: 12px;
+	padding:10px;
+	background: #fff;
+	text-align: center;
+}
+.room-qr img{
+	width: 100%;
+}
+.ad{
+	position: absolute;
+	right: 0;
+	bottom:50px;
+	z-index: 99;
+}
+.ad img{
+	width: 100px;
+}
+.ad .ad-close{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top:5px;
+	left: 5px;
+	cursor: pointer;
 }
 .other-live{
-	width: 510px;
+	width: 765px;
 	margin:0 auto;
 }
 .go-other{
 	width: 235px;
-	height: 132px;
+	/*height: 132px;*/
 	float: left;
 	margin: 8% 10px 0;
 }
@@ -320,21 +361,6 @@ html,body{
 	bottom: -40px;
 	border-radius: 3px;
 }
-@media screen and (max-width: 1770px) { /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
-  .recommendBox {
-    width: 1000px;
-  }
-}
-@media screen and (max-width: 1520px) { /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
-  .recommendBox {
-    width: 750px;
-  }
-}
-@media screen and (max-width: 1270px) { /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
-  .recommendBox {
-    width: 500px;
-  }
-}
 .m-live-right{
 	float: right;
 	position: absolute;
@@ -349,7 +375,7 @@ html,body{
 	color:#999;
 	height: 80px;
 	overflow: hidden;
-	margin-bottom: 20px;
+	margin-bottom: 4px;
 }
 .live-notice img{
 	vertical-align: middle;
@@ -570,7 +596,7 @@ html,body{
 	height: 50px;
 	padding:19px 0;
 	border:1px solid #ccc;
-	display: none;
+	/*display: none;*/
 }
 .award img{
 	float: left;
@@ -670,6 +696,7 @@ html,body{
 	background: rgba(72,84,114,0.8);
 	border-radius: 3px;
 	display: none;
+	z-index: 99;
 }
 .my-prop:after{
 	position: absolute;
@@ -735,4 +762,116 @@ html,body{
 .m-l-gift .givemoney{
 	height: 20px;
 	line-height: 20px;
+}
+@media screen and (max-width: 1770px) { 
+	.recommendBox {
+		width: 1000px;
+	}
+}
+@media screen and (max-width: 1600px) { 
+	.recommendBox {
+		width: 750px;
+	}
+	.go-other{
+		width: 200px;
+	}
+	.go-lives{
+		margin:0 auto;
+	}
+	.other-live{
+		width: 660px;
+	}
+	.other-live .live-address{
+		width: 200px;
+		height: 112px;
+	}
+	.other-live .anchor-head{
+		width: 35px;
+		height: 27px;
+	}
+	.other-live .anchor-head .head-icon{
+		width: 36px;
+		height: 36px;
+	}
+	.other-live .anchor-head .sex{
+		width: 12px;
+		height: 12px;
+	}
+	.other-live .anchor-info .live-title{
+		width: 100px;
+		margin:0;
+	}
+	.other-live .anchor-info a{
+		width: 80px;
+	}
+	.other-live .live-info{
+		height: 50px;
+		margin-bottom: 5px;
+	}
+	.room-qr{
+		width: 60px;
+		margin-left: -36px;
+		font-size: 12px;
+		padding:6px;
+	}
+}
+@media screen and (max-width: 1440px) { 
+	.recommendBox {
+		width: 750px;
+	}
+	.go-other{
+		width: 170px;
+		margin-top: 2%;
+	}
+	.go-lives{
+		margin:0 auto;
+	}
+	.leave-text img{
+		width: 60px;
+	}
+	.leave-text span{
+		font-size: 14px;
+		margin-top: 40px;
+	}
+	.other-live{
+		width: 570px;
+	}
+	.other-live .live-address{
+		width: 170px;
+		height: 95px;
+	}
+	.other-live .anchor-head{
+		width: 35px;
+		height: 27px;
+	}
+	.other-live .anchor-head .head-icon{
+		width: 36px;
+		height: 36px;
+	}
+	.other-live .anchor-head .sex{
+		width: 12px;
+		height: 12px;
+	}
+	.other-live .anchor-info .live-title{
+		width: 100px;
+		margin:0;
+	}
+	.other-live .anchor-info a{
+		width: 80px;
+	}
+	.other-live .live-info{
+		height: 50px;
+		margin-bottom: 5px;
+	}
+	.room-qr{
+		width: 60px;
+		margin-left: -36px;
+		font-size: 12px;
+		padding:6px;
+	}
+}
+@media screen and (max-width: 1270px) { 
+	.recommendBox {
+		width: 500px;
+	}
 }

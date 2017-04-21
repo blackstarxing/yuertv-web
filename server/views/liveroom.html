@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<div id="liveroom">
+<div id="liveroom" v-cloak>
     <div class="g-lb">
         <div class="m-sidebar">
             <ul>
@@ -44,7 +44,7 @@
                     <span class="hide-rtmp" data-roomid="{{detail.info.chat_room_id}}" data-anchorid="{{detail.info.up_user_id}}" data-time="{{detail.info.count_down}}">{{detail.info.rtmp}}</span>
                     <h3>{{detail.info.title}}</h3>
                     <div><span class="u-label">{{detail.info.nickname}}{% if detail.info.sex==0 %}<img src="/images/male.png" alt="" class="sex">{% else %}<img src="/images/female.png" alt="" class="sex">{% endif %}</span>{{detail.info.game_name}}</div>
-                    <div><span class="u-label">房间号：<span class="room-number">{{detail.info.room_number}}</span></span>在线：{{detail.info.online_num}}</div>
+                    <div><span class="u-label">房间号：<span class="room-number">{{detail.info.room_number}}</span></span>在线：${online_num}</div>
                 </div>
                 <div class="follow-avatar f-fr">
                     <div class="follow-anchor f-cb">
@@ -53,7 +53,7 @@
                         {% else %}
                             <button class="followme" data-id="{{detail.info.up_user_id}}" @click="followAnchor"><i class="iconfont icon-follow"></i>关注</button>
                         {% endif %}
-                        <div class="follownum">{{detail.info.fans}}</div>
+                        <div class="follownum">${fans_num}</div>
                     </div>
                     <div class="option">
                         {% if detail.info.state == 1 %}
@@ -67,91 +67,121 @@
             </div>
             <div class="videoBox">
                 <div id="LiveRoomDiv"></div>
+                <div class="ad">
+                    <img src="/images/ad_close.png" alt="" class="ad-close" @click="closeAd">
+                    <a href="javascript:void(0);" @click="adCount"><img v-bind:src="ad.icon" alt=""></a>
+                </div>
                 {% if detail.info.state == 0 %}
                 <div class="anchor-leave">
-                    <div class="leave-text">
-                        <img src="/images/ft_logo.png" alt="">主播当前不在线,看看其他的吧
+                    <div class="leave-text f-cb">
+                        <img src="/activity/images/coupon_end.png" alt=""><span>主播当前不在线</span>
                     </div>
-                    {% if detail.hotLive.length>1 %}
-                    <div class="other-live f-cb">                        
+                    <div class="other-live f-cb">    
+                        {% for list in otherlives %}                    
                         <div class="go-other">
-                            {% if detail.hotLive[0].state==1 %}
-                            <a href="/liveroom?id={{detail.hotLive[0].id}}" class="live-address">
-                            {% else %}
-                            <a href="javascript:void(0);" class="live-address">
-                            {% endif %}
-                                <img src="{{detail.hotLive[0].icon}}" alt="" class="screen">
-                                <span><i>·</i>{{detail.hotLive[0].name}}</span>
-                                {% if detail.hotLive[0].state==1 %}
+                            <a href="/liveroom?id={{list.id}}" class="live-address">
+                                <img src="{{list.icon}}" alt="" class="screen">
+                                <span><i>·</i>{{list.name}}</span>
+                                {% if list.state==1 %}
                                     <div class="play-mask online"></div>
                                 {% else %}
                                     <div class="play-mask outline">主播已离开</div>
                                 {% endif %}
                             </a>
-                        </div>
-                        <div class="go-other">
-                            {% if detail.hotLive[1].state==1 %}
-                            <a href="/liveroom?id={{detail.hotLive[1].id}}" class="live-address">
-                            {% else %}
-                            <a href="javascript:void(0);" class="live-address">
-                            {% endif %}
-                                <img src="{{detail.hotLive[1].icon}}" alt="" class="screen">
-                                <span><i>·</i>{{detail.hotLive[1].name}}</span>
-                                {% if detail.hotLive[1].state==1 %}
-                                    <div class="play-mask online"></div>
+                            <div class="m-info live-info">
+                                <div class="anchor-head">
+                                    {% if list.user_icon %}
+                                    {% if list.user_icon.indexOf('http')>-1 %}
+                                    <img src="{{list.user_icon}}" alt="" class="head-icon">
+                                    {% else %}
+                                    <img src="http://img.wangyuhudong.com/{{list.user_icon}}" alt="" class="head-icon">
+                                    {% endif %}
+                                    {% else %}
+                                    <img src="/images/default_avatar.png" alt="" class="head-icon">
+                                    {% endif %}
+                                    {% if list.sex==0 %}
+                                        <img src="/images/male.png" alt="" class="sex">
+                                    {% else %}
+                                        <img src="/images/female.png" alt="" class="sex">
+                                    {% endif %}
+                                </div>
+                                <div class="anchor-info">
+                                    <div class="live-title">{{list.title}}</div>
+                                    <div class="anchor-id">房间:{{list.room_number}}</div>
+                                    <div><a href="javascript:void(0)">{{list.nickname}}</a></div>                                
+                                </div>
+                                {% if list.is_concern==1 %}
+                                    <button class="disfollow" data-id="{{list.up_user_id}}" @click="follow">已关注</button>
                                 {% else %}
-                                    <div class="play-mask outline">主播已离开</div>
+                                    <button class="follow" data-id="{{list.up_user_id}}" @click="follow">关注</button>
                                 {% endif %}
-                            </a>
+                            </div>
                         </div>
+                        {% endfor %}
                     </div>
-                    {% endif %}
                     <a href="/alllive" class="go-lives">观看更多直播&gt;&gt;</a>
+                    <div class="room-qr">
+                        <img src="/images/qrimage.png" alt="">
+                        扫描下载娱儿直播
+                    </div>
                 </div>
                 {% endif %}
                 <div class="anchor-leave anchor-outline">
-                    <div class="leave-text">
-                        <img src="/images/ft_logo.png" alt="">主播当前不在线,看看其他的吧
+                    <div class="leave-text f-cb">
+                        <img src="/activity/images/coupon_end.png" alt=""><span>主播当前不在线</span>
                     </div>
-                    {% if detail.hotLive.length>1 %}
-                    <div class="other-live f-cb">                        
+                    <div class="other-live f-cb">    
+                        {% for list in otherlives %}                    
                         <div class="go-other">
-                            {% if detail.hotLive[0].state==1 %}
-                            <a href="/liveroom?id={{detail.hotLive[0].id}}" class="live-address">
-                            {% else %}
-                            <a href="javascript:void(0);" class="live-address">
-                            {% endif %}
-                                <img src="{{detail.hotLive[0].icon}}" alt="" class="screen">
-                                <span><i>·</i>{{detail.hotLive[0].name}}</span>
-                                {% if detail.hotLive[0].state==1 %}
+                            <a href="/liveroom?id={{list.id}}" class="live-address">
+                                <img src="{{list.icon}}" alt="" class="screen">
+                                <span><i>·</i>{{list.name}}</span>
+                                {% if list.state==1 %}
                                     <div class="play-mask online"></div>
                                 {% else %}
                                     <div class="play-mask outline">主播已离开</div>
                                 {% endif %}
                             </a>
-                        </div>
-                        <div class="go-other">
-                            {% if detail.hotLive[1].state==1 %}
-                            <a href="/liveroom?id={{detail.hotLive[1].id}}" class="live-address">
-                            {% else %}
-                            <a href="javascript:void(0);" class="live-address">
-                            {% endif %}
-                                <img src="{{detail.hotLive[1].icon}}" alt="" class="screen">
-                                <span><i>·</i>{{detail.hotLive[1].name}}</span>
-                                {% if detail.hotLive[1].state==1 %}
-                                    <div class="play-mask online"></div>
+                            <div class="m-info live-info">
+                                <div class="anchor-head">
+                                    {% if list.user_icon %}
+                                    {% if list.user_icon.indexOf('http')>-1 %}
+                                    <img src="{{list.user_icon}}" alt="" class="head-icon">
+                                    {% else %}
+                                    <img src="http://img.wangyuhudong.com/{{list.user_icon}}" alt="" class="head-icon">
+                                    {% endif %}
+                                    {% else %}
+                                    <img src="/images/default_avatar.png" alt="" class="head-icon">
+                                    {% endif %}
+                                    {% if list.sex==0 %}
+                                        <img src="/images/male.png" alt="" class="sex">
+                                    {% else %}
+                                        <img src="/images/female.png" alt="" class="sex">
+                                    {% endif %}
+                                </div>
+                                <div class="anchor-info">
+                                    <div class="live-title">{{list.title}}</div>
+                                    <div class="anchor-id">房间:{{list.room_number}}</div>
+                                    <div><a href="javascript:void(0)">{{list.nickname}}</a></div>                                
+                                </div>
+                                {% if list.is_concern==1 %}
+                                    <button class="disfollow" data-id="{{list.up_user_id}}" @click="follow">已关注</button>
                                 {% else %}
-                                    <div class="play-mask outline">主播已离开</div>
+                                    <button class="follow" data-id="{{list.up_user_id}}" @click="follow">关注</button>
                                 {% endif %}
-                            </a>
+                            </div>
                         </div>
+                        {% endfor %}
                     </div>
-                    {% endif %}
                     <a href="/alllive" class="go-lives">观看更多直播&gt;&gt;</a>
+                    <div class="room-qr">
+                        <img src="/images/qrimage.png" alt="">
+                        扫描下载娱儿直播
+                    </div>
                 </div>
             </div> 
             <div class="send-gift f-cb">
-                <div class="award" style="display: none;">
+                <div class="award">
                     <img src="/images/gift.png" alt="">
                     <div class="countdown">
                         <span class="endingtime">300</span>秒后<br>
@@ -295,7 +325,7 @@
             <div class="liveroom">
                 <ul class="room-tab f-cb">
                     <li class="current">互动聊天</li>
-                    <li>贡献榜</li>
+                    <li @click="getContribution">贡献榜</li>
                 </ul>
                 <div class="room-block right-block" id="chatarea">
                     <div class="welcome">欢迎来到<span>{{detail.info.nickname}}</span>的直播间，喜欢就点击房间信息关注吧！</div>
@@ -309,19 +339,6 @@
                         快捷短语<img src="/images/quickarrow.png" alt="">
                         <div class="quicktext option-block">
                             <ul>
-                                <li>666666666</li>
-                                <li>憋说话，吻我</li>
-                                <li>你是要上天吗？</li>
-                                <li>主播求约</li>
-                                <li>1111111111111</li>
-                                <li>22222222222</li>
-                                <li>23333333333</li>
-                                <li>不作死就不会死</li>
-                                <li>主播别逗</li>
-                                <li>简直要崩溃</li>
-                                <li>快点吧</li>
-                                <li>带我飞</li>
-                                <li>夭寿啦</li>
                             </ul>
                         </div>
                     </div>
