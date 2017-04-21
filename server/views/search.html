@@ -9,7 +9,7 @@
         <div class="m-listnav">
              <button v-for="(item,index) in tab" v-text="item.name" v-bind:class="[{cur:item.iscur},'u-sl-result']" @click="setCur(index)"></button>
         </div>
-        <div >
+        <div  style="min-height:350px;">
             <div class="m-activity m-tolive" v-show="index=='0' || index=='1'">
                 <div v-if="uptotal!=0" >
                     <div class="title"><span class="u-title">${uptotal}</span>位相关主播
