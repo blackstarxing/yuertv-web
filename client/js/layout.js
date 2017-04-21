@@ -189,9 +189,39 @@ var app = new Vue({
             }else{
                 $('.avatar-icon').attr('src','/images/default_avatar.png'); 
             }
+            var _this = this;
+            if(this.getQueryString('uin')){
+                $.ajax({
+                    url: '/api/thirdPartyLogin/getUserInfo?key='+this.getQueryString('uin'),
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(data) {
+                        _this.delCookie('yuer_userId');
+                        _this.delCookie('yuer_token');
+                        document.cookie="yuer_userId="+data.object.id; 
+                        document.cookie="yuer_token="+data.object.token; 
+                        window.localStorage.setItem("id", data.object.id);
+                        window.localStorage.setItem("avatar", data.object.icon);
+                        window.localStorage.setItem("nickname",data.object.nickname);
+                        window.location.href = '/';
+                    },
+                    error: function() {
+                        // alert('通讯服务器错误');
+                    }
+                }); 
+            }
         })
     },
     methods: {
+        // 获取url参数
+        getQueryString:function(name){
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        },
         clearInput:function(){
             $('.l-usrname').val('');
             $('.l-pwd').val('')
@@ -316,17 +346,7 @@ var app = new Vue({
         },
         // 三方登录
         thirdLogin:function(type){
-            $.ajax({
-                url: 'http://192.168.50.197:8777/thirdPartyLogin?platform='+type,
-                type: 'get',
-                dataType: 'json',
-                success: function(data) {
-                    
-                },
-                error: function() {
-                    alert('通讯服务器错误');
-                }
-            });
+            window.location.href = '/api/thirdPartyLogin?platform='+type;
         },
         // 注册
         chooseSex:function(type){

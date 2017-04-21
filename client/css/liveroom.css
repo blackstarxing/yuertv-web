@@ -103,7 +103,7 @@ html,body{
 .ad{
 	position: absolute;
 	right: 0;
-	bottom:50px;
+	bottom:100px;
 	z-index: 99;
 }
 .ad img{
@@ -135,6 +135,7 @@ html,body{
 }
 .live-avatar{
 	width: 80px;
+	height:80px;
 	margin-right: 10px;
 }
 .avatar-info h3{
