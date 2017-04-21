@@ -92,7 +92,7 @@
                     <div class="f-cb">
                         <div class="m-content" v-for="(video,index) in totalvideolist" >
                             <div class="m-lst" >
-                                    <div class="live-address" data-rtmp="video.flv" data-title="video.title" data-icon="video.user_icon" data-id="video.up_user_id" data-name="video.name" data-nickname="video.nickname" data-follow="video.is_concern">
+                                    <div class="live-address" :data-rtmp="video.flv" :data-title="video.title" :data-icon="video.user_icon" :data-id="video.up_user_id" :data-name="video.name" :data-nickname="video.nickname" :data-follow="video.is_concern">
                                         <img v-bind:src="video.icon" alt="" class="screen">
                                         <span><i>·</i>${video.game_name}</span>
                                         <div class="play-mask online"></div>
@@ -137,7 +137,6 @@
 
 {% block js %}
 <script src="/vue.js"></script>
-<script type="text/javascript" src="/swfobject.js"></script>
 <script type="text/javascript">
 var mvue = new Vue({
     el: '#mvue',
@@ -208,118 +207,9 @@ var mvue = new Vue({
                     if(!_this.videoislast && _this.index==3){
                       _this.videopage+=1;
                       _this.pagetotal(_this.index);
-                    }
-                    
+                    }                    
                 }
-            })
-            //视频播放器接口
-            videoPlayerInterf = {
-
-                //视频播放器Flash对象
-                flash: null,
-
-                isinit: false,
-
-                callLater: function (callback)
-                {
-                    // if (this.isinit)
-                    // {
-                    //     callback();
-                    // }
-                    // else
-                    // {
-                        this.callback = callback;
-                    // }
-                },
-                callback: null,
-
-                //初始化Flash
-                init: function ()
-                {   
-                    this.isinit = true;
-                    if (this.callback != null)
-                    {
-                        this.callback();
-                    }
-
-                    //播放视频，参数：视频地址, 视频标题, 游戏名称
-                    //this.flash.playVideo("http://pili-media.wangyuhudong.com/7FUkDXBrj3kr1leI8VjVFX6GGD0=/Fk8ffjjNrphUwlioPxjmXIB0R7tl", "界黄盖暴力输出，秒全场", "王者荣耀");
-
-                    //更新主播信息，参数：主播ID, 主播昵称, 主播头像，是否已关注
-                    //this.flash.updateAnchor("123", "奔波儿灞", "head.png", false);
-                },
-
-                //关注主播，参数：主播ID
-                focusAnchor: function ( anchorId )
-                {
-                    //调用后台，关注成功后请回调 flash.updateAnchor
-                    var _this = this;
-                    if(islogin){
-                        var parm = {};
-                        parm.userId = window.localStorage.getItem("id");
-                        parm.upUserId = anchorId;
-                        $.ajax({
-                            method: "GET",
-                            url: "/api/concern/up",
-                            dataType: 'json',
-                            data: parm,
-                            success: function(data) {
-                                if (data.code == 0) {
-                                    console.log('关注成功！');
-                                    _this.flash.updateAnchor(anchorId, null, null, true);
-                                    $('.video-open').attr('data-follow',1);
-                                }else{
-                                    console.log(data.result);
-                                }
-                            },
-                            error: function(a, b, c) {
-                                console.log("接口出问题啦");
-                            }
-                        });
-                    }else{
-                        $('.m-login-wrap').show();
-                    }
-                },
-            };
-
-            var att = {};
-            att.width = "100%";
-            att.height = "100%";
-            var par = {};
-            par.quality = "high";
-            par.bgcolor = "#000000";
-            par.allowscriptaccess = "sameDomain";
-            par.allowfullscreen = "true";
-            par.allowFullScreenInteractive = "true";
-            par.wmode = "transparent";
-
-            att.id = "VideoPlayer";
-            att.data = "YeVideoPlayer.swf";
-            videoPlayerInterf.flash = swfobject.createSWF(att, par, "VideoPlayerDiv");
-
-            $('.m-video .live-address').click(function(e){
-                e.preventDefault();
-                $('.m-video-mask').show();
-                $(this).addClass('video-open').siblings('.live-address').removeClass('video-open');
-                var name = $(this).attr('data-name'),
-                    title = $(this).attr('data-title'),
-                    flv = $(this).attr('data-rtmp'),
-                    id = $(this).attr('data-id'),
-                    nickname = $(this).attr('data-nickname'),
-                    icon = $(this).parent().find('.head-icon').attr('src'),
-                    follow = $(this).attr('data-follow')==1 ? true :false;
-                $('.m-video-mask').show();
-                videoPlayerInterf.callLater(function () {
-                    // videoPlayerInterf.flash.playVideo("http://pili-media.wangyuhudong.com/7FUkDXBrj3kr1leI8VjVFX6GGD0=/Fpe0CIJCfu80Ey29nmt4y2wVqhzx", "界黄盖暴力输出，秒全场", "王者荣耀");
-                    videoPlayerInterf.flash.playVideo(flv,title,name);
-                    videoPlayerInterf.flash.updateAnchor(id, nickname,icon, follow);
-                });
-                
-            });
-            $('.m-video-mask .close').click(function(e){
-                e.preventDefault();
-                $('.m-video-mask').hide();
-            });
+            })            
         })
     },
     methods:{
@@ -343,7 +233,7 @@ var mvue = new Vue({
             var _this=this;
             $.ajax({
                 method: "GET",
-                url:"http://172.16.10.134:8777/search",
+                url:"/api/search",
                 dataType: 'json',
                 data:{
                     keyword:_this.getQueryString("content"),
@@ -366,6 +256,11 @@ var mvue = new Vue({
                         }else{
                             _this.show=2;
                         }
+                        $('.live-address').hover(function(){
+                            $(_this).find('.play-mask').show();
+                        },function(){
+                            $(_this).find('.play-mask').hide();
+                        })
                     } else {
                         console.log(data.result);
                     }
@@ -388,7 +283,7 @@ var mvue = new Vue({
             }
             $.ajax({
                 method: "GET",
-                url:"http://172.16.10.134:8777/search",
+                url:"/api/search",
                 dataType: 'json',
                 data:{
                     keyword:_this.getQueryString("content"),
@@ -459,12 +354,10 @@ var mvue = new Vue({
                 if(islogin){
                     var parm = {};
                     parm.userId = window.localStorage.getItem("id");
-                    console.log(222)
-                    console.log($(_this).attr('data-id'));
                     parm.upUserId = $(_this).attr('data-id');
                     $.ajax({
                             method: "GET",
-                            url: "http://172.16.10.134:8777/concern/up",
+                            url: "/api/concern/up",
                             dataType: 'json',
                             data: parm,
                             success: function(data) {
