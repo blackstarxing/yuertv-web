@@ -137,7 +137,6 @@
 
 {% block js %}
 <script src="/vue.js"></script>
-<script type="text/javascript" src="/swfobject.js"></script>
 <script type="text/javascript">
 var mvue = new Vue({
     el: '#mvue',
@@ -274,8 +273,7 @@ var mvue = new Vue({
                     if(!_this.videoislast && _this.index==3){
                       _this.videopage+=1;
                       _this.pagetotal(_this.index);
-                    }
-                    
+                    }                    
                 }
             })
             //视频播放器接口
@@ -388,7 +386,7 @@ var mvue = new Vue({
             var _this=this;
             $.ajax({
                 method: "GET",
-                url:"http://172.16.10.134:8777/search",
+                url:"/api/search",
                 dataType: 'json',
                 data:{
                     keyword:_this.getQueryString("content"),
@@ -411,6 +409,11 @@ var mvue = new Vue({
                         }else{
                             _this.show=2;
                         }
+                        $('.live-address').hover(function(){
+                            $(_this).find('.play-mask').show();
+                        },function(){
+                            $(_this).find('.play-mask').hide();
+                        })
                     } else {
                         console.log(data.result);
                     }
@@ -433,7 +436,7 @@ var mvue = new Vue({
             }
             $.ajax({
                 method: "GET",
-                url:"http://172.16.10.134:8777/search",
+                url:"/api/search",
                 dataType: 'json',
                 data:{
                     keyword:_this.getQueryString("content"),
