@@ -98,11 +98,6 @@ img.sexs{
     overflow:none;
     text-overflow:none;
 }
-.f-right{
-    float:right;
-    width:40px;
-    height:20px;
-}
 /*活动*/
 .m-lst .active_name{
     width: 100%;
@@ -160,6 +155,9 @@ img.sexs{
 .list-tip{
     display:block;
     text-align:center;
+}
+.m-host-name .disfollow,.m-host-name .follow{
+	float:right;
 }
 .m-host-name .disfollow,.m-info .disfollow,.m-host-name .follow,.m-info .follow{
 	border:none;
