@@ -259,7 +259,8 @@
 	//图片看不清
 	$('.codeImg').on('click',function(e){
 		e.preventDefault();
-		$('.m-codeImg').attr('src',"/api/checkCode?phone="+$(".inputTelTelVer").val()+new Date());
+    var phone = $(".inputTelTelVer").val();
+		$('.m-codeImg').attr('src','http://172.16.10.6:8777/checkCode?phone='+phone+'&rand='+new Date());
 	})
   $('.g-left li').eq('{{index}}').addClass('rightswitchcolor');
   var UsubmitCheck=false;

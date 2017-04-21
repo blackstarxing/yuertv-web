@@ -401,7 +401,8 @@ var local={
                  $("#gainnumberTelVer").hide();
                  $(".u-numbertelTelVer").show();//请输入正确的手机号
             }
-            $('.m-codeImg').attr('src',"/api/checkCode?phone="+$(".inputTelTelVer").val()+new Date());
+            var phone = $(".inputTelTelVer").val();
+            $('.m-codeImg').attr('src','http://172.16.10.6:8777/checkCode?phone='+phone+'&rand='+new Date());
             $('.g-checkCode').show();
             // $('.telValBounced').hide();
             event.preventDefault();
@@ -412,7 +413,7 @@ var local={
 
         $('.codeConfirm').on('click',function(){
             $.ajax({
-                method: "GET",
+                type: "GET",
                 url: "/api/sendSMSCode",
                 dataType: 'json',
                 data: {
