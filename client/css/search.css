@@ -1,45 +1,177 @@
-.searchPage{
-	width: 598px;
-	height: 50px;
-	line-height: 50px;
-	margin:0 auto;
-	position: relative;
+.g-mb{
+    padding:105px 0 285px;
+    background:#f3f3f3;
 }
-.searchPage .search-key{
-	width: 100%;
-	height: 50px;
-	border:1px solid #ccc;
-	border-radius: 5px;
-	text-indent: 20px;
-	font-size: 18px;
+.m-keywords{
+    font-size:14px;
+    color:#333;
 }
-.searchPage .search-btn{
-	position: absolute;
-	display: block;
-	top: 1px;
-	right: -1px;
-	width: 100px;
-	height: 50px;
-	background: #f36;
+.u-keywords{
+    font-size:18px;
+    font-weight:bold;
+}
+.m-listnav{
+    background:#fff;
+    width:100%;
+    height:60px;
+    margin:30px 0 50px;
+}
+.u-sl-result{
+    border:0px;
+    display:inline-block;
+    width:60px;
+    height:60px;
+    line-height:60px;
+    text-align:center;
+    font-size:18px;
+    color:#333;
+    background:transparent;
+    margin-left:50px;
+}
+.cur{
+    color:#f36;
+    border-bottom:4px solid #f36;
+}
+.g-mb .title{
+    font-size: 24px;
+    color: #033;
+    line-height: 2.5;
+}
+.g-mb .title img{
+    width: 32px;
+    height: 32px;
+    vertical-align: -6%;
+    margin:0 10px;
+}
+.more{
+    float: right;
+    font-size: 14px;
+    color:#666;
+    line-height: 60px;
+    margin-right: 10px;
+}
+/*相关主播*/
+.m-tolive{margin-bottom:28px;}
+.u-title{color:#f36;}
+.m-host{
+    float:left;
+    width:160px;
+    height:223px;
+    background:#fff;
+    margin-right:11px;
+    margin-bottom:28px;
+}
+.m-content .m-lst{margin-right:11px;}
+img.m-host-icon{
+    width:160px;
+    height:160px;
+}
+img.sexs{
+    padding-bottom:5px;
+}
+.m-host-name,.m-host-fans{
+    width:90%;
+    margin:0 auto;
+}
+.u-h-name{
+    font-size:16px;
+    color:#141a20;
+    display:inline-block;
+    width:75px;
+    white-space:nowrap;/* 不换行 */
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ 
+}
+.u-h{
+    display:inline-block;
+    width:47%;
+    font-size:12px;
+    color:#999;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.u-h-fans{
+    width:49%;
+    text-align:right;
+    white-space:none;
+    overflow:none;
+    text-overflow:none;
+}
+/*活动*/
+.m-lst .active_name{
+    width: 100%;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+.m-activity .m-lst,
+.m-hot .m-lst{
+    width: 230px;
+}
+.m-game .m-lst{
+    width: 140px;
+    text-align: center;
+}
+.m-game img{
+    height: 180px;
+}
+.m-game .m-lst{
+    margin-right: 11px;
+}
+.m-lst:last-child{
+    margin-right: 8px;
+}
+.m-hot .m-lst:nth-child(5),
+.m-video .m-lst:nth-child(5){
+    margin-right: 0;
+}
+/*视频*/ 
+.m-video .anchor-head .head-icon{
+    border:1px solid #fff;
+}
+.m-video .anchor-info a{
+    color:#999;
+}
+.f-cb{
+    overflow:hidden;
+}
+/*为空的状态*/
+.m-video-empty{
+    width:20%;
+    height:300px;
+    margin:50px auto;
+}
+.m-empty-img{
+    display:block;
+    width:250px;
+    height:250px;
+}
+.m-empty-text{
+    font-size:16px;
+    text-align:center;
+    margin-top:30px;
+}
+.list-tip{
+    display:block;
+    text-align:center;
+}
+.m-host-name .disfollow,.m-host-name .follow{
+	float:right;
+}
+.m-host-name .disfollow,.m-info .disfollow,.m-host-name .follow,.m-info .follow{
+	border:none;
+	display:block;
+	width:45px;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	border-radius:2px;
 	color:#fff;
-	border: none;
-	border-radius: 5px;
-	font-size: 18px;
+	background:#f36;
+	font-size:12px;
 }
-.search-num{
-	line-height: 2.5;
-	border-bottom: 1px solid #ccc;
-	margin:30px 0;
+.m-host-name .disfollow,.m-info .disfollow{
+	background:#999;
 }
-.search-num span{
-	color:#f36;
-}
-.search-result h3{
-	font-size: 24px;
-	color:#033;
-	margin:10px 0;
-	font-weight: normal;
-}
-.search-result h3 span{
-	color:#f36;
-}
+[v-cloak] { display: none }

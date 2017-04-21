@@ -134,6 +134,7 @@ router.get('/liveroom', function(req, res, next) {
             title: JSON.parse(result[0]).object.info.title+JSON.parse(result[0]).object.info.nickname+'-娱儿-手游直播攻略平台',
             detail: JSON.parse(result[0]).object,
             gift: JSON.parse(result[1]).object,
+            otherlives:JSON.parse(result[0]).object.hotLive.slice(0,2),
             islogin: islogin,
             minihead :true,
         });
@@ -1648,7 +1649,11 @@ router.get('/cash/signup', function(req, res, next) {
             });
         }).fail(function(cont, error) { 
             console.log(error);
-            res.render('error', { title: "错误"});
+            // res.render('error', { title: "错误"});
+            res.render('cash/signup', {
+                ticket: ticket,
+                type:type
+            });
         });
     }else{
         res.render('cash/signup', {
@@ -1713,7 +1718,6 @@ router.get('/mobile/news', function(req, res, next) {
                 date = new Date(JSON.parse(result[0]).object.newsInfo.create_date);
                 m = date.getMonth() + 1,
                 d = date.getDate();
-                content=JSON.parse(result[0]).object.newsInfo.content.replace(/<\/?[^>]*>/g,'');
             }
             res.render('mobile/news', {
                 title: "资讯详情",
@@ -1754,5 +1758,32 @@ router.get('/activity/girls', function(req, res, next) {
     res.render('activity/girls', {
         ticket: ticket
     });
+});
+router.get('/cash/hourly', function(req, res, next) {
+    var nowtime = new Date().getTime();
+    if(!ticket || (nowtime-ticketline)>7000000){
+        getTicket();
+    }
+    res.render('cash/hourly', {
+        ticket: ticket
+    });
+});
+router.get('/searchresult', function(req, res, next) {
+    var islogin = false;
+    if(req.headers.cookie){
+        if(req.headers.cookie.indexOf('yuer_userId')>=0){
+           islogin = true; 
+       }        
+    }else{
+        islogin = false;
+    };
+    res.render('searchresult', {
+        title: "娱儿直播--领跑移动电竞的直播平台",
+        islogin: islogin,
+    });
+
+});
+router.get('/activity/signupweb', function(req, res, next) {
+    res.render('activity/signupweb', { title: "主播招募" });
 });
 module.exports = router;

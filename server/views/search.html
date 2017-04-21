@@ -1,81 +1,136 @@
 {% extends 'layout.html' %} 
-
 {% block css %}
 <link rel="stylesheet" href="/dist/search.css">
 {% endblock %}
-
 {% block content %}
-    <div class="m-common">
-        <div class="comWidth f-cb">
-            <div class="search-content" style="display: none;" data-last="{{result.isLast}}">{{content | safe }}</div>
-            <div class="searchPage">
-                <input type="text" class="search-key" value="{{content | safe }}"><button class="search-btn">搜索</button>
-            </div>
-            <h3 class="search-num">搜索到<span>{{result.total}}</span>个相关结果</h3>
-            <div class="search-result">
-                <h3><span>{{result.total}}</span>个直播页面</h3>
-                <div class="search-container">
-                    {% if result.list == "" %}
-                        <div class="m-empty">
-                            <img src="/images/empty.png" alt="">
-                            还没有任何内容哦
+<div class="g-mb" id="mvue" v-cloak>
+    <div class="comWidth">
+        <div class="m-keywords">关键词<span class="u-keywords">“<span>${keyword}</span>”</span></div>
+        <div class="m-listnav">
+             <button v-for="(item,index) in tab" v-text="item.name" v-bind:class="[{cur:item.iscur},'u-sl-result']" @click="setCur(index)"></button>
+        </div>
+        <div >
+            <div class="m-activity m-tolive" v-show="index=='0' || index=='1'">
+                <div v-if="uptotal!=0" >
+                    <div class="title"><span class="u-title">${uptotal}</span>位相关主播
+                        <a class="more" @click="resultswitch(1)" v-show="index=='0' || index!='1'" v-if="uptotal>7" >查看全部>></a>
+                    </div>
+                    <div class="f-cb">
+                        <div class="m-host" v-for="(up,index) in totaluplist" >
+                            <div class="m-nlist">
+                                <a :href="'/liveroom?id='+up.room_number">
+                                    <img v-bind:src="up.icon" alt="" class="m-host-icon" v-if="up.icon">
+                                    <img src="/images/default_avatar.png" alt="" class="m-host-icon" v-else>
+                                </a>
+                                <div class="m-host-name f-cb">
+                                    <span class="u-h-name">${up.nickname}</span>
+                                    <img src="/images/male.png" alt="" class="sexs">
+                                    <button class="disfollow" v-if="up.is_concern==1" :data-id="up.up_user_id">已关注</button>
+                                    <button class="follow" v-else :data-id="up.up_user_id">关注</button>
+                                </div>
+                                <div class="m-host-fans">
+                                    <span class="u-h">房间:<span>${up.room_number}</span></span>
+                                    <span class="u-h u-h-fans">粉丝:<span>${watchPeople(up.fans)}</span></span>
+                                </div>
+                            </div>
                         </div>
-                    {% else %}
-                        {% for result in result.list %}
-                            <div class="m-lst m-video">
-                                {% if result.state==1 %}
-                                    <a href="/liveroom?id={{result.id}}" class="live-address">
-                                {% else %}
-                                    <a href="javascript:void(0);" class="live-address">
-                                {% endif %}
-                                    <img src="{{result.icon}}" alt="" class="screen">
-                                    <span><i>·</i>{{result.name}}</span>
-                                    {% if result.state==1 %}
-                                        <div class="play-mask online"></div>
-                                    {% else %}
-                                        <div class="play-mask outline">主播已离开</div>
-                                    {% endif %}
+                    </div>
+                    <p class="list-tip" v-if="totaluplists.length==0" v-show="index=='1'">没有更多主播了</p>
+                </div>
+                <div class="m-video-empty" v-else v-show="index=='1'">
+                    <img src="/images/empty.png" alt="" class="m-empty-img">
+                    <p class="m-empty-text">还没有任何主播内容哦</p>
+                </div>
+            </div>
+            <div class="m-hot" v-show="index=='0' || index=='2'">
+                <div v-if="livetotal!=0" class="f-cb">
+                    <div class="title"><span class="u-title">${livetotal}</span>位相关直播间
+                        <a class="more" @click="resultswitch(2)" v-show="index=='0' || index!='2'" v-if="livetotal>5" >查看全部>></a>
+                    </div>
+                    <div class="f-cb">
+                        <div class="m-content" v-for="lives in totallivelist" >
+                            <div class="m-lst">
+                                <a :href="'/liveroom?id='+lives.room_number" class="live-address">
+                                    <img v-bind:src="lives.icon" alt="" class="screen">
+                                    <span><i>·</i>${lives.name}</span>
+                                    <div class="play-mask online"></div>
                                 </a>
                                 <div class="m-info live-info">
                                     <div class="anchor-head">
-                                        {% if result.user_icon %}
-                                        {% if result.user_icon.indexOf('http')>-1 %}
-                                        <img src="{{result.user_icon}}" alt="" class="head-icon">
-                                        {% else %}
-                                        <img src="http://img.wangyuhudong.com/{{result.user_icon}}" alt="" class="head-icon">
-                                        {% endif %}
-                                        {% else %}
-                                        <img src="/images/default_avatar.png" alt="" class="head-icon">
-                                        {% endif %}
-                                        {% if result.sex==0 %}
-                                            <img src="/images/male.png" alt="" class="sex">
-                                        {% else %}
-                                            <img src="/images/female.png" alt="" class="sex">
-                                        {% endif %}
+                                        <img v-bind:src="lives.user_icon" alt="" class="head-icon" v-if="lives.user_icon">
+                                        <img src="/images/default_avatar.png" alt="" class="head-icon" v-else>
+                                        <img src="/images/female.png" alt="" class="sex" v-if="lives.sex">
+                                        <img src="/images/male.png" alt="" class="sex" v-else>
                                     </div>
                                     <div class="anchor-info">
-                                        <div class="live-title">{{result.title}}</div>
-                                        <div class="anchor-id">房间:{{result.room_number}}</div>
-                                        <div><a href="javascript:void(0);">{{result.nickname}}</a></div>
+                                        <div class="live-title">${lives.title}</div>
+                                        <div class="anchor-id">房间:${lives.room_number}</div>
+                                        <div><a href="javascript:void(0)">${lives.nickname}</a></div>       
                                     </div>
-                                    {% if result.is_concern==1 %}
-                                        <button class="disfollow" data-id="{{result.up_user_id}}">已关注</button>
-                                    {% else %}
-                                        <button class="follow" data-id="{{result.up_user_id}}">关注</button>
-                                    {% endif %}
+                                    <button class="disfollow" v-if="lives.is_concern==1" :data-id="lives.up_user_id">已关注</button>
+                                    <button class="follow" v-else :data-id="lives.up_user_id">关注</button>
                                 </div>
                             </div>
-                        {% endfor %}
-                    {% endif %}
+                        </div>
+                    </div>
+                    <p class="list-tip" v-if="totallivelists.length==0" v-show="index=='2'">没有更多直播了</p>
                 </div>
-                <p class="list-tip">没有更多内容了</p>
+                <div class="m-video-empty" v-else v-show="index=='2'">
+                    <img src="/images/empty.png" alt="" class="m-empty-img">
+                    <p class="m-empty-text">还没有任何直播内容哦</p>
+                </div>
+            </div>
+            <div class="m-video" v-show="index=='0' || index=='3'">
+                <div v-if="videototal!=0" class="f-cb">
+                    <div class="title"><span class="u-title">${videototal}</span>个精彩视频
+                        <a  class="more" @click="resultswitch(3)" v-show="index=='0' || index!='3'" v-if="videototal>5" >查看全部>></a>
+                    </div>
+                    <div class="f-cb">
+                        <div class="m-content" v-for="(video,index) in totalvideolist" >
+                            <div class="m-lst" >
+                                <div class="live-address" :data-rtmp="video.flv" :data-title="video.title" :data-icon="video.user_icon" :data-id="video.up_user_id" :data-name="video.name" :data-nickname="video.nickname" :data-follow="video.is_concern">
+                                    <img v-bind:src="video.icon" alt="" class="screen">
+                                    <span><i>·</i>${video.game_name}</span>
+                                    <div class="play-mask online"></div>
+                                </div>
+                                <div class="m-info">
+                                    <div class="anchor-head video-head">
+                                        <img v-bind:src="video.user_icon" alt="" class="head-icon" v-if="video.user_icon">
+                                        <img src="/images/default_avatar.png" alt="" class="head-icon" v-else>
+                                        <img src="/images/female.png" alt="" class="sex" v-if="video.sex">
+                                        <img src="/images/male.png" alt="" class="sex" v-else>
+                                    </div>
+                                    <div class="anchor-info">
+                                        <div><a href="javascript:void(0);">${video.nickname}</a></div>
+                                    </div>
+                                    <div class="video-name"><a href="javascript:void(0);">${video.title}</a></div>
+                                </div>   
+                            </div>   
+                        </div>
+                    </div>
+                    <p class="list-tip" v-if="totalvideolists.length==0" v-show="index=='3'">没有更多视频了</p>
+                </div>
+                <div class="m-video-empty" v-else v-show="index=='3'">
+                    <img src="/images/empty.png" alt="" class="m-empty-img">
+                    <p class="m-empty-text">还没有任何视频内容哦</p>
+                </div>
             </div>
         </div>
-        
-    </div>
-    
+        <div class="m-video-empty" v-if="show==2" v-show="0">
+            <img src="/images/empty.png" alt="" class="m-empty-img">
+            <p class="m-empty-text">还没有任何内容哦</p>
+        </div>
+    </div>   
+</div>
+<div class="m-video-mask">
+    <div class="close"><img src="/images/iconwindow.png" alt=""></div>
+    <div class="m-video-player">
+        <div id="VideoPlayerDiv"></div>
+    </div> 
+</div>
 {% endblock %}
-
 {% block js %}
+<script type="text/javascript" src="/swfobject.js"></script>
+<script src="/vue.js"></script>
 <script type="text/javascript" src="/dist/search.js"></script>
 {% endblock %}

@@ -50,6 +50,10 @@ button,input{padding:0;margin:0;outline: none;}
 	margin-right: 5px;
 	vertical-align: middle;
 }
+.pre{
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
 .middle{
 	font-size: 1.2rem;
 	color:#98a9bb;
@@ -62,8 +66,11 @@ button,input{padding:0;margin:0;outline: none;}
 .lightbox{
 	margin:10px 0;
 }
-.lightbox img{
+.lightbox div{
+	float: left;
 	margin-bottom: 10px;
+}
+.lightbox img{
 	vertical-align: bottom;
 }
 .lightbox .less{
@@ -71,14 +78,14 @@ button,input{padding:0;margin:0;outline: none;}
 }
 .lightbox .mid{
 	width: 48%;
-	margin-right: 2.5%;
+	margin-right: 2.4%;
 }
 .lightbox .mid:nth-child(even){
 	margin-right: 0;
 }
 .lightbox .full{
 	width: 31%;
-	margin-right: 3%;
+	margin-right: 2%;
 }
 .lightbox .full:nth-child(3n+0){
 	margin-right: 0;
@@ -127,6 +134,9 @@ button,input{padding:0;margin:0;outline: none;}
 .comment-content h3 span{
 	font-size: 0.9rem;
 	color:#465667;
+}
+.reply-nickname{
+	color: #f36;
 }
 .u-empty-img{
 	display:block;

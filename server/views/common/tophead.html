@@ -7,103 +7,200 @@
     </div>    
 </div>
 {% else %}
-{% if minihead %}
-<div class="g-hd f-cb mini-hd">
-    <div class="f-cb">
-{% else %}
-<div class="g-hd f-cb common-hd">
-    <div class="f-cb comWidth">
-{% endif %}
-        <div class="header_left f-fl">
-            <a href="/"><img src="/images/tvlogo.png" alt="娱儿直播" class="head_logo f-fl"></a>
-            <ul class="m-nav f-fl">
-                <li><a href="/">首页</a></li>
-                <li><a href="/alllive">直播</a></li>
-                <!-- <li><a href="">游戏</a></li> -->
-            </ul>
-            <div class="m-search f-fl">
-                <input type="text" placeholder="主播昵称、房间号">
-                <a class="u-search-btn"></a>
-                <div class="hot-anchor">
-                    <h3>热门主播</h3>
-                    <ul class="anchor-list f-cb">
+<div id="app" v-cloak>
+    {% if minihead %}
+    <div class="g-hd f-cb mini-hd">
+        <div class="f-cb">
+    {% else %}
+    <div class="g-hd f-cb common-hd">
+        <div class="f-cb comWidth">
+    {% endif %}
+            <div class="header_left f-fl">
+                <a href="/"><img src="/images/tvlogo.png" alt="娱儿直播" class="head_logo f-fl"></a>
+                <ul class="m-nav f-fl">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/alllive">直播</a></li>
+                    <!-- <li><a href="">游戏</a></li> -->
+                </ul>
+                <div class="m-search f-fl">
+                    <input type="text" placeholder="主播昵称、房间号">
+                    <a class="u-search-btn"></a>
+                    <div class="hot-anchor">
+                        <h3>热门主播</h3>
+                        <ul class="anchor-list f-cb">
 
-                    </ul>
+                        </ul>
+                    </div>
+                </div>
+                <div class="yuer-nav">
+                    <i class="iconfont icon-down"></i>下载
+                    <div class="livinglist QRbox">
+                        <img src="/images/qrimage.png" alt="">
+                        扫描二维码下载娱儿直播
+                    </div>
+                </div>
+                <div class="yuer-nav" v-on:mouseenter="getSub">
+                    <i class="iconfont icon-focus"></i>关注
+                    <div class="livinglist">
+                        {% if islogin %}
+                            <a href="" class="want-see f-cb" v-for="up in subs">
+                                <img v-bind:src="up.icon" alt="" class="f-fl"><span class="f-fl">${up.nickname}</span><i v-if="up.state"></i>
+                            </a href="">
+                        {% else %}
+                        <div class="forget-login">
+                            忘记登录啦？点击<button @click="showLogin">登录</button>| <button @click="showLogin(1)">注册</button>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="yuer-nav" v-on:mouseenter="getHis">
+                    <i class="iconfont icon-history"></i>历史
+                     <div class="livinglist">
+                        {% if islogin %}
+                            <a href="" class="want-see f-cb" v-for="up in his">
+                                <img v-bind:src="up.icon" alt="" class="f-fl"><span class="f-fl">${up.nickname}</span><i v-if="up.state"></i>
+                            </a href="">
+                        {% else %}
+                        <div class="forget-login">
+                            忘记登录啦？点击<button @click="showLogin">登录</button>|<button @click="showLogin(1)">注册</button>
+                        </div>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-            <div class="sweepme">
-                <img src="/images/mobile.png" alt="">娱儿直播移动版
-                <div class="QRbox">
-                    <img src="/images/qrimage.png" alt="">
-                    扫描二维码下载娱儿直播
+            {% if islogin %}
+            <div class="header_right f-fr">
+                <div class="avatar">
+                    <a href="/center/information" class="avatar-area"><img src="" alt="" class="avatar-icon"></a>
+                    <div class="nav-list">
+                        <ul>
+                            <li><a href="/center/information"><i class="iconfont icon-info"></i>我的资料</a></li>
+                            <li><a href="/center/focus"><i class="iconfont icon-follow"></i>我的关注</a></li>
+                            <li><a href="/center/message"><i class="iconfont icon-message"></i>我的消息</a></li>
+                            <li><a href="/center/topup"><i class="iconfont icon-pay"></i>我要充值</a></li>
+                            <li><a href="" class="logout" @click="logout"><i class="iconfont icon-out"></i>退出登录</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="header_right visitor f-fr">
+                <button class="u-login-btn" @click="showLogin">登录</button><button class="register-hover" @click="showLogin(1)">注册</button>
+                <div class="reward-tip">注册赠送两个贝壳</div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+    <div class="m-login-wrap">
+        <div class="login-content">
+            <button class="close" @click="closeLogin"><img src="/images/iconwindow.png" alt=""></button>
+            <div class="login-box" v-if="logType==1">
+                <h3>登录娱儿</h3>
+                <div class="yuer-reg">还没有娱儿账号？<button @click="changeLogtype(2)">马上注册»</button></div>
+                <input type="text" placeholder="请输入昵称或手机号" class="l-usrname" maxlength="20">
+                <span class="error"></span>
+                <input type="password" placeholder="请输入密码" class="l-pwd" maxlength="20">
+                <div class="login-error">
+                    <p class="lg-error"></p>
+                </div>
+                <button type="submit" class="u-login" @click="userLogin">登录</button>
+                <div class="m-link f-cb">
+                    <button class="f-fl" @click="changeLogtype(3)">手机号码快捷登录</button>
+                    <a href="/reset" class="f-fr">忘记密码？</a>
+                </div>
+                <div class="third-logins">
+                    <div class="line-through">
+                        <!-- <div class="line"></div> -->
+                        <!-- <span>or</span> -->
+                        ——————————&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;——————————
+                    </div>
+                    <!-- <h3>第三方账号登录</h3> -->
+                    <div class="third-enter">
+                        <button @click="thirdLogin(1)">
+                            <img src="/images/qq.png" alt="">
+                            QQ登录
+                        </button>
+                    </div>
+                    <div class="third-enter">
+                        <button @click="thirdLogin(3)">
+                            <img src="/images/weibo.png" alt="">
+                            微博登录
+                        </button>
+                    </div>
+                    <div class="third-enter">
+                        <button @click="thirdLogin(2)">
+                            <img src="/images/wechat.png" alt="">
+                            微信登录
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="login-box" v-else-if="logType==2">
+                <h3>注册娱儿</h3>
+                <div class="yuer-reg">已有账号？<button @click="changeLogtype(1)">我要登录</button></div>
+                <div class="yuer-input">
+                    <input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>11)value=value.slice(0,11)" class="u-ipt telnumber" placeholder="请输入手机号码" v-model="regForm.mobile">
+                    <button class="getCode" v-bind:class="{disabled:regdis}" v-bind:disabled="regdis" @click="showPic(0)">${regText}</button>
+                </div>
+                <span class="error">${regError.phone}</span>
+                <div class="reg-slide slide">
+                    <div class="f-cb">
+                        <img v-bind:src="regPic" alt="" class="f-fl">
+                        <div class="yuer-input f-fr">
+                            <input type="text" placeholder="请输入图形验证码" maxlength="4" v-model="regpicCode">
+                            <button @click="sendCode(0)">确定</button>
+                        </div>
+                    </div>                    
+                    <div class="f-cb">
+                        <button class="change-picture f-fl" @click="changePic(0)">看不清？换一张</button><span class="error f-fl">${regError.pic}</span>
+                    </div>
+                </div>                
+                <input type="text" class="u-ipt code" placeholder="请输入验证码" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>6)value=value.slice(0,6)" v-model="regForm.checkCode">
+                <span class="error">${regError.code}</span>
+                <input type="password" class="u-ipt password" placeholder="请输入6~20位密码" maxlength="20" v-model="regForm.password">
+                <span class="error">${regError.password}</span>
+                <div class="yuer-input f-cb">
+                    <input type="text" placeholder="请输入昵称" class="nickname f-fl" v-model="regForm.nickname">
+                    <div class="yuer-sex f-fl">
+                        <span v-bind:class="{choose:!regForm.sex}" @click="chooseSex(0)">男</span><span v-bind:class="{choose:regForm.sex}" @click="chooseSex(1)">女</span>
+                    </div>
+                </div>
+                <span class="error">${regError.nickname}</span>
+                <button type="submit" class="u-login" @click="register">注册</button>
+                <p class="yuer-agree">注册即视为同意 <a href="/service" target="_blank" class="agreement">《娱儿直播用户服务协议》</a></p>
+            </div>
+            <div class="login-box phone-box" v-else>
+                <h3>登录娱儿</h3>
+                <div class="yuer-reg">还没有娱儿账号？<button @click="changeLogtype(2)">马上注册»</button></div>
+                <div class="yuer-input">
+                    <input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>11)value=value.slice(0,11)" class="u-ipt telnumber" placeholder="请输入手机号码" v-model="phoneForm.mobile">
+                    <button class="getCode" v-bind:class="{disabled:phonedis}" v-bind:disabled="phonedis" @click="showPic(1)">${phoneText}</button>
+                </div>
+                <span class="error">${phoneError.phone}</span>
+                <div class="phone-slide slide">
+                    <div class="f-cb">
+                        <img v-bind:src="phonePic" alt="" class="f-fl">
+                        <div class="yuer-input f-fr">
+                            <input type="text" placeholder="请输入图形验证码" maxlength="4" v-model="phonepicCode">
+                            <button @click="sendCode(1)">确定</button>
+                        </div>
+                    </div>                    
+                    <div class="f-cb">
+                        <button class="change-picture f-fl" @click="changePic(1)">看不清？换一张</button><span class="error f-fl">${phoneError.pic}</span>
+                    </div>
+                </div>
+                <input type="text" class="u-ipt code" placeholder="请输入验证码" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>6)value=value.slice(0,6)" v-model="phoneForm.checkCode">
+                <span class="error">${phoneError.code}</span>
+                <button type="submit" class="u-login" @click="quickLogin">登录</button>
+                <div class="m-link f-cb">
+                    <button class="f-fl" @click="changeLogtype(1)">账号密码登录</button>
                 </div>
             </div>
         </div>
-        {% if islogin %}
-        <div class="header_right f-fr">
-            <div class="avatar">
-                <a href="/center/information" class="avatar-area"><img src="" alt="" class="avatar-icon"></a>
-                <div class="nav-list">
-                    <ul>
-                        <li><a href="/center/information"><i class="iconfont icon-info"></i>我的资料</a></li>
-                        <li><a href="/center/focus"><i class="iconfont icon-follow"></i>我的关注</a></li>
-                        <li><a href="/center/message"><i class="iconfont icon-message"></i>我的消息</a></li>
-                        <li><a href="/center/topup"><i class="iconfont icon-pay"></i>我要充值</a></li>
-                        <li><a href="" class="logout"><i class="iconfont icon-out"></i>退出登录</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        {% else %}
-        <div class="header_right visitor f-fr">
-            <a class="u-login-btn">登录</a><a href="/register" class="register-hover">注册</a>
-            <div class="reward-tip">注册赠送两个贝壳</div>
-        </div>
-        {% endif %}
     </div>
 </div>
-{% endif %}
-<div class="m-login-wrap">
-    <div class="login-content">
-        <a class="close"><img src="/images/iconwindow.png" alt=""></a>
-        <h3>娱儿直播账号登录</h3>
-        <input type="text" placeholder="请输入昵称或手机号" class="l-usrname" maxlength="20">
-        <input type="password" placeholder="请输入密码" class="l-pwd" maxlength="20">
-        <div class="login-error">
-            <p class="lg-error"></p>
-        </div>
-        <button type="submit" class="u-login">登录</button>
-        <div class="m-link f-cb">
-            <a href="/reset" class="f-fl">忘记密码？</a>
-            <a href="/register" class="f-fr">我要注册</a>
-        </div>
-        <!-- <div class="third-logins">
-            <div class="line-through">
-                <div class="line"></div>
-                <span>or</span>
-            </div>
-            <h3>第三方账号登录</h3>
-            <div class="third-enter">
-                <a href="">
-                    <img src="/images/qq.png" alt="">
-                    QQ登录
-                </a>
-            </div>
-            <div class="third-enter">
-                <a href="">
-                    <img src="/images/weibo.png" alt="">
-                    微博登录
-                </a>
-            </div>
-            <div class="third-enter">
-                <a href="">
-                    <img src="/images/wechat.png" alt="">
-                    微信登录
-                </a>
-            </div>
-        </div> -->
-    </div>
-</div>
+
 
 <script>
     $('.m-nav li').eq({{nav_index}}).addClass('current');

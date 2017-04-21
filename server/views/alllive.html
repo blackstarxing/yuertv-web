@@ -23,11 +23,7 @@
             {% else %}
             {% for live in live.list %}
                 <div class="m-lst m-video">
-                    {% if live.state==1 %}
-                        <a href="/liveroom?id={{live.id}}" class="live-address">
-                    {% else %}
-                        <a href="javascript:void(0);" class="live-address">
-                    {% endif %}
+                    <a href="/liveroom?id={{live.id}}" class="live-address">
                         <img src="{{live.icon}}" alt="" class="screen">
                         <span><i>·</i>{{live.name}}</span>
                         {% if live.state==1 %}

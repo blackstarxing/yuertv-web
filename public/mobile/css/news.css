@@ -4,13 +4,16 @@ body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC;
 	 font-style:normal;  margin:0 auto; height:100%;
 	background:#141a20; overflow-x:hidden; -webkit-overflow-scrolling:touch;max-width:800px;}
 li{ list-style:none;}
+h3{font-size: 1.5rem;line-height: 1.25;}
+a{text-decoration: none; color:#9da4ad;}
 .m-bg{
 	background:#1c232d;
-	padding:5% 2.5%;
+	padding:10px 2.5% 25px;
 }
 .g-top{
 	font-size:21px;
 	color:#fff;
+	padding-bottom: 15px;
 }
 .g-nav{
 	font-size:10px;
@@ -21,8 +24,8 @@ li{ list-style:none;}
 .g-n-title{
 	display:inline-block; 
 	width:20%;
-	height:13px;
-	line-height:13px;
+	height:20px;
+	line-height:20px;
 	text-align:center;
 	margin-right:0.2%;
 	font-size:9px;
@@ -31,6 +34,7 @@ li{ list-style:none;}
 	position:absolute;
 	right:2.5%;
 	left:auto;
+	border-radius: 2px;
 	white-space:nowrap;/* 不换行 */
 	overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
 	text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ 
@@ -41,6 +45,10 @@ li{ list-style:none;}
 }
 .g-mian{
 	font-size:12px;color:#98a9bb;
+}
+.g-mian img{
+	max-width: 100%;
+	height: auto!important;
 }
 .g-m-video{
 	margin:5% 0;
@@ -58,6 +66,7 @@ li{ list-style:none;}
 	margin-right: 5px;
 }
 .comment{
+	display:block;
 	border-top: 1px solid #1c232d;
 	padding:9px 0;
 	font-size: 1.2rem;
@@ -81,10 +90,17 @@ li{ list-style:none;}
 	font-size: 0.9rem;
 	color:#465667;
 }
+.reply-nickname{
+	color: #f36;
+}
 img.u-empty-img{
 	display:block;
 	width:45%;
 	margin:0 auto;
+}
+img.f-fl{float:left;}
+span.f-fr{
+	float:right;
 }
 .u-empty-data{
 	font-size:14px;
