@@ -640,38 +640,8 @@ $(function(){
             }
 
             function flashSendCustom(name,id,icon,price,type){                
-                var parm = {};
-                parm.giftId = id;
-                parm.num = 1;
-                parm.upUserId = $('.hide-rtmp').attr('data-anchorid');
-                parm.type = type;
                 if(type==0){
                     if(yuerCoin>=price){
-                        $.ajax({
-                            method: "GET",
-                            url: "/api/gift/send",
-                            dataType: 'json',
-                            data: parm,
-                            success: function(data) {
-                                if (data.code == 0) {
-                                    if(data.object.state == 0){
-                                        
-                                        // getProp();
-                                    }else{
-                                        $('.wallet-text').text(data.object.str); 
-                                        $('.wallet-empty').fadeIn();
-                                        setTimeout(function(){
-                                            $('.wallet-empty').fadeOut();
-                                        },2000);                               
-                                    }
-                                }else{
-                                    console.log(data.result);
-                                }
-                            },
-                            error: function(a, b, c) {
-                                console.log("接口出问题啦");
-                            }
-                        });
                         yuerCoin = yuerCoin - price;
                         $('.yuerCoin').html(yuerCoin);
                         liveRoomInterf.flash.updateCoins(yuerCoin);
@@ -707,6 +677,27 @@ $(function(){
                             $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+nickname+' : 送给主播1个</span>'+name+'</div>');
                             liveRoomInterf.flash.showDanmaku(nickname+'送给主播一个'+name, 0xffffff, 100);
                         }
+                        var parm = {};
+                        parm.giftId = id;
+                        parm.num = 1;
+                        parm.giftNumber = giftNumber;
+                        parm.icon = icon;
+                        parm.nickname = nickname;
+                        parm.name = name;
+                        parm.upUserId = $('.hide-rtmp').attr('data-anchorid');
+                        parm.type = type;
+                        $.ajax({
+                            method: "GET",
+                            url: "/api/gift/send",
+                            dataType: 'json',
+                            data: parm,
+                            success: function(data) {
+                                
+                            },
+                            error: function(a, b, c) {
+                                console.log("接口出问题啦");
+                            }
+                        });
                     }else{
                         $('.wallet-text').text('钱包空啦！赶紧去充值吧');
                         $('.wallet-empty').fadeIn();
@@ -715,26 +706,22 @@ $(function(){
                         },2000);
                     }
                 }else{
+                    var parm = {};
+                    parm.giftId = id;
+                    parm.num = 1;
+                    parm.giftNumber = giftNumber;
+                    parm.icon = icon;
+                    parm.nickname = nickname;
+                    parm.name = name;
+                    parm.upUserId = $('.hide-rtmp').attr('data-anchorid');
+                    parm.type = type;
                     $.ajax({
                         method: "GET",
                         url: "/api/gift/send",
                         dataType: 'json',
                         data: parm,
                         success: function(data) {
-                            if (data.code == 0) {
-                                if(data.object.state == 0){
-                                    
-                                    // getProp();
-                                }else{
-                                    $('.wallet-text').text(data.object.str); 
-                                    $('.wallet-empty').fadeIn();
-                                    setTimeout(function(){
-                                        $('.wallet-empty').fadeOut();
-                                    },2000);                               
-                                }
-                            }else{
-                                console.log(data.result);
-                            }
+                            
                         },
                         error: function(a, b, c) {
                             console.log("接口出问题啦");
