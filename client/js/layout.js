@@ -368,7 +368,7 @@ var app = new Vue({
                             dataType: 'json',
                             success: function(data) {
                                 if(data.code==0){
-                                    _this.regPic = '/api/checkCode?phone='+_this.regForm.mobile+'&rand='+new Date();
+                                    _this.regPic = 'http://172.16.10.6:8777/checkCode?phone='+_this.regForm.mobile+'&rand='+new Date();
                                     $('.reg-slide').slideDown();
                                 }else{
                                     _this.regError.phone = "号码已被注册，请重新输入";
@@ -396,7 +396,7 @@ var app = new Vue({
             }else{
                 if(_this.phoneForm.mobile){
                     if(/^1[34578][0-9]{9}$/.test(_this.phoneForm.mobile)){
-                        _this.phonePic = '/api/checkCode?phone='+_this.phoneForm.mobile+'&rand='+new Date();
+                        _this.phonePic = 'http://172.16.10.6:8777/checkCode?phone='+_this.phoneForm.mobile+'&rand='+new Date();
                         $('.phone-slide').slideDown();
                     }else{
                         _this.phoneError.phone = "手机号码错误，请重新输入";
@@ -414,9 +414,9 @@ var app = new Vue({
         },
         changePic:function(type){
             if(type==0){
-                this.regPic = '/api/checkCode?phone='+this.regForm.mobile+'&rand='+new Date();
+                this.regPic = 'http://172.16.10.6:8777/checkCode?phone='+this.regForm.mobile+'&rand='+new Date();
             }else{
-                this.phonePic = '/api/checkCode?phone='+this.phoneForm.mobile+'&rand='+new Date();
+                this.phonePic = 'http://172.16.10.6:8777/checkCode?phone='+this.phoneForm.mobile+'&rand='+new Date();
             }
         },
         // 发送验证码

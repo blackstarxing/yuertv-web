@@ -66,7 +66,7 @@ $(function() {
     function changeCode(){
         $('.code-wrap input').val('');
         // $picCode.attr('src','http://172.16.2.62:8777/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
-        $picCode.attr('src','/api/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
+        $picCode.attr('src','http://qa.api.yuerlive.cn/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
     }
 
     $('.getCode').click(function(e){
