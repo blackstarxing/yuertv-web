@@ -78,6 +78,7 @@ var local={
                 $('#u-confirm').attr('readOnly','true');
             }
             else if($(this).val().length<6){
+                $('#u-confirm').attr('readOnly',false);
                 $("#u-new").parent().find("span").each(function(){
                     if($(this).attr("class").indexOf("u-vpassword") != -1){
                         $(this).show();
@@ -86,6 +87,7 @@ var local={
                     }
                 });
             }else{
+
                 $("#u-new").parent().find("span").each(function(){
                         $(this).hide();
                 });
