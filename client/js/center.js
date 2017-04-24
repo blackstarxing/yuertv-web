@@ -402,7 +402,7 @@ var local={
                  $(".u-numbertelTelVer").show();//请输入正确的手机号
             }
             var phone = $(".inputTelTelVer").val();
-            $('.m-codeImg').attr('src','http://172.16.10.6:8777/checkCode?phone='+phone+'&rand='+new Date());
+            $('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
             $('.g-checkCode').show();
             // $('.telValBounced').hide();
             event.preventDefault();
