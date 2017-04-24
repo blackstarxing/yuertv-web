@@ -349,13 +349,13 @@ body{
 	from {transform:rotateX(0deg);}
 	to {transform:rotateX(-90deg);}
 }
-.error{
+/*.error{
 	position: absolute;
 	right: 110px;
 	bottom: -95px;
 	color: #ffe278;
 	display: none;
-}
+}*/
 
 .m-mask {
     position: fixed;

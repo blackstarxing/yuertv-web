@@ -537,8 +537,9 @@ html,body{
     margin-right: 20px;
 }
 .m-search input{
-    width: 300px;
+    width: 255px;
     height: 40px;
+    padding-right: 45px;
     border-radius: 20px;
     border: 1px solid transparent;
     text-indent: 20px;
