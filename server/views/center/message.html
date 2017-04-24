@@ -34,8 +34,8 @@
 									<span v-else class="u-messagecontent">
 										${item.content}
 									</span>
-									<a v-if='item.target_type==1' v-bind:href="'/liveroom?id='+item.room_number">	<span  class="u-messtips" id="messshow">查看<!--&gt;&gt;--></span></a>
-									<a v-if='item.target_type==2' v-bind:href="'/liveroom?id='+item.live_id">	<span  class="u-messtips" id="messshow">查看<!--&gt;&gt;--></span></a>
+									<a v-if='item.target_type==1' v-bind:href="'/liveroom?id='+item.obj_id">	<span  class="u-messtips" id="messshow">查看<!--&gt;&gt;--></span></a>
+									<a v-if='item.target_type==2' v-bind:href="'/liveroom?id='+item.obj_id">	<span  class="u-messtips" id="messshow">查看<!--&gt;&gt;--></span></a>
 									<a v-if='item.target_type==4' v-bind:href="item.url">	<span   class="u-messtips" id="messshow">查看<!--&gt;&gt;--></span></a>
 									<!--<a v-else href="javascript:;">	<span class="u-messtips" id="messshow">查看&lt;!&ndash;&gt;&gt;&ndash;&gt;</span></a>-->
 
@@ -61,7 +61,12 @@
 
 						<div class="u-message f-cb" v-for="(item,index) in vuemessage">
 									<div class="u-msystem">
-										<img v-bind:src="item.icon">
+										{% if info.icon==null%}
+											<img src="http://webapi.yuerlive.cn/{{info.icon}}" alt="">
+										{% else %}
+											<img v-bind:src="item.icon">
+										{% endif %}
+
 										<!--{% if item.sex == 0 %}-->
 										<img v-if="item.sex == 0"  src="/images/male.png" class="seximg">
 										<!--{% else %}-->
