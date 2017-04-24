@@ -45,7 +45,7 @@
             <div class="m-hot" v-show="index=='0' || index=='2'">
                 <div v-if="livetotal!=0" class="f-cb">
                     <div class="title"><span class="u-title">${livetotal}</span>位相关直播间
-                        <a class="more" @click="resultswitch(2)" v-show="index=='0' || index!='2'" v-if="livetotal>5" >查看全部>></a>
+                        <a class="more" @click="resultswitch(2)" v-show="index=='0' || index!='2'" v-if="livetotal>10" >查看全部>></a>
                     </div>
                     <div class="f-cb">
                         <div class="m-content" v-for="lives in totallivelist" >
@@ -83,7 +83,7 @@
             <div class="m-video" v-show="index=='0' || index=='3'">
                 <div v-if="videototal!=0" class="f-cb">
                     <div class="title"><span class="u-title">${videototal}</span>个精彩视频
-                        <a  class="more" @click="resultswitch(3)" v-show="index=='0' || index!='3'" v-if="videototal>5" >查看全部>></a>
+                        <a  class="more" @click="resultswitch(3)" v-show="index=='0' || index!='3'" v-if="videototal>10" >查看全部>></a>
                     </div>
                     <div class="f-cb">
                         <div class="m-content" v-for="(video,index) in totalvideolist" >
