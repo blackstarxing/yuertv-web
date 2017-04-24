@@ -44,7 +44,7 @@ var mvue = new Vue({
             iscur:false,
         }],
         index:0,
-        show:1,
+        shows: true,
         islogin:"",
     },
     updated:function(){
@@ -225,7 +225,8 @@ var mvue = new Vue({
             var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
             var r = window.location.search.substr(1).match(reg);
             if (r != null) {
-                return unescape(r[2]);
+                // return unescape(r[2]);
+                return decodeURIComponent(r[2]);
             }
             return null;
         },
@@ -259,10 +260,10 @@ var mvue = new Vue({
                         _this.livetotal=_this.totalshow.liveTotal; 
                         _this.uptotal=_this.totalshow.upTotal;
                         _this.videototal=_this.totalshow.videoTotal;
-                        if(_this.uptotal!=0 && _this.livetotal!=0 && _this.videototal!=0){
-                            _this.show=1;
+                        if(_this.livetotal!=0 || _this.uptotal!=0 || _this.videototal!=0){
+                            _this.shows=true;
                         }else{
-                            _this.show=2;
+                            _this.shows=false;
                         }
                         $('.live-address').hover(function(){
                             $(_this).find('.play-mask').show();

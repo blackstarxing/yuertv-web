@@ -8,8 +8,8 @@ $(function(){
             is_report: false,
             is_punish:false,
             contribution:'',
-            fans_num:'',
-            online_num:'',
+            fans_num:0,
+            online_num:0,
             ad:'',
         },
         mounted: function () {
@@ -363,7 +363,8 @@ $(function(){
     // 云信账号
     var live_account = "",
         live_token = "",
-        nickname = "";
+        nickname = "",
+        userId = "";
 
     var hidegiftmes = "",
         hideEnter = "";
@@ -397,6 +398,7 @@ $(function(){
         live_account = window.localStorage.getItem("id");
         live_token = window.localStorage.getItem("id");
         nickname = window.localStorage.getItem("nickname");
+        userId = window.localStorage.getItem("id");
         enterLiveroom();
     }
     
@@ -1211,13 +1213,15 @@ $(function(){
                 if(msgs[i].content){
                     var content=JSON.parse(msgs[i].content);
                     // console.log(content);
-                    if(content.data.giftNum>1){
+                    if(content.data.senderID!=userId){
+                        if(content.data.giftNum>1){
                         $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+content.data.senderName+' : 送给主播1个</span>'+content.data.giftName+'<span class="combo">'+content.data.giftNum+'<i></i></span></div>');
-                        liveRoomInterf.flash.showDanmaku(content.data.senderName+'送给主播一个'+content.data.giftName, 0xffffff, 100);
-                    }else{
-                        $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+content.data.senderName+' : 送给主播1个</span>'+content.data.giftName+'</div>');
-                        liveRoomInterf.flash.showDanmaku(content.data.senderName+'送给主播一个'+content.data.giftName, 0xffffff, 100);
-                    }
+                            liveRoomInterf.flash.showDanmaku(content.data.senderName+'送给主播一个'+content.data.giftName, 0xffffff, 100);
+                        }else{
+                            $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+content.data.senderName+' : 送给主播1个</span>'+content.data.giftName+'</div>');
+                            liveRoomInterf.flash.showDanmaku(content.data.senderName+'送给主播一个'+content.data.giftName, 0xffffff, 100);
+                        }
+                    }                    
                 }else if(msgs[i].text && msgs[i].fromNick){
                     var host = msgs[i].fromNick=="1" ? '<label for="">主播</label>&nbsp;' : '';
                     $('.mes-block').append('<div class="text-mes">'+host+'<span class="membName">'+msgs[i].fromNick+' : </span>'+msgs[i].text+'</div>');        

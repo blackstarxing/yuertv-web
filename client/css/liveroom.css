@@ -103,7 +103,7 @@ html,body{
 .ad{
 	position: absolute;
 	right: 0;
-	bottom:100px;
+	bottom:46%;
 	z-index: 99;
 }
 .ad img{
@@ -146,6 +146,14 @@ html,body{
 .avatar-info .u-label{
 	display: inline-block;
 	width: 230px;
+}
+.avatar-info .u-label .info-nickname{
+	display: inline-block;
+	max-width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	float: left;
 }
 .avatar-info .u-label img{
 	vertical-align: middle;

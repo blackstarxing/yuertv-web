@@ -43,7 +43,7 @@
                 <div class="avatar-info f-fl">
                     <span class="hide-rtmp" data-roomid="{{detail.info.chat_room_id}}" data-anchorid="{{detail.info.up_user_id}}" data-time="{{detail.info.count_down}}">{{detail.info.rtmp}}</span>
                     <h3>{{detail.info.title}}</h3>
-                    <div><span class="u-label">{{detail.info.nickname}}{% if detail.info.sex==0 %}<img src="/images/male.png" alt="" class="sex">{% else %}<img src="/images/female.png" alt="" class="sex">{% endif %}</span>{{detail.info.game_name}}</div>
+                    <div><div class="u-label"><span class="info-nickname">{{detail.info.nickname}}</span>{% if detail.info.sex==0 %}<img src="/images/male.png" alt="" class="sex">{% else %}<img src="/images/female.png" alt="" class="sex">{% endif %}</div>{{detail.info.game_name}}</div>
                     <div><span class="u-label">房间号：<span class="room-number">{{detail.info.room_number}}</span></span>在线：${online_num}</div>
                 </div>
                 <div class="follow-avatar f-fr">
@@ -67,7 +67,7 @@
             </div>
             <div class="videoBox">
                 <div id="LiveRoomDiv"></div>
-                <div class="ad">
+                <div class="ad" v-if="ad!=''">
                     <img src="/images/ad_close.png" alt="" class="ad-close" @click="closeAd">
                     <a href="javascript:void(0);" @click="adCount"><img v-bind:src="ad.icon" alt=""></a>
                 </div>
