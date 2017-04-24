@@ -180,7 +180,7 @@ var local={
             $("#number").removeClass("change-color");
         });
         // 验证码的整体确认的点击事件
-        $("#gainnumber").off().on("click",function(event){
+        $("#gainnumberTelVer").off().on("click",function(event){
             event.preventDefault();
             if(($("#number").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#number").val()))){
                 $("#number").removeClass("change-color");
@@ -189,17 +189,35 @@ var local={
                  $(".u-numbertel").show();
             }
             $.ajax({
-                method: "GET",
-                url: "/api/sendSMSCode",
+                type: "GET",
+                url: "/api/checkCode",
                 dataType: 'json',
                 data: {
-                    mobile:$("#number").val(),
-                    type:1,
+                    phone : $("#number").val()
                 },
                 success: function(data) {
                     if(data.code == 0){
-                        $("#copySecond").show();
-                        settime(60);
+                        console.log(data);
+                        $.ajax({
+                            method: "GET",
+                            url: "/api/sendSMSCode",
+                            dataType: 'json',
+                            data: {
+                                mobile:$("#number").val(),
+                                type:1,
+                            },
+                            success: function(data) {
+                                if(data.code == 0){
+                                    $("#copySecond").show();
+                                    settime(60);
+                                }else{
+                                    alert(data.result);//这个先这样用，后台应该是文档写的有问题
+                                }
+                            },
+                            error: function(a, b, c) {
+                                console.log("接口出问题啦");
+                            }
+                        });
                     }else{
                         alert(data.result);//这个先这样用，后台应该是文档写的有问题
                     }
@@ -208,6 +226,8 @@ var local={
                     console.log("接口出问题啦");
                 }
             });
+
+
         });
         // 验证码字段的校验
         $("#userbox").off().on("click",function(){
@@ -327,7 +347,10 @@ var local={
         //我的资料手机认证－－修改手机号码弹框
         $("#modifyTel").on("click",function(){
             $("#telValBounced").show();
-        }); 
+        });
+        $("#modifyTel1").on("click",function(){
+            $("#telValBounced").show();
+        });
         // 修改手机号码弹框的取消事件
         $("#userboxTelCancel").on("click",function(){
             $("#numberTelVer").val("");
@@ -336,7 +359,8 @@ var local={
             // window.location.href=window.location.href;
         }); 
         // 修改手机号码的弹框事件
-        function settime(time){
+        function settime(time)
+        {
             var copySecondTelVer=$("#copySecondTelVer");
             if(time>0){
                 time--;
@@ -367,30 +391,46 @@ var local={
             $("#numberTelVer").removeClass("change-color");
         });
         $("#gainnumberTelVer").off().on("click",function(event){
-           
+           var phone = $("#numberTelVer").val();
             if(($("#numberTelVer").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#numberTelVer").val()))){
                 $("#numberTelVer").removeClass("change-color");
+                // $("#telValBounced").hide();
                 // $("#telValBounced").hide();
             } else {
                  
                  $("#gainnumberTelVer").hide();
                  $(".u-numbertelTelVer").show();//请输入正确的手机号
             }
+            var phone = $(".inputTelTelVer").val();
+            $('.m-codeImg').attr('src','http://172.16.10.6:8777/checkCode?phone='+phone+'&rand='+new Date());
+            $('.g-checkCode').show();
+            // $('.telValBounced').hide();
             event.preventDefault();
+
+        });
+
+        //图形验证码
+
+        $('.codeConfirm').on('click',function(){
             $.ajax({
-                method: "GET",
+                type: "GET",
                 url: "/api/sendSMSCode",
                 dataType: 'json',
                 data: {
+                    type:2,
+                    imgCheckCode : $('.m-codeInput').val(),
                     mobile:$("#numberTelVer").val(),
-                    type:1,
                 },
                 success: function(data) {
                     if(data.code == 0){
                         $("#telValBounced").show();
                         $("#copySecondTelVer").show();
                         settime(60);
+                        $('.g-checkCode').hide();
+                        $('.telValBounced').show();
                     }else{
+                        $('.codeError').show();
+                        console.log(data.code);
                         // alert(data.result);//这个先这样用，后台应该是文档写的有问题
                     }
                 },
@@ -398,7 +438,14 @@ var local={
                     console.log("接口出问题啦");
                 }
             });
+
         });
+        // 取消
+        $('.codeCancel').on('click',function(){
+            $('.g-checkCode').hide();
+            $('.asdfasdfa').hide();
+
+        })
         // 验证码
         $("#userboxTelVer").off().on("click",function(){
             // 判断号码不为空，且和数据库的手机号码不重复
@@ -441,6 +488,7 @@ var local={
                     }
                 })
             }
+
         });
         $("#verifyTelVer").off().on("focus",function(){
             $(".u-verifyInputTelVer").hide();
@@ -839,6 +887,14 @@ var local={
                 })
             }
         });
+      /*1.0.3基本资料 byFan start*/
+        // 昵称修改
+        function nameChange(){
+            $('.u-nameSave').on('click',function(){
+
+            });
+        }
+      /*1.0.3基本资料 byFan end*/
     },
     };
     local.init();
