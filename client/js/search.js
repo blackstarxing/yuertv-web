@@ -312,9 +312,9 @@ var mvue = new Vue({
                             _this.totaluplist=[];
                             _this.uppage=1;
                           }
-                          if(_this.totaluplists!=0){
-                            _this.totaluplist=[];
-                          }
+                          // if(_this.totaluplists!=0){
+                          //   _this.totaluplist=[];
+                          // }
                           _this.totaluplist=_this.totaluplist.concat(data.object.upList.list);
                           _this.upislast=_this.totalshow.upList.isLast;
                         } 
@@ -340,9 +340,9 @@ var mvue = new Vue({
                             _this.totalvideolist=[];
                             _this.videopage=1;
                           } 
-                          if(_this.totalvideolists!=0){
-                            _this.totalvideolist=[];
-                          }
+                          // if(_this.totalvideolists!=0){
+                          //   _this.totalvideolist=[];
+                          // }
                           _this.totalvideolist=_this.totalvideolist.concat(data.object.videoList.list);
                           _this.videoislast=_this.totalshow.videoList.isLast;
                         }    

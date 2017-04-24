@@ -415,8 +415,6 @@ var local={
                  $("#gainnumberTelVer").hide();
                  $(".u-numbertelTelVer").show();//请输入正确的手机号
             }
-
-
         });
 
         //图形验证码
