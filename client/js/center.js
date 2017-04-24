@@ -73,7 +73,11 @@ var local={
         });   
         // 新密码字段的校验  
         $("#u-new").off().on("blur",function(){
-            if($(this).val().length<6){
+            if($(this).val()==$('#u-current').val()){
+                $('.u-ppassword').show();
+                $('#u-confirm').attr('readOnly','true');
+            }
+            else if($(this).val().length<6){
                 $("#u-new").parent().find("span").each(function(){
                     if($(this).attr("class").indexOf("u-vpassword") != -1){
                         $(this).show();
@@ -91,7 +95,9 @@ var local={
             }
         });
         // 确认新密码的校验
-        $("#u-confirm").off().on("blur",function(){
+        $("#u-confirm").off().on("blur",function()
+
+        {
            local.updatePasswordTag_confirm=false;
            if($(this).val() === $("#u-new").val() && $(this).val()!=="" && $("#u-new").val()){
                 local.updatePasswordTag_confirm=true;
@@ -182,8 +188,9 @@ var local={
         // 验证码的整体确认的点击事件
         $("#gainnumberTelVer").off().on("click",function(event){
             event.preventDefault();
-            if(($("#number").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#number").val()))){
+            if(($("#numberTelVer").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#numberTelVer").val()))){
                 $("#number").removeClass("change-color");
+
             } else {
                  $("#gainnumber").hide();
                  $(".u-numbertel").show();
@@ -193,7 +200,7 @@ var local={
                 url: "/api/checkCode",
                 dataType: 'json',
                 data: {
-                    phone : $("#number").val()
+                    phone : $("#numberTelVer").val()
                 },
                 success: function(data) {
                     if(data.code == 0){
@@ -203,7 +210,7 @@ var local={
                             url: "/api/sendSMSCode",
                             dataType: 'json',
                             data: {
-                                mobile:$("#number").val(),
+                                mobile:$("#numberTelVer").val(),
                                 type:1,
                             },
                             success: function(data) {
@@ -396,16 +403,17 @@ var local={
                 $("#numberTelVer").removeClass("change-color");
                 // $("#telValBounced").hide();
                 // $("#telValBounced").hide();
+                var phone = $(".inputTelTelVer").val();
+                $('.m-codeImg').attr('src','http://172.16.10.3:8777/checkCode?phone='+phone+'&rand='+new Date());
+                $('.g-checkCode').show();
+                // $('.telValBounced').hide();
+                event.preventDefault();
             } else {
                  
                  $("#gainnumberTelVer").hide();
                  $(".u-numbertelTelVer").show();//请输入正确的手机号
             }
-            var phone = $(".inputTelTelVer").val();
-            $('.m-codeImg').attr('src','http://172.16.10.6:8777/checkCode?phone='+phone+'&rand='+new Date());
-            $('.g-checkCode').show();
-            // $('.telValBounced').hide();
-            event.preventDefault();
+
 
         });
 
@@ -746,7 +754,7 @@ var local={
                     var data = new FormData();
                     data.append('upload', $(this)[0].files[0]);
                     $.ajax({
-                         url: 'http://yuerwebapi.wangyuhudong.com/common/upload',
+                         url: 'http://webapi.yuerlive.cn/common/upload',
                          type: 'POST',
                           data: data,
                           cache: false,
@@ -767,7 +775,21 @@ var local={
                                         if(data.code == 0){
                                             console.log("上传成功");
                                             window.localStorage.setItem("avatar", icon);
-                                            window.location.href = window.location.href;
+                                            var time;
+                                            $('.iconChangeSuccess').animate({
+                                                'opacity':1,
+                                            },100,function(){
+                                                clearTimeout(time);
+                                                time=setTimeout(function(){
+                                                    $('.iconChangeSuccess').fadeOut('fast',function(){
+                                                        $(this).remove();
+                                                    });
+                                                    window.location.reload();
+                                                },1000);
+
+                                            });
+                                            // window.location.href = window.location.href;
+
                                         }else{
                                                 console.log(data.result);
                                         }
@@ -782,8 +804,25 @@ var local={
                            }
                     }); 
                 }
+                else{
+                    //修改头像错误
+                    var time;
+                    $('.Iconerror').animate({
+                        'opacity':1,
+                    },100,function(){
+                        clearTimeout(time);
+                        time=setTimeout(function(){
+                            $('.Iconerror').fadeOut('fast',function(){
+                                $(this).remove();
+                            });
+                        },3000);
+
+                    });
+                }
             }  
         });
+
+
         // 绑定支付宝
         $("#realName").on("blur",function(){
             if($("#realName").val()==''){
@@ -887,14 +926,6 @@ var local={
                 })
             }
         });
-      /*1.0.3基本资料 byFan start*/
-        // 昵称修改
-        function nameChange(){
-            $('.u-nameSave').on('click',function(){
-
-            });
-        }
-      /*1.0.3基本资料 byFan end*/
     },
     };
     local.init();

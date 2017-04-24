@@ -15,6 +15,7 @@ input{
 }
 .g-container input{
 	text-indent: 12px;
+	color:#fff;
 }
 .g-main{
 	width:1200px;
@@ -131,7 +132,7 @@ input{
 	padding-left:40px;
 }
 .m-tright .u-nicknameonly{
-	font-size: 24px;
+	font-size: 20px;
 	color:#fff;
 }
 .m-top .m-tright{
@@ -139,8 +140,12 @@ input{
 }
 .m-top .m-tright .u-p1{
 	margin: 15px 20px 22px -43px;
+	max-width: 200px;
+	white-space:nowrap;/* 不换行 */
+	overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+	text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
 	text-align: center;
-	font-size:24px;
+	font-size:20px;
 }
 .g-right .m-top .m-tright .u-p1 .u-p1-s{
 	padding-left:15px;
@@ -272,6 +277,9 @@ input{
 	height: 30px;
 	line-height: 30px;
 }
+.basicInfo-common .u-nameExist{
+	color:#ff3366;
+}
 .basicInfo-common .IconChange.active{
 	display: none;
 	background: red;
@@ -283,13 +291,22 @@ input{
 	position: absolute;
 	top: 30px;
 	left: 70px;
+	color:#FF3366;
 }
 .g-right .m-basicInfo .m-headIcon{
+	position: relative;
 	height: 50px;
 	line-height:50px;
 }
-
-
+.m-headIcon .iconChangeSuccess{
+	position: absolute;
+	top:45px;
+	left: 70px;
+	color:#FF3366;
+}
+.m-headIcon .Iconerror{
+	color:#FF3366;
+}
 
 .g-left ul li.rightswitchcolor a{
 	color:#f36;
@@ -400,7 +417,7 @@ a.m-changepass,a.m-change,a.m-realname,a.m-changeicon,a.m-bindpay{
 	text-align:center;
 	display: none;
 }
-.u-vpassword{
+.u-vpassword,.u-ppassword{
 	position: absolute;
 	left:270px;
 	top:1px;
@@ -1328,6 +1345,13 @@ input.full{
 .u-nickhost .u-nicksex{
 	height:20px;
 	padding-top:20px;
+}
+.u-nickhost .u-nicksex span{
+	display: inline-block;
+	max-width: 150px;
+	white-space:nowrap;/* 不换行 */
+	overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+	text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
 }
 .u-nickhost .u-hostfans{
 	height:35px;
