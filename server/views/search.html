@@ -15,14 +15,14 @@
                     <div class="title"><span class="u-title">${uptotal}</span>位相关主播
                         <a class="more" @click="resultswitch(1)" v-show="index=='0' || index!='1'" v-if="uptotal>7" >查看全部>></a>
                     </div>
-                    <div class="f-cb">
+                    <div class="f-cbs">
                         <div class="m-host" v-for="(up,index) in totaluplist" >
                             <div class="m-nlist">
                                 <a :href="'/liveroom?id='+up.live_id">
                                     <img v-bind:src="up.icon" alt="" class="m-host-icon" v-if="up.icon">
                                     <img src="/images/default_avatar.png" alt="" class="m-host-icon" v-else>
                                 </a>
-                                <div class="m-host-name f-cb">
+                                <div class="m-host-name f-cbs">
                                     <span class="u-h-name">${up.nickname}</span>
                                     <img src="/images/male.png" alt="" class="sexs">
                                     <button class="disfollow" v-if="up.is_concern==1" :data-id="up.up_user_id">已关注</button>
@@ -43,11 +43,11 @@
                 </div>
             </div>
             <div class="m-hot" v-show="index=='0' || index=='2'">
-                <div v-if="livetotal!=0" class="f-cb">
+                <div v-if="livetotal!=0" class="f-cbs">
                     <div class="title"><span class="u-title">${livetotal}</span>位相关直播间
                         <a class="more" @click="resultswitch(2)" v-show="index=='0' || index!='2'" v-if="livetotal>10" >查看全部>></a>
                     </div>
-                    <div class="f-cb">
+                    <div class="f-cbs">
                         <div class="m-content" v-for="lives in totallivelist" >
                             <div class="m-lst">
                                 <a :href="'/liveroom?id='+lives.live_id" class="live-address">
@@ -81,11 +81,11 @@
                 </div>
             </div>
             <div class="m-video" v-show="index=='0' || index=='3'">
-                <div v-if="videototal!=0" class="f-cb">
+                <div v-if="videototal!=0" class="f-cbs">
                     <div class="title"><span class="u-title">${videototal}</span>个精彩视频
                         <a  class="more" @click="resultswitch(3)" v-show="index=='0' || index!='3'" v-if="videototal>10" >查看全部>></a>
                     </div>
-                    <div class="f-cb">
+                    <div class="f-cbs">
                         <div class="m-content" v-for="(video,index) in totalvideolist" >
                             <div class="m-lst" >
                                 <div class="live-address" :data-rtmp="video.flv" :data-title="video.title" :data-icon="video.user_icon" :data-id="video.up_user_id" :data-name="video.name" :data-nickname="video.nickname" :data-follow="video.is_concern">
