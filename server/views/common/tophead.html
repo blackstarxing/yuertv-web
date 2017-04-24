@@ -105,7 +105,7 @@
                     <p class="lg-error"></p>
                 </div>
                 <button type="submit" class="u-login" @click="userLogin">登录</button>
-                <div class="m-link f-cb">
+                <div class="m-link f-cb" style="display: block!important;">
                     <button class="f-fl" @click="changeLogtype(3)">手机号码快捷登录</button>
                     <a href="/reset" class="f-fr">忘记密码？</a>
                 </div>
@@ -161,7 +161,7 @@
                 <input type="password" class="u-ipt password" placeholder="请输入6~20位密码" maxlength="20" v-model="regForm.password">
                 <span class="error">${regError.password}</span>
                 <div class="yuer-input f-cb">
-                    <input type="text" placeholder="请输入昵称" class="nickname f-fl" v-model="regForm.nickname">
+                    <input type="text" placeholder="请输入昵称" class="nickname f-fl" v-model="regForm.nickname" maxlength="16">
                     <div class="yuer-sex f-fl">
                         <span v-bind:class="{choose:!regForm.sex}" @click="chooseSex(0)">男</span><span v-bind:class="{choose:regForm.sex}" @click="chooseSex(1)">女</span>
                     </div>
