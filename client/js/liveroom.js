@@ -493,29 +493,6 @@ $(function(){
     var yuerCoin = 0;
     var propNum = 0;
 
-    // 热门弹幕
-    function hotBarrage(){
-        $.ajax({
-            method: "GET",
-            url: "/api/live/hotBarrage",
-            dataType: 'json',
-            success: function(data) {
-                if (data.code == 0) {
-                    for(var i=0;i<data.object.length;i++){
-                        $('.quicktext ul').append('<li>'+data.object[i].content+'</li>')
-                        barragelist.push(data.object[i].content);
-                    }
-                }else{
-                    console.log(data.result);
-                }
-            },
-            error: function(a, b, c) {
-                console.log("接口出问题啦");
-            }
-        });
-    } 
-    hotBarrage();
-
     // 播放器礼物列表
     function getGift(){
         $.ajax({
@@ -611,7 +588,7 @@ $(function(){
                 onmsgs: onChatroomMsgs
             });
             function sendChatroomMsgDone(error, msg) {
-                console.log('发送聊天室' + msg.type + '消息' + (!error?'成功':'失败') + ', id=' + msg.idClient, error, msg);
+                // console.log('发送聊天室' + msg.type + '消息' + (!error?'成功':'失败') + ', id=' + msg.idClient, error, msg);
                 if(!error){
                     liveRoomInterf.flash.showDanmaku(msg.text, 0xffffff, 100);
                     $('.mes-block').append('<div class="text-mes"><span class="membName">'+nickname+' : </span>'+msg.text+'</div>');
@@ -621,7 +598,7 @@ $(function(){
             }
 
             function sendChatroomCustomMsgDone(error, msg) {
-                console.log('发送聊天室' + msg.type + '消息' + (!error?'成功':'失败') + ', id=' + msg.idClient, error, msg);
+                // console.log('发送聊天室' + msg.type + '消息' + (!error?'成功':'失败') + ', id=' + msg.idClient, error, msg);
                 var gift = JSON.parse(msg.content);
                 if(!error){
                     liveRoomInterf.flash.showDanmaku(nickname+'送给主播一个'+gift.data.giftName, 0xffffff, 100);
@@ -638,7 +615,7 @@ $(function(){
                         text: text,
                         done: sendChatroomMsgDone
                     });
-                    console.log('正在发送聊天室text消息, id=' + msg.idClient);
+                    // console.log('正在发送聊天室text消息, id=' + msg.idClient);
             }
 
             function flashSendCustom(name,id,icon,price,type){                
@@ -656,22 +633,6 @@ $(function(){
                         }
                         lastTime = nowTime;
                         giftName = name;
-                        // var content = {
-                        //     type: 1,
-                        //     data: {
-                        //         giftName:name,
-                        //         giftNum:giftNumber,
-                        //         giftShowImage:icon,
-                        //         senderName:nickname,
-                        //         giftID:id,
-                        //         senderID:live_account
-                        //     }
-                        // };
-                        // var msg = chatroom.sendCustomMsg({
-                        //     content: JSON.stringify(content),
-                        //     done: sendChatroomCustomMsgDone
-                        // });
-                        // console.log('正在发送聊天室自定义消息, id=' + msg.idClient);
                         if(giftNumber>1){
                             $('.mes-block').append('<div class="gift-mes '+hidegiftmes+'"><span class="membName">'+nickname+' : 送给主播1个</span>'+name+'<span class="combo">'+giftNumber+'<i></i></span></div>');
                             liveRoomInterf.flash.showDanmaku(nickname+'送给主播一个'+name, 0xffffff, 100);
@@ -746,6 +707,38 @@ $(function(){
                     }
                 }               
             }
+            // 热门弹幕
+            function hotBarrage(){
+                $.ajax({
+                    method: "GET",
+                    url: "/api/live/hotBarrage",
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.code == 0) {
+                            for(var i=0;i<data.object.length;i++){
+                                $('.quicktext ul').append('<li>'+data.object[i].content+'</li>')
+                                barragelist.push(data.object[i].content);
+                            }
+                            // 快捷消息
+                            $('.quicktext li').click(function(){
+                                if(islogin){
+                                    flashSend($(this).text());
+                                    $('.quicktext').hide();
+                                }else{
+                                    $('.m-login-wrap').show();
+                                }
+                                
+                            });
+                        }else{
+                            console.log(data.result);
+                        }
+                    },
+                    error: function(a, b, c) {
+                        console.log("接口出问题啦");
+                    }
+                });
+            } 
+            hotBarrage();
 
             // 获取我的道具列表
             function getProp(){
@@ -1121,17 +1114,6 @@ $(function(){
                 }
             }); 
 
-            // 快捷消息
-            $('.quicktext li').click(function(){
-                if(islogin){
-                    flashSend($(this).text());
-                    $('.quicktext').hide();
-                }else{
-                    $('.m-login-wrap').show();
-                }
-                
-            });
-
             // 礼物赠送
             $('.gift').click(function(){
                 if(islogin){
@@ -1207,8 +1189,7 @@ $(function(){
             console.log('发生错误', error, obj);
         }
         function onChatroomMsgs(msgs) {
-            console.log('收到聊天室消息', msgs);
-            // $('.chat').html(msgs)
+            // console.log('收到聊天室消息', msgs);
             for(var i=0;i<msgs.length;i++){
                 if(msgs[i].content){
                     var content=JSON.parse(msgs[i].content);
