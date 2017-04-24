@@ -51,7 +51,7 @@ router.get('/', function(req, res, next) {
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){
            islogin = true; 
-       }        
+       }
     }else{
         islogin = false;
     };
@@ -138,7 +138,7 @@ router.get('/liveroom', function(req, res, next) {
             islogin: islogin,
             minihead :true,
         });
-    }).fail(function(cont, error) { 
+    }).fail(function(cont, error) {
         console.log(error);
         res.render('error', { title: "错误"});
     });
@@ -175,7 +175,7 @@ router.get('/service', function(req, res, next) {
            islogin = true; 
        }        
     }else{
-        islogin = false; 
+        islogin = false;
     };
     res.render('service', { title: "用户协议" ,islogin:islogin});
 });
@@ -184,7 +184,7 @@ router.get('/center/information', function(req, res, next) {
     var islogin = false;
     if(req.headers.cookie){
         if(req.headers.cookie.indexOf('yuer_userId')>=0){
-           islogin = true; 
+           islogin = true;
        }
     }else{
         islogin = false;

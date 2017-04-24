@@ -18,28 +18,34 @@
 					</div>
 					<div class="u-certification switchcontent">
 						<div class="u-ctleft switchrepeat">
-						{% if info.mobile=="" %}
+						{% if info.mobile==undefind %}
 							<!-- 如何直播页面 -->
-							<div class="totelphone" id="totelphone">
+							<div class="thephoneauth modifyphone totelphone" id="totelphone">
 			  					<div>
-			  						<span>手机认证：</span><a href="information#m-change">去认证</a>
+			  						<span>手机绑定：</span>
+									<a href="information#m-change">去绑定</a>
 			  					</div>
 			  				</div>
 			  			{% else %}
 			  				<div class="thephoneauth modifyphone totelphone" id="woyaodangzhuboshoujirenz">
 			  					<div>
-			  						<span>手机认证：</span><span id="hiddenFields">{{info.mobile}}</span><span>已认证</span><button href="" id="modifyTelVer">修改手机号码</button>
+			  						<span>手机认证：</span><span id="hiddenFields">{{info.mobile}}</span><span>已认证</span>
+									<!--<button href="" id="modifyTelVer">修改手机号码</button>-->
 			  					</div>
 			  				</div>
-			  				<div class="toCertification modifyshiming" id="toCertification">
-			  					{% if info.id_card==null %}
-			  						<span>实名认证：</span><a href="information#m-realname">去认证</a>
-			  					{% else %}
-			  					<div class="idcardmodifytwo">
-			  						<span>实名认证：</span><span id="hiddenIdCard">{{info.id_card}}</span><span>已认证</span>
-			  					</div>
-			  					{% endif %}
-		  					</div>
+							<!--实名验证取消-->
+			  				<!--<div class="toCertification modifyshiming" id="toCertification">-->
+			  					<!--{% if info.id_card==null %}-->
+			  						<!--<span>实名认证：</span>-->
+									<!--<a href="information#m-realname">去认证</a>-->
+			  					<!--{% else %}-->
+			  					<!--<div class="idcardmodifytwo">-->
+			  						<!--<span>实名认证：</span>-->
+									<!--<span id="hiddenIdCard">{{info.id_card}}</span>-->
+									<!--<span>已认证</span>-->
+			  					<!--</div>-->
+			  					<!--{% endif %}-->
+		  					<!--</div>-->
 			  			{% endif %}
 							
 						</div>
