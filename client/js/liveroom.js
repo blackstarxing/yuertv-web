@@ -93,10 +93,10 @@ $(function(){
             closeAd:function(){
                 $('.ad').hide();
             },
-            adCount:function(){
+            adCount:function(id){
                 $.ajax({
                     method: "GET",
-                    url: "/api/live/buoyStatistics",
+                    url: "/api/live/buoyStatistics?id="+id,
                     dataType: 'json',
                     success: function(data) {
                         

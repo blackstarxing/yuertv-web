@@ -69,7 +69,7 @@
                 <div id="LiveRoomDiv"></div>
                 <div class="ad" v-if="ad!=''">
                     <img src="/images/ad_close.png" alt="" class="ad-close" @click="closeAd">
-                    <a href="javascript:void(0);" @click="adCount"><img v-bind:src="ad.icon" alt=""></a>
+                    <a href="javascript:void(0);" @click="adCount(ad.id)"><img v-bind:src="ad.icon" alt=""></a>
                 </div>
                 {% if detail.info.state == 0 %}
                 <div class="anchor-leave">

@@ -43,9 +43,9 @@
                     <i class="iconfont icon-focus"></i>关注
                     <div class="livinglist">
                         {% if islogin %}
-                            <a href="" class="want-see f-cb" v-for="up in subs">
+                            <a v-bind:href="'/liveroom?id='+up.room_id" class="want-see f-cb" v-for="up in subs">
                                 <img v-bind:src="up.icon" alt="" class="f-fl"><span class="f-fl">${up.nickname}</span><i v-if="up.state"></i>
-                            </a href="">
+                            </a>
                         {% else %}
                         <div class="forget-login">
                             忘记登录啦？点击<button @click="showLogin">登录</button>| <button @click="showLogin(1)">注册</button>
@@ -57,9 +57,12 @@
                     <i class="iconfont icon-history"></i>历史
                      <div class="livinglist">
                         {% if islogin %}
-                            <a href="" class="want-see f-cb" v-for="up in his">
-                                <img v-bind:src="up.icon" alt="" class="f-fl"><span class="f-fl">${up.nickname}</span><i v-if="up.state"></i>
-                            </a href="">
+                            <div v-if="his!=[]">
+                                <a v-bind:href="'/liveroom?id='+up.room_id" class="want-see f-cb" v-for="up in his">
+                                    <img v-bind:src="up.icon" alt="" class="f-fl"><span class="f-fl">${up.nickname}</span><i v-if="up.state"></i>
+                                </a>
+                            </div>
+                            <p v-else>当前您还没观看任何直播哦！</p>
                         {% else %}
                         <div class="forget-login">
                             忘记登录啦？点击<button @click="showLogin">登录</button>|<button @click="showLogin(1)">注册</button>

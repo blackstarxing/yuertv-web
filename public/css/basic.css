@@ -217,6 +217,11 @@ input:read-only{
     line-height: 1.5;
     display: none;
 }
+.yuer-nav .livinglist p{
+    width: 200px;
+    padding: 12px;
+    color: #fff;
+}
 .want-see{
     display: block;
     width: 150px;
