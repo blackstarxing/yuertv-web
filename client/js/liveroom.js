@@ -1191,7 +1191,7 @@ $(function(){
             }
             delCookie('yuer_userId');
             delCookie('yuer_token');
-            $('.m-login-wrap').show();
+            window.location.reload(true);
         }
         function onChatroomError(error, obj) {
             console.log('发生错误', error, obj);
