@@ -99,6 +99,7 @@
                     </div>
                     <button class="u-i6" id="send">提交</button>
                 </div>
+
                 {% endif %}
   		</div>
         <!-- <div class="asdfasdfa"> -->
@@ -403,6 +404,7 @@
 		$('.u-nameCancel').on('click',function(){
 			$(this).parent().addClass('active').siblings().removeClass('active');
 			$('.nickNameInput').attr('readOnly',true);
+            window.location.reload();
 		})
 	});
 	$('.nickChange').on('click',function(){

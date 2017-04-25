@@ -73,12 +73,11 @@ var local={
         });   
         // 新密码字段的校验  
         $("#u-new").off().on("blur",function(){
+            local.updatePasswordTag_new=false;
             if($(this).val()==$('#u-current').val()){
                 $('.u-ppassword').show();
-                $('#u-confirm').attr('readOnly','true');
             }
             else if($(this).val().length<6){
-                $('#u-confirm').attr('readOnly',false);
                 $("#u-new").parent().find("span").each(function(){
                     if($(this).attr("class").indexOf("u-vpassword") != -1){
                         $(this).show();
@@ -87,7 +86,7 @@ var local={
                     }
                 });
             }else{
-
+                local.updatePasswordTag_new=true;
                 $("#u-new").parent().find("span").each(function(){
                         $(this).hide();
                 });
@@ -122,7 +121,7 @@ var local={
         });
         // 修改密码提交的校验
         $("#send").off().on("click",function(){
-            if(local.updatePasswordTag_current && local.updatePasswordTag_confirm){
+            if(local.updatePasswordTag_current && local.updatePasswordTag_confirm &&local.updatePasswordTag_new){
                 $.ajax({
                     method: "GET",
                     url: "/api/person-center/update-password",
@@ -415,6 +414,8 @@ var local={
                  $("#gainnumberTelVer").hide();
                  $(".u-numbertelTelVer").show();//请输入正确的手机号
             }
+
+
         });
 
         //图形验证码
