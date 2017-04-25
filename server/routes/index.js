@@ -7,10 +7,10 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-// var path = 'http://172.16.10.3:8777';
-// var apipath ="http://172.16.10.134:8099";
-var path = 'http://qa.webapi.yuerlive.cn';
-var apipath ="http://qa.api.yuerlive.cn";
+var path = 'http://172.16.10.3:8777';
+var apipath ="http://172.16.10.134:8099";
+// var path = 'http://qa.webapi.yuerlive.cn';
+// var apipath ="http://qa.api.yuerlive.cn";
 
 function getTicket(){
     Thenjs.parallel([function(cont) {
@@ -24,7 +24,6 @@ function getTicket(){
     }]).then(function(cont, result) {
         Thenjs.parallel([function(cont) {
             console.log(JSON.parse(result[0]).access_token);
-            console.log("112q");
             request('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+JSON.parse(result[0]).access_token+'&type=jsapi', function(error, response, body) {
                 if (!error && response.statusCode == 200) {
                     cont(null, body);
