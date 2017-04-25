@@ -19,7 +19,7 @@ var proxy = require('express-http-proxy');
 
 var app = express();
 
-app.use('/api', proxy('http://172.16.10.3:8777', {
+app.use('/api', proxy('http://172.16.10.134:8777', {
   forwardPath: function(req, res) {
     return require('url').parse(req.url).path;
   }

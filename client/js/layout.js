@@ -238,7 +238,8 @@ var app = new Vue({
             $('.reg-slide').hide();
             $('.phone-slide').hide();
         },
-        showLogin:function(type){
+        showLogin:function(type)
+        {
             // this.loginWrap = true;
             // $('.l-usrname').val('');
             // $('.l-pwd').val('');

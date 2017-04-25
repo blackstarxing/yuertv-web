@@ -189,6 +189,7 @@ var local={
         // 验证码的整体确认的点击事件
         $("#gainnumberTelVer").off().on("click",function(event){
             event.preventDefault();
+
             if(($("#numberTelVer").val().length === 11) && (/^(13|15|17|18){1}[0-9]{9}$/.test($("#numberTelVer").val()))){
                 $("#number").removeClass("change-color");
 
@@ -196,6 +197,8 @@ var local={
                  $("#gainnumber").hide();
                  $(".u-numbertel").show();
             }
+
+
             $.ajax({
                 type: "GET",
                 url: "/api/checkCode",
@@ -205,6 +208,8 @@ var local={
                 },
                 success: function(data) {
                     if(data.code == 0){
+                        var phone = $(".inputTelTelVer").val();
+                        $('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
                         console.log(data);
                         $.ajax({
                             method: "GET",
@@ -216,9 +221,12 @@ var local={
                             },
                             success: function(data) {
                                 if(data.code == 0){
+                                    var phone = $(".inputTelTelVer").val();
+                                    $('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
                                     $("#copySecond").show();
                                     settime(60);
-                                }else{
+                                }
+                                else{
                                     alert(data.result);//这个先这样用，后台应该是文档写的有问题
                                 }
                             },
@@ -226,7 +234,8 @@ var local={
                                 console.log("接口出问题啦");
                             }
                         });
-                    }else{
+                    }
+                    else{
                         alert(data.result);//这个先这样用，后台应该是文档写的有问题
                     }
                 },
@@ -405,10 +414,40 @@ var local={
                 // $("#telValBounced").hide();
                 // $("#telValBounced").hide();
                 var phone = $(".inputTelTelVer").val();
-                $('.m-codeImg').attr('src','http://172.16.10.3:8777/checkCode?phone='+phone+'&rand='+new Date());
-                $('.g-checkCode').show();
-                // $('.telValBounced').hide();
-                event.preventDefault();
+                $('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
+                $.ajax({
+                    url: '/api/CheckMobile?mobile='+phone,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(data) {
+                        if(data.code==0){
+                            var phone = $(".inputTelTelVer").val();
+                            $('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
+                            $('.g-checkCode').show();
+                            // $('.telValBounced').hide();
+                            event.preventDefault();
+                        }else{
+                            alert('该号码已存在')
+                            var time;
+                            $('.u-numbertelService').animate({
+                                'opacity':1,
+                            },100,function(){
+                                clearTimeout(time);
+                                time=setTimeout(function(){
+                                    $('.u-numbertelService').fadeOut('fast',function(){
+                                        $(this).remove();
+                                    });
+                                },1000);
+
+                            });
+
+                        }
+                    },
+                    error: function() {
+                        alert('通讯服务器错误');
+                    }
+                });
+
             } else {
                  
                  $("#gainnumberTelVer").hide();
@@ -438,7 +477,21 @@ var local={
                         $('.g-checkCode').hide();
                         $('.telValBounced').show();
                     }else{
-                        $('.codeError').show();
+                        var time;
+                        // $('.codeError').removeClass('active');
+                        $('.codeError').animate({
+                            'opacity':1,
+                        },100,function(){
+                            clearTimeout(time);
+                            time=setTimeout(function(){
+                                $('.codeError').fadeOut('fast',function(){
+                                    $(this).remove();
+                                });
+
+                            },1000);
+
+                        });
+
                         console.log(data.code);
                         // alert(data.result);//这个先这样用，后台应该是文档写的有问题
                     }
@@ -745,7 +798,8 @@ var local={
             window.location.href="/service";
         })
         // 修改头像的实现
-        $('#modifyPic').change(function(event) {
+        $('#modifyPic').change(function(event)
+        {
             var _this = $(this);
             var fileNames = $(this).val();
             if ($('#modifyPic').val().length) {
