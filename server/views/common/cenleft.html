@@ -26,8 +26,8 @@
 
 			{% if info.mobile== undefind %}
 			<p id="modifyTel1" class="u-p2">请绑定手机</p>
-			<p class="u-p3">鱼币:<span class="u-change1">0</span>
-			<p class="u-p3">鱼饵:<span class="u-change1">0</span>
+			<p class="u-p3">鱼币:<span class="u-change1">{{info.yuer_coin}}</span>
+			<p class="u-p3">鱼饵:<span class="u-change1">{{info.bait}}</span>
 			{% else %}
 			<p class="u-p2">房间号:<span class="u-change">{{info.room_number}}</span></p>
 			<p class="u-p3">鱼币:<span class="u-change1">{{info.yuer_coin}}</span>

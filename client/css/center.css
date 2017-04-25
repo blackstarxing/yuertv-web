@@ -14,7 +14,7 @@ input{
 	padding-bottom: 272px;
 }
 .g-container input{
-	text-indent: 12px;
+	/*text-indent: 12px;*/
 	color:#fff;
 }
 .g-main{
@@ -234,6 +234,12 @@ input{
 	height: 30px;
 	line-height: 30px;
 	margin-bottom: 34px;
+}
+.IconChangeImg{
+	display: inline-block;
+}
+.IconChangeImg.active{
+	display: none;
 }
 .g-right .m-basicInfo img{
 	width: 50px;
@@ -2388,23 +2394,28 @@ div.paytipsbind{
 	right:0;
 	top:0;
 	bottom:0;
+	border-radius: 20px;
 	margin:auto;
 	z-index:8888;
 }
 .g-checkCode{
-	position: absolute;
+	position: fixed;
 	top:50%;
 	left:50%;
 	margin: -130px 0 0 -150px;
 	min-width: 240px;
 	min-height: 200px;
 	padding:30px;
+	border-radius: 20px;
 	background: #323A43;
 	z-index:999999999;
 }
 .codeError{
-	display: none;
+	opacity: 0;
 	color:#FF3366;
+}
+.codeError.active{
+	display: block;
 }
 .g-checkCode.active{
 	display: none;
@@ -2513,6 +2524,20 @@ div.paytipsbind{
 	height:40px;
 	line-height: 40px;
 }
+.u-numbertelService{
+	position: absolute;
+	top: 50px;
+	left: 70px;
+	opacity: 0;
+	color:#fb3366;
+}
+/*.u-numbertelService.active{*/
+	/*display: block;*/
+	/*position: absolute;*/
+	/*top: 50px;*/
+	/*left: 70px;*/
+	/*color:#fb3366;*/
+/*}*/
 .telValBounced .u-numberTelVer{
 	display:none;
 	position:absolute;
