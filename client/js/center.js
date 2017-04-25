@@ -444,7 +444,7 @@ var local={
                         }
                     },
                     error: function() {
-                        alert('通讯服务器错误');
+                        console.log('网络异常，请刷新重试');
                     }
                 });
 
@@ -749,7 +749,7 @@ var local={
                             }
                         },
                         error: function() {
-                            alert('通讯服务器错误');
+                            console.log('网络异常，请刷新重试');
                         } 
                     });  
                 }
@@ -780,7 +780,7 @@ var local={
                         }
                     },
                     error: function() {
-                        alert('通讯服务器错误');
+                        console.log('网络异常，请刷新重试');
                     } 
                 }); 
             }

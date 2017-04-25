@@ -119,7 +119,7 @@ $(function(){
                         stop=true;
                     },
                     error: function() {
-                        alert('通讯服务器错误');
+                        console.log('网络异常，请刷新重试');
                     }
                 }); 
             } 
