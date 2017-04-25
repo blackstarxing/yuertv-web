@@ -235,6 +235,8 @@ var app = new Vue({
                 mobile:'',
                 checkCode:''
             };
+            $('#reg-number').removeAttr('readonly');
+            $('#quick-number').removeAttr('readonly');
             $('.reg-slide').hide();
             $('.phone-slide').hide();
         },
@@ -372,6 +374,7 @@ var app = new Vue({
                             success: function(data) {
                                 if(data.code==0){
                                     _this.regPic = 'http://qa.webapi.yuerlive.cn/checkCode?phone='+_this.regForm.mobile+'&rand='+new Date();
+                                    $('#reg-number').attr('readonly','readonly');
                                     $('.reg-slide').slideDown();
                                 }else{
                                     _this.regError.phone = "号码已被注册，请重新输入";
@@ -400,6 +403,7 @@ var app = new Vue({
                 if(_this.phoneForm.mobile){
                     if(/^1[34578][0-9]{9}$/.test(_this.phoneForm.mobile)){
                         _this.phonePic = 'http://qa.webapi.yuerlive.cn/checkCode?phone='+_this.phoneForm.mobile+'&rand='+new Date();
+                        $('#quick-number').attr('readonly','readonly');
                         $('.phone-slide').slideDown();
                     }else{
                         _this.phoneError.phone = "手机号码错误，请重新输入";
@@ -440,6 +444,7 @@ var app = new Vue({
                             if (data.code==0) {
                                 _this.regpicCode = '';
                                 $('.reg-slide').slideUp();
+                                $('#reg-number').removeAttr('readonly');
                                 var second = 59;
                                 _this.regdis = true;
                                 _this.regText = second+'(s)';
@@ -488,6 +493,7 @@ var app = new Vue({
                             if (data.code==0) {
                                 _this.phonepicCode = '';
                                 $('.phone-slide').slideUp();
+                                $('#quick-number').removeAttr('readonly');
                                 var second = 59;
                                 _this.phonedis = true;
                                 _this.phoneText = second+'(s)';

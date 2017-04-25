@@ -140,7 +140,7 @@
                 <h3>注册娱儿</h3>
                 <div class="yuer-reg">已有账号？<button @click="changeLogtype(1)">我要登录</button></div>
                 <div class="yuer-input">
-                    <input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>11)value=value.slice(0,11)" class="u-ipt telnumber" placeholder="请输入手机号码" v-model="regForm.mobile">
+                    <input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>11)value=value.slice(0,11)" class="u-ipt telnumber" placeholder="请输入手机号码" v-model="regForm.mobile" id="reg-number">
                     <button class="getCode" v-bind:class="{disabled:regdis}" v-bind:disabled="regdis" @click="showPic(0)">${regText}</button>
                 </div>
                 <span class="error">${regError.phone}</span>
@@ -174,7 +174,7 @@
                 <h3>登录娱儿</h3>
                 <div class="yuer-reg">还没有娱儿账号？<button @click="changeLogtype(2)">马上注册»</button></div>
                 <div class="yuer-input">
-                    <input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>11)value=value.slice(0,11)" class="u-ipt telnumber" placeholder="请输入手机号码" v-model="phoneForm.mobile">
+                    <input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>11)value=value.slice(0,11)" class="u-ipt telnumber" placeholder="请输入手机号码" v-model="phoneForm.mobile" id="quick-number">
                     <button class="getCode" v-bind:class="{disabled:phonedis}" v-bind:disabled="phonedis" @click="showPic(1)">${phoneText}</button>
                 </div>
                 <span class="error">${phoneError.phone}</span>

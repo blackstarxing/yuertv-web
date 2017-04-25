@@ -38,8 +38,8 @@
             <div class="m-content f-cb">
                 {% for activity in index.activity %}
                     <div class="m-lst">
-                        <a href="{{activity.url}}"><img src="http://img.wangyuhudong.com/{{activity.img}}" alt=""></a>
-                        <a href="{{activity.url}}" class="active_name">{{activity.title}}</a>
+                        <a href="{{activity.url}}" target="_blank"><img src="http://img.wangyuhudong.com/{{activity.img}}" alt=""></a>
+                        <a href="{{activity.url}}" class="active_name" target="_blank">{{activity.title}}</a>
                     </div>
                 {% endfor %}
             </div>
