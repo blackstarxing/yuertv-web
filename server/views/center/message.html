@@ -61,25 +61,23 @@
 
 						<div class="u-message f-cb" v-for="(item,index) in vuemessage">
 									<div class="u-msystem">
-										{% if info.icon==null%}
-											<img src="http://img.wangyuhudong.com/{{info.icon}}" alt="">
-										{% else %}
-											<img v-bind:src="item.icon">
-										{% endif %}
 
-										<!--{% if item.sex == 0 %}-->
-										<img v-if="item.sex == 0"  src="/images/male.png" class="seximg">
-										<!--{% else %}-->
-										<img v-else src="/images/female.png" class="seximg">
-										<!--{% endif %}-->
-
+										<!--<img v-if="item.icon.indexOf('http')>-1" v-bind:src="item.icon" >-->
+										<!--<img v-else-if="item.icon" v-bind:src="'http://img.wangyuhudong.com/'+item.icon" >-->
+										<!--<img src="/images/default_avatar.png" v-else>-->
+										<img v-if="item.icon" v-bind:src="item.icon" alt="" class="iconfileup">
+										<img v-else src="/images/default_avatar.png" alt="没有图片" class="iconfileup">
+										<img v-if="item.sex==0" src="/images/male.png" class="seximg" >
+										<img v-else src="/images/female.png" class="seximg" >
 									</div>
 									<div class="u-yuer">
 										<h3>${item.title}</h3>
 										<div class="u-yuerContent f-fl">
 											<span class="u-messagecontent">关注了你</span>
-											<a v-if="item.live_id=undefined" href="javascript:;"><span class="u-messtips">查看 该用户不是主播</span></a>
-											<a v-else v-bind:href="'/liveroom?id='+item.live_id"><span class="u-messtips">查看</span></a>
+
+											<a v-if="item.icon==null" href="javascript:;"><span class="u-messtips">该用户不是主播</span></a>
+
+											<a v-else  v-bind:href="'/liveroom?id='+item.live_id"><span class="u-messtips">查看</span></a>
 
 										</div>
 										<div class="u-yuerDate f-fr"><span class="u-messagetime f-fr">${item.create_date}</span></div>

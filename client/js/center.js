@@ -413,6 +413,7 @@ var local={
                 $("#numberTelVer").removeClass("change-color");
                 // $("#telValBounced").hide();
                 // $("#telValBounced").hide();
+                $('.m-codeInput').val('');
                 var phone = $(".inputTelTelVer").val();
                 $('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
                 $.ajax({
