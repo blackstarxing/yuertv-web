@@ -27,8 +27,9 @@
 							<div class="u-middle">
                                 {% if info.icon %}
                                 {% if info.icon.indexOf('http')>-1 %}
-                                <img src="{{info.icon}}" alt="" >
+                                <img src="{{info.icon}}" alt="">
                                 {% else %}
+                                <img src="http://img.wangyuhudong.com/{{info.icon}}" alt="" >
                                 {% endif %}
                                 {% else %}
                                 <img src="/images/default_avatar.png" alt="" >

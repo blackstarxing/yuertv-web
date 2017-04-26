@@ -35,6 +35,7 @@ input{
 .g-left ul{margin-bottom: 30px}
 .g-left ul li{
 	height:60px;
+	line-height: 60px;
 	font-size:16px;
 	color:#cecfd2;
 }
@@ -313,7 +314,9 @@ input{
 .m-headIcon .Iconerror{
 	color:#FF3366;
 }
-
+.g-left ul li.rightswitchcolor{
+	background: #2d3741;
+}
 .g-left ul li.rightswitchcolor a{
 	color:#f36;
 }
@@ -1581,6 +1584,9 @@ input.full{
 	text-align:center;
 	background:#f36;
 	color:#fff;
+}
+.M-box .prevBtnGray,.M-box .nextBtnGray{
+	background:#3a444f;
 }
 .empty{
 	display:inline-block;
