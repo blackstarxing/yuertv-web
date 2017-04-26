@@ -114,8 +114,8 @@ html,body{
 	position: absolute;
 	width: 20px;
 	height: 20px;
-	top:5px;
-	left: 5px;
+	top:-15px;
+	left: -15px;
 	cursor: pointer;
 }
 .other-live{
