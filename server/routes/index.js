@@ -5,10 +5,10 @@ var request = require('request');
 
 // 微信分享ticket
 var ticket = '';
-var ticketline = ''; 
+var ticketline = '';
 
 var path = 'http://172.16.10.3:8777';
-var apipath ="http://172.16.10.3:8099";
+var apipath ="http://172.16.10.134:8099";
 // var path = 'http://qa.webapi.yuerlive.cn';
 // var apipath ="http://qa.api.yuerlive.cn";
 
@@ -225,10 +225,12 @@ router.get('/center/information', function(req, res, next) {
         console.log("zhangli"+JSON.parse(result[0]).object.icon);
         console.log("zhangli"+JSON.parse(result[0]).object);
         console.log("zhangli"+JSON.parse(result[0]).object.mobile);
+        console.log(JSON.parse(result[0]).object.icon);
         res.render('center/information', {
             title: "我的资料",
             index:0,
             info: JSON.parse(result[0]).object,
+            icon: JSON.parse(result[0]).object.icon = 'null'?undefined:JSON.parse(result[0]).object.icon,
             updateinfo: JSON.parse(result[1]).object,
             islogin: islogin,
         });

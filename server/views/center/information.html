@@ -25,20 +25,21 @@
 						<div class="basicInfo-common m-headIcon">
 							<div class="u-left">头像:</div>
 							<div class="u-middle">
-                                {% if info.icon %}
-                                {% if info.icon.indexOf('http')>-1 %}
-                                <img src="{{info.icon}}" alt="">
+                                {{icon}}
+                                {% if icon != null %}
+                                {% if icon.indexOf('http')>-1 %}
+                                     <img src="{{icon}}" alt="" class="updateImg">
                                 {% else %}
-                                <img src="http://img.wangyuhudong.com/{{info.icon}}" alt="" >
+                                    <img src="http://img.wangyuhudong.com/{{icon}}" alt="" class="updateImg">
                                 {% endif %}
                                 {% else %}
-                                <img src="/images/default_avatar.png" alt="" >
+                                    <img src="/images/default_avatar.png" alt="" class="updateImg">
                                 {% endif %}
                             </div>
 							<div class="u-change IconChange">修改</div>
 							<p class="IconChangeImg active"><input type="file" id="modifyPic" value="修改头像" name="修改头像" accept="image/*" style="text-indent:0;line-height: 14px;cursor:pointer;"/></p>
                             <div class="iconChangeSuccess" style="opacity: 0" >修改成功</div>
-                            <div class="Iconerror" style="opacity: 0">格式错误重新上传</div>
+                            <div class="Iconerror" style="display: none;">格式错误重新上传</div>
                         </div>
 						<!--昵称修改-->
 						<div class="basicInfo-common m-name">
@@ -343,6 +344,7 @@
 		$('.u-nameSave').on('click',function(){
 			$('.nickNameInput').attr('readOnly',true);
 			var nickName = $('.nickNameInput').val();
+//			var updateImg = $('.updateImg').attr('src');
 			$.ajax({
 				type: "GET",
 				url: "/api/updateuUserInfo",
@@ -369,7 +371,6 @@
 					}
 					else {
                         console.log('123456789!');
-
                         var time;
                         $('.u-nameExist').animate({
                             'opacity':1,
@@ -379,13 +380,9 @@
                                 $('.u-nameExist').fadeOut('fast',function(){
                                     $(this).remove();
                                 });
-                                window.location.reload();
+                                    window.location.reload();
                             },1000);
-
                         });
-
-//                        $('.nickNameInput').attr('placeHolder','昵称已经存在');
-						console.log(data.result);
 
 //						var time;
 //						time = setTimeout(function(){

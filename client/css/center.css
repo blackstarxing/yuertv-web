@@ -312,6 +312,7 @@ input{
 	color:#FF3366;
 }
 .m-headIcon .Iconerror{
+	display: none;
 	color:#FF3366;
 }
 .g-left ul li.rightswitchcolor{
