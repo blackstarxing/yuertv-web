@@ -472,7 +472,7 @@ $(function(){
     });
     
     // 礼物赠送倒计时
-    var endingtime = $('.hide-rtmp').attr('data-time')*60;
+    var endingtime = $('.hide-rtmp').attr('data-time');
      
     // 礼物悬停
     $('.gift').hover(function(){
@@ -826,7 +826,7 @@ $(function(){
 
             // 定时福利
             function endingTime(val) { 
-                if (endingtime > 0 && endingtime <1500) { 
+                if (endingtime > 0) { 
                     $('.endingtime').text(endingtime);
                     endingtime--;
                     setTimeout(function() { 
@@ -842,16 +842,16 @@ $(function(){
                                 dataType: 'json',
                                 success: function(data) {
                                     if (data.code == 0) {
-                                        if(data.object && data.object.count_down<=25){
+                                        if(data.object && data.object.count_down>0){
                                             getProp();
-                                            endingtime = parseInt(data.object.count_down)*60;
+                                            endingtime = parseInt(data.object.count_down);
                                             $('.countdown').html('<span class="endingtime">'+endingtime+'</span>秒后<br>惊喜降临');
                                             endingtime--;
                                             setTimeout(function() { 
                                                 endingTime(endingtime);
                                             },1000);
                                         }else{
-                                            endingtime = 1500;
+                                            endingtime = -1;
                                             endingTime(endingtime);
                                         }                                        
                                     }else{
@@ -867,7 +867,7 @@ $(function(){
                        }
                         
                     })
-                } else if(endingtime == 1500){
+                } else if(endingtime < 0 ){
                     $('.countdown').html('福利已领完<br>明天再来吧');
                 }
             } 
@@ -1003,6 +1003,7 @@ $(function(){
                 {
                     // alert("直播已结束");
                     $('.anchor-outline').show();
+                    $('.award').hide();
                 },
             };
 
