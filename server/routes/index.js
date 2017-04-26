@@ -80,7 +80,7 @@ router.get('/', function(req, res, next) {
             islogin: islogin,
             nav_index: 0,
         });
-    }).fail(function(cont, error) { 
+    }).fail(function(cont, error) {
         console.log(error);
         res.render('error', { title: "错误"});
     });

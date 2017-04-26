@@ -31,7 +31,9 @@
 									<span v-if='item.target_type==1' class="u-messagecontent">${item.content}</span>
 									<span v-else-if="item.target_type==2" class="u-messagecontent">${item.content}</span>
 									<span v-else-if="item.target_type==4"  class="u-messagecontent">${item.content}</span>
-									<span v-else class="u-messagecontent u-four">${item.content}</span>
+									<span v-else class="u-messagecontent u-four">
+											${item.content}
+									</span>
 									<a v-if='item.target_type==1' v-bind:href="'/liveroom?id='+item.obj_id">	<span  class="u-messtips" id="messshow">查看<!--&gt;&gt;--></span></a>
 									<a v-if='item.target_type==2' href="javascript:;">	<span  class="u-messtips" id="messshow"><!--&gt;&gt;--></span></a>
 									<a v-if='item.target_type==4' v-bind:href="item.url">	<span   class="u-messtips" id="messshow">查看<!--&gt;&gt;--></span></a>
@@ -65,7 +67,7 @@
 										<!--<img v-if="item.icon.indexOf('http')>-1" v-bind:src="item.icon" >-->
 										<!--<img v-else-if="item.icon" v-bind:src="'http://img.wangyuhudong.com/'+item.icon" >-->
 										<!--<img src="/images/default_avatar.png" v-else>-->
-										<img v-if="item.icon" v-bind:src="item.icon" alt="" class="iconfileup">
+										<img v-if="item.icon==null" v-bind:src="item.icon" alt="" class="iconfileup">
 										<img v-else src="/images/default_avatar.png" alt="没有图片" class="iconfileup">
 										<img v-if="item.sex==0" src="/images/male.png" class="seximg" >
 										<img v-else src="/images/female.png" class="seximg" >
@@ -74,9 +76,7 @@
 										<h3>${item.title}</h3>
 										<div class="u-yuerContent f-fl">
 											<span class="u-messagecontent">关注了你</span>
-
-											<a v-if="item.icon==null" href="javascript:;"><span class="u-messtips">该用户不是主播</span></a>
-
+											<a v-if="item.mobile==undefined" href="javascript:;"><span class="u-messtips">该用户不是主播</span></a>
 											<a v-else  v-bind:href="'/liveroom?id='+item.live_id"><span class="u-messtips">查看</span></a>
 
 										</div>
@@ -244,14 +244,8 @@
 	                success: function(data) {
 	                    if (data.code == 0) {
 	                        if(data.object.list.length>0){
-//								$(".u-four").overTexts({
-//									texts: data.object.list.content,
-//									textLength: "20",
-//									overText: "展开",
-//									openText: "收起",
-//									ooType: "2"
-//								});
 	                        	_this.vuemessage = data.object.list;
+
 								console.log(_this.vuemessage);
 	                        	$('body').scrollTop(0);
 	                            $(".M-box").show();
