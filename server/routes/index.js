@@ -234,7 +234,13 @@ router.get('/center/information', function(req, res, next) {
         });
     }).fail(function(cont, error) { 
         console.log(error);
-        res.render('error', { title: "错误"});
+        // res.render('error', { title: "错误"});
+        res.render('index', {
+            title: "娱儿直播--领跑移动电竞的直播平台",
+            index: JSON.parse(result[0]).object,
+            islogin: islogin,
+            nav_index: 0,
+        });
     });
 });
 router.get('/center/focus', function(req, res, next) {
@@ -273,7 +279,13 @@ router.get('/center/focus', function(req, res, next) {
         });
     }).fail(function(cont, error) {
         console.log(error);
-        res.render('error', { title: "错误"});
+        // res.render('error', { title: "错误"});
+        res.render('index', {
+            title: "娱儿直播--领跑移动电竞的直播平台",
+            index: JSON.parse(result[0]).object,
+            islogin: islogin,
+            nav_index: 0,
+        });
     });
 });
 /*1.0.3 delete 我的道具*/
@@ -348,7 +360,13 @@ router.get('/center/message', function(req, res, next) {
         });
     }).fail(function(cont, error) {
         console.log(error);
-        res.render('error', { title: "错误"});
+        // res.render('error', { title: "错误"});
+        res.render('index', {
+            title: "娱儿直播--领跑移动电竞的直播平台",
+            index: JSON.parse(result[0]).object,
+            islogin: islogin,
+            nav_index: 0,
+        });
     });
 
 });
@@ -418,7 +436,13 @@ router.get('/center/topup', function(req, res, next) {
         });
     }).fail(function(cont, error) {
         console.log(error);
-        res.render('error', { title: "错误"});
+        // res.render('error', { title: "错误"});
+        res.render('index', {
+            title: "娱儿直播--领跑移动电竞的直播平台",
+            index: JSON.parse(result[0]).object,
+            islogin: islogin,
+            nav_index: 0,
+        });
     });
 });
 router.get('/center/host', function(req, res, next) {
@@ -454,7 +478,13 @@ router.get('/center/host', function(req, res, next) {
         });
     }).fail(function(cont, error) { 
         console.log(error);
-        res.render('error', { title: "错误"});
+        // res.render('error', { title: "错误"});
+        res.render('index', {
+            title: "娱儿直播--领跑移动电竞的直播平台",
+            index: JSON.parse(result[0]).object,
+            islogin: islogin,
+            nav_index: 0,
+        });
     });
 });
 

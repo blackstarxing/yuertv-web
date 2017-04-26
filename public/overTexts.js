@@ -69,7 +69,7 @@
 								
 							}
 							if(moreoh.context.innerText== opt.openText){//如果我此时是收起
-								t1 = opt.texts.substring(0, opt.textLength) + "<a class='moreoh'    >"+opt.overText+"</a>";
+								t1 = opt.texts.substring(0, opt.textLength) + "<a class='moreoh'>"+opt.overText+"</a>";
 								moreoh.context.innerText = opt.overText;
 								$(this).parents(".moreText").html(t1);
 							}
