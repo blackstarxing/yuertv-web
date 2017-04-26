@@ -209,7 +209,7 @@ var local={
                 success: function(data) {
                     if(data.code == 0){
                         var phone = $(".inputTelTelVer").val();
-                        $('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn:8777/checkCode?phone='+phone+'&rand='+new Date());
+                        $('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
                         console.log(data);
                         $.ajax({
                             method: "GET",

@@ -8,7 +8,7 @@ var ticket = '';
 var ticketline = '';
 
 var path = 'http://172.16.10.3:8777';
-var apipath ="http://172.16.10.134:8099";
+var apipath ="http://172.16.10.3:8099";
 // var path = 'http://qa.webapi.yuerlive.cn';
 // var apipath ="http://qa.api.yuerlive.cn";
 
@@ -277,6 +277,7 @@ router.get('/center/focus', function(req, res, next) {
             title: "我的关注",
             index:1,
             info: JSON.parse(result[0]).object,
+            icon: JSON.parse(result[0]).object.icon == 'null'?undefined:JSON.parse(result[0]).object.icon,
             islogin: islogin,
         });
     }).fail(function(cont, error) {
@@ -358,6 +359,7 @@ router.get('/center/message', function(req, res, next) {
             title: "我的消息",
             index:2,
             info: JSON.parse(result[0]).object,
+            icon: JSON.parse(result[0]).object.icon == 'null'?undefined:JSON.parse(result[0]).object.icon,
             islogin: islogin,
         });
     }).fail(function(cont, error) {
@@ -434,6 +436,7 @@ router.get('/center/topup', function(req, res, next) {
             valuelist: JSON.parse(result[0]).object,
             valueyuer: JSON.parse(result[1]).object,
             info: JSON.parse(result[2]).object,
+            icon: JSON.parse(result[2]).object.icon == 'null'?undefined:JSON.parse(result[2]).object.icon,
             islogin: islogin,
         });
     }).fail(function(cont, error) {
@@ -476,6 +479,7 @@ router.get('/center/host', function(req, res, next) {
             title: "我要当主播",
             index:4,
             info: JSON.parse(result[0]).object,
+            icon: JSON.parse(result[0]).object.icon == 'null'?undefined:JSON.parse(result[0]).object.icon,
             islogin: islogin,
         });
     }).fail(function(cont, error) { 
