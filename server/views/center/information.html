@@ -25,8 +25,7 @@
 						<div class="basicInfo-common m-headIcon">
 							<div class="u-left">头像:</div>
 							<div class="u-middle">
-                                {{icon}}
-                                {% if icon != null %}
+                                {% if icon %}
                                 {% if icon.indexOf('http')>-1 %}
                                      <img src="{{icon}}" alt="" class="updateImg">
                                 {% else %}
