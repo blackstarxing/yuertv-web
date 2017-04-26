@@ -240,7 +240,7 @@ router.get('/center/information', function(req, res, next) {
         res.render('index', {
             title: "娱儿直播--领跑移动电竞的直播平台",
             index: JSON.parse(result[0]).object,
-            islogin: islogin,
+            islogin: false,
             nav_index: 0,
         });
     });
@@ -286,7 +286,7 @@ router.get('/center/focus', function(req, res, next) {
         res.render('index', {
             title: "娱儿直播--领跑移动电竞的直播平台",
             index: JSON.parse(result[0]).object,
-            islogin: islogin,
+            islogin: false,
             nav_index: 0,
         });
     });
@@ -368,7 +368,7 @@ router.get('/center/message', function(req, res, next) {
         res.render('index', {
             title: "娱儿直播--领跑移动电竞的直播平台",
             index: JSON.parse(result[0]).object,
-            islogin: islogin,
+            islogin: false,
             nav_index: 0,
         });
     });
@@ -445,7 +445,7 @@ router.get('/center/topup', function(req, res, next) {
         res.render('index', {
             title: "娱儿直播--领跑移动电竞的直播平台",
             index: JSON.parse(result[0]).object,
-            islogin: islogin,
+            islogin: false,
             nav_index: 0,
         });
     });
@@ -488,7 +488,7 @@ router.get('/center/host', function(req, res, next) {
         res.render('index', {
             title: "娱儿直播--领跑移动电竞的直播平台",
             index: JSON.parse(result[0]).object,
-            islogin: islogin,
+            islogin: false,
             nav_index: 0,
         });
     });
