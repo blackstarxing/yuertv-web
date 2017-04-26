@@ -5,7 +5,7 @@ var request = require('request');
 
 // 微信分享ticket
 var ticket = '';
-var ticketline = '';
+var ticketline = ''; 
 
 var path = 'http://172.16.10.3:8777';
 var apipath ="http://172.16.10.3:8099";
