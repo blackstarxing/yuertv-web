@@ -5,16 +5,15 @@
 	<!--1.0.3 add-->
 		<div class="m-top">
 		<div class="m-tleft">
-			{% if info.icon %}
-			{% if info.icon.indexOf('http')>-1 %}
-				<img src="{{info.icon}}" alt="" class="iconfileup">
+			{% if icon %}
+			{% if icon.indexOf('http')>-1 %}
+				<img src="{{icon}}" alt="">
 			{% else %}
-				<img src="http://img.wangyuhudong.com/{{info.icon}}" alt="" class="iconfileup">
+				<img src="http://img.wangyuhudong.com/{{icon}}" alt="" class="iconfileup">
 			{% endif %}
 			{% else %}
 				<img src="/images/default_avatar.png" alt="" class="iconfileup">
 			{% endif %}
-
 			{% if info.sex==0 %}
 				<img src="/images/male.png" class="seximg" id="seximg">
 			{% else %}
