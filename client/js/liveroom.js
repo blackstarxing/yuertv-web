@@ -1184,6 +1184,14 @@ $(function(){
                 }
             }
             $('.mes-block').append("<div>聊天室连接断开，请刷新页面<div>"); 
+            function delCookie($name){
+                var myDate=new Date();    
+                myDate.setTime(-1000);//设置时间    
+                document.cookie=$name+"=''; expires="+myDate.toGMTString()+"; path=/";   
+            }
+            delCookie('yuer_userId');
+            delCookie('yuer_token');
+            window.location.reload(true);
         }
         function onChatroomError(error, obj) {
             console.log('发生错误', error, obj);

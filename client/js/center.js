@@ -413,6 +413,7 @@ var local={
                 $("#numberTelVer").removeClass("change-color");
                 // $("#telValBounced").hide();
                 // $("#telValBounced").hide();
+                $('.m-codeInput').val('');
                 var phone = $(".inputTelTelVer").val();
                 $('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
                 $.ajax({
@@ -444,7 +445,7 @@ var local={
                         }
                     },
                     error: function() {
-                        alert('通讯服务器错误');
+                        console.log('网络异常，请刷新重试');
                     }
                 });
 
@@ -749,7 +750,7 @@ var local={
                             }
                         },
                         error: function() {
-                            alert('通讯服务器错误');
+                            console.log('网络异常，请刷新重试');
                         } 
                     });  
                 }
@@ -780,7 +781,7 @@ var local={
                         }
                     },
                     error: function() {
-                        alert('通讯服务器错误');
+                        console.log('网络异常，请刷新重试');
                     } 
                 }); 
             }
