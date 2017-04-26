@@ -65,8 +65,8 @@ $(function() {
     // 刷新图形验证码
     function changeCode(){
         $('.code-wrap input').val('');
-        $picCode.attr('src','http://172.16.10.3:8777/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
-        // $picCode.attr('src','http://qa.api.yuerlive.cn/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
+        // $picCode.attr('src','http://172.16.10.3:8777/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
+        $picCode.attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+$telnumber.val()+'&rand='+new Date());
     }
 
     $('.getCode').click(function(e){
@@ -97,7 +97,7 @@ $(function() {
                         }
                     },
                     error: function() {
-                        alert('通讯服务器错误');
+                        console.log('网络异常，请刷新重试');
                     }
                 });
             }else{
@@ -164,7 +164,7 @@ $(function() {
                     }
                 },
                 error: function() {
-                    alert('通讯服务器错误');
+                    console.log('网络异常，请刷新重试');
                 }
             });
         }
@@ -221,7 +221,7 @@ $(function() {
                     }
                 },
                 error: function() {
-                    alert('通讯服务器错误');
+                    console.log('网络异常，请刷新重试');
                 }
             });
         }

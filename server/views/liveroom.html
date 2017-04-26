@@ -181,13 +181,15 @@
                 </div>
             </div> 
             <div class="send-gift f-cb">
+                {% if detail.info.state == 1 %}
                 <div class="award">
                     <img src="/images/gift.png" alt="">
                     <div class="countdown">
-                        <span class="endingtime">300</span>秒后<br>
+                        <span class="endingtime"></span>秒后<br>
                         惊喜降临
                     </div>
                 </div>
+                {% endif %}
                 <div class="m-gift">
                     <div class="myCoin">
                         <p>我有<span class="yuerCoin"></span>鱼币</p>

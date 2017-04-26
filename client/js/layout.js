@@ -205,7 +205,7 @@ var app = new Vue({
                         window.location.href = '/';
                     },
                     error: function() {
-                        // alert('通讯服务器错误');
+                        // console.log('网络异常，请刷新重试');
                     }
                 }); 
             }
@@ -261,7 +261,7 @@ var app = new Vue({
                         _this.subs = data.object.subscribeUps;
                     },
                     error: function() {
-                        // alert('通讯服务器错误');
+                        // console.log('网络异常，请刷新重试');
                     }
                 }); 
             }           
@@ -277,7 +277,7 @@ var app = new Vue({
                         _this.his = data.object.histories;
                     },
                     error: function() {
-                        alert('通讯服务器错误');
+                        console.log('网络异常，请刷新重试');
                     }
                 }); 
             }            
@@ -321,7 +321,7 @@ var app = new Vue({
                         }
                     },
                     error: function() {
-                        alert('通讯服务器错误');
+                        console.log('网络异常，请刷新重试');
                     }
                 });
             }
@@ -385,7 +385,7 @@ var app = new Vue({
                                 }
                             },
                             error: function() {
-                                alert('通讯服务器错误');
+                                console.log('网络异常，请刷新重试');
                             }
                         });                        
                     }else{
@@ -470,7 +470,7 @@ var app = new Vue({
                             }
                         },
                         error: function() {
-                            alert('通讯服务器错误');
+                            console.log('网络异常，请刷新重试');
                         }
                     });
                 }else{
@@ -519,7 +519,7 @@ var app = new Vue({
                             }
                         },
                         error: function() {
-                            alert('通讯服务器错误');
+                            console.log('网络异常，请刷新重试');
                         }
                     });
                 }else{
@@ -564,7 +564,7 @@ var app = new Vue({
                         }
                     },
                     error: function() {
-                        alert('通讯服务器错误');
+                        console.log('网络异常，请刷新重试');
                     }
                 });
             }else if(!/^1[34578][0-9]{9}$/.test(_this.phoneForm.mobile)){
@@ -627,7 +627,7 @@ var app = new Vue({
                         }
                     },
                     error: function() {
-                        alert('通讯服务器错误');
+                        console.log('网络异常，请刷新重试');
                     }
                 });
             }else if(!/^1[34578][0-9]{9}$/.test(_this.regForm.mobile)){
