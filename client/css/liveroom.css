@@ -397,6 +397,13 @@ html,body{
 	font-weight: normal;
 	line-height: 2;
 }
+.live-notice p{
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
 .room-tab li{
 	float: left;
 	width: 178px;

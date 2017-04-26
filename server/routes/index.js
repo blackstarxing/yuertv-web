@@ -7,10 +7,10 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-var path = 'http://172.16.10.3:8777';
-var apipath ="http://172.16.10.3:8099";
-// var path = 'http://qa.webapi.yuerlive.cn';
-// var apipath ="http://qa.api.yuerlive.cn";
+// var path = 'http://172.16.10.3:8777';
+// var apipath ="http://172.16.10.134:8099";
+var path = 'http://webapi.yuerlive.cn';
+var apipath ="http://api.yuerlive.cn";
 
 function getTicket(){
     Thenjs.parallel([function(cont) {
@@ -133,7 +133,7 @@ router.get('/liveroom', function(req, res, next) {
             title: JSON.parse(result[0]).object.info.title+JSON.parse(result[0]).object.info.nickname+'-娱儿-手游直播攻略平台',
             detail: JSON.parse(result[0]).object,
             gift: JSON.parse(result[1]).object,
-            otherlives:JSON.parse(result[0]).object.hotLive.slice(0,2),
+            otherlives:JSON.parse(result[0]).object.hotLive.slice(0,3),
             islogin: islogin,
             minihead :true,
         });
@@ -237,12 +237,7 @@ router.get('/center/information', function(req, res, next) {
     }).fail(function(cont, error) {
         console.log(error);
         // res.render('error', { title: "错误"});
-        res.render('index', {
-            title: "娱儿直播--领跑移动电竞的直播平台",
-            index: JSON.parse(result[0]).object,
-            islogin: false,
-            nav_index: 0,
-        });
+        res.redirect('/');
     });
 });
 router.get('/center/focus', function(req, res, next) {
@@ -283,12 +278,7 @@ router.get('/center/focus', function(req, res, next) {
     }).fail(function(cont, error) {
         console.log(error);
         // res.render('error', { title: "错误"});
-        res.render('index', {
-            title: "娱儿直播--领跑移动电竞的直播平台",
-            index: JSON.parse(result[0]).object,
-            islogin: false,
-            nav_index: 0,
-        });
+        res.redirect('/');
     });
 });
 /*1.0.3 delete 我的道具*/
@@ -365,12 +355,7 @@ router.get('/center/message', function(req, res, next) {
     }).fail(function(cont, error) {
         console.log(error);
         // res.render('error', { title: "错误"});
-        res.render('index', {
-            title: "娱儿直播--领跑移动电竞的直播平台",
-            index: JSON.parse(result[0]).object,
-            islogin: false,
-            nav_index: 0,
-        });
+        res.redirect('/');
     });
 
 });
@@ -442,12 +427,7 @@ router.get('/center/topup', function(req, res, next) {
     }).fail(function(cont, error) {
         console.log(error);
         // res.render('error', { title: "错误"});
-        res.render('index', {
-            title: "娱儿直播--领跑移动电竞的直播平台",
-            index: JSON.parse(result[0]).object,
-            islogin: false,
-            nav_index: 0,
-        });
+        res.redirect('/');res.redirect('/');
     });
 });
 router.get('/center/host', function(req, res, next) {
@@ -485,12 +465,7 @@ router.get('/center/host', function(req, res, next) {
     }).fail(function(cont, error) { 
         console.log(error);
         // res.render('error', { title: "错误"});
-        res.render('index', {
-            title: "娱儿直播--领跑移动电竞的直播平台",
-            index: JSON.parse(result[0]).object,
-            islogin: false,
-            nav_index: 0,
-        });
+        res.redirect('/');
     });
 });
 

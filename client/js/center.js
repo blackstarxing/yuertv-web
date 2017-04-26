@@ -209,7 +209,7 @@ var local={
                 success: function(data) {
                     if(data.code == 0){
                         var phone = $(".inputTelTelVer").val();
-                        $('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
+                        $('.m-codeImg').attr('src','http://webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
                         console.log(data);
                         $.ajax({
                             method: "GET",
@@ -222,7 +222,7 @@ var local={
                             success: function(data) {
                                 if(data.code == 0){
                                     var phone = $(".inputTelTelVer").val();
-                                    $('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
+                                    $('.m-codeImg').attr('src','http://webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
                                     $("#copySecond").show();
                                     settime(60);
                                 }
@@ -415,7 +415,7 @@ var local={
                 // $("#telValBounced").hide();
                 $('.m-codeInput').val('');
                 var phone = $(".inputTelTelVer").val();
-                $('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
+                $('.m-codeImg').attr('src','http://webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
                 $.ajax({
                     url: '/api/CheckMobile?mobile='+phone,
                     type: 'get',
@@ -423,7 +423,7 @@ var local={
                     success: function(data) {
                         if(data.code==0){
                             var phone = $(".inputTelTelVer").val();
-                            $('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
+                            $('.m-codeImg').attr('src','http://webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
                             $('.g-checkCode').show();
                             // $('.telValBounced').hide();
                             event.preventDefault();
