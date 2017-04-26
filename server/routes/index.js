@@ -230,11 +230,11 @@ router.get('/center/information', function(req, res, next) {
             title: "我的资料",
             index:0,
             info: JSON.parse(result[0]).object,
-            icon: JSON.parse(result[0]).object.icon = 'null'?undefined:JSON.parse(result[0]).object.icon,
+            icon: JSON.parse(result[0]).object.icon == 'null'?undefined:JSON.parse(result[0]).object.icon,
             updateinfo: JSON.parse(result[1]).object,
             islogin: islogin,
         });
-    }).fail(function(cont, error) { 
+    }).fail(function(cont, error) {
         console.log(error);
         // res.render('error', { title: "错误"});
         res.render('index', {
