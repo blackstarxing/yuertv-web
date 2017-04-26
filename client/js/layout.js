@@ -567,12 +567,22 @@ var app = new Vue({
                         console.log('网络异常，请刷新重试');
                     }
                 });
+            }else if(_this.phoneForm.mobile==''){
+                _this.phoneError.phone = "手机号码不能为空";
+                setTimeout(function(){
+                    _this.phoneError.phone = '';
+                },2000);
             }else if(!/^1[34578][0-9]{9}$/.test(_this.phoneForm.mobile)){
                 _this.phoneError.phone = "手机号码错误，请重新输入";
                 setTimeout(function(){
                     _this.phoneError.phone = '';
                 },2000);
-            }else if(_this.phoneForm.checkCode.length<6){
+            }else if(_this.phoneForm.checkCode==''){
+                _this.phoneError.code = "验证码不能为空";
+                setTimeout(function(){
+                    _this.phoneError.code = '';
+                },2000);
+            }else if(_this.phoneForm.checkCode!='' && _this.phoneForm.checkCode.length<6){
                 _this.phoneError.code = "验证码错误，请重新输入";
                 setTimeout(function(){
                     _this.phoneError.code = '';
@@ -630,12 +640,22 @@ var app = new Vue({
                         console.log('网络异常，请刷新重试');
                     }
                 });
+            }else if(_this.regForm.mobile==''){
+                _this.regError.phone = "手机号码不能为空";
+                setTimeout(function(){
+                    _this.regError.phone = '';
+                },2000);
             }else if(!/^1[34578][0-9]{9}$/.test(_this.regForm.mobile)){
                 _this.regError.phone = "手机号码错误，请重新输入";
                 setTimeout(function(){
                     _this.regError.phone = '';
                 },2000);
-            }else if(_this.regForm.checkCode.length<6){
+            }else if(_this.regForm.checkCode==''){
+                _this.regError.code = "验证码不能为空";
+                setTimeout(function(){
+                    _this.regError.code = '';
+                },2000);
+            }else if(_this.regForm.checkCode!='' && _this.regForm.checkCode.length<6){
                 _this.regError.code = "验证码错误，请重新输入";
                 setTimeout(function(){
                     _this.regError.code = '';

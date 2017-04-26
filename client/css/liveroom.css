@@ -103,7 +103,8 @@ html,body{
 .ad{
 	position: absolute;
 	right: 0;
-	bottom:46%;
+	bottom:50%;
+	margin-bottom: -50px;
 	z-index: 99;
 }
 .ad img{
@@ -140,7 +141,7 @@ html,body{
 }
 .avatar-info h3{
 	font-size: 18px;
-	color: #333;
+	color: #1a2129;
 	line-height: 2;
 }
 .avatar-info .u-label{
