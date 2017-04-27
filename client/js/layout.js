@@ -331,7 +331,12 @@ var app = new Vue({
             this.delCookie('yuer_userId');
             this.delCookie('yuer_token');
             localStorage.clear();
-            window.location.href = "/";
+            var url = window.location.href;
+            if(url.indexOf('center')>=0){
+                window.location.href = "/"; 
+            }else{
+                window.location.reload();
+            }           
         },
         delCookie:function($name){
             var myDate=new Date();    
