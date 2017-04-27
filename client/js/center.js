@@ -833,7 +833,7 @@ var local={
                                             window.localStorage.setItem("avatar", icon);
 
                                             localStorage.getItem("avatar");
-                                            localStorage.setItem("avatar",fileNames);
+                                            localStorage.setItem("avatar",icon);
                                             var time;
                                             $('.iconChangeSuccess').animate({
                                                 'opacity':1,

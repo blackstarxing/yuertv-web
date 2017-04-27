@@ -179,14 +179,14 @@ var app = new Vue({
             // 获取用户头像
             var icon = window.localStorage.getItem("avatar");
             this.id = window.localStorage.getItem("id");
-            if(icon && icon != 'undefined'){
+            if(icon == '' || icon == 'undefined' || icon == 'null'){
+                $('.avatar-icon').attr('src','/images/default_avatar.png'); 
+            }else{
                 if(icon.indexOf('http')>-1){
                     $('.avatar-icon').attr('src',icon); 
                 }else{
                     $('.avatar-icon').attr('src','http://img.wangyuhudong.com/'+icon);
                 }
-            }else{
-                $('.avatar-icon').attr('src','/images/default_avatar.png'); 
             }
             var _this = this;
             if(this.getQueryString('uin')){

@@ -7,10 +7,10 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-// var path = 'http://172.16.10.3:8777';
-// var apipath ="http://172.16.10.134:8099";
-var path = 'http://webapi.yuerlive.cn';
-var apipath ="http://api.yuerlive.cn";
+var path = 'http://172.16.10.3:8777';
+var apipath ="http://172.16.10.134:8099";
+// var path = 'http://webapi.yuerlive.cn';
+// var apipath ="http://api.yuerlive.cn";
 
 function getTicket(){
     Thenjs.parallel([function(cont) {
@@ -57,7 +57,7 @@ router.get('/', function(req, res, next) {
     var deviceAgent = req.headers["user-agent"].toLowerCase();
     var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
     if(agentID){
-        res.redirect('http://m.yuerlive.cn/#/index');
+        return res.redirect('http://m.yuerlive.cn/#/index');
     }
     Thenjs.parallel([function(cont) {
         request({
@@ -103,7 +103,7 @@ router.get('/liveroom', function(req, res, next) {
     var deviceAgent = req.headers["user-agent"].toLowerCase();
     var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
     if(agentID){
-        res.redirect('http://m.yuerlive.cn/#/liveDetail?id='+id);
+        return res.redirect('http://m.yuerlive.cn/#/liveDetail?id='+id);
     }
     Thenjs.parallel([function(cont) {
         request({
@@ -237,7 +237,10 @@ router.get('/center/information', function(req, res, next) {
     }).fail(function(cont, error) {
         console.log(error);
         // res.render('error', { title: "错误"});
-        res.redirect('/');
+        // 删除cookies
+        res.clearCookie('yuer_token',{path:'/'});
+        res.clearCookie('yuer_userId',{path:'/'});
+        return res.redirect('/');
     });
 });
 router.get('/center/focus', function(req, res, next) {
@@ -278,7 +281,10 @@ router.get('/center/focus', function(req, res, next) {
     }).fail(function(cont, error) {
         console.log(error);
         // res.render('error', { title: "错误"});
-        res.redirect('/');
+        // 删除cookies
+        res.clearCookie('yuer_token',{path:'/'});
+        res.clearCookie('yuer_userId',{path:'/'});
+        return res.redirect('/');
     });
 });
 /*1.0.3 delete 我的道具*/
@@ -355,7 +361,10 @@ router.get('/center/message', function(req, res, next) {
     }).fail(function(cont, error) {
         console.log(error);
         // res.render('error', { title: "错误"});
-        res.redirect('/');
+        // 删除cookies
+        res.clearCookie('yuer_token',{path:'/'});
+        res.clearCookie('yuer_userId',{path:'/'});
+        return res.redirect('/');
     });
 
 });
@@ -427,7 +436,10 @@ router.get('/center/topup', function(req, res, next) {
     }).fail(function(cont, error) {
         console.log(error);
         // res.render('error', { title: "错误"});
-        res.redirect('/');res.redirect('/');
+        // 删除cookies
+        res.clearCookie('yuer_token',{path:'/'});
+        res.clearCookie('yuer_userId',{path:'/'});
+        return res.redirect('/');
     });
 });
 router.get('/center/host', function(req, res, next) {
@@ -465,7 +477,10 @@ router.get('/center/host', function(req, res, next) {
     }).fail(function(cont, error) { 
         console.log(error);
         // res.render('error', { title: "错误"});
-        res.redirect('/');
+        // 删除cookies
+        res.clearCookie('yuer_token',{path:'/'});
+        res.clearCookie('yuer_userId',{path:'/'});
+        return res.redirect('/');
     });
 });
 
@@ -646,7 +661,7 @@ router.get('/alllive', function(req, res, next) {
     var deviceAgent = req.headers["user-agent"].toLowerCase();
     var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
     if(agentID){
-        res.redirect('http://m.yuerlive.cn/#/lives');
+        return res.redirect('http://m.yuerlive.cn/#/lives');
     }
     Thenjs.parallel([function(cont) {
         request({
@@ -687,7 +702,7 @@ router.get('/allvideo', function(req, res, next) {
     var deviceAgent = req.headers["user-agent"].toLowerCase();
     var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
     if(agentID){
-        res.redirect('http://m.yuerlive.cn/#/videos');
+        return res.redirect('http://m.yuerlive.cn/#/videos');
     }
     Thenjs.parallel([function(cont) {
         request({
