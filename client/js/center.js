@@ -831,6 +831,9 @@ var local={
                                         if(data.code == 0){
                                             console.log("上传成功");
                                             window.localStorage.setItem("avatar", icon);
+
+                                            localStorage.getItem("avatar");
+                                            localStorage.setItem("avatar",fileNames);
                                             var time;
                                             $('.iconChangeSuccess').animate({
                                                 'opacity':1,
