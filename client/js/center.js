@@ -391,13 +391,13 @@ var local={
             }
         }
         // 手机号码和修改手机号码的的验证
-        $(".inputTel,#numberTelVer").off("keydown").on("keydown",function(e){
-            if((e.keyCode >=48 && e.keyCode <=57)||(e.keyCode >=97 && e.keyCode <=105)||(e.keyCode == 8)){
-            
-            }else{
-                e.preventDefault();
-            }
-        })
+        // $(".inputTel,#numberTelVer").off("keydown").on("keydown",function(e){
+        //     if((e.keyCode >=48 && e.keyCode <=57)||(e.keyCode >=97 && e.keyCode <=105)||(e.keyCode == 8)){
+        //
+        //     }else{
+        //         e.preventDefault();
+        //     }
+        // })
         $("#numberTelVer").on("focus",function(){
             $(".u-numberphoneTelVer").hide();
             $("#gainnumberTelVer").show();
@@ -833,7 +833,7 @@ var local={
                                             window.localStorage.setItem("avatar", icon);
 
                                             localStorage.getItem("avatar");
-                                            localStorage.setItem("avatar",fileNames);
+                                            localStorage.setItem("avatar",icon);
                                             var time;
                                             $('.iconChangeSuccess').animate({
                                                 'opacity':1,
