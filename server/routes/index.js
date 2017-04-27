@@ -356,6 +356,7 @@ router.get('/center/message', function(req, res, next) {
             index:2,
             info: JSON.parse(result[0]).object,
             icon: JSON.parse(result[0]).object.icon == 'null'?undefined:JSON.parse(result[0]).object.icon,
+            // mobile: JSON.parse(result[0]).object.mobile == 'null'?undefined:JSON.parse(result[0]).object.mobile,
             islogin: islogin,
         });
     }).fail(function(cont, error) {

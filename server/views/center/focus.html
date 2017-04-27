@@ -22,6 +22,17 @@
 									<img v-bind:src="item.icon" v-if="item.icon.indexOf('http')>-1">
 									<img v-bind:src="'http://img.wangyuhudong.com/'+item.icon" v-else-if="item.icon">
 									<img src="/images/default_avatar.png" v-else>
+
+									<!--{% if icon %}-->
+									<!--{% if icon.indexOf('http')>-1 %}-->
+									<!--<img src="{{icon}}" alt="">-->
+									<!--{% else %}-->
+									<!--<img src="http://img.wangyuhudong.com/{{icon}}" alt="" class="iconfileup">-->
+									<!--{% endif %}-->
+									<!--{% else %}-->
+									<!--<img src="/images/default_avatar.png" alt="" class="iconfileup">-->
+									<!--{% endif %}-->
+
 								</div>
 								<div class="u-nickhost">
 									<p class="u-nicksex">

@@ -151,7 +151,7 @@
 		<div class="telValBounced" >
 			<div class="u-divTelVer thePhoness">
 				<label for="numberTelVer" class="numLable">新手机号</label>
-				<input type="text" class="u-userboxTelVer telnumberTelVer inputTelTelVer" name="" id="numberTelVer" maxlength="11" value="" v-model="phone">
+				<input type="text" class="u-userboxTelVer telnumberTelVer inputTelTelVer" name="" id="numberTelVer"  value="" v-model="phone" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>11)value=value.slice(0,11)">
 				<span class="u-numberphoneTelVer">请输入手机号</span>
 				<span class="u-numbertelTelVer">请输入正确的手机号</span>
 				<span class="u-numbertelService" >  手机号已注册</span>
