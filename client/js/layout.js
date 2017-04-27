@@ -374,7 +374,7 @@ var app = new Vue({
                             dataType: 'json',
                             success: function(data) {
                                 if(data.code==0){
-                                    _this.regPic = 'http://172.16.10.3:8777/checkCode?phone='+_this.regForm.mobile+'&rand='+new Date();
+                                    _this.regPic = 'http://qa.webapi.yuerlive.cn/checkCode?phone='+_this.regForm.mobile+'&rand='+new Date();
                                     $('#reg-number').attr('readonly','readonly');
                                     $('.reg-slide').slideDown();
 
@@ -404,7 +404,7 @@ var app = new Vue({
             }else{
                 if(_this.phoneForm.mobile){
                     if(/^1[34578][0-9]{9}$/.test(_this.phoneForm.mobile)){
-                        _this.phonePic = 'http://172.16.10.3:8777/checkCode?phone='+_this.phoneForm.mobile+'&rand='+new Date();
+                        _this.phonePic = 'http://qa.webapi.yuerlive.cn/checkCode?phone='+_this.phoneForm.mobile+'&rand='+new Date();
                         $('#quick-number').attr('readonly','readonly');
                         $('.phone-slide').slideDown();
                     }else{
@@ -423,9 +423,9 @@ var app = new Vue({
         },
         changePic:function(type){
             if(type==0){
-                this.regPic = 'http://172.16.10.3:8777/checkCode?phone='+this.regForm.mobile+'&rand='+new Date();
+                this.regPic = 'http://qa.webapi.yuerlive.cn/checkCode?phone='+this.regForm.mobile+'&rand='+new Date();
             }else{
-                this.phonePic = 'http://172.16.10.3:8777/checkCode?phone='+this.phoneForm.mobile+'&rand='+new Date();
+                this.phonePic = 'http://qa.webapi.yuerlive.cn/checkCode?phone='+this.phoneForm.mobile+'&rand='+new Date();
             }
         },
         // 发送验证码
