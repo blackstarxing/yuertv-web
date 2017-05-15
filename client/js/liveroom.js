@@ -21,7 +21,7 @@ $(function(){
                 var clientW = document.body.clientWidth;
                 var clientH = document.body.offsetHeight;
                 var liveW = clientW - 440;
-                var chatroomH = clientH - 300;
+                var chatroomH = clientH - 280;
                 $('.m-live-left').css("width",liveW+"px");
                 $('.videoBox').css("height",0.56*liveW+"px");
                 $('.right-block').css("height",chatroomH+"px");

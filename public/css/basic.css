@@ -197,7 +197,7 @@ input:read-only{
     float: left;
     padding:0 15px;
     font-size: 16px;
-    color:#999;
+    color:#9da4ad;
     cursor: pointer;
 }
 .yuer-nav .iconfont{
@@ -346,7 +346,7 @@ input:read-only{
     /*height: 250px;*/
     padding:40px 50px;
     border-radius: 20px;
-    background:rgba(60,72,86,0.7);
+    background:rgba(60,72,86,1);
     color:#fff;
 }
 .login-content h3{
@@ -412,7 +412,7 @@ input:read-only{
     text-indent: 12px;
 }
 .m-link a,.m-link button{
-    margin:20px 18px;
+    margin:30px 18px 10px;
     color:#9da4ad;
 }
 .third-logins{
@@ -423,7 +423,7 @@ input:read-only{
     text-align: center;
     height: 17px;
     margin-bottom: 20px;
-    color:#9da4ad;
+    color:#535f6d;
 }
 .line-through .line{
     position: absolute;
@@ -450,7 +450,7 @@ input:read-only{
     width: 62px;
     text-align: center;
     font-size: 14px;
-    margin:32px 78px 0 10px;
+    margin:32px 64px 10px;
 }
 .third-enter button{
     color:#9da4ad;
@@ -557,10 +557,10 @@ input:read-only{
 }
 .m-search .u-search-btn{
     position: absolute;
-    top:23px;
+    top:25px;
     right:15px;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     background: url(../images/search.png) no-repeat;
     background-size: 100%;
 }

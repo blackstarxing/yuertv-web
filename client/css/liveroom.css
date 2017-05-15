@@ -103,7 +103,8 @@ html,body{
 .ad{
 	position: absolute;
 	right: 0;
-	bottom:46%;
+	bottom:50%;
+	margin-bottom: -50px;
 	z-index: 99;
 }
 .ad img{
@@ -113,8 +114,8 @@ html,body{
 	position: absolute;
 	width: 20px;
 	height: 20px;
-	top:5px;
-	left: 5px;
+	top:-15px;
+	left: -15px;
 	cursor: pointer;
 }
 .other-live{
@@ -140,7 +141,7 @@ html,body{
 }
 .avatar-info h3{
 	font-size: 18px;
-	color: #333;
+	color: #1a2129;
 	line-height: 2;
 }
 .avatar-info .u-label{
@@ -395,6 +396,13 @@ html,body{
 	color:#333;
 	font-weight: normal;
 	line-height: 2;
+}
+.live-notice p{
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
 }
 .room-tab li{
 	float: left;

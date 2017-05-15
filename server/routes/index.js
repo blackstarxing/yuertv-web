@@ -8,9 +8,9 @@ var ticket = '';
 var ticketline = '';
 
 var path = 'http://172.16.10.3:8777';
-var apipath ="http://172.16.10.3:8099";
-// var path = 'http://qa.webapi.yuerlive.cn';
-// var apipath ="http://qa.api.yuerlive.cn";
+var apipath ="http://172.16.10.134:8099";
+// var path = 'http://webapi.yuerlive.cn';
+// var apipath ="http://api.yuerlive.cn";
 
 function getTicket(){
     Thenjs.parallel([function(cont) {
@@ -57,7 +57,7 @@ router.get('/', function(req, res, next) {
     var deviceAgent = req.headers["user-agent"].toLowerCase();
     var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
     if(agentID){
-        res.redirect('http://m.yuerlive.cn/#/index');
+        return res.redirect('http://m.yuerlive.cn/#/index');
     }
     Thenjs.parallel([function(cont) {
         request({
@@ -80,7 +80,7 @@ router.get('/', function(req, res, next) {
             islogin: islogin,
             nav_index: 0,
         });
-    }).fail(function(cont, error) { 
+    }).fail(function(cont, error) {
         console.log(error);
         res.render('error', { title: "错误"});
     });
@@ -103,7 +103,7 @@ router.get('/liveroom', function(req, res, next) {
     var deviceAgent = req.headers["user-agent"].toLowerCase();
     var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
     if(agentID){
-        res.redirect('http://m.yuerlive.cn/#/liveDetail?id='+id);
+        return res.redirect('http://m.yuerlive.cn/#/liveDetail?id='+id);
     }
     Thenjs.parallel([function(cont) {
         request({
@@ -133,7 +133,7 @@ router.get('/liveroom', function(req, res, next) {
             title: JSON.parse(result[0]).object.info.title+JSON.parse(result[0]).object.info.nickname+'-娱儿-手游直播攻略平台',
             detail: JSON.parse(result[0]).object,
             gift: JSON.parse(result[1]).object,
-            otherlives:JSON.parse(result[0]).object.hotLive.slice(0,2),
+            otherlives:JSON.parse(result[0]).object.hotLive.slice(0,3),
             islogin: islogin,
             minihead :true,
         });
@@ -225,16 +225,22 @@ router.get('/center/information', function(req, res, next) {
         console.log("zhangli"+JSON.parse(result[0]).object.icon);
         console.log("zhangli"+JSON.parse(result[0]).object);
         console.log("zhangli"+JSON.parse(result[0]).object.mobile);
+        console.log(JSON.parse(result[0]).object.icon);
         res.render('center/information', {
             title: "我的资料",
             index:0,
             info: JSON.parse(result[0]).object,
+            icon: JSON.parse(result[0]).object.icon == 'null'?undefined:JSON.parse(result[0]).object.icon,
             updateinfo: JSON.parse(result[1]).object,
             islogin: islogin,
         });
-    }).fail(function(cont, error) { 
+    }).fail(function(cont, error) {
         console.log(error);
-        res.render('error', { title: "错误"});
+        // res.render('error', { title: "错误"});
+        // 删除cookies
+        res.clearCookie('yuer_token',{path:'/'});
+        res.clearCookie('yuer_userId',{path:'/'});
+        return res.redirect('/');
     });
 });
 router.get('/center/focus', function(req, res, next) {
@@ -269,11 +275,16 @@ router.get('/center/focus', function(req, res, next) {
             title: "我的关注",
             index:1,
             info: JSON.parse(result[0]).object,
+            icon: JSON.parse(result[0]).object.icon == 'null'?undefined:JSON.parse(result[0]).object.icon,
             islogin: islogin,
         });
     }).fail(function(cont, error) {
         console.log(error);
-        res.render('error', { title: "错误"});
+        // res.render('error', { title: "错误"});
+        // 删除cookies
+        res.clearCookie('yuer_token',{path:'/'});
+        res.clearCookie('yuer_userId',{path:'/'});
+        return res.redirect('/');
     });
 });
 /*1.0.3 delete 我的道具*/
@@ -344,11 +355,17 @@ router.get('/center/message', function(req, res, next) {
             title: "我的消息",
             index:2,
             info: JSON.parse(result[0]).object,
+            icon: JSON.parse(result[0]).object.icon == 'null'?undefined:JSON.parse(result[0]).object.icon,
+            // mobile: JSON.parse(result[0]).object.mobile == 'null'?undefined:JSON.parse(result[0]).object.mobile,
             islogin: islogin,
         });
     }).fail(function(cont, error) {
         console.log(error);
-        res.render('error', { title: "错误"});
+        // res.render('error', { title: "错误"});
+        // 删除cookies
+        res.clearCookie('yuer_token',{path:'/'});
+        res.clearCookie('yuer_userId',{path:'/'});
+        return res.redirect('/');
     });
 
 });
@@ -414,11 +431,16 @@ router.get('/center/topup', function(req, res, next) {
             valuelist: JSON.parse(result[0]).object,
             valueyuer: JSON.parse(result[1]).object,
             info: JSON.parse(result[2]).object,
+            icon: JSON.parse(result[2]).object.icon == 'null'?undefined:JSON.parse(result[2]).object.icon,
             islogin: islogin,
         });
     }).fail(function(cont, error) {
         console.log(error);
-        res.render('error', { title: "错误"});
+        // res.render('error', { title: "错误"});
+        // 删除cookies
+        res.clearCookie('yuer_token',{path:'/'});
+        res.clearCookie('yuer_userId',{path:'/'});
+        return res.redirect('/');
     });
 });
 router.get('/center/host', function(req, res, next) {
@@ -450,11 +472,16 @@ router.get('/center/host', function(req, res, next) {
             title: "我要当主播",
             index:4,
             info: JSON.parse(result[0]).object,
+            icon: JSON.parse(result[0]).object.icon == 'null'?undefined:JSON.parse(result[0]).object.icon,
             islogin: islogin,
         });
     }).fail(function(cont, error) { 
         console.log(error);
-        res.render('error', { title: "错误"});
+        // res.render('error', { title: "错误"});
+        // 删除cookies
+        res.clearCookie('yuer_token',{path:'/'});
+        res.clearCookie('yuer_userId',{path:'/'});
+        return res.redirect('/');
     });
 });
 
@@ -596,30 +623,36 @@ router.get('/search', function(req, res, next) {
     }else{
         islogin = false;
     };
-    Thenjs.parallel([function(cont) {
-        request({
-            uri: path+'/search/live?param='+content+'&page=1&pageSize=30',
-            headers: {
-                'User-Agent': 'request',
-                'cookie': req.headers.cookie,
-            },
-        }, function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                cont(null, body);
-            } else {
-                cont(new Error('error!'));
-            }
-        })
-    }]).then(function(cont, result) {
-        res.render('search', {
-            title: "搜索",
-            result: JSON.parse(result[0]).object,
-            islogin: islogin,
-            content:content,
-        });
-    }).fail(function(cont, error) { 
-        console.log(error);
-        res.render('error', { title: "错误"});
+    // Thenjs.parallel([function(cont) {
+    //     request({
+    //         uri: path+'/search/live?param='+content+'&page=1&pageSize=30',
+    //         headers: {
+    //             'User-Agent': 'request',
+    //             'cookie': req.headers.cookie,
+    //         },
+    //     }, function(error, response, body) {
+    //         if (!error && response.statusCode == 200) {
+    //             cont(null, body);
+    //         } else {
+    //             cont(new Error('error!'));
+    //         }
+    //     })
+    // }]).then(function(cont, result) {
+    //     res.render('search', {
+    //         title: "搜索",
+    //         result: JSON.parse(result[0]).object,
+    //         islogin: islogin,
+    //         content:content,
+    //     });
+    // }).fail(function(cont, error) { 
+    //     console.log(error);
+    //     res.render('error', { title: "错误"});
+    // });
+    res.render('search', {
+        title: "搜索",
+        // result: JSON.parse(result[0]).object,
+        islogin: islogin,
+        content:content,
     });
 });
 
@@ -635,7 +668,7 @@ router.get('/alllive', function(req, res, next) {
     var deviceAgent = req.headers["user-agent"].toLowerCase();
     var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
     if(agentID){
-        res.redirect('http://m.yuerlive.cn/#/lives');
+        return res.redirect('http://m.yuerlive.cn/#/lives');
     }
     Thenjs.parallel([function(cont) {
         request({
@@ -676,7 +709,7 @@ router.get('/allvideo', function(req, res, next) {
     var deviceAgent = req.headers["user-agent"].toLowerCase();
     var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
     if(agentID){
-        res.redirect('http://m.yuerlive.cn/#/videos');
+        return res.redirect('http://m.yuerlive.cn/#/videos');
     }
     Thenjs.parallel([function(cont) {
         request({

@@ -25,24 +25,25 @@
 						<div class="basicInfo-common m-headIcon">
 							<div class="u-left">头像:</div>
 							<div class="u-middle">
-                                {% if info.icon %}
-                                {% if info.icon.indexOf('http')>-1 %}
-                                <img src="{{info.icon}}" alt="" >
+                                {% if icon %}
+                                {% if icon.indexOf('http')>-1 %}
+                                     <img src="{{icon}}" alt="" class="updateImg">
                                 {% else %}
+                                    <img src="http://img.wangyuhudong.com/{{icon}}" alt="" class="updateImg">
                                 {% endif %}
                                 {% else %}
-                                <img src="/images/default_avatar.png" alt="" >
+                                    <img src="/images/default_avatar.png" alt="" class="updateImg">
                                 {% endif %}
                             </div>
 							<div class="u-change IconChange">修改</div>
 							<p class="IconChangeImg active"><input type="file" id="modifyPic" value="修改头像" name="修改头像" accept="image/*" style="text-indent:0;line-height: 14px;cursor:pointer;"/></p>
-                            <div class="iconChangeSuccess" style="opacity: 0" >修改成功</div>
-                            <div class="Iconerror" style="opacity: 0">格式错误重新上传</div>
+                            <div class="iconChangeSuccess" style="opacity: 0">修改成功</div>
+                            <div class="Iconerror" style="display: none;">格式错误重新上传</div>
                         </div>
 						<!--昵称修改-->
 						<div class="basicInfo-common m-name">
 							<div class="u-left">昵称:</div>
-							<input style="text-indent:0;"  class="u-middle nickNameInput" readonly minlength="1" maxlength="16" value="{{info.nickname}}">
+							<input type="text" style="text-indent:0;"  class="u-middle nickNameInput" readonly  maxlength="12" value="{{info.nickname}}">
 							<div  class="u-change nicknameChange nickChange" >修改</div>
 							<div  class="u-change nicknameChange active"><span class="u-nameSave">保存</span><span class="u-nameCancel">取消</span></div>
 							<div  class="u-changeSuccess" style="opacity: 0" >修改成功</div>
@@ -150,7 +151,7 @@
 		<div class="telValBounced" >
 			<div class="u-divTelVer thePhoness">
 				<label for="numberTelVer" class="numLable">新手机号</label>
-				<input type="text" class="u-userboxTelVer telnumberTelVer inputTelTelVer" name="" id="numberTelVer" maxlength="11" value="" v-model="phone">
+				<input type="text" class="u-userboxTelVer telnumberTelVer inputTelTelVer" name="" id="numberTelVer"  value="" v-model="phone" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>11)value=value.slice(0,11)">
 				<span class="u-numberphoneTelVer">请输入手机号</span>
 				<span class="u-numbertelTelVer">请输入正确的手机号</span>
 				<span class="u-numbertelService" >  手机号已注册</span>
@@ -280,7 +281,7 @@
 	$('.codeImg').on('click',function(e){
 		e.preventDefault();
         var phone = $(".inputTelTelVer").val();
-		$('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
+		$('.m-codeImg').attr('src','http://webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
 	})
   $('.g-left li').eq('{{index}}').addClass('rightswitchcolor');
   var UsubmitCheck=false;
@@ -342,6 +343,7 @@
 		$('.u-nameSave').on('click',function(){
 			$('.nickNameInput').attr('readOnly',true);
 			var nickName = $('.nickNameInput').val();
+//			var updateImg = $('.updateImg').attr('src');
 			$.ajax({
 				type: "GET",
 				url: "/api/updateuUserInfo",
@@ -352,6 +354,8 @@
 				success: function(data) {
 					if (data.code==0) {
 						console.log('请求成功!!!!');
+                        localStorage.getItem("nickname");
+                        localStorage.setItem("nickname",nickName);
                         var time;
                         $('.u-changeSuccess').animate({
                             'opacity':1,
@@ -363,12 +367,10 @@
                                 });
                                 window.location.reload();
                             },1000);
-
                         });
 					}
 					else {
                         console.log('123456789!');
-
                         var time;
                         $('.u-nameExist').animate({
                             'opacity':1,
@@ -378,13 +380,9 @@
                                 $('.u-nameExist').fadeOut('fast',function(){
                                     $(this).remove();
                                 });
-                                window.location.reload();
+                                    window.location.reload();
                             },1000);
-
                         });
-
-//                        $('.nickNameInput').attr('placeHolder','昵称已经存在');
-						console.log(data.result);
 
 //						var time;
 //						time = setTimeout(function(){
@@ -419,6 +417,7 @@
 		$(this).addClass('active');
 		$(".dot").animate({left:$(this).position().left},300)
 	})
+
 
 
 	/*by Fan*/

@@ -175,19 +175,6 @@ var app = new Vue({
     },
     mounted: function () {
         this.$nextTick(function () {
-            this.islogin = (document.cookie.indexOf('yuer_userId')>=0) ? 1 : 0;
-            // 获取用户头像
-            var icon = window.localStorage.getItem("avatar");
-            this.id = window.localStorage.getItem("id");
-            if(icon && icon != 'undefined'){
-                if(icon.indexOf('http')>-1){
-                    $('.avatar-icon').attr('src',icon); 
-                }else{
-                    $('.avatar-icon').attr('src','http://img.wangyuhudong.com/'+icon);
-                }
-            }else{
-                $('.avatar-icon').attr('src','/images/default_avatar.png'); 
-            }
             var _this = this;
             if(this.getQueryString('uin')){
                 $.ajax({
@@ -208,6 +195,19 @@ var app = new Vue({
                         // console.log('网络异常，请刷新重试');
                     }
                 }); 
+            }
+            this.islogin = (document.cookie.indexOf('yuer_userId')>=0) ? 1 : 0;
+            // 获取用户头像
+            var icon = window.localStorage.getItem("avatar")?window.localStorage.getItem("avatar"):'';
+            this.id = window.localStorage.getItem("id");
+            if(icon == '' || icon == 'undefined' || icon == 'null'){
+                $('.avatar-icon').attr('src','/images/default_avatar.png'); 
+            }else{
+                if(icon.indexOf('http')>-1){
+                    $('.avatar-icon').attr('src',icon); 
+                }else{
+                    $('.avatar-icon').attr('src','http://img.wangyuhudong.com/'+icon);
+                }
             }
         })
     },
@@ -331,7 +331,12 @@ var app = new Vue({
             this.delCookie('yuer_userId');
             this.delCookie('yuer_token');
             localStorage.clear();
-            window.location.href = "/";
+            var url = window.location.href;
+            if(url.indexOf('center')>=0){
+                window.location.href = "/"; 
+            }else{
+                window.location.reload();
+            }           
         },
         delCookie:function($name){
             var myDate=new Date();    
@@ -374,9 +379,10 @@ var app = new Vue({
                             dataType: 'json',
                             success: function(data) {
                                 if(data.code==0){
-                                    _this.regPic = 'http://qa.webapi.yuerlive.cn/checkCode?phone='+_this.regForm.mobile+'&rand='+new Date();
+                                    _this.regPic = 'http://webapi.yuerlive.cn/checkCode?phone='+_this.regForm.mobile+'&rand='+new Date();
                                     $('#reg-number').attr('readonly','readonly');
                                     $('.reg-slide').slideDown();
+
                                 }else{
                                     _this.regError.phone = "号码已被注册，请重新输入";
                                     setTimeout(function(){
@@ -403,7 +409,7 @@ var app = new Vue({
             }else{
                 if(_this.phoneForm.mobile){
                     if(/^1[34578][0-9]{9}$/.test(_this.phoneForm.mobile)){
-                        _this.phonePic = 'http://qa.webapi.yuerlive.cn/checkCode?phone='+_this.phoneForm.mobile+'&rand='+new Date();
+                        _this.phonePic = 'http://webapi.yuerlive.cn/checkCode?phone='+_this.phoneForm.mobile+'&rand='+new Date();
                         $('#quick-number').attr('readonly','readonly');
                         $('.phone-slide').slideDown();
                     }else{
@@ -422,9 +428,9 @@ var app = new Vue({
         },
         changePic:function(type){
             if(type==0){
-                this.regPic = 'http://qa.webapi.yuerlive.cn/checkCode?phone='+this.regForm.mobile+'&rand='+new Date();
+                this.regPic = 'http://webapi.yuerlive.cn/checkCode?phone='+this.regForm.mobile+'&rand='+new Date();
             }else{
-                this.phonePic = 'http://qa.webapi.yuerlive.cn/checkCode?phone='+this.phoneForm.mobile+'&rand='+new Date();
+                this.phonePic = 'http://webapi.yuerlive.cn/checkCode?phone='+this.phoneForm.mobile+'&rand='+new Date();
             }
         },
         // 发送验证码
@@ -567,12 +573,22 @@ var app = new Vue({
                         console.log('网络异常，请刷新重试');
                     }
                 });
+            }else if(_this.phoneForm.mobile==''){
+                _this.phoneError.phone = "手机号码不能为空";
+                setTimeout(function(){
+                    _this.phoneError.phone = '';
+                },2000);
             }else if(!/^1[34578][0-9]{9}$/.test(_this.phoneForm.mobile)){
                 _this.phoneError.phone = "手机号码错误，请重新输入";
                 setTimeout(function(){
                     _this.phoneError.phone = '';
                 },2000);
-            }else if(_this.phoneForm.checkCode.length<6){
+            }else if(_this.phoneForm.checkCode==''){
+                _this.phoneError.code = "验证码不能为空";
+                setTimeout(function(){
+                    _this.phoneError.code = '';
+                },2000);
+            }else if(_this.phoneForm.checkCode!='' && _this.phoneForm.checkCode.length<6){
                 _this.phoneError.code = "验证码错误，请重新输入";
                 setTimeout(function(){
                     _this.phoneError.code = '';
@@ -630,12 +646,22 @@ var app = new Vue({
                         console.log('网络异常，请刷新重试');
                     }
                 });
+            }else if(_this.regForm.mobile==''){
+                _this.regError.phone = "手机号码不能为空";
+                setTimeout(function(){
+                    _this.regError.phone = '';
+                },2000);
             }else if(!/^1[34578][0-9]{9}$/.test(_this.regForm.mobile)){
                 _this.regError.phone = "手机号码错误，请重新输入";
                 setTimeout(function(){
                     _this.regError.phone = '';
                 },2000);
-            }else if(_this.regForm.checkCode.length<6){
+            }else if(_this.regForm.checkCode==''){
+                _this.regError.code = "验证码不能为空";
+                setTimeout(function(){
+                    _this.regError.code = '';
+                },2000);
+            }else if(_this.regForm.checkCode!='' && _this.regForm.checkCode.length<6){
                 _this.regError.code = "验证码错误，请重新输入";
                 setTimeout(function(){
                     _this.regError.code = '';

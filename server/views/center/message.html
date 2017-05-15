@@ -31,13 +31,11 @@
 									<span v-if='item.target_type==1' class="u-messagecontent">${item.content}</span>
 									<span v-else-if="item.target_type==2" class="u-messagecontent">${item.content}</span>
 									<span v-else-if="item.target_type==4"  class="u-messagecontent">${item.content}</span>
-									<span v-else class="u-messagecontent">
-										${item.content}
-									</span>
+									<span v-else class="u-messagecontent u-four">${item.content}</span>
 									<a v-if='item.target_type==1' v-bind:href="'/liveroom?id='+item.obj_id">	<span  class="u-messtips" id="messshow">查看<!--&gt;&gt;--></span></a>
 									<a v-if='item.target_type==2' href="javascript:;">	<span  class="u-messtips" id="messshow"><!--&gt;&gt;--></span></a>
 									<a v-if='item.target_type==4' v-bind:href="item.url">	<span   class="u-messtips" id="messshow">查看<!--&gt;&gt;--></span></a>
-									<!--<a v-else href="javascript:;">	<span class="u-messtips" id="messshow">查看&lt;!&ndash;&gt;&gt;&ndash;&gt;</span></a>-->
+									<a v-if='item.target_type==3' href="javascript:;">	<span class="u-messtips" id="messshow">查看<!--&gt;&gt;--></span></a>
 
 								</div>
 								<div class="u-yuerDate f-fr"><span class="u-messagetime f-fr">${item.create_date}</span></div>
@@ -50,9 +48,11 @@
 					</div>
 				</div>
 				<div class="M-box">
+					<a href="javascript:;" class="prevBtnGray">上一页</a>
 					<a href="javascript:;" @click="prevBtnmsg" class="prevBtn">上一页</a>
 					<span class="totalPage"></span>
 					<a href="javascript:;" @click="nextBtnmsg" class="nextBtn">下一页</a>
+					<a href="javascript:;" class="nextBtnGray">下一页</a>
 				</div>
 			</div>
 			<div class="u-systemmessage u-focusmessage mcurrent">
@@ -61,12 +61,11 @@
 
 						<div class="u-message f-cb" v-for="(item,index) in vuemessage">
 									<div class="u-msystem">
-
 										<!--<img v-if="item.icon.indexOf('http')>-1" v-bind:src="item.icon" >-->
 										<!--<img v-else-if="item.icon" v-bind:src="'http://img.wangyuhudong.com/'+item.icon" >-->
-										<!--<img src="/images/default_avatar.png" v-else>-->
-										<img v-if="item.icon" v-bind:src="item.icon" alt="" class="iconfileup">
-										<img v-else src="/images/default_avatar.png" alt="没有图片" class="iconfileup">
+										<!--<img v-else src="/images/default_avatar.png" >-->
+										<img v-if="item.icon=='null'" src="/images/default_avatar.png"  alt="" class="iconfileup">
+										<img v-else v-bind:src="item.icon"  alt="没有图片" class="iconfileup">
 										<img v-if="item.sex==0" src="/images/male.png" class="seximg" >
 										<img v-else src="/images/female.png" class="seximg" >
 									</div>
@@ -74,11 +73,8 @@
 										<h3>${item.title}</h3>
 										<div class="u-yuerContent f-fl">
 											<span class="u-messagecontent">关注了你</span>
-
-											<a v-if="item.icon==null" href="javascript:;"><span class="u-messtips">该用户不是主播</span></a>
-
-											<a v-else  v-bind:href="'/liveroom?id='+item.live_id"><span class="u-messtips">查看</span></a>
-
+											<a v-if="item.live_id" v-bind:href="'/liveroom?id='+item.live_id" ><span class="u-messtips">查看</span></a>
+											<a  v-else  href="javascript:;"><span class="u-messtips">该用户不是主播</span></a>
 										</div>
 										<div class="u-yuerDate f-fr"><span class="u-messagetime f-fr">${item.create_date}</span></div>
 									</div>
@@ -90,9 +86,11 @@
 					</div>
 				</div>
 				<div class="M-box">
+					<a href="javascript:;" class="prevBtnGray">上一页</a>
 					<a href="javascript:;" @click="prevBtnmsg" class="prevBtn">上一页</a>
 					<span class="totalPage"></span>
 					<a href="javascript:;" @click="nextBtnmsg" class="nextBtn">下一页</a>
+					<a href="javascript:;" class="nextBtnGray">下一页</a>
 				</div>
 			</div>
 		</div>
@@ -133,7 +131,6 @@
                 // 代码保证 this.$el 在 document 中
                 this.eventBind();
                 this.newsList();
-
             })
         },
         methods:{
@@ -204,16 +201,28 @@
 
 		        $(".nextBtn").show();
 		        $(".prevBtn").show();
-		        if(_this.local.cur_page==1){
-		            $(".prevBtn").hide();
-		        }
+				$(".prevBtnGray").hide();
+				$(".nextBtnGray").hide();
+				if(_this.local.cur_page==1){
+					$(".prevBtn").hide();
+					$(".prevBtnGray").show();
+					$(".nextBtnGray").hide();
+				}
 		        if(_this.local.cur_page==_this.local.cur_maxPage){
 		            $(".nextBtn").hide();
+					$(".prevBtnGray").hide();
+					$(".nextBtnGray").show();
 		        }
 		        if(_this.local.cur_maxPage==1){
 		            $(".prevBtn").hide();
 		            $(".nextBtn").hide();
 		        }
+		        if(_this.local.cur_page==1&&_this.local.cur_page==_this.local.cur_maxPage){
+					$(".prevBtn").hide();
+					$(".nextBtn").hide();
+					$(".prevBtnGray").hide();
+					$(".nextBtnGray").hide();
+				}
 		        if( _this.local.cur_total == 0 ){ $(".totalPage").hide()};
 		    },
 	        // 我的消息的页面的事件处理
@@ -232,6 +241,7 @@
 	                    if (data.code == 0) {
 	                        if(data.object.list.length>0){
 	                        	_this.vuemessage = data.object.list;
+
 								console.log(_this.vuemessage);
 	                        	$('body').scrollTop(0);
 	                            $(".M-box").show();
@@ -256,32 +266,9 @@
 	                error: function(a, b, c) {
 	                    console.log("接口出问题啦");
 	                }
-	            })
+	            });
 	        }
         },
-		messagecontent : function(){
-			var box = document.getElementsByClassName("u-messagecontent");
-			var text = box.innerHTML;
-			var newBox = document.createElement("div");
-			var btn = document.createElement("a");
-			newBox.innerHTML = text.substring(0,20);
-			btn.innerHTML = text.length > 10 ? "...显示全部" : "";
-			btn.href = "###";
-			btn.onclick = function(){
-				if (btn.innerHTML == "...显示全部"){
-					btn.innerHTML = "收起";
-					newBox.innerHTML = text;
-				}else{
-					btn.innerHTML = "...显示全部";
-					newBox.innerHTML = text.substring(0,20);
-				}
-			}
-			box.innerHTML = "";
-			box.appendChild(newBox);
-			box.appendChild(btn);
-		}
-    })
-//	字体显示隐藏
-
+    });
 </script>
 {% endblock %}

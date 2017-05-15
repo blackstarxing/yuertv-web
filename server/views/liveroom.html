@@ -61,7 +61,8 @@
                         <button class="punish" @click="punishPop">管理</button>
                         {% endif %}
                         {% endif %}
-                        <button class="report wantreport" @click="reportPop">举报</button><button class="share">转发</button>
+                        <button class="report wantreport f-fr" @click="reportPop">举报</button>
+                        <!-- <button class="share">转发</button> -->
                     </div>
                 </div>
             </div>
@@ -322,7 +323,7 @@
         <div class="m-live-right">
             <div class="live-notice">
                 <h3><img src="/images/trumpet.png" alt="">直播公告</h3>
-                <p>{{detail.info.introduce}}</p>
+                <p>{{detail.info.notice}}</p>
             </div>
             <div class="liveroom">
                 <ul class="room-tab f-cb">
@@ -364,7 +365,7 @@
                     <div class="set-option clearmes" @click="clearMes"><img src="/images/clear.png" alt="">清屏</div>
                 </div>
                 <div class="send-block">
-                    <input type="text" class="live-text"><button class="sendText">发送</button>
+                    <input type="text" class="live-text" maxlength="20"><button class="sendText">发送</button>
                 </div>
             </div>
         </div>

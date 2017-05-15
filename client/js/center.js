@@ -209,7 +209,7 @@ var local={
                 success: function(data) {
                     if(data.code == 0){
                         var phone = $(".inputTelTelVer").val();
-                        $('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
+                        $('.m-codeImg').attr('src','http://webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
                         console.log(data);
                         $.ajax({
                             method: "GET",
@@ -222,7 +222,7 @@ var local={
                             success: function(data) {
                                 if(data.code == 0){
                                     var phone = $(".inputTelTelVer").val();
-                                    $('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
+                                    $('.m-codeImg').attr('src','http://webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
                                     $("#copySecond").show();
                                     settime(60);
                                 }
@@ -391,13 +391,13 @@ var local={
             }
         }
         // 手机号码和修改手机号码的的验证
-        $(".inputTel,#numberTelVer").off("keydown").on("keydown",function(e){
-            if((e.keyCode >=48 && e.keyCode <=57)||(e.keyCode >=97 && e.keyCode <=105)||(e.keyCode == 8)){
-            
-            }else{
-                e.preventDefault();
-            }
-        })
+        // $(".inputTel,#numberTelVer").off("keydown").on("keydown",function(e){
+        //     if((e.keyCode >=48 && e.keyCode <=57)||(e.keyCode >=97 && e.keyCode <=105)||(e.keyCode == 8)){
+        //
+        //     }else{
+        //         e.preventDefault();
+        //     }
+        // })
         $("#numberTelVer").on("focus",function(){
             $(".u-numberphoneTelVer").hide();
             $("#gainnumberTelVer").show();
@@ -415,7 +415,7 @@ var local={
                 // $("#telValBounced").hide();
                 $('.m-codeInput').val('');
                 var phone = $(".inputTelTelVer").val();
-                $('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
+                $('.m-codeImg').attr('src','http://webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
                 $.ajax({
                     url: '/api/CheckMobile?mobile='+phone,
                     type: 'get',
@@ -423,7 +423,7 @@ var local={
                     success: function(data) {
                         if(data.code==0){
                             var phone = $(".inputTelTelVer").val();
-                            $('.m-codeImg').attr('src','http://qa.webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
+                            $('.m-codeImg').attr('src','http://webapi.yuerlive.cn/checkCode?phone='+phone+'&rand='+new Date());
                             $('.g-checkCode').show();
                             // $('.telValBounced').hide();
                             event.preventDefault();
@@ -831,6 +831,9 @@ var local={
                                         if(data.code == 0){
                                             console.log("上传成功");
                                             window.localStorage.setItem("avatar", icon);
+
+                                            localStorage.getItem("avatar");
+                                            localStorage.setItem("avatar",icon);
                                             var time;
                                             $('.iconChangeSuccess').animate({
                                                 'opacity':1,
@@ -862,18 +865,23 @@ var local={
                 }
                 else{
                     //修改头像错误
+                    console.log(145756342);
                     var time;
-                    $('.Iconerror').animate({
-                        'opacity':1,
-                    },100,function(){
-                        clearTimeout(time);
-                        time=setTimeout(function(){
-                            $('.Iconerror').fadeOut('fast',function(){
-                                $(this).remove();
-                            });
-                        },3000);
-
-                    });
+                    $('.Iconerror').show();
+                    setTimeout(function () {
+                        $('.Iconerror').hide();
+                    },2000);
+                    // $('.Iconerror').animate({
+                    //     'opacity':1,
+                    // },100,function(){
+                    //     clearTimeout(time);
+                    //     time=setTimeout(function(){
+                    //         $('.Iconerror').fadeOut('fast',function(){
+                    //             $(this).remove();
+                    //         });
+                    //     },3000);
+                    //
+                    // });
                 }
             }  
         });
