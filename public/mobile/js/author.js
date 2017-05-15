@@ -455,7 +455,11 @@ $(function(){
     	$('.step-two').hide();
     	$('.step-three').show();
     })
-
+    $('.u-stepimg').click(function(){
+    	jumpsecond = -1;
+    	$('.step-two').hide();
+    	$('.step-three').show();
+    })
     // 发送手播下载地址
     $('.u-download-btn').click(function(){
     	var parm = {};

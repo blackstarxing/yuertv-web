@@ -1,6 +1,6 @@
 html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;}
 body,ul,li,p,h3,h4,h2,em,input,button{margin: 0; padding: 0;}
-body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; font-size:62.5%; font-style:normal; max-width: 800px; margin:0 auto; height:100%; color:#9da4ad; background: #141a20; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
+body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; font-size:62.5%; font-style:normal; max-width: 800px; margin:0 auto; height:100%; color:#9da4ad; background: #f5f5f5; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
 img{border:0; max-width:100%;}
 li{ list-style:none;}
 a{text-decoration: none; color:#9da4ad;}
@@ -24,7 +24,7 @@ input:focus{
 
 .g-bd{
 	padding-top: 10px;
-	background: #141a20;
+	background: #f5f5f5;
 }
 .process img{
 	width: 100%;
@@ -34,7 +34,7 @@ input:focus{
 }
 .m-register h3,.m-bindmobile h3{
 	font-size: 15px;
-	color:#fff;
+	color:#ccc;
 	line-height: 2;
 }
 .bindmobile{
@@ -47,22 +47,22 @@ input:focus{
 	margin-bottom: 10px;
 }
 .m-input ::-webkit-input-placeholder { /* WebKit browsers */ 
-    color: #465667; 
+    color: #999; 
 } 
 .m-input :-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
-    color: #465667; 
+    color: #999; 
 } 
 .m-input ::-moz-placeholder { /* Mozilla Firefox 19+ */ 
-    color: #465667; 
+    color: #999; 
 } 
 .m-input :-ms-input-placeholder { /* Internet Explorer 10+ */ 
-    color: #465667; 
+    color: #999; 
 } 
 .m-input input,.m-sex{
 	display: block;
 	width: 100%;
-	background: #161d24;
-	border: 1px solid #1a293d;
+	background: #fff;
+	border: 1px solid #fff;
 	outline: none;
 	box-sizing: content-box;
 	height: 16px;
@@ -70,7 +70,7 @@ input:focus{
 	line-height: 16px;
 	border-radius: 2px;
 	text-indent: 9px;
-	color:#fff;
+	color:#333;
 	font-size: 13px;
 }
 .m-code{
@@ -85,11 +85,11 @@ input:focus{
 	position: absolute;
 	top:1px;
 	right: -3px;
-	background: #f36;
+	background: #00acff;
 	border:none;
 	outline: none;
 	color: #fff;
-	border-left: 1px solid #1a293d;
+	border-left: 1px solid #00acff;
 	border-top-right-radius: 2px;
 	border-bottom-right-radius: 2px;
 }
@@ -101,10 +101,10 @@ input:focus{
 	box-shadow: 0 0 10px #101519;
 }
 .m-sex{
-	color:#98a9bb;
+	color:#999;
 }
 .sex-radio{
-	margin-left: 10px;
+	margin-left: 30px;
 }
 .sex-radio input[type="radio"] {
   display: none;
@@ -117,7 +117,7 @@ input:focus{
   background: url('/images/dischecked.png') no-repeat left center;
   background-size: 13px 13px;
   text-indent: 30px;
-  color:#fff;
+  color:#666;
 }
 .sex-radio label.checked {
   background: url('/images/checked.png') no-repeat left center;
@@ -125,11 +125,11 @@ input:focus{
 }
 .rule{
 	text-align: center;
-	color:#435362;
+	color:#999;
 	margin-bottom: 42px;
 }
 .rule .agreement{
-	color:#33f4f5;
+	color:#1cc7ff;
 }
 .u-reg-btn,.u-log-btn,.u-bind-btn,.u-steptwo,.u-download-btn{
 	display: block;
@@ -140,16 +140,16 @@ input:focus{
 	border:none;
 	outline: none;
 	color:#fff;
-	background: #f36;
+	background: #00acff;
 	margin-bottom: 24px;
 	border-radius: 17.5px;
-	box-shadow: 0 0 10px #f36;
+	/*box-shadow: 0 0 10px #00acff;*/
 	font-size: 14px;
 }
 .u-log-btn{
-	background: #1a2129;
-	color: #888993;
-	box-shadow: 0 0 10px #101519;
+	background: #ff5f96;
+	color: #fff;
+	/*box-shadow: 0 0 10px #101519;*/
 }
 .tip{
 	background: rgba(69,83,101,0.8);
@@ -179,12 +179,13 @@ input:focus{
 	margin: 30px auto 0;
 	text-align: center;
 	font-size: 20px;
-	color:#fff;
+	color:#333;
 	border-radius: 5px;
+	background-color:#fff;
 }
 .reg-success p{
 	text-align: center;
-	color: #98a9bb;
+	color: #999;
 	line-height: 30px;
 }
 .reg-success .autojump{
@@ -223,7 +224,7 @@ input:focus{
 }
 .intro h3{
 	font-size: 20px;
-	color:#fff;
+	color:#333;
 	text-align: center;
 	margin-bottom: 20px;
 }
@@ -233,13 +234,13 @@ input:focus{
 .ios,.android{
 	padding: 0 34px;
 	font-size: 12px;
-	color: #6b757f;
+	color: #666;
 	line-height: 1.5;
 	padding-bottom: 60px;
 }
 .ios h3,.android h3{
 	font-size: 14px;
-	color:#98a9bb;
+	color:#333;
 }
 .ios h3,.ios p,.android h3,.android p{
 	margin-bottom: 20px;
@@ -253,7 +254,7 @@ input:focus{
 	color:#3ff;
 }
 .android .pink{
-	color:#f36;
+	color:#00acff;
 }
 .android{
 	display: none;
@@ -265,20 +266,41 @@ input:focus{
 	height: 60px;
 	text-align: center;
 	font-size: 12px;
-	color:#fff;
+	background-color:#fff;
 	padding:5px;
 	box-sizing: border-box;
-	background: #1c232d;
+	clear:both;
 }
 .g-ft h3{
 	font-size: 15px;
 	font-weight: normal;
-	line-height: 50px;
 }
 .g-ft .u-stepthree{
-	background: #f36;
+	float:left;
+	width:40%;
+	background: #fff;
 	height: 50px;
 	border-radius: 5px;
+	margin-left:30%;
+}
+.g-ft .u-stepclick{
+	display:inline-block;
+	color:#ccc;
+	margin-top:10px;
+}
+.g-ft .u-stepobtain{
+	font-size:12px;
+	color:#ccc;
+}
+.g-ft .u-stepimg{
+	float:right;
+	display:inline-block;
+	width:60px;
+	height:25px;
+	line-height:70px;
+}
+.u-stepimg img{
+	width:100%;
 }
 /*认证主播*/
 .m-public{
@@ -302,11 +324,11 @@ input:focus{
 	height:40px;
 	line-height:40px;
 	margin:5% 0%;
-	background:#1a2129;
+	background:#fff;
 }
 .Utop p{
 	width:100%;
-	color:#98a9bb;
+	color:#ccc;
 	font-size:12px;
 	text-align:center;
 }
@@ -322,25 +344,27 @@ input:focus{
 	height: 16px;
 	padding:9px 0;
 	line-height: 16px;
-	border:1px solid #1a2a3e;
+	border:1px solid #fff;
 	margin-bottom:5%;
-	background-color:transparent;
+	background-color:#fff;
 	padding-left:5%;
-	color:#fff;
+	color:#333;
 }
 .Ucenter input.uDate{
 	position:relative;
-	background-color:transparent;
 	background: url('/mobile/images/hostright.png') 98% center no-repeat;
 	background-size: 6.5px 10.5px;
-    color:#fff;  
+    color:#333;  
     FILTER: alpha(opacity=0); /*androd*/  
     appearance:none;  /*下拉框去掉右侧图标*/  
     -moz-appearance:none;  
     -webkit-appearance:none;
 }
+.Ucenter input.uDate{
+	background-color:#fff;
+}
 input[type="date"]:before{
-    color:#465667;
+    color:#999;
     content:attr(placeholder);
     font-size: 13px;
 }
@@ -367,7 +391,7 @@ input[type="date"].full:before {
 	display:inline-block;
 	width:100%;
 	height:68px;
-	border:1px solid #1a2a3e;
+	/*border:1px solid #1a2a3e;*/
 	box-sizing:border-box;
 }
 .u-card .hand{
@@ -400,7 +424,7 @@ input[type="date"].full:before {
 	line-height:17px;
 	text-align:center;
 	font-size:12px;
-	color:#465667;
+	color:#999;
 	margin-bottom:10%;
 }
 /*上传图片的样式*/
@@ -415,7 +439,8 @@ input[type="date"].full:before {
 	cursor:pointer;
 	border-radius:5px;
 	font-size:12px;
-	color:#141a20;
+	color:#fff;
+	background:#999;
 }
 .upload-container .fileupload{
 	width:100%;
@@ -432,19 +457,19 @@ input[type="date"].full:before {
 /*粘贴*/
 input::-webkit-input-placeholder { /* WebKit browsers */ 
 	font-size:13px;
-    color: #465667; 
+    color: #999; 
 } 
 input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
    	font-size:13px;
-    color: #465667; 
+    color: #999; 
 } 
 input::-moz-placeholder { /* Mozilla Firefox 19+ */ 
    	font-size:13px;
-    color: #465667; 
+    color: #999; 
 } 
 input:-ms-input-placeholder { /* Internet Explorer 10+ */ 
     font-size:13px;
-    color: #465667; 
+    color: #999; 
 } 
 .Ucenter .uAgree{
 	width:70%;
@@ -455,10 +480,10 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 .uAgree p{
 	font-size:12px;
-	color:#465667;
+	color:#666;
 }
 .uAgree span{
-	color:#3ff;
+	color:#1cc7ff;
 }
 .Ucenter .Usubmit{
 	width:60%;
@@ -475,7 +500,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	font-size:14px;
 	border-radius:37px;
 	text-decoration:none;
-	background:#f36;
+	background:#00acff;
 }
 .Uexplain{
 	width:90%;
@@ -486,7 +511,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 .Uexplain p{
 	width:100%;
 	font-size:12px;
-	color:#465667;
+	color:#666;
 }
 /*审核的三种状态*/
 .u-InTheReview,.u-Approved,.u-AuditDidNotPass{
@@ -499,7 +524,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	width:100%;
 }
 .InModuleImg{
-	background:#323a43;
+	background:#fff;
 	width:100%;
 	height:180px;
 	text-align:center;
@@ -522,14 +547,14 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 .InModule p{
 	margin:5% auto 50%;
-	color:#98a9bb;
+	color:#999;
 	font-size:12px;
 
 }
 /*审核通过*/
 .ApModule p{
 	margin:5% auto 20%;
-	color:#98a9bb;
+	color:#999;
 	font-size:12px;
 	text-align:center;
 }
@@ -544,7 +569,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	width:100%;
 	border-radius:35px;
 	text-decoration:none;
-	background:#f36;
+	background:#00acff;
 	color:#fff;
 	font-size:14px;
 	text-align:center;
@@ -554,19 +579,19 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 	height:35px;
 	line-height:35px;
 	font-size:12px;
-	color:#465667;
+	color:#999;
 	margin:0% auto 40%;
 	text-align: center;
 }
 .specColor span{
 	font-size:12px;
-	color:#3ff;
+	color:#1cc7ff;
 	margin:0 3px;
 }
 /*审核未通过*/
 .AuModule p{
 	margin:5% auto 20%;
-	color:#98a9bb;
+	color:#999;
 	font-size:12px;
 	text-align:center;
 }
@@ -590,7 +615,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     width:100%;
     height:150px;
     line-height:150px;
-    background:#333a44;
+    background:#fff;
     border-radius:5px;
     margin-top:30%;
 }
@@ -638,7 +663,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 .Uname{
     font-size:15px;
-    color:#fff;
+    color:#333;
 }
 .Uname img{
     display:inline-block;
@@ -649,7 +674,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 .UId{
     font-size:11px;
-    color:#cecfd2;
+    color:#666;
     margin-top:5%;
 }
 .m-bottom{
@@ -665,7 +690,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     text-align:center;
     font-size:14px;
     color:#fff;
-    background:#f36;
+    background:#00acff;
     border-radius:35px;
     text-decoration:none;
     border:none;
@@ -675,6 +700,6 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     height:15px;
     margin:5% 0%;
     font-size:12px;
-    color:#465667;
+    color:#999;
     text-align:center;
 }
