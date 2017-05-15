@@ -509,6 +509,8 @@
 			            success: function(data) {
 			                if(data.code==0){
 			                	_this.submitDone = true;
+			                }else{
+			                	alert(data.result);
 			                }
 			            },
 			            error: function() {

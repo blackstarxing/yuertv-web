@@ -175,19 +175,6 @@ var app = new Vue({
     },
     mounted: function () {
         this.$nextTick(function () {
-            this.islogin = (document.cookie.indexOf('yuer_userId')>=0) ? 1 : 0;
-            // 获取用户头像
-            var icon = window.localStorage.getItem("avatar");
-            this.id = window.localStorage.getItem("id");
-            if(icon == '' || icon == 'undefined' || icon == 'null'){
-                $('.avatar-icon').attr('src','/images/default_avatar.png'); 
-            }else{
-                if(icon.indexOf('http')>-1){
-                    $('.avatar-icon').attr('src',icon); 
-                }else{
-                    $('.avatar-icon').attr('src','http://img.wangyuhudong.com/'+icon);
-                }
-            }
             var _this = this;
             if(this.getQueryString('uin')){
                 $.ajax({
@@ -208,6 +195,19 @@ var app = new Vue({
                         // console.log('网络异常，请刷新重试');
                     }
                 }); 
+            }
+            this.islogin = (document.cookie.indexOf('yuer_userId')>=0) ? 1 : 0;
+            // 获取用户头像
+            var icon = window.localStorage.getItem("avatar")?window.localStorage.getItem("avatar"):'';
+            this.id = window.localStorage.getItem("id");
+            if(icon == '' || icon == 'undefined' || icon == 'null'){
+                $('.avatar-icon').attr('src','/images/default_avatar.png'); 
+            }else{
+                if(icon.indexOf('http')>-1){
+                    $('.avatar-icon').attr('src',icon); 
+                }else{
+                    $('.avatar-icon').attr('src','http://img.wangyuhudong.com/'+icon);
+                }
             }
         })
     },

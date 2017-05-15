@@ -623,30 +623,36 @@ router.get('/search', function(req, res, next) {
     }else{
         islogin = false;
     };
-    Thenjs.parallel([function(cont) {
-        request({
-            uri: path+'/search/live?param='+content+'&page=1&pageSize=30',
-            headers: {
-                'User-Agent': 'request',
-                'cookie': req.headers.cookie,
-            },
-        }, function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                cont(null, body);
-            } else {
-                cont(new Error('error!'));
-            }
-        })
-    }]).then(function(cont, result) {
-        res.render('search', {
-            title: "搜索",
-            result: JSON.parse(result[0]).object,
-            islogin: islogin,
-            content:content,
-        });
-    }).fail(function(cont, error) { 
-        console.log(error);
-        res.render('error', { title: "错误"});
+    // Thenjs.parallel([function(cont) {
+    //     request({
+    //         uri: path+'/search/live?param='+content+'&page=1&pageSize=30',
+    //         headers: {
+    //             'User-Agent': 'request',
+    //             'cookie': req.headers.cookie,
+    //         },
+    //     }, function(error, response, body) {
+    //         if (!error && response.statusCode == 200) {
+    //             cont(null, body);
+    //         } else {
+    //             cont(new Error('error!'));
+    //         }
+    //     })
+    // }]).then(function(cont, result) {
+    //     res.render('search', {
+    //         title: "搜索",
+    //         result: JSON.parse(result[0]).object,
+    //         islogin: islogin,
+    //         content:content,
+    //     });
+    // }).fail(function(cont, error) { 
+    //     console.log(error);
+    //     res.render('error', { title: "错误"});
+    // });
+    res.render('search', {
+        title: "搜索",
+        // result: JSON.parse(result[0]).object,
+        islogin: islogin,
+        content:content,
     });
 });
 
