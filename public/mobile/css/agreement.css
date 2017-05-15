@@ -23,7 +23,7 @@ h3{font-size: 1.6rem;}
 .db{display: block;}.dn{display: none;}.dt{display: table;}.l{float: left;}.r{float: right;}
 .mr5{margin-right: 5px;}.mr10{margin-right:10px;}.mt2{margin-top:2px;}.mt5{margin-top: 5px;}.mt10{margin-top: 10px;}.mb10{margin-bottom: 10px;}.mb80{margin-bottom:80px;}
 .f14{font-size: 1.4rem;}.p15{padding:15px;}.tr{text-align: right;}
-.g9{color:#c9c9c9;line-height: 24px;}.c45{color:#414457;}.cr{color:#EF6363;}.cy{color:#FDD732;}.cff{color:#F03F3F;}.bgf1{background-color:#f1f1f1;}.colf5{color:#ff5f00;}
+.g9{color:#999;line-height: 24px;}.c45{color:#414457;}.cr{color:#EF6363;}.cy{color:#FDD732;}.cff{color:#F03F3F;}.bgf1{background-color:#f1f1f1;}.colf5{color:#ff5f00;}
 .vm{vertical-align:middle;}.vn{vertical-align:2px;}
 .tdlt{text-decoration:line-through}
 .rel{position:relative;}
@@ -46,7 +46,7 @@ h3{font-size: 1.6rem;}
 .hb_qa_list{padding:0 4% 8%; font-size:1.4rem; color:#999;}
 .hb_qa_list h3,.qa_list h3{padding:15px 0 5px; line-height: 24px; font-size: 1.6rem; color:#555;}
 .hb_qa_list p{padding-left:10px;}
-.hb_list_dot{display: inline-block; width:5px; height:16px; background-color: #f36; margin-right:5px; vertical-align:-2px; -webkit-border-radius:1px; border-radius:1px;}
+.hb_list_dot{display: inline-block; width:5px; height:16px; background-color: #1cc7ff; margin-right:5px; vertical-align:-2px; -webkit-border-radius:1px; border-radius:1px;}
 .header{padding:15px 5%; border-bottom:1px solid #E4E4E4;}
 .qa_nav_list{height:40px; line-height:40px; border:1px solid #ADADAD; -webkit-border-radius:5px; border-radius:5px; background-color: #EBEBEB; overflow: hidden;}
 .qa_nav_list a{display:inline-block; width:48.9%; color:#333; text-align: center;}
@@ -130,9 +130,9 @@ h3{font-size: 1.6rem;}
 .ios_matches_menbers{padding-bottom: 40px;}
 .ios_matches_menbers h4{padding:6px 15px; border-bottom: 1px solid #eee;}
 .btnfix{width:100%; height:40px; line-height: 40px; background-color: #FDD732; font-weight:bold; position: fixed; left: 0; bottom: 0; text-align: center;}
-.user_agreement_cont{font-size:1.4rem;color:#c9c9c9;background: #141a20;}
+.user_agreement_cont{font-size:1.4rem;color:#666;background: #fff;}
 .user_agreement_cont h2{font-size:2.2rem; margin-bottom:5px;}
-.user_agreement_cont p{margin-top:10px; padding-left:10px; font-size:1.4rem; color:#c9c9c9;}
+.user_agreement_cont p{margin-top:10px; padding-left:10px; font-size:1.4rem; color:#999;}
 .user_agreement_list{line-height:24px;}
 .user_agreement_list li{margin-bottom: 10px;}
 /* mall-commodity */
