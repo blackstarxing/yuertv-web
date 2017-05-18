@@ -276,12 +276,11 @@ input:focus{
 	font-weight: normal;
 }
 .g-ft .u-stepthree{
-	float:left;
-	width:40%;
+	position:relative;
 	background: #fff;
 	height: 50px;
 	border-radius: 5px;
-	margin-left:30%;
+	text-align:center;
 }
 .g-ft .u-stepclick{
 	display:inline-block;
@@ -293,11 +292,12 @@ input:focus{
 	color:#ccc;
 }
 .g-ft .u-stepimg{
-	float:right;
+	position:absolute;
+	top:13px;
+	right:10px;
 	display:inline-block;
 	width:60px;
 	height:25px;
-	line-height:70px;
 }
 .u-stepimg img{
 	width:100%;
