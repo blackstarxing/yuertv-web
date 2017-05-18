@@ -2,17 +2,17 @@ html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;font-size:
 body,ul,li,p,h3,h4,h2,em,button,input{margin: 0; padding: 0;}
 body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; 
 	 font-style:normal;  margin:0 auto; height:100%;
-	background:#141a20; overflow-x:hidden; -webkit-overflow-scrolling:touch;max-width:800px;}
+	background:#fff; overflow-x:hidden; -webkit-overflow-scrolling:touch;max-width:800px;}
 li{ list-style:none;}
 h3{font-size: 1.5rem;line-height: 1.25;}
 a{text-decoration: none; color:#9da4ad;}
 .m-bg{
-	background:#1c232d;
+	background:#fff;
 	padding:10px 2.5% 25px;
 }
 .g-top{
 	font-size:21px;
-	color:#fff;
+	color:#333;
 	padding-bottom: 15px;
 }
 .g-nav{
@@ -20,7 +20,9 @@ a{text-decoration: none; color:#9da4ad;}
 	color:#465667;
 }
 .g-n-date{
-	margin-right:5%;}
+	margin-right:5%;
+	color:#999;
+}
 .g-n-title{
 	display:inline-block; 
 	width:20%;
@@ -40,11 +42,11 @@ a{text-decoration: none; color:#9da4ad;}
 	text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ 
 }
 .g-n-line{
-	border:1px solid #141a20;
+	border:1px solid #e6e6e6;
 	margin-top:5%;
 }
 .g-mian{
-	font-size:12px;color:#98a9bb;
+	font-size:12px;color:#fff;
 }
 .g-mian img{
 	max-width: 100%;
@@ -54,11 +56,13 @@ a{text-decoration: none; color:#9da4ad;}
 	margin:5% 0;
 }
 .g-comment{
+	background:#f5f5f5
 	padding:12px 12px 3.5rem;
 }
 .u-title{
 	font-size: 1rem;
-	color:#465667;
+	color:#666;
+	margin-left:5%;
 }
 .u-title img{
 	height: 1rem;
@@ -91,7 +95,7 @@ a{text-decoration: none; color:#9da4ad;}
 	color:#465667;
 }
 .reply-nickname{
-	color: #f36;
+	color: #1cc7ff;
 }
 img.u-empty-img{
 	display:block;
@@ -104,17 +108,17 @@ span.f-fr{
 }
 .u-empty-data{
 	font-size:14px;
-	color:#fff;
+	color:#666;
 	text-align:center;
 	margin-top:5px;
 }
 .g-bt{
 	position: fixed;
 	bottom: 0;
-	background: #1c232d;
+	background: #fff;
 	width: 100%;
 	padding:1rem 0;
-	color:#c9c9cc;
+	color:#999;
 }
 .g-bt li{
 	float: left;
@@ -128,7 +132,7 @@ span.f-fr{
 	font-style: normal;
 	width: 1px;
 	height: 100%;
-	background: #55545f;
+	background: #666;
 }
 .g-bt li img{
 	height: 100%;

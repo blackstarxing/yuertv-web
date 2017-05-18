@@ -1,9 +1,9 @@
 html{width:100%; height:100%; -webkit-tap-highlight-color:transparent;font-size:62.5%;}
 body,ul,li,p,h3,h4,h2,em{margin: 0; padding: 0;}
-body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; font-style:normal; max-width: 800px; margin:0 auto; height:100%; color:#9da4ad; background: #141a20; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
+body{font-family:Hiragino Sans GB W3,'微软雅黑',Heiti SC; font-style:normal; max-width: 800px; margin:0 auto; height:100%; color:#666; background: #fff; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
 img{border:0; max-width:100%;}
 li{ list-style:none;}
-a{text-decoration: none; color:#9da4ad;}
+a{text-decoration: none; color:#666;}
 h3{font-size: 1.5rem;line-height: 1.25;}
 button{border: none;outline: none;}
 button,input{padding:0;margin:0;outline: none;}
@@ -13,7 +13,7 @@ button,input{padding:0;margin:0;outline: none;}
 [v-cloak] { display: none }
 
 .g-info{
-	background: #1c232d;
+	background: #fff;
 	margin-top: 10px;
 	padding:12px;
 }
@@ -25,7 +25,7 @@ button,input{padding:0;margin:0;outline: none;}
 }
 .title h3{
 	font-size: 1.3rem;
-	color:#f4f4f4;
+	color:#666;
 	margin-bottom: 0.7rem;
 }
 .title h3 img{
@@ -35,11 +35,11 @@ button,input{padding:0;margin:0;outline: none;}
 }
 .title p{
 	font-size: 1rem;
-	color:#465667;
+	color:#999;
 }
 .top a{
 	display: block;
-	background: #f36;
+	background: #1cc7ff;
 	color:#fff;
 	font-size: 1.2rem;
 	padding:0.9rem;
@@ -56,7 +56,7 @@ button,input{padding:0;margin:0;outline: none;}
 }
 .middle{
 	font-size: 1.2rem;
-	color:#98a9bb;
+	color:#666;
 }
 .middle h3{
 	color:#fff;
@@ -100,10 +100,11 @@ button,input{padding:0;margin:0;outline: none;}
 }
 .g-comment{
 	padding:12px 12px 3.5rem;
+	background:#f5f5f5;
 }
 .u-title{
 	font-size: 1rem;
-	color:#465667;
+	color:#666;
 }
 .u-title img{
 	height: 1rem;
@@ -112,7 +113,7 @@ button,input{padding:0;margin:0;outline: none;}
 }
 .comment{
 	display: block;
-	border-top: 1px solid #1c232d;
+	border-top: 1px solid #e6e6e6;
 	padding:9px 0;
 	font-size: 1.2rem;
 }
@@ -129,14 +130,14 @@ button,input{padding:0;margin:0;outline: none;}
 }
 .comment-content h3{
 	font-size: 1.2rem;
-	color:#f3f3f4;
+	color:#666;
 }
 .comment-content h3 span{
 	font-size: 0.9rem;
-	color:#465667;
+	color:#999;
 }
 .reply-nickname{
-	color: #f36;
+	color: #1cc7ff;
 }
 .u-empty-img{
 	display:block;
@@ -153,10 +154,11 @@ button,input{padding:0;margin:0;outline: none;}
 	display: block;
 	position: fixed;
 	bottom: 0;
-	background: #1c232d;
+	background: #fff;
 	width: 100%;
 	padding:1rem 0;
 	color:#c9c9cc;
+	background:#f5f5f5;
 }
 .g-bt li{
 	float: left;
@@ -199,5 +201,5 @@ button,input{padding:0;margin:0;outline: none;}
 	opacity: 1;
 }
 .swiper-pagination-bullet-active{
-	background: #f36;
+	background: #1cc7ff;
 }
