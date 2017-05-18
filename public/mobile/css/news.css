@@ -17,7 +17,7 @@ a{text-decoration: none; color:#9da4ad;}
 }
 .g-nav{
 	font-size:10px;
-	color:#465667;
+	color:#999;
 }
 .g-n-date{
 	margin-right:5%;
@@ -56,7 +56,7 @@ a{text-decoration: none; color:#9da4ad;}
 	margin:5% 0;
 }
 .g-comment{
-	background:#f5f5f5
+	background:#f5f5f5;
 	padding:12px 12px 3.5rem;
 }
 .u-title{
@@ -71,7 +71,7 @@ a{text-decoration: none; color:#9da4ad;}
 }
 .comment{
 	display:block;
-	border-top: 1px solid #1c232d;
+	border-top: 1px solid #e6e6e6;
 	padding:9px 0;
 	font-size: 1.2rem;
 }
@@ -88,11 +88,11 @@ a{text-decoration: none; color:#9da4ad;}
 }
 .comment-content h3{
 	font-size: 1.2rem;
-	color:#f3f3f4;
+	color:#666;
 }
 .comment-content h3 span{
 	font-size: 0.9rem;
-	color:#465667;
+	color:#999;
 }
 .reply-nickname{
 	color: #1cc7ff;
