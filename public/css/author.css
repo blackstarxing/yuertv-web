@@ -85,11 +85,11 @@ input:focus{
 	position: absolute;
 	top:1px;
 	right: -3px;
-	background: #00acff;
+	background: #1cc7ff;
 	border:none;
 	outline: none;
 	color: #fff;
-	border-left: 1px solid #00acff;
+	border-left: 1px solid #1cc7ff;
 	border-top-right-radius: 2px;
 	border-bottom-right-radius: 2px;
 }
