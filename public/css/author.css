@@ -94,8 +94,8 @@ input:focus{
 	border-bottom-right-radius: 2px;
 }
 .m-code .cant,.intro .cant,.m-bottom .cant{
-	background: #1c232d;
-	color: #98a8ba;
+	background: #1cc7ff;
+	color: #fff;
 }
 .intro .cant,.m-bottom .cant{
 	box-shadow: 0 0 10px #101519;
