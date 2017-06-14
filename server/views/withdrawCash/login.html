@@ -46,7 +46,7 @@
     mounted:function(){
         this.$nextTick(function () {
              $.ajax({
-                url: 'http://139.224.11.133/rainbow-web/withdraw/checkAuth',
+                url: 'http://118.190.21.195:39999/rainbow-web/rainbow-web/withdraw/checkAuth',
                 type: 'get',
                 dataType:'json',
                 success: function(data) {
@@ -74,7 +74,7 @@
          // 三方登录（微信登录）
         thirdLogin:function(){
                $.ajax({
-                url: 'http://118.190.21.195:8080/withdraw/checkAuth',
+                url: 'http://118.190.21.195:39999/rainbow-web/withdraw/checkAuth',
                 type: 'get',
                 dataType:'json',
                 success: function(data) {
