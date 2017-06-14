@@ -57,10 +57,10 @@ var messageLog = new Vue({
                 if(_this.phone){
                     if(/^1[34578][0-9]{9}$/.test(_this.phone)){
                         $.ajax({
-                            url: 'http://172.16.10.134:8080/checkCode?phone='+_this.phone,
+                            url: 'http://118.190.21.195/checkCode?phone='+_this.phone,
                             type: 'get',
                             success: function(data) {
-                               _this.regPic = 'http://172.16.10.134:8080/checkCode?phone='+_this.phone+'&rand='+new Date();
+                               _this.regPic = 'http://118.190.21.195:39999/checkCode?phone='+_this.phone+'&rand='+new Date();
                                $('.g-checkCodeMask').show();
                             },
                             error: function() {
@@ -88,7 +88,7 @@ var messageLog = new Vue({
         },
         //改变图形验证码
         changePic:function(){
-            this.regPic = 'http://172.16.10.134:8080/checkCode?phone='+this.phone+'&rand='+new Date();
+            this.regPic = 'http://118.190.21.195:39999/checkCode?phone='+this.phone+'&rand='+new Date();
         },
         // 校验验证码
         checkCode:function(){
@@ -122,21 +122,21 @@ var messageLog = new Vue({
             console.log(_this.code.length);
             if(_this.code){
                 if(_this.code.length<4){
-                    _this.regPic = 'http://172.16.10.134:8080/checkCode?phone='+_this.phone+'&rand='+new Date();
+                    _this.regPic = 'http://118.190.21.195:39999/checkCode?phone='+_this.phone+'&rand='+new Date();
                     _this.codeError = '验证码错误';
                     setTimeout(function(){
                         _this.codeError = '';
                     },2000); 
                 }else{
                      $.ajax({
-                        url: 'http://172.16.10.134:8080/verifyCheckCode?phone='+_this.phone+'&checkCode='+_this.code,
+                        url: 'http://118.190.21.195:29999/verifyCheckCode?phone='+_this.phone+'&checkCode='+_this.code,
                         type: 'get',
                         dataType: 'json',
                         success: function(data) {
                             if(data.code==0){
                                $('.g-checkCodeMask').hide();
                                $.ajax({
-                                  url: 'http://172.16.10.134:8080/sendSMSCode',
+                                  url: 'http://118.190.21.195:39999/sendSMSCode',
                                   data:{
                                     mobile:_this.phone,
                                     type:3
@@ -168,7 +168,7 @@ var messageLog = new Vue({
                                   }
                                });                       
                             }else if(data.code==-3){
-                               _this.regPic = 'http://172.16.10.134:8080/checkCode?phone='+_this.phone+'&rand='+new Date();
+                               _this.regPic = 'http://118.190.21.195:39999/checkCode?phone='+_this.phone+'&rand='+new Date();
                                 _this.codeError = '验证码错误';
                                 setTimeout(function(){
                                     _this.codeError = '';
@@ -203,7 +203,7 @@ var messageLog = new Vue({
                 parm.checkCode = _this.messCode;
                 parm.mobile = _this.phone;
                 $.ajax({
-                    url: 'http://172.16.10.134:8080/withdraw/login',
+                    url: 'http://118.190.21.195:39999/withdraw/login',
                     type: 'get',
                     data:parm,
                     dataType: 'json',
@@ -230,7 +230,7 @@ var messageLog = new Vue({
                         }else if(data.code==302){
                             alert('302');
                             $.ajax({
-                               url: 'http://139.224.11.133/rainbow-web/withdraw/checkAuth',
+                               url: 'http://139.224.11.133/rainbow-web s/withdraw/checkAuth',
                                type: 'get',
                                dataType:'json',
                                success: function(data) {

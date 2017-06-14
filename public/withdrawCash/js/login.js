@@ -30,7 +30,7 @@ var login = new Vue({
   	methods: {
   		  // 三方登录
         thirdLogin:function(type){
-            window.location.href = 'http://172.16.10.134:8080/thirdPartyLogin?platform='+type;
+            window.location.href = 'http://118.190.21.195/thirdPartyLogin?platform='+type;
         }
         // //手机登录
         // phoneLogin:function(){
