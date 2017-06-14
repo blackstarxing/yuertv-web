@@ -1,0 +1,118 @@
+{% extends 'rainlayout.html' %}
+{% block css %}
+<link rel="stylesheet" href="/withdrawCash/css/login.css">
+<link rel="stylesheet" href="/css/layer.css">
+{% endblock %}
+{% block content %}
+	<div id="login" class="g-log">
+        <div class="m-headIcon"></div>
+        <div class="m-logtext">
+        	<div class="u-textLine"></div>
+        	<span>请选择以下登录方式</span>
+        	<div class="u-textLine"></div>
+        </div>
+        <button class="u-dl-btn u-weixin-btn bgc-wx" @click="disopen">
+        	<div class="u-weixin-icon"></div>
+       		<span>微信登录</span>
+        </button>
+        <button class="u-dl-btn u-QQ-btn bgc-qq" @click="disopen">
+        	<div class="u-QQ-icon"></div>
+        	<span>QQ登录&nbsp;&nbsp;</span>
+        </button>
+        <button class="u-dl-btn u-phone-btn bgc-wt" @click="phoneLogin()">
+        	<div  class="u-phone-icon"></div>
+        	<span>手机登录</span>
+        </button>
+    </div>
+{% endblock %}
+{% block js %}
+<script type="text/javascript" src="/layer.js"></script>
+<!-- <script type="text/javascript" src="/withdrawCash/js/login.js"></script> -->
+<script>
+    /*去掉iphone手机滑动默认行为*/
+    $('body').on('touchmove', function (event) {
+        event.preventDefault();
+    });
+    // 手机登录
+    $('.u-phone-btn').on('click',function(){
+        window.location.href='/withdrawCash/messageLog';
+    })
+    var login = new Vue({
+    el: '#login',
+    delimiters: ['${', '}'],
+    data: {
+       
+    },
+    mounted:function(){
+        this.$nextTick(function () {
+             $.ajax({
+                url: 'http://139.224.11.133/rainbow-web/withdraw/checkAuth',
+                type: 'get',
+                dataType:'json',
+                success: function(data) {
+                    console.log(data.code);
+                   console.log(data.result);
+                   // weChatLogin = data.result;
+                   window.location.href = data.result;
+                },
+                error: function() {
+                    console.log('网络异常，请刷新重试');
+                }
+             });
+        })
+    },
+    methods: {
+        // 获取url参数
+        getQueryString:function(name){
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        },
+         // 三方登录（微信登录）
+        thirdLogin:function(){
+               $.ajax({
+                url: 'http://172.16.10.134:8080/withdraw/checkAuth',
+                type: 'get',
+                dataType:'json',
+                success: function(data) {
+                    console.log(data.code);
+                   console.log(data.result);
+                   // weChatLogin = data.result;
+                   window.location.href = data.result;
+                },
+                error: function() {
+                    console.log('网络异常，请刷新重试');
+                }
+             });
+            // window.location.href = 'http://172.16.10.134:8080/withdraw/checkAuth';
+        },
+        // 手机登录
+        phoneLogin:function(){
+            window.location.href = 'messageLog';    
+        },
+
+        // QQ登录,微信登录 未开放
+        disopen:function(){
+            layer.open({
+              content: '功能暂未开放,敬请期待',
+              btn: '好的',
+              shadeClose: false,
+              // yes: function(){
+              //   layer.open({
+              //     content: '好的'
+              //     ,time: 2
+              //     ,skin: 'msg'
+              //   });
+              // }
+             });
+        }
+
+
+    }
+})
+
+</script>
+{% endblock %}

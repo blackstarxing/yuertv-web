@@ -1,0 +1,157 @@
+{% extends 'rainlayout.html' %}
+{% block css %}
+<link rel="stylesheet" href="/withdrawCash/css/incomeDetail.css">
+{% endblock %}
+{% block content %}
+	<div id="incomeDetail" class="g-incomeDetail bgc-grey" >
+        <ul class="m-incomeDetail   bgc-wt bdc-btm">
+            <li class="active">
+                <div>收益记录</div>
+            </li>
+            <li class="" @click="exchangeRecord">
+                <div>兑换记录</div>
+            </li>
+        </ul>
+        {% if incomeDetail %}
+         <!-- 暂无收礼记录 -->
+             <div class="disRecord disRecord-income" v-show="giftHistoryList">
+                 <div class="u-disRecord u-disRecord-income fs-30 fc-b9">暂无收礼记录</div>
+             </div>
+           
+        {% else %}
+            <!-- 收益记录 -->
+            <div class="m-giftHistoryList bgc-wt" v-show="giftHistoryList">
+                <div class="u-giftHistoryList bdc-btm  f-cb">
+                    <div class="m-fansIcon g-sd51">
+                        <img src="{{incomeDetail.icon}}" alt="">
+                    </div>
+                    <div class="m-giftList g-mn5">
+                        <div class="u-giftList fs-30 fc-f36 g-mn5c">
+                            <span>{{incomeDetail.nickname}}</span><span class="fc-b3">赠送{{incomeDetail.num}}个</span><span>{{incomeDetail.name}}</span>
+                            <div class="u-giftList-time fs-28 fc-b9">{{incomeDetail.create_date}}</div>
+                        </div>
+                    </div>
+                    <div class="m-giftIcon g-sd52">
+                        <img  src="{{incomeDetail.no_frame_icon}}" alt="">
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        
+        <!-- 兑换记录 -->
+        <div class="m-withdrawList" v-show="withdrawList"> 
+             <div class="u-withdrawList bgc-wt">
+                <div class="m-exchange-income bdc-btm f-cb">
+                    <span>兑换收益</span><span class="f-fr fc-f36">${exchangeList.amount}</span>
+                </div>
+                <div class="m-exchange-info">
+                    <div class="exchange-apply-time f-cb">
+                        <span>申请时间</span><span class="f-fr">${exchangeList.create_date}</span>
+                    </div>
+                    <div class="exchange-status f-cb">
+                        <span>状态</span>
+                        <span v-if='exchangeList.state==1' class="f-fr">待审核</span>
+                        <span v-else-if='exchangeList.state==2' class="f-fr">成功</span>
+                        <span v-else-if='exchangeList.state==3' class="f-fr">失败</span>
+                        <span v-else-if='exchangeList.state==4' class="f-fr">拒绝</span>
+                    </div>
+                    <div class="exchange-remain f-cb">
+                        <span>剩余可兑换收益</span><span class="f-fr">${exchangeList.state}</span>
+                    </div>
+                </div>
+             </div>   
+             <div class="u-withdrawList bgc-wt">
+                <div class="m-exchange-income bdc-btm f-cb">
+                    <span>兑换收益</span><span class="f-fr fc-f36">￥200.00</span>
+                </div>
+                <div class="m-exchange-info">
+                    <div class="exchange-apply-time f-cb">
+                        <span>申请时间</span><span class="f-fr">2017-0.3-23 12:24</span>
+                    </div>
+                    <div class="exchange-status f-cb">
+                        <span>状态</span><span class="f-fr">已到账</span>
+                    </div>
+                    <div class="exchange-remain f-cb">
+                        <span>剩余可兑换收益</span><span class="f-fr">100.00</span>
+                    </div>
+                </div>
+             </div>   
+             <div class="u-withdrawList bgc-wt">
+                <div class="m-exchange-income bdc-btm f-cb">
+                    <span>兑换收益</span><span class="f-fr fc-f36">￥200.00</span>
+                </div>
+                <div class="m-exchange-info">
+                    <div class="exchange-apply-time f-cb">
+                        <span>申请时间</span><span class="f-fr">2017-0.3-23 12:24</span>
+                    </div>
+                    <div class="exchange-status f-cb">
+                        <span>状态</span><span class="f-fr">审核不通过</span>
+                    </div>
+                    <div class="exchange-remain f-cb">
+                        <span>剩余可兑换收益</span><span class="f-fr">100.00</span>
+                    </div>
+                </div>
+             </div>   
+        </div>
+       
+        <!-- 暂无兑换记录 -->
+        <div class="disRecord disRecord-exchange"  v-show="withdrawList">
+           <div class="u-disRecord u-disRecord-exchange fs-30 fc-b9">暂无兑换记录</div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+<script>
+    var incomeDetail = new Vue({
+     el: '#incomeDetail',
+     delimiters: ['${', '}'],
+     data: {
+       //tab切换
+       giftHistoryList:true,
+       withdrawList:false,
+
+       //兑换列表
+       exchangeList:[],
+     },
+     mounted:function(){
+        this.$nextTick(function () {
+             
+        })
+     },
+     methods: {
+        // 获取url参数
+        getQueryString:function(name){
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        },
+        // 兑换记录
+        exchangeRecord:function(){
+            var mobile = localStorage.getItem("phone");
+            console.log(mobile);
+            $.ajax({
+              url: '/api/withdraw/withdrawList?test_userId='+1000000,
+              type: 'get',
+              dataType:'json',
+              success: function(data) {
+                var _this = this;
+                _this.exchangeList = data.object;
+                console.log(data.object);
+                //   console.log(data.code);
+                //  console.log(data.result);
+                 // weChatLogin = data.result;
+                 
+              },
+              error: function() {
+                  console.log('网络异常，请刷新重试');
+              }
+            });
+        },
+        
+     }
+})
+</script>
+{% endblock %}

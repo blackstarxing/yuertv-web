@@ -1,0 +1,43 @@
+.g-log{
+	width: 6.933333rem;
+	margin: 0 auto;
+}
+.m-headIcon{
+    min-height:3.84rem;
+    padding-top: 1.2rem;
+	background: url('/withdrawCash/images/LOGO@3x.png') center bottom no-repeat;
+	background-size:auto 3.84rem;
+}
+.m-logtext{
+	height: 0.373333rem;
+	margin: 1.92rem 0 1.066667rem;
+}
+.u-textLine{
+	display: inline-block;
+	width: 1.6rem;
+	height: 2px;
+	vertical-align: 30%;
+	background-color: #e6e6e6;
+
+}
+.m-logtext span{
+	font-size: 0.373333rem;
+	color:#999;
+}
+.u-weixin-btn,.u-QQ-btn,.u-phone-btn{
+	width: 6.933333rem;
+	margin-bottom: 0.48rem;
+}
+.u-weixin-btn{background-color: #17db9d;}
+.u-QQ-btn{background-color: #12bff7;}
+.u-phone-btn{background-color: #fff;border:0.04rem solid #8e9ce1;color:#8e9ce1;}
+.u-weixin-icon{background: url('/withdrawCash/images/weixin.png') 100% 100% no-repeat;}
+.u-QQ-icon{background: url('/withdrawCash/images/qq.png') 100% 100% no-repeat;}
+.u-phone-icon{background: url('/withdrawCash/images/phone.png') 100% 100% no-repeat;}
+.u-weixin-icon,.u-QQ-icon,.u-phone-icon{
+	display: inline-block;
+	width: 0.586667rem;
+	height: 0.586667rem;
+	vertical-align: -16%;
+	background-size: auto 0.586667rem;
+}

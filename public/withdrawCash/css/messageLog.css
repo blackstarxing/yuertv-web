@@ -1,0 +1,114 @@
+
+
+.g-messageLog{
+	padding: 1.2rem 0.48rem 0;
+
+}
+.g-messageLog h1{
+	height: 0.48rem;	
+	margin-bottom: 1.066667rem;
+	text-align: center;
+}	
+.m-phone-number,.m-phone-code{
+	width: 100%;
+	height: 1.066667rem;
+	line-height: 1.066667rem;
+}
+.phone-error-clue{
+	width: 100%;
+	height: 0.373333rem;
+	margin: 0.133333rem 0 0.213333rem;
+}
+.phone-number-ipt,.code-number-ipt{
+	box-sizing: border-box;
+	min-width:4rem;
+	max-width: 4.5rem;
+	border:none;
+}
+.u-phone-number,.u-phone-code{
+	line-height: 1.066667rem;
+}
+.u-getCode-box{
+	position: relative;
+}
+.u-getCode{
+	position: absolute;
+	right: 0;
+}
+.code-error-clue{
+	height: 0.373333rem;
+	margin: 0.133333rem 0 0.346667rem;
+}
+.messagesLog-btn{
+	width: 9.066667rem;
+}
+/*图形验证码*/
+.g-checkCodeMask{
+	background: rgba(0,0,0,0.5);
+	width: 100%;
+	height:100%;
+	text-align: center;
+	color:#fff;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	margin:auto;
+	/*display: none;*/
+	z-index: 999;
+}
+.g-checkCode{
+	position: fixed;
+	top:45%;
+	left:50%;
+	margin: -2.746667rem 0 0 -3.733333rem;
+	width: 7.466667rem;
+	height: 4.693333rem;
+	padding: 0 0.8rem;
+	text-align: left;
+	box-sizing: border-box;
+	border-radius: 0.266667rem;
+	z-index:9999;
+}
+.codeError{
+	width: 100%;
+	height: 0.373333rem;
+	text-align: left;
+	margin: 0.133333rem 0 0.266667rem 0;
+}
+.g-checkCode.active{
+	display: none;
+}
+.g-checkCode .m-Content{
+	width:100%;
+	height: 0.426667rem;
+	margin:0.586667rem 0 0.533333rem 0;
+	text-align: center;
+	line-height: 0.426667rem;
+}
+.m-code-ipt{
+	width: 100%;
+	height: 0.96rem;
+}
+ .u-code-ipt{
+	width: 3.306667rem;
+	height: 0.96rem;
+	line-height: 0.96rem;
+}
+.u-codeImg{
+	width: 1.866667rem;
+	height: 0.826667rem;
+	margin-left: 0.466667rem;
+	vertical-align: -80%;
+}
+.m-codeBtn{
+	width: 100%;
+	margin-top: 0.266667rem;	
+}
+.m-codeBtn button{
+	width: 2.186667rem;
+	height: 0.853333rem;
+	border-radius: 0.106667rem;
+}
+.codeConfirm{background-color: #f36;}
