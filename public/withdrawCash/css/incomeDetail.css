@@ -1,0 +1,101 @@
+.g-incomeDetail{
+	width: 100%;
+	height: 100%;
+}
+.m-incomeDetail{
+	width: 100%;
+	height: 1.066667rem;
+	padding: 0 0.666667rem 0.133333rem;
+	box-sizing: border-box;
+}
+.m-incomeDetail li{
+	display: inline-block;
+	width: 49%;
+	height: 100%;
+	line-height: 1.066667rem;
+	padding: 0 1.133333rem;
+	box-sizing: border-box;
+	text-align: center;
+	font-size: 0.4rem;
+	color:#999;
+}
+.m-incomeDetail li div{
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+}
+.m-incomeDetail li.active div{
+	color:#f36;
+	border-bottom:0.053333rem solid #f36; 
+}
+.m-giftHistoryList{
+	width: 100%;
+	margin-top: 0.213333rem;
+	padding-left:0.266667rem;
+	box-sizing: border-box;
+}
+
+.u-giftHistoryList{
+	width: 100%;
+	min-height: 2.133333rem;
+	padding: 0.266667rem 0.266667rem 0.266667rem 0;
+	box-sizing: border-box;
+}
+.m-fansIcon{
+	border-radius: 50%;
+	/*background: url('/withdrawCash/images/fansIcon.png') center center no-repeat;
+	background-size: auto 1.6rem;*/
+}
+.m-giftList{
+	padding-top:0.213333rem; 
+}
+.u-giftList-time{
+	margin-top: 0.4rem;
+}
+.m-giftIcon{
+	/*background: url('/withdrawCash/images/giftIcon.png') center center no-repeat;
+	background-size: auto 1.333333rem;*/
+}
+
+/*兑换记录*/
+.m-withdrawList{
+	width: 100%;
+	min-height: 4.453333rem;
+}
+.u-withdrawList{
+	margin-top: 0.213333rem;
+}
+.m-exchange-income{
+	width: 100%；
+	min-height:1.333333rem;
+	line-height: 1.333333rem;
+	padding: 0 0.266667rem;
+	box-sizing: border-box;
+	font-size:0.4rem;
+}
+.m-exchange-info{
+	width: 100%;
+	min-height: 3.12rem;
+	padding: 0.48rem 0.266667rem;
+	box-sizing: border-box;
+	font-size: 0.373333rem;
+	color:#999;
+}
+.exchange-status{
+	margin:0.426667rem 0;
+}
+
+/*暂无记录*/
+
+.u-disRecord{
+	position: absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	margin:auto;
+	width: 70%;
+	height: 1.333333rem;
+	text-align: center;
+	/*text-align: center;*/
+}

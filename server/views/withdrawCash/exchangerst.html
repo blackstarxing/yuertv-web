@@ -1,0 +1,27 @@
+{% extends 'rainlayout.html' %}
+{% block css %}
+<link rel="stylesheet" href="/withdrawCash/css/exchangerst.css">
+{% endblock %}
+{% block content %}
+	<div class="g-exchangeRst bgc-grey">
+        <div class="m-exchangeRst bgc-wt">
+            <div class="u-exchangeRst-icon"></div>
+            <span class="fs-30 fc-b3">提现申请内容</span>
+            <div class="u-exchangeRst-clue fs-28 fc-b9">预计在三个工作日内发放到您的微信钱包中</div>
+        </div>
+        <div class="m-withdraw-amount bgc-wt f-cb">
+            <span class="u-amount-text fc-b3">提现金额</span>
+            <span class="u-withdraw-Cash fc-f36 f-fr">168.5元</span>
+        </div>
+        <button class="u-dl-btn u-exchangeRst-btn">完成</button>
+    </div>
+{% endblock %}
+{% block js %}
+<script>
+    // window.document.title = "我的收益"
+    /*去掉iphone手机滑动默认行为*/
+    $('body').on('touchmove', function (event) {
+        event.preventDefault();
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,34 @@
+.g-exchangeRst{
+	width: 100%;
+	height: 100%;
+	
+}
+.m-exchangeRst{
+	width: 100%;
+	height: 4.266667rem;
+	padding-top:0.72rem; 
+	text-align: center;
+	box-sizing: border-box;
+}
+.u-exchangeRst-icon{
+	width: 1.066667rem;
+	height: 1.066667rem;
+	margin: 0 auto 0.32rem;
+	background: url('/withdrawCash/images/exchangeIcon.png') center center no-repeat;
+	background-size: auto 1.066667rem;
+}
+.u-exchangeRst-clue{
+	margin-top: 0.64rem;
+}
+.m-withdraw-amount{
+	width: 100%;
+	height: 1.333333rem;
+	line-height: 1.333333rem;
+	padding: 0 0.4rem;
+	margin: 0.213333rem 0 0.853333rem;
+	box-sizing: border-box;
+	font-size: 0.4rem;
+}
+.u-exchangeRst-btn{
+	width: 9.2rem;
+}

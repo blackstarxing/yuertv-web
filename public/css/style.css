@@ -1,0 +1,143 @@
+/*reset*/
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{text-align:left;font-weight:normal;}
+html,body,fieldset,img,iframe,abbr{border:0;}
+i,cite,em,var,address,dfn{font-style:normal;}
+[hidefocus],summary{outline:0;}
+li{list-style:none;}
+h1,h2,h3,h4,h5,h6,small{font-size:100%;font-weight: normal;}
+sup,sub{font-size:83%;}
+pre,code,kbd,samp{font-family:inherit;}
+q:before,q:after{content:none;}
+textarea{overflow:auto;resize:none;}
+label,summary{cursor:default;}
+a,button{cursor:pointer;}
+h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}
+del,ins,u,s,a,a:hover{text-decoration:none;}
+body,textarea,input,button,select,keygen,legend{font:12px/1.14 arial,\5b8b\4f53;color:#333;outline:0;}
+body{background:#fff;}
+a,a:hover{color:#fff;}
+img{border:0;max-width: 100%;vertical-align: bottom;}
+button{border:none;}
+html,body{width: 100%;height: 100%;margin:0 auto;}
+
+/*function*/
+.f-cb:after,.f-cbli li:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
+.f-cb,.f-cbli li{zoom:1;}
+.f-ib{display:inline-block;*display:inline;*zoom:1;}
+.f-dn{display:none;}
+.f-db{display:block;}
+.f-fl{float:left;}
+.f-fr{float:right;}
+
+
+[v-cloak] {
+	display: none;
+} 
+
+/*input*/
+input{
+	height: 1.066667rem;
+	line-height: 1.066667rem;
+	border:none;
+	color:#333;
+}
+/*placeholder*/
+input::-webkit-input-placeholder{font-size:0.4rem;color:#999;}    /* 使用webkit内核的浏览器 */
+input:-moz-placeholder{font-size:0.4rem;color:#999;}              /* Firefox版本4-18 */
+input::-moz-placeholder{font-size:0.4rem;color:#999;}             /* Firefox版本19+ */
+input:-ms-input-placeholder{font-size:0.4rem;color:#999;}         /* IE浏览器 */
+/*border*/
+.bdc-top{border-top:1px solid #e6e6e6;}
+.bdc-btm{border-bottom:1px solid #e6e6e6;}
+.bdc-lt{border-left:1px solid #e6e6e6;}
+.bdc-rt{border-right:1px solid #e6e6e6;}
+
+.bdc-gy3{border:1px solid #333;}
+.bdc-gy6{border:1px solid #666;}
+.bdc-gye6{border:1px solid #e6e6e6;}
+
+/*color*/
+.fc-wt{color:#fff;}
+.fc-b3{color:#333;}
+.fc-b6{color:#666;}
+.fc-e6{color:#e6e6e6;}
+.fc-b9{color:#999;}
+/*红色*/
+.fc-f36{color:#f36;}
+/*橘色*/
+.fc-clue{color:#ff7c2d;}
+
+/*font*/
+.fs-28{font-size: 0.373333rem;}
+.fs-30{font-size: 0.4rem;}
+.fs-32{font-size: 0.426667rem;}
+.fs-36{font-size: 0.48rem;}
+
+/*背景颜色*/
+/*绿色*/
+.bgc-wx{background: #17db9d;}
+/*浅蓝色*/
+.bgc-qq{background: #12bff7;}
+/*白色*/
+.bgc-wt{background: #fff};
+/*红色(按钮)*/
+.bgc-f36{background-color: #ff3366}
+/*灰色*/
+.bgc-grey{background: #f5f5f5;}
+
+/*公共样式*/
+
+/*居中层*/
+.g-mobile-wrap{
+	max-width: 800px;
+	margin:0 auto;
+}
+
+.u-dl-btn{
+	display: block;
+	width: 7.733333rem;
+	height: 1.066667rem;
+	line-height: 1.066667rem;
+	margin: auto;
+	background: #f36;
+	color:#fff;
+	font-size: 0.4rem;
+	text-align: center;
+	border-radius: 0.533333rem;
+}
+/*按钮不可点击状态*/
+.u-btn-disclick{
+	opacity:0.6;  /*支持 Chrome, Opera, Safari 等浏览器*/
+	filter:alpha(opacity=60);  /*支持 IE 浏览器*/
+	/*-moz-opacity:0.60;*/ /*支持 FireFox 浏览器*/
+	/*-khtml-opacity: 0.6;*/ /*webkit内核浏览器*/
+}
+/*按钮可点击状态*/
+.u-btn-click{
+	opacity:1;  /*支持 Chrome, Opera, Safari 等浏览器*/
+	filter:alpha(opacity=100);  /*支持 IE 浏览器*/
+	/*-moz-opacity:0.60;*/ /*支持 FireFox 浏览器*/
+	/*-khtml-opacity: 0.6;*/ /*webkit内核浏览器*/
+}
+/* 两列右侧自适应布局 */
+.g-sd1{position:relative;float:left;width:1.6rem;margin-right:-1.6rem;}
+.g-mn1{float:right;width:100%;}
+.g-mn1c{margin-left:1.733333rem;}
+
+/* 三列中间自适应布局 */
+.g-sd51,.g-sd52{position:relative;float:left;width:1.6rem;height: 1.6rem;margin:0 -1.6rem 0 0;}
+.g-sd52{float:right;width:1.333333rem;margin:0 0 0 -1.333333rem;}
+.g-mn5{float:left;width:100%;}
+.g-mn5c{margin:0 1.466667rem 0 1.866667rem;}
+
+
+
+.g-mian{
+	background:#f5f5f5;
+	padding:20px;
+	height:100%;
+	box-sizing: border-box;
+}

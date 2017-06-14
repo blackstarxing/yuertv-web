@@ -1,0 +1,153 @@
+.g-income{
+	width: 100%;
+	height: 100%;
+	background-color: #f5f5f5;
+}
+.m-headIcon{
+	position: relative;
+	width: 100%;
+	min-height: 3.733333rem;
+	text-align: center;
+	color:#ffffff;
+	background-image: url('/withdrawCash/images/incomeHead.png');
+	background-size: 100% 100%;
+}
+.u-incomeDetail-text{
+	position: absolute;
+	top:0.32rem;
+	right: 0.4rem;
+	height: 0.373333rem
+}
+.u-headText{
+	padding-top: 1.2rem;
+	font-size: 0.373333rem;
+}
+.u-headCash{
+	padding-top: 0.266667rem;
+	font-size: 0.693333rem;
+}
+.m-glamour{
+	display: inline-block;
+	width: 100%;
+	min-height:1.866667rem; 
+	margin-bottom: 0.106667rem;
+	padding:0.373333rem 0 0.426667rem;
+	box-sizing: border-box;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #fff;
+}
+.u-glamour{
+	float: left;
+	width: 49%;
+	height: 1.066667rem;
+	line-height: 1;
+}
+.u-line{
+	float: left;
+	width: 2%;
+	height: 1.066667rem;
+}
+.u-line div{
+	width: 1px;
+	height: 1.066667rem;
+	margin: 0 auto;
+	background-color: #e6e6e6;
+}
+.u-glamour:last-child{
+	float: right;
+}
+.u-glamour  span{
+	font-size: 0.373333rem;
+	color:#999;
+}
+.u-glamour  div{
+	padding-top: 0.266667rem;
+	font-size: 0.426667rem;
+	color:#ff3366;
+}
+.g-withdraw{
+	width: 100%;
+	padding-left: 0.4rem;
+	font-size: 0.4rem;
+	color:#333;
+	box-sizing: border-box;
+	background-color: #fff;
+}
+.m-account{
+	width: 100%;
+	height: 1.333333rem;
+	line-height: 1.333333rem;
+	border-bottom: 0.013333rem solid #e6e6e6;
+}
+.weixinIcon{
+	display: inline-block;
+	width: 0.533333rem;
+	height: 0.533333rem;
+	margin-left: 0.266667rem;
+	padding-bottom: 0.053333rem;
+	vertical-align: middle;
+	background: url('/withdrawCash/images/weixin_circle@3x.png')  no-repeat;
+	background-size: 100%; 
+}
+.accountName{
+	color:#999;
+}
+.m-withdrawCash{
+	width: 100%;
+	min-height: 2.293333rem;
+	padding: 0.48rem 0.4rem 0 0;
+	box-sizing: border-box;
+}
+.u-amount{
+	position: relative;
+	margin-top: 0.64rem;
+}
+.u-amount .cashIcon{
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 1.04rem;
+	height: 0.533333rem;
+	margin-top: -0.266667rem;
+	background: url('/withdrawCash/images/-￥@3x.png') center center no-repeat;
+	background-size: 50% 100%;
+}
+.u-amount .amountVal{
+	display: inline-block;
+	width: 100%;
+	height: 1.04rem;
+	line-height: 1.04rem;
+	padding-left: 1.44rem;
+	font-size: 0.533333rem;
+	box-sizing: border-box;
+	
+}
+.amountVal input{
+	width: 100%;
+	height: 1.04rem;
+	border:none;
+	text-indent: 0.16rem;
+	border-bottom: 1px solid #e6e6e6;
+}
+.withdraw-clue{
+	width: 100%;
+	height: 0.773333rem;
+	line-height: 0.773333rem;
+	background-color: #fff;
+}
+.withdraw-clue div{
+	float: right;
+	font-size: 0.346667rem;
+	color:#999;
+}
+.u-withdrawBtn{
+	width: 9.2rem;
+	margin-top: 0.853333rem;
+}
+.quitLog{
+	margin-top: 0.853333rem;
+	height: 0.373333rem;
+	text-align:center;
+}
+
