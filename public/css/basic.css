@@ -899,6 +899,7 @@ input:read-only{
     cursor: pointer;
     background: url('/images/cover.png') no-repeat;
     background-size: cover;
+    overflow: hidden;
 }
 .play-mask{
     position: absolute;
