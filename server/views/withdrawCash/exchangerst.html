@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/withdrawCash/css/exchangerst.css">
 {% endblock %}
 {% block content %}
-	<div class="g-exchangeRst bgc-grey">
+	<div id="exchangeRst" class="g-exchangeRst bgc-grey" v-cloak>
         <div class="m-exchangeRst bgc-wt">
             <div class="u-exchangeRst-icon"></div>
             <span class="fs-30 fc-b3">提现申请内容</span>
@@ -11,17 +11,11 @@
         </div>
         <div class="m-withdraw-amount bgc-wt f-cb">
             <span class="u-amount-text fc-b3">提现金额</span>
-            <span class="u-withdraw-Cash fc-f36 f-fr">168.5元</span>
+            <span  class="u-withdraw-Cash fc-f36 f-fr">${exchangerstCash}元</span>
         </div>
-        <button class="u-dl-btn u-exchangeRst-btn">完成</button>
+        <button class="u-dl-btn u-exchangeRst-btn" @click="confirmBtn">完成</button>
     </div>
 {% endblock %}
 {% block js %}
-<script>
-    // window.document.title = "我的收益"
-    /*去掉iphone手机滑动默认行为*/
-    $('body').on('touchmove', function (event) {
-        event.preventDefault();
-    });
-</script>
+<script src="/withdrawCash/js/exchangerst.js"></script>
 {% endblock %}

@@ -59,6 +59,8 @@ input:-ms-input-placeholder{font-size:0.4rem;color:#999;}         /* IE浏览器
 .bdc-gy6{border:1px solid #666;}
 .bdc-gye6{border:1px solid #e6e6e6;}
 
+
+
 /*color*/
 .fc-wt{color:#fff;}
 .fc-b3{color:#333;}
@@ -82,12 +84,12 @@ input:-ms-input-placeholder{font-size:0.4rem;color:#999;}         /* IE浏览器
 /*浅蓝色*/
 .bgc-qq{background: #12bff7;}
 /*白色*/
-.bgc-wt{background: #fff};
+.bgc-wt{background: #fff;}
 /*红色(按钮)*/
-.bgc-f36{background-color: #ff3366}
+.bgc-f36{background: #ff3366;}
 /*灰色*/
 .bgc-grey{background: #f5f5f5;}
-
+.bgc-b8{background: #b8b8b8;}
 /*公共样式*/
 
 /*居中层*/
@@ -122,6 +124,9 @@ input:-ms-input-placeholder{font-size:0.4rem;color:#999;}         /* IE浏览器
 	/*-moz-opacity:0.60;*/ /*支持 FireFox 浏览器*/
 	/*-khtml-opacity: 0.6;*/ /*webkit内核浏览器*/
 }
+
+
+
 /* 两列右侧自适应布局 */
 .g-sd1{position:relative;float:left;width:1.6rem;margin-right:-1.6rem;}
 .g-mn1{float:right;width:100%;}

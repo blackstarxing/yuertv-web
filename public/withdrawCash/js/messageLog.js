@@ -1,21 +1,3 @@
-// function  mobileTest(){
-//         	 var regFormcmobile = $('.phone-number-ipt').val();
-//              if(regFormcmobile.length>=11){
-//                 if(/^1[34578][0-9]{9}$/.test(regFormcmobile)){
-//                  $('.u-getCode').on('click', function(event) {
-//                      event.preventDefault();
-//                      $('.g-checkCodeMask').show();
-//                  });
-//                  }
-//                  else{
-//                      alert('错误@!!!');
-//                  }
-//              }else{
-//                  alert('手机号码错误');
-//              }
-	         
-// 	     }
-
 var messageLog = new Vue({
   	el: '#messageLog',
   	delimiters: ['${', '}'],
@@ -27,14 +9,14 @@ var messageLog = new Vue({
         phoneError:'',
         messageCodeError:'',
         regText:'获取验证码',
-        regdis:'',
         // 短信验证码
         messCode:'',
+        // 获取验证码是否点击
+        regdis:false,
   	},
   	mounted:function(){
   		this.$nextTick(function () {
         var _this = this;
-  	    console.log('加载、、、');
   	   /*去掉iphone手机滑动默认行为*/
         $('body').on('touchmove', function (event) {
             event.preventDefault();
@@ -48,23 +30,26 @@ var messageLog = new Vue({
   		});
   	},
   	methods: {
-      
        // 图形验证码
         showPic:function(type){
             var _this = this;
-            console.log(_this.phone);
             if(type==0){
                 if(_this.phone){
                     if(/^1[34578][0-9]{9}$/.test(_this.phone)){
                         $.ajax({
-                            url: 'http://118.190.21.195:39999/rainbow-web/checkCode?phone='+_this.phone,
+                            url: 'http://172.16.10.134:8080/checkCode?phone='+_this.phone,
                             type: 'get',
                             success: function(data) {
-                               _this.regPic = 'http://118.190.21.195:39999/rainbow-web/checkCode?phone='+_this.phone+'&rand='+new Date();
+                               _this.code = '';
+                               _this.regPic = 'http://172.16.10.134:8080/checkCode?phone='+_this.phone+'&rand='+new Date();
                                $('.g-checkCodeMask').show();
                             },
                             error: function() {
-                                console.log('网络异常，请刷新重试');
+                                layer.open({
+                                  content: '网络异常，请刷新重试',
+                                  btn: '好的',
+                                  shadeClose: false,
+                                });
                             }
                         });                        
                     }
@@ -83,12 +68,11 @@ var messageLog = new Vue({
                 }                       
             }else{
                 console.log('没有传参');
-              
             }
         },
         //改变图形验证码
         changePic:function(){
-            this.regPic = 'http://118.190.21.195:39999/rainbow-web/checkCode?phone='+this.phone+'&rand='+new Date();
+            this.regPic = 'http://172.16.10.134:8080/checkCode?phone='+this.phone+'&rand='+new Date();
         },
         // 校验验证码
         checkCode:function(){
@@ -115,28 +99,25 @@ var messageLog = new Vue({
             $('.g-checkCodeMask').hide();
         },
         //弹出框确定(校验验证码)
-        codeConfirm:function(){
+        codeConfirm:function(e){
             var _this = this;
-            console.log(_this.phone);
-            console.log(_this.code);
-            console.log(_this.code.length);
             if(_this.code){
                 if(_this.code.length<4){
-                    _this.regPic = 'http://118.190.21.195:39999/rainbow-web/checkCode?phone='+_this.phone+'&rand='+new Date();
+                    _this.regPic = 'http://172.16.10.134:8080/checkCode?phone='+_this.phone+'&rand='+new Date();
                     _this.codeError = '验证码错误';
                     setTimeout(function(){
                         _this.codeError = '';
                     },2000); 
                 }else{
                      $.ajax({
-                        url: 'http://118.190.21.195:39999/rainbow-web/verifyCheckCode?phone='+_this.phone+'&checkCode='+_this.code,
+                        url: 'http://172.16.10.134:8080/verifyCheckCode?phone='+_this.phone+'&checkCode='+_this.code,
                         type: 'get',
                         dataType: 'json',
                         success: function(data) {
                             if(data.code==0){
                                $('.g-checkCodeMask').hide();
                                $.ajax({
-                                  url: 'http://118.190.21.195:39999/rainbow-web/sendSMSCode',
+                                  url: 'http://172.16.10.134:8080/sendSMSCode',
                                   data:{
                                     mobile:_this.phone,
                                     type:3
@@ -164,11 +145,15 @@ var messageLog = new Vue({
                                         settime(second);
                                   },
                                   error: function() {
-                                      console.log('网络异常，请刷新重试');
+                                      layer.open({
+                                        content: '网络异常，请刷新重试',
+                                        btn: '好的',
+                                        shadeClose: false,
+                                      });
                                   }
                                });                       
                             }else if(data.code==-3){
-                               _this.regPic = 'http://118.190.21.195:39999/rainbow-web/checkCode?phone='+_this.phone+'&rand='+new Date();
+                               _this.regPic = 'http://172.16.10.134:8080/checkCode?phone='+_this.phone+'&rand='+new Date();
                                 _this.codeError = '验证码错误';
                                 setTimeout(function(){
                                     _this.codeError = '';
@@ -179,11 +164,19 @@ var messageLog = new Vue({
                                      _this.codeError = '';
                                  },2000); 
                             }else{
-                                alert('服务器出错');
+                              layer.open({
+                               content: '服务器出错',
+                               btn: '好的',
+                               shadeClose: false,
+                              });
                             }
                         },
                         error: function() {
-                            console.log('网络异常，请刷新重试');
+                          layer.open({
+                            content: '网络异常，请刷新重试',
+                            btn: '好的',
+                            shadeClose: false,
+                           });
                         }
                      });                       
                 }
@@ -203,52 +196,101 @@ var messageLog = new Vue({
                 parm.checkCode = _this.messCode;
                 parm.mobile = _this.phone;
                 $.ajax({
-                    url: 'http://118.190.21.195:39999/rainbow-web/withdraw/login',
+                    url: 'http://172.16.10.134:8080/withdraw/login',
                     type: 'get',
                     data:parm,
                     dataType: 'json',
+                    crossDomain:true,
+                    xhrFields: {
+                        withCredentials: true,
+                    },  
                     success: function(data) {
-                        localStorage.setItem("phone",_this.phone);
+                        // localStorage.setItem("phone",_this.phone);
                         if(data.code==0){
                              if(data.object.code==1){
-                                    alert('非主播绑定手机')
+                                  layer.open({
+                                    content: '非主播绑定手机',
+                                    btn: '好的',
+                                    shadeClose: false,
+                                  });      
                                 }else if(data.object.code==2){
-                                    alert('验证码错误,登录失败')
+                                  layer.open({
+                                    content: '验证码错误,登录失败',
+                                    btn: '好的',
+                                    shadeClose: false,
+                                  });      
                                 }else if(data.object.code==3){
-                                    alert('该手机号已经绑定其它手机号');
+                                  layer.open({
+                                    content: '该手机号已经绑定其它微信号',
+                                    btn: '好的',
+                                    shadeClose: false,
+                                  });      
                                 }else if(data.object.code==4){
-                                    alert('微信号绑定失败！！');
+                                  layer.open({
+                                    content: '微信号绑定失败',
+                                    btn: '好的',
+                                    shadeClose: false,
+                                  });      
                                 }else{
-                                    window.location.href = '/income';
+                                    window.location.href = '/withdrawCash/income';
                                     console.log('登录成功。。。');
-                                    localStorage.setItem("phone",_this.phone);
                                 }    
                         }else if(data.code==-3){
-                            alert('授权失败');
+                            layer.open({
+                              content: '授权失败',
+                              btn: '好的',
+                              shadeClose: false,
+                            });  
                         }else if(data.code == -5){
-                            alert('手机验证码不正确')
+                            layer.open({
+                             content: '手机验证码不正确',
+                             btn: '好的',
+                             shadeClose: false,
+                            });
                         }else if(data.code==302){
-                            alert('302');
                             $.ajax({
-                               url: 'http://118.190.21.195:39999/rainbow-web/withdraw/checkAuth',
+                               url: 'http://172.16.10.134:8080/withdraw/checkAuth',
                                type: 'get',
                                dataType:'json',
+                               crossDomain:true,
+                                xhrFields: {
+                                   withCredentials: true,
+                                },
                                success: function(data) {
-                                   console.log(data.code);
-                                  console.log(data.result);
-                                  // weChatLogin = data.result;
-                                  window.location.href = data.result;
+                                  if(data.code == 0){
+                                      window.location.href = '/withdrawCash/income';
+                                  }else if(data.code == 302){
+                                    window.location.href = data.result;
+                                  }else{
+                                    layer.open({
+                                     content: '参数错误',
+                                     btn: '好的',
+                                     shadeClose: false,
+                                    });
+                                  }
                                },
-                               error: function() {
-                                   console.log('网络异常，请刷新重试');
+                               error: function(){
+                                    layer.open({
+                                         content: '网络异常，请刷新重试',
+                                         btn: '好的',
+                                         shadeClose: false,
+                                    });
                                }
                             });       
                         }else{
-                            alert('服务器出错');
+                            layer.open({
+                              content: '服务器出错',
+                              btn: '好的',
+                              shadeClose: false,
+                            });
                         }
                     },
                     error: function() {
-                        console.log('网络异常，请刷新重试');
+                        layer.open({
+                          content: '网络异常，请刷新重试',
+                          btn: '好的',
+                          shadeClose: false,
+                        });
                     }
                 });
             }else if(_this.phone ==''){
@@ -273,9 +315,5 @@ var messageLog = new Vue({
                 },2000);
             }           
         },
-
-
-
-
   	}
 })
