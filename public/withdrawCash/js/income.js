@@ -1,14 +1,17 @@
 //检测输入金额
 function checkCash(){
+    var cashLength = $('.exchangeCash').val().length;
     var InexchangeCash = parseFloat($('.u-headCash').text());
     var exchangeCash = parseFloat($('.exchangeCash').val());
     var exchangeClue = $('.exchangeClue').text();
-    if(exchangeCash<100){
+    if(exchangeCash<100 && exchangeCash > 0){
         $('.exchangeClue').text("请输入大于100的金额");
         $('.u-withdrawBtn').removeClass('u-btn-click').addClass('u-btn-disclick');
-    }else if(exchangeCash>InexchangeCash){
+    }else if(exchangeCash>InexchangeCash ){
         $('.exchangeClue').text("输入金额超过钱包余额");
         $('.u-withdrawBtn').removeClass('u-btn-click').addClass('u-btn-disclick');
+    }else if(cashLength == 0){
+      $('.u-withdrawBtn').addClass('u-btn-disclick').removeClass('u-btn-click');
     }else{
         $('.exchangeClue').text("");
         $('.u-withdrawBtn').removeClass('u-btn-disclick').addClass('u-btn-click');
@@ -61,6 +64,15 @@ var login = new Vue({
   	    	})
   	},
   	methods: {
+        // 获取url参数
+        getQueryString:function(name){
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        },
   		 // 收益明细
        incomeDetail:function(){
            window.location.href='/withdrawCash/incomeDetail';
