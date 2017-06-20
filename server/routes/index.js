@@ -1824,7 +1824,6 @@ router.get('/activity/signupweb', function(req, res, next) {
 // rainbow-app 提现
 //提现-登录
 router.get('/withdrawCash/login', function(req, res, next) {
-    
    res.render('withdrawCash/login', { title: '请登录' });
 });
 
