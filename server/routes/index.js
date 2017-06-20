@@ -7,12 +7,12 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-var path = 'http://172.16.10.3:8777';
-var apipath ="http://172.16.10.134:8099";
+// var path = 'http://172.16.10.3:8777';
+// var apipath ="http://172.16.10.134:8099";
 // var rainpath = 'http://172.16.10.134:8080';
 var rainpath = 'http://118.190.21.195:39999';
-// var path = 'http://webapi.yuerlive.cn';
-// var apipath ="http://api.yuerlive.cn";
+var path = 'http://qa.webapi.yuerlive.cn';
+var apipath ="http://qa.api.yuerlive.cn";
 
 function getTicket(){
     Thenjs.parallel([function(cont) {
