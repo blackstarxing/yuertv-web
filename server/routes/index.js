@@ -10,7 +10,6 @@ var ticketline = '';
 var path = 'http://172.16.10.3:8777';
 var apipath ="http://172.16.10.134:8099";
 var rainpath = 'http://172.16.10.134:8080';
-// var rainpath = 'http://118.190.21.195:39999/rainbow-web';
 // var path = 'http://webapi.yuerlive.cn';
 // var apipath ="http://api.yuerlive.cn";
 
@@ -1836,6 +1835,7 @@ router.get('/withdrawCash/income', function(req, res, next) {
         title: '我的收益',
         iswechat: iswechat
     });
+    res.cookie('rememberme', '1', { maxAge: 900000, httpOnly: true });
 });
 
 //提现-短信验证码登录
@@ -1848,7 +1848,9 @@ router.get('/withdrawCash/exchangerst', function(req, res, next) {
 });
 //提现-收益明细
 router.get('/withdrawCash/incomeDetail', function(req, res, next) {
-   res.render('withdrawCash/incomeDetail', { title: '收益明细' });
+   var deviceAgent = req.headers["user-agent"].toLowerCase();
+   var iswechat = deviceAgent.match(/MicroMessenger/i)=="micromessenger";
+   res.render('withdrawCash/incomeDetail', { title: '收益明细' ,iswechat: iswechat});
 });
 //提现-兑换说明
 router.get('/withdrawCash/exchangeExplain', function(req, res, next) {

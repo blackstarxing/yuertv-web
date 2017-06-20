@@ -65,9 +65,12 @@
         <div v-else  class="disRecord disRecord-exchange"  v-show=withdrawList>
            <div class="u-disRecord u-disRecord-exchange fs-30 fc-b9">暂无兑换记录</div>
         </div>
-       
     </div>
 {% endblock %}
 {% block js %}
+ {% if iswechat %}
 <script src="/withdrawCash/js/incomeDetail.js"></script>
+{% else %}
+<script src="/withdrawCash/js/incomeDetailOther.js"></script>
+{% endif %}
 {% endblock %}

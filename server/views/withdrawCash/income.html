@@ -52,19 +52,19 @@
         <div class="m-headIcon">
             <div class="u-incomeDetail-text fs-28 fc-wt" @click="incomeDetail">收益明细</div>
             <div class="u-headText">可兑换收益(元)</div>
-            <div class="u-headCash">${income.withdraw_amount}</div>
+            <div class="u-headCash">${incomeExplain.withdraw_amount}</div>
         </div>  
         <ul class="m-glamour f-cb">
             <li class="u-glamour">
                 <span>我的魅力</span>
-                <div class="u-myGlamour">${income.all_charm_value}</div>
+                <div class="u-myGlamour">${incomeExplain.all_charm_value}</div>
             </li>
             <li class="u-line">
                 <div></div>
             </li>
             <li class="u-glamour">
                 <span>可提现魅力</span>
-                <div class="u-withdrawGlamour">${income.withdraw_charm_value}</div>
+                <div class="u-withdrawGlamour">${incomeExplain.withdraw_charm_value}</div>
             </li>
         </ul> 
         <button class="u-dl-btn u-withdrawBtn u-btn-click" @click="exchangeExplain">兑换收益</button>
@@ -72,5 +72,84 @@
     {% endif %}
 {% endblock %}
 {% block js %}
+{% if iswechat %}
 <script type="text/javascript" src="/withdrawCash/js/income.js"></script>
+{% else %}
+<script>
+    var login = new Vue({
+    el: '#income',
+    delimiters: ['${', '}'],
+    data: {
+        incomeExplain:[],
+    },
+    mounted:function(){
+        this.$nextTick(function () {
+        /*去掉iphone手机滑动默认行为*/
+        $('body').on('touchmove', function (event) {
+            event.preventDefault();
+        });
+        var _this = this;
+        var token = _this.getQueryString('token');
+        var userId = _this.getQueryString('userId');
+        // var token = '69360bdacf644cb8a4c8086a8ab906c5';
+        // var userId = '1000056';
+        $.ajax({
+             url: 'http://172.16.10.134:8080/withdraw/index4mobile',
+             type: 'get',
+             dataType:'json',
+             data:{
+                token:token,
+                userId:userId,
+             },
+             success: function(data) {
+                if(data.code == -1){
+                  layer.open({
+                      content: '登录失效 请重新登录',
+                      btn: '好的',
+                      shadeClose: false,
+                  });
+                }else if(data.code == -4){
+                  layer.open({
+                      content: '用户未登录',
+                      btn: '好的',
+                      shadeClose: false,
+                  });
+                }else if(data.code == 0){
+                  _this.incomeExplain = data.object;
+                  document.cookie = 'token='+token;
+                  document.cookie = 'userId='+userId;
+                }
+             },
+             error: function() {
+                layer.open({
+                  content: '网络异常，请刷新重试',
+                  btn: '好的',
+                  shadeClose: false,
+                });
+             }
+           });
+        })
+    },
+    methods: {
+        // 获取url参数
+        getQueryString:function(name){
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        },
+        //andiord  ios 兑换说明
+        exchangeExplain:function(){
+          window.location.href = '/withdrawCash/exchangeExplain';
+        },
+        // 收益明细
+         incomeDetail:function(){
+           window.location.href='/withdrawCash/incomeDetail';
+       },
+    }
+})
+</script>
+{% endif %}
 {% endblock %}
