@@ -37,7 +37,8 @@ var login = new Vue({
         });
         var _this = this;
         $.ajax({
-             url: 'http://172.16.10.134:8080/withdraw/index',
+             // url: 'http://172.16.10.134:8080/withdraw/index',
+             url: 'http://118.190.21.195:39999/withdraw/index',
              type: 'get',
              dataType:'json',
              crossDomain:true,
@@ -91,7 +92,8 @@ var login = new Vue({
                   },2000); 
                 }else{
                     $.ajax({
-                      url: 'http://172.16.10.134:8080/withdraw/apply?money='+_this.exchangeCash,
+                      // url: 'http://172.16.10.134:8080/withdraw/apply?money='+_this.exchangeCash,
+                      url: 'http://118.190.21.195:39999/withdraw/apply?money='+_this.exchangeCash,
                       type: 'get',
                       dataType:'json',
                       crossDomain:true,
@@ -156,7 +158,8 @@ var login = new Vue({
           // 退出登录
           quitLog: function(){
                    $.ajax({
-                     url: 'http://172.16.10.134:8080/withdraw/logout',
+                     // url: 'http://172.16.10.134:8080/withdraw/logout',
+                     url: 'http://118.190.21.195:39999/withdraw/logout',
                      type: 'get',
                      dataType:'json',
                      crossDomain:true,
