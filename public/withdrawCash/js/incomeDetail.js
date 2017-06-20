@@ -116,17 +116,19 @@
                    _this.exchangeList = data.object.list;
                    _this.cashislast = data.object.isLast;
                 }else if(data.code == -1){
-                  layer.open({
-                    content: '未登陆',
-                    btn: '好的',
-                    shadeClose: false,
-                  });
+                  // layer.open({
+                  //   content: '未登陆',
+                  //   btn: '好的',
+                  //   shadeClose: false,
+                  // });
+                  window.location.href = '/withdrawCash/login';
                 }else if(data.code == -2){
-                  layer.open({
-                    content: '没有权限',
-                    btn: '好的',
-                    shadeClose: false,
-                  });
+                  // layer.open({
+                  //   content: '没有权限',
+                  //   btn: '好的',
+                  //   shadeClose: false,
+                  // });
+                  window.location.href = '/withdrawCash/login';
                 }else{
                   layer.open({
                     content: '服务器出错',
