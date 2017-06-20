@@ -12,7 +12,7 @@
             </div>
             <div class="g-mn1">
                 <div class="g-mn1c">
-                     <input  class="phone-number-ipt fs-30" type="tel" minlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')"   placeholder="请输入手机号码"  oninput="console.log(this.value);if(value.length>11)value=value.slice(0,11);if(value.length>=11){$('.u-getCode').removeClass('fc-b9').addClass('fc-f36')}else{$('.u-getCode').removeClass('fc-f36').addClass('fc-b9')}" v-model="phone">
+                     <input  class="phone-number-ipt fs-30" type="tel" minlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')"   placeholder="请输入手机号码"  oninput="if(value.length>11)value=value.slice(0,11);if(value.length>=11){$('.u-getCode').removeClass('fc-b9').addClass('fc-f36')}else{$('.u-getCode').removeClass('fc-f36').addClass('fc-b9')}" v-model="phone">
                 </div>
             </div>
         </div>
@@ -25,8 +25,7 @@
             <div class="g-mn1">
                 <div class="u-getCode-box g-mn1c f-cb" >
                      <input class="code-number-ipt fs-30 f-fl" type="tel" v-model="messCode" placeholder="请输入短信验证码" onkeyup="this.value=this.value.replace(/\D/g,'')"   oninput="if(value.length>6)value=value.slice(0,6);if(value.length>=6){$('.messagesLog-btn').removeClass('u-btn-disclick').addClass('u-btn-click')}else{$('.messagesLog-btn').removeClass('u-btn-click').addClass('u-btn-disclick')}">
-                     <span  class="u-getCode fs-30 fc-b9 noset" @click="showPic(0)">${regText}</span>
-                     <!-- <span  class="fs-30 fc-b6 f-fr set">60s重新获取</span> -->
+                        <button v-bind:class="{disabled:regdis}" v-bind:disabled="regdis"  class="u-getCode fs-30 fc-b9 noset" @click="showPic(0)">${regText}</button>
                 </div>
             </div>
         </div>
@@ -53,7 +52,4 @@
 {% endblock %}
 {% block js %}
 <script type="text/javascript" src="/withdrawCash/js/messageLog.js"></script>
-<script>
-
-</script>
 {% endblock %}

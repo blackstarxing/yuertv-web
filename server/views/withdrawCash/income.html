@@ -3,23 +3,24 @@
 <link rel="stylesheet" href="/withdrawCash/css/income.css">
 {% endblock %}
 {% block content %}
-	<div id="income" class="g-income">
+    {% if iswechat %}
+	<div id="income" class="g-income" v-cloak>
         <div class="m-headIcon">
             <div class="u-incomeDetail-text fs-28 fc-wt" @click="incomeDetail">收益明细</div>
             <div class="u-headText">可兑换收益(元)</div>
-            <div class="u-headCash">{{income.withdraw_amount}}</div>
+            <div class="u-headCash">${income.withdraw_amount}</div>
         </div>  
         <ul class="m-glamour f-cb">
             <li class="u-glamour">
                 <span>我的魅力</span>
-                <div class="u-myGlamour">{{income.all_charm_value}}</div>
+                <div class="u-myGlamour">${income.all_charm_value}</div>
             </li>
             <li class="u-line">
                 <div></div>
             </li>
             <li class="u-glamour">
                 <span>可提现魅力</span>
-                <div class="u-withdrawGlamour">{{income.withdraw_charm_value}}</div>
+                <div class="u-withdrawGlamour">${income.withdraw_charm_value}</div>
             </li>
         </ul> 
         <div class="g-withdraw">
@@ -27,33 +28,49 @@
                 <span>提现账户&nbsp;:</span>
                 <span class="weixinIcon"></span>
                 <span>微信</span>
-                <span class="accountName">({{income.nickname}})</span>   
+                <span class="accountName">(${income.nickname})</span>   
             </div>
             <div class="m-withdrawCash">
                 <span>提现金额</span>
                 <div class="u-amount f-cb">
                     <i class="cashIcon"></i>
                     <div class="amountVal">
-                        <input type="number" value="">
+                        <input class="exchangeCash" type="tel" value="" v-model="exchangeCash" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="checkCash();if(value.length>6)value=value.slice(0,6);">
                     </div>
                 </div> 
                 <div class="withdraw-clue f-cb">
-                    <div>请输入大于100的金额</div>
-                    <div style="display: none;">输入金额超过钱包余额</div>
+                    <div class="exchangeClue">${exchangeClue}</div>
+                    <!-- <div style="display: none;">输入金额超过钱包余额</div> -->
                 </div>
             </div>
         </div>
-        <button class="u-dl-btn u-withdrawBtn u-btn-disclick">兑换收益</button>
-        <div class="quitLog fs-28 fc-f36">退出登录</div>
+        <button class="u-dl-btn u-withdrawBtn u-btn-disclick" @click="exchangeIncome">兑换收益</button>
+        <div class="quitLog fs-28 fc-f36" @click="quitLog">退出登录</div>
     </div>
+    {% else %}
+        <div id="income" class="g-income" v-cloak>
+        <div class="m-headIcon">
+            <div class="u-incomeDetail-text fs-28 fc-wt" @click="incomeDetail">收益明细</div>
+            <div class="u-headText">可兑换收益(元)</div>
+            <div class="u-headCash">${income.withdraw_amount}</div>
+        </div>  
+        <ul class="m-glamour f-cb">
+            <li class="u-glamour">
+                <span>我的魅力</span>
+                <div class="u-myGlamour">${income.all_charm_value}</div>
+            </li>
+            <li class="u-line">
+                <div></div>
+            </li>
+            <li class="u-glamour">
+                <span>可提现魅力</span>
+                <div class="u-withdrawGlamour">${income.withdraw_charm_value}</div>
+            </li>
+        </ul> 
+        <button class="u-dl-btn u-withdrawBtn u-btn-click" @click="exchangeExplain">兑换收益</button>
+    </div>
+    {% endif %}
 {% endblock %}
 {% block js %}
 <script type="text/javascript" src="/withdrawCash/js/income.js"></script>
-<script>
-    // window.document.title = "我的收益"
-    /*去掉iphone手机滑动默认行为*/
-    $('body').on('touchmove', function (event) {
-        event.preventDefault();
-    });
-</script>
 {% endblock %}

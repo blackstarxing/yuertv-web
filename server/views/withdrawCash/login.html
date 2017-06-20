@@ -1,7 +1,6 @@
 {% extends 'rainlayout.html' %}
 {% block css %}
 <link rel="stylesheet" href="/withdrawCash/css/login.css">
-<link rel="stylesheet" href="/css/layer.css">
 {% endblock %}
 {% block content %}
 	<div id="login" class="g-log">
@@ -11,15 +10,15 @@
         	<span>请选择以下登录方式</span>
         	<div class="u-textLine"></div>
         </div>
-        <button class="u-dl-btn u-weixin-btn bgc-wx" @click="disopen">
-        	<div class="u-weixin-icon"></div>
+        <button class="u-dl-btn u-weixin-btn bgc-wx" @click="thirdLogin(2)">
+        	<div class="u-weixin-icon" ></div>
        		<span>微信登录</span>
         </button>
         <button class="u-dl-btn u-QQ-btn bgc-qq" @click="disopen">
         	<div class="u-QQ-icon"></div>
         	<span>QQ登录&nbsp;&nbsp;</span>
         </button>
-        <button class="u-dl-btn u-phone-btn bgc-wt" @click="phoneLogin()">
+        <button class="u-dl-btn u-phone-btn bgc-wt" @click="phoneLogin">
         	<div  class="u-phone-icon"></div>
         	<span>手机登录</span>
         </button>
@@ -27,7 +26,7 @@
 {% endblock %}
 {% block js %}
 <script type="text/javascript" src="/layer.js"></script>
-<!-- <script type="text/javascript" src="/withdrawCash/js/login.js"></script> -->
+<script type="text/javascript" src="/withdrawCash/js/login.js"></script>
 <script>
     /*去掉iphone手机滑动默认行为*/
     $('body').on('touchmove', function (event) {

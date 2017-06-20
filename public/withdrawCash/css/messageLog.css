@@ -1,4 +1,7 @@
-
+/*不被点击*/
+.disabled{
+	cursor: not-allowed;
+}
 
 .g-messageLog{
 	padding: 1.2rem 0.48rem 0;
@@ -21,8 +24,8 @@
 }
 .phone-number-ipt,.code-number-ipt{
 	box-sizing: border-box;
-	min-width:4rem;
-	max-width: 4.5rem;
+	min-width:7rem;
+	max-width: 7.5rem;
 	border:none;
 }
 .u-phone-number,.u-phone-code{
@@ -34,6 +37,8 @@
 .u-getCode{
 	position: absolute;
 	right: 0;
+	height: 100%;
+    background: #fff;
 }
 .code-error-clue{
 	height: 0.373333rem;
