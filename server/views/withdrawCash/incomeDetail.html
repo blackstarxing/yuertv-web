@@ -49,10 +49,10 @@
                     </div>
                     <div class="exchange-status f-cb">
                         <span>状态</span>
-                        <span v-if='item.state==1' class="f-fr">待审核</span>
-                        <span v-else-if='item.state==2' class="f-fr">成功</span>
-                        <span v-else-if='item.state==3' class="f-fr">失败</span>
-                        <span v-else-if='item.state==4' class="f-fr">拒绝</span>
+                        <span v-if='item.state==1' class="f-fr">提现中</span>
+                        <span v-else-if='item.state==2' class="f-fr">已到账</span>
+                        <span v-else-if='item.state==3' class="f-fr">提现中</span>
+                        <span v-else-if='item.state==4' class="f-fr fc-clue">审核不通过</span>
                     </div>
                     <div class="exchange-remain f-cb">
                         <span>剩余可兑换收益</span><span class="f-fr">${item.rest_withdraw_amount}</span>
