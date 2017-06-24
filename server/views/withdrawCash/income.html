@@ -35,7 +35,8 @@
                 <div class="u-amount f-cb">
                     <i class="cashIcon"></i>
                     <div class="amountVal">
-                        <input class="exchangeCash" type="tel" value="" v-model="exchangeCash" onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="checkCash();if(value.length>6)value=value.slice(0,6);">
+                        <input v-if='android' class="exchangeCash" type="tel" value="" v-model="exchangeCash" onkeyup="onlyNumber(this);" oninput="checkCash();if(value.length>8)value=value.slice(0,8);">
+                        <input v-if='iphone' class="exchangeCash" type="number" value="" v-model="exchangeCash" onkeyup="onlyNumber(this);" oninput="checkCash();if(value.length>8)value=value.slice(0,8);">
                     </div>
                 </div> 
                 <div class="withdraw-clue f-cb">

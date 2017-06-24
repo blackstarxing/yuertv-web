@@ -121,6 +121,9 @@ $(function(){
     },function(){
         $(this).find('.play-mask').hide();
     })
+
+      
+
 })
 
 var app = new Vue({
@@ -143,7 +146,8 @@ var app = new Vue({
             checkCode:'',
             nickname:'',
             password:'',
-            sex:0
+            sex:0,
+           
         },
         regpicCode:'',
         regdis:false,
@@ -153,7 +157,9 @@ var app = new Vue({
             pic:'',
             code:'',
             password:'',
-            nickname:''
+            nickname:'',
+            personalName:'',
+            IDcard:'',
         },
         phonePic:'',
         // 快捷登录表单
@@ -171,7 +177,10 @@ var app = new Vue({
         },
         //导航栏关注
         subs:'',
-        his:''
+        his:'',
+        //实名认证 
+        selfName:'',
+        selfCard:''
     },
     mounted: function () {
         this.$nextTick(function () {
@@ -595,10 +604,11 @@ var app = new Vue({
                 },2000);
             }           
         },
+        //注册
         register:function(){
             var _this = this;
             console.log(_this.regForm)
-            if(/^1[34578][0-9]{9}$/.test(_this.regForm.mobile) && _this.regForm.checkCode.length==6 && _this.regForm.password && _this.regForm.nickname){
+            if(/^1[34578][0-9]{9}$/.test(_this.regForm.mobile) && _this.regForm.checkCode.length==6 && _this.regForm.password && _this.regForm.nickname && _this.selfName &&  _this.selfCard.length==18 && /^[1-9][0-9]{5}(19[0-9]{2}|20[0-9]{2})(0[1-9]|1[0-2])(0[1-9]|[1-2]{1}[0-9]|3[01])[0-9]{3}[0-9xX]$/.test(_this.selfCard) ){
                 console.log(123);
                 var parm = {};
                 parm.checkCode = _this.regForm.checkCode;
@@ -676,7 +686,22 @@ var app = new Vue({
                 setTimeout(function(){
                     _this.regError.nickname = '';
                 },2000);
+            }else if(_this.selfName==''){
+                _this.regError.personalName = "姓名不能为空";
+                setTimeout(function(){
+                    _this.regError.personalName = '';
+                },2000);
+            }else if(_this.selfCard==''){
+                _this.regError.IDcard = "身份证号不能为空";
+                setTimeout(function(){
+                    _this.regError.IDcard = '';
+                },2000);
+            }else if(!/^[1-9][0-9]{5}(19[0-9]{2}|20[0-9]{2})(0[1-9]|1[0-2])(0[1-9]|[1-2]{1}[0-9]|3[01])[0-9]{3}[0-9xX]$/.test(_this.selfCard)){
+                _this.regError.IDcard = "身份证号输入错误";
+                setTimeout(function(){
+                    _this.regError.IDcard = '';
+                },2000);
             }  
-        }
+        },
     }
 })   
