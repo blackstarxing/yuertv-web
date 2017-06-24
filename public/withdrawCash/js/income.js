@@ -1,3 +1,19 @@
+function onlyNumber(obj){ 
+     var firstChar = obj.value.substr(0,1);
+     console.log(firstChar); 
+     //必须保证第一个为数字而不是.       
+     obj.value = obj.value.replace(/^\./g,'');       
+     //保证只有出现一个.而没有多个.       
+     obj.value = obj.value.replace(/\.{2,}/g,'.');       
+     //保证.只出现一次，而不能出现两次以上       
+     obj.value = obj.value.replace('.','$#$').replace(/\./g,'').replace('$#$','.');  
+     obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'); 
+     if(firstChar == 0  || firstChar == "."){
+        obj.value = '';
+        $('.u-withdrawBtn').addClass('u-btn-disclick').removeClass('u-btn-click');
+        return;
+     }
+} 
 //检测输入金额
 function checkCash(){
     var cashLength = $('.exchangeCash').val().length;
@@ -27,7 +43,9 @@ var login = new Vue({
         // 兑换金额
         exchangeCash:'',
         //提现结果金额
-        exchangerstCash:''
+        exchangerstCash:'',
+        iphone:'',
+        android:'',
     	},
   	mounted:function(){
   		this.$nextTick(function () {
@@ -36,6 +54,18 @@ var login = new Vue({
             event.preventDefault();
         });
         var _this = this;
+         // 判断是andriod还是iphone
+        var sUserAgent = navigator.userAgent;
+        // _this.android = sUserAgent.match(/android/i) == "android";
+        // _this.iphone = sUserAgent.match(/iPhone|iPod|iPad/i)=="iPhone|iPod|iPad";
+        if (/(iPhone|iPad|iPod|iOS)/i.test(sUserAgent)) {
+            _this.iphone = true;
+        } else if (/(Android)/i.test(sUserAgent)) {
+            _this.android = true; 
+        } else {
+            _this.iphone = false;
+            _this.android  = false;
+        };
         $.ajax({
              // url: 'http://172.16.10.134:8080/withdraw/index',
              url: 'http://118.190.21.195:39999/withdraw/index',

@@ -170,6 +170,12 @@
                     </div>
                 </div>
                 <span class="error">${regError.nickname}</span>
+                <!-- 实名认证 -->
+                <input type="text" placeholder="请输入姓名" value=""  v-model="selfName"  oninput="if(value.length>10)value=value.slice(0,10)">
+                <span class="error">${regError.personalName}</span>
+                <input type="text"  placeholder="请输入二代身份证号"   v-model="selfCard" oninput="if(value.length>18)value=value.slice(0,18)">
+                <span class="error">${regError.IDcard}</span>
+                <!-- 实名认证 -->
                 <button type="submit" class="u-login" @click="register">注册</button>
                 <p class="yuer-agree">注册即视为同意 <a href="/service" target="_blank" class="agreement">《娱儿直播用户服务协议》</a></p>
             </div>

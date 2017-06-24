@@ -334,7 +334,7 @@ input:read-only{
     width: 20px;
     height: 20px;
 }
-.login-content{
+/*.login-content{
     position: absolute;
     left: 0;
     right: 0;
@@ -343,8 +343,23 @@ input:read-only{
     margin:auto;
     width:380px;
     height: 450px;
-    /*height: 250px;*/
     padding:40px 50px;
+    border-radius: 20px;
+    background:rgba(60,72,86,1);
+    color:#fff;
+}*/
+.login-content{
+    position: absolute;
+    left:50%;
+    top:50%;
+    width:380px;
+    min-height: 450px;
+    padding:40px 50px;
+    transform: translateX(-50%) translateY(-50%);
+    ms-transform:translateX(-50%) translateY(-50%);  /* IE 9 */
+    -moz-transform:translateX(-50%) translateY(-50%);    /* Firefox */
+    -webkit-transform:translateX(-50%) translateY(-50%); /* Safari 和 Chrome */
+    -o-transform:translateX(-50%) translateY(-50%);  /* Opera */
     border-radius: 20px;
     background:rgba(60,72,86,1);
     color:#fff;

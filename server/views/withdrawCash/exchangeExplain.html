@@ -8,10 +8,11 @@
     <div class="m-weixin-clue fs-28 fc-b3">您在彩虹直播收到的礼物,可在“彩虹助手”微信公众号中进行提现哦!</div>
     <div class="m-withdraw-clue fs-28 fc-b9">(提现后,工作人员在3个工作日内审核,并发放至您的微信零钱中)</div>
     <div class="step-one fs-32 fc-b3">第一步:在微信里搜索&nbsp;
-    <div style="display: inline-block;" class="fc-f36" id="code">彩虹助手</div>
-    <button data-clipboard-action="copy" data-clipboard-text='彩虹助手' data-clipboard-target="#code"  class="btn u-copy  fc-wt fs-28">点击复制
-    <div class="copy-success bgc-b8">已复制</div>
-    </button></div>
+    <div style="display: inline-block;" class="fc-f36" >彩虹助手</div>
+    <!-- <button   class="btn u-copy  fc-wt fs-28">点击复制 -->
+    <!-- <div class="copy-success bgc-b8">已复制</div> -->
+    <!-- </button> -->
+    </div>
     <div class="step-one-pic"></div>
     <div class="step-two fs-32 fc-b3">第二步:关注彩虹助手公众号</div>
     <div class="step-two-pic"></div>
@@ -19,9 +20,9 @@
     <div class="step-three-pic"></div>
 </div>
 {% endblock %}
-{% block js %}
-<script type="text/javascript" src="/clipboard.min.js"></script>
-<script>
+<!-- {% block js %} -->
+<!-- <script type="text/javascript" src="/clipboard.min.js"></script> -->
+<!-- <script>
       $('.copy-success').hide();
       var clipboard = new Clipboard('.btn');
       clipboard.on('success', function(e) {
@@ -38,5 +39,5 @@
               shadeClose: false,
             });
         });
-</script>
-{% endblock %}
+</script> -->
+<!-- {% endblock %} -->
