@@ -68,7 +68,7 @@ var login = new Vue({
         };
         $.ajax({
              // url: 'http://172.16.10.134:8080/withdraw/index',
-             url: 'http://118.190.21.195:39999/withdraw/index',
+             url: 'http://qa.web.yuerlive.cn/api/withdraw/index',
              type: 'get',
              dataType:'json',
              crossDomain:true,
@@ -123,7 +123,7 @@ var login = new Vue({
                 }else{
                     $.ajax({
                       // url: 'http://172.16.10.134:8080/withdraw/apply?money='+_this.exchangeCash,
-                      url: 'http://118.190.21.195:39999/withdraw/apply?money='+_this.exchangeCash,
+                      url: 'http://qa.web.yuerlive.cn/api/withdraw/apply?money='+_this.exchangeCash,
                       type: 'get',
                       dataType:'json',
                       crossDomain:true,
@@ -189,7 +189,7 @@ var login = new Vue({
           quitLog: function(){
                    $.ajax({
                      // url: 'http://172.16.10.134:8080/withdraw/logout',
-                     url: 'http://118.190.21.195:39999/withdraw/logout',
+                     url: 'http://qa.web.yuerlive.cn/api/withdraw/logout',
                      type: 'get',
                      dataType:'json',
                      crossDomain:true,

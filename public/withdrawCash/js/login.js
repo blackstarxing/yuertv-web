@@ -13,7 +13,7 @@ var login = new Vue({
           var _this = this;
                $.ajax({
                 // url: 'http://172.16.10.134:8080/withdraw/checkAuth',
-                url: 'http://118.190.21.195:39999/withdraw/checkAuth',
+                url: 'http://qa.web.yuerlive.cn/api/withdraw/checkAuth',
                 type: 'get',
                 dataType:'json',
                 crossDomain:true,
@@ -63,7 +63,7 @@ var login = new Vue({
        thirdLogin:function(type){
               $.ajax({
                 // url: 'http://172.16.10.134:8080/thirdPartyLogin?platform='+type,
-                url: 'http://118.190.21.195:39999/thirdPartyLogin?platform='+type,
+                url: 'http://qa.web.yuerlive.cn/api/thirdPartyLogin?platform='+type,
                 type: 'get',
                 dataType:'json',
                 crossDomain:true,

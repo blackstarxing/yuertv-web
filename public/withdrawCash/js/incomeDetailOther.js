@@ -33,7 +33,7 @@
              //收礼记录
              $.ajax({
               // url: 'http://172.16.10.134:8080/withdraw/giftHistoryList4Mobile',
-              url: 'http://118.190.21.195:39999/withdraw/giftHistoryList4Mobile',
+              url: 'http://qa.web.yuerlive.cn/api/withdraw/giftHistoryList4Mobile',
               type: 'get',
               dataType:'json',
               data:{
@@ -122,7 +122,7 @@
             _this.withdrawList = true;
             $.ajax({
               // url: 'http://172.16.10.134:8080/withdraw/withdrawList4Mobile?page='+1+'&pageSize='+_this.pageSize,
-              url: 'http://118.190.21.195:39999/withdraw/withdrawList4Mobile?page='+1+'&pageSize='+_this.pageSize,
+              url: 'http://qa.web.yuerlive.cn/api/withdraw/withdrawList4Mobile?page='+1+'&pageSize='+_this.pageSize,
               type: 'get',
               dataType:'json',
               data:{
@@ -175,7 +175,7 @@
             _this.withdrawList = false;
              $.ajax({
               // url: 'http://172.16.10.134:8080/withdraw/giftHistoryList4Mobile?page='+1+'&pageSize='+_this.pageSize,
-              url: 'http://118.190.21.195:39999/withdraw/giftHistoryList4Mobile?page='+1+'&pageSize='+_this.pageSize,
+              url: 'http://qa.web.yuerlive.cn/api/withdraw/giftHistoryList4Mobile?page='+1+'&pageSize='+_this.pageSize,
               type: 'get',
               dataType:'json',
               data:{
@@ -227,7 +227,7 @@
           _this.giftloadText = '加载中...';
           $.ajax({
             // url: 'http://172.16.10.134:8080/withdraw/giftHistoryList4Mobile',
-            url: 'http://118.190.21.195:39999/withdraw/giftHistoryList4Mobile',
+            url: 'http://qa.web.yuerlive.cn/api/withdraw/giftHistoryList4Mobile',
             type: 'get',
             dataType:'json',
             data:{
@@ -267,7 +267,7 @@
             _this.exchangeloadText = '加载中...';
             $.ajax({
                 // url: 'http://172.16.10.134:8080/withdraw/withdrawList4Mobile',
-                url: 'http://118.190.21.195:39999/withdraw/withdrawList4Mobile',
+                url: 'http://qa.web.yuerlive.cn/api/withdraw/withdrawList4Mobile',
                 type: 'get',
                 dataType:'json',
                 data:{
