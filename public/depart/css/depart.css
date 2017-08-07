@@ -62,3 +62,16 @@ input::-webkit-input-placeholder{font-size:0.4rem;color:#999;}    /* 使用webki
 input:-moz-placeholder{font-size:0.4rem;color:#999;}              /* Firefox版本4-18 */
 input::-moz-placeholder{font-size:0.4rem;color:#999;}             /* Firefox版本19+ */
 input:-ms-input-placeholder{font-size:0.4rem;color:#999;}         /* IE浏览器 */
+
+/*按钮公共样式*/
+/*大按钮*/
+.u-btn-confirm{
+	display: block;
+	width: 88%;
+	margin:0 auto;
+	height: 1.173333rem;
+	background:#ceb077;
+	font-size: 0.453333rem;
+	color:#3a2913;
+	border-radius: 0.08rem;
+}

@@ -1,0 +1,35 @@
+{% extends 'depart/layout.html' %} 
+
+{% block css %}
+<link rel="stylesheet" href="/depart/css/my.css">
+{% endblock %}
+
+{% block content %}
+<div class="g-bd" id="balance">
+	<div class="m-balance">
+		当前余额：
+		<div class="money"><em>￥</em>288</div>
+	</div>
+	<button class="u-btn-confirm">充值</button>
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+var balance = new Vue({
+    el: '#balance',
+    delimiters: ['${', '}'],
+    data:{
+        
+    },
+    mounted: function () {
+        this.$nextTick(function () {
+            
+        })
+    },
+    methods:{
+        
+    }  
+})
+</script>
+{% endblock %}
