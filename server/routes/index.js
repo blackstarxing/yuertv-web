@@ -1860,11 +1860,13 @@ router.get('/withdrawCash/incomeDetail', function(req, res, next) {
 router.get('/withdrawCash/exchangeExplain', function(req, res, next) {
    res.render('withdrawCash/exchangeExplain', { title: '兑换说明' });
 });
-// rainbow-app 提现
-
 
 // 荣耀驾校
-// 我的
+// 荣耀驾校－开车(首页)
+router.get('/depart/departure', function(req, res, next) {
+   res.render('depart/departure', { title: '开车' });
+});
+// 荣耀驾校－我的
 router.get('/depart/my', function(req, res, next) {
    res.render('depart/my', { title: '我的' });
 });
