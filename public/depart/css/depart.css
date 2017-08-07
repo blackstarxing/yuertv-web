@@ -86,7 +86,7 @@ input:-ms-input-placeholder{font-size:0.4rem;color:#7b7484;}         /* IE浏览
 .m-title{
 	height: 1.173333rem;
 	line-height: 1.173333rem;
-	border-bottom: 2px solid #33303f;
+	border-bottom: 0.026667rem solid #33303f;
 	background: url(../images/depart_titleIcon.png) left center no-repeat;
 	background-size: 0.426667rem 0.293333rem;
 	color:#dfbb73;
@@ -102,8 +102,8 @@ input:-ms-input-placeholder{font-size:0.4rem;color:#7b7484;}         /* IE浏览
 	height: 0.8rem;
 	line-height: 0.8rem;
 	float: left;
-	border:2px solid #71605b;
-	border-radius: 4px;
+	border:0.026667rem solid #71605b;
+	border-radius: 0.053333rem;
 	font-size: 0.346667rem;
 	color:#71605b;
 	font-weight: bold;
@@ -187,12 +187,15 @@ footer ul li{
 /*高亮状态*/
 .footer-item.active .departure-icon{
   background: url('/depart/images/departure_active.png');
+  background-size: 1.066667rem 0.666667rem;
 }
 .footer-item.active .list-icon{
   background: url('/depart/images/depart_listActive.png');
+  background-size: 1.066667rem 0.666667rem;
 }
 .footer-item.active .my-icon{
   background: url('/depart/images/depart_myActive.png');
+  background-size: 1.066667rem 0.666667rem;
 }
 .footer-item.active .footer-text{
   position: absolute;

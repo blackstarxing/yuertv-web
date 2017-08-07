@@ -2,6 +2,7 @@
 #my .g-hd{
 	height: 5.6rem;
 	background: url(../images/my_bg.png);
+	background-size: cover;
 	padding-top:1.12rem;
 	box-sizing: border-box;
 	font-size: 0.426667rem;
@@ -37,6 +38,7 @@
 	margin-left: 1.173333rem;
 	border-bottom:2px solid #33303f;
 	background:url(../images/arrow.png) 97% center no-repeat;
+	background-size: 0.226667rem 0.373333rem;
 	font-size: 0.453333rem;
 }
 .m-lst .lst-item span{
