@@ -1,9 +1,52 @@
 {% extends 'depart/layout.html' %} 
 
 {% block css %}
-<!-- <link rel="stylesheet" href="/dist/center.8954dc732d86a8949af8.css"> -->
+<link rel="stylesheet" href="/depart/css/my.css">
 {% endblock %}
 
 {% block content %}
+<div class="g-bd" id="my">
+	<div class="g-hd">
+		<img src="/depart/images/my_bg.png" alt="">
+		<p>无情老提莫</p>
+		<p class="my-id">ID：12138</p>
+	</div>
+	<div class="g-lst">
+		<a href="/depart/balance" class="m-lst">
+			<i class="my-balance"></i><div class="lst-item">余额：<em>￥288</em><span>申请提现</span></div>
+		</a>
+		<div class="m-lst">
+			<i class="my-tel"></i><div class="lst-item">手机号<span>立即绑定</span></div>
+		</div>
+		<div class="m-lst">
+			<i class="my-area"></i><div class="lst-item">接单范围<span>请选择</span></div>
+		</div>
+		<div class="m-lst">
+			<i class="my-time"></i><div class="lst-item">陪练时间段<span>已选择</span></div>
+		</div>
+		<div class="m-lst">
+			<i class="my-list"></i><div class="lst-item">订单消息</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
 
+{% block js %}
+<script type="text/javascript">
+var my = new Vue({
+    el: '#my',
+    delimiters: ['${', '}'],
+    data:{
+        
+    },
+    mounted: function () {
+        this.$nextTick(function () {
+            
+        })
+    },
+    methods:{
+        
+    }  
+})
+</script>
 {% endblock %}

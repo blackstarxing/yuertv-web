@@ -1,0 +1,101 @@
+/*我的*/
+#my .g-hd{
+	height: 5.6rem;
+	background: url(../images/my_bg.png);
+	padding-top:1.12rem;
+	box-sizing: border-box;
+	font-size: 0.426667rem;
+	color:#fff;
+	text-align: center;
+}
+#my .g-hd img{
+	display: block;
+	width: 1.92rem;
+	height: 1.92rem;
+	border-radius: 50%;
+	margin: 0 auto 0.4rem;
+	border:3px solid #fff;
+	box-sizing: border-box;
+}
+#my .g-hd .my-id{
+	font-size: 0.373333rem;
+	opacity: 0.5;
+	margin-top: 0.266667rem;
+}
+.g-lst{
+	margin:0 0.266667rem;
+	border:2px solid #33303f;
+	border-radius: 0.053333rem;
+}
+.m-lst{
+	display: block;
+	height: 1.173333rem;
+	line-height: 1.173333rem;
+	color:#dfbb73;
+}
+.m-lst .lst-item{
+	margin-left: 1.173333rem;
+	border-bottom:2px solid #33303f;
+	background:url(../images/arrow.png) 97% center no-repeat;
+	font-size: 0.453333rem;
+}
+.m-lst .lst-item span{
+	float: right;
+	margin-right: 10%;
+	color:#786f57;
+	font-size: 0.373333rem;
+}
+.m-lst .lst-item em{
+	color:#786f57;
+	font-size: 0.373333rem;
+}
+.m-lst:last-child .lst-item{
+	border:none;
+}
+.m-lst i{
+	display: inline-block;
+	width: 0.586667rem;
+	height: 0.586667rem;
+	margin:0.293333rem 0 0 0.293333rem;
+	background: url(../images/my_icon.png) no-repeat;
+	background-size: 0.586667rem;
+	position: absolute;
+}
+.m-lst .my-tel{
+	background-position: 0 -0.586667rem;
+}
+.m-lst .my-area{
+	background-position: 0 -1.173333rem;
+}
+.m-lst .my-time{
+	background-position: 0 -1.76rem;
+}
+.m-lst .my-list{
+	background-position: 0 -2.346667rem;
+}
+/*账户余额*/
+.m-balance{
+	position: relative;
+	height: 4.266667rem;
+	margin:0.4rem;
+	background:url(../images/balance.png) no-repeat;
+	background-size: cover;
+	padding:0.4rem;
+	box-sizing: border-box;
+	color:#786d57;
+	font-size: 0.346667rem;
+}
+.m-balance .money{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	color:#dfbb73;
+	font-size: 1.333333rem;
+	text-align: center;
+	line-height: 4.266667rem;
+}
+.m-balance .money em{
+	font-size: 0.853333rem;
+}
