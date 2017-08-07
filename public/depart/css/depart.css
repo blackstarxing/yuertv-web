@@ -106,6 +106,7 @@ input:-ms-input-placeholder{font-size:0.4rem;color:#7b7484;}         /* IE浏览
 	border-radius: 4px;
 	font-size: 0.346667rem;
 	color:#71605b;
+	font-weight: bold;
 	text-align: center;
 	box-sizing: border-box;
 	margin-right: 0.64rem;
@@ -113,6 +114,11 @@ input:-ms-input-placeholder{font-size:0.4rem;color:#7b7484;}         /* IE浏览
 }
 .select-ul li:nth-child(3n){
 	margin-right: 0;
+}
+.select-ul li.active{
+	background: url(../images/depart_active.png) no-repeat;
+	background-size:cover;
+	color:#4d250e;
 }
 
 /*font*/
@@ -196,5 +202,3 @@ footer ul li{
   bottom:0.133333rem;  /*10px*/
   color:#dfbb73;
 }
-
-
