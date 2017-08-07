@@ -17,11 +17,21 @@ a,button{cursor:pointer;}
 h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}
 del,ins,u,s,a,a:hover{text-decoration:none;}
 body,textarea,input,button,select,keygen,legend{font:12px/1.14 arial,\5b8b\4f53;color:#333;outline:0;}
-body{background:#fff;}
 a,a:hover{color:#fff;text-decoration: none;}
 img{border:0;max-width: 100%;vertical-align: bottom;}
 button{border:none;background: none;}
 html,body{width: 100%;height: 100%;margin:0 auto;font-family: 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif;}
+body:before {
+  content: ' ';
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url(../images/bg.png) center 0 no-repeat;
+  background-size: cover;
+}
 
 /*function*/
 .f-cb:after,.f-cbli li:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
