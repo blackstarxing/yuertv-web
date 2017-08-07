@@ -1879,7 +1879,12 @@ router.get('/depart/balance', function(req, res, next) {
 
 // 充值
 router.get('/depart/recharge', function(req, res, next) {
-   res.render('depart/recharge', { title: '充值' });
+   res.render('depart/recharge', { title: '充值' ,index:2 });
+});
+
+// 订单
+router.get('/depart/list', function(req, res, next) {
+   res.render('depart/list', { title: '订单管理' ,index:1 });
 });
 
 
