@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="g-bd" id="recharge">
+<div class="g-bd" id="recharge" v-cloak>
 	<div class="g-avatar">
         <img src="/depart/images/my_bg.png" alt="">
         <div class="detail">
@@ -16,15 +16,7 @@
     <div class="g-recharge">
         <h3 class="m-title">选择充值金额</h3>
         <ul class="select-ul f-cb">
-            <li>10</li>
-            <li>20</li>
-            <li>30</li>
-            <li>10</li>
-            <li>20</li>
-            <li>30</li>
-            <li>10</li>
-            <li>20</li>
-            <li>30</li>
+            <li v-for="(item,index) in recharge_num" :class="{active:isCur==index}" @click='switchCash(index,item)'>￥${item}</li>
         </ul>
         <h3 class="m-title">其他金额</h3>
         <input type="text" placeholder="输入金额">
@@ -39,7 +31,9 @@ var recharge = new Vue({
     el: '#recharge',
     delimiters: ['${', '}'],
     data:{
-        
+        recharge_num:[10,20,30,40,50,60,70,80,90],
+        isCur:0,
+        payCash:''
     },
     mounted: function () {
         this.$nextTick(function () {
@@ -47,7 +41,12 @@ var recharge = new Vue({
         })
     },
     methods:{
-        
+        switchCash:function(index,value){
+            var _this = this;
+            _this.isCur = index;
+            _this.payCash = value;
+            console.log(_this.payCash);
+        },
     }  
 })
 </script>
