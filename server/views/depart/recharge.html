@@ -1,0 +1,54 @@
+{% extends 'depart/layout.html' %} 
+
+{% block css %}
+<link rel="stylesheet" href="/depart/css/my.css">
+{% endblock %}
+
+{% block content %}
+<div class="g-bd" id="recharge">
+	<div class="g-avatar">
+        <img src="/depart/images/my_bg.png" alt="">
+        <div class="detail">
+            <p>无情老提莫</p>
+            <p class="my-id">ID：12138</p>
+        </div> 
+    </div>
+    <div class="g-recharge">
+        <h3 class="m-title">选择充值金额</h3>
+        <ul class="select-ul f-cb">
+            <li>10</li>
+            <li>20</li>
+            <li>30</li>
+            <li>10</li>
+            <li>20</li>
+            <li>30</li>
+            <li>10</li>
+            <li>20</li>
+            <li>30</li>
+        </ul>
+        <h3 class="m-title">其他金额</h3>
+        <input type="text" placeholder="输入金额">
+    </div>
+	<button class="u-btn-confirm">充值</button>
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+var recharge = new Vue({
+    el: '#recharge',
+    delimiters: ['${', '}'],
+    data:{
+        
+    },
+    mounted: function () {
+        this.$nextTick(function () {
+            
+        })
+    },
+    methods:{
+        
+    }  
+})
+</script>
+{% endblock %}

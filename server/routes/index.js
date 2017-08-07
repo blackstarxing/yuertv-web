@@ -1877,5 +1877,10 @@ router.get('/depart/balance', function(req, res, next) {
    res.render('depart/balance', { title: '账户余额' });
 });
 
+// 充值
+router.get('/depart/recharge', function(req, res, next) {
+   res.render('depart/recharge', { title: '充值' });
+});
+
 
 module.exports = router;
