@@ -7,12 +7,12 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-// var path = 'http://172.16.10.3:8777';
-// var apipath ="http://172.16.10.134:8099";
-// var rainpath = 'http://172.16.10.134:8080';  
-var rainpath = 'http://qa.web.yuerlive.cn/api';
-var path = 'http://qa.webapi.yuerlive.cn';
-var apipath ="http://qa.api.yuerlive.cn";
+var path = 'http://172.16.10.3:8777';
+var apipath ="http://172.16.10.134:8099";
+var rainpath = 'http://172.16.10.134:8080';  
+// var rainpath = 'http://qa.web.yuerlive.cn/api';
+// var path = 'http://webapi.yuerlive.cn';
+// var apipath ="http://api.yuerlive.cn";
 
 function getTicket(){
     Thenjs.parallel([function(cont) {
@@ -1820,6 +1820,10 @@ router.get('/searchresult', function(req, res, next) {
 router.get('/activity/signupweb', function(req, res, next) {
     res.render('activity/signupweb', { title: "主播招募" });
 });
+
+router.get('/activity/mars', function(req, res, next) {
+    res.render('activity/mars', { title: "火星工厂王者荣耀大赛报名" });
+});
     
 // rainbow-app 提现
 //提现-登录
@@ -1858,6 +1862,11 @@ router.get('/withdrawCash/exchangeExplain', function(req, res, next) {
 });
 // rainbow-app 提现
 
+
+// 荣耀驾校
+router.get('/depart/my', function(req, res, next) {
+   res.render('depart/my', { title: '我的' });
+});
 
 
 

@@ -18,10 +18,10 @@ h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}
 del,ins,u,s,a,a:hover{text-decoration:none;}
 body,textarea,input,button,select,keygen,legend{font:12px/1.14 arial,\5b8b\4f53;color:#333;outline:0;}
 body{background:#fff;}
-a,a:hover{color:#fff;}
+a,a:hover{color:#fff;text-decoration: none;}
 img{border:0;max-width: 100%;vertical-align: bottom;}
-button{border:none;}
-html,body{width: 100%;height: 100%;margin:0 auto;}
+button{border:none;background: none;}
+html,body{width: 100%;height: 100%;margin:0 auto;font-family: 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif;}
 
 /*function*/
 .f-cb:after,.f-cbli li:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
@@ -31,6 +31,9 @@ html,body{width: 100%;height: 100%;margin:0 auto;}
 .f-db{display:block;}
 .f-fl{float:left;}
 .f-fr{float:right;}
+.f-tal{text-align:left;}
+.f-tac{text-align:center;}
+.f-tar{text-align:right;}
 
 
 [v-cloak] {
@@ -58,8 +61,12 @@ input:-ms-input-placeholder{font-size:0.4rem;color:#999;}         /* IE浏览器
 .bdc-gy3{border:1px solid #333;}
 .bdc-gy6{border:1px solid #666;}
 .bdc-gye6{border:1px solid #e6e6e6;}
-
-
+/*充值彩虹糖 被选中状态*/
+.bdc-candy{border:2px solid #ffb128;}
+/*落地页input*/
+.bdc-floor{border:2px solid #d47aff;}
+ /*落地页button*/
+.bdc-floorBtn{border:1px solid #451f55;}
 
 /*color*/
 .fc-wt{color:#fff;}
@@ -67,10 +74,26 @@ input:-ms-input-placeholder{font-size:0.4rem;color:#999;}         /* IE浏览器
 .fc-b6{color:#666;}
 .fc-e6{color:#e6e6e6;}
 .fc-b9{color:#999;}
+/*倒计时灰色*/
+.fc-grey{color:#998fa8;}
+/*黄色*/
+.fc-yl{color:#ffdc38;}
+/*橙色*/
+.fc-cf{color:#ffbd5f;}
 /*红色*/
 .fc-f36{color:#f36;}
 /*橘色*/
 .fc-clue{color:#ff7c2d;}
+/*进入直播间*/
+.fc-enter{color: #cdcbb9;}
+/*用户昵称*/
+.fc-nick{color: #5fffe3;margin:0 0.133333rem;}
+/*礼物*/
+.fc-gift{color:#fff82b;}
+/*邀请好友黄*/
+.fc-invite{color:#ffdc38;}
+/*彩虹糖余额 橘*/
+.fc-candy{color:#ffb128;}
 
 /*font*/
 .fs-28{font-size: 0.373333rem;}
@@ -90,12 +113,36 @@ input:-ms-input-placeholder{font-size:0.4rem;color:#999;}         /* IE浏览器
 /*灰色*/
 .bgc-grey{background: #f5f5f5;}
 .bgc-b8{background: #b8b8b8;}
+/*邀请好友*/
+.bgc-invite{background: #321e50;}
+/*邀请好友ipt*/
+.bgc-inviteIpt{background: #46366d;}
+/*充值彩虹糖 被选中状态*/
+.bgc-candy{background: #fffaec;}
+/*input 输入框 灰色*/
+.bgc-ipt{background: #eee;}
+
 /*公共样式*/
 
 /*居中层*/
 .g-mobile-wrap{
-	max-width: 800px;
+	max-width: 1242px;
 	margin:0 auto;
+}
+.g-mobile-wrap img{
+	width: 100%;
+}
+
+/*遮罩层*/
+.m-mask{
+	position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0,.5);
+    z-index: 9999;
 }
 
 .u-dl-btn{
@@ -126,23 +173,110 @@ input:-ms-input-placeholder{font-size:0.4rem;color:#999;}         /* IE浏览器
 }
 
 
-
 /* 两列右侧自适应布局 */
 .g-sd1{position:relative;float:left;width:1.6rem;margin-right:-1.6rem;}
 .g-mn1{float:right;width:100%;}
 .g-mn1c{margin-left:1.733333rem;}
-
-/* 三列中间自适应布局 */
+ 
+/* 三列中间自适应布局 */  
 .g-sd51,.g-sd52{position:relative;float:left;width:1.6rem;height: 1.6rem;margin:0 -1.6rem 0 0;}
 .g-sd52{float:right;width:1.333333rem;margin:0 0 0 -1.333333rem;}
 .g-mn5{float:left;width:100%;}
 .g-mn5c{margin:0 1.466667rem 0 1.866667rem;}
 
 
-
-.g-mian{
+.g-webview-bg{
 	background:#f5f5f5;
 	padding:20px;
 	height:100%;
 	box-sizing: border-box;
+}
+
+/*输入手机号和短信验证码input*/
+
+/*图形验证码弹框*/
+.g-checkCodeMask{
+	background: rgba(0,0,0,0.5);
+	width: 100%;
+	height:100%;
+	text-align: center;
+	color:#fff;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	margin:auto;
+	/*display: none;*/
+	z-index: 999;
+}
+.g-checkCodeMask .g-checkCode{
+	position: fixed;
+	top:45%;
+	left:50%;
+	margin: -2.746667rem 0 0 -3.733333rem;
+	width: 7.466667rem;
+	height: 4.693333rem;
+	padding: 0 0.8rem;
+	text-align: left;
+	box-sizing: border-box;
+	border-radius: 0.266667rem;
+	z-index:9999;
+}
+.g-checkCodeMask .codeError{
+	width: 100%;
+	height: 0.373333rem;
+	text-align: left;
+	margin: 0.133333rem 0 0.266667rem 0;
+}
+.g-checkCodeMask .g-checkCode.active{
+	display: none;
+}
+.g-checkCodeMask .g-checkCode .m-Content{
+	width:100%;
+	height: 0.426667rem;
+	margin:0.586667rem 0 0.533333rem 0;
+	text-align: center;
+	line-height: 0.426667rem;
+}
+.g-checkCodeMask .m-code-ipt{
+	width: 100%;
+	height: 0.96rem;
+}
+.g-checkCodeMask .u-code-ipt{
+	width: 3.306667rem;
+	height: 0.96rem;
+	line-height: 0.96rem;
+}
+.g-checkCodeMask .u-codeImg{
+	width: 1.866667rem;
+	height: 0.826667rem;
+	margin-left: 0.466667rem;
+	vertical-align: -80%;
+}
+.g-checkCodeMask .m-codeBtn{
+	width: 100%;
+	margin-top: 0.266667rem;	
+}
+.g-checkCodeMask .m-codeBtn button{
+	width: 2.186667rem;
+	height: 0.853333rem;
+	border-radius: 0.106667rem;
+}
+
+
+/*支付失败提示框*/
+.payPrompt{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 3.2rem;
+	height: 1.6rem;
+	line-height: 1.6rem;
+	color:#fff;
+	font-size: 0.426667rem;
+	border-radius: 0.16rem;
+	text-align: center;
+	background: rgba(0,0,0,0.8);
 }

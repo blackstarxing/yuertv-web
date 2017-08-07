@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <meta name="keywords" content="娱儿，手游直播，手游直播平台，游戏直播，"/>
+    <meta name="description" content="娱儿直播是一款弹幕式手机游戏直播平台，以游戏直播为主，涵盖多款热门游戏直播内容，为玩家提供视频直播和手游赛事直播服务。玩家可以找到喜欢的手机游戏并进行直播向其他玩家分享游戏攻略。" />
+    <link rel="shortcut icon" type="image/ico" href="/yuer.ico">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/layer.css">
+    {% block css %}{% endblock %}
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+</head>
+<body>
+    {% block content %}{% endblock %}
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script type="text/javascript" src="/vue.min.js"></script>
+    <script type="text/javascript" src="/layer.js"></script>
+    <script type="text/javascript" src="/jquery.sha1.js"></script>
+    <script src="/wxjsapi.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+        enableWxShare({
+            appId: 'wx1bd2b48c81600e98',
+            ticket: '{{ticket}}',
+            title: '{{title}}',        
+            imgUrl: 'http://img.wangyuhudong.com/uploads/imgs/live/2017/07/31/d492e1d0edce4423a231d139a639b887.png',
+            desc: '玩游戏，撩美女，彩虹直播满足你'
+        })
+    </script>
+    {% block js %}{% endblock %}
+    
+</body>
+</html>

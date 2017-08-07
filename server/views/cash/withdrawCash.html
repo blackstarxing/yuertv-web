@@ -158,6 +158,7 @@
 	        	codesend:'',
 	        	telerror:'',
 	        	coderror:'',
+	        	clicktag:0,
 	        	// 用户信息
 	        	isCur:true,
 	        	userInfo:'',
@@ -227,12 +228,16 @@
 	        	// 手机号码分隔
 	        	separateNum : function(){
 	        		var text_len = this.tel.length;
-	        		if(text_len>this.len){
-	        			if (text_len === 3 || text_len === 8) {
-							this.tel += " ";
-							text_len = this.tel.length;
-						}						
-	        		}
+	        		if(text_len>3){
+						this.tel = this.trimSpace(this.tel,'g');
+						this.tel = this.tel.replace(/(.{3})/,"$1 ");
+					}
+					
+					if(text_len>8){
+						this.tel = this.trimSpace(this.tel,'g');
+						this.tel = this.tel.replace(/(.{3})/,"$1 ");
+						this.tel = this.tel.replace(/(.{8})/,"$1 ");
+					}	
 	        		this.len = text_len;				
 	        	},
 	        	getQueryString : function(name){
@@ -255,51 +260,60 @@
 	        	// 验证手机号码
 	            checkTel:function(type){
 	                var _this = this;
-	                var tel = _this.trimSpace(_this.tel,'g');
+	                var tel = _this.trimSpace(_this.tel,'g'); 
 	                if(tel){
 	                    if(/^1[34578][0-9]{9}$/.test(tel)){
 	                    	if(type==1){
 	                    		var parm = {};
 		                        parm.type = 3;
 		                        parm.mobile = tel;
-		                        $.ajax({
-		                            url: '/api/sendSMSCode',
-		                            data: parm,
-		                            type: 'post',
-		                            dataType: 'json',
-		                            success: function(data) {
-		                                if (data.code==0) {
-		                                	_this.codesend = "验证码已发送"
-		                                    setTimeout(function(){
-		                                        _this.codesend = '';
-		                                    },2000);
-		                                    var second = 59;
-		                                    _this.codedis = true;
-		                                    _this.codeText = second+'(s)';
-		                                    function settime(val) { 
-		                                        if (second > 0) { 
-		                                        	_this.codeText = second+'(s)';
-		                                            second--;
-		                                            setTimeout(function() { 
-		                                                settime(val) 
-		                                            },1000);
-		                                        } else {
-		                                        	_this.codedis = false;
-		                                    		_this.codeText = '获取验证码';                             
-		                                        } 
-		                                    } 
-		                                    settime(second);                 
-		                                }else{
-		                                    _this.telerror = data.result;
-		                                    setTimeout(function(){
-		                                        _this.telerror = '';
-		                                    },2000);
-		                                }
-		                            },
-		                            error: function() {
-		                                alert('通讯服务器错误');
-		                            }
-		                    	})	                        
+		                        if(_this.clicktag==0){
+		                        	$.ajax({
+			                            url: '/api/sendSMSCode',
+			                            data: parm,
+			                            type: 'post',
+			                            dataType: 'json',
+			                            success: function(data) {
+			                                if (data.code==0) {
+			                                	_this.codesend = "验证码已发送"
+			                                    setTimeout(function(){
+			                                        _this.codesend = '';
+			                                    },2000);
+			                                    var second = 59;
+			                                    _this.codedis = true;
+			                                    _this.codeText = second+'(s)';
+			                                    function settime(val) { 
+			                                        if (second > 0) { 
+			                                        	_this.codeText = second+'(s)';
+			                                            second--;
+			                                            setTimeout(function() { 
+			                                                settime(val) 
+			                                            },1000);
+			                                        } else {
+			                                        	_this.codedis = false;
+			                                    		_this.codeText = '获取验证码';                             
+			                                        } 
+			                                    } 
+			                                    settime(second);                 
+			                                }else{
+			                                    _this.telerror = data.result;
+			                                    setTimeout(function(){
+			                                        _this.telerror = '';
+			                                    },2000);
+			                                }
+			                            },
+			                            error: function() {
+			                                alert('通讯服务器错误');
+			                            }
+			                    	})	 
+			                    	_this.clicktag = 1;    
+	                    			setTimeout(function () { _this.clicktag = 0 }, 5000);            
+		                        } else{
+		                        	_this.codesend = "点击过频，请稍候再试"
+                                    setTimeout(function(){
+                                        _this.codesend = '';
+                                    },2000);
+		                        }           
 	                        }
 	                    }else{
 	                        _this.telerror = '手机号码错误，请重新输入';
