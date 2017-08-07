@@ -14,7 +14,7 @@
 	height: 1.92rem;
 	border-radius: 50%;
 	margin: 0 auto 0.4rem;
-	border:3px solid #fff;
+	border:0.04rem solid #fff;
 	box-sizing: border-box;
 }
 #my .g-hd .my-id{
@@ -98,4 +98,42 @@
 }
 .m-balance .money em{
 	font-size: 0.853333rem;
+}
+/*充值*/
+#recharge{
+	padding:0.426667rem 0.266667rem 0;
+}
+.g-avatar{
+	height: 1.2rem;
+	margin-bottom: 0.426667rem;
+}
+.g-avatar img{
+	position: absolute;
+	display: block;
+	width: 1.2rem;
+	height: 1.2rem;
+	border-radius: 50%;
+	border:0.04rem solid #fff;
+	box-sizing: border-box;
+	margin:0 0.4rem 0 0.16rem;
+}
+.g-avatar .detail{
+	margin-left: 1.76rem;
+	font-size: 0.426667rem;
+	color:#fff;
+}
+.g-avatar .detail .my-id{
+	margin-top: 0.266667rem;
+	font-size: 0.373333rem;
+	opacity: 0.5;
+}
+.g-recharge{
+	background:#131128;
+	border:2px solid #33303f;
+	border-radius: 0.053333rem;
+	padding:0 0.213333rem;
+	margin-bottom: 0.853333rem;
+}
+.g-recharge input{
+	margin-bottom: 0.533333rem;
 }

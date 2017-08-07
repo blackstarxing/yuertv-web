@@ -52,17 +52,68 @@ body:before {
 
 /*input*/
 input{
-	height: 1.066667rem;
-	line-height: 1.066667rem;
+	height: 1.013333rem;
+	line-height: 1.013333rem;
+	width: 6.4rem;
+	background: #201e34;
 	border:none;
-	color:#333;
+	color:#fffffe;
+	text-indent: 0.32rem;
+	font-size: 0.4rem;
 }
 /*placeholder*/
-input::-webkit-input-placeholder{font-size:0.4rem;color:#999;}    /* 使用webkit内核的浏览器 */
-input:-moz-placeholder{font-size:0.4rem;color:#999;}              /* Firefox版本4-18 */
-input::-moz-placeholder{font-size:0.4rem;color:#999;}             /* Firefox版本19+ */
-input:-ms-input-placeholder{font-size:0.4rem;color:#999;}         /* IE浏览器 */
+input::-webkit-input-placeholder{font-size:0.4rem;color:#7b7484;}    /* 使用webkit内核的浏览器 */
+input:-moz-placeholder{font-size:0.4rem;color:#7b7484;}              /* Firefox版本4-18 */
+input::-moz-placeholder{font-size:0.4rem;color:#7b7484;}             /* Firefox版本19+ */
+input:-ms-input-placeholder{font-size:0.4rem;color:#7b7484;}         /* IE浏览器 */
 
+/*按钮公共样式*/
+/*大按钮*/
+.u-btn-confirm{
+	display: block;
+	width: 88%;
+	margin:0 auto;
+	height: 1.173333rem;
+	line-height: 1.173333rem;
+	background:#ceb077;
+	font-size: 0.453333rem;
+	color:#3a2913;
+	border-radius: 0.08rem;
+	text-align: center;
+}
+
+/*标题*/
+.m-title{
+	height: 1.173333rem;
+	line-height: 1.173333rem;
+	border-bottom: 2px solid #33303f;
+	background: url(../images/depart_titleIcon.png) left center no-repeat;
+	background-size: 0.426667rem 0.293333rem;
+	color:#dfbb73;
+	font-size: 0.453333rem;
+	font-weight: bold;
+	text-indent: 0.6rem;
+	margin-bottom: 0.48rem;
+}
+
+/*选择*/
+.select-ul li{
+	width: 2.453333rem;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	float: left;
+	border:2px solid #71605b;
+	border-radius: 4px;
+	font-size: 0.346667rem;
+	color:#71605b;
+	text-align: center;
+	box-sizing: border-box;
+	margin-right: 0.64rem;
+	margin-bottom: 0.4rem;
+}
+.select-ul li:nth-child(3n){
+	margin-right: 0;
+}
 
 /*font*/
 .fs-24{font-size: 0.32rem}
@@ -146,15 +197,4 @@ footer ul li{
   color:#dfbb73;
 }
 
-/*按钮公共样式*/
-/*大按钮*/
-.u-btn-confirm{
-	display: block;
-	width: 88%;
-	margin:0 auto;
-	height: 1.173333rem;
-	background:#ceb077;
-	font-size: 0.453333rem;
-	color:#3a2913;
-	border-radius: 0.08rem;
-}
+
