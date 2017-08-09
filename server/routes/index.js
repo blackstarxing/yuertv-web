@@ -1887,5 +1887,21 @@ router.get('/depart/list', function(req, res, next) {
    res.render('depart/list', { title: '订单管理' ,index:1 });
 });
 
+// 订单评价
+router.get('/depart/listScore', function(req, res, next) {
+   res.render('depart/listScore', { title: '订单评价' ,index:1 });
+});
+
+// 订单详情
+router.get('/depart/listDetail', function(req, res, next) {
+   res.render('depart/listDetail', { title: '订单详情' ,index:1 });
+});
+
+// 订单详情
+router.get('/depart/myTime', function(req, res, next) {
+   res.render('depart/myTime', { title: '陪练时间段' ,index:2 });
+});
+
+
 
 module.exports = router;

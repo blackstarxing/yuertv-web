@@ -9,26 +9,48 @@
     z-index:999999;
 }
 .m-tab .tab li{
+    position: relative;
     display: table-cell;
     font-size: 0.426667rem;
     color:#786d57;
+}
+.m-tab .tab li.active{
+    color:#dfbb73;
+}
+.m-tab .tab li.active:after{
+    content: ' ';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -0.32rem;
+    width: 0.64rem;
+    height: 0.08rem;
+    background:#dfbb73;
 }
 .g-list{
     padding: 1.733333rem 0.4rem 1.6rem;
 }
 .list-box .m-list{
+    display: block;
+    position: relative;
     padding:0 0.266667rem;
     border:2px solid #71605b;
     border-radius: 4px;
     font-size: 0.4rem;
     color:#fff;
-    opacity: 0.3;
+    margin-bottom: 0.4rem;
+    background: #131128;
 }
 .list-box h3{
     height: 0.853333rem;
     line-height: 0.853333rem;  
     border-bottom: 2px solid #71605b;
     font-weight: normal;
+    color:rgba(255,255,255,0.3);
+}
+.list-box h3 span{
+    float: right;
+    color:#dfbb73;
 }
 .target-name{
     color:#dfbb73;
@@ -36,10 +58,77 @@
     margin-top: 0.266667rem;
     margin-bottom: 0.4rem;
 }
+.target-price{
+    color:rgba(255,255,255,0.3);
+    margin-bottom: 0.36rem;
+}
 .target-price span{
     color:#dfbb73;
     font-size: 0.586667rem;
+    margin-right: 0.4rem;
 }
 .target-price span em{
     font-size: 0.4rem;
+}
+.target-price i{
+    text-decoration: line-through;
+}
+.list-box .m-list a{
+    display: block;
+    position: absolute;
+    right: 0.266667rem;
+    bottom: 0.613333rem;
+    width: 1.973333rem;
+    height: 0.693333rem;
+    line-height: 0.693333rem;
+    text-align: center;
+    color:#786d57;
+    border:0.026667rem solid #786d57;
+    font-size: 0.373333rem;
+    border-radius: 0.053333rem;
+}
+.list-box .m-list a.score{
+    color:#dfbb73;
+    border-color: #dfbb73;
+}
+/*订单评价*/
+#listScore{
+    padding:0.4rem;
+}
+.score-box{
+    border-top:0.026667rem solid #786d57;
+    padding:0.64rem 0 0.24rem;
+}
+.score-box p{
+    color: rgba(255,255,255,0.8);
+    font-size: 0.4rem;
+    margin-bottom: 0.533333rem;
+}
+.score-box .mid{
+    text-align: center;
+    color:#fff;
+    font-size: 0.32rem;
+}
+.score-box img{
+    display: block;
+    width: 3.413333rem;
+    height: 3.413333rem;
+    margin:0 auto 0.333333rem;
+    border:4px solid rgba(255,255,255,0.1);
+    border-radius: 0.053333rem;
+}
+.score-box li{
+    font-size: 0.373333rem;
+    color:rgba(255,255,255,0.5);
+    background: url(../images/score_off.png) left center no-repeat;
+    background-size: 0.453333rem 0.453333rem;
+    text-indent: 0.853333rem;
+    height: 0.453333rem;
+    margin-bottom: 0.4rem;
+}
+.score-box li.active{
+    background-image: url(../images/score_on.png);
+}
+#listScore .u-btn-confirm{
+    margin-top: 0.853333rem;
 }
