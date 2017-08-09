@@ -10,7 +10,7 @@
     <div class="g-recharge">
         <h3 class="m-title">可选择时间段</h3>
         <ul class="select-ul f-cb">
-            <li v-for="(item,index) in time" :class="{active:isCur==index}" @click='switchCash(index,item)'>${item}</li>
+            <li v-for="(item,index) in time" :class="{active:item.is_set}" @click='switchCash(index,item)'>${item.start_time}-${item.end_time}</li>
         </ul>
     </div>
 	<button class="u-btn-confirm">确认</button>
@@ -24,13 +24,28 @@ var recharge = new Vue({
     el: '#recharge',
     delimiters: ['${', '}'],
     data:{
-        time:["9:00-9:59","10:00-10:59","11:00-11:59","12:00-12:59","13:00-13:59","14:00-14:59","15:00-15:59","16:00-16:59","17:00-17:59","18:00-18:59","19:00-19:59","20:00-20:59","21:00-21:59","22:00-22:59","23:00-23:59","00:00-00:59"],
+        time:'',
         isCur:0,
         payCash:''
     },
     mounted: function () {
         this.$nextTick(function () {
-            
+            var _this = this;
+            $.ajax({
+                url: '/departapi/driverschool/timeZoneList?userId=1000100',
+                type: 'get',
+                dataType:'json',
+                crossDomain:true,
+                xhrFields: {
+                    withCredentials: true,
+                },
+                success: function(data) {
+                    _this.time = data.object;
+                },
+                error: function() {
+
+                }
+            });
         })
     },
     methods:{

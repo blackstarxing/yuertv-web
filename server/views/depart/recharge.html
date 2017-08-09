@@ -7,16 +7,16 @@
 {% block content %}
 <div class="g-bd" id="recharge" v-cloak>
 	<div class="g-avatar">
-        <img src="/depart/images/my_bg.png" alt="">
+        <img v-bind:src="user_icon" alt="">
         <div class="detail">
-            <p>无情老提莫</p>
-            <p class="my-id">ID：12138</p>
+            <p>${user_nickname}</p>
+            <p class="my-id">ID：${user_id}</p>
         </div> 
     </div>
     <div class="g-recharge">
         <h3 class="m-title">选择充值金额</h3>
         <ul class="select-ul f-cb">
-            <li v-for="(item,index) in recharge_num" :class="{active:isCur==index}" @click='switchCash(index,item)'>¥&nbsp;${item}</li>
+            <li v-for="(item,index) in recharge_num" :class="{active:isCur==index}" @click='switchCash(index,item.id)'>¥&nbsp;${item.amount}</li>
         </ul>
         <h3 class="m-title">其他金额</h3>
         <input type="text" placeholder="输入金额">
@@ -32,20 +32,42 @@ var recharge = new Vue({
     el: '#recharge',
     delimiters: ['${', '}'],
     data:{
-        recharge_num:[10,20,30,40,50,60,70,80,90],
+        user_id:'',
+        user_icon:'',
+        user_nickname:'',
+        recharge_num:[],
         isCur:0,
         payCash:''
     },
     mounted: function () {
         this.$nextTick(function () {
-            
+            var _this = this;
+            _this.user_id = window.localStorage.getItem("depart_id");
+            _this.user_icon = window.localStorage.getItem("depart_icon");
+            _this.user_nickname = window.localStorage.getItem("depart_nickname");
+            $.ajax({
+                url: '/departapi/driverschool/rechargeList',
+                type: 'get',
+                dataType:'json',
+                crossDomain:true,
+                xhrFields: {
+                    withCredentials: true,
+                },
+                success: function(data) {
+                    _this.recharge_num = data.object;
+                    _this.payCash = data.object[0].id;
+                },
+                error: function() {
+
+                }
+            });
         })
     },
     methods:{
-        switchCash:function(index,value){
+        switchCash:function(index,id){
             var _this = this;
             _this.isCur = index;
-            _this.payCash = value;
+            _this.payCash = id;
         },
     }  
 })

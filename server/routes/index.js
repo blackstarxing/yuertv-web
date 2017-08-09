@@ -1897,9 +1897,14 @@ router.get('/depart/listDetail', function(req, res, next) {
    res.render('depart/listDetail', { title: '订单详情' ,index:1 });
 });
 
-// 订单详情
+// 陪练时间
 router.get('/depart/myTime', function(req, res, next) {
    res.render('depart/myTime', { title: '陪练时间段' ,index:2 });
+});
+
+// 陪练时间
+router.get('/depart/myArea', function(req, res, next) {
+   res.render('depart/myArea', { title: '接单范围' ,index:2 });
 });
 
 

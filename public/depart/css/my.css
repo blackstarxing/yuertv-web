@@ -112,8 +112,8 @@
 	font-size: 0.853333rem;
 }
 /*充值*/
-#recharge{
-	padding:0.426667rem 0.266667rem 0;
+#recharge,#myArea{
+	padding:0.426667rem 0.266667rem 2.0rem;
 }
 .g-avatar{
 	height: 1.2rem;

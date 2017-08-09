@@ -1,0 +1,130 @@
+{% extends 'depart/layout.html' %} 
+
+{% block css %}
+<link rel="stylesheet" href="/depart/css/my.css">
+{% endblock %}
+
+{% block content %}
+<div class="g-bd" id="myArea" v-cloak>
+    <h3 class="my-title">请选择您的区服以及最高接单段位以及最低接单段位</h3>
+    <div class="g-recharge">
+        <h3 class="m-title">我的区服</h3>
+        <ul class="select-ul f-cb">
+            <li class="u-region-weChat" :class="{active:world==1}" @click='weChatRegion'>
+                <i></i>微信区
+            </li>
+            <li class="u-region-QQ" :class="{active:world==2}" @click='QQRegion'>
+                <i></i>QQ区
+            </li>
+        </ul>
+    </div>
+    <div class="g-recharge">
+        <h3 class="m-title">最高段位</h3>
+        <ul class="select-ul f-cb" >
+            <li v-for='(segmentlist,index) in segmentList' :class="{active:maxGrade==segmentlist.id}" @click='switchHighSegment(index,segmentlist.id)'>${segmentlist.level_name}</li>
+        </ul>
+    </div>
+    <div class="g-recharge">
+        <h3 class="m-title">最低段位</h3>
+        <ul class="select-ul f-cb" >
+            <li v-for='(segmentlist,index) in segmentList' :class="{active:minGrade==segmentlist.id,disabled:maxGrade>segmentlist.id}" @click='switchLowSegment(index,segmentlist.id)'>${segmentlist.level_name}</li>
+        </ul>
+    </div>
+	<button class="u-btn-confirm" @click="confirmArea">确认</button>
+</div>
+{% include 'depart/footer.html' %}
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+var myArea = new Vue({
+    el: '#myArea',
+    delimiters: ['${', '}'],
+    data:{
+        //tab当前位置
+        world:1,
+        maxGrade:'',
+        minGrade:'',
+        //段位
+        segmentList:'',
+    },
+    mounted: function () {
+        this.$nextTick(function () {
+            var _this = this;
+            $.ajax({
+                url: '/departapi/driverschool/gradeLevelRange?userId=1000100',
+                type: 'get',
+                dataType:'json',
+                crossDomain:true,
+                xhrFields: {
+                    withCredentials: true,
+                },
+                success: function(data) {
+                    _this.segmentList = data.object.gradeLevelList;
+                    _this.maxGrade = data.object.userGradeInfo.max_grade_id;
+                    _this.minGrade = data.object.userGradeInfo.min_grade_id;
+                    _this.world = data.object.userGradeInfo.world;
+                },
+                error: function() {
+
+                }
+            });
+        })
+    },
+    methods:{
+        //区服－微信
+        weChatRegion:function(){
+            this.world = 1;
+            $('.u-region-weChat').addClass('active');
+            $('.u-region-QQ').removeClass('active');
+        },
+        //区服－QQ
+        QQRegion:function(){
+            this.world = 2;
+            $('.u-region-QQ').addClass('active');
+            $('.u-region-weChat').removeClass('active');
+        },
+        // 段位切换
+        switchHighSegment:function(index,id){
+            var _this = this;
+            _this.maxGrade = id;
+            if(_this.maxGrade>_this.minGrade){
+                _this.minGrade = id;
+            }
+        },
+        // 段位切换
+        switchLowSegment:function(index,id){
+            var _this = this;
+            if(id>=_this.maxGrade){
+                _this.minGrade = id;
+            }          
+        },
+        // 提交段位
+        confirmArea:function(){
+            var _this = this;
+            $.ajax({
+                url: '/departapi/driverschool/gradeLevelRangeSubmit',
+                type: 'get',
+                data:{
+                    "userId":1000100,
+                    "world":_this.world,
+                    "maxGrade":_this.maxGrade,
+                    "minGrade":_this.minGrade
+                },
+                dataType:'json',
+                crossDomain:true,
+                xhrFields: {
+                    withCredentials: true,
+                },
+                success: function(data) {
+                    
+                },
+                error: function() {
+
+                }
+            });
+        }
+    }  
+})
+</script>
+{% endblock %}
