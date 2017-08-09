@@ -211,3 +211,61 @@ footer ul li{
   bottom:0.133333rem;  /*10px*/
   color:#dfbb73;
 }
+
+/*提示框*/
+.g-clue-mask{
+  background: rgba(0,0,0,0.5);
+  width: 100%;
+  height:100%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin:auto;
+  /*display: none;*/
+  z-index: 999;
+}
+.g-clue-box{
+  position: fixed;
+  top:45%;
+  left:50%;
+  width: 6.4rem;  /*480*/
+  height: 4.266667rem;  /*320*/
+  transform:translate(-50%,-50%);
+  padding-top: 1.066667rem;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 0.266667rem;
+  background: #131128;
+  z-index:9999;
+  border: 0.026667rem solid #71505b;
+}
+.m-clue-box{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.g-clue-box .clue-mask-close{
+  position: absolute;
+  display: block;
+  right: -0.346667rem;
+  top: -1.413333rem;
+  width: 0.693333rem;
+  height: 0.693333rem;
+  background: url('../images/close.png') no-repeat;
+  background-size: 0.693333rem 0.693333rem;
+}
+.g-clue-box .u-pay-text{
+  margin-top: 0.4rem;
+  font-size: 0.533333rem;
+  color:#fff;
+  opacity: 0.5;
+  filter:alpha(opacity=50);
+}
+
+
+
+
+

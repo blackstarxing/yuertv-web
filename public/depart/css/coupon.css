@@ -1,0 +1,115 @@
+#coupon .g-box{
+	width: 100%;
+	height: 100%;
+	padding: 0.4rem 0.533333rem 0;
+	box-sizing: border-box;
+}
+#coupon .g-hd{
+	position: relative;
+	width: 100%;
+	height: 1.333333rem; /*100*/
+	line-height: 1.173333rem;
+	padding-left: 1.173333rem; /*88*/
+	background: #ceb077;
+	color:#3a2913;
+	font-size: 0.426667rem; /*32*/
+	box-sizing: border-box;
+	border-radius: 0.08rem; /*6*/
+}
+#coupon .g-hd i{
+	display: inline-block;
+	position: absolute;
+	width: 0.533333rem;   /*40*/
+	height: 0.533333rem;
+	left: 0.293333rem;   /*22*/
+	top:0.293333rem;
+	background: url('../images/couponChoose.png') no-repeat;
+	background-size: 0.533333rem 0.533333rem;
+}
+#coupon .g-hd.active i{
+	background: url('../images/couponChoose_active.png') no-repeat;
+	background-size: 0.533333rem 0.533333rem;
+}
+#coupon .g-mn{
+	position: relative;
+	width: 100%;
+	height:2.933333rem;
+	margin-top: 0.4rem;
+	background: url('../images/coupon.png') no-repeat;
+	background-size:100% 2.933333rem;
+}
+.g-mnc,.g-mnc-fr{
+	display: inline-block;
+	height: 2.08rem;  /*156*/
+	
+}
+.g-mnc{
+	position: relative;
+	width: 4.666667rem;  /*350*/
+	padding:0.48rem 0 0.32rem 1.173333rem;  /*36 24 88*/
+	box-sizing: border-box;
+	color:#efe8ff;
+}
+.g-mnc i{
+	display: inline-block;
+	position: absolute;
+	top: 0.48rem;
+	left: 0.293333rem;
+	width: 0.533333rem;
+	height: 0.533333rem;
+	background: url('../images/couponChoose.png') no-repeat;
+	background-size:0.533333rem 0.533333rem;
+}
+.g-mn.active .g-mnc i{
+	background: url('../images/couponChoose_active.png') no-repeat;
+	background-size:0.533333rem 0.533333rem;
+}
+.g-mnc span{
+	font-size: 0.586667rem;  /*44*/
+
+}
+.g-mnc p{
+	margin-top: 0.32rem;  /*24*/
+	width: 100%;
+	height: 0.4rem;
+	line-height: 1;
+	font-size: 0.4rem;
+	opacity: 0.6;
+	filter:alpha(opacity=60); /*IE滤镜，透明度50%*/
+}
+.g-mnc-fr{
+	width: 4.266667rem;   /*320*/
+	line-height: 2.08rem;
+	color:#efe8ff;
+	font-size: 1.6rem;  /*120*/
+	padding-right: 0.4rem;
+	box-sizing: border-box;
+	text-align: right;
+}
+.m-mnc-fr{
+	font-size: 0.906667rem; /*68*/
+	margin-right: 0.266667rem;
+}
+.coupon-cash{
+	display: inline-block;
+	height: 100%;
+	line-height: 2.08rem;
+}
+.g-mn-btm{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 0.853333rem;  /*64*/
+	line-height: 0.853333rem;
+	padding: 0 0.4rem 0 1.173333rem;
+	box-sizing: border-box;
+	font-size: 0.32rem;
+}
+.u-coupon-time{
+	color:#efe8ff;
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+}
+.u-coupon-status{
+	color:#dfbb73;
+}
