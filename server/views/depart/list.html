@@ -8,24 +8,47 @@
 <div class="g-bd" id="list" v-cloak>
 	<div class="m-tab">
         <ul class="tab">
-            <li>可使用</li>
-            <li>已过期</li>
-            <li>已使用</li>
+            <li v-for="(item,index) in tab" :class="{active:isCur==index}" @click='switchCash(index,item)'>${item}</li>
         </ul>   
     </div>
     <div class="g-list">
-        <div class="list-box">
+        <div class="list-box" v-if="isCur==0">
             <div class="m-list">
                 <h3>2017年08月01日   11:09 <span>待发车</span></h3>
                 <div class="target-name">尊贵铂金包上1星</div>
-                <div class="target-price"><span><em>￥28</em></span><i>￥38</i>抵用券减免10元</div>
+                <div class="target-price"><span><em>¥</em>28</span><i>￥38</i>&nbsp;&nbsp;抵用券减免10元</div>
+            </div>
+            <div class="m-list">
+                <h3>2017年08月01日   11:09 <span>待发车</span></h3>
+                <div class="target-name">尊贵铂金包上1星</div>
+                <div class="target-price"><span><em>¥</em>28</span><i>￥38</i>&nbsp;&nbsp;抵用券减免10元</div>
             </div>
         </div>
-        <div class="list-box">
-            
+        <div class="list-box" v-if="isCur==1">
+            <a href="/depart/listDetail" class="m-list">
+                <h3>2017年08月01日   11:09 <span>进行中</span></h3>
+                <div class="target-name">尊贵铂金包上1星</div>
+                <div class="target-price"><span><em>¥</em>28</span><i>￥38</i>&nbsp;&nbsp;抵用券减免10元</div>
+            </a>
+            <a href="/depart/listDetail" class="m-list">
+                <h3>2017年08月01日   11:09 <span>进行中</span></h3>
+                <div class="target-name">尊贵铂金包上1星</div>
+                <div class="target-price"><span><em>¥</em>28</span><i>￥38</i>&nbsp;&nbsp;抵用券减免10元</div>
+            </a>
         </div>
-        <div class="list-box">
-            
+        <div class="list-box" v-if="isCur==2">
+            <div class="m-list">
+                <h3>2017年08月01日   11:09 <span>已完成</span></h3>
+                <div class="target-name">尊贵铂金包上1星</div>
+                <div class="target-price"><span><em>¥</em>28</span><i>￥38</i>&nbsp;&nbsp;抵用券减免10元</div>
+                <a href="/depart/listScore" class="score">立即评价</a>
+            </div>
+            <div class="m-list">
+                <h3>2017年08月01日   11:09 <span>已完成</span></h3>
+                <div class="target-name">尊贵铂金包上1星</div>
+                <div class="target-price"><span><em>¥</em>28</span><i>￥38</i>&nbsp;&nbsp;抵用券减免10元</div>
+                <a href="">已评价</a>
+            </div>
         </div>
     </div>
 </div>
@@ -38,7 +61,8 @@ var list = new Vue({
     el: '#list',
     delimiters: ['${', '}'],
     data:{
-        
+        tab:["待发车","已发车","已完成"],
+        isCur:0,
     },
     mounted: function () {
         this.$nextTick(function () {
@@ -46,7 +70,11 @@ var list = new Vue({
         })
     },
     methods:{
-        
+        switchCash:function(index,value){
+            var _this = this;
+            _this.isCur = index;
+            _this.payCash = value;
+        },
     }  
 })
 </script>

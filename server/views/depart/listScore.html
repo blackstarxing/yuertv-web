@@ -1,0 +1,50 @@
+{% extends 'depart/layout.html' %} 
+
+{% block css %}
+<link rel="stylesheet" href="/depart/css/list.css">
+{% endblock %}
+
+{% block content %}
+<div class="g-bd" id="listScore" v-cloak>
+    <div class="list-box">
+        <div class="m-list">
+            <h3>2017年08月01日   11:09 <span>进行中</span></h3>
+            <div class="target-name">尊贵铂金包上1星</div>
+            <div class="target-price"><span><em>¥</em>28</span><i>￥38</i>&nbsp;&nbsp;抵用券减免10元</div>
+            <div class="score-box">
+                <p>对此次发车进行评价</p>
+                <ul>
+                    <li v-for="(item,index) in score" :class="{active:isCur==index}" @click='switchCash(index,item)'>${item}</li>
+                </ul>
+            </div>
+        </div> 
+    </div>	
+	<button class="u-btn-confirm">确认并提交</button>
+</div>
+{% include 'depart/footer.html' %}
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+var listScore = new Vue({
+    el: '#listScore',
+    delimiters: ['${', '}'],
+    data:{
+        score:["非常满意","基本满意","不太满意","很不满意"],
+        isCur:0,
+    },
+    mounted: function () {
+        this.$nextTick(function () {
+            
+        })
+    },
+    methods:{
+        switchCash:function(index,value){
+            var _this = this;
+            _this.isCur = index;
+            _this.payCash = value;
+        },
+    }  
+})
+</script>
+{% endblock %}

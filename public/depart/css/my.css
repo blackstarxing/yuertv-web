@@ -25,7 +25,7 @@
 }
 .g-lst{
 	margin:0 0.266667rem;
-	border:2px solid #33303f;
+	border:0.026667rem solid #33303f;
 	border-radius: 0.053333rem;
 }
 .m-lst{
@@ -35,17 +35,27 @@
 	color:#dfbb73;
 }
 .m-lst .lst-item{
+	position: relative;
 	margin-left: 1.173333rem;
-	border-bottom:2px solid #33303f;
+	height: 100%;
+	line-height: 1.173333rem;
+	border-bottom:0.026667rem solid #33303f;
 	background:url(../images/arrow.png) 97% center no-repeat;
 	background-size: 0.226667rem 0.373333rem;
 	font-size: 0.453333rem;
+	box-sizing: border-box;
 }
 .m-lst .lst-item span{
-	float: right;
-	margin-right: 10%;
+	position: absolute;
+	right: 10%;
+	/*float: right;
+	margin-right: 10%;*/
 	color:#786f57;
 	font-size: 0.373333rem;
+	line-height: normal;
+	top: 51%;
+	transform: translate(0,-50%);
+	/*line-height: 1.173333rem;*/
 }
 .m-lst .lst-item em{
 	color:#786f57;
@@ -138,4 +148,10 @@
 }
 .g-recharge input{
 	margin-bottom: 0.533333rem;
+}
+/*陪练*/
+.my-title{
+	font-size: 0.346667rem;
+	color:rgba(255,255,255,0.3);
+	margin-bottom: 0.266667rem;
 }
