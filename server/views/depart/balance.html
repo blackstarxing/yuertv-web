@@ -8,7 +8,7 @@
 <div class="g-bd" id="balance" v-cloak>
 	<div class="m-balance">
 		当前余额：
-		<div class="money"><em>¥</em>288</div>
+		<div class="money"><em>¥</em>${balance}</div>
 	</div>
 	<a href="/depart/recharge" class="u-btn-confirm">充值</a>
 </div>
@@ -21,11 +21,26 @@ var balance = new Vue({
     el: '#balance',
     delimiters: ['${', '}'],
     data:{
-        
+        balance:''
     },
     mounted: function () {
         this.$nextTick(function () {
-            
+            var _this = this;
+            $.ajax({
+                url: '/departapi/driverschool/userInfo?userId=1000100',
+                type: 'get',
+                dataType:'json',
+                crossDomain:true,
+                xhrFields: {
+                    withCredentials: true,
+                },
+                success: function(data) {
+                    _this.balance = data.object.balance;
+                },
+                error: function() {
+
+                }
+            });
         })
     },
     methods:{

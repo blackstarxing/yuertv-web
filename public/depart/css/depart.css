@@ -120,6 +120,9 @@ input:-ms-input-placeholder{font-size:0.4rem;color:#7b7484;}         /* IE浏览
 	background-size:cover;
 	color:#4d250e;
 }
+.select-ul li.disabled{
+	opacity: 0.5;
+}
 
 /*font*/
 .fs-24{font-size: 0.32rem;}

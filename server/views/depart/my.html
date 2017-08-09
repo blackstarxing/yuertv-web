@@ -7,24 +7,24 @@
 {% block content %}
 <div class="g-bd" id="my" v-cloak>
 	<div class="g-hd">
-		<img src="/depart/images/my_bg.png" alt="">
-		<p>无情老提莫</p>
-		<p class="my-id">ID：12138</p>
+		<img v-bind:src="user_info.icon" alt="">
+		<p>${user_info.nickname}</p>
+		<p class="my-id">ID：${user_info.id}</p>
 	</div>
 	<div class="g-lst">
 		<a href="/depart/balance" class="m-lst">
-			<i class="my-balance"></i><div class="lst-item">余额：<em>¥288</em><span>申请提现</span></div>
+			<i class="my-balance"></i><div class="lst-item">余额：<em>¥${user_info.balance}</em><span>申请提现</span></div>
 		</a>
 		<div class="m-lst">
-			<i class="my-tel"></i><div class="lst-item">手机号<span>立即绑定</span></div>
+			<i class="my-tel"></i><div class="lst-item">手机号<em>&nbsp;${user_info.mobile}</em><span v-if="!user_info.mobile">立即绑定</span></div>
 		</div>
-		<div class="m-lst">
+		<a href="/depart/myArea" class="m-lst" v-if="user_info.user_type==2">
 			<i class="my-area"></i><div class="lst-item">接单范围<span>请选择</span></div>
-		</div>
-		<a href="/depart/myTime" class="m-lst">
+		</a>
+		<a href="/depart/myTime" class="m-lst" v-if="user_info.user_type==2">
 			<i class="my-time"></i><div class="lst-item">陪练时间段<span>已选择</span></div>
 		</a>
-		<div class="m-lst">
+		<div class="m-lst" v-if="user_info.user_type==2">
 			<i class="my-list"></i><div class="lst-item">订单消息</div>
 		</div>
 	</div>
@@ -38,11 +38,29 @@ var my = new Vue({
     el: '#my',
     delimiters: ['${', '}'],
     data:{
-        
+        user_info:'',
     },
     mounted: function () {
         this.$nextTick(function () {
-            
+            var _this = this;
+            $.ajax({
+                url: '/departapi/driverschool/userInfo?userId=1000100',
+                type: 'get',
+                dataType:'json',
+                crossDomain:true,
+                xhrFields: {
+                    withCredentials: true,
+                },
+                success: function(data) {
+                    _this.user_info = data.object;
+                    window.localStorage.setItem("depart_id", data.object.id);
+                    window.localStorage.setItem("depart_icon", data.object.icon);
+                    window.localStorage.setItem("depart_nickname",data.object.nickname);
+                },
+                error: function() {
+
+                }
+            });
         })
     },
     methods:{
