@@ -33,32 +33,254 @@
 	width: 100%;
 	min-height: 3.2rem; /*240*/
 }
+.u-region-weChat,.u-region-QQ{
+	position: relative;
+	padding-left: 0.986667rem; /*74*/
+	text-align: left!important;
+}
+.u-region-QQ{
+	padding-left: 0.893333rem; /*67*/
+	text-align: left;
+}
+.u-region-weChat i,.u-region-QQ i{
+	display: block;
+	position: absolute;
+	left:0.4rem;
+	top:0.213333rem;  /*16*/
+	color:#dfbb73;
+	font-size: 0.346667rem;
+}
+.u-region-weChat i{
+	width: 0.453333rem;  /*34*/
+	height: 0.36rem;   /*27*/
+	background-size:0.453333rem 0.36rem;
+	background: url('../images/depart_weChat.png') no-repeat;
+}
+.u-region-QQ i{
+	width: 0.36rem;  /*27*/
+	height: 0.373333rem;   /*28*/
+	background: url('../images/QQ.png') no-repeat;
+	background-size:0.36rem 0.373333rem;
+}
+/*选中状态*/
+.u-region-weChat.active,.u-region-QQ.active{
+	color:#4d250e;
+}
+.u-region-weChat.active i{
+	background-size:0.453333rem 0.36rem;
+	background: url('../images/weChat_active.png') no-repeat;
+}
+.u-region-QQ.active i{
+	background: url('../images/QQ_active.png') no-repeat;
+	background-size:0.36rem 0.373333rem;
+}
+
 .m-segment{
 	width: 100%;
 	min-height: 4.24rem; /*318*/
 }
-.m-departType{}
-.m-contact{}
+.m-departType{
+	position: relative;
+}
+.u-departType{
+	max-width: 2.666667rem;
+	box-sizing: border-box;
+}
+.u-departType-choose{
+	position: absolute;
+	display: inline-block;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 0;
+	height: 0.4rem;
+	line-height: 0.426667rem;
+	font-size: 0.4rem;
+	color:#786d57;
+	box-sizing: border-box;
+}
+.departType-choose-box{
+	position: relative;
+	width: 100%;
+	height: 0.4rem;
+	line-height: 0.426667rem;
+	padding-right: 0.546667rem;  /*41*/
+	box-sizing: border-box;
+}
+.u-type-choose{
+	background: none;
+	max-width:2.666667rem;
+	height: 0.4rem;
+	line-height: 0.4rem;
+	margin-right: 0.186667rem;   /*14*/
+	text-align: right;
+}
+/*placeholder*/
+.u-type-choose::-webkit-input-placeholder{color:#786d57;}    /* 使用webkit内核的浏览器 */
+.u-type-choose:-moz-placeholder{color:#786d57;}              /* Firefox版本4-18 */
+.u-type-choose::-moz-placeholder{color:#786d57;}             /* Firefox版本19+ */
+.u-type-choose:-ms-input-placeholder{color:#786d57;}         /* IE浏览器 */
+
+.departType-choose-box span{
+	margin-right: 0.186667rem;   /*14*/
+}
+.departType-choose-box i{
+	position: absolute;
+	display: inline-block;
+	top: 48%;
+	right: 0.266667rem;   /*20*/
+	width: 0.226667rem;  /*17*/
+	height: 0.373333rem;  /*28*/
+	transform: translateY(-48%);
+	background: url(../images/arrow.png) no-repeat;
+	background-size:0.226667rem  0.373333rem;
+}
+.m-contact{
+	width: 100%;
+	min-height: 4.586667rem;   /*344*/
+}
 .u-contact-weChat{
+	position: relative;
 	margin-bottom: 0.266667rem;
 }
-.u-contact-weChat::before{
+.u-contact-weChat:before{
 	position: absolute;
-	left:0;
-	content:'0000';
+	left:0.266667rem;
+	top:0.266667rem;
+	width: 0.546667rem;   /*41*/
+	height: 0.466667rem;   /*35*/
+	content:'';
 	background: url('../images/weChat.png');
+	background-size:0.546667rem 0.466667rem;
+}
+.contact-weChat-ipt{
+	text-indent: 1.066667rem;
+}
+.u-contact-phone{
+	position: relative;
+}
+.u-contact-phone:before{
+	position: absolute;
+	left:0.426667rem;
+	top:0.253333rem;
+	width: 0.333333rem;   /*25*/
+	height: 0.493333rem;   /*37*/
+	content:'';
+	background: url('../images/depart_phone.png');
+	background-size:0.333333rem 0.493333rem;
+}
+.contact-phone-ipt{
+	text-indent: 1.066667rem;
 }
 .m-coupon{
-	
+	position: relative;
 }
 
 .m-departTime{
-
+	position: relative;
 }
-
+.m-orderNote{
+	width: 100%;
+	height: 0.373333rem;   /*28*/
+	line-height: 0.373333rem;
+	margin-top: 0.426667rem;  /*32*/
+	text-align: center;
+}
+.u-orderNote{
+	display: inline-block;
+	height: 0.373333rem;
+	border-bottom: 0.026667rem solid #dfbb73;
+	color:#dfbb73;
+}
 #departure .g-foot{
 	width: 100%;
 	height: 1.6rem; /*120*/
 	line-height: 1.6rem;
-	margin: 0.746667rem 0 1.066667rem;   /*56 80*/
+	margin: 0.746667rem 0 2.373333rem;   /*56 178*/
+	padding-left: 0.266667rem;
+	background: #242332;
+	box-sizing: border-box;
 } 
+.departure-cash{
+	margin-left: 0.266667rem;
+}
+.departure-pay-btn{
+	display: inline-block;
+	width: 3.306667rem;  /*248*/
+	height: 100%;
+	font-size: 0.453333rem;  /*34*/
+	color:#3a2913;
+	background: #ceb077;
+	text-align: center;
+	font-weight: 400;
+}
+.g-order-mask{
+	position: fixed;
+	width: 100%;
+	height:100%;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+	cursor: pointer;
+	z-index: 999;
+    background: rgba(0,0,0,0.5);
+    font-size: 0.4rem;
+}
+.g-order-mask .m-order-mask{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	width: 7.2rem;   /*540*/
+	min-height: 9.066667rem;  /*680px*/
+	border-radius: 0.08rem;  /*6*/
+	border:0.026667rem solid #71605b;
+	background:#131128;
+	box-sizing: border-box;
+	text-align: center;
+}
+.order-mask-box{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding: 0.826667rem 0.4rem 0 0.8rem;   /*62 30 60*/
+	box-sizing: border-box;
+}
+.order-mask-head{
+	position: absolute;
+	top: 0;
+	left: 50%;
+	display: block;
+	width: 4.453333rem;  /*334*/
+	height: 0.84rem;    /*63*/
+	transform: translate(-50%,-50%);
+	background: url('../images/orderNote.png') no-repeat;
+	background-size:4.453333rem 0.84rem; 
+}
+.m-order-mask .m-order-ul{
+	/*list-style-type:disc; */
+	color:#dfbb73;
+	font-size: 0.373333rem;
+	text-align: left;
+	margin-bottom: 0.64rem;
+}
+.m-order-mask .m-order-ul li{
+	width: 100%;
+	min-height: 0.426667rem;
+	line-height: 1.4;
+	list-style-type:disc;
+	list-style-position: normal; 
+	margin-bottom: 0.133333rem: 
+	margin-left:-0.066667rem;
+}
+.order-mask-btn{
+	width: 3.84rem;    /*288*/
+	height: 0.8rem;  /*60*/
+	border:none;
+	border-radius: 0.053333rem;
+	font-size: 0.373333rem;
+	color:#3a2913;
+	background: #ceb077;
+	text-align: center;
+}

@@ -105,7 +105,7 @@ input:-ms-input-placeholder{font-size:0.4rem;color:#7b7484;}         /* IE浏览
 	border:0.026667rem solid #71605b;
 	border-radius: 0.053333rem;
 	font-size: 0.346667rem;
-	color:#71605b;
+	color:#dfbb73;
 	font-weight: bold;
 	text-align: center;
 	box-sizing: border-box;
@@ -122,16 +122,22 @@ input:-ms-input-placeholder{font-size:0.4rem;color:#7b7484;}         /* IE浏览
 }
 
 /*font*/
-.fs-24{font-size: 0.32rem}
-
+.fs-24{font-size: 0.32rem;}
+.fs-30{font-size: 0.4rem;}
+.fs-32{font-size: 0.426667rem;}
+.fs-40{font-size: 0.533333rem;}
 /*color*/
 /*浅黄色*/
 .fc-ly{color:#dfbb73;}
+/*淡黄色*/
+.fc-dy{color:#786d57;}
 /*暗灰色*/
 .fc-dg{color:#645d55;}
 
 /*background*/
 .bgc-grey{background-color:#28283b;}
+/*开车灰*/
+.bgc-depart{background-color: #131128;}
 
 /*footer样式*/
 footer{
