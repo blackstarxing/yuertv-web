@@ -1,6 +1,7 @@
 {% extends 'depart/layout.html' %} 
 
 {% block css %}
+<link rel="stylesheet" href="/css/MultiPicker.css">
 <link rel="stylesheet" href="/depart/css/departure.css">
 {% endblock %}
 {% block content %}
@@ -9,52 +10,191 @@
 	<div class="g-box fs-24">
 		<div class="g-box-item">
 			<!-- 我的区服 -->
-			<div class="m-region">
+			<div class="m-region bgc-depart">
 				<h3 class="m-title">我的区服</h3>
 		        <ul class="select-ul f-cb">
-		            <li>微信区</li>
-		            <li>QQ区</li>
+		            <li class="u-region-weChat active" @click='weChatRegion'>
+		            	<i></i>微信区
+		            </li>
+		            <li class="u-region-QQ" @click='QQRegion'>
+		            	<i></i>QQ区
+		            </li>
 		        </ul>
 			</div>
 			<!-- 我的段位 -->
-			<div class="m-segment">
+			<div class="m-segment bgc-depart">
 				<h3 class="m-title">我的段位</h3>
-		        <ul class="select-ul f-cb">
-		            <li>尊贵铂金</li>
-		            <li>至尊星耀</li>
-		            <li>永恒钻石</li>
-		            <li>尊贵铂金</li>
-		            <li>荣耀黄金</li>
+		        <ul class="select-ul f-cb" >
+		            <li v-for='(segmentlist,index) in segmentList' :id='segmentlist.id' :class="{active:isCur==index}" @click='switchSegment(index)'>${segmentlist.segment}</li>
 		        </ul>
 			</div>
 			<!-- 开车类型 -->
-			<div class="m-departType">
-				<h3 class="m-title">开车类型</h3>
+			<div class="m-departType bgc-depart ">
+				<div class="m-title u-departType">
+					<span>开车类型</span>
+					<div class="u-departType-choose">
+						<div  class="departType-choose-box" @click='TypeChoose'>
+							<!-- <span>请选择</span> -->
+							<i></i>
+							<input id="targetInput" class="u-type-choose" type="text" readonly placeholder="请选择">
+						</div>
+
+					</div>
+				</div>
 			</div>
 			<!-- 联系方式 -->
-			<div class="m-contact">
+			<div class="m-contact bgc-depart">
 				<h3 class="m-title">联系方式</h3>
-				<input class="u-contact-weChat" type="text" placeholder="输入金额">
-				<input class="u-contact-phone" type="text" placeholder="输入金额">
+				<div class="u-contact-weChat">
+					<input class="contact-weChat-ipt" type="text" placeholder="请输入你的微信号">
+				</div>
+				<div class="u-contact-phone">
+					<input class="contact-phone-ipt" type="text" placeholder="请输入手机号">
+				</div>
 			</div>
 			<!-- 抵用卷 -->
-			<div class="m-coupon">
-				<h3 class="m-title">抵用卷</h3>
+			<div class="m-coupon bgc-depart">
+				<div class="m-title u-departType">
+					<span>抵用卷</span>
+					<div class="u-departType-choose">
+						<div class="departType-choose-box">
+							<span>3张可选用抵用卷</span>
+							<i></i>
+						</div>
+					</div>
+				</div>
 			</div>
 			<!-- 开车时间 -->
-			<div class="m-departTime">
-				<h3 class="m-title">开车时间</h3>
+			<div class="m-departTime bgc-depart">
+				<div class="m-title u-departType">
+					<span>开车时间</span>
+					<div class="u-departType-choose">
+						<div  class="departType-choose-box">
+							<i></i>
+							<input id="targetInputType" class="u-type-choose" type="text" readonly placeholder="请选择">
+						</div>
+					</div>
+				</div>
 			</div>
 			<!-- 下单须知 -->
 			<div class="m-orderNote">
-				<span>已经阅读</span>
-				<div>荣耀驾校下单须知</div>
+				<span class="fc-dy fs-28">已阅读</span>
+				<div class="u-orderNote" @click='orderNote'>荣耀驾校下单须知</div>
 			</div>	
 		</div>
-		<div class="g-foot">
-			<span>合计:</span><span>288¥</span><span>支付酬劳</span>
+		<div class="g-foot f-cb">
+			<span class="fs-32 fc-dy">合计:</span><span class="fs-40 fc-ly departure-cash">288¥</span><a class="departure-pay-btn f-fr">支付酬劳</a>
 		</div>
 	</div>
+	<!-- 下单须知弹框 -->
+	<div class="g-order-mask" v-if='ordermask'>
+		<div class="m-order-mask">
+			<div class="order-mask-box">
+				<i class="order-mask-head"></i>
+				<ul class="m-order-ul">
+					<li>1.乘客购买车票时应安排好时间,未在约定时间上车,车票不退不换</li>
+					<li>2.乘客应文明乘车,不得在游戏过程中对司机进行言语辱骂行为</li>
+					<li>3.如发车期间,司机带乘客输了两局及以上,将免费赠送乘客车票直至上分为止;</li>
+					<li>4.发车过程中,司机只负责陪练并保证胜率,如乘客有其他额外需求,司机有权拒绝乘客要求</li>
+					<li>5.如发车过程中,司机长时间挂机或掉线,本次发车免单且赔付1张车票</li>
+				</ul>
+				<button class="order-mask-btn" @click='orderClose'>我知道了</button>
+			</div>
+		</div>
+	</div>
+	<div id='targetContainer'></div>
+	<div id='targetContainerType'></div>
 </div>
 {% include 'depart/footer.html' %}
+{% endblock %}
+
+{% block js %}
+<script src='/MultiPicker.js'></script>
+<script type="text/javascript">
+var departure = new Vue({
+    el: '#departure',
+    delimiters: ['${', '}'],
+    data:{
+    	//下单弹框
+        ordermask:false,
+        //tab当前位置
+	    isCur:0,
+	    //段位
+	    segmentList:[{segment:'最强王者'},{segment:'至尊星耀'},{segment:'永恒钻石'},{segment:'尊贵铂金'},{segment:'荣耀黄金'},{segment:'垃圾青铜'},],
+    },
+    mounted: function () {
+        this.$nextTick(function () {
+        	//时长分钟
+            new MultiPicker({
+	            "input":"targetInput",
+	            "container":"targetContainer",
+	            "jsonData":[
+	              {
+	                'id':1,
+	                'value':'包时长',
+	                'child':[{'id':1,'value':'1局'},{'id':2,'value':'一小时'},{'id':3,'value':'两小时'}]
+	              },
+	              {
+	                'id':2,
+	                'value':'包上星',
+	                'child':[{'id':1,'value':'1星'},{'id':2,'value':'2星'},{'id':3,'value':'3星'},{'id':4,'value':'4星'},{'id':5,'value':'5星'}]
+	              },
+	            ],
+	            "success":function(arr){
+	                console.log(arr);
+	                $('#targetInput').val(arr[1].value);
+	            }
+	        });
+	        // 开车时间
+	        new MultiPicker({
+	            "input":"targetInputType",
+	            "container":"targetContainerType",
+	            "jsonData":[
+	              {
+	                'id':1,
+	                'value':'开车时间',
+	                'child':[{'id':1,'value':'9:00'},{'id':2,'value':'9:30'},{'id':3,'value':'10：00'}]
+	              },
+	            ],
+	            "success":function(arr){
+	                console.log(arr);
+	                $('#targetInputType').val(arr[1].value);
+	            }
+	        });
+        })
+    },
+    methods:{
+    	//区服－微信
+    	weChatRegion:function(){
+    		$('.u-region-weChat').addClass('active');
+    		$('.u-region-QQ').removeClass('active');
+    	},
+    	//区服－QQ
+    	QQRegion:function(){
+    		$('.u-region-QQ').addClass('active');
+    		$('.u-region-weChat').removeClass('active');
+    	},
+    	// 段位切换
+    	switchSegment:function(index){
+	    	var _this = this;
+	    	_this.isCur = index;
+       	},
+       	//开车类型选择
+       	TypeChoose:function(){
+
+       	},
+        // 下单须知
+        orderNote:function(){
+        	console.log('点击了');
+        	var _this = this;
+        	_this.ordermask = true;
+        },
+        // 下单须知弹框关闭
+        orderClose:function(){
+        	var _this = this;
+        	_this.ordermask = false;
+        }
+    }  
+})
+</script>
 {% endblock %}
