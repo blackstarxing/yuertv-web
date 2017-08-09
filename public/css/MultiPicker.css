@@ -107,10 +107,10 @@
 }
 
 .multi-picker-content li {
-    height: 0.986667rem;
+    height: 1.0rem;   /*75*/
     text-align: center;
     font-size: 0.4rem;
-    line-height: 0.986667rem;
+    line-height: 1.0rem;
     list-style: none;
     color: #333;
     overflow: hidden;
@@ -139,7 +139,7 @@
 
 .multi-picker-content .multi-picker-line {
     width: 95%;
-    height: 0.986667rem;
+    height: 1.0rem;
     position: absolute;
     top: 0.986667rem;
     left: 50%;

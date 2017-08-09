@@ -1,0 +1,175 @@
+/* 两列右侧自适应布局 */
+.g-sd1{position:relative;float:left;width:1.6rem;margin-right:-1.6rem;}
+.g-mn1{float:right;width:100%;}
+.g-mn1c{margin-left:1.733333rem;}
+
+/*placeholder*/
+.phone-number-ipt,.code-number-ipt::-webkit-input-placeholder{color:#7b7484;}    /* 使用webkit内核的浏览器 */
+.phone-number-ipt,.code-number-ipt:-moz-placeholder{color:#7b7484;}              /* Firefox版本4-18 */
+.phone-number-ipt,.code-number-ipt::-moz-placeholder{color:#7b7484;}             /* Firefox版本19+ */
+.phone-number-ipt,.code-number-ipt:-ms-input-placeholder{color:#7b7484;}         /* IE浏览器 */
+
+/*不被点击*/
+.disabled{
+	cursor: not-allowed;
+}
+
+.g-messageLog{
+	width: 100%;
+	height: 100%;
+	padding: 0.4rem 0.266667rem 0;   /*30 20*/
+	box-sizing: border-box;
+}
+#bindPhone .g-box{
+	width: 100%;
+	height: 3.36rem;   /*252*/
+	padding: 0.533333rem 0.266667rem;
+	border-radius:0.053333rem; /*4*/
+	border:0.026667rem solid #33303f;
+	background: #131128;
+	box-sizing: border-box;
+}
+.m-phone-number,.m-phone-code{
+	width: 100%;
+	height: 1.013333rem;
+	line-height: 1.013333rem;
+	color:#dfbb73;
+}
+.phone-error-clue{
+	width: 100%;
+	height: 0.266667rem;
+	/*margin: 0.133333rem 0 0.213333rem;*/
+}
+.phone-number-ipt{
+	width: 7.2rem;
+	border:none;
+	color:#ffffff;
+	opacity: 0.8;
+	filter:alpha(opacity=80);
+	box-sizing: border-box;
+}
+.code-number-ipt{
+	width: 4.453333rem;  /*334*/
+	border:none;
+	color:#ffffff;
+	opacity: 0.8;
+	filter:alpha(opacity=80);
+	box-sizing: border-box;
+}
+.u-phone-number,.u-phone-code{
+	height: 1.013333rem;
+	line-height: 1.013333rem;
+}
+.u-getCode-box{
+	position: relative;
+}
+.u-getCode{
+	position: absolute;
+	width: 2.48rem; /*186*/
+	height: 100%;
+	margin-left: 0.266667rem;
+    border-radius: 0.053333rem;
+    border:0.026667rem solid #ceb077;
+    color: #ceb077;
+    font-size: 0.373333rem;
+}
+.code-error-clue{
+	height: 0.533333rem;
+	line-height: 0.533333rem;
+	margin-left: 1.733333rem;
+	font-size: 0.32rem;
+	color:#ab3647;
+}
+.messagesLog-btn{
+	width: 9.066667rem;
+}
+/*图形验证码*/
+.g-checkCodeMask{
+	background: rgba(0,0,0,0.5);
+	width: 100%;
+	height:100%;
+	text-align: center;
+	color:#fff;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	margin:auto;
+	/*display: none;*/
+	z-index: 999;
+}
+.g-checkCode{
+	position: fixed;
+	top:45%;
+	left:50%;
+	width: 6.4rem;  /*480*/
+	height: 4.933333rem;  /*370*/
+	transform:translate(-50%,-50%);
+	text-align: left;
+	box-sizing: border-box;
+	border-radius: 0.266667rem;
+	z-index:9999;
+	background: #131128;
+}
+.g-checkCode-box{
+	width: 100%;
+	height: 3.866667rem;
+	padding: 0.426667rem 0.533333rem 0;  /*32  40*/
+	box-sizing: border-box;
+}
+.codeError{
+	width: 100%;
+	height: 0.453333rem;
+	text-align: left;
+	color:#ab3647;
+}
+.g-checkCode.active{
+	display: none;
+}
+.g-checkCode .m-Content{
+	width:100%;
+	height: 0.373333rem;
+	margin-bottom: 0.4rem;
+	text-align: center;
+	line-height: 0.373333rem;
+	font-size: 0.373333rem;
+	color:#fff;
+	opacity: 0.5;
+	filter:alpha(opacity=50);
+}
+.m-code-ipt{
+	width: 100%;
+	height: 2.213333rem;  /*166*/
+	text-align: center;
+}
+ .u-code-ipt{
+	width: 100%;
+	height: 1.013333rem;
+	line-height: 1.013333rem;
+	border-radius: 0.08rem;
+}
+.u-codeImg{
+	width: 1.866667rem;
+	height: 0.8rem;
+	margin-bottom: 0.4rem;
+}
+.m-codeBtn{
+	width: 100%;
+	height: 1.066667rem;  /*80*/
+	border-top:0.026667rem solid #33303f;
+	font-size: 0;
+}
+.m-codeBtn button{
+	width: 3.2rem;
+	height: 1.066667rem;
+	font-size: 0.4rem;
+	color:#ceb077;
+	box-sizing: border-box;	
+}
+.codeCancel{
+	border-right: 0.013333rem solid #33303f;
+}
+.codeConfirm{
+	border-left:0.013333rem solid #33303f;
+}

@@ -1,0 +1,50 @@
+{% extends 'depart/layout.html' %} 
+
+{% block css %}
+<link rel="stylesheet" href="/depart/css/coupon.css">
+{% endblock %}
+
+{% block content %}
+<div class="g-bd" id="coupon" v-cloak>
+	<div class="g-box">
+        <div class="g-hd active">
+            <i></i>
+            <span>不使用抵用劵</span>
+        </div>
+        <div class="g-mn active">
+             <div class="g-mnc f-fl">
+                 <i></i><span>满18元可用</span>
+                 <p>用于全部订单</p>
+             </div>
+             <div class="g-mnc-fr f-fr">
+                 <span class="m-mnc-fr">¥</span><span class="coupon-cash">8</span>
+             </div>
+             <div class="g-mn-btm f-cb">
+                 <span class="u-coupon-time">2017-07-25&nbsp;到期</span>
+                 <span class="u-coupon-status f-fr">可使用</span>
+             </div>
+        </div>
+    </div>
+</div>
+{% include 'depart/footer.html' %}
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+var coupon = new Vue({
+    el: '#coupon',
+    delimiters: ['${', '}'],
+    data:{
+        
+    },
+    mounted: function () {
+        this.$nextTick(function () {
+            
+        })
+    },
+    methods:{
+        
+    }  
+})
+</script>
+{% endblock %}

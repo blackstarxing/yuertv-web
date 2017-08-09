@@ -1872,6 +1872,16 @@ router.get('/depart/my', function(req, res, next) {
    res.render('depart/my', { title: '我的',index:2 });
 });
 
+// 荣耀驾校－抵用劵
+router.get('/depart/coupon', function(req, res, next) {
+   res.render('depart/coupon', { title: '抵用卷' });
+});
+
+// 荣耀驾校－绑定手机号
+router.get('/depart/bindPhone', function(req, res, next) {
+   res.render('depart/bindPhone', { title: '绑定手机号' });
+});
+
 // 账户余额
 router.get('/depart/balance', function(req, res, next) {
    res.render('depart/balance', { title: '账户余额',index:2 });

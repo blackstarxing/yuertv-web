@@ -36,7 +36,7 @@
 						<div  class="departType-choose-box" @click='TypeChoose'>
 							<!-- <span>请选择</span> -->
 							<i></i>
-							<input id="targetInput" class="u-type-choose" type="text" readonly placeholder="请选择">
+							<span id="targetInputText">请选择</span>
 						</div>
 
 					</div>
@@ -58,7 +58,7 @@
 					<span>抵用卷</span>
 					<div class="u-departType-choose">
 						<div class="departType-choose-box">
-							<span>3张可选用抵用卷</span>
+							<span @click='couponPage'>3张可选用抵用卷</span>
 							<i></i>
 						</div>
 					</div>
@@ -71,7 +71,7 @@
 					<div class="u-departType-choose">
 						<div  class="departType-choose-box">
 							<i></i>
-							<input id="targetInputType" class="u-type-choose" type="text" readonly placeholder="请选择">
+							<span id="targetInputTime">请选择</span>
 						</div>
 					</div>
 				</div>
@@ -102,8 +102,18 @@
 			</div>
 		</div>
 	</div>
+	<!-- 支付成功弹框 -->
+	<div class="g-clue-mask" v-show='paySuccessMask'>
+		<div class="g-clue-box">
+			<div class="m-clue-box">
+				<i class="clue-mask-close" @click='payCloseMask'></i>
+				<img src="/depart/images/withdrawSuccess.png" alt="没有图片">
+				<div class="u-pay-text">提交成功</div>
+			</div>
+		</div>
+	</div>
 	<div id='targetContainer'></div>
-	<div id='targetContainerType'></div>
+	<div id='targetContainerTime'></div>
 </div>
 {% include 'depart/footer.html' %}
 {% endblock %}
@@ -121,12 +131,14 @@ var departure = new Vue({
 	    isCur:0,
 	    //段位
 	    segmentList:[{segment:'最强王者'},{segment:'至尊星耀'},{segment:'永恒钻石'},{segment:'尊贵铂金'},{segment:'荣耀黄金'},{segment:'垃圾青铜'},],
+   		//支付成功弹框
+   		paySuccessMask:false,
     },
     mounted: function () {
         this.$nextTick(function () {
-        	//时长分钟
+        	//选择类型
             new MultiPicker({
-	            "input":"targetInput",
+	            "input":"targetInputText",
 	            "container":"targetContainer",
 	            "jsonData":[
 	              {
@@ -142,23 +154,32 @@ var departure = new Vue({
 	            ],
 	            "success":function(arr){
 	                console.log(arr);
-	                $('#targetInput').val(arr[1].value);
+	                $('#targetInputText').text(arr[0].value+arr[1].value);
 	            }
 	        });
 	        // 开车时间
 	        new MultiPicker({
-	            "input":"targetInputType",
-	            "container":"targetContainerType",
+	            "input":"targetInputTime",
+	            "container":"targetContainerTime",
 	            "jsonData":[
 	              {
 	                'id':1,
 	                'value':'开车时间',
-	                'child':[{'id':1,'value':'9:00'},{'id':2,'value':'9:30'},{'id':3,'value':'10：00'}]
+	                'child':[
+	                		  {'id':1,'value':'9:00'},{'id':2,'value':'9:30'},{'id':3,'value':'10:00'},{'id':4,'value':'10:30'},
+	                          {'id':5,'value':'11:00'},{'id':6,'value':'11:30'},{'id':7,'value':'12:00'},{'id':8,'value':'12:30'},
+	                          {'id':9,'value':'13:00'},{'id':10,'value':'13:30'},{'id':11,'value':'14:00'},{'id':12,'value':'14:30'},
+	                          {'id':13,'value':'15:00'},{'id':14,'value':'15:30'},{'id':15,'value':'16:00'},{'id':16,'value':'16:30'},
+	                          {'id':17,'value':'17:00'},{'id':18,'value':'17:30'},{'id':19,'value':'18:00'},{'id':20,'value':'18:30'},
+	                          {'id':21,'value':'19:00'},{'id':22,'value':'19:30'},{'id':23,'value':'20:00'},{'id':24,'value':'20:30'},
+	                          {'id':25,'value':'21:00'},{'id':26,'value':'21:30'},{'id':27,'value':'22:00'},{'id':28,'value':'22:30'},
+	                          {'id':29,'value':'23:00'},{'id':30,'value':'23:30'},{'id':31,'value':'24:00'}
+	                		]
 	              },
 	            ],
 	            "success":function(arr){
 	                console.log(arr);
-	                $('#targetInputType').val(arr[1].value);
+	                $('#targetInputTime').text(arr[1].value);
 	            }
 	        });
         })
@@ -182,6 +203,14 @@ var departure = new Vue({
        	//开车类型选择
        	TypeChoose:function(){
 
+       	},
+       	//跳到抵用劵
+       	couponPage:function(){
+       		window.location.href = '/depart/coupon';
+       	},
+       	payCloseMask:function(){
+       		var _this = this;
+       		_this.paySuccessMask = false;
        	},
         // 下单须知
         orderNote:function(){
