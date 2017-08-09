@@ -12,11 +12,13 @@
 	width: 100%;
 	padding: 0 0.266667rem;   /*20*/
 	box-sizing: border-box;
+
 }
 .m-region{
 	width: 100%;
-	height: 3.2rem; /*240*/
-
+	min-height: 3.2rem; /*240*/
+	border-radius:0.053333rem; /*4*/
+	border:0.026667rem solid #33303f;
 }
 #departure .g-foot{
 	width: 100%;
