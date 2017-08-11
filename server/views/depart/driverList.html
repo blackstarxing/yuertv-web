@@ -13,26 +13,18 @@
     </div>
     <div class="g-list" v-if="list">
         <div class="list-box" v-if="isCur==0">
-            <div class="m-list" v-for="list in list">
-                <h3>${list.order_date}<span>待发车</span></h3>
-                <div class="target-name">${list.level_name}包${list.order_type==1?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}</div>
-                <div class="target-price"><span><em>¥</em>${list.amount}</span><label for=""><i>￥${list.amount+list.discount}</i>&nbsp;&nbsp;抵用券减免${list.discount}元</label></div>
-            </div>
-        </div>
-        <div class="list-box" v-if="isCur==1">
-            <a v-bind:href="'/depart/listDetail?out_trade_no='+list.out_trade_no" class="m-list" v-for="list in list">
-                <h3>${list.order_date}<span>进行中</span></h3>
-                <div class="target-name">${list.level_name}包${list.order_type==1?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}</div>
-                <div class="target-price"><span><em>¥</em>${list.amount}</span><label for=""><i>￥${list.amount+list.discount}</i>&nbsp;&nbsp;抵用券减免${list.discount}元</label></div>
+            <a v-bind:href="'/depart/listDetail?out_trade_no='+list.out_trade_no" class="m-list driverList" v-for="list in list">
+                <h3>${list.order_date}<span class="driver">查看</span></h3>
+                <div class="target-name">${list.level_name}包${list.order_type==1?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}<span v-if="list.world==1">微信区</span><span v-else>QQ区</span></div>
+                <div class="target-price" :class="{drivePrice:user_type==2}"><span><em>¥</em>${list.amount}</span></div>
             </a>
         </div>
-        <div class="list-box" v-if="isCur==2">
+        <div class="list-box" v-if="isCur==1">
             <div class="m-list" v-for="list in list">
                 <h3>${list.order_date}<span>已完成</span></h3>
-                <div class="target-name">${list.level_name}包${list.order_type==1?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}</div>
-                <div class="target-price"><span><em>¥</em>${list.amount}</span><label for=""><i>￥${list.amount+list.discount}</i>&nbsp;&nbsp;抵用券减免${list.discount}元</label></div>
-                <a href="" v-if="list.graded">已评价</a>
-                <a v-bind:href="'/depart/listScore?out_trade_no='+list.out_trade_no" class="score" v-else>立即评价</a>
+                <div class="target-name">${list.level_name}包${list.order_type==1?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}<span v-if="list.world==1">微信区</span><span v-else>QQ区</span></div>
+                <div class="target-price" :class="{drivePrice:user_type==2}"><span><em>¥</em>${list.amount}</span></div>
+                <div class="rank">用户评分:${list.graded?rank[list.rank-1]:'暂无'}</div>
             </div>
         </div>
         <p v-show="islast" class="no-more">没有更多了</p>
@@ -41,7 +33,6 @@
         暂无订单
     </div>
 </div>
-{% include 'depart/footer.html' %}
 {% endblock %}
 
 {% block js %}
@@ -50,15 +41,18 @@ var list = new Vue({
     el: '#list',
     delimiters: ['${', '}'],
     data:{
-        tab:["待发车","已发车","已完成"],
+        tab:["进行中","已完成"],
+        rank:["A","B","C","D"],
         isCur:0,
         list:'',
         islast:0,
         page:1,
+        user_type:''
     },
     mounted: function () {
         this.$nextTick(function () {
             var _this = this;
+            _this.user_type = window.localStorage.getItem("depart_type");
             _this.getList(1,1);
             $(window).scroll(function(){ 
                 var totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop()); 

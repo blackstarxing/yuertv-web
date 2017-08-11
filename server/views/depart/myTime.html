@@ -13,9 +13,17 @@
             <li v-for="(item,index) in time" :class="{active:item.is_set}" @click='switchCash(index,item)'>${item.start_time}-${item.end_time}</li>
         </ul>
     </div>
-	<button class="u-btn-confirm">确认</button>
+	<button class="u-btn-confirm" @click="confirmTime">确认</button>
+    <div class="g-clue-mask" v-show='paySuccessMask'>
+        <div class="g-clue-box">
+            <div class="m-clue-box">
+                <i class="clue-mask-close" @click='payCloseMask'></i>
+                <img src="/depart/images/withdrawSuccess.png" alt="没有图片">
+                <div class="u-pay-text">提交成功</div>
+            </div>
+        </div>
+    </div>
 </div>
-{% include 'depart/footer.html' %}
 {% endblock %}
 
 {% block js %}
@@ -26,7 +34,8 @@ var recharge = new Vue({
     data:{
         time:'',
         isCur:0,
-        payCash:''
+        setTime:'',
+        paySuccessMask:false
     },
     mounted: function () {
         this.$nextTick(function () {
@@ -51,8 +60,47 @@ var recharge = new Vue({
     methods:{
         switchCash:function(index,value){
             var _this = this;
-            _this.isCur = index;
-            _this.payCash = value;
+            _this.time[index].is_set = !_this.time[index].is_set;
+        },
+        confirmTime:function(){
+            var _this = this;
+            _this.time.forEach(function(value,index){
+                if(value.is_set){
+                    if(_this.setTime==''){
+                        _this.setTime = value.id;
+                    }else{
+                        _this.setTime = _this.setTime+','+value.id;
+                    }
+                }
+            })
+            $.ajax({
+                url: '/departapi/driverschool/timeZoneListSubmit',
+                type: 'get',
+                data:{
+                    "userId":1000100,
+                    "timezoneIds":_this.setTime
+                },
+                dataType:'json',
+                crossDomain:true,
+                xhrFields: {
+                    withCredentials: true,
+                },
+                success: function(data) {
+                    if(data.code==0){
+                        _this.paySuccessMask = true;
+                        setTimeout(function(){
+                            window.location.href = '/depart/my';
+                        },2000);
+                    }
+                },
+                error: function() {
+
+                }
+            });
+        },
+        payCloseMask:function(){
+            var _this = this;
+            _this.paySuccessMask = false;
         },
     }  
 })

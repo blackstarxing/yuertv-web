@@ -243,12 +243,16 @@ footer ul li{
   border-radius: 0.266667rem;
   background: #131128;
   z-index:9999;
-  border: 0.026667rem solid #71505b;
+  border: 0.026667rem solid #71605b;
 }
 .m-clue-box{
   position: relative;
   width: 100%;
   height: 100%;
+}
+.m-clue-box h3{
+	font-size: 0.453333rem;
+	color:rgba(255,255,255,0.8);
 }
 .g-clue-box .clue-mask-close{
   position: absolute;
@@ -266,6 +270,14 @@ footer ul li{
   color:#fff;
   opacity: 0.5;
   filter:alpha(opacity=50);
+}
+.g-clue-box .phone-text{
+	font-size: 0.4rem;
+	color:rgba(255,255,255,0.5);
+	margin-top: 0.906667rem;
+}
+.widthdraw-tip{
+	padding-top: 0.666667rem;
 }
 
 

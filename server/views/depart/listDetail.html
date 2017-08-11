@@ -7,18 +7,20 @@
 {% block content %}
 <div class="g-bd" id="listScore" v-cloak>
     <div class="list-box">
-        <div class="m-list">
-            <h3>2017年08月01日   11:09 <span>进行中</span></h3>
-            <div class="target-name">尊贵铂金包上1星</div>
-            <div class="target-price"><span><em>¥</em>28</span><i>￥38</i>&nbsp;&nbsp;抵用券减免10元</div>
+        <div class="m-list" :class="{driverList:!list.discount}">
+            <h3>${list.order_date}<span>进行中</span></h3>
+            <div class="target-name">${list.level_name}包${list.order_type==1?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}<span v-if="list.world==1">微信区</span><span v-else-if="list.world==2">QQ区</span></div>
+            <div class="target-price" :class="{drivePrice:!list.discount}"><span><em>¥</em>${list.amount}</span><label for="" v-if="list.discount"><i>￥${list.amount+list.discount}</i>&nbsp;&nbsp;抵用券减免${list.discount}元</label></div>
             <div class="score-box">
-                <p class="mid">长按扫描二维码加入QQ讨论组发车</p>
-                <img src="/depart/images/my_bg.png" alt="">
+                <p class="mid">长按扫描二维码加入${list.group_type==1?'QQ讨论组':'微信群'}发车</p>
+                <img v-bind:src="list.group_qr_code" alt="">
             </div>
         </div> 
     </div>	
+    <div v-if="list.discount">
+        {% include 'depart/footer.html' %}
+    </div>
 </div>
-{% include 'depart/footer.html' %}
 {% endblock %}
 
 {% block js %}
@@ -29,13 +31,42 @@ var listScore = new Vue({
     data:{
         score:["非常满意","基本满意","不太满意","很不满意"],
         isCur:0,
+        list:''
     },
     mounted: function () {
         this.$nextTick(function () {
-            
+            var _this = this;
+            $.ajax({
+                url: '/departapi/driverschool/orderDetail',
+                type: 'get',
+                data:{
+                    "user_id":1000100,
+                    "out_trade_no":_this.getQueryString('out_trade_no')
+                },
+                dataType:'json',
+                crossDomain:true,
+                xhrFields: {
+                    withCredentials: true,
+                },
+                success: function(data) {
+                    _this.list = data.object;
+                },
+                error: function() {
+
+                }
+            });
         })
     },
     methods:{
+        // 获取url参数
+        getQueryString:function(name){
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        },
         switchCash:function(index,value){
             var _this = this;
             _this.isCur = index;

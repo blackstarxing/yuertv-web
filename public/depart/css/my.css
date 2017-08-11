@@ -57,6 +57,9 @@
 	transform: translate(0,-50%);
 	/*line-height: 1.173333rem;*/
 }
+.m-lst .lst-item span a{
+	color:#786f57;
+}
 .m-lst .lst-item em{
 	color:#786f57;
 	font-size: 0.373333rem;
@@ -154,4 +157,14 @@
 	font-size: 0.346667rem;
 	color:rgba(255,255,255,0.3);
 	margin-bottom: 0.266667rem;
+}
+.m-lst .lst-item span.orderTip{
+	width: 0.373333rem;
+	height: 0.373333rem;
+	line-height: 0.373333rem;
+	background: #cc3d58;
+	color:rgba(255,255,255,0.5);
+	font-size: 0.293333rem;
+	border-radius: 50%;
+	text-align: center;
 }
