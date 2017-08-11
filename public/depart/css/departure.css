@@ -1,13 +1,24 @@
+#departure{
+	width: 100%;
+	height: 100%;
+}
+#departure .departure{
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
 #departure .g-hd{
 	width: 100%;
 	height: 6.4rem;  /*480px*/
 	background: url(../images/depart_head.png);
 	background-size: 100% 6.4rem;
+	/*z-index: -1;*/
 }
 #departure .g-box{
 	position: absolute;
 	top:5.066667rem; /*380px*/
 	width: 100%;
+	/*z-index: -1;*/
 }
 #departure .g-box-item{
 	width: 100%;
@@ -290,4 +301,80 @@
 	color:#3a2913;
 	background: #ceb077;
 	text-align: center;
+}
+
+/*支付类型选择*/
+.g-payType-mask{
+	background: rgba(0,0,0,0.5);
+	width: 100%;
+	height:100%;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	margin:auto;
+	/*display: none;*/
+	z-index: 999;
+}
+.g-pay-type{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 4.0rem;
+	background: #fff;
+	z-index: 9999;
+}
+.pay-type-text{
+	width: 100%;
+	height: 1.333333rem;
+	line-height: 1.333333rem;
+	text-align: center;
+	font-size: 0.373333rem;
+	color:#333;
+	border-bottom: 0.013333rem solid #e6e6e6;
+}
+.pay-type-box{
+	width: 100%;
+	height: 100%;
+	padding-left: 0.4rem;
+	box-sizing: border-box;
+}
+.m-pay-type{
+	position: relative;
+	width: 100%;
+	height: 1.333333rem;
+	padding:0 0.4rem 0 1.146667rem; /*30 86*/
+	line-height: 1.333333rem;
+	font-size: 0.453333rem;
+	box-sizing: border-box;
+}
+.weChat-pay-icon,.balance-pay-icon{
+	display:block;
+	position: absolute;
+	top:50%;
+	left: 0;
+	transform: translateY(-50%);
+	width: 0.64rem;
+	height: 0.64rem;
+}
+.weChat-pay-icon{
+	background: url('../images/weChat_icon.png') no-repeat;
+	background-size:0.64rem 0.64rem;
+}
+.balance-pay-icon{
+	background: url('../images/balance_icon.png') no-repeat;
+	background-size:0.64rem 0.64rem;
+}
+.m-pay-balance{
+	border-top: 0.013333rem solid #e6e6e6;
+}
+.m-pay-balance.active{
+	opacity: 0.5;
+	filter:alpha(opacity=50); /*IE滤镜，透明度50%*/
+	color:#999;
+}
+.balance-notenough{
+	margin-left: 0.266667rem;  /*20*/
+	font-size: 0.426667rem;   /*32*/
 }
