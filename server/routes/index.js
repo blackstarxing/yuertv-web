@@ -1917,6 +1917,11 @@ router.get('/depart/myArea', function(req, res, next) {
    res.render('depart/myArea', { title: '接单范围' ,index:2 });
 });
 
+// 陪练订单列表
+router.get('/depart/driverList', function(req, res, next) {
+   res.render('depart/driverList', { title: '我的订单' ,index:2 });
+});
+
 
 
 module.exports = router;

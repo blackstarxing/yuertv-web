@@ -12,24 +12,43 @@
 		<p class="my-id">ID：${user_info.id}</p>
 	</div>
 	<div class="g-lst">
-		<a href="/depart/balance" class="m-lst">
-			<i class="my-balance"></i><div class="lst-item">余额：<em>¥${user_info.balance}</em><span>申请提现</span></div>
-		</a>
 		<div class="m-lst">
-			<i class="my-tel"></i><div class="lst-item">手机号<em>&nbsp;${user_info.mobile}</em><span v-if="!user_info.mobile">立即绑定</span></div>
+			<i class="my-balance"></i><div class="lst-item">余额：<em>¥${user_info.balance}</em><span v-if="user_info.user_type==1"><a href="/depart/balance">立即充值</a></span><span v-else @click="withdraw">申请提现</span></div>
+		</div>
+		<div class="m-lst" @click="phoneAttention">
+			<i class="my-tel"></i><div class="lst-item">手机号<em>&nbsp;${user_info.mobile}</em><span v-if="!user_info.mobile"><a href="">立即绑定</a></span></div>
 		</div>
 		<a href="/depart/myArea" class="m-lst" v-if="user_info.user_type==2">
-			<i class="my-area"></i><div class="lst-item">接单范围<span>请选择</span></div>
+			<i class="my-area"></i><div class="lst-item">接单范围<span v-if="user_info.is_range_set">已选择</span><span v-else>请选择</span></div>
 		</a>
 		<a href="/depart/myTime" class="m-lst" v-if="user_info.user_type==2">
-			<i class="my-time"></i><div class="lst-item">陪练时间段<span>已选择</span></div>
+			<i class="my-time"></i><div class="lst-item">陪练时间段<span v-if="user_info.today_timezone_set_num>0">已选择</span><span v-else>请选择</span></div>
 		</a>
-		<div class="m-lst" v-if="user_info.user_type==2">
-			<i class="my-list"></i><div class="lst-item">订单消息</div>
-		</div>
+		<a href="/depart/driverList" class="m-lst" v-if="user_info.user_type==2">
+			<i class="my-list"></i><div class="lst-item">订单消息<span class="orderTip" v-if="user_info.orderNum">${user_info.orderNum}</span></div>
+		</a>
 	</div>
+	<div class="g-clue-mask" v-show='paySuccessMask'>
+        <div class="g-clue-box">
+            <div class="m-clue-box">
+                <i class="clue-mask-close" @click='payCloseMask'></i>
+                <h3>温馨提示</h3>
+                <div class="u-pay-text phone-text">更改手机号码请联系客服</div>
+            </div>
+        </div>
+    </div>
+    <div class="g-clue-mask" v-show='withdrawMask'>
+        <div class="g-clue-box">
+            <div class="m-clue-box">
+                <i class="clue-mask-close" @click='payCloseMask'></i>
+                <h3 class="widthdraw-tip">${result}</h3>
+            </div>
+        </div>
+    </div>
+    <div v-if="user_info.user_type==1">
+    	{% include 'depart/footer.html' %}
+    </div>
 </div>
-{% include 'depart/footer.html' %}
 {% endblock %}
 
 {% block js %}
@@ -39,6 +58,9 @@ var my = new Vue({
     delimiters: ['${', '}'],
     data:{
         user_info:'',
+        paySuccessMask:false,
+        withdrawMask:false,
+        result:''
     },
     mounted: function () {
         this.$nextTick(function () {
@@ -56,6 +78,7 @@ var my = new Vue({
                     window.localStorage.setItem("depart_id", data.object.id);
                     window.localStorage.setItem("depart_icon", data.object.icon);
                     window.localStorage.setItem("depart_nickname",data.object.nickname);
+                    window.localStorage.setItem("depart_type",data.object.user_type);
                 },
                 error: function() {
 
@@ -64,7 +87,35 @@ var my = new Vue({
         })
     },
     methods:{
-        
+        phoneAttention:function(){
+        	if(this.user_info.mobile){
+        		this.paySuccessMask = true;
+        	}
+        },
+        payCloseMask:function(){
+            var _this = this;
+            _this.paySuccessMask = false;
+            _this.withdrawMask = false;
+        },
+        withdraw:function(){
+        	var _this = this;
+            $.ajax({
+                url: '/departapi/driverschool/withdraw?userId=1000100',
+                type: 'get',
+                dataType:'json',
+                crossDomain:true,
+                xhrFields: {
+                    withCredentials: true,
+                },
+                success: function(data) {
+                    _this.withdrawMask = true;
+                   	_this.result = data.object.result;        
+                },
+                error: function() {
+
+                }
+            });
+        }
     }  
 })
 </script>
