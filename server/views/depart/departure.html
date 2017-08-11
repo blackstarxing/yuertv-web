@@ -3,118 +3,160 @@
 {% block css %}
 <link rel="stylesheet" href="/css/MultiPicker.css">
 <link rel="stylesheet" href="/depart/css/departure.css">
+<link rel="stylesheet" href="/depart/css/coupon.css">
 {% endblock %}
 {% block content %}
-<div class="g-bd" id="departure" v-cloak>
-	<div class="g-hd"></div>
-	<div class="g-box fs-24">
-		<div class="g-box-item">
-			<!-- 我的区服 -->
-			<div class="m-region bgc-depart">
-				<h3 class="m-title">我的区服</h3>
-		        <ul class="select-ul f-cb">
-		            <li class="u-region-weChat active" @click='weChatRegion'>
-		            	<i></i>微信区
-		            </li>
-		            <li class="u-region-QQ" @click='QQRegion'>
-		            	<i></i>QQ区
-		            </li>
-		        </ul>
-			</div>
-			<!-- 我的段位 -->
-			<div class="m-segment bgc-depart">
-				<h3 class="m-title">我的段位</h3>
-		        <ul class="select-ul f-cb" >
-		            <li v-for='(segmentlist,index) in segmentList' :id='segmentlist.id' :class="{active:isCur==index}" @click='switchSegment(index)'>${segmentlist.segment}</li>
-		        </ul>
-			</div>
-			<!-- 开车类型 -->
-			<div class="m-departType bgc-depart ">
-				<div class="m-title u-departType">
-					<span>开车类型</span>
-					<div class="u-departType-choose">
-						<div  class="departType-choose-box" @click='TypeChoose'>
-							<!-- <span>请选择</span> -->
-							<i></i>
-							<span id="targetInputText">请选择</span>
-						</div>
+<div id="departure" v-cloak>
+	<div class="g-bd departure" >
+		<div class="g-hd"></div>
+		<div class="g-box fs-24">
+			<div class="g-box-item">
+				<!-- 我的区服 -->
+				<div class="m-region bgc-depart">
+					<h3 class="m-title">我的区服</h3>
+			        <ul class="select-ul f-cb">
+			            <li class="u-region-weChat active" @click='weChatRegion'>
+			            	<i></i>微信区
+			            </li>
+			            <li class="u-region-QQ" @click='QQRegion'>
+			            	<i></i>QQ区
+			            </li>
+			        </ul>
+				</div>
+				<!-- 我的段位 -->
+				<div class="m-segment bgc-depart">
+					<h3 class="m-title">我的段位</h3>
+			        <ul class="select-ul f-cb" >
+			            <li v-for='(segmentlist,index) in priceList' :id='segmentlist.grade_level_id' :class="{active:isCur==index}" @click='switchSegment(index,segmentlist.user_hour_price,segmentlist.user_star_price,segmentlist.user_round_price)'>${segmentlist.level_name}</li>
+			        </ul>
+				</div>
+				<!-- 开车类型 -->
+				<div class="m-departType bgc-depart ">
+					<div class="m-title u-departType">
+						<span>开车类型</span>
+						<div class="u-departType-choose">
+							<div  class="departType-choose-box" @click='TypeChoose'>
+								<!-- <span>请选择</span> -->
+								<i></i>
+								<span id="targetInputText">请选择</span>
+							</div>
 
-					</div>
-				</div>
-			</div>
-			<!-- 联系方式 -->
-			<div class="m-contact bgc-depart">
-				<h3 class="m-title">联系方式</h3>
-				<div class="u-contact-weChat">
-					<input class="contact-weChat-ipt" type="text" placeholder="请输入你的微信号">
-				</div>
-				<div class="u-contact-phone">
-					<input class="contact-phone-ipt" type="text" placeholder="请输入手机号">
-				</div>
-			</div>
-			<!-- 抵用卷 -->
-			<div class="m-coupon bgc-depart">
-				<div class="m-title u-departType">
-					<span>抵用卷</span>
-					<div class="u-departType-choose">
-						<div class="departType-choose-box">
-							<span @click='couponPage'>3张可选用抵用卷</span>
-							<i></i>
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- 开车时间 -->
-			<div class="m-departTime bgc-depart">
-				<div class="m-title u-departType">
-					<span>开车时间</span>
-					<div class="u-departType-choose">
-						<div  class="departType-choose-box">
-							<i></i>
-							<span id="targetInputTime">请选择</span>
+				<!-- 联系方式 -->
+				<div class="m-contact bgc-depart">
+					<h3 class="m-title">联系方式</h3>
+					<div class="u-contact-weChat">
+						<input class="contact-weChat-ipt" type="text" placeholder="请输入你的微信号" oninput="if(value.length>20)value=value.slice(0,20);" v-model="weChat">
+					</div>
+					<div class="u-contact-phone">
+						<input class="contact-phone-ipt" type="tel" placeholder="请输入手机号" v-model='mobile' onkeyup="this.value=this.value.replace(/\D/g,'')" oninput="if(value.length>11)value=value.slice(0,11);">
+					</div>
+				</div>
+				<!-- 抵用卷 -->
+				<div class="m-coupon bgc-depart">
+					<div class="m-title u-departType">
+						<span>抵用卷</span>
+						<div class="u-departType-choose">
+							<div class="departType-choose-box">
+								<span v-if='couponChoose'  @click='couponPage'>${couponTotal}张可选抵用卷</span>
+								<span v-else  @click='couponPage'>已抵用${couponAmount}元</span>
+								<i></i>
+							</div>
 						</div>
 					</div>
 				</div>
+				<!-- 开车时间 -->
+				<div class="m-departTime bgc-depart">
+					<div class="m-title u-departType">
+						<span>开车时间</span>
+						<div class="u-departType-choose">
+							<div  class="departType-choose-box">
+								<i></i>
+								<span id="targetInputTime">请选择</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 下单须知 -->
+				<div class="m-orderNote">
+					<span class="fc-dy fs-28">已阅读</span>
+					<div class="u-orderNote" @click='orderNote'>荣耀驾校下单须知</div>
+				</div>	
 			</div>
-			<!-- 下单须知 -->
-			<div class="m-orderNote">
-				<span class="fc-dy fs-28">已阅读</span>
-				<div class="u-orderNote" @click='orderNote'>荣耀驾校下单须知</div>
-			</div>	
-		</div>
-		<div class="g-foot f-cb">
-			<span class="fs-32 fc-dy">合计:</span><span class="fs-40 fc-ly departure-cash">288¥</span><a class="departure-pay-btn f-fr">支付酬劳</a>
-		</div>
-	</div>
-	<!-- 下单须知弹框 -->
-	<div class="g-order-mask" v-if='ordermask'>
-		<div class="m-order-mask">
-			<div class="order-mask-box">
-				<i class="order-mask-head"></i>
-				<ul class="m-order-ul">
-					<li>1.乘客购买车票时应安排好时间,未在约定时间上车,车票不退不换</li>
-					<li>2.乘客应文明乘车,不得在游戏过程中对司机进行言语辱骂行为</li>
-					<li>3.如发车期间,司机带乘客输了两局及以上,将免费赠送乘客车票直至上分为止;</li>
-					<li>4.发车过程中,司机只负责陪练并保证胜率,如乘客有其他额外需求,司机有权拒绝乘客要求</li>
-					<li>5.如发车过程中,司机长时间挂机或掉线,本次发车免单且赔付1张车票</li>
-				</ul>
-				<button class="order-mask-btn" @click='orderClose'>我知道了</button>
+			<div class="g-foot f-cb">
+				<span class="fs-32 fc-dy">合计:</span><span class="fs-40 fc-ly departure-cash">${departCash}¥</span><a class="departure-pay-btn f-fr" @click='payTypeChoose'>支付酬劳</a>
 			</div>
 		</div>
-	</div>
-	<!-- 支付成功弹框 -->
-	<div class="g-clue-mask" v-show='paySuccessMask'>
-		<div class="g-clue-box">
-			<div class="m-clue-box">
-				<i class="clue-mask-close" @click='payCloseMask'></i>
-				<img src="/depart/images/withdrawSuccess.png" alt="没有图片">
-				<div class="u-pay-text">提交成功</div>
+		<!-- 下单须知弹框 -->
+		<div class="g-order-mask" v-if='ordermask'>
+			<div class="m-order-mask">
+				<div class="order-mask-box">
+					<i class="order-mask-head"></i>
+					<ul class="m-order-ul">
+						<li>1.乘客购买车票时应安排好时间,未在约定时间上车,车票不退不换</li>
+						<li>2.乘客应文明乘车,不得在游戏过程中对司机进行言语辱骂行为</li>
+						<li>3.如发车期间,司机带乘客输了两局及以上,将免费赠送乘客车票直至上分为止;</li>
+						<li>4.发车过程中,司机只负责陪练并保证胜率,如乘客有其他额外需求,司机有权拒绝乘客要求</li>
+						<li>5.如发车过程中,司机长时间挂机或掉线,本次发车免单且赔付1张车票</li>
+					</ul>
+					<button class="order-mask-btn" @click='orderClose'>我知道了</button>
+				</div>
 			</div>
 		</div>
+		<!-- 支付成功弹框 -->
+		<div class="g-clue-mask" v-show='paySuccessMask'>
+			<div class="g-clue-box">
+				<div class="m-clue-box">
+					<i class="clue-mask-close" @click='payCloseMask'></i>
+					<img src="/depart/images/withdrawSuccess.png" alt="没有图片">
+					<div class="u-pay-text">提交成功</div>
+				</div>
+			</div>
+		</div>
+		<!-- 支付类型弹框 -->
+		<div class="g-payType-mask" v-show='payTypeBox' >
+			<div class="g-pay-type">
+				<div class="pay-type-text">选择支付方式</div>
+				<div class="pay-type-box">
+					<div class="m-pay-type" @click='weChatPay'><i class="weChat-pay-icon"></i>微信支付</div>
+					<div class="m-pay-type m-pay-balance" @click='balancePay'><i class="balance-pay-icon"></i><span>余额支付</span><span class="balance-notenough" v-show='balanceNotenough'>(余额不足)</span></div>
+				</div>
+		
+			</div>
+		</div>
+
+		<div id='targetContainer'></div>
+		<div id='targetContainerTime'></div>
+    </div>
+	<!-- 抵用卷 -->
+	<div id="coupon" class="g-bd">
+		<div class="g-box">
+	        <div class="g-hd" @click='discoupon'>
+	            <i></i>
+	            <span>不使用抵用劵</span>
+	        </div>
+	        <div class="g-mn" v-for='(coupon,index) in coupon' :id='coupon.id' :class="{active:iscouponCur==index}" @click='switchCoupon(index,coupon.coupon_amount)'>
+	             <div class="g-mnc f-fl">
+	                 <i></i><span>满${coupon.least_amount}元可用</span>
+	                 <p>${coupon.coupon_name}</p>
+	             </div>
+	             <div class="g-mnc-fr f-fr">
+	                 <span class="m-mnc-fr">¥</span><span class="coupon-cash">${coupon.coupon_amount}</span>
+	             </div>
+	             <div class="g-mn-btm f-cb">
+	                 <span class="u-coupon-time">2017-07-25&nbsp;到期</span>
+	                 <span class="u-coupon-status f-fr">可使用</span>
+	             </div>
+	        </div>
+	        <div class="couponClue">${couponClue}</div>
+    	</div>
+    	{% include 'depart/footer.html' %}
 	</div>
-	<div id='targetContainer'></div>
-	<div id='targetContainerTime'></div>
 </div>
+
+
 {% include 'depart/footer.html' %}
 {% endblock %}
 
@@ -125,17 +167,76 @@ var departure = new Vue({
     el: '#departure',
     delimiters: ['${', '}'],
     data:{
+    	// 代练端客户端
+    	user_type:'',
     	//下单弹框
         ordermask:false,
         //tab当前位置
 	    isCur:0,
-	    //段位
-	    segmentList:[{segment:'最强王者'},{segment:'至尊星耀'},{segment:'永恒钻石'},{segment:'尊贵铂金'},{segment:'荣耀黄金'},{segment:'垃圾青铜'},],
+	    //代金劵
+	    iscouponCur:-1,
+	    //段位类型列表
+	    segmentList:[],
    		//支付成功弹框
    		paySuccessMask:false,
+   		// 价格
+   		priceList:[],
+   		// 合计金额
+   		departCash:0,
+   		// 余额
+   		balance:'',
+   		// 每局价格
+   		user_round_price:'',
+   		// 每小时价格
+   		user_hour_price:'',
+   		// 每星价格
+		user_star_price:'',
+
+   		// 区服类型
+   		regionType:1,
+   		// 手机号
+   		mobile:'',
+   		// 微信号
+   		weChat:'',
+   		// 时长上星(选择类型)
+   		orderType:'',
+   		// 时长上星具体
+   		orderStart:'',
+   		// 微信支付和余额支付
+   		payType:'',
+   		//段位ID
+   		segmentId:0,
+   		// 抵用劵ID
+   		couponId:0,
+
+   		// 抵用劵page
+   		//tab切换
+        isCur:0,
+        coupon:[],
+        couponTotal:0,
+        couponAmount:0,
+        couponChoose:true,
+        page:1,
+        pageSize:5,
+        //数据有无提示
+        couponClue:'',
+        // 分页是否是最后一页
+        isLast:0,
+        //判断抵用卷页面是否打开
+        coupontype:false,
+
+		//支付方式的盒子
+        payTypeBox:false,
+        //余额不足显示
+        balanceNotenough:false,
     },
     mounted: function () {
         this.$nextTick(function () {
+        	var _this = this;
+        	_this.user_type = window.localStorage.getItem("depart_type");
+        	if(_this.user_type == 2){
+        		window.location.href = '/depart/my';
+        	}
         	//选择类型
             new MultiPicker({
 	            "input":"targetInputText",
@@ -155,6 +256,38 @@ var departure = new Vue({
 	            "success":function(arr){
 	                console.log(arr);
 	                $('#targetInputText').text(arr[0].value+arr[1].value);
+	                if(arr[0].value == '包时长'){
+	                	_this.orderType = 1;
+	                	if(arr[1].value == '1局'){
+	                		_this.orderStart = 100;
+	                		_this.departCash = _this.user_round_price - _this.couponAmount;
+	                		console.log(_this.orderStart);
+	                	}else if(arr[1].value == '一小时'){
+	                		_this.orderStart = 1;
+	                		_this.departCash = _this.user_hour_price - _this.couponAmount;
+	                	}else if(arr[1].value == '两小时'){
+	                		_this.orderStart = 2;
+	                		_this.departCash = _this.user_hour_price * 2 - _this.couponAmount;
+	                	}
+	                }else if(arr[0].value == '包上星'){
+	                	_this.orderType = 2;
+	                	if(arr[1].value == '1星'){
+	                		_this.orderStart = 1;
+	                		_this.departCash = _this.user_star_price - _this.couponAmount;
+	                	}else if(arr[1].value == '2星'){
+	                		_this.orderStart = 2;
+	                		_this.departCash = _this.user_star_price * 2 - _this.couponAmount;
+	                	}else if(arr[1].value == '3星'){
+	                		_this.orderStart = 3;
+	                		_this.departCash = _this.user_star_price * 3 - _this.couponAmount;
+	                	}else if(arr[1].value == '4星'){
+	                		_this.orderStart = 4;
+	                		_this.departCash = _this.user_star_price * 4 - _this.couponAmount;
+	                	}else if(arr[1].value == '5星'){
+	                		_this.orderStart = 5;
+	                		_this.departCash = _this.user_star_price * 5 - _this.couponAmount;
+	                	}
+	                }
 	            }
 	        });
 	        // 开车时间
@@ -182,23 +315,113 @@ var departure = new Vue({
 	                $('#targetInputTime').text(arr[1].value);
 	            }
 	        });
+
+	      
+	        
+	        $.ajax({
+                // url: 'http://172.16.10.134:8080/checkCode?phone='+_this.phone,
+                url: '/departapi/driverschool/driveForm?userId='+1000100,
+                type: 'get',
+                success: function(data) {
+                   if(data.code == 0){
+                   		_this.mobile = data.object.mobile;
+                   		_this.balance = data.object.balance;
+                   		_this.segmentList = data.object.gradeLevelList;
+                   		_this.priceList = data.object.priceList;
+                   		_this.user_hour_price = data.object.priceList[0].user_hour_price;
+                   		_this.user_star_price = data.object.priceList[0].user_star_price;
+                   		_this.user_round_price = data.object.priceList[0].user_round_price;
+                   }else{
+                   	    layer.open({
+	                      content: '网络异常，请刷新重试',
+	                      btn: '好的',
+	                      shadeClose: false,
+                   		 });
+                   }
+                },
+                error: function() {
+                    layer.open({
+                      content: '网络异常，请刷新重试',
+                      btn: '好的',
+                      shadeClose: false,
+                    });
+                }
+            });
+
+	        // 抵用卷
+	        $.ajax({
+               // url: 'http://172.16.10.134:8080/checkCode?phone='+_this.phone,
+               url: '/departapi/driverschool/userDiscountCouponList?userId='+1000100,
+               type: 'get',
+               data:{
+                    page:_this.page,
+                    pageSize:_this.pageSize,
+               },
+               success: function(data) {
+                    if(data.code == 0){
+                        _this.coupon = data.object.list;
+                        console.log(_this.coupon.coupon_amount);
+                        _this.couponTotal = data.object.total;
+                        _this.isLast = data.object.isLast;
+                    }
+               },
+               error: function() {
+                   layer.open({
+                     content: '网络异常，请刷新重试',
+                     btn: '好的',
+                     shadeClose: false,
+                   });
+               }
+            });
         })
     },
     methods:{
     	//区服－微信
     	weChatRegion:function(){
+    		var _this = this;
+    		_this.regionType = 1;
     		$('.u-region-weChat').addClass('active');
     		$('.u-region-QQ').removeClass('active');
     	},
     	//区服－QQ
     	QQRegion:function(){
+    		var _this = this;
+    		_this.regionType = 2;
     		$('.u-region-QQ').addClass('active');
     		$('.u-region-weChat').removeClass('active');
     	},
     	// 段位切换
-    	switchSegment:function(index){
+    	switchSegment:function(index,user_hour_price,user_star_price,user_round_price){
 	    	var _this = this;
 	    	_this.isCur = index;
+	    	_this.segmentId = _this.isCur + 1;
+	    	_this.user_hour_price = user_hour_price;
+	    	_this.user_star_price = user_star_price;
+			_this.user_round_price = user_round_price;
+
+
+	    	if(_this.orderType == 1){
+	    		if(_this.orderStart == 100){
+	    			console.log(_this.coupon);
+	            	_this.departCash = user_round_price - _this.couponAmount;
+	            }else if(_this.orderStart == 1){
+	            	_this.departCash = 	user_hour_price - _this.couponAmount;
+	            }else if(_this.orderStart == 2){
+	            	_this.departCash = 	user_hour_price * 2 - _this.couponAmount;
+	            }
+	    	}else if(_this.orderType == 2){
+	    		if(_this.orderStart == 1){
+	            	_this.departCash = 	user_star_price - _this.couponAmount;
+	            }else if(_this.orderStart == 2){
+	            	_this.departCash = user_star_price * 2 - _this.couponAmount;
+	            }else if(_this.orderStart == 3){
+	            	_this.departCash = user_star_price * 3 - _this.couponAmount;
+	            }else if(_this.orderStart == 4){
+	            	_this.departCash = user_star_price * 4 - _this.couponAmount;
+	            }else if(_this.orderStart == 5){
+	            	_this.departCash = user_star_price * 5 - _this.couponAmount;
+	            }
+	    	}
        	},
        	//开车类型选择
        	TypeChoose:function(){
@@ -206,7 +429,25 @@ var departure = new Vue({
        	},
        	//跳到抵用劵
        	couponPage:function(){
-       		window.location.href = '/depart/coupon';
+       		var _this = this;
+       		_this.coupontype = true;
+       		$('body')[0].style.overflow = 'hidden';
+       		$('#coupon')[0].style.overflow = 'scroll';
+       		// $('#coupon')[0].style.zIndex = 2;
+			$('#coupon')[0].style.display = 'block';
+
+       		$('#coupon').scroll(function(){ 
+	            var totalheight = parseFloat($('#coupon').height()) + parseFloat($('#coupon').scrollTop()); 
+	            if($('#coupon .g-box').height() <= totalheight){
+	            	console.log('滑动了');
+	                if(!_this.isLast){
+	                  _this.page+=1;
+	                  _this.couponLoad();
+	                }else if(_this.isLast == 1){
+	                  _this.couponClue = '没有数据了';
+	                }
+	            }
+	        })
        	},
        	payCloseMask:function(){
        		var _this = this;
@@ -222,8 +463,222 @@ var departure = new Vue({
         orderClose:function(){
         	var _this = this;
         	_this.ordermask = false;
-        }
-    }  
+        },
+
+        // 抵用劵切换
+        switchCoupon:function(index,couponAmount){
+            var _this = this;
+            _this.couponAmount = 0;
+            _this.coupontype = false;
+            _this.iscouponCur = index;
+            _this.couponChoose = false;
+            _this.couponAmount = couponAmount;
+            $('body')[0].style.overflow = 'scroll';
+       		// $('#coupon')[0].style.zIndex = -10;
+       		$('#coupon')[0].style.display = 'none';
+
+        },
+        //不使用抵用劵
+        discoupon:function(){
+        	var _this = this;
+        	_this.coupontype = false;
+        	_this.couponChoose = true;
+        	_this.iscouponCur = -1;
+        	$('body')[0].style.overflow = 'scroll';
+       		// $('#coupon')[0].style.zIndex = -2;
+       		$('#coupon')[0].style.display = 'none';
+        },
+        // 抵用劵加载
+        couponLoad:function(){
+          var _this = this;
+          _this.couponClue = '加载中...';
+          $.ajax({
+            // url: 'http://172.16.10.134:8080/withdraw/giftHistoryList4Mobile',
+            url: '/departapi/driverschool/userDiscountCouponList?userId='+1000100,
+            type: 'get',
+            dataType:'json',
+            data:{
+                page:_this.page,
+                pageSize:_this.pageSize,
+            }, 
+            success: function(data) {
+              if(data.code == 0){
+              	console.log('zzzzzz');
+              	var totalheight = parseFloat($('#coupon').height()) + parseFloat($('#coupon').scrollTop()); 
+              	console.log(totalheight);
+              	console.log($('#coupon .g-box').height())
+                _this.coupon=_this.coupon.concat(data.object.list);
+                _this.isLast = data.object.isLast;
+              }else{
+                  layer.open({
+                    content: '服务器出错',
+                    btn: '好的',
+                    shadeClose: false,
+                  });
+              }
+             
+            },
+            error: function() {
+                layer.open({
+                  content: '网络异常，请刷新重试',
+                  btn: '好的',
+                  shadeClose: false,
+                });
+            }
+          })
+        },
+
+        //支付方式选择
+        payTypeChoose:function(){
+        	var _this = this;
+        	_this.payTypeBox = true;
+        },
+    	// 微信支付
+    	weChatPay:function(){
+    		console.log('weChat');
+    		var _this = this;
+    		_this.payType = 1;
+    		_this.couponId = _this.iscouponCur + 1;
+    		//开车时间
+    		var userExpectTime = new Date()+ $('#targetInputTime').text();
+    		console.log(userExpectTime);
+    		$.ajax({
+               // url: 'http://172.16.10.134:8080/checkCode?phone='+_this.phone,
+               url: '/departapi/driverschool/pay?userId='+1000100,
+               type: 'get',
+               data:{
+               	   type:1,
+                   level_id:_this.segmentId,
+                   mobile:_this.mobile,
+                   weixin:_this.weChat,
+                   order_type:_this.orderType,
+                   total:_this.orderStart,
+                   user_discount_coupon_id:_this.couponId,
+                   user_expect_time:userExpectTime,
+                   world:regionType,
+               },
+               success: function(data) {
+                    if(data.code == 0){
+                        _this.paySuccessMask = true;
+                    }else if(data.code == -1){
+                    	layer.open({
+		                    content: '段位不存在',
+		                    btn: '好的',
+		                    shadeClose: false,
+		                });
+                    }else if(data.code == -2){
+                    	layer.open({
+		                    content: '段位和价格不匹配',
+		                    btn: '好的',
+		                    shadeClose: false,
+		                });
+                    }else if(data.code == -3){
+                    	layer.open({
+		                    content: '没有此优惠劵',
+		                    btn: '好的',
+		                    shadeClose: false,
+		                });
+                    }else if(data.code == -5){
+                    	layer.open({
+		                    content: '参数出错',
+		                    btn: '好的',
+		                    shadeClose: false,
+		                });
+                    }else if(data.code == -500){
+                    	layer.open({
+		                    content: '下单失败',
+		                    btn: '好的',
+		                    shadeClose: false,
+		                });
+                    }else{
+                    	layer.open({
+		                    content: '服务器出错',
+		                    btn: '好的',
+		                    shadeClose: false,
+		                });
+                    }
+               },
+               error: function() {
+                   layer.open({
+                     content: '网络异常，请刷新重试',
+                     btn: '好的',
+                     shadeClose: false,
+                   });
+               }
+            });
+    	},
+    	//余额支付
+    	balancePay:function(){
+    		console.log('balance');
+    		var _this = this;
+    		_this.payType = 2;
+    			$.ajax({
+               // url: 'http://172.16.10.134:8080/checkCode?phone='+_this.phone,
+               url: '/departapi/driverschool/pay?userId='+1000100,
+               type: 'get',
+               data:{
+               	   type:2,
+                   level_id:_this.segmentId,
+                   mobile:_this.mobile,
+                   weixin:_this.weChat,
+                   order_type:_this.orderType,
+                   total:_this.orderStart,
+                   user_discount_coupon_id:_this.couponId,
+                   user_expect_time:userExpectTime,
+                   world:regionType,
+               },
+               success: function(data) {
+                    if(data.code == 0){
+                        _this.paySuccessMask = true;
+                    }else if(data.code == -1){
+                    	layer.open({
+		                    content: '段位不存在',
+		                    btn: '好的',
+		                    shadeClose: false,
+		                });
+                    }else if(data.code == -2){
+                    	layer.open({
+		                    content: '段位和价格不匹配',
+		                    btn: '好的',
+		                    shadeClose: false,
+		                });
+                    }else if(data.code == -3){
+                    	layer.open({
+		                    content: '没有此优惠劵',
+		                    btn: '好的',
+		                    shadeClose: false,
+		                });
+                    }else if(data.code == -5){
+                    	layer.open({
+		                    content: '参数出错',
+		                    btn: '好的',
+		                    shadeClose: false,
+		                });
+                    }else if(data.code == -500){
+                    	layer.open({
+		                    content: '下单失败',
+		                    btn: '好的',
+		                    shadeClose: false,
+		                });
+                    }else{
+                    	layer.open({
+		                    content: '服务器出错',
+		                    btn: '好的',
+		                    shadeClose: false,
+		                });
+                    }
+               },
+               error: function() {
+                   layer.open({
+                     content: '网络异常，请刷新重试',
+                     btn: '好的',
+                     shadeClose: false,
+                   });
+               }
+            });
+    	},
+    
+    },
 })
 </script>
 {% endblock %}

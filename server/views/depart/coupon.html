@@ -11,13 +11,13 @@
             <i></i>
             <span>不使用抵用劵</span>
         </div>
-        <div class="g-mn active">
+        <div class="g-mn" v-for='(coupon,index) in coupon' :id='coupon.id' :class="{active:isCur==index}" @click='switchCoupon(index)'>
              <div class="g-mnc f-fl">
-                 <i></i><span>满18元可用</span>
-                 <p>用于全部订单</p>
+                 <i></i><span>满${coupon.least_amount}元可用</span>
+                 <p>${coupon.coupon_name}</p>
              </div>
              <div class="g-mnc-fr f-fr">
-                 <span class="m-mnc-fr">¥</span><span class="coupon-cash">8</span>
+                 <span class="m-mnc-fr">¥</span><span class="coupon-cash">${coupon.coupon_amount}</span>
              </div>
              <div class="g-mn-btm f-cb">
                  <span class="u-coupon-time">2017-07-25&nbsp;到期</span>
@@ -35,15 +35,42 @@ var coupon = new Vue({
     el: '#coupon',
     delimiters: ['${', '}'],
     data:{
-        
+        //tab切换
+        isCur:0,
+        coupon:[],
+
     },
     mounted: function () {
         this.$nextTick(function () {
-            
+            var _this = this;
+            $.ajax({
+                   // url: 'http://172.16.10.134:8080/checkCode?phone='+_this.phone,
+                   url: '/departapi/driverschool/userDiscountCouponList?userId='+1000100,
+                   type: 'get',
+                   data:{
+                        type:1,
+                   }
+                   success: function(data) {
+                        if(data.code == 0){
+                            _this.coupon = data.object;
+                        }
+                   },
+                   error: function() {
+                       layer.open({
+                         content: '网络异常，请刷新重试',
+                         btn: '好的',
+                         shadeClose: false,
+                       });
+                   }
+            });
         })
     },
     methods:{
-        
+        // 抵用劵切换
+        switchCoupon:function(index){
+            var _this = this;
+            _this.isCur = index;
+        },
     }  
 })
 </script>

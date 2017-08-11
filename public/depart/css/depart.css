@@ -21,6 +21,7 @@ a,a:hover,a:visited{text-decoration: none!important;}
 img{border:0;max-width: 100%;vertical-align: bottom;}
 button{border:none;background: none;}
 html,body{width: 100%;height: 100%;margin:0 auto;font-family: 'Microsoft YaHei','微软雅黑', Helvetica,Arial,sans-serif;}
+html{overflow-y:visible!important;}
 body:before {
   content: ' ';
   position: fixed;
@@ -185,6 +186,22 @@ footer ul li{
 .my-icon{
   background: url('/depart/images/depart_my.png');
 }
+/*.foot-message{
+  position: absolute;
+  width: 0.373333rem;
+  height: 0.373333rem;
+  line-height: 0.373333rem;
+  top:10%;
+  left:65%;
+  background: red;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  font-size: 0.293333rem;
+  color:#fff;
+  opacity: 0.5;
+  filter:alpha(opacity=50);
+  text-align: center;
+}*/
 .footer-text{
   position: absolute;
   width: 100%;

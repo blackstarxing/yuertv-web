@@ -1,7 +1,18 @@
-#coupon .g-box{
+#coupon.g-bd{
+	position: fixed;
 	width: 100%;
 	height: 100%;
-	padding: 0.4rem 0.533333rem 0;
+	top: 0;
+	background: url(../images/bg.png) center 0 no-repeat;
+	background-size: cover;
+	display: none;
+}
+#coupon .g-box{
+	position: absolute;
+	top:0;
+	width: 100%;
+	/*height: 100%;*/
+	padding: 0.4rem 0.533333rem 1.6rem;
 	box-sizing: border-box;
 }
 #coupon .g-hd{
@@ -112,4 +123,11 @@
 }
 .u-coupon-status{
 	color:#dfbb73;
+}
+.couponClue{
+	width: 100%;
+	height: 1.333333rem;
+	line-height: 1.333333rem;
+	text-align: center;
+	font-size: 0.32rem;
 }
