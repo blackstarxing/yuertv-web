@@ -37,12 +37,24 @@
 	height: 1.173333rem; /*88*/
 	line-height: 1.173333rem;
 }
+.m-departType.active,.m-contact.active,.m-coupon.active,.m-departTime.active,.m-segment.active{
+	border:0.026667rem solid #ff7e4b;
+}
+
 .m-coupon .m-title,.m-departTime .m-title,.m-departType .m-title{
 	border:none;
 }
 .m-region{
 	width: 100%;
 	min-height: 3.2rem; /*240*/
+}
+.m-contact .mobile-error-clue{
+	width: 100%;
+	height: 0.533333rem;
+	line-height: 0.533333rem;
+	padding-left: 0.4rem;
+	font-size: 0.32rem;
+	color:#ab3647;
 }
 .u-region-weChat,.u-region-QQ{
 	position: relative;
@@ -374,7 +386,21 @@
 	filter:alpha(opacity=50); /*IE滤镜，透明度50%*/
 	color:#999;
 }
+.m-pay-balance.active .balance-pay-icon{
+	background: url('../images/balanceActive_icon.png') no-repeat;
+	background-size:0.64rem 0.64rem;
+}
 .balance-notenough{
 	margin-left: 0.266667rem;  /*20*/
 	font-size: 0.426667rem;   /*32*/
+}
+.pay-type-arrow{
+	position: absolute;
+	top: 50%;
+	right: 0.4rem;
+	width: 0.213333rem;
+	height: 0.373333rem;
+	transform: translateY(-50%);
+	background: url('../images/pay_arrow.png') no-repeat;
+	background-size: 0.213333rem 0.373333rem;    /*16 28*/
 }
