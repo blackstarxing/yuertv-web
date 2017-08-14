@@ -112,10 +112,12 @@
 				<div class="m-clue-box">
 					<i class="clue-mask-close" @click='payCloseMask'></i>
 					<img src="/depart/images/withdrawSuccess.png" alt="没有图片">
-					<div class="u-pay-text">提交成功</div>
+					<div v-if='paySuccess' class="u-pay-text">${paySuccessText}</div>
+               		<h3 v-if='payError' class="widthdraw-tip">充值失败</h3>
 				</div>
 			</div>
 		</div>
+
 		<!-- 支付类型弹框 -->
 		<div class="g-payType-mask" v-show='payTypeBox' @click='closeMask'>
 			<div class="g-pay-type">
@@ -178,7 +180,10 @@ var departure = new Vue({
 	    iscouponCur:-1,
 	    //段位类型列表
 	    segmentList:[],
-   		//支付成功弹框
+   		//支付成功(失败)弹框
+   		payError:false,
+   		paySuccess:false,
+   		paySuccessText:'',
    		paySuccessMask:false,
    		// 价格
    		priceList:[],
@@ -299,14 +304,12 @@ var departure = new Vue({
 	              },
 	            ],
 	            "success":function(arr){
-	                console.log(arr);
 	                $('#targetInputText').text(arr[0].value+arr[1].value);
 	                if(arr[0].value == '包时长'){
 	                	_this.orderType = 1;
 	                	if(arr[1].value == '1局'){
 	                		_this.orderStart = 100;
 	                		_this.departCash = _this.user_round_price - _this.couponAmount;
-	                		console.log(_this.orderStart);
 	                	}else if(arr[1].value == '一小时'){
 	                		_this.orderStart = 1;
 	                		_this.departCash = _this.user_hour_price - _this.couponAmount;
@@ -356,7 +359,6 @@ var departure = new Vue({
 	              },
 	            ],
 	            "success":function(arr){
-	                console.log(arr);
 	                $('#targetInputTime').text(arr[1].value);
 	            }
 	        });
@@ -364,8 +366,8 @@ var departure = new Vue({
 	      
 	        //页面接口
 	        $.ajax({
-                // url: 'http://172.16.10.134:8080/checkCode?phone='+_this.phone,
-                url: '/departapi/driverschool/driveForm?userId='+1000100,
+                // url: '/departapi/driverschool/driveForm?userId='+1000100,
+                url: '/departapi/driverschool/driveForm',
                 type: 'get',
                 success: function(data) {
                    if(data.code == 0){
@@ -395,8 +397,8 @@ var departure = new Vue({
 
 	        // 抵用卷
 	        $.ajax({
-               // url: 'http://172.16.10.134:8080/checkCode?phone='+_this.phone,
-               url: '/departapi/driverschool/userDiscountCouponList?userId='+1000100,
+               // url: '/departapi/driverschool/userDiscountCouponList?userId='+1000100,
+               url: '/departapi/driverschool/userDiscountCouponList',
                type: 'get',
                data:{
                     page:_this.page,
@@ -405,7 +407,6 @@ var departure = new Vue({
                success: function(data) {
                     if(data.code == 0){
                         _this.coupon = data.object.list;
-                        console.log(_this.coupon.coupon_amount);
                         _this.couponTotal = data.object.total;
                         _this.isLast = data.object.isLast;
                     }
@@ -447,7 +448,6 @@ var departure = new Vue({
 
 	    	if(_this.orderType == 1){
 	    		if(_this.orderStart == 100){
-	    			console.log(_this.coupon);
 	            	_this.departCash = user_round_price - _this.couponAmount;
 	            }else if(_this.orderStart == 1){
 	            	_this.departCash = 	user_hour_price - _this.couponAmount;
@@ -485,7 +485,6 @@ var departure = new Vue({
        		$('#coupon').scroll(function(){ 
 	            var totalheight = parseFloat($('#coupon').height()) + parseFloat($('#coupon').scrollTop()); 
 	            if($('#coupon .g-box').height() <= totalheight){
-	            	console.log('滑动了');
 	                if(!_this.isLast){
 	                  _this.page+=1;
 	                  _this.couponLoad();
@@ -501,7 +500,6 @@ var departure = new Vue({
        	},
         // 下单须知
         orderNote:function(){
-        	console.log('点击了');
         	var _this = this;
         	_this.ordermask = true;
         },
@@ -538,8 +536,8 @@ var departure = new Vue({
           var _this = this;
           _this.couponClue = '加载中...';
           $.ajax({
-            // url: 'http://172.16.10.134:8080/withdraw/giftHistoryList4Mobile',
-            url: '/departapi/driverschool/userDiscountCouponList?userId='+1000100,
+            // url: '/departapi/driverschool/userDiscountCouponList?userId='+1000100,
+            url: '/departapi/driverschool/userDiscountCouponList',
             type: 'get',
             dataType:'json',
             data:{
@@ -548,10 +546,7 @@ var departure = new Vue({
             }, 
             success: function(data) {
               if(data.code == 0){
-              	console.log('zzzzzz');
               	var totalheight = parseFloat($('#coupon').height()) + parseFloat($('#coupon').scrollTop()); 
-              	console.log(totalheight);
-              	console.log($('#coupon .g-box').height())
                 _this.coupon=_this.coupon.concat(data.object.list);
                 _this.isLast = data.object.isLast;
               }else{
@@ -594,14 +589,14 @@ var departure = new Vue({
 		        	_this.payTypeBox = true;
 		        }
         	}else{
-        		_this.mobileErrorClue = '手机号码错误';
+        		_this.mobileErrorClue = '请输入正确的手机号码';
         		setTimeout(function(){
         			_this.mobileErrorClue = '';
         		},2000);
         	}
     
 
-        	console.log(_this.balance);
+        	
         	if(_this.balance < _this.departCash){
         		_this.balanceEnough = false;
         		_this.balanceNotenough = true;
@@ -609,7 +604,6 @@ var departure = new Vue({
         },
     	// 微信支付
     	weChatPay:function(){
-    		console.log('weChat');
     		var _this = this;
     		_this.payType = 2;
     		_this.couponId = _this.iscouponCur + 1;
@@ -617,11 +611,11 @@ var departure = new Vue({
     		var date = new Date();
 			var str = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
     		var userExpectTime = str + ' '+ $('#targetInputTime').text();
-    		console.log(userExpectTime);
+    		
     	
     		$.ajax({
-               // url: 'http://172.16.10.134:8080/checkCode?phone='+_this.phone,
-               url: '/departapi/driverschool/pay?userId='+1000100,
+               // url: '/departapi/driverschool/pay?userId='+1000100,
+               url: '/departapi/driverschool/pay',
                type: 'get',
                data:{
                	   type:2,
@@ -658,18 +652,14 @@ var departure = new Vue({
 						          	if(res.err_msg == "get_brand_wcpay_request:ok" ) {  
 						          		_this.payTypeBox = false;
                        					_this.paySuccessMask = true;
+                       					_this.paySuccess = true;
+                       					_this.paySuccessText = '充值成功';
     								    }else if(res.err_msg == "get_brand_wcpay_request:cancel"){  
-				                            layer.open({
-				                              	content: '支付失败',
-							                    btn: '好的',
-							                    shadeClose: false,
-				                            });
+				                            _this.paySuccessMask = true;
+                       						_this.payError = true;
     								    }else if(res.err_msg == "get_brand_wcpay_request:fail" ){  
-				                            layer.open({
-				                              	content: '支付失败',
-							                    btn: '好的',
-							                    shadeClose: false,
-				                            });
+				                            _this.paySuccessMask = true;
+                       						_this.payError = true;
     								    } //使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。  
 						         	}  
 						   	);  
@@ -745,8 +735,9 @@ var departure = new Vue({
 
     		if(_this.balanceEnough == true){
 	    		$.ajax({
-	               // url: 'http://172.16.10.134:8080/checkCode?phone='+_this.phone,
-	               url: '/departapi/driverschool/pay?userId='+1000100,
+	               // url: '/departapi/driverschool/pay?userId='+1000100,
+	               url: '/departapi/driverschool/pay?userId',
+	               type: 'get',
 	               type: 'get',
 	               data:{
 	               	   type:1,
@@ -763,6 +754,8 @@ var departure = new Vue({
 	                    if(data.code == 0){
 	                    	_this.payTypeBox = false;
 	                        _this.paySuccessMask = true;
+	                        _this.paySuccess = true;
+	                        _this.paySuccessText = '提交成功';
 	                    }else if(data.code == -1){
 	                    	layer.open({
 			                    content: '段位不存在',

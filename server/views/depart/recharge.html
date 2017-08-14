@@ -19,9 +19,20 @@
             <li v-for="(item,index) in recharge_num" :class="{active:isCur==index}" @click='switchCash(index,item.id)'>¥&nbsp;${item.amount}</li>
         </ul>
         <h3 class="m-title">其他金额</h3>
-        <input type="text" placeholder="输入金额">
+        <input class="rechargePash" type="number" placeholder="输入金额" v-model='rechargePash' v-on:keyup='iptChange' onkeyup="this.value=this.value.replace(/\D/g,'')">
     </div>
-	<button class="u-btn-confirm">充值</button>
+	<button class="u-btn-confirm" @click='recharge'>充值</button>
+    <!-- 支付成功(失败)弹框 -->
+    <div class="g-clue-mask" v-show='payMask'>
+        <div class="g-clue-box">
+            <div class="m-clue-box">
+                <i class="clue-mask-close" @click='payCloseMask'></i>
+                <img v-if='paySuccess' src="/depart/images/withdrawSuccess.png" alt="没有图片">
+                <div v-if='paySuccess' class="u-pay-text">充值成功</div>
+                <h3 v-if='payError' class="widthdraw-tip">充值失败</h3>
+            </div>
+        </div>
+    </div>
 </div>
 {% include 'depart/footer.html' %}
 {% endblock %}
@@ -37,7 +48,12 @@ var recharge = new Vue({
         user_nickname:'',
         recharge_num:[],
         isCur:0,
-        payCash:''
+        payCash:'',
+        //input中的金额
+        rechargePash:'',
+        payMask:false,
+        paySuccess:false,
+        payError:false,
     },
     mounted: function () {
         this.$nextTick(function () {
@@ -65,13 +81,109 @@ var recharge = new Vue({
 
                 }
             });
+         
         })
     },
     methods:{
         switchCash:function(index,id){
             var _this = this;
+            _this.rechargePash = '';
             _this.isCur = index;
             _this.payCash = id;
+        },
+        //进行充值
+        recharge:function(){
+            var _this = this;
+            var productId = _this.isCur + 1;
+            $.ajax({
+                // url: '/departapi/driverschool/deposit?user_id='+1000100, 
+                url: '/departapi/driverschool/deposit', 
+                type: 'get',
+                data:{
+                    amount:_this.rechargePash,
+                    deposit_product_id:productId,
+                },
+                dataType:'json',
+                crossDomain:true,
+                xhrFields: {
+                    withCredentials: true,
+                },
+                success: function(data) {
+                    if(data.code==0){
+                        var weixinPay = data.object;
+                        var appId = weixinPay.appId+'';
+                        var nonce_str = weixinPay.nonceStr+'';
+                        var package = weixinPay.package+'';
+                        var timeStamp = weixinPay.timeStamp+'';
+                        var paySign = weixinPay.paySign+'';
+                        var signType = weixinPay.signType+''; 
+                        callpay();
+                        function onBridgeReady(){  
+                            WeixinJSBridge.invoke(  
+                                'getBrandWCPayRequest', {  
+                                     "appId":appId,     //公众号名称，由商户传入  
+                                     "paySign":paySign,         //微信签名  
+                                     "timeStamp":timeStamp, //时间戳，自1970年以来的秒数  
+                                     "nonceStr":nonce_str , //随机串  
+                                     "package":package,  //预支付交易会话标识  
+                                     "signType":signType,     //微信签名方式 
+                                 },  
+                                 function(res){
+                                    if(res.err_msg == "get_brand_wcpay_request:ok" ) {  
+                                        _this.payMask = true;
+                                        _this.paySuccess = true;
+                                        }else if(res.err_msg == "get_brand_wcpay_request:cancel"){  
+                                            // layer.open({
+                                            //     content: '支付失败',
+                                            //     btn: '好的',
+                                            //     shadeClose: false,
+                                            // });
+                                            _this.payMask = true;
+                                            _this.payError = true;
+                                        }else if(res.err_msg == "get_brand_wcpay_request:fail" ){  
+                                            _this.payMask = true;
+                                            _this.payError = true;
+                                        } //使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。  
+                                    }  
+                            );  
+                         };  
+                        function callpay(){  
+                            if (typeof WeixinJSBridge == "undefined"){  
+                                if( document.addEventListener ){  
+                                    document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);  
+                                }else if (document.attachEvent){  
+                                    document.attachEvent('WeixinJSBridgeReady', onBridgeReady);  
+                                    document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);  
+                                }  
+                            }else{  
+                                onBridgeReady();  
+                            }  
+                        };
+                    }else if(data.code==302){
+                        window.location.href = data.result;
+                    }                     
+                },
+                error: function() {
+                    layer.open({
+                        content: '网络异常，请刷新重试',
+                        btn: '好的',
+                        shadeClose: false,
+                    });
+                }
+            });
+        },
+        //ipt判断
+        iptChange:function(){
+            var _this = this;
+            if($('.rechargePash').val().length > 0){
+                _this.isCur = -5;
+            }else{
+                _this.isCur = 0;
+            }
+        },
+        payCloseMask:function(){
+            var _this = this;
+            _this.payMask = false;
         },
     }  
 })
