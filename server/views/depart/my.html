@@ -66,7 +66,7 @@ var my = new Vue({
         this.$nextTick(function () {
             var _this = this;
             $.ajax({
-                url: '/departapi/driverschool/userInfo?userId=1000100',
+                url: '/departapi/driverschool/userInfo',
                 type: 'get',
                 dataType:'json',
                 crossDomain:true,
@@ -104,7 +104,7 @@ var my = new Vue({
         withdraw:function(){
         	var _this = this;
             $.ajax({
-                url: '/departapi/driverschool/withdraw?userId=1000100',
+                url: '/departapi/driverschool/withdraw',
                 type: 'get',
                 dataType:'json',
                 crossDomain:true,

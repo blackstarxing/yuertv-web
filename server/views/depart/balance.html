@@ -27,7 +27,7 @@ var balance = new Vue({
         this.$nextTick(function () {
             var _this = this;
             $.ajax({
-                url: '/departapi/driverschool/userInfo?userId=1000100',
+                url: '/departapi/driverschool/userInfo',
                 type: 'get',
                 dataType:'json',
                 crossDomain:true,

@@ -61,7 +61,7 @@ var myArea = new Vue({
         this.$nextTick(function () {
             var _this = this;
             $.ajax({
-                url: '/departapi/driverschool/gradeLevelRange?userId=1000100',
+                url: '/departapi/driverschool/gradeLevelRange',
                 type: 'get',
                 dataType:'json',
                 crossDomain:true,
@@ -119,7 +119,7 @@ var myArea = new Vue({
                 url: '/departapi/driverschool/gradeLevelRangeSubmit',
                 type: 'get',
                 data:{
-                    "userId":1000100,
+                    // "userId":1000100,
                     "world":_this.world,
                     "maxGrade":_this.maxGrade,
                     "minGrade":_this.minGrade

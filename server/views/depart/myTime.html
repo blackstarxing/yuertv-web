@@ -41,7 +41,7 @@ var recharge = new Vue({
         this.$nextTick(function () {
             var _this = this;
             $.ajax({
-                url: '/departapi/driverschool/timeZoneList?userId=1000100',
+                url: '/departapi/driverschool/timeZoneList',
                 type: 'get',
                 dataType:'json',
                 crossDomain:true,
@@ -81,7 +81,7 @@ var recharge = new Vue({
                 url: '/departapi/driverschool/timeZoneListSubmit',
                 type: 'get',
                 data:{
-                    "userId":1000100,
+                    // "userId":1000100,
                     "timezoneIds":_this.setTime
                 },
                 dataType:'json',
