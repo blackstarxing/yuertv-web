@@ -41,7 +41,8 @@
                     <div class="m-Content">请输入图中的内容</div>
                     <div class="m-code-ipt">
                         <img v-bind:src="regPic" class="u-codeImg"  alt="没有图片" @click="changePic()">
-                        <input type="text" class="u-code-ipt"  v-model="code" oninput="if(value.length>4)value=value.slice(0,4);" placeholder="验证码">
+                        <input type="text" class="u-code-ipt"  v-model="code" oninput="if(value.length>4)value=value.slice(0,4);if(value.length==0){$('.code-ipt-reset').removeClass('active')};if(value.length>0){$('.code-ipt-reset').addClass('active')}" placeholder="验证码" >
+                        <i class="code-ipt-reset"></i>
                     </div>
                     <div class="codeError"><span>${codeError}</span></div>
                 </div>
