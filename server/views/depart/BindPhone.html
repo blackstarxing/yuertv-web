@@ -42,7 +42,7 @@
                     <div class="m-code-ipt">
                         <img v-bind:src="regPic" class="u-codeImg"  alt="没有图片" @click="changePic()">
                         <input type="text" class="u-code-ipt"  v-model="code" oninput="if(value.length>4)value=value.slice(0,4);if(value.length==0){$('.code-ipt-reset').removeClass('active')};if(value.length>0){$('.code-ipt-reset').addClass('active')}" placeholder="验证码" >
-                        <i class="code-ipt-reset"></i>
+                        <i class="code-ipt-reset" @click="codeReset"></i>
                     </div>
                     <div class="codeError"><span>${codeError}</span></div>
                 </div>
@@ -314,6 +314,11 @@
                 },2000);
             }           
         },
+        //重置ipt值
+        codeReset:function(){
+            var _this = this;
+            _this.code = '';
+        }
     }
 })
 </script>
