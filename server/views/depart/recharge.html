@@ -54,8 +54,12 @@ var recharge = new Vue({
                     withCredentials: true,
                 },
                 success: function(data) {
-                    _this.recharge_num = data.object;
-                    _this.payCash = data.object[0].id;
+                    if(data.code==0){
+                        _this.recharge_num = data.object;
+                        _this.payCash = data.object[0].id;
+                    }else if(data.code==302){
+                        window.location.href = data.result;
+                    }                     
                 },
                 error: function() {
 

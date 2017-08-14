@@ -74,11 +74,15 @@ var my = new Vue({
                     withCredentials: true,
                 },
                 success: function(data) {
-                    _this.user_info = data.object;
-                    window.localStorage.setItem("depart_id", data.object.id);
-                    window.localStorage.setItem("depart_icon", data.object.icon);
-                    window.localStorage.setItem("depart_nickname",data.object.nickname);
-                    window.localStorage.setItem("depart_type",data.object.user_type);
+                	if(data.code==0){
+                		_this.user_info = data.object;
+	                    window.localStorage.setItem("depart_id", data.object.id);
+	                    window.localStorage.setItem("depart_icon", data.object.icon);
+	                    window.localStorage.setItem("depart_nickname",data.object.nickname);
+	                    window.localStorage.setItem("depart_type",data.object.user_type);
+                	}else if(data.code==302){
+                        window.location.href = data.result;
+                    }                      
                 },
                 error: function() {
 

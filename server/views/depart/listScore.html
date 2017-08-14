@@ -60,7 +60,11 @@ var listScore = new Vue({
                     withCredentials: true,
                 },
                 success: function(data) {
-                    _this.list = data.object;
+                    if(data.code==0){
+                       _this.list = data.object; 
+                    }else if(data.code==302){
+                        window.location.href = data.result;
+                    }                     
                 },
                 error: function() {
 

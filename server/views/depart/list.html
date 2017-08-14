@@ -90,12 +90,16 @@ var list = new Vue({
                     withCredentials: true,
                 },
                 success: function(data) {
-                    if(_this.list){
-                        _this.list = data.object.list.length!=0?_this.list.concat(data.object.list):'';
-                    }else{
-                        _this.list = data.object.list.length!=0?data.object.list:'';
-                    }
-                    _this.islast = data.object.isLast;
+                    if(data.code==0){
+                        if(_this.list){
+                            _this.list = data.object.list.length!=0?_this.list.concat(data.object.list):'';
+                        }else{
+                            _this.list = data.object.list.length!=0?data.object.list:'';
+                        }
+                        _this.islast = data.object.isLast;
+                    }else if(data.code==302){
+                        window.location.href = data.result;
+                    }                     
                 },
                 error: function() {
 

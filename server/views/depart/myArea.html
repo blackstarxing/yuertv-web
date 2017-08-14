@@ -69,10 +69,14 @@ var myArea = new Vue({
                     withCredentials: true,
                 },
                 success: function(data) {
-                    _this.segmentList = data.object.gradeLevelList;
-                    _this.maxGrade = data.object.userGradeInfo.max_grade_id;
-                    _this.minGrade = data.object.userGradeInfo.min_grade_id;
-                    _this.world = data.object.userGradeInfo.world;
+                    if(data.code==0){
+                        _this.segmentList = data.object.gradeLevelList;
+                        _this.maxGrade = data.object.userGradeInfo.max_grade_id;
+                        _this.minGrade = data.object.userGradeInfo.min_grade_id;
+                        _this.world = data.object.userGradeInfo.world;
+                    }else if(data.code==302){
+                        window.location.href = data.result;
+                    }                      
                 },
                 error: function() {
 

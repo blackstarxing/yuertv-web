@@ -19,7 +19,6 @@ var proxy = require('express-http-proxy');
 
 var app = express();
 
-
 // var proxyaddress = "http://172.16.10.3:8777";
 var proxyaddress = "http://172.16.10.134:8080";
 

@@ -49,7 +49,11 @@ var recharge = new Vue({
                     withCredentials: true,
                 },
                 success: function(data) {
-                    _this.time = data.object;
+                    if(data.code==0){
+                        _this.time = data.object;
+                    }else if(data.code==302){
+                        window.location.href = data.result;
+                    }                     
                 },
                 error: function() {
 
