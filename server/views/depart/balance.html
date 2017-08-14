@@ -35,7 +35,11 @@ var balance = new Vue({
                     withCredentials: true,
                 },
                 success: function(data) {
-                    _this.balance = data.object.balance;
+                    if(data.code==0){
+                        _this.balance = data.object.balance; 
+                    }else if(data.code==302){
+                        window.location.href = data.result;
+                    }                 
                 },
                 error: function() {
 
