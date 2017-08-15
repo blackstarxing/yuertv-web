@@ -16,7 +16,7 @@
 			<i class="my-balance"></i><div class="lst-item">余额：<em>¥${user_info.balance}</em><span v-if="user_info.user_type==1"><a href="/depart/balance">立即充值</a></span><span v-else @click="withdraw">申请提现</span></div>
 		</div>
 		<div class="m-lst" @click="phoneAttention">
-			<i class="my-tel"></i><div class="lst-item">手机号<em>&nbsp;${user_info.mobile}</em><span v-if="!user_info.mobile"><a href="">立即绑定</a></span></div>
+			<i class="my-tel"></i><div class="lst-item">手机号<em>&nbsp;${user_info.mobile}</em><span v-if="!user_info.mobile"><a href="/depart/bindPhone">立即绑定</a></span></div>
 		</div>
 		<a href="/depart/myArea" class="m-lst" v-if="user_info.user_type==2">
 			<i class="my-area"></i><div class="lst-item">接单范围<span v-if="user_info.is_range_set">已选择</span><span v-else>请选择</span></div>
