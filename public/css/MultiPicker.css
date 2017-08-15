@@ -65,7 +65,8 @@
 .multi-picker-btn-box .multi-picker-btn {
     position: absolute;
     display: inline-block;
-    margin: 0 0.533333rem;
+    width: 30%;
+    /*margin: 0 0.533333rem;*/
     color: #fff;
     right: 0;
     padding-right: 0.746667rem;  /*56*/
