@@ -15,14 +15,14 @@
         <div class="list-box" v-if="isCur==0">
             <a v-bind:href="'/depart/listDetail?out_trade_no='+list.out_trade_no" class="m-list driverList" v-for="list in list">
                 <h3>${list.order_date}<span class="driver">查看</span></h3>
-                <div class="target-name">${list.level_name}包${list.order_type==1?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}<span v-if="list.world==1">微信区</span><span v-else>QQ区</span></div>
+                <div class="target-name">${list.level_name}包${list.order_type==2?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}<span v-if="list.world==1">微信区</span><span v-else>QQ区</span></div>
                 <div class="target-price" :class="{drivePrice:user_type==2}"><span><em>¥</em>${list.amount}</span></div>
             </a>
         </div>
         <div class="list-box" v-if="isCur==1">
             <div class="m-list" v-for="list in list">
                 <h3>${list.order_date}<span>已完成</span></h3>
-                <div class="target-name">${list.level_name}包${list.order_type==1?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}<span v-if="list.world==1">微信区</span><span v-else>QQ区</span></div>
+                <div class="target-name">${list.level_name}包${list.order_type==2?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}<span v-if="list.world==1">微信区</span><span v-else>QQ区</span></div>
                 <div class="target-price" :class="{drivePrice:user_type==2}"><span><em>¥</em>${list.amount}</span></div>
                 <div class="rank">用户评分:${list.graded?rank[list.rank-1]:'暂无'}</div>
             </div>

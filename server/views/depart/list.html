@@ -15,22 +15,22 @@
         <div class="list-box" v-if="isCur==0">
             <div class="m-list" v-for="list in list">
                 <h3>${list.order_date}<span>待发车</span></h3>
-                <div class="target-name">${list.level_name}包${list.order_type==1?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}</div>
-                <div class="target-price"><span><em>¥</em>${list.amount}</span><label for=""><i>￥${list.amount+list.discount}</i>&nbsp;&nbsp;抵用券减免${list.discount}元</label></div>
+                <div class="target-name">${list.level_name}包${list.order_type==2?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}</div>
+                <div class="target-price"><span><em>¥</em>${list.amount}</span><label for="" v-if="list.discount"><i>￥${list.amount+list.discount}</i>&nbsp;&nbsp;抵用券减免${list.discount}元</label></div>
             </div>
         </div>
         <div class="list-box" v-if="isCur==1">
             <a v-bind:href="'/depart/listDetail?out_trade_no='+list.out_trade_no" class="m-list" v-for="list in list">
                 <h3>${list.order_date}<span>进行中</span></h3>
-                <div class="target-name">${list.level_name}包${list.order_type==1?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}</div>
-                <div class="target-price"><span><em>¥</em>${list.amount}</span><label for=""><i>￥${list.amount+list.discount}</i>&nbsp;&nbsp;抵用券减免${list.discount}元</label></div>
+                <div class="target-name">${list.level_name}包${list.order_type==2?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}</div>
+                <div class="target-price"><span><em>¥</em>${list.amount}</span><label for="" v-if="list.discount"><i>￥${list.amount+list.discount}</i>&nbsp;&nbsp;抵用券减免${list.discount}元</label></div>
             </a>
         </div>
         <div class="list-box" v-if="isCur==2">
             <div class="m-list" v-for="list in list">
                 <h3>${list.order_date}<span>已完成</span></h3>
-                <div class="target-name">${list.level_name}包${list.order_type==1?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}</div>
-                <div class="target-price"><span><em>¥</em>${list.amount}</span><label for=""><i>￥${list.amount+list.discount}</i>&nbsp;&nbsp;抵用券减免${list.discount}元</label></div>
+                <div class="target-name">${list.level_name}包${list.order_type==2?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}</div>
+                <div class="target-price"><span><em>¥</em>${list.amount}</span><label for="" v-if="list.discount"><i>￥${list.amount+list.discount}</i>&nbsp;&nbsp;抵用券减免${list.discount}元</label></div>
                 <a href="" v-if="list.graded">已评价</a>
                 <a v-bind:href="'/depart/listScore?out_trade_no='+list.out_trade_no" class="score" v-else>立即评价</a>
             </div>

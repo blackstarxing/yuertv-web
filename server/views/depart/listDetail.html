@@ -9,7 +9,7 @@
     <div class="list-box">
         <div class="m-list" :class="{driverList:!list.discount}">
             <h3>${list.order_date}<span>进行中</span></h3>
-            <div class="target-name">${list.level_name}包${list.order_type==1?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}<span v-if="list.world==1">微信区</span><span v-else-if="list.world==2">QQ区</span></div>
+            <div class="target-name">${list.level_name}包${list.order_type==2?'上'+list.total+'星':list.total==100?'单局':list.total+'小时'}<span v-if="list.world==1">微信区</span><span v-else-if="list.world==2">QQ区</span></div>
             <div class="target-price" :class="{drivePrice:!list.discount}"><span><em>¥</em>${list.amount}</span><label for="" v-if="list.discount"><i>￥${list.amount+list.discount}</i>&nbsp;&nbsp;抵用券减免${list.discount}元</label></div>
             <div class="score-box">
                 <p class="mid">长按扫描二维码加入${list.group_type==1?'QQ讨论组':'微信群'}发车</p>
