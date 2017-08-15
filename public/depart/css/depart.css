@@ -271,6 +271,10 @@ footer ul li{
 	font-size: 0.453333rem;
 	color:rgba(255,255,255,0.8);
 }
+.m-clue-box img{
+    width: 1.066667rem;
+    height: 1.066667rem;
+}
 .g-clue-box .clue-mask-close{
   position: absolute;
   display: block;

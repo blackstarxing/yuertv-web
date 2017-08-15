@@ -1,7 +1,7 @@
 {% extends 'depart/layout.html' %} 
 {% block css %}
 <link rel="stylesheet" href="/depart/css/bindPhone.css">
-{% endblock %}
+{% endblock %} 
 {% block content %}
 	<div id="bindPhone" class="g-messageLog" v-cloak>
         <div class="g-box">
@@ -250,7 +250,7 @@
             if(/^1[34578][0-9]{9}$/.test(_this.phone) && _this.messCode.length==6){
                 $.ajax({
                     // url: 'http://172.16.10.3:8777/driverschool/bindMobile?userId='+1000100+'&checkCode='+_this.messCode+'&mobile='+_this.phone,
-                    url: 'http://172.16.10.3:8777/driverschool/bindMobile?checkCode='+_this.messCode+'&mobile='+_this.phone,
+                    url: '/departapi/driverschool/bindMobile?checkCode='+_this.messCode+'&mobile='+_this.phone,
                     type: 'get',
                     data:{},
                     dataType: 'json',
