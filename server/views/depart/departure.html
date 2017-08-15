@@ -111,7 +111,7 @@
 			<div class="g-clue-box">
 				<div class="m-clue-box">
 					<i class="clue-mask-close" @click='payCloseMask'></i>
-					<img src="/depart/images/withdrawSuccess.png" alt="没有图片">
+					<img v-if='paySuccess' src="/depart/images/withdrawSuccess.png" alt="没有图片">
 					<div v-if='paySuccess' class="u-pay-text">${paySuccessText}</div>
                		<h3 v-if='payError' class="widthdraw-tip">充值失败</h3>
 				</div>
@@ -264,6 +264,7 @@ var departure = new Vue({
                 success: function(data) {
                   if(data.code == 0){
                   }else if(data.code == 302){
+                  	debugger;
                     window.location.href = data.result;
                   }else{
                     layer.open({
@@ -654,10 +655,12 @@ var departure = new Vue({
                        					_this.paySuccessMask = true;
                        					_this.paySuccess = true;
                        					_this.paySuccessText = '充值成功';
-    								    }else if(res.err_msg == "get_brand_wcpay_request:cancel"){  
+    								    }else if(res.err_msg == "get_brand_wcpay_request:cancel"){ 
+    								        _this.payTypeBox = false; 
 				                            _this.paySuccessMask = true;
                        						_this.payError = true;
-    								    }else if(res.err_msg == "get_brand_wcpay_request:fail" ){  
+    								    }else if(res.err_msg == "get_brand_wcpay_request:fail" ){ 
+    								        _this.payTypeBox = false;  
 				                            _this.paySuccessMask = true;
                        						_this.payError = true;
     								    } //使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。  
