@@ -264,7 +264,6 @@ var departure = new Vue({
                 success: function(data) {
                   if(data.code == 0){
                   }else if(data.code == 302){
-                  	debugger;
                     window.location.href = data.result;
                   }else{
                     layer.open({
