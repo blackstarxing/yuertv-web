@@ -68,10 +68,16 @@
     margin: 0 0.533333rem;
     color: #fff;
     right: 0;
+    padding-right: 0.746667rem;  /*56*/
+    box-sizing: border-box;
+    text-align:right;
     color:#ad8962;
     font-size: 0.426667rem;
 }
-
+#multi-picker-btn-cancel{
+    text-align: left;
+    padding-left: 0.746667rem;
+}
 .multi-picker-btn-box .multi-picker-btn:nth-child(1) {
     left: 0;
     right: initial;

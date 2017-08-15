@@ -154,6 +154,7 @@
 	             </div>
 	        </div>
 	        <div class="couponClue">${couponClue}</div>
+	        <p v-show="noCoupon" class="no-coupon">暂无抵用劵</p>
     	</div>
     	{% include 'depart/footer.html' %}
 	</div>
@@ -230,6 +231,8 @@ var departure = new Vue({
         isLast:0,
         //判断抵用卷页面是否打开
         coupontype:false,
+        //抵用卷提示语
+        noCoupon:false,
 
 		//支付方式的盒子
         payTypeBox:false,
@@ -409,6 +412,11 @@ var departure = new Vue({
                         _this.coupon = data.object.list;
                         _this.couponTotal = data.object.total;
                         _this.isLast = data.object.isLast;
+                        if(_this.coupon == ''){
+                        	_this.noCoupon = true;
+                        }else{
+                        	_this.noCoupon = false;
+                        }
                     }
                },
                error: function() {

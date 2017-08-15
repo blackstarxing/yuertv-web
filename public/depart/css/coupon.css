@@ -131,3 +131,11 @@
 	text-align: center;
 	font-size: 0.32rem;
 }
+.no-coupon{
+	width: 100%;
+	height: 0.666667rem;
+	line-height: 0.666667rem;
+	color:#786d57;
+    font-size: 0.4rem;
+    text-align: center;
+}
