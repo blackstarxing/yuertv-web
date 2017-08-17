@@ -7,10 +7,10 @@ var request = require('request');
 var ticket = '';
 var ticketline = '';
 
-var path = 'http://172.16.10.3:8777';
-var apipath ="http://172.16.10.134:8099";
-var rainpath = 'http://172.16.10.134:8080';  
-// var rainpath = 'http://qa.web.yuerlive.cn/api';
+// var path = 'http://172.16.10.3:8777';
+// var apipath ="http://172.16.10.134:8099";
+// var rainpath = 'http://172.16.10.134:8080';  
+var rainpath = 'http://qa.webapi.yuerlive.cn/api';
 // var path = 'http://webapi.yuerlive.cn';
 // var apipath ="http://api.yuerlive.cn";
 

@@ -6,11 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var nunjucks = require('nunjucks');
 var routerConfig = require('./server/middleware/router');
-var webpack = require('webpack'),
-    webpackDevMiddleware = require('webpack-dev-middleware'),
-    webpackHotMiddleware = require('webpack-hot-middleware'),
-    webpackDevConfig = require('./webpack.config.js');
-var compiler = webpack(webpackDevConfig);
+// var webpack = require('webpack'),
+//     webpackDevMiddleware = require('webpack-dev-middleware'),
+//     webpackHotMiddleware = require('webpack-hot-middleware'),
+//     webpackDevConfig = require('./webpack.config.js');
+// var compiler = webpack(webpackDevConfig);
 var NODE_ENV = process.env.NODE_ENV || 'production';
 var isDev = NODE_ENV === 'development';
 var routes = require('./server/routes/index');
@@ -20,20 +20,21 @@ var proxy = require('express-http-proxy');
 var app = express();
 
 // var proxyaddress = "http://172.16.10.3:8777";
-var proxyaddress = "http://172.16.10.134:8080";
+// var proxyaddress = "http://172.16.10.134:8080";
+var proxyaddress = "http://qa.webapi.yuerlive.cn";
 
-app.use('/api', proxy('http://172.16.10.3:8777', {
-  forwardPath: function(req, res) {
-    return require('url').parse(req.url).path;
-  }
-}));
+// app.use('/api', proxy('http://172.16.10.3:8777', {
+//   forwardPath: function(req, res) {
+//     return require('url').parse(req.url).path;
+//   }
+// }));
 
 // 荣耀驾校代理地址
-app.use('/departapi', proxy(proxyaddress, {
-  forwardPath: function(req, res) {
-    return require('url').parse(req.url).path;
-  }
-}));
+// app.use('/departapi', proxy(proxyaddress, {
+//   forwardPath: function(req, res) {
+//     return require('url').parse(req.url).path;
+//   }
+// }));
 
 
 nunjucks.configure('server/views', {
@@ -51,27 +52,27 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-if (isDev) {
-    app.use(webpackDevMiddleware(compiler, {
-        publicPath: webpackDevConfig.output.publicPath,
-        noInfo: true,
-        stats: {
-            colors: true
-        }
-    }));
-    app.use(webpackHotMiddleware(compiler));
-    app.use(express.static(path.join(__dirname, 'public')));
+// if (isDev) {
+//     app.use(webpackDevMiddleware(compiler, {
+//         publicPath: webpackDevConfig.output.publicPath,
+//         noInfo: true,
+//         stats: {
+//             colors: true
+//         }
+//     }));
+//     app.use(webpackHotMiddleware(compiler));
+//     app.use(express.static(path.join(__dirname, 'public')));
     
-    routerConfig(app, {
-        dirPath: __dirname + '/server/routes/'
-    });
-} else {
+//     routerConfig(app, {
+//         dirPath: __dirname + '/server/routes/'
+//     });
+// } else {
     app.use(express.static(path.join(__dirname, 'public')));
     routerConfig(app, {
         dirPath: __dirname + '/server/routes/'
     });
-}
+// }
 
-app.listen(3000);
+app.listen(30000);
 
 module.exports = app;
